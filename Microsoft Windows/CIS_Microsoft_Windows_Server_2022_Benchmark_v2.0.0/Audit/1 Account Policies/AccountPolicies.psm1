@@ -206,17 +206,40 @@ function Test-ComplexityEnabled {
     Return $result
 }
 
+function Test-RelaxMinimumPasswordLengthLimits {
+    [CmdletBinding()]
+    param (
+        [Parameter()][bool]$FineGrainedPasswordPolicy = $true
+    )
+    Write-Verbose "This setting is required for Level 1 compliance on Windows Server 2022 or greater."
+    $PasswordPolicy = Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\SAM" -name "RelaxMinimumPasswordLengthLimits"
+    if ($PasswordPolicy.RelaxMinimumPasswordLengthLimits -eq "1") {
+        $Message = "The Relax minimum password length limits is enabled and meets the requirement."
+        Write-Verbose $Message
+        $result = $true
+    } else {
+        $Message = "The Relax minimum password length limits is disabled or missing and may not the requirement"
+        Write-Warning $Message
+        $result = $false
+    }
+    Return $result
+}
+
 function Test-AccountPolicies {
     [CmdletBinding()]
     param (
+        [Parameter()][ValidateSet("DomainController","MemberServer")][string]$ServerType,
+        [Parameter()][ValidateSet("1","2")][string]$Level = "1",
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][bool]$PasswordHistory = $true,
         [Parameter()][bool]$MaxPasswordAge = $true,
         [Parameter()][bool]$MinPasswordAge = $true,
         [Parameter()][bool]$MinPasswordLength = $true,
-        [Parameter()][bool]$ComplexityEnabled = $true
+        [Parameter()][bool]$ComplexityEnabled = $true,
+        [Parameter()][bool]$RelaxMinimumPasswordLengthLimits = $true
     )
     $Result = @()
-    if ($PasswordHistory) {
+    if ($PasswordHistory -and $Level -eq "1") {
         Write-Verbose ""
         Write-Verbose "Testing the Password History requirement"
         $Output = Test-PasswordHistory
@@ -228,7 +251,7 @@ function Test-AccountPolicies {
         }
         $Result += New-Object -TypeName PSObject -Property $Properties
     }
-    if ($MaxPasswordAge) {
+    if ($MaxPasswordAge -and $Level -eq "1") {
         Write-Verbose ""
         Write-Verbose "Testing the Max Password Age requirement"
         $Output = Test-MaxPasswordAge
@@ -240,7 +263,7 @@ function Test-AccountPolicies {
         }
         $Result += New-Object -TypeName PSObject -Property $Properties
     }
-    if ($MinPasswordAge) {
+    if ($MinPasswordAge -and $Level -eq "1") {
         Write-Verbose ""
         Write-Verbose "Testing the Minimum Password Age requirement"
         $Output = Test-MinPasswordAge
@@ -252,7 +275,7 @@ function Test-AccountPolicies {
         }
         $Result += New-Object -TypeName PSObject -Property $Properties
     }
-    if ($MinPasswordLength) {
+    if ($MinPasswordLength -and $Level -eq "1") {
         Write-Verbose ""
         Write-Verbose "Testing the Minimum Password Length requirement"
         $Output = Test-MinPasswordLength
@@ -264,7 +287,7 @@ function Test-AccountPolicies {
         }
         $Result += New-Object -TypeName PSObject -Property $Properties
     }
-    if ($ComplexityEnabled) {
+    if ($ComplexityEnabled -and $Level -eq "1") {
         Write-Verbose ""
         Write-Verbose "Testing to make sure Password Complexity is Enabled"
         $Output = Test-ComplexityEnabled
@@ -273,6 +296,26 @@ function Test-AccountPolicies {
             'Configuration Profile' = "Level 1"
             'Recommendation Name'= 'Ensure "Password must meet complexity requirements" is set to "Enabled"'
             'Result'= $Output
+        }
+        $Result += New-Object -TypeName PSObject -Property $Properties
+    }
+    if ($RelaxMinimumPasswordLengthLimits -and $Level -eq "1" -and $ServerType -eq "MemberServer") {
+        Write-Verbose ""
+        Write-Verbose "Testing to make sure Password Complexity is Enabled"
+        $Output = Test-RelaxMinimumPasswordLengthLimits
+        $Properties = [ordered]@{
+            'Recommendation Number'= '1.1.6'
+            'Configuration Profile' = "Level 1"
+            'Recommendation Name'= 'Ensure "Relax minimum password length limits" is set to "Enabled"'
+            'Result'= $Output
+        }
+        $Result += New-Object -TypeName PSObject -Property $Properties
+    } else {
+        $Properties = [ordered]@{
+            'Recommendation Number'= '1.1.6'
+            'Configuration Profile' = "Level 1 - Member Server"
+            'Recommendation Name'= 'Ensure "Relax minimum password length limits" is set to "Enabled"'
+            'Result'= $null
         }
         $Result += New-Object -TypeName PSObject -Property $Properties
     }
