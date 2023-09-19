@@ -169,13 +169,51 @@ function Test-MinPasswordLength {
     Return $result
 }
 
+function Test-ComplexityEnabled {
+    [CmdletBinding()]
+    param (
+        [Parameter()][bool]$FineGrainedPasswordPolicy = $true
+    )
+    Write-Verbose "This settings is required for Level 1 compliance."
+    $PasswordPolicy = Get-ADDefaultDomainPasswordPolicy
+    if ($PasswordPolicy.ComplexityEnabled) {
+        $Message = "The default domain policy has complexity enabled and does meet the requirement."
+        Write-Verbose $Message
+        $result = $true
+    } else {
+        $Message = "The default domain policy has complexity disabled and does not meet the requirement."
+        Write-Warning $Message
+        $result = $false
+    }
+
+    if ($FineGrainedPasswordPolicy) {
+        $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
+        $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
+        Write-Verbose $Message
+        foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+            if ($FGPasswordPolicy.MinPasswordLength -gt "0") {
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity enabled and does meet the requirement."
+                Write-Verbose $Message
+            } else {
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity disabled and does not meet the requirement."
+                Write-Warning $Message
+                $result = $false
+            }
+            $Message = "This policy is applied to `n" + $FGPasswordPolicy.AppliesTo
+            Write-Verbose $Message
+        }
+    }
+    Return $result
+}
+
 function Test-AccountPolicies {
     [CmdletBinding()]
     param (
         [Parameter()][bool]$PasswordHistory = $true,
         [Parameter()][bool]$MaxPasswordAge = $true,
         [Parameter()][bool]$MinPasswordAge = $true,
-        [Parameter()][bool]$MinPasswordLength = $true
+        [Parameter()][bool]$MinPasswordLength = $true,
+        [Parameter()][bool]$ComplexityEnabled = $true
     )
     $Result = @()
     if ($PasswordHistory) {
@@ -226,7 +264,19 @@ function Test-AccountPolicies {
         }
         $Result += New-Object -TypeName PSObject -Property $Properties
     }
+    if ($ComplexityEnabled) {
+        Write-Verbose ""
+        Write-Verbose "Testing to make sure Password Complexity is Enabled"
+        $Output = Test-ComplexityEnabled
+        $Properties = [ordered]@{
+            'Recommendation Number'= '1.1.5'
+            'Configuration Profile' = "Level 1"
+            'Recommendation Name'= 'Ensure "Password must meet complexity requirements" is set to "Enabled"'
+            'Result'= $Output
+        }
+        $Result += New-Object -TypeName PSObject -Property $Properties
+    }
     return $Result
 }
 
-Export-ModuleMember -Function Test-AccountPolicies, Test-PasswordHistory, Test-MaxPasswordAge, Test-MinPasswordAge, Test-MinPasswordLength
+Export-ModuleMember -Function Test-AccountPolicies, Test-PasswordHistory, Test-MaxPasswordAge, Test-MinPasswordAge, Test-MinPasswordLength, Test-ComplexityEnabled
