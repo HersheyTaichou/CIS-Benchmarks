@@ -22,14 +22,14 @@ function Test-PasswordHistory {
         [Parameter()][String]$FirstParam
     )
     Write-Verbose "This settings is required for Level 1 compliance"
-    Write-Information "For compliance, password history should be set to 24 or more passwords remembered."
+    Write-Host "For compliance, password history should be set to 24 or more passwords remembered."
     $PasswordPolicy = Get-ADDefaultDomainPasswordPolicy
     if ($PasswordPolicy.PasswordHistoryCount -lt "24") {
         $message = "Password history is set to " + $PasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Increase the policy to 24 or greater."
         Write-Warning $message
     } else {
         $message = "Password history is set to " + $PasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
-        Write-Information $message
+        Write-Host $message
     }
 }
 
