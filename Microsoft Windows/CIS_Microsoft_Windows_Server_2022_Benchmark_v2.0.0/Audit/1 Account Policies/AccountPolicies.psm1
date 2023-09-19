@@ -82,10 +82,47 @@ function Test-MaxPasswordAge {
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.MaxPasswordAge -gt "0" -and $FGPasswordPolicy.MaxPasswordAge -le "365") {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
-                Write-Warning $Message
+                Write-Verbose $Message
             } else {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
+                Write-Warning $Message
+                $result = $false
+            }
+            $Message = "This policy is applied to `n" + $FGPasswordPolicy.AppliesTo
+            Write-Verbose $Message
+        }
+    }
+    Return $result
+}
+
+function Test-MinPasswordAge {
+    [CmdletBinding()]
+    param (
+        [Parameter()][bool]$FineGrainedPasswordPolicy = $true
+    )
+    Write-Verbose "This settings is required for Level 1 compliance."
+    $PasswordPolicy = Get-ADDefaultDomainPasswordPolicy
+    if ($PasswordPolicy.MinPasswordAge -gt "0") {
+        $Message = "The default domain minimum password age is set to " + $PasswordPolicy.MaxPasswordAge + " and does meet the requirement."
+        Write-Verbose $Message
+        $result = $true
+    } else {
+        $Message = "The default domain minimum password age is set to " + $PasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
+        Write-Warning $Message
+        $result = $false
+    }
+
+    if ($FineGrainedPasswordPolicy) {
+        $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
+        $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
+        Write-Verbose $Message
+        foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+            if ($FGPasswordPolicy.MinPasswordAge -gt "0") {
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
                 Write-Verbose $Message
+            } else {
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
+                Write-Warning $Message
                 $result = $false
             }
             $Message = "This policy is applied to `n" + $FGPasswordPolicy.AppliesTo
@@ -99,32 +136,47 @@ function Test-AccountPolicies {
     [CmdletBinding()]
     param (
         [Parameter()][bool]$PasswordHistory = $true,
-        [Parameter()][bool]$MaxPasswordAge = $true
+        [Parameter()][bool]$MaxPasswordAge = $true,
+        [Parameter()][bool]$MinPasswordAge = $true
     )
     $Result = @()
     if ($PasswordHistory) {
+        Write-Verbose ""
         Write-Verbose "Testing the Password History requirement"
-        $PasswordHistory = Test-PasswordHistory
+        $Output = Test-PasswordHistory
         $Properties = [ordered]@{
             'Recommendation Number'= '1.1.1'
             'Configuration Profile' = "Level 1"
             'Recommendation Name'= 'Ensure "Enforce password history" is set to "24 or more password(s)"'
-            'Result'= $PasswordHistory
+            'Result'= $Output
         }
         $Result += New-Object -TypeName PSObject -Property $Properties
     }
     if ($MaxPasswordAge) {
+        Write-Verbose ""
         Write-Verbose "Testing the Max Password Age requirement"
-        $MaxPasswordAge = Test-MaxPasswordAge
+        $Output = Test-MaxPasswordAge
         $Properties = [ordered]@{
             'Recommendation Number'= '1.1.2'
             'Configuration Profile' = "Level 1"
             'Recommendation Name'= 'Ensure "Maximum password age" is set to "365 or fewer days, but not 0"'
-            'Result'= $MaxPasswordAge
+            'Result'= $Output
+        }
+        $Result += New-Object -TypeName PSObject -Property $Properties
+    }
+    if ($MinPasswordAge) {
+        Write-Verbose ""
+        Write-Verbose "Testing the Minimum Password Age requirement"
+        $Output = Test-MinPasswordAge
+        $Properties = [ordered]@{
+            'Recommendation Number'= '1.1.3'
+            'Configuration Profile' = "Level 1"
+            'Recommendation Name'= 'Ensure "Minimum password age" is set to "1 or more day(s)"'
+            'Result'= $Output
         }
         $Result += New-Object -TypeName PSObject -Property $Properties
     }
     return $Result
 }
 
-Export-ModuleMember -Function Test-AccountPolicies, Test-PasswordHistory, Test-MaxPasswordAge
+Export-ModuleMember -Function Test-AccountPolicies, Test-PasswordHistory, Test-MaxPasswordAge, Test-MinPasswordAge
