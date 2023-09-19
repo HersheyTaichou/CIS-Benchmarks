@@ -144,7 +144,7 @@ function Test-MinPasswordLength {
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The default domain minimum password lenth is set to " + $PasswordPolicy.MinPasswordLength + " and does not meet the requirement. Make sure the minimum password length is greater or equal to 14."
+        $Message = "The default domain minimum password length is set to " + $PasswordPolicy.MinPasswordLength + " and does not meet the requirement. Make sure the minimum password length is greater or equal to 14."
         Write-Warning $Message
         $result = $false
     }
@@ -155,10 +155,10 @@ function Test-MinPasswordLength {
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.MinPasswordLength -gt "0") {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to " + $FGPasswordPolicy.MinPasswordLength + " and does meet the requirement."
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to " + $FGPasswordPolicy.MinPasswordLength + " and does meet the requirement."
                 Write-Verbose $Message
             } else {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to "+ $FGPasswordPolicy.MinPasswordLength + " and does not meet the requirement. Make sure the minimum password length is greater or equal to 14."
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to "+ $FGPasswordPolicy.MinPasswordLength + " and does not meet the requirement. Make sure the minimum password length is greater or equal to 14."
                 Write-Warning $Message
                 $result = $false
             }
