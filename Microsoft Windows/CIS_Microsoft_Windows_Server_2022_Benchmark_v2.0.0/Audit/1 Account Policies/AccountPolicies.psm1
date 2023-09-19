@@ -1,6 +1,8 @@
 # This module is designed to provide functions that test for complaince with CIS Benchmarks Version 2.0.0 for Windows Server 2022
 # 
 
+. .\support.ps1
+
 <#
 .SYNOPSIS
 1.1.1 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)' (Automated)
@@ -24,10 +26,10 @@ FALSE
 function Test-PasswordHistory {
     [CmdletBinding()]
     param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy = $true
+        [Parameter()][bool]$FineGrainedPasswordPolicy = $true,
+        [Parameter()][hashtable]$PasswordPolicy = (Get-ADDefaultDomainPasswordPolicy)
     )
     Write-Verbose "This settings is required for Level 1 compliance."
-    $PasswordPolicy = Get-ADDefaultDomainPasswordPolicy
     if ($PasswordPolicy.PasswordHistoryCount -lt "24") {
         $Message = "The default domain password history is set to " + $PasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Increase the policy to 24 or greater."
         Write-Warning $Message
@@ -239,10 +241,25 @@ function Test-AccountPolicies {
         [Parameter()][bool]$RelaxMinimumPasswordLengthLimits = $true
     )
     $Result = @()
+    if ($ServerType = "DomainController") {
+        $PasswordPolicy = (Get-ADDefaultDomainPasswordPolicy)
+    } elseif ($ServerType = "MemberServer") {
+        secedit /export /cfg secedit.inf
+        $secedit = (Get-IniContent .\secedit.inf).Values
+        if ($secedit.PasswordComplexity -like "*1*") {$PasswordComplexity = $true} else {$PasswordComplexity = $false}
+        $PasswordPolicy = @{
+            ComplexityEnabled = $PasswordComplexity;
+            PasswordHistoryCount = $secedit.PasswordHistorySize;
+            MaxPasswordAge = $secedit.MaximumPasswordAge;
+            MinPasswordAge = $secedit.MinimumPasswordAge;
+            MinPasswordLength = $secedit.MinimumPasswordLength;
+        }
+        Remove-Item .\secedit.inf
+    }
     if ($PasswordHistory -and $Level -eq "1") {
         Write-Verbose ""
         Write-Verbose "Testing the Password History requirement"
-        $Output = Test-PasswordHistory
+        $Output = Test-PasswordHistory -PasswordPolicy $PasswordPolicy
         $Properties = [ordered]@{
             'Recommendation Number'= '1.1.1'
             'Configuration Profile' = "Level 1"
