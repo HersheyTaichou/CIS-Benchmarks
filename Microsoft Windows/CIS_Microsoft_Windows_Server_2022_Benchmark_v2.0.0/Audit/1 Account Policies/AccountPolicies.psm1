@@ -80,7 +80,7 @@ function Test-MaxPasswordAge {
         $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-            if ($FGPasswordPolicy.PasswordHistoryCount -lt "24") {
+            if ($FGPasswordPolicy.MaxPasswordAge -gt "0" -and $FGPasswordPolicy.MaxPasswordAge -le "365") {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
                 Write-Warning $Message
             } else {
@@ -124,6 +124,7 @@ function Test-AccountPolicies {
         }
         $Result += New-Object -TypeName PSObject -Property $Properties
     }
+    return $Result
 }
 
 Export-ModuleMember -Function Test-AccountPolicies, Test-PasswordHistory, Test-MaxPasswordAge
