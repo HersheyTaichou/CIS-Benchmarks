@@ -11,22 +11,24 @@ function Test-PasswordHistory {
     Write-Host "For compliance, password history should be set to 24 or more passwords remembered."
     $PasswordPolicy = Get-ADDefaultDomainPasswordPolicy
     if ($PasswordPolicy.PasswordHistoryCount -lt "24") {
-        $message = "Password history is set to " + $PasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Increase the policy to 24 or greater."
-        Write-Warning $message
+        $Message = "Password history is set to " + $PasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Increase the policy to 24 or greater."
+        Write-Warning $Message
     } else {
-        $message = "Password history is set to " + $PasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
-        Write-Host $message -ForegroundColor Green
+        $Message = "Password history is set to " + $PasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
+        Write-Host $Message -ForegroundColor Green
     }
 
     #if ($FineGrainedPasswordPolicy) {
     $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-    foreach ($PasswordPolicy in $ADFineGrainedPasswordPolicy) {
-        if ($PasswordPolicy.PasswordHistoryCount -lt "24") {
-            $message = "Password history is set to " + $PasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Increase the policy to 24 or greater."
-            Write-Warning $message
+    $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
+    Write-Verbose $Message
+    foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+        if ($FGPasswordPolicy.PasswordHistoryCount -lt "24") {
+            $Message = "The " + $FGPasswordPolicy.Name + " policy has the Password history set to " + $FGPasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Increase the policy to 24 or greater."
+            Write-Warning $Message
         } else {
-            $message = "Password history is set to " + $PasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
-            Write-Host $message -ForegroundColor Green
+            $Message = "The " + $FGPasswordPolicy.Name + " policy has the Password history set to "+ $FGPasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
+            Write-Host $Message -ForegroundColor Green
         }
     }
     #}
