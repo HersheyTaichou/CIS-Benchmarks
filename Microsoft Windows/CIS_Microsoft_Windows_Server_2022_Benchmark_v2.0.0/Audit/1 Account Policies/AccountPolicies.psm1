@@ -132,12 +132,50 @@ function Test-MinPasswordAge {
     Return $result
 }
 
+function Test-MinPasswordLength {
+    [CmdletBinding()]
+    param (
+        [Parameter()][bool]$FineGrainedPasswordPolicy = $true
+    )
+    Write-Verbose "This settings is required for Level 1 compliance."
+    $PasswordPolicy = Get-ADDefaultDomainPasswordPolicy
+    if ($PasswordPolicy.MinPasswordLength -ge "14") {
+        $Message = "The default domain minimum password length is set to " + $PasswordPolicy.MinPasswordLength + " and does meet the requirement."
+        Write-Verbose $Message
+        $result = $true
+    } else {
+        $Message = "The default domain minimum password lenth is set to " + $PasswordPolicy.MinPasswordLength + " and does not meet the requirement. Make sure the minimum password length is greater or equal to 14."
+        Write-Warning $Message
+        $result = $false
+    }
+
+    if ($FineGrainedPasswordPolicy) {
+        $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
+        $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
+        Write-Verbose $Message
+        foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+            if ($FGPasswordPolicy.MinPasswordLength -gt "0") {
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to " + $FGPasswordPolicy.MinPasswordLength + " and does meet the requirement."
+                Write-Verbose $Message
+            } else {
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to "+ $FGPasswordPolicy.MinPasswordLength + " and does not meet the requirement. Make sure the minimum password length is greater or equal to 14."
+                Write-Warning $Message
+                $result = $false
+            }
+            $Message = "This policy is applied to `n" + $FGPasswordPolicy.AppliesTo
+            Write-Verbose $Message
+        }
+    }
+    Return $result
+}
+
 function Test-AccountPolicies {
     [CmdletBinding()]
     param (
         [Parameter()][bool]$PasswordHistory = $true,
         [Parameter()][bool]$MaxPasswordAge = $true,
-        [Parameter()][bool]$MinPasswordAge = $true
+        [Parameter()][bool]$MinPasswordAge = $true,
+        [Parameter()][bool]$MinPasswordLength = $true
     )
     $Result = @()
     if ($PasswordHistory) {
@@ -176,7 +214,19 @@ function Test-AccountPolicies {
         }
         $Result += New-Object -TypeName PSObject -Property $Properties
     }
+    if ($MinPasswordLength) {
+        Write-Verbose ""
+        Write-Verbose "Testing the Minimum Password Age requirement"
+        $Output = Test-MinPasswordLength
+        $Properties = [ordered]@{
+            'Recommendation Number'= '1.1.4'
+            'Configuration Profile' = "Level 1"
+            'Recommendation Name'= 'Ensure "Minimum password age" is set to "1 or more day(s)"'
+            'Result'= $Output
+        }
+        $Result += New-Object -TypeName PSObject -Property $Properties
+    }
     return $Result
 }
 
-Export-ModuleMember -Function Test-AccountPolicies, Test-PasswordHistory, Test-MaxPasswordAge, Test-MinPasswordAge
+Export-ModuleMember -Function Test-AccountPolicies, Test-PasswordHistory, Test-MaxPasswordAge, Test-MinPasswordAge, Test-MinPasswordLength
