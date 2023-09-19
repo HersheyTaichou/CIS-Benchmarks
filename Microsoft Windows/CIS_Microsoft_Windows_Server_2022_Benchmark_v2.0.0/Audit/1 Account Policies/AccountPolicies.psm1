@@ -154,7 +154,7 @@ function Test-MinPasswordLength {
         $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-            if ($FGPasswordPolicy.MinPasswordLength -gt "0") {
+            if ($FGPasswordPolicy.MinPasswordLength -ge "14") {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to " + $FGPasswordPolicy.MinPasswordLength + " and does meet the requirement."
                 Write-Verbose $Message
             } else {
@@ -254,12 +254,12 @@ function Test-AccountPolicies {
     }
     if ($MinPasswordLength) {
         Write-Verbose ""
-        Write-Verbose "Testing the Minimum Password Age requirement"
+        Write-Verbose "Testing the Minimum Password Length requirement"
         $Output = Test-MinPasswordLength
         $Properties = [ordered]@{
             'Recommendation Number'= '1.1.4'
             'Configuration Profile' = "Level 1"
-            'Recommendation Name'= 'Ensure "Minimum password age" is set to "1 or more day(s)"'
+            'Recommendation Name'= 'Ensure "Minimum password length" is set to "14 or more character(s)"'
             'Result'= $Output
         }
         $Result += New-Object -TypeName PSObject -Property $Properties
