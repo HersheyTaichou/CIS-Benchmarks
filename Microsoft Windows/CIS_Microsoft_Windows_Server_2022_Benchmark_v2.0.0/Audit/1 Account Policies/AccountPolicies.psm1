@@ -191,7 +191,7 @@ function Test-ComplexityEnabled {
         $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-            if ($FGPasswordPolicy.MinPasswordLength -gt "0") {
+            if ($FGPasswordPolicy.ComplexityEnabled) {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity enabled and does meet the requirement."
                 Write-Verbose $Message
             } else {
