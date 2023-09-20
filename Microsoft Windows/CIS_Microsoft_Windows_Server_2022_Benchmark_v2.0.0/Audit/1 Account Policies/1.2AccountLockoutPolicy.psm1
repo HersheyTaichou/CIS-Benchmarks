@@ -81,7 +81,7 @@ function Test-LockoutDuration {
         $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-            if ($FGPasswordPolicy.LockoutDuration -ge "15") {
+            if ($FGPasswordPolicy.LockoutDuration -ge (New-TimeSpan -Minutes 15)) {
                 $Message = "1.2.1 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy lockout duration is set to "+ $FGPasswordPolicy.LockoutDuration + " and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
@@ -273,7 +273,7 @@ function Test-ResetLockoutCount {
         $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-            if ($FGPasswordPolicy.LockoutObservationWindow -ge "15") {
+            if ($FGPasswordPolicy.LockoutObservationWindow -ge (New-TimeSpan -Minutes 15)) {
                 $Message = "1.2.4 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum lockout counter set to " + $FGPasswordPolicy.LockoutObservationWindow + " minutes and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
