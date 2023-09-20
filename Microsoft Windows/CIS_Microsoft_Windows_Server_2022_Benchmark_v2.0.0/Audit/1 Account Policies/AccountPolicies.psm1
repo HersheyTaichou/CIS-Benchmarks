@@ -1,14 +1,17 @@
 # This module is designed to provide functions that test for complaince with CIS Benchmarks Version 2.0.0 for Windows Server 2022
 # 
 
-. .\support.ps1
+. ..\support.psm1
 
 <#
 .SYNOPSIS
 1.1.1 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)' (Automated)
 
 .DESCRIPTION
-The command checks the default domain password policy and any fine grained password policies, to ensure they all meet the 24 password history requirement. The command will return True if all policies meet the requirement, and false otherwise.
+The command checks the default domain password policy and any fine grained
+password policies, to ensure they all meet the 24 password history requirement.
+The command will return True if all policies meet the requirement, and false
+otherwise.
 
 .PARAMETER FineGrainedPasswordPolicy
 Set this to false to skip checking any fine grained password policies. Defaults to True
@@ -26,37 +29,59 @@ FALSE
 function Test-PasswordHistory {
     [CmdletBinding()]
     param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy = $true,
-        [Parameter()][hashtable]$PasswordPolicy = (Get-ADDefaultDomainPasswordPolicy)
+        [Parameter()][bool]$FineGrainedPasswordPolicy
     )
-    Write-Verbose "This settings is required for Level 1 compliance."
-    if ($PasswordPolicy.PasswordHistoryCount -lt "24") {
-        $Message = "The default domain password history is set to " + $PasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Increase the policy to 24 or greater."
-        Write-Warning $Message
-        $result = $false
-    } else {
-        $Message = "The default domain password history is set to " + $PasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
-        Write-Verbose $Message
-        $result = $true
+    # Check for and install any needed modules
+    $Prerequisites = Install-Prerequisites
+
+    if ($Prerequisites.ProductType = "2" -and (-not($FineGrainedPasswordPolicy))) {
+        Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
+        $FineGrainedPasswordPolicy = $true
     }
 
+    # Run Get-GPResultantSetOfPolicy and return the results as a variable
+    $gpresult = Get-GPResult
+
+    #Find the Password History Size applied to this machine
+    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($Entry in $data.Extension.Account) {
+            If ($Entry.Name -eq "PasswordHistorySize") {
+                $PasswordHistoryCount = $Entry.SettingNumber
+            }
+        }
+    }
+
+    # Check if the Password History Size meets the CIS Benchmark
+    Write-Verbose "This setting is required for Level 1 compliance."
+    if ($PasswordHistoryCount -ge "24") {
+        $Message = "The default domain password history is set to " + $PasswordHistoryCount + " and does meet the requirement."
+        Write-Verbose $Message
+        $result = $true
+    } else {
+        $Message = "The default domain password history is set to " + $PasswordHistoryCount + " and does not meet the requirement. Increase the policy to 24 or greater."
+        Write-Warning $Message
+        $result = $false
+    }
+
+    # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
         $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
         $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-            if ($FGPasswordPolicy.PasswordHistoryCount -lt "24") {
+            if ($FGPasswordPolicy.PasswordHistoryCount -ge "24") {
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to "+ $FGPasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
+                Write-Verbose $Message
+            } else {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to " + $FGPasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Increase the policy to 24 or greater."
                 Write-Warning $Message
                 $result = $false
-            } else {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to "+ $FGPasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
-                Write-Verbose $Message
             }
             $Message = "This policy is applied to `n" + $FGPasswordPolicy.AppliesTo
             Write-Verbose $Message
         }
     }
+    # Return True if everything meets the CIS benchmark, otherwise False
     Return $result
 }
 
