@@ -13,3 +13,5 @@ ObjectGUID                  : ccbd4fa8-3141-4547-a15f-1f87f8057b74
 PasswordHistoryCount        : 24
 Precedence                  : 100
 ReversibleEncryptionEnabled : False
+
+AllowAdministratorLockout
