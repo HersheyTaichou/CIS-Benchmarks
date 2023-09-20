@@ -70,14 +70,14 @@ function Test-PasswordHistory {
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.PasswordHistoryCount -ge "24") {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to "+ $FGPasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
+                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
             } else {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to " + $FGPasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Increase the policy to 24 or greater."
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to " + $FGPasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Set the policy to 24 or greater."
+                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $false
             }
-            $Message = "This policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-            Write-Verbose $Message
         }
     }
     # Return True if everything meets the CIS benchmark, otherwise False
