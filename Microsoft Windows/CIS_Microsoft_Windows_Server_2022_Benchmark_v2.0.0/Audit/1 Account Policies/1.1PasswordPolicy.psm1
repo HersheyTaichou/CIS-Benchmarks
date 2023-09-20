@@ -55,11 +55,11 @@ function Test-PasswordHistory {
     # This setting is required for Level 1 compliance.
 
     if ($Setting -ge "24") {
-        $Message = "The GPO password history is set to " + $Setting + " and does meet the requirement."
+        $Message = "1.1.1 The GPO password history is set to " + $Setting + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO password history is set to " + $Setting + " and does not meet the requirement. Increase the policy to 24 or greater."
+        $Message = "1.1.1 The GPO password history is set to " + $Setting + " and does not meet the requirement. Increase the policy to 24 or greater."
         Write-Warning $Message
         $result = $false
     }
@@ -80,12 +80,12 @@ function Test-PasswordHistory {
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.PasswordHistoryCount -ge "24") {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to "+ $FGPasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
+                $Message = "1.1.1 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to "+ $FGPasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
                 $Result = $true
             } else {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to " + $FGPasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Set the policy to 24 or greater."
+                $Message = "1.1.1 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to " + $FGPasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Set the policy to 24 or greater."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $fals
@@ -136,11 +136,11 @@ function Test-MaxPasswordAge {
     # This setting is required for Level 1 compliance.
 
     if ($Setting -gt "0" -and $Setting -le "365") {
-        $Message = "The GPO password history is set to " + $Setting + " and does meet the requirement."
+        $Message = "1.1.2 The GPO password history is set to " + $Setting + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO password history is set to " + $Setting + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
+        $Message = "1.1.2 The GPO password history is set to " + $Setting + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
         Write-Warning $Message
         $result = $false
     }
@@ -161,12 +161,12 @@ function Test-MaxPasswordAge {
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.MaxPasswordAge -gt "0" -and $FGPasswordPolicy.MaxPasswordAge -le "365") {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
+                $Message = "1.1.2 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
                 $Result = $true
             } else {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
+                $Message = "1.1.2 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $fals
@@ -216,11 +216,11 @@ function Test-MinPasswordAge {
     # This setting is required for Level 1 compliance.
 
     if ($Setting -gt "0") {
-        $Message = "The GPO minimum password age is set to " + $Setting + " and does meet the requirement."
+        $Message = "1.1.3 The GPO minimum password age is set to " + $Setting + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO minimum password age is set to " + $Setting + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
+        $Message = "1.1.3 The GPO minimum password age is set to " + $Setting + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
         Write-Warning $Message
         $result = $false
     }
@@ -241,12 +241,12 @@ function Test-MinPasswordAge {
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.MinPasswordAge -gt "0") {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
+                $Message = "1.1.3 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
                 $Result = $true
             } else {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
+                $Message = "1.1.3 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $fals
@@ -296,11 +296,11 @@ function Test-MinPasswordLength {
     # This setting is required for Level 1 compliance.
 
     if ($Setting -ge "14") {
-        $Message = "The GPO minimum password length is set to " + $Setting + " and does meet the requirement."
+        $Message = "1.1.4 The GPO minimum password length is set to " + $Setting + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO minimum password length is set to " + $Setting + " and does not meet the requirement. Make sure the minimum password length is greater than or equal to 14."
+        $Message = "1.1.4 The GPO minimum password length is set to " + $Setting + " and does not meet the requirement. Make sure the minimum password length is greater than or equal to 14."
         Write-Warning $Message
         $result = $false
     }
@@ -321,12 +321,12 @@ function Test-MinPasswordLength {
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.MinPasswordLength -ge "14") {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to " + $FGPasswordPolicy.MinPasswordLength + " and does meet the requirement."
+                $Message = "1.1.4 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to " + $FGPasswordPolicy.MinPasswordLength + " and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
                 $Result = $true
             } else {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to "+ $FGPasswordPolicy.MinPasswordLength + " and does not meet the requirement. Make sure the minimum password length is greater or equal to 14."
+                $Message = "1.1.4 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to "+ $FGPasswordPolicy.MinPasswordLength + " and does not meet the requirement. Make sure the minimum password length is greater or equal to 14."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $fals
@@ -377,11 +377,11 @@ function Test-ComplexityEnabled {
     # This setting is required for Level 1 compliance.
 
     if ($Setting) {
-        $Message = "The GPO policy has complexity enabled and does meet the requirement."
+        $Message = "1.1.5 The GPO policy has complexity enabled and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO policy has complexity disabled and does not meet the requirement."
+        $Message = "1.1.5 The GPO policy has complexity disabled and does not meet the requirement."
         Write-Warning $Message
         $result = $false
     }
@@ -402,12 +402,12 @@ function Test-ComplexityEnabled {
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.ComplexityEnabled) {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity enabled and does meet the requirement."
+                $Message = "1.1.5 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity enabled and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
                 $Result = $true
             } else {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity disabled and does not meet the requirement."
+                $Message = "1.1.5 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity disabled and does not meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $fals
@@ -435,18 +435,18 @@ function Test-RelaxMinimumPasswordLengthLimits {
 
     # Check if the GPO setting meets the CIS Benchmark
     if ($PasswordPolicy.RelaxMinimumPasswordLengthLimits -eq "1") {
-        $Message = "The Relax minimum password length limits is enabled and meets the requirement."
+        $Message = "1.1.6 The Relax minimum password length limits is enabled and meets the requirement."
         Write-Verbose $Message
         $result = $true
         [bool]$Setting = $PasswordPolicy.RelaxMinimumPasswordLengthLimits
     } elseif ($PasswordPolicy.RelaxMinimumPasswordLengthLimits -eq "0") {
-        $Message = "The Relax minimum password length limits is disabled and does not meet the requirement.`n`n"
+        $Message = "1.1.6 The Relax minimum password length limits is disabled and does not meet the requirement.`n`n"
         $Message += "NOTE: This setting is only available within the built-in OS security template of Windows 10 Release 2004 and Server 2022 (or newer)."
         Write-Warning $Message
         $result = $false
         [bool]$setting = $PasswordPolicy.RelaxMinimumPasswordLengthLimits
     } else {
-        $Message = "The Relax minimum password length limits is missing or set incorrectly and does not meet the requirement.`n`n"
+        $Message = "1.1.6 The Relax minimum password length limits is missing or set incorrectly and does not meet the requirement.`n`n"
         $Message += "NOTE: This setting is only available within the built-in OS security template of Windows 10 Release 2004 and Server 2022 (or newer)."
         Write-Warning $Message
         $result = $false
@@ -495,12 +495,12 @@ function Test-ReversibleEncryption {
     # This setting is required for Level 1 compliance.
 
     if ($Setting -eq "false") {
-        $Message = "The GPO policy has reversible encryption disabled and does meet the requirement."
+        $Message = "1.1.7 The GPO policy has reversible encryption disabled and does meet the requirement."
         Write-Verbose $Message
         $result = $true
         $Setting = $false
     } else {
-        $Message = "The GPO policy has reversible encryption enabled and does not meet the requirement."
+        $Message = "1.1.7 The GPO policy has reversible encryption enabled and does not meet the requirement."
         Write-Warning $Message
         $result = $false
         $Setting = $true
@@ -522,11 +522,11 @@ function Test-ReversibleEncryption {
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if (-not($FGPasswordPolicy.ReversibleEncryptionEnabled)) {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has reversible encryption disabled and does meet the requirement."
+                $Message = "1.1.7 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has reversible encryption disabled and does meet the requirement."
                 Write-Verbose $Message
                 $Result = $true
             } else {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has reversible encryption enabled and does not meet the requirement."
+                $Message = "1.1.7 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has reversible encryption enabled and does not meet the requirement."
                 Write-Warning $Message
                 $result = $false
             }

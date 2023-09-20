@@ -56,11 +56,11 @@ function Test-LockoutDuration {
     # This setting is required for Level 1 compliance.
 
     if ($SettingNumber -ge "15") {
-        $Message = "The GPO account lockout duration is set to " + $SettingNumber + " and does meet the requirement."
+        $Message = "1.2.1 The GPO account lockout duration is set to " + $SettingNumber + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO account lockout duration is set to " + $SettingNumber + " and does not meet the requirement. Increase the policy to 24 or greater."
+        $Message = "1.2.1 The GPO account lockout duration is set to " + $SettingNumber + " and does not meet the requirement. Increase the policy to 24 or greater."
         Write-Warning $Message
         $result = $false
     }
@@ -82,12 +82,12 @@ function Test-LockoutDuration {
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.LockoutDuration -ge "15") {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy lockout duration is set to "+ $FGPasswordPolicy.LockoutDuration + " and does meet the requirement."
+                $Message = "1.2.1 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy lockout duration is set to "+ $FGPasswordPolicy.LockoutDuration + " and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
                 $result = $true
             } else {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy lockout duration is set to " + $FGPasswordPolicy.LockoutDuration + " and does not meet the requirement. Set the policy to 24 or greater."
+                $Message = "1.2.1 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy lockout duration is set to " + $FGPasswordPolicy.LockoutDuration + " and does not meet the requirement. Set the policy to 24 or greater."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $false
@@ -139,11 +139,11 @@ function Test-LockoutThreshold {
     # This setting is required for Level 1 compliance.
 
     if ($SettingNumber -gt "0" -and $SettingNumber -le "5") {
-        $Message = "The GPO lockout threshold is set to " + $SettingNumber + " and does meet the requirement."
+        $Message = "1.2.2 The GPO lockout threshold is set to " + $SettingNumber + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO lockout threshold is set to " + $SettingNumber + " and does not meet the requirement. Make sure the lockout threshold is greater than 0 and less than or equal to 5."
+        $Message = "1.2.2 The GPO lockout threshold is set to " + $SettingNumber + " and does not meet the requirement. Make sure the lockout threshold is greater than 0 and less than or equal to 5."
         Write-Warning $Message
         $result = $false
     }
@@ -165,11 +165,11 @@ function Test-LockoutThreshold {
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.LockoutThreshold -gt "0" -and $FGPasswordPolicy.LockoutThreshold -le "5") {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the lockout threshold set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
+                $Message = "1.2.2 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the lockout threshold set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
             } else {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the lockout threshold set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the lockout threshold is greater than 0 and less than or equal to 5."
+                $Message = "1.2.2 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the lockout threshold set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the lockout threshold is greater than 0 and less than or equal to 5."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $false
@@ -248,11 +248,11 @@ function Test-ResetLockoutCount {
     # This setting is required for Level 1 compliance.
 
     if ($SettingNumber -ge "15") {
-        $Message = "The GPO account lockout counter is set to " + $SettingNumber + " minutes and does meet the requirement."
+        $Message = "1.2.4 The GPO account lockout counter is set to " + $SettingNumber + " minutes and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO account lockout counter is set to " + $SettingNumber + " minutes and does not meet the requirement. Make sure the minimum time is greater than or equal to 15."
+        $Message = "1.2.4 The GPO account lockout counter is set to " + $SettingNumber + " minutes and does not meet the requirement. Make sure the minimum time is greater than or equal to 15."
         Write-Warning $Message
         $result = $false
     }
@@ -274,12 +274,12 @@ function Test-ResetLockoutCount {
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.LockoutObservationWindow -ge "15") {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum lockout counter set to " + $FGPasswordPolicy.LockoutObservationWindow + " minutes and does meet the requirement."
+                $Message = "1.2.4 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum lockout counter set to " + $FGPasswordPolicy.LockoutObservationWindow + " minutes and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
                 $result = $true
             } else {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum lockout counter set to "+ $FGPasswordPolicy.LockoutObservationWindow + " minutes and does not meet the requirement. Make sure the minimum time is greater than or equal to 15."
+                $Message = "1.2.4 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum lockout counter set to "+ $FGPasswordPolicy.LockoutObservationWindow + " minutes and does not meet the requirement. Make sure the minimum time is greater than or equal to 15."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $false
