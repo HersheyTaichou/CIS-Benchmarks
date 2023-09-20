@@ -89,7 +89,7 @@ function Test-PasswordHistory {
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $fals
-                $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
+                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             }
             $Properties = [ordered]@{
                 'Recommendation Number'= '1.1.1'
@@ -170,7 +170,7 @@ function Test-MaxPasswordAge {
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $fals
-                $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
+                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             }
             $Properties = [ordered]@{
                 'Recommendation Number'= '1.1.2'
@@ -250,7 +250,7 @@ function Test-MinPasswordAge {
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $fals
-                $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
+                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             }
             $Properties = [ordered]@{
                 'Recommendation Number'= '1.1.3'
@@ -330,7 +330,7 @@ function Test-MinPasswordLength {
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $fals
-                $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
+                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             }
             $Properties = [ordered]@{
                 'Recommendation Number'= '1.1.4'
@@ -411,7 +411,7 @@ function Test-ComplexityEnabled {
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $fals
-                $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
+                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             }
             $Properties = [ordered]@{
                 'Recommendation Number'= '1.1.5'
@@ -530,7 +530,7 @@ function Test-ReversibleEncryption {
                 Write-Warning $Message
                 $result = $false
             }
-            $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
+            $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [ordered]@{
                 'Recommendation Number'= '1.1.7'
                 'Configuration Profile' = "Level 1"
