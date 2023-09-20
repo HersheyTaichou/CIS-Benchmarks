@@ -47,7 +47,7 @@ function Test-LockoutDuration {
     foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "LockoutDuration") {
-                [int]$SettingNumber = $Entry.SettingNumber
+                [int]$Setting = $Entry.SettingNumber
             }
         }
     }
@@ -55,12 +55,12 @@ function Test-LockoutDuration {
     # Check if the domain setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
-    if ($SettingNumber -ge "15") {
-        $Message = "1.2.1 The GPO account lockout duration is set to " + $SettingNumber + " and does meet the requirement."
+    if ($Setting -ge "15") {
+        $Message = "1.2.1 The GPO account lockout duration is set to " + $Setting + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "1.2.1 The GPO account lockout duration is set to " + $SettingNumber + " and does not meet the requirement. Increase the policy to 24 or greater."
+        $Message = "1.2.1 The GPO account lockout duration is set to " + $Setting + " and does not meet the requirement. Increase the policy to 24 or greater."
         Write-Warning $Message
         $result = $false
     }
@@ -71,7 +71,7 @@ function Test-LockoutDuration {
         'Recommendation Name'= "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
-        'Setting' = $SettingNumber
+        'Setting' = $Setting
     }
     $Return += New-Object -TypeName PSObject -Property $Properties
 
@@ -130,7 +130,7 @@ function Test-LockoutThreshold {
     foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "LockoutBadCount") {
-                [int]$SettingNumber = $Entry.SettingNumber
+                [int]$Setting = $Entry.SettingNumber
             }
         }
     }
@@ -138,12 +138,12 @@ function Test-LockoutThreshold {
     # Check if the domain setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
-    if ($SettingNumber -gt "0" -and $SettingNumber -le "5") {
-        $Message = "1.2.2 The GPO lockout threshold is set to " + $SettingNumber + " and does meet the requirement."
+    if ($Setting -gt "0" -and $Setting -le "5") {
+        $Message = "1.2.2 The GPO lockout threshold is set to " + $Setting + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "1.2.2 The GPO lockout threshold is set to " + $SettingNumber + " and does not meet the requirement. Make sure the lockout threshold is greater than 0 and less than or equal to 5."
+        $Message = "1.2.2 The GPO lockout threshold is set to " + $Setting + " and does not meet the requirement. Make sure the lockout threshold is greater than 0 and less than or equal to 5."
         Write-Warning $Message
         $result = $false
     }
@@ -154,7 +154,7 @@ function Test-LockoutThreshold {
         'Recommendation Name'= "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
-        'Setting' = $SettingNumber
+        'Setting' = $Setting
     }
     $Return += New-Object -TypeName PSObject -Property $Properties
 
@@ -192,17 +192,38 @@ function Test-LockoutThreshold {
 function Test-AdminLockout {
     [CmdletBinding()]
     param ()
-    $Return = @()
-    $Message =  "This script is currently unable to check the 'Allow Administrator account lockout' setting. You will need to check the settings manually.`n`n"
-    $Message += "To check the group policies, go to this location:`n"
-    $Message += "Computer Configuration\Policies\Windows Settings\Security Settings\Account Policies\Account Lockout Policies\Allow Administrator account lockout`n`n"
-    $Message += "To check in the Local Security Policy, go to:`n"
-    $Message += "Security Settings\Account Policies\Account Lockout Policies\Allow Administrator account lockout`n`n"
-    $Message += "NOTE: This setting applies only to OSes patched as of October 11, 2022 (see MS KB5020282)."
-    Write-Host $Message
 
-    $result = ""
-    $SettingNumber = ""
+    # Check for and install any needed modules
+    Install-Prerequisites
+
+    $Return = @()
+
+    # Run Get-GPResultantSetOfPolicy and return the results as a variable
+    $gpresult = Get-GPResult
+
+    #Find the maximum password age applied to this machine
+    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($Entry in $data.Extension.Account) {
+            If ($Entry.Name -eq "AllowAdministratorLockout") {
+                [string]$Setting = $Entry.SettingBoolean
+            }
+        }
+    }
+
+    # Check if the domain setting meets the CIS Benchmark
+    # This setting is required for Level 1 compliance.
+
+    if ($Setting -eq "false") {
+        $Message = "1.2.3 The GPO Admin lockout is enabled and does meet the requirement."
+        Write-Verbose $Message
+        $result = $true
+        $Setting = $true
+    } else {
+        $Message = "1.2.3 The GPO admin lockout is set disabled or missing and does not meet the requirement. Make sure admin lockout setting is enabled."
+        Write-Warning $Message
+        $result = $false
+        $Setting = $false
+    }
 
     $Properties = [ordered]@{
         'Recommendation Number'= '1.2.3'
@@ -210,11 +231,9 @@ function Test-AdminLockout {
         'Recommendation Name'= "Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
-        'Setting' = $SettingNumber
+        'Setting' = $Setting
     }
     $Return += New-Object -TypeName PSObject -Property $Properties
-
-    return $Return
 }
 
 function Test-ResetLockoutCount {
@@ -239,7 +258,7 @@ function Test-ResetLockoutCount {
     foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "ResetLockoutCount") {
-                [int]$SettingNumber = $Entry.SettingNumber
+                [int]$Setting = $Entry.SettingNumber
             }
         }
     }
@@ -247,12 +266,12 @@ function Test-ResetLockoutCount {
     # Check if the domain setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
-    if ($SettingNumber -ge "15") {
-        $Message = "1.2.4 The GPO account lockout counter is set to " + $SettingNumber + " minutes and does meet the requirement."
+    if ($Setting -ge "15") {
+        $Message = "1.2.4 The GPO account lockout counter is set to " + $Setting + " minutes and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "1.2.4 The GPO account lockout counter is set to " + $SettingNumber + " minutes and does not meet the requirement. Make sure the minimum time is greater than or equal to 15."
+        $Message = "1.2.4 The GPO account lockout counter is set to " + $Setting + " minutes and does not meet the requirement. Make sure the minimum time is greater than or equal to 15."
         Write-Warning $Message
         $result = $false
     }
@@ -263,7 +282,7 @@ function Test-ResetLockoutCount {
         'Recommendation Name'= "Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
-        'Setting' = $SettingNumber
+        'Setting' = $Setting
     }
     $Return += New-Object -TypeName PSObject -Property $Properties
 
