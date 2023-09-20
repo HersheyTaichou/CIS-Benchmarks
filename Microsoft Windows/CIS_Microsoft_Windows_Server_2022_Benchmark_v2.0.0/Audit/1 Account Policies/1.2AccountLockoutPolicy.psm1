@@ -25,7 +25,7 @@ WARNING: The "12 Passwords Remembered"  Fine Grained Password Policy has the Pas
 FALSE
 
 #>
-function Test-PasswordHistory {
+function Test-LockoutDuration {
     [CmdletBinding()]
     param (
         [Parameter()][bool]$FineGrainedPasswordPolicy
@@ -41,24 +41,24 @@ function Test-PasswordHistory {
     # Run Get-GPResultantSetOfPolicy and return the results as a variable
     $gpresult = Get-GPResult
 
-    #Find the Password History Size applied to this machine
+    #Find the lockout duration applied to this machine
     foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
-            If ($Entry.Name -eq "PasswordHistorySize") {
+            If ($Entry.Name -eq "LockoutDuration") {
                 [int]$SettingNumber = $Entry.SettingNumber
             }
         }
     }
 
-    # Check if the GPO setting meets the CIS Benchmark
+    # Check if the domain setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
-    if ($SettingNumber -ge "24") {
-        $Message = "The GPO password history is set to " + $SettingNumber + " and does meet the requirement."
+    if ($SettingNumber -ge "15") {
+        $Message = "The GPO account lockout duration is set to " + $SettingNumber + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO password history is set to " + $SettingNumber + " and does not meet the requirement. Increase the policy to 24 or greater."
+        $Message = "The GPO account lockout duration is set to " + $SettingNumber + " and does not meet the requirement. Increase the policy to 24 or greater."
         Write-Warning $Message
         $result = $false
     }
@@ -69,12 +69,12 @@ function Test-PasswordHistory {
         $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
         Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-            if ($FGPasswordPolicy.PasswordHistoryCount -ge "24") {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to "+ $FGPasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
+            if ($FGPasswordPolicy.LockoutDuration -ge "15") {
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy lockout duration is set to "+ $FGPasswordPolicy.LockoutDuration + " and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
             } else {
-                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to " + $FGPasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Set the policy to 24 or greater."
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy lockout duration is set to " + $FGPasswordPolicy.LockoutDuration + " and does not meet the requirement. Set the policy to 24 or greater."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $false
@@ -85,7 +85,7 @@ function Test-PasswordHistory {
     Return $result
 }
 
-function Test-MaxPasswordAge {
+function Test-LockoutThreshold {
     [CmdletBinding()]
     param (
         [Parameter()][bool]$FineGrainedPasswordPolicy
@@ -104,21 +104,21 @@ function Test-MaxPasswordAge {
     #Find the maximum password age applied to this machine
     foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
-            If ($Entry.Name -eq "MaximumPasswordAge") {
+            If ($Entry.Name -eq "LockoutBadCount") {
                 [int]$SettingNumber = $Entry.SettingNumber
             }
         }
     }
 
-    # Check if the GPO setting meets the CIS Benchmark
+    # Check if the domain setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
-    if ($SettingNumber -gt "0" -and $SettingNumber -le "365") {
-        $Message = "The GPO password history is set to " + $SettingNumber + " and does meet the requirement."
+    if ($SettingNumber -gt "0" -and $SettingNumber -le "5") {
+        $Message = "The GPO lockout threshold is set to " + $SettingNumber + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO password history is set to " + $SettingNumber + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
+        $Message = "The GPO lockout threshold is set to " + $SettingNumber + " and does not meet the requirement. Make sure the lockout threshold is greater than 0 and less than or equal to 5."
         Write-Warning $Message
         $result = $false
     }
@@ -169,7 +169,7 @@ function Test-MinPasswordAge {
         }
     }
 
-    # Check if the GPO setting meets the CIS Benchmark
+    # Check if the domain setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
     if ($SettingNumber -gt "0") {
@@ -228,7 +228,7 @@ function Test-MinPasswordLength {
         }
     }
 
-    # Check if the GPO setting meets the CIS Benchmark
+    # Check if the domain setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
     if ($SettingNumber -ge "14") {
@@ -288,7 +288,7 @@ function Test-ComplexityEnabled {
         }
     }
 
-    # Check if the GPO setting meets the CIS Benchmark
+    # Check if the domain setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
     if ($SettingBoolean) {
@@ -329,8 +329,6 @@ function Test-RelaxMinimumPasswordLengthLimits {
     )
     # This setting is required for Level 1 compliance on Windows Server 2022 or greater.
     $PasswordPolicy = Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\SAM" -name "RelaxMinimumPasswordLengthLimits"
-
-    # Check if the GPO setting meets the CIS Benchmark
     if ($PasswordPolicy.RelaxMinimumPasswordLengthLimits -eq "1") {
         $Message = "The Relax minimum password length limits is enabled and meets the requirement."
         Write-Verbose $Message
@@ -369,7 +367,7 @@ function Test-ReversibleEncryption {
         }
     }
 
-    # Check if the GPO setting meets the CIS Benchmark
+    # Check if the domain setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
     if (-not($SettingBoolean)) {
@@ -401,7 +399,7 @@ function Test-ReversibleEncryption {
     Return $result
 }
 
-function Test-AccountPolicies {
+function Test-PasswordPolicies {
     [CmdletBinding()]
     param (
         [Parameter()][ValidateSet("DomainController","MemberServer")][string]$ServerType,
