@@ -213,7 +213,7 @@ function Test-AdminLockout {
     # Check if the domain setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
-    if ($Setting -eq "false") {
+    if ($Setting -eq "true") {
         $Message = "1.2.3 The GPO Admin lockout is enabled and does meet the requirement."
         Write-Verbose $Message
         $result = $true
@@ -233,7 +233,9 @@ function Test-AdminLockout {
         'Result'= $result
         'Setting' = $Setting
     }
-    $Return += New-Object -TypeName PSObject -Property $Properties
+    $Return = New-Object -TypeName PSObject -Property $Properties
+
+    return $Return
 }
 
 function Test-ResetLockoutCount {
