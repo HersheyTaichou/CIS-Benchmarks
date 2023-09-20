@@ -92,7 +92,7 @@ function Test-LockoutDuration {
                 Write-Warning $Message
                 $result = $false
             }
-            $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
+            $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [ordered]@{
                 'Recommendation Number'= '1.2.1'
                 'Configuration Profile' = "Level 1"
@@ -174,7 +174,7 @@ function Test-LockoutThreshold {
                 Write-Warning $Message
                 $result = $false
             }
-            $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
+            $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [ordered]@{
                 'Recommendation Number'= '1.2.2'
                 'Configuration Profile' = "Level 1"
@@ -305,7 +305,7 @@ function Test-ResetLockoutCount {
                 Write-Warning $Message
                 $result = $false
             }
-            $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
+            $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [ordered]@{
                 'Recommendation Number'= '1.2.4'
                 'Configuration Profile' = "Level 1"
