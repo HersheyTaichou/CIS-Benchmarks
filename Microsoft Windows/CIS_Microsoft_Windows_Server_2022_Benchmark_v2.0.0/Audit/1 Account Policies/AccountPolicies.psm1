@@ -1,7 +1,7 @@
 # This module is designed to provide functions that test for complaince with CIS Benchmarks Version 2.0.0 for Windows Server 2022
-# 
 
-Import-Module ..\support.psm1
+$dir = (Get-Item .\AccountPolicies.psm1).Directory.ResolvedTarget
+Import-Module $dir\..\support.psm1
 
 <#
 .SYNOPSIS
