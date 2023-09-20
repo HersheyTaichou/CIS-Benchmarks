@@ -119,3 +119,5 @@ function Get-GPResult {
         # Return the variable
         return $GPResult
 }
+
+Export-ModuleMember -Function Install-Prerequisites, Get-GPResult
