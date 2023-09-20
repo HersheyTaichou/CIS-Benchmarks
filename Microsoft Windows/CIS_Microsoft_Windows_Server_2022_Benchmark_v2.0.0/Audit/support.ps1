@@ -126,7 +126,7 @@ function Get-GPResult {
     )
         # Check if a report has already been generated
         if (-not(Test-Path $Path)) {
-            Get-GPResultantSetOfPolicy -All -ReportType Xml -Path $Path
+            Get-GPResultantSetOfPolicy -ReportType Xml -Path $Path
         }
 
         # Load the contents of the report into a variable
