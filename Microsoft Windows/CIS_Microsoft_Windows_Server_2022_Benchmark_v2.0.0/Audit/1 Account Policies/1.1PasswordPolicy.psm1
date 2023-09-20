@@ -33,7 +33,7 @@ function Test-PasswordHistory {
     # Check for and install any needed modules
     $Prerequisites = Install-Prerequisites
 
-    if ($Prerequisites.ProductType = "2" -and (-not($FineGrainedPasswordPolicy))) {
+    if ($Prerequisites.ProductType -eq 2 -and (-not($FineGrainedPasswordPolicy))) {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
         $FineGrainedPasswordPolicy = $true
     }
@@ -45,19 +45,20 @@ function Test-PasswordHistory {
     foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "PasswordHistorySize") {
-                $PasswordHistoryCount = $Entry.SettingNumber
+                [int]$SettingNumber = $Entry.SettingNumber
             }
         }
     }
 
     # Check if the Password History Size meets the CIS Benchmark
-    Write-Verbose "This setting is required for Level 1 compliance."
-    if ($PasswordHistoryCount -ge "24") {
-        $Message = "The default domain password history is set to " + $PasswordHistoryCount + " and does meet the requirement."
+    # This setting is required for Level 1 compliance.
+
+    if ($SettingNumber -ge "24") {
+        $Message = "The default domain password history is set to " + $SettingNumber + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The default domain password history is set to " + $PasswordHistoryCount + " and does not meet the requirement. Increase the policy to 24 or greater."
+        $Message = "The default domain password history is set to " + $SettingNumber + " and does not meet the requirement. Increase the policy to 24 or greater."
         Write-Warning $Message
         $result = $false
     }
@@ -87,16 +88,37 @@ function Test-PasswordHistory {
 function Test-MaxPasswordAge {
     [CmdletBinding()]
     param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy = $true
+        [Parameter()][bool]$FineGrainedPasswordPolicy
     )
-    Write-Verbose "This settings is required for Level 1 compliance."
-    $PasswordPolicy = Get-ADDefaultDomainPasswordPolicy
-    if ($PasswordPolicy.MaxPasswordAge -gt "0" -and $PasswordPolicy.MaxPasswordAge -le "365") {
-        $Message = "The default domain max password age is set to " + $PasswordPolicy.MaxPasswordAge + " and does meet the requirement."
+    # Check for and install any needed modules
+    $Prerequisites = Install-Prerequisites
+
+    if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
+        Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
+        $FineGrainedPasswordPolicy = $true
+    }
+
+    # Run Get-GPResultantSetOfPolicy and return the results as a variable
+    $gpresult = Get-GPResult
+
+    #Find the maximum password age applied to this machine
+    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($Entry in $data.Extension.Account) {
+            If ($Entry.Name -eq "MaximumPasswordAge") {
+                [int]$SettingNumber = $Entry.SettingNumber
+            }
+        }
+    }
+
+    # Check if the max password age meets the CIS Benchmark
+    # This setting is required for Level 1 compliance.
+
+    if ($SettingNumber -gt "0" -and $SettingNumber -le "365") {
+        $Message = "The default domain password history is set to " + $SettingNumber + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The default domain max password age is set to " + $PasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
+        $Message = "The default domain password history is set to " + $SettingNumber + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
         Write-Warning $Message
         $result = $false
     }
@@ -108,14 +130,14 @@ function Test-MaxPasswordAge {
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.MaxPasswordAge -gt "0" -and $FGPasswordPolicy.MaxPasswordAge -le "365") {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
+                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
             } else {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
+                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $false
             }
-            $Message = "This policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-            Write-Verbose $Message
         }
     }
     Return $result
@@ -124,16 +146,37 @@ function Test-MaxPasswordAge {
 function Test-MinPasswordAge {
     [CmdletBinding()]
     param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy = $true
+        [Parameter()][bool]$FineGrainedPasswordPolicy
     )
-    Write-Verbose "This settings is required for Level 1 compliance."
-    $PasswordPolicy = Get-ADDefaultDomainPasswordPolicy
-    if ($PasswordPolicy.MinPasswordAge -gt "0") {
-        $Message = "The default domain minimum password age is set to " + $PasswordPolicy.MaxPasswordAge + " and does meet the requirement."
+    # Check for and install any needed modules
+    $Prerequisites = Install-Prerequisites
+
+    if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
+        Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
+        $FineGrainedPasswordPolicy = $true
+    }
+
+    # Run Get-GPResultantSetOfPolicy and return the results as a variable
+    $gpresult = Get-GPResult
+
+    # Find the minimum password age applied to this machine
+    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($Entry in $data.Extension.Account) {
+            If ($Entry.Name -eq "MinimumPasswordAge") {
+                [int]$SettingNumber = $Entry.SettingNumber
+            }
+        }
+    }
+
+    # Check if the minimum password age meets the CIS Benchmark
+    # This setting is required for Level 1 compliance.
+
+    if ($SettingNumber -gt "0") {
+        $Message = "The default domain minimum password age is set to " + $SettingNumber + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The default domain minimum password age is set to " + $PasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
+        $Message = "The default domain minimum password age is set to " + $SettingNumber + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
         Write-Warning $Message
         $result = $false
     }
@@ -145,14 +188,14 @@ function Test-MinPasswordAge {
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.MinPasswordAge -gt "0") {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
+                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
             } else {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
+                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $false
             }
-            $Message = "This policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-            Write-Verbose $Message
         }
     }
     Return $result
@@ -161,16 +204,37 @@ function Test-MinPasswordAge {
 function Test-MinPasswordLength {
     [CmdletBinding()]
     param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy = $true
+        [Parameter()][bool]$FineGrainedPasswordPolicy
     )
-    Write-Verbose "This settings is required for Level 1 compliance."
-    $PasswordPolicy = Get-ADDefaultDomainPasswordPolicy
-    if ($PasswordPolicy.MinPasswordLength -ge "14") {
-        $Message = "The default domain minimum password length is set to " + $PasswordPolicy.MinPasswordLength + " and does meet the requirement."
+    # Check for and install any needed modules
+    $Prerequisites = Install-Prerequisites
+
+    if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
+        Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
+        $FineGrainedPasswordPolicy = $true
+    }
+
+    # Run Get-GPResultantSetOfPolicy and return the results as a variable
+    $gpresult = Get-GPResult
+
+    # Find the minimum password length applied to this machine
+    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($Entry in $data.Extension.Account) {
+            If ($Entry.Name -eq "MinimumPasswordLength") {
+                [int]$SettingNumber = $Entry.SettingNumber
+            }
+        }
+    }
+
+    # Check if the minimum password length meets the CIS Benchmark
+    # This setting is required for Level 1 compliance.
+
+    if ($SettingNumber -ge "14") {
+        $Message = "The default domain minimum password length is set to " + $SettingNumber + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The default domain minimum password length is set to " + $PasswordPolicy.MinPasswordLength + " and does not meet the requirement. Make sure the minimum password length is greater or equal to 14."
+        $Message = "The default domain minimum password length is set to " + $SettingNumber + " and does not meet the requirement. Make sure the minimum password length is greater than or equal to 14."
         Write-Warning $Message
         $result = $false
     }
@@ -182,14 +246,14 @@ function Test-MinPasswordLength {
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.MinPasswordLength -ge "14") {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to " + $FGPasswordPolicy.MinPasswordLength + " and does meet the requirement."
+                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
             } else {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to "+ $FGPasswordPolicy.MinPasswordLength + " and does not meet the requirement. Make sure the minimum password length is greater or equal to 14."
+                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $false
             }
-            $Message = "This policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-            Write-Verbose $Message
         }
     }
     Return $result
@@ -198,11 +262,33 @@ function Test-MinPasswordLength {
 function Test-ComplexityEnabled {
     [CmdletBinding()]
     param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy = $true
+        [Parameter()][bool]$FineGrainedPasswordPolicy
     )
-    Write-Verbose "This settings is required for Level 1 compliance."
-    $PasswordPolicy = Get-ADDefaultDomainPasswordPolicy
-    if ($PasswordPolicy.ComplexityEnabled) {
+
+    # Check for and install any needed modules
+    $Prerequisites = Install-Prerequisites
+
+    if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
+        Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
+        $FineGrainedPasswordPolicy = $true
+    }
+
+    # Run Get-GPResultantSetOfPolicy and return the results as a variable
+    $gpresult = Get-GPResult
+
+    # Check if password complexity is enabled on this machine
+    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($Entry in $data.Extension.Account) {
+            If ($Entry.Name -eq "PasswordComplexity") {
+                [bool]$SettingBoolean = $Entry.SettingBoolean
+            }
+        }
+    }
+
+    # Check if the password complexity setting meets the CIS Benchmark
+    # This setting is required for Level 1 compliance.
+
+    if ($SettingBoolean) {
         $Message = "The default domain policy has complexity enabled and does meet the requirement."
         Write-Verbose $Message
         $result = $true
@@ -219,14 +305,14 @@ function Test-ComplexityEnabled {
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.ComplexityEnabled) {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity enabled and does meet the requirement."
+                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
             } else {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity disabled and does not meet the requirement."
+                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
                 $result = $false
             }
-            $Message = "This policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-            Write-Verbose $Message
         }
     }
     Return $result
@@ -235,18 +321,75 @@ function Test-ComplexityEnabled {
 function Test-RelaxMinimumPasswordLengthLimits {
     [CmdletBinding()]
     param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy = $true
+        [Parameter()][bool]$FineGrainedPasswordPolicy
     )
-    Write-Verbose "This setting is required for Level 1 compliance on Windows Server 2022 or greater."
+    # This setting is required for Level 1 compliance on Windows Server 2022 or greater.
     $PasswordPolicy = Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\SAM" -name "RelaxMinimumPasswordLengthLimits"
     if ($PasswordPolicy.RelaxMinimumPasswordLengthLimits -eq "1") {
         $Message = "The Relax minimum password length limits is enabled and meets the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The Relax minimum password length limits is disabled or missing and may not the requirement"
+        $Message = "The Relax minimum password length limits is disabled or missing and may not meet the requirement."
         Write-Warning $Message
         $result = $false
+    }
+    Return $result
+}
+
+function Test-ReversibleEncryption {
+    [CmdletBinding()]
+    param (
+        [Parameter()][bool]$FineGrainedPasswordPolicy
+    )
+
+    # Check for and install any needed modules
+    $Prerequisites = Install-Prerequisites
+
+    if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
+        Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
+        $FineGrainedPasswordPolicy = $true
+    }
+
+    # Run Get-GPResultantSetOfPolicy and return the results as a variable
+    $gpresult = Get-GPResult
+
+    # Check if reversible encyrption is disabled on this machine
+    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($Entry in $data.Extension.Account) {
+            If ($Entry.Name -eq "ClearTextPassword") {
+                [bool]$SettingBoolean = $Entry.SettingBoolean
+            }
+        }
+    }
+
+    # Check if the reversible encryption setting meets the CIS Benchmark
+    # This setting is required for Level 1 compliance.
+
+    if (-not($SettingBoolean)) {
+        $Message = "The default domain policy has reversible encryption disabled and does meet the requirement."
+        Write-Verbose $Message
+        $result = $true
+    } else {
+        $Message = "The default domain policy has reversible encryption enabled and does not meet the requirement."
+        Write-Warning $Message
+        $result = $false
+    }
+
+    if ($FineGrainedPasswordPolicy) {
+        $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
+        $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
+        Write-Verbose $Message
+        foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+            if (-not($FGPasswordPolicy.ReversibleEncryptionEnabled)) {
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has reversible encryption disabled and does meet the requirement."
+                Write-Verbose $Message
+            } else {
+                $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has reversible encryption enabled and does not meet the requirement."
+                Write-Warning $Message
+                $result = $false
+            }
+        }
     }
     Return $result
 }
@@ -262,28 +405,14 @@ function Test-AccountPolicies {
         [Parameter()][bool]$MinPasswordAge = $true,
         [Parameter()][bool]$MinPasswordLength = $true,
         [Parameter()][bool]$ComplexityEnabled = $true,
-        [Parameter()][bool]$RelaxMinimumPasswordLengthLimits = $true
+        [Parameter()][bool]$RelaxMinimumPasswordLengthLimits = $true,
+        [Parameter()][bool]$ReversibleEncryption = $true
     )
     $Result = @()
-    if ($ServerType = "DomainController") {
-        $PasswordPolicy = (Get-ADDefaultDomainPasswordPolicy)
-    } elseif ($ServerType = "MemberServer") {
-        secedit /export /cfg secedit.inf
-        $secedit = (Get-IniContent .\secedit.inf).Values
-        if ($secedit.PasswordComplexity -like "*1*") {$PasswordComplexity = $true} else {$PasswordComplexity = $false}
-        $PasswordPolicy = @{
-            ComplexityEnabled = $PasswordComplexity;
-            PasswordHistoryCount = $secedit.PasswordHistorySize;
-            MaxPasswordAge = $secedit.MaximumPasswordAge;
-            MinPasswordAge = $secedit.MinimumPasswordAge;
-            MinPasswordLength = $secedit.MinimumPasswordLength;
-        }
-        Remove-Item .\secedit.inf
-    }
     if ($PasswordHistory -and $Level -eq "1") {
         Write-Verbose ""
         Write-Verbose "Testing the Password History requirement"
-        $Output = Test-PasswordHistory -PasswordPolicy $PasswordPolicy
+        $Output = Test-PasswordHistory
         $Properties = [ordered]@{
             'Recommendation Number'= '1.1.1'
             'Configuration Profile' = "Level 1"
@@ -357,6 +486,18 @@ function Test-AccountPolicies {
             'Configuration Profile' = "Level 1 - Member Server"
             'Recommendation Name'= 'Ensure "Relax minimum password length limits" is set to "Enabled"'
             'Result'= $null
+        }
+        $Result += New-Object -TypeName PSObject -Property $Properties
+    }
+    if ($ReversibleEncryption -and $Level -eq "1") {
+        Write-Verbose ""
+        Write-Verbose "Testing to make sure Reversible Encryption is Disabled"
+        $Output = Test-ReversibleEncryption
+        $Properties = [ordered]@{
+            'Recommendation Number'= '1.1.7'
+            'Configuration Profile' = "Level 1"
+            'Recommendation Name'= 'Ensure "Store passwords using reversible encryption" is set to "Disabled"'
+            'Result'= $Output
         }
         $Result += New-Object -TypeName PSObject -Property $Properties
     }
