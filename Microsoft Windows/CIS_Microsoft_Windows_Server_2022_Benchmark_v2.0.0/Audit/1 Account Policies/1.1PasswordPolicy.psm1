@@ -31,7 +31,8 @@ function Test-PasswordHistory {
         [Parameter()][bool]$FineGrainedPasswordPolicy
     )
     # Check for and install any needed modules
-    $Prerequisites = Install-Prerequisites
+    $Prerequisites = 
+    $Return = @()
 
     if ($Prerequisites.ProductType -eq 2 -and (-not($FineGrainedPasswordPolicy))) {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
@@ -45,7 +46,7 @@ function Test-PasswordHistory {
     foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "PasswordHistorySize") {
-                [int]$SettingNumber = $Entry.SettingNumber
+                [int]$Setting = $Entry.SettingNumber
             }
         }
     }
@@ -53,15 +54,24 @@ function Test-PasswordHistory {
     # Check if the GPO setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
-    if ($SettingNumber -ge "24") {
-        $Message = "The GPO password history is set to " + $SettingNumber + " and does meet the requirement."
+    if ($Setting -ge "24") {
+        $Message = "The GPO password history is set to " + $Setting + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO password history is set to " + $SettingNumber + " and does not meet the requirement. Increase the policy to 24 or greater."
+        $Message = "The GPO password history is set to " + $Setting + " and does not meet the requirement. Increase the policy to 24 or greater."
         Write-Warning $Message
         $result = $false
     }
+    $Properties = [ordered]@{
+        'Recommendation Number'= '1.1.1'
+        'Configuration Profile' = "Level 1"
+        'Recommendation Name'= 'Ensure "Enforce password history" is set to "24 or more password(s)"'
+        'Source' = 'Group Policy Settings'
+        'Result'= $result
+        'Setting' = $Setting
+    }
+    $Return += New-Object -TypeName PSObject -Property $Properties
 
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
@@ -73,16 +83,27 @@ function Test-PasswordHistory {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to "+ $FGPasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
+                $Result = $true
             } else {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to " + $FGPasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Set the policy to 24 or greater."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
-                $result = $false
+                $result = $fals
+                $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
             }
+            $Properties = [ordered]@{
+                'Recommendation Number'= '1.1.1'
+                'Configuration Profile' = "Level 1"
+                'Recommendation Name'= 'Ensure "Enforce password history" is set to "24 or more password(s)"'
+                'Source' = $Source
+                'Result'= $result
+                'Setting' = $FGPasswordPolicy.PasswordHistoryCount
+            }
+            $Return += New-Object -TypeName PSObject -Property $Propertiese
         }
     }
     # Return True if everything meets the CIS benchmark, otherwise False
-    Return $result
+    return $Return
 }
 
 function Test-MaxPasswordAge {
@@ -92,6 +113,7 @@ function Test-MaxPasswordAge {
     )
     # Check for and install any needed modules
     $Prerequisites = Install-Prerequisites
+    $Return = @()
 
     if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
@@ -105,7 +127,7 @@ function Test-MaxPasswordAge {
     foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "MaximumPasswordAge") {
-                [int]$SettingNumber = $Entry.SettingNumber
+                [int]$Setting = $Entry.SettingNumber
             }
         }
     }
@@ -113,15 +135,24 @@ function Test-MaxPasswordAge {
     # Check if the GPO setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
-    if ($SettingNumber -gt "0" -and $SettingNumber -le "365") {
-        $Message = "The GPO password history is set to " + $SettingNumber + " and does meet the requirement."
+    if ($Setting -gt "0" -and $Setting -le "365") {
+        $Message = "The GPO password history is set to " + $Setting + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO password history is set to " + $SettingNumber + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
+        $Message = "The GPO password history is set to " + $Setting + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
         Write-Warning $Message
         $result = $false
     }
+    $Properties = [ordered]@{
+        'Recommendation Number'= '1.1.2'
+        'Configuration Profile' = "Level 1"
+        'Recommendation Name'= 'Ensure "Maximum password age" is set to "365 or fewer days, but not 0"'
+        'Source' = 'Group Policy Settings'
+        'Result'= $result
+        'Setting' = $Setting
+    }
+    $Return += New-Object -TypeName PSObject -Property $Properties
 
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
@@ -133,15 +164,26 @@ function Test-MaxPasswordAge {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
+                $Result = $true
             } else {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
-                $result = $false
+                $result = $fals
+                $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
             }
+            $Properties = [ordered]@{
+                'Recommendation Number'= '1.1.2'
+                'Configuration Profile' = "Level 1"
+                'Recommendation Name'= 'Ensure "Maximum password age" is set to "365 or fewer days, but not 0"'
+                'Source' = $Source
+                'Result'= $result
+                'Setting' = $FGPasswordPolicy.MaxPasswordAge
+            }
+            $Return += New-Object -TypeName PSObject -Property $Propertiese
         }
     }
-    Return $result
+    return $Return
 }
 
 function Test-MinPasswordAge {
@@ -151,6 +193,7 @@ function Test-MinPasswordAge {
     )
     # Check for and install any needed modules
     $Prerequisites = Install-Prerequisites
+    $Return = @()
 
     if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
@@ -164,7 +207,7 @@ function Test-MinPasswordAge {
     foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "MinimumPasswordAge") {
-                [int]$SettingNumber = $Entry.SettingNumber
+                [int]$Setting = $Entry.SettingNumber
             }
         }
     }
@@ -172,15 +215,24 @@ function Test-MinPasswordAge {
     # Check if the GPO setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
-    if ($SettingNumber -gt "0") {
-        $Message = "The GPO minimum password age is set to " + $SettingNumber + " and does meet the requirement."
+    if ($Setting -gt "0") {
+        $Message = "The GPO minimum password age is set to " + $Setting + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO minimum password age is set to " + $SettingNumber + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
+        $Message = "The GPO minimum password age is set to " + $Setting + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
         Write-Warning $Message
         $result = $false
     }
+    $Properties = [ordered]@{
+        'Recommendation Number'= '1.1.3'
+        'Configuration Profile' = "Level 1"
+        'Recommendation Name'= 'Ensure "Minimum password age" is set to "1 or more day(s)"'
+        'Source' = 'Group Policy Settings'
+        'Result'= $result
+        'Setting' = $Setting
+    }
+    $Return += New-Object -TypeName PSObject -Property $Properties
 
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
@@ -192,15 +244,26 @@ function Test-MinPasswordAge {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
+                $Result = $true
             } else {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
-                $result = $false
+                $result = $fals
+                $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
             }
+            $Properties = [ordered]@{
+                'Recommendation Number'= '1.1.3'
+                'Configuration Profile' = "Level 1"
+                'Recommendation Name'= 'Ensure "Minimum password age" is set to "1 or more day(s)"'
+                'Source' = $Source
+                'Result'= $result
+                'Setting' = $FGPasswordPolicy.MaxPasswordAge
+            }
+            $Return += New-Object -TypeName PSObject -Property $Propertiese
         }
     }
-    Return $result
+    return $Return
 }
 
 function Test-MinPasswordLength {
@@ -210,6 +273,7 @@ function Test-MinPasswordLength {
     )
     # Check for and install any needed modules
     $Prerequisites = Install-Prerequisites
+    $Return = @()
 
     if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
@@ -223,7 +287,7 @@ function Test-MinPasswordLength {
     foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "MinimumPasswordLength") {
-                [int]$SettingNumber = $Entry.SettingNumber
+                [int]$Setting = $Entry.SettingNumber
             }
         }
     }
@@ -231,15 +295,24 @@ function Test-MinPasswordLength {
     # Check if the GPO setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
-    if ($SettingNumber -ge "14") {
-        $Message = "The GPO minimum password length is set to " + $SettingNumber + " and does meet the requirement."
+    if ($Setting -ge "14") {
+        $Message = "The GPO minimum password length is set to " + $Setting + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "The GPO minimum password length is set to " + $SettingNumber + " and does not meet the requirement. Make sure the minimum password length is greater than or equal to 14."
+        $Message = "The GPO minimum password length is set to " + $Setting + " and does not meet the requirement. Make sure the minimum password length is greater than or equal to 14."
         Write-Warning $Message
         $result = $false
     }
+    $Properties = [ordered]@{
+        'Recommendation Number'= '1.1.4'
+        'Configuration Profile' = "Level 1"
+        'Recommendation Name'= 'Ensure "Minimum password length" is set to "14 or more character(s)"'
+        'Source' = 'Group Policy Settings'
+        'Result'= $result
+        'Setting' = $Setting
+    }
+    $Return += New-Object -TypeName PSObject -Property $Properties
 
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
@@ -251,15 +324,26 @@ function Test-MinPasswordLength {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to " + $FGPasswordPolicy.MinPasswordLength + " and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
+                $Result = $true
             } else {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to "+ $FGPasswordPolicy.MinPasswordLength + " and does not meet the requirement. Make sure the minimum password length is greater or equal to 14."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
-                $result = $false
+                $result = $fals
+                $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
             }
+            $Properties = [ordered]@{
+                'Recommendation Number'= '1.1.4'
+                'Configuration Profile' = "Level 1"
+                'Recommendation Name'= 'Ensure "Minimum password length" is set to "14 or more character(s)"'
+                'Source' = $Source
+                'Result'= $result
+                'Setting' = $FGPasswordPolicy.MinPasswordLength
+            }
+            $Return += New-Object -TypeName PSObject -Property $Propertiese
         }
     }
-    Return $result
+    return $Return
 }
 
 function Test-ComplexityEnabled {
@@ -270,6 +354,7 @@ function Test-ComplexityEnabled {
 
     # Check for and install any needed modules
     $Prerequisites = Install-Prerequisites
+    $Return = @()
 
     if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
@@ -283,7 +368,7 @@ function Test-ComplexityEnabled {
     foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "PasswordComplexity") {
-                [bool]$SettingBoolean = $Entry.SettingBoolean
+                [bool]$Setting = $Entry.SettingBoolean
             }
         }
     }
@@ -291,7 +376,7 @@ function Test-ComplexityEnabled {
     # Check if the GPO setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
-    if ($SettingBoolean) {
+    if ($Setting) {
         $Message = "The GPO policy has complexity enabled and does meet the requirement."
         Write-Verbose $Message
         $result = $true
@@ -300,6 +385,15 @@ function Test-ComplexityEnabled {
         Write-Warning $Message
         $result = $false
     }
+    $Properties = [ordered]@{
+        'Recommendation Number'= '1.1.5'
+        'Configuration Profile' = "Level 1"
+        'Recommendation Name'= 'Ensure "Password must meet complexity requirements" is set to "Enabled"'
+        'Source' = 'Group Policy Settings'
+        'Result'= $result
+        'Setting' = $Setting
+    }
+    $Return += New-Object -TypeName PSObject -Property $Properties
 
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
@@ -311,22 +405,31 @@ function Test-ComplexityEnabled {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity enabled and does meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Verbose $Message
+                $Result = $true
             } else {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity disabled and does not meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
-                $result = $false
+                $result = $fals
+                $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
             }
+            $Properties = [ordered]@{
+                'Recommendation Number'= '1.1.5'
+                'Configuration Profile' = "Level 1"
+                'Recommendation Name'= 'Ensure "Password must meet complexity requirements" is set to "Enabled"'
+                'Source' = $Source
+                'Result'= $result
+                'Setting' = $FGPasswordPolicy.ComplexityEnabled
+            }
+            $Return += New-Object -TypeName PSObject -Property $Propertiese
         }
     }
-    Return $result
+    return $Return
 }
 
 function Test-RelaxMinimumPasswordLengthLimits {
     [CmdletBinding()]
-    param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy
-    )
+    param ()
     # This setting is required for Level 1 compliance on Windows Server 2022 or greater.
     $PasswordPolicy = Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\SAM" -name "RelaxMinimumPasswordLengthLimits"
 
@@ -335,12 +438,30 @@ function Test-RelaxMinimumPasswordLengthLimits {
         $Message = "The Relax minimum password length limits is enabled and meets the requirement."
         Write-Verbose $Message
         $result = $true
-    } else {
-        $Message = "The Relax minimum password length limits is disabled or missing and may not meet the requirement."
+        [bool]$Setting = $PasswordPolicy.RelaxMinimumPasswordLengthLimits
+    } elseif ($PasswordPolicy.RelaxMinimumPasswordLengthLimits -eq "0") {
+        $Message = "The Relax minimum password length limits is disabled and does not meet the requirement.`n`n"
+        $Message += "NOTE: This setting is only available within the built-in OS security template of Windows 10 Release 2004 and Server 2022 (or newer)."
         Write-Warning $Message
         $result = $false
+        [bool]$setting = $PasswordPolicy.RelaxMinimumPasswordLengthLimits
+    } else {
+        $Message = "The Relax minimum password length limits is missing or set incorrectly and does not meet the requirement.`n`n"
+        $Message += "NOTE: This setting is only available within the built-in OS security template of Windows 10 Release 2004 and Server 2022 (or newer)."
+        Write-Warning $Message
+        $result = $false
+        $setting = $PasswordPolicy.RelaxMinimumPasswordLengthLimits
     }
-    Return $result
+    $Properties = [ordered]@{
+        'Recommendation Number'= '1.1.6'
+        'Configuration Profile' = "Level 1"
+        'Recommendation Name'= 'Ensure "Relax minimum password length limits" is set to "Enabled"'
+        'Source' = 'Group Policy Settings'
+        'Result'= $result
+        'Setting' = $Setting
+    }
+    $Return += New-Object -TypeName PSObject -Property $Properties
+    return $Return
 }
 
 function Test-ReversibleEncryption {
@@ -351,6 +472,7 @@ function Test-ReversibleEncryption {
 
     # Check for and install any needed modules
     $Prerequisites = Install-Prerequisites
+    $Return = @()
 
     if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
@@ -364,7 +486,7 @@ function Test-ReversibleEncryption {
     foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "ClearTextPassword") {
-                [bool]$SettingBoolean = $Entry.SettingBoolean
+                [string]$Setting = $Entry.SettingBoolean
             }
         }
     }
@@ -372,15 +494,26 @@ function Test-ReversibleEncryption {
     # Check if the GPO setting meets the CIS Benchmark
     # This setting is required for Level 1 compliance.
 
-    if (-not($SettingBoolean)) {
+    if ($Setting -eq "false") {
         $Message = "The GPO policy has reversible encryption disabled and does meet the requirement."
         Write-Verbose $Message
         $result = $true
+        $Setting = $false
     } else {
         $Message = "The GPO policy has reversible encryption enabled and does not meet the requirement."
         Write-Warning $Message
         $result = $false
+        $Setting = $true
     }
+    $Properties = [ordered]@{
+        'Recommendation Number'= '1.1.7'
+        'Configuration Profile' = "Level 1"
+        'Recommendation Name'= 'Ensure "Store passwords using reversible encryption" is set to "Disabled"'
+        'Source' = 'Group Policy Settings'
+        'Result'= $result
+        'Setting' = $Setting
+    }
+    $Return += New-Object -TypeName PSObject -Property $Properties
 
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
@@ -391,17 +524,28 @@ function Test-ReversibleEncryption {
             if (-not($FGPasswordPolicy.ReversibleEncryptionEnabled)) {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has reversible encryption disabled and does meet the requirement."
                 Write-Verbose $Message
+                $Result = $true
             } else {
                 $Message = "The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has reversible encryption enabled and does not meet the requirement."
                 Write-Warning $Message
                 $result = $false
             }
+            $Source = $FGPasswordPolicy.Name + "Fine Grained Password Policy"
+            $Properties = [ordered]@{
+                'Recommendation Number'= '1.1.7'
+                'Configuration Profile' = "Level 1"
+                'Recommendation Name'= 'Ensure "Store passwords using reversible encryption" is set to "Disabled"'
+                'Source' = $Source
+                'Result'= $result
+                'Setting' = $FGPasswordPolicy.ReversibleEncryptionEnabled
+            }
+            $Return += New-Object -TypeName PSObject -Property $Properties
         }
     }
-    Return $result
+    return $Return
 }
 
-function Test-AccountPolicies {
+function Test-PasswordPolicy {
     [CmdletBinding()]
     param (
         [Parameter()][ValidateSet("DomainController","MemberServer")][string]$ServerType,
@@ -416,99 +560,42 @@ function Test-AccountPolicies {
         [Parameter()][bool]$ReversibleEncryption = $true
     )
     $Result = @()
-    if ($PasswordHistory -and $Level -eq "1") {
+    if ($PasswordHistory -and $Level -ge "1") {
         Write-Verbose ""
         Write-Verbose "Testing the Password History requirement"
-        $Output = Test-PasswordHistory
-        $Properties = [ordered]@{
-            'Recommendation Number'= '1.1.1'
-            'Configuration Profile' = "Level 1"
-            'Recommendation Name'= 'Ensure "Enforce password history" is set to "24 or more password(s)"'
-            'Result'= $Output
-        }
-        $Result += New-Object -TypeName PSObject -Property $Properties
+        $Result += Test-PasswordHistory
     }
-    if ($MaxPasswordAge -and $Level -eq "1") {
+    if ($MaxPasswordAge -and $Level -ge "1") {
         Write-Verbose ""
         Write-Verbose "Testing the Max Password Age requirement"
-        $Output = Test-MaxPasswordAge
-        $Properties = [ordered]@{
-            'Recommendation Number'= '1.1.2'
-            'Configuration Profile' = "Level 1"
-            'Recommendation Name'= 'Ensure "Maximum password age" is set to "365 or fewer days, but not 0"'
-            'Result'= $Output
-        }
-        $Result += New-Object -TypeName PSObject -Property $Properties
+        $Result += Test-MaxPasswordAge
     }
-    if ($MinPasswordAge -and $Level -eq "1") {
+    if ($MinPasswordAge -and $Level -ge "1") {
         Write-Verbose ""
         Write-Verbose "Testing the Minimum Password Age requirement"
-        $Output = Test-MinPasswordAge
-        $Properties = [ordered]@{
-            'Recommendation Number'= '1.1.3'
-            'Configuration Profile' = "Level 1"
-            'Recommendation Name'= 'Ensure "Minimum password age" is set to "1 or more day(s)"'
-            'Result'= $Output
-        }
-        $Result += New-Object -TypeName PSObject -Property $Properties
+        $Result += Test-MinPasswordAge
     }
-    if ($MinPasswordLength -and $Level -eq "1") {
+    if ($MinPasswordLength -and $Level -ge "1") {
         Write-Verbose ""
         Write-Verbose "Testing the Minimum Password Length requirement"
-        $Output = Test-MinPasswordLength
-        $Properties = [ordered]@{
-            'Recommendation Number'= '1.1.4'
-            'Configuration Profile' = "Level 1"
-            'Recommendation Name'= 'Ensure "Minimum password length" is set to "14 or more character(s)"'
-            'Result'= $Output
-        }
-        $Result += New-Object -TypeName PSObject -Property $Properties
+        $Result += Test-MinPasswordLength
     }
-    if ($ComplexityEnabled -and $Level -eq "1") {
+    if ($ComplexityEnabled -and $Level -ge "1") {
         Write-Verbose ""
         Write-Verbose "Testing to make sure Password Complexity is Enabled"
-        $Output = Test-ComplexityEnabled
-        $Properties = [ordered]@{
-            'Recommendation Number'= '1.1.5'
-            'Configuration Profile' = "Level 1"
-            'Recommendation Name'= 'Ensure "Password must meet complexity requirements" is set to "Enabled"'
-            'Result'= $Output
-        }
-        $Result += New-Object -TypeName PSObject -Property $Properties
+        $Result += Test-ComplexityEnabled
     }
-    if ($RelaxMinimumPasswordLengthLimits -and $Level -eq "1" -and $ServerType -eq "MemberServer") {
+    if ($RelaxMinimumPasswordLengthLimits -and $Level -ge "1" -and $ServerType -eq "MemberServer") {
         Write-Verbose ""
         Write-Verbose "Testing to make sure Password Complexity is Enabled"
-        $Output = Test-RelaxMinimumPasswordLengthLimits
-        $Properties = [ordered]@{
-            'Recommendation Number'= '1.1.6'
-            'Configuration Profile' = "Level 1"
-            'Recommendation Name'= 'Ensure "Relax minimum password length limits" is set to "Enabled"'
-            'Result'= $Output
-        }
-        $Result += New-Object -TypeName PSObject -Property $Properties
-    } else {
-        $Properties = [ordered]@{
-            'Recommendation Number'= '1.1.6'
-            'Configuration Profile' = "Level 1 - Member Server"
-            'Recommendation Name'= 'Ensure "Relax minimum password length limits" is set to "Enabled"'
-            'Result'= $null
-        }
-        $Result += New-Object -TypeName PSObject -Property $Properties
+        $Result += Test-RelaxMinimumPasswordLengthLimits
     }
-    if ($ReversibleEncryption -and $Level -eq "1") {
+    if ($ReversibleEncryption -and $Level -ge "1") {
         Write-Verbose ""
         Write-Verbose "Testing to make sure Reversible Encryption is Disabled"
-        $Output = Test-ReversibleEncryption
-        $Properties = [ordered]@{
-            'Recommendation Number'= '1.1.7'
-            'Configuration Profile' = "Level 1"
-            'Recommendation Name'= 'Ensure "Store passwords using reversible encryption" is set to "Disabled"'
-            'Result'= $Output
-        }
-        $Result += New-Object -TypeName PSObject -Property $Properties
+        $Result += Test-ReversibleEncryption
     }
     return $Result
 }
 
-Export-ModuleMember -Function Test-AccountPolicies, Test-PasswordHistory, Test-MaxPasswordAge, Test-MinPasswordAge, Test-MinPasswordLength, Test-ComplexityEnabled
+Export-ModuleMember -Function Test-PasswordPolicy, Test-PasswordHistory, Test-MaxPasswordAge, Test-MinPasswordAge, Test-MinPasswordLength, Test-ComplexityEnabled
