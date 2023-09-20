@@ -42,12 +42,33 @@ An example
 .NOTES
 General notes
 #>
+
+<#
+.SYNOPSIS
+Checks for any prerequisites needed to audit the machine
+
+.DESCRIPTION
+Checks for and installs any prerequisites needed to audit the machine and
+confirm it meets the CIS Benchmark standards. This is only used internally
+currently, as part of the checks from other scripts.
+
+.PARAMETER ProductType
+The product type number can be provided, if known, otherwise it loads it from
+the system
+
+.EXAMPLE
+Install-Prerequisites
+
+Product Type: 1
+GPMC: Installed
+
+.NOTES
+General notes
+#>
 function Install-Prerequisites {
     [CmdletBinding()]
     param (
-        [Parameter()]
-        [TypeName]
-        $ParameterName
+        [Parameter()][ValidateSet("1","2","3")][int]$ProductType = (Get-CimInstance -ClassName Win32_OperatingSystem).ProductType
     )
     <#
     First, get the product type:
@@ -55,24 +76,19 @@ function Install-Prerequisites {
     2 = Domain Controller
     3 = Member Server
     #>
-    $ProductType = (Get-CimInstance -ClassName Win32_OperatingSystem).ProductType
 
     # Check for the presence of GP commands and if they are missing, install the version based on Workstation/Server
     if ($ProductType -eq "1") {
-        try {
-            Get-GpoReport
+        if ((Get-WindowsCapability -Name "Rsat.GroupPolicy.Management.Tools~~~~0.0.1.0" -Online).State -eq "Installed") {
             $GPMC = "Present"
-        }
-        catch {
+        } else {
             DISM.exe /Online /add-capability /CapabilityName:Rsat.GroupPolicy.Management.Tools~~~~0.0.1.0
             $GPMC = "Installed"
         }
     } elseif ($ProductType -eq "2" -or $ProductType -eq "3") {
-        try {
-            Get-GpoReport
+        if ((Get-WindowsFeature -Name GPMC).Installed) {
             $GPMC = "Present"
-        }
-        catch {
+        } else {
             Install-WindowsFeature GPMC
             $GPMC = "Installed"
         }
@@ -110,7 +126,7 @@ function Get-GPResult {
     )
         # Check if a report has already been generated
         if (-not(Test-Path $Path)) {
-            Get-GPResultantSetOfPolicy -ReportType Xml -Path $Path
+            Get-GPResultantSetOfPolicy -All -ReportType Xml -Path $Path
         }
 
         # Load the contents of the report into a variable
@@ -119,5 +135,3 @@ function Get-GPResult {
         # Return the variable
         return $GPResult
 }
-
-Export-ModuleMember -Function Install-Prerequisites, Get-GPResult
