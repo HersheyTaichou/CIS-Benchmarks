@@ -194,7 +194,7 @@ function Test-AdminLockout {
     param ()
 
     # Check for and install any needed modules
-    Install-Prerequisites
+    $Prerequisites = Install-Prerequisites
 
     $Return = @()
 
@@ -233,7 +233,7 @@ function Test-AdminLockout {
         'Result'= $result
         'Setting' = $Setting
     }
-    $Return = New-Object -TypeName PSObject -Property $Properties
+    $Return += New-Object -TypeName PSObject -Property $Properties
 
     return $Return
 }
