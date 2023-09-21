@@ -194,7 +194,7 @@ function Test-AdminLockout {
     param ()
 
     # Check for and install any needed modules
-    $Prerequisites = Install-Prerequisites
+    $null = Install-Prerequisites
 
     $Return = @()
 
@@ -218,16 +218,21 @@ function Test-AdminLockout {
         Write-Verbose $Message
         $result = $true
         $Setting = $true
-    } else {
-        $Message = "1.2.3 The GPO admin lockout is set disabled or missing and does not meet the requirement. Make sure admin lockout setting is enabled."
+    } elseif ($Setting -eq "false") {
+        $Message = "1.2.3 The GPO admin lockout is disabled and does not meet the requirement. Make sure admin lockout setting is enabled."
         Write-Warning $Message
         $result = $false
         $Setting = $false
+    } else {
+        $Message = "1.2.3 The GPO admin lockout is missing and does not meet the requirement. Make sure admin lockout setting is enabled."
+        Write-Warning $Message
+        $result = $false
+        $Setting = ""
     }
 
     $Properties = [ordered]@{
         'Recommendation Number'= '1.2.3'
-        'Configuration Profile' = "Level 1"
+        'Configuration Profile' = "Level 1 - Member Server"
         'Recommendation Name'= "Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
