@@ -361,3 +361,5 @@ function Test-AccountLockoutPolicy {
 }
 
 Export-ModuleMember -Function Test-AccountLockoutPolicy, Test-LockoutDuration, Test-LockoutThreshold, Test-AdminLockout, Test-ResetLockoutCount
+
+"Test-AccountLockoutPolicy", "Test-LockoutDuration", "Test-LockoutThreshold", "Test-AdminLockout", "Test-ResetLockoutCount"
