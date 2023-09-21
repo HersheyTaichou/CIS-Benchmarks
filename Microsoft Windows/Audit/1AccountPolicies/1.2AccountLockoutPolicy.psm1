@@ -1,6 +1,6 @@
 # This module is designed to provide functions that test for complaince with CIS Benchmarks Version 2.0.0 for Windows Server 2022
 
-. $PSScriptRoot\..\support.ps1
+#. $PSScriptRoot\..\support.ps1
 
 <#
 .SYNOPSIS
