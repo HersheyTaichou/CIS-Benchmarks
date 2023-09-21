@@ -28,6 +28,10 @@
             </TableControl>
         </View>
         <View>
+            <Name>psCISBenchmark</Name>
+            <ViewSelectedBy>
+                <TypeName>psCISBenchmark</TypeName>
+            </ViewSelectedBy>
             <ListControl>
                 <ListEntries>
                     <ListEntry>
