@@ -1,7 +1,3 @@
-# This module is designed to provide functions that test for complaince with CIS Benchmarks Version 2.0.0 for Windows Server 2022
-
-#. $PSScriptRoot\..\support.ps1
-
 <#
 .SYNOPSIS
 1.1.1 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)' (Automated)
@@ -65,15 +61,16 @@ function Test-LockoutDuration {
         $result = $false
     }
 
-    $Properties = [ordered]@{
-        'Recommendation Number'= '1.2.1'
-        'Configuration Profile' = "Level 1"
-        'Recommendation Name'= "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
+    $Properties = [PSCustomObject]@{
+        'RecommendationNumber'= '1.2.1'
+        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'RecommendationName'= "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
     }
-    $Return += New-Object -TypeName PSObject -Property $Properties
+    $Properties.PSTypeNames.Add('psCISBenchmark')
+    $Return += $Properties
 
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
@@ -93,15 +90,16 @@ function Test-LockoutDuration {
                 $result = $false
             }
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-            $Properties = [ordered]@{
-                'Recommendation Number'= '1.2.1'
-                'Configuration Profile' = "Level 1"
-                'Recommendation Name'= "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
+            $Properties = [PSCustomObject]@{
+                'RecommendationNumber'= '1.2.1'
+                'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+                'RecommendationName'= "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
                 'Source' = $Source
                 'Result'= $result
                 'Setting' = $FGPasswordPolicy.LockoutDuration
             }
-            $Return += New-Object -TypeName PSObject -Property $Properties
+            $Properties.PSTypeNames.Add('psCISBenchmark')
+    $Return += $Properties
         }
     }
     # Return True if everything meets the CIS benchmark, otherwise False
@@ -148,15 +146,16 @@ function Test-LockoutThreshold {
         $result = $false
     }
 
-    $Properties = [ordered]@{
-        'Recommendation Number'= '1.2.2'
-        'Configuration Profile' = "Level 1"
-        'Recommendation Name'= "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
+    $Properties = [PSCustomObject]@{
+        'RecommendationNumber'= '1.2.2'
+        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'RecommendationName'= "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
     }
-    $Return += New-Object -TypeName PSObject -Property $Properties
+    $Properties.PSTypeNames.Add('psCISBenchmark')
+    $Return += $Properties
 
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
@@ -175,15 +174,16 @@ function Test-LockoutThreshold {
                 $result = $false
             }
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-            $Properties = [ordered]@{
-                'Recommendation Number'= '1.2.2'
-                'Configuration Profile' = "Level 1"
-                'Recommendation Name'= "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
+            $Properties = [PSCustomObject]@{
+                'RecommendationNumber'= '1.2.2'
+                'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+                'RecommendationName'= "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
                 'Source' = $Source
                 'Result'= $result
                 'Setting' = $FGPasswordPolicy.LockoutThreshold
             }
-            $Return += New-Object -TypeName PSObject -Property $Properties
+            $Properties.PSTypeNames.Add('psCISBenchmark')
+    $Return += $Properties
         }
     }
     Return $Return
@@ -230,15 +230,16 @@ function Test-AdminLockout {
         $Setting = ""
     }
 
-    $Properties = [ordered]@{
-        'Recommendation Number'= '1.2.3'
-        'Configuration Profile' = "Level 1 - Member Server"
-        'Recommendation Name'= "Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
+    $Properties = [PSCustomObject]@{
+        'RecommendationNumber'= '1.2.3'
+        'ConfigurationProfile' = @("Level 1 - Member Server")
+        'RecommendationName'= "Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
     }
-    $Return += New-Object -TypeName PSObject -Property $Properties
+    $Properties.PSTypeNames.Add('psCISBenchmark')
+    $Return += $Properties
 
     return $Return
 }
@@ -283,15 +284,16 @@ function Test-ResetLockoutCount {
         $result = $false
     }
 
-    $Properties = [ordered]@{
-        'Recommendation Number'= '1.2.4'
-        'Configuration Profile' = "Level 1"
-        'Recommendation Name'= "Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
+    $Properties = [PSCustomObject]@{
+        'RecommendationNumber'= '1.2.4'
+        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'RecommendationName'= "Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
     }
-    $Return += New-Object -TypeName PSObject -Property $Properties
+    $Properties.PSTypeNames.Add('psCISBenchmark')
+    $Return += $Properties
 
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
@@ -311,55 +313,17 @@ function Test-ResetLockoutCount {
                 $result = $false
             }
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-            $Properties = [ordered]@{
-                'Recommendation Number'= '1.2.4'
-                'Configuration Profile' = "Level 1"
-                'Recommendation Name'= "Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
+            $Properties = [PSCustomObject]@{
+                'RecommendationNumber'= '1.2.4'
+                'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+                'RecommendationName'= "Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
                 'Source' = $Source
                 'Result'= $result
                 'Setting' = $FGPasswordPolicy.LockoutDuration
             }
-            $Return += New-Object -TypeName PSObject -Property $Properties
+            $Properties.PSTypeNames.Add('psCISBenchmark')
+    $Return += $Properties
         }
     }
     Return $Return
 }
-
-function Test-AccountLockoutPolicy {
-    [CmdletBinding()]
-    param (
-        [Parameter()][ValidateSet("DomainController","MemberServer")][string]$ServerType,
-        [Parameter()][ValidateSet("1","2")][string]$Level = "1",
-        [Parameter()][bool]$NextGenerationWindowsSecurity,
-        [Parameter()][bool]$LockoutDuration = $true,
-        [Parameter()][bool]$LockoutThreshold = $true,
-        [Parameter()][bool]$AdminLockout = $true,
-        [Parameter()][bool]$ResetLockoutCount = $true
-    )
-    $Result = @()
-    if ($LockoutDuration -and $Level -ge "1") {
-        Write-Verbose ""
-        Write-Verbose "Testing the Lockout Duration requirement"
-        $Result += Test-LockoutDuration
-    }
-    if ($LockoutThreshold -and $Level -ge "1") {
-        Write-Verbose ""
-        Write-Verbose "Testing the Lockout Threshold requirement"
-        $Result += Test-LockoutThreshold
-    }
-    if ($AdminLockout -and $Level -ge "1") {
-        Write-Verbose ""
-        Write-Verbose "Testing the Admin Lockout requirement"
-        $Result += Test-AdminLockout
-    }
-    if ($ResetLockoutCount -and $Level -ge "1") {
-        Write-Verbose ""
-        Write-Verbose "Testing the Reset Lockout Counter requirement"
-        $Result += Test-ResetLockoutCount
-    }
-    return $Result
-}
-
-Export-ModuleMember -Function Test-AccountLockoutPolicy, Test-LockoutDuration, Test-LockoutThreshold, Test-AdminLockout, Test-ResetLockoutCount
-
-"Test-AccountLockoutPolicy", "Test-LockoutDuration", "Test-LockoutThreshold", "Test-AdminLockout", "Test-ResetLockoutCount"

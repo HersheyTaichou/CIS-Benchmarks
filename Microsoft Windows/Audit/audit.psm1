@@ -16,8 +16,8 @@ foreach ($File in $SupportFiles) {
 function Test-CISBenchmark {
     [CmdletBinding()]
     param (
-        [Parameter()][ValidateSet("DomainController","MemberServer")][string]$ServerType = "DomainController",
-        [Parameter()][ValidateSet("1","2")][string]$Level = "1",
+        [Parameter(Mandatory=$true)][ValidateSet("1","2")][string]$Level,
+        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][bool]$PasswordPolicy = $true,
         [Parameter()][bool]$AccountLockoutPolicy = $true
@@ -26,7 +26,9 @@ function Test-CISBenchmark {
     if ($PasswordPolicy) {
         $Return += Test-PasswordPolicy -ServerType $ServerType -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
     }
-    if ($AccountLockoutPolicy) {$Return += Test-AccountLockoutPolicy  -ServerType $ServerType -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity}
+    if ($AccountLockoutPolicy) {
+        $Return += Test-AccountLockoutPolicy  -ServerType $ServerType -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    }
     return $Return
 }
 

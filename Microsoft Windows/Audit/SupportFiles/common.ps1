@@ -67,15 +67,15 @@ General notes
 #>
 function Install-Prerequisites {
     [CmdletBinding()]
-    param (
-        [Parameter()][ValidateSet("1","2","3")][int]$ProductType = (Get-CimInstance -ClassName Win32_OperatingSystem).ProductType
-    )
+    param ()
     <#
     First, get the product type:
     1 = Workstation
     2 = Domain Controller
     3 = Member Server
     #>
+
+    [int]$ProductType = (Get-CimInstance -ClassName Win32_OperatingSystem).ProductType
 
     # Check for the presence of GP commands and if they are missing, install the version based on Workstation/Server
     if ($ProductType -eq "1") {
@@ -125,7 +125,7 @@ function Get-GPResult {
         [Parameter()][string]$Path = "$(get-location)\GPResult.xml"
     )
         # Check if a report has already been generated
-        if (-not(Test-Path $Path)) {
+        if (-not(Test-Path $Path) -or (Get-ChildItem $CustomerList | Where-Object {$_.LastWriteTime -ge (Get-Date).AddDays(-7)})) {
             Get-GPResultantSetOfPolicy -ReportType Xml -Path $Path
         }
 

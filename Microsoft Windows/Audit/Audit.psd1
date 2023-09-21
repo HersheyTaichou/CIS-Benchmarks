@@ -9,10 +9,15 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = '.\audit.psm1'
+RootModule = '.\Audit.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1'
+ModuleVersion = '0.1.2'
+
+# Version number explanation:
+    # Major version will increase to 1 when the entire benchmark can be audited
+    # Minor version matches the current major section under Recommendations that has been completed
+    # The update number matches the minor version under Recommendations that has been completed and tested
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -30,7 +35,7 @@ CompanyName = 'Orion Tech'
 Copyright = '(c) Mike Hiersche. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'Commands to test machines against the CIS Benchmark'
+Description = 'This module is designed to provide functions that test for complaince with the CIS Benchmarks. This module was based on the CIS Microsoft Windows Server 2022 Benchmark v2.0.0 released on 04-14-2023'
 
 # Minimum version of the PowerShell engine required by this module
 # PowerShellVersion = ''
@@ -51,7 +56,7 @@ Description = 'Commands to test machines against the CIS Benchmark'
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-RequiredModules = @('GroupPolicy')
+# RequiredModules = @('GroupPolicy')
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
@@ -66,16 +71,13 @@ RequiredModules = @('GroupPolicy')
 FormatsToProcess = '.\SupportFiles\psCISBenchmark.format.ps1xml'
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-NestedModules = @('SupportFiles\common.ps1', 
-               '.\1AccountPolicies\1.1PasswordPolicy.psm1', 
-               '.\1AccountPolicies\1.2AccountLockoutPolicy.psm1')
+NestedModules = @('.\1AccountPolicies\1AccountPolicies.ps1',
+                '.\2LocalPolicies\2LocalPolicies.ps1',
+                '.\SupportFiles\common.ps1')
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Test-CISBenchmark', 'Test-AccountLockoutPolicy', 
-               'Test-LockoutDuration', 'Test-LockoutThreshold', 'Test-AdminLockout', 
-               'Test-ResetLockoutCount', 'Test-PasswordPolicy', 
-               'Test-PasswordHistory', 'Test-MaxPasswordAge', 'Test-MinPasswordAge', 
-               'Test-MinPasswordLength', 'Test-ComplexityEnabled'
+FunctionsToExport = 'Test-CISBenchmark', 'Test-PasswordPolicy', 'Test-AccountLockoutPolicy', 
+               'Test-UserRightsAssignment', 'Test-SecurityOptions'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
@@ -93,9 +95,12 @@ AliasesToExport = @()
 ModuleList = @('.\audit.psm1')
 
 # List of all files packaged with this module
-FileList = '.\1AccountPolicies\1.1PasswordPolicy.psm1', 
-               '.\1AccountPolicies\1.2AccountLockoutPolicy.psm1', 
-               '.\SupportFiles\common.ps1', '.\SupportFiles\psCISBenchmark.format.ps1xml'
+FileList = '.\1AccountPolicies\1AccountPolicies.ps1',
+                '.\1AccountPolicies\1.1PasswordPolicy\1.1PasswordPolicy.ps1',
+                '.\1AccountPolicies\1.2AccountLockoutPolicy\1.2AccountLockoutPolicy.ps1',
+                '.\2LocalPolicies\2LocalPolicies.ps1',
+                '.\2LocalPolicies\2.2UserRightsAssignment\2.2UserRightsAssignment.ps1',
+                '.\SupportFiles\common.ps1', '.\SupportFiles\psCISBenchmark.format.ps1xml'
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
 PrivateData = @{
