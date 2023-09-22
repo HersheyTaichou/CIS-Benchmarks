@@ -73,6 +73,11 @@ FormatsToProcess = '.\SupportFiles\psCISBenchmark.format.ps1xml'
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 NestedModules = @('.\1AccountPolicies\1AccountPolicies.ps1',
                 '.\2LocalPolicies\2LocalPolicies.ps1',
+                '.\5SystemServices\5SystemServices.ps1',
+                '.\9WindowsDefenderFirewallwithAdvancedSecurity\9WindowsDefenderFirewallwithAdvancedSecurity.ps1',
+                '.\17AdvancedAuditPolicyConfiguration\17AdvancedAuditPolicyConfiguration.ps1',
+                '.\18AdministrativeTemplatesComputer\18AdministrativeTemplatesComputer.ps1',
+                '.\19AdministrativeTemplatesUser\19AdministrativeTemplatesUser.ps1'
                 '.\SupportFiles\common.ps1')
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
