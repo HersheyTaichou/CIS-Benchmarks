@@ -16,6 +16,3 @@ function Test-CISBenchmark {
     }
     return $Return
 }
-
-$ModuleMemberFunctions += "Test-CISBenchmark"
-Export-ModuleMember -Function $ModuleMemberFunctions

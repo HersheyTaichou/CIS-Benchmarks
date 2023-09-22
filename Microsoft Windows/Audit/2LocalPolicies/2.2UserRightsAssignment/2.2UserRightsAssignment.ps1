@@ -90,5 +90,3 @@ function Test-UserRightsAssignment {
     }
     return $Result
 }
-
-Export-ModuleMember -Function Test-AccountLockoutPolicy, Test-LockoutDuration, Test-LockoutThreshold, Test-AdminLockout, Test-ResetLockoutCount
