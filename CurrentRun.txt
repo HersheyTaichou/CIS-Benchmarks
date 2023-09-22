@@ -1,0 +1,19 @@
+RecommendationNumber  RecommendationName                                                                                  Source                    Result
+--------------------  ------------------                                                                                  ------                    ------
+1.1.1                 Ensure "Enforce password history" is set to "24 or more password(s)"                                Group Policy Settings     True
+1.1.1                 Ensure "Enforce password history" is set to "24 or more password(s)"                                Test Policy Fine Grain... True
+1.1.2                 Ensure "Maximum password age" is set to "365 or fewer days, but not 0"                              Group Policy Settings     True
+1.1.2                 Ensure "Maximum password age" is set to "365 or fewer days, but not 0"                              Test Policy Fine Grain... True
+1.1.3                 Ensure "Minimum password age" is set to "1 or more day(s)"                                          Group Policy Settings     True
+1.1.3                 Ensure "Minimum password age" is set to "1 or more day(s)"                                          Test Policy Fine Grain... True
+1.1.4                 Ensure "Minimum password length" is set to "14 or more character(s)"                                Group Policy Settings     True
+1.1.4                 Ensure "Minimum password length" is set to "14 or more character(s)"                                Test Policy Fine Grain... True
+1.1.5                 Ensure "Password must meet complexity requirements" is set to "Enabled"                             Group Policy Settings     True
+1.1.5                 Ensure "Password must meet complexity requirements" is set to "Enabled"                             Test Policy Fine Grain... True
+1.2.1                 Ensure 'Account lockout duration' is set to '15 or more minute(s)'                                  Group Policy Settings     True
+1.2.1                 Ensure 'Account lockout duration' is set to '15 or more minute(s)'                                  Test Policy Fine Grain... True
+1.2.2                 Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'       Group Policy Settings     True
+1.2.2                 Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'       Test Policy Fine Grain... True
+1.2.3                 Ensure 'Allow Administrator account lockout' is set to 'Enabled'                                    Group Policy Settings     True
+1.2.4                 Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'                       Group Policy Settings     True
+1.2.4                 Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'                       Test Policy Fine Grain... True
