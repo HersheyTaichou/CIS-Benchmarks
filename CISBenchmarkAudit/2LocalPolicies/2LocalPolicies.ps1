@@ -60,9 +60,16 @@ function Test-LocalPoliciesUserRightsAssignment {
 
     $Result = @()
 
+    # 2.2.1
     $Result += Test-UserRightsAssignmentTrustedCredManAccessPrivilege
+    # 2.2.2 and 2.2.3
     $Result += Test-UserRightsAssignmentNetworkLogonRight
+    # 2.2.4
     $Result += Test-UserRightsAssignmentTcbPrivilege
+    # 2.2.5
+    if ($ServerType -eq "DomainController") {
+        Test-UserRightsAssignmentMachineAccountPrivilege
+    }
     
 
     return $Result

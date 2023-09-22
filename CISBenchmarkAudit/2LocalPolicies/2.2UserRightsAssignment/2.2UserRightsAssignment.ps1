@@ -173,3 +173,96 @@ function Test-UserRightsAssignmentTcbPrivilege {
 
     Return $Return
 }
+
+function Test-UserRightsAssignmentMachineAccountPrivilege {
+    [CmdletBinding()]
+    param ()
+
+    $Return = @()
+
+    # Run Get-GPResultantSetOfPolicy and return the results as a variable
+    $gpresult = Get-GPResult
+
+    # Check the 'Add workstations to domain' setting
+    $Setting = @()
+    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($Entry in $data.Extension.UserRightsAssignment) {
+            If ($Entry.Name -eq "SeMachineAccountPrivilege") {
+                $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
+            }
+        }
+    }
+
+    # Check if the domain setting meets the CIS Benchmark
+
+    $Message = "2.2.5 Add workstations to domain"
+    if (-Not($Setting)) {
+        $Message += " is only set to Administrators and does meet the requirement."
+        Write-Verbose $Message
+        $result = $true
+    } else {
+        $Message += " contains these entries: `"" + ($setting -join ", ") + "`" and does not meet the requirement."
+        Write-Warning $Message
+        $result = $false
+    }
+
+    $Properties = [PSCustomObject]@{
+        'RecommendationNumber'= '2.2.5'
+        'ConfigurationProfile' = @("Level 1 - Domain Controller")
+        'RecommendationName'= "Ensure 'Add workstations to domain' is set to 'Administrators'"
+        'Source' = 'Group Policy Settings'
+        'Result'= $result
+        'Setting' = $Setting -join ", "
+    }
+    $Properties.PSTypeNames.Add('psCISBenchmark')
+    $Return += $Properties
+
+    Return $Return
+}
+
+#Base function to copy:
+function Test-UserRightsAssignment {
+    [CmdletBinding()]
+    param ()
+
+    $Return = @()
+
+    # Run Get-GPResultantSetOfPolicy and return the results as a variable
+    $gpresult = Get-GPResult
+
+    # Check the 'Access Credential Manager as a trusted caller' setting
+    $Setting = @()
+    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($Entry in $data.Extension.UserRightsAssignment) {
+            If ($Entry.Name -eq "") {
+                $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
+            }
+        }
+    }
+
+    # Check if the domain setting meets the CIS Benchmark
+
+    $Message = "2.2."
+    if (-Not($Setting)) {
+        $Message += " is blank or missing and does meet the requirement."
+        Write-Verbose $Message
+        $result = $true
+    } else {
+        $Message += " contains these entries: `"" + ($setting -join ", ") + "`" and does not meet the requirement."
+        Write-Warning $Message
+        $result = $false
+    }
+
+    $Properties = [PSCustomObject]@{
+        'RecommendationNumber'= '2.2.'
+        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'RecommendationName'= ""
+        'Source' = 'Group Policy Settings'
+        'Result'= $result
+        'Setting' = $Setting -join ", "
+    }
+    $Properties.PSTypeNames.Add('psCISBenchmark')
+    $Return += $Properties
+
+    Return $Return
+}
