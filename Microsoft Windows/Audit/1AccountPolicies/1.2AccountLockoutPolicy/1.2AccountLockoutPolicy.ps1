@@ -1,37 +1,26 @@
 <#
 .SYNOPSIS
-1.1.1 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)' (Automated)
+1.2.1 (L1) Ensure 'Account lockout duration' is set to '15 or more minute(s)'
 
 .DESCRIPTION
-The command checks the default domain password policy and any fine grained
-password policies, to ensure they all meet the 24 password history requirement.
-The command will return True if all policies meet the requirement, and false
-otherwise.
-
-.PARAMETER FineGrainedPasswordPolicy
-Set this to false to skip checking any fine grained password policies. Defaults to True
+The command checks the applied domain policy and any fine grained
+password policies, to ensure they all meet the lockout duration requirement.
 
 .EXAMPLE
-Test-PasswordHistory
-TRUE
+An example
 
-.EXAMPLE
-Test-PasswordHistory
-WARNING: The "12 Passwords Remembered"  Fine Grained Password Policy has the Password history set to 12 and does meet the requirement.
-FALSE
-
+.NOTES
+General notes
 #>
 function Test-LockoutDuration {
     [CmdletBinding()]
-    param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy
-    )
-    # Check for and install any needed modules
-    $Prerequisites = Install-Prerequisites
+    param ()
+    # Check the product type
+    $ProductType = Get-ProductType
 
     $Return = @()
 
-    if ($Prerequisites.ProductType -eq 2 -and (-not($FineGrainedPasswordPolicy))) {
+    if ($ProductType -eq 2) {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
         $FineGrainedPasswordPolicy = $true
     }
@@ -106,17 +95,29 @@ function Test-LockoutDuration {
     Return $Return
 }
 
+<#
+.SYNOPSIS
+1.2.2 (L1) Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'
+
+.DESCRIPTION
+The command checks the applied domain policy and any fine grained
+password policies, to ensure they all meet the lockout threshold requirement.
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-LockoutThreshold {
     [CmdletBinding()]
-    param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy
-    )
-    # Check for and install any needed modules
-    $Prerequisites = Install-Prerequisites
+    param ()
+    # Check the product type
+    $ProductType = Get-ProductType
 
     $Return = @()
 
-    if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
+    if ($ProductType -eq "2") {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
         $FineGrainedPasswordPolicy = $true
     }
@@ -189,12 +190,23 @@ function Test-LockoutThreshold {
     Return $Return
 }
 
+<#
+.SYNOPSIS
+1.2.3 (L1) Ensure 'Allow Administrator account lockout' is set to 'Enabled'
+
+.DESCRIPTION
+The command checks the applied domain policy to ensure that the admin account
+lockout is enabled.
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-AdminLockout {
     [CmdletBinding()]
     param ()
-
-    # Check for and install any needed modules
-    $null = Install-Prerequisites
 
     $Return = @()
 
@@ -244,17 +256,29 @@ function Test-AdminLockout {
     return $Return
 }
 
+<#
+.SYNOPSIS
+1.2.4 (L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'
+
+.DESCRIPTION
+The command checks the applied domain password policy and any fine grained
+password policies, to ensure they all meet the reset lockout count requirement.
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-ResetLockoutCount {
     [CmdletBinding()]
-    param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy
-    )
-    # Check for and install any needed modules
-    $Prerequisites = Install-Prerequisites
+    param ()
+    # Check the product type
+    $ProductType = Get-ProductType
 
     $Return = @()
 
-    if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
+    if ($ProductType -eq "2") {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
         $FineGrainedPasswordPolicy = $true
     }

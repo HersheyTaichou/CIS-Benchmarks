@@ -13,8 +13,12 @@ CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 This parameter is used to filter by the benchmark level. 
 
 The valid options are:
+
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality.
+
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
+at the risk of breaking some functionality. This level requires and includes all the
+Level 1 benchmarks
 
 .PARAMETER ServerType
 This parameter is used to define the type of server this is running on.
@@ -81,8 +85,12 @@ CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 This parameter is used to filter by the benchmark level. 
 
 The valid options are:
+
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality.
+
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
+at the risk of breaking some functionality. This level requires and includes all the
+Level 1 benchmarks
 
 .PARAMETER ServerType
 This parameter is used to define the type of server this is running on.

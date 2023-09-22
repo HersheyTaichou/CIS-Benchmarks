@@ -29,77 +29,27 @@ function Get-IniContent ($filePath) {
 
 <#
 .SYNOPSIS
-Checks for any prerequisites needed to audit the machine
+Get the product type
 
 .DESCRIPTION
-Checks for and installs any prerequisites needed to audit the machine and
-confirm it meets the CIS Benchmark standards. This is only used internally
-currently, as part of the checks from other scripts.
+Get and return the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
 
 .EXAMPLE
-An example
+Get-ProductType
+2
 
 .NOTES
 General notes
 #>
-
-<#
-.SYNOPSIS
-Checks for any prerequisites needed to audit the machine
-
-.DESCRIPTION
-Checks for and installs any prerequisites needed to audit the machine and
-confirm it meets the CIS Benchmark standards. This is only used internally
-currently, as part of the checks from other scripts.
-
-.PARAMETER ProductType
-The product type number can be provided, if known, otherwise it loads it from
-the system
-
-.EXAMPLE
-Install-Prerequisites
-
-Product Type: 1
-GPMC: Installed
-
-.NOTES
-General notes
-#>
-function Install-Prerequisites {
+function Get-ProductType {
     [CmdletBinding()]
     param ()
-    <#
-    First, get the product type:
-    1 = Workstation
-    2 = Domain Controller
-    3 = Member Server
-    #>
-
     [int]$ProductType = (Get-CimInstance -ClassName Win32_OperatingSystem).ProductType
-
-    <# # Check for the presence of GP commands and if they are missing, install the version based on Workstation/Server
-    if ($ProductType -eq "1") {
-        if ((Get-WindowsCapability -Name "Rsat.GroupPolicy.Management.Tools~~~~0.0.1.0" -Online).State -eq "Installed") {
-            $GPMC = "Present"
-        } else {
-            DISM.exe /Online /add-capability /CapabilityName:Rsat.GroupPolicy.Management.Tools~~~~0.0.1.0
-            $GPMC = "Installed"
-        }
-    } elseif ($ProductType -eq "2" -or $ProductType -eq "3") {
-        if ((Get-WindowsFeature -Name GPMC).Installed) {
-            $GPMC = "Present"
-        } else {
-            Install-WindowsFeature GPMC
-            $GPMC = "Installed"
-        }
-    } #>
-
-    # Return details based on everything found and done
-    $return = [ordered]@{
-        ProductType = $ProductType;
-        GPMC = $GPMC
-    }
-    return $return
+    return $ProductType
 }
 
 <#

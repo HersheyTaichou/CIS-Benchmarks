@@ -81,8 +81,11 @@ NestedModules = @('.\1AccountPolicies\1AccountPolicies.ps1',
                 '.\SupportFiles\common.ps1')
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Test-CISBenchmark', 'Test-PasswordPolicy', 'Test-AccountLockoutPolicy', 
-               'Test-UserRightsAssignment', 'Test-SecurityOptions'
+FunctionsToExport = @('Test-CISBenchmark', 'Get-GPResult', 'Test-PasswordPolicy', 'Test-AccountLockoutPolicy', 
+               'Test-UserRightsAssignment', 'Test-SecurityOptions','Test-PasswordHistory','Test-MaxPasswordAge',
+               'Test-MinPasswordAge','Test-MinPasswordLength','Test-ComplexityEnabled','Test-RelaxMinimumPasswordLengthLimits',
+               'Test-ReversibleEncryption','Test-LockoutDuration','Test-LockoutThreshold','Test-AdminLockout',
+               'Test-ResetLockoutCount')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()

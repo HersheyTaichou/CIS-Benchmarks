@@ -1,35 +1,26 @@
 <#
 .SYNOPSIS
-1.1.1 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)' (Automated)
+1.1.1 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'
 
 .DESCRIPTION
-The command checks the default domain password policy and any fine grained
+The command checks the applied domain policy and any fine grained
 password policies, to ensure they all meet the 24 password history requirement.
-The command will return True if all policies meet the requirement, and false
-otherwise.
-
-.PARAMETER FineGrainedPasswordPolicy
-Set this to false to skip checking any fine grained password policies. Defaults to True
 
 .EXAMPLE
 Test-PasswordHistory
-TRUE
 
-.EXAMPLE
-Test-PasswordHistory
-WARNING: The "12 Passwords Remembered"  Fine Grained Password Policy has the Password history set to 12 and does meet the requirement.
-FALSE
-
+.NOTES
+General notes
 #>
 function Test-PasswordHistory {
     [CmdletBinding()]
     param ()
 
-    # Check for and install any needed modules
-    $Prerequisites = Install-Prerequisites
+    # Check the product type
+    $ProductType = Get-ProductType
     $Return = @()
 
-    if ($Prerequisites.ProductType -eq 2) {
+    if ($ProductType -eq 2) {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
         $FineGrainedPasswordPolicy = $true
     }
@@ -84,9 +75,11 @@ function Test-PasswordHistory {
                 $Message = "1.1.1 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to " + $FGPasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Set the policy to 24 or greater."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
-                $result = $fals
-                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                $result = $false
             }
+
+            $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.1'
                 'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
@@ -103,16 +96,29 @@ function Test-PasswordHistory {
     return $Return
 }
 
+<#
+.SYNOPSIS
+1.1.2 (L1) Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'
+
+.DESCRIPTION
+The command checks the applied domain policy and any fine grained
+password policies, to ensure they all meet the maximum password age requirement.
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-MaxPasswordAge {
     [CmdletBinding()]
-    param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy
-    )
-    # Check for and install any needed modules
-    $Prerequisites = Install-Prerequisites
+    param ()
+
+    # Check the product type
+    $ProductType = Get-ProductType
     $Return = @()
 
-    if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
+    if ($ProductType -eq "2") {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
         $FineGrainedPasswordPolicy = $true
     }
@@ -167,9 +173,9 @@ function Test-MaxPasswordAge {
                 $Message = "1.1.2 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
-                $result = $fals
-                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                $result = $false
             }
+            $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.2'
                 'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
@@ -185,16 +191,29 @@ function Test-MaxPasswordAge {
     return $Return
 }
 
+<#
+.SYNOPSIS
+1.1.3 (L1) Ensure 'Minimum password age' is set to '1 or more day(s)'
+
+.DESCRIPTION
+The command checks the applied domain policy and any fine grained
+password policies, to ensure they all meet the minimum password age requirement.
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-MinPasswordAge {
     [CmdletBinding()]
-    param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy
-    )
-    # Check for and install any needed modules
-    $Prerequisites = Install-Prerequisites
+    param ()
+
+    # Check the product type
+    $ProductType = Get-ProductType
     $Return = @()
 
-    if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
+    if ($ProductType -eq "2") {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
         $FineGrainedPasswordPolicy = $true
     }
@@ -249,9 +268,9 @@ function Test-MinPasswordAge {
                 $Message = "1.1.3 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
-                $result = $fals
-                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                $result = $false
             }
+            $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.3'
                 'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
@@ -267,16 +286,28 @@ function Test-MinPasswordAge {
     return $Return
 }
 
+<#
+.SYNOPSIS
+1.1.4 (L1) Ensure 'Minimum password length' is set to '14 or more character(s)'
+
+.DESCRIPTION
+The command checks the applied domain policy and any fine grained
+password policies, to ensure they all meet the minimum password length requirement.
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-MinPasswordLength {
     [CmdletBinding()]
-    param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy
-    )
-    # Check for and install any needed modules
-    $Prerequisites = Install-Prerequisites
+    param ()
+    # Check the product type
+    $ProductType = Get-ProductType
     $Return = @()
 
-    if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
+    if ($ProductType -eq "2") {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
         $FineGrainedPasswordPolicy = $true
     }
@@ -331,9 +362,9 @@ function Test-MinPasswordLength {
                 $Message = "1.1.4 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to "+ $FGPasswordPolicy.MinPasswordLength + " and does not meet the requirement. Make sure the minimum password length is greater or equal to 14."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
-                $result = $fals
-                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                $result = $false
             }
+            $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.4'
                 'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
@@ -349,17 +380,29 @@ function Test-MinPasswordLength {
     return $Return
 }
 
+<#
+.SYNOPSIS
+1.1.5 (L1) Ensure 'Password must meet complexity requirements' is set to 'Enabled'
+
+.DESCRIPTION
+The command checks the applied domain policy and any fine grained
+password policies, to ensure they all have complexity enabled.
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-ComplexityEnabled {
     [CmdletBinding()]
-    param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy
-    )
+    param ()
 
-    # Check for and install any needed modules
-    $Prerequisites = Install-Prerequisites
+    # Check the product type
+    $ProductType = Get-ProductType
     $Return = @()
 
-    if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
+    if ($ProductType -eq "2") {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
         $FineGrainedPasswordPolicy = $true
     }
@@ -414,9 +457,9 @@ function Test-ComplexityEnabled {
                 $Message = "1.1.5 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity disabled and does not meet the requirement."
                 $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
                 Write-Warning $Message
-                $result = $fals
-                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                $result = $false
             }
+            $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.5'
                 'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
@@ -432,6 +475,20 @@ function Test-ComplexityEnabled {
     return $Return
 }
 
+<#
+.SYNOPSIS
+1.1.6 (L1) Ensure 'Relax minimum password length limits' is set to 'Enabled'
+
+.DESCRIPTION
+The command checks the applied domain policy to ensure that the 
+relax minimum password length limits setting is enabled for admin accounts.
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-RelaxMinimumPasswordLengthLimits {
     [CmdletBinding()]
     param ()
@@ -470,17 +527,29 @@ function Test-RelaxMinimumPasswordLengthLimits {
     return $Return
 }
 
+<#
+.SYNOPSIS
+1.1.7 (L1) Ensure 'Store passwords using reversible encryption' is set to 'Disabled'
+
+.DESCRIPTION
+The command checks the applied domain policy and any fine grained
+password policies, to ensure they all have reversible encryption turned off.
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-ReversibleEncryption {
     [CmdletBinding()]
-    param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy
-    )
+    param ()
 
-    # Check for and install any needed modules
-    $Prerequisites = Install-Prerequisites
+    # Check the product type
+    $ProductType = Get-ProductType
     $Return = @()
 
-    if ($Prerequisites.ProductType -eq "2" -and (-not($FineGrainedPasswordPolicy))) {
+    if ($ProductType -eq "2") {
         Write-Verbose "This is a domain controller, checking the Fine Grained Password Policies"
         $FineGrainedPasswordPolicy = $true
     }
@@ -547,7 +616,7 @@ function Test-ReversibleEncryption {
                 'Setting' = $FGPasswordPolicy.ReversibleEncryptionEnabled
             }
             $Properties.PSTypeNames.Add('psCISBenchmark')
-    $Return += $Properties
+            $Return += $Properties
         }
     }
     return $Return
