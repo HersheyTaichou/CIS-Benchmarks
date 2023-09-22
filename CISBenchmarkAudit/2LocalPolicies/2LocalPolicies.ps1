@@ -60,6 +60,11 @@ function Test-LocalPoliciesUserRightsAssignment {
 
     $Result = @()
 
+    $Result += Test-UserRightsAssignmentTrustedCredManAccessPrivilege
+    $Result += Test-UserRightsAssignmentNetworkLogonRight
+    $Result += Test-UserRightsAssignmentTcbPrivilege
+    
+
     return $Result
 }
 
