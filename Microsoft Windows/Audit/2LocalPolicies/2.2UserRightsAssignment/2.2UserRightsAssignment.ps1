@@ -1,8 +1,6 @@
-function Test-LockoutDuration {
+function Test-UserRightsAssignmentSettingName {
     [CmdletBinding()]
-    param (
-        [Parameter()][bool]$FineGrainedPasswordPolicy
-    )
+    param ()
 
     $Return = @()
 
@@ -12,29 +10,28 @@ function Test-LockoutDuration {
     #Find the lockout duration applied to this machine
     foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
-            If ($Entry.Name -eq "LockoutDuration") {
+            If ($Entry.Name -eq "") {
                 [int]$Setting = $Entry.SettingNumber
             }
         }
     }
 
     # Check if the domain setting meets the CIS Benchmark
-    # This setting is required for Level 1 compliance.
 
     if ($Setting -ge "15") {
-        $Message = "1.2.1 The GPO account lockout duration is set to " + $Setting + " and does meet the requirement."
+        $Message = "2.2.1" + $Setting + " and does meet the requirement."
         Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "1.2.1 The GPO account lockout duration is set to " + $Setting + " and does not meet the requirement. Increase the policy to 24 or greater."
+        $Message = "2.2.1" + $Setting + " and does not meet the requirement."
         Write-Warning $Message
         $result = $false
     }
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '1.2.1'
-        'ConfigurationProfile' = "Level 1"
-        'RecommendationName'= "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
+        'RecommendationNumber'= '2.2.1'
+        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'RecommendationName'= ""
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting

@@ -12,7 +12,7 @@
 . $PSScriptRoot\2.3.15SystemObjects\2.3.15SystemObjects.ps1
 . $PSScriptRoot\2.3.17UserAccountControl\2.3.17UserAccountControl.ps1
 
-function Test-Accounts {
+function Test-SecurityOptionsAccounts {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
@@ -25,7 +25,7 @@ function Test-Accounts {
     return $Result
 }
 
-function Test-Audit {
+function Test-SecurityOptionsAudit {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
@@ -38,7 +38,7 @@ function Test-Audit {
     return $Result
 }
 
-function Test-Devices {
+function Test-SecurityOptionsDevices {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
@@ -51,7 +51,7 @@ function Test-Devices {
     return $Result
 }
 
-function Test-DomainController {
+function Test-SecurityOptionsDomainController {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
@@ -64,7 +64,7 @@ function Test-DomainController {
     return $Result
 }
 
-function Test-DomainMember {
+function Test-SecurityOptionsDomainMember {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
@@ -77,7 +77,7 @@ function Test-DomainMember {
     return $Result
 }
 
-function Test-InteractiveLogin {
+function Test-SecurityOptionsInteractiveLogin {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
@@ -90,7 +90,7 @@ function Test-InteractiveLogin {
     return $Result
 }
 
-function Test-MicrosoftNetworkClient {
+function Test-SecurityOptionsMicrosoftNetworkClient {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
@@ -103,7 +103,7 @@ function Test-MicrosoftNetworkClient {
     return $Result
 }
 
-function Test-MicrosoftNetworkServer {
+function Test-SecurityOptionsMicrosoftNetworkServer {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
@@ -116,7 +116,7 @@ function Test-MicrosoftNetworkServer {
     return $Result
 }
 
-function Test-NetworkAccess {
+function Test-SecurityOptionsNetworkAccess {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
@@ -129,7 +129,7 @@ function Test-NetworkAccess {
     return $Result
 }
 
-function Test-NetworkSecurity {
+function Test-SecurityOptionsNetworkSecurity {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
@@ -142,7 +142,7 @@ function Test-NetworkSecurity {
     return $Result
 }
 
-function Test-Shutdown {
+function Test-SecurityOptionsShutdown {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
@@ -155,7 +155,7 @@ function Test-Shutdown {
     return $Result
 }
 
-function Test-SystemObjects {
+function Test-SecurityOptionsSystemObjects {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
@@ -168,7 +168,7 @@ function Test-SystemObjects {
     return $Result
 }
 
-function Test-UserAccountControl {
+function Test-SecurityOptionsUserAccountControl {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,

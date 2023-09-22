@@ -12,7 +12,7 @@ Test-PasswordHistory
 .NOTES
 General notes
 #>
-function Test-PasswordHistory {
+function Test-PasswordPolicyPasswordHistory {
     [CmdletBinding()]
     param ()
 
@@ -38,7 +38,6 @@ function Test-PasswordHistory {
     }
 
     # Check if the GPO setting meets the CIS Benchmark
-    # This setting is required for Level 1 compliance.
 
     if ($Setting -ge "24") {
         $Message = "1.1.1 The GPO password history is set to " + $Setting + " and does meet the requirement."
@@ -110,7 +109,7 @@ An example
 .NOTES
 General notes
 #>
-function Test-MaxPasswordAge {
+function Test-PasswordPolicyMaxPasswordAge {
     [CmdletBinding()]
     param ()
 
@@ -136,7 +135,6 @@ function Test-MaxPasswordAge {
     }
 
     # Check if the GPO setting meets the CIS Benchmark
-    # This setting is required for Level 1 compliance.
 
     if ($Setting -gt "0" -and $Setting -le "365") {
         $Message = "1.1.2 The GPO password history is set to " + $Setting + " and does meet the requirement."
@@ -205,7 +203,7 @@ An example
 .NOTES
 General notes
 #>
-function Test-MinPasswordAge {
+function Test-PasswordPolicyMinPasswordAge {
     [CmdletBinding()]
     param ()
 
@@ -231,7 +229,6 @@ function Test-MinPasswordAge {
     }
 
     # Check if the GPO setting meets the CIS Benchmark
-    # This setting is required for Level 1 compliance.
 
     if ($Setting -gt "0") {
         $Message = "1.1.3 The GPO minimum password age is set to " + $Setting + " and does meet the requirement."
@@ -300,7 +297,7 @@ An example
 .NOTES
 General notes
 #>
-function Test-MinPasswordLength {
+function Test-PasswordPolicyMinPasswordLength {
     [CmdletBinding()]
     param ()
     # Check the product type
@@ -325,7 +322,6 @@ function Test-MinPasswordLength {
     }
 
     # Check if the GPO setting meets the CIS Benchmark
-    # This setting is required for Level 1 compliance.
 
     if ($Setting -ge "14") {
         $Message = "1.1.4 The GPO minimum password length is set to " + $Setting + " and does meet the requirement."
@@ -394,7 +390,7 @@ An example
 .NOTES
 General notes
 #>
-function Test-ComplexityEnabled {
+function Test-PasswordPolicyComplexityEnabled {
     [CmdletBinding()]
     param ()
 
@@ -420,7 +416,6 @@ function Test-ComplexityEnabled {
     }
 
     # Check if the GPO setting meets the CIS Benchmark
-    # This setting is required for Level 1 compliance.
 
     if ($Setting) {
         $Message = "1.1.5 The GPO policy has complexity enabled and does meet the requirement."
@@ -489,7 +484,7 @@ An example
 .NOTES
 General notes
 #>
-function Test-RelaxMinimumPasswordLengthLimits {
+function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
     [CmdletBinding()]
     param ()
     # This setting is required for Level 1 compliance on Windows Server 2022 or greater.
@@ -541,7 +536,7 @@ An example
 .NOTES
 General notes
 #>
-function Test-ReversibleEncryption {
+function Test-PasswordPolicyReversibleEncryption {
     [CmdletBinding()]
     param ()
 
@@ -567,7 +562,6 @@ function Test-ReversibleEncryption {
     }
 
     # Check if the GPO setting meets the CIS Benchmark
-    # This setting is required for Level 1 compliance.
 
     if ($Setting -eq "false") {
         $Message = "1.1.7 The GPO policy has reversible encryption disabled and does meet the requirement."

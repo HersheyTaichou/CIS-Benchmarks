@@ -12,7 +12,7 @@ An example
 .NOTES
 General notes
 #>
-function Test-LockoutDuration {
+function Test-AccountLockoutPolicyLockoutDuration {
     [CmdletBinding()]
     param ()
     # Check the product type
@@ -38,7 +38,6 @@ function Test-LockoutDuration {
     }
 
     # Check if the domain setting meets the CIS Benchmark
-    # This setting is required for Level 1 compliance.
 
     if ($Setting -ge "15") {
         $Message = "1.2.1 The GPO account lockout duration is set to " + $Setting + " and does meet the requirement."
@@ -109,7 +108,7 @@ An example
 .NOTES
 General notes
 #>
-function Test-LockoutThreshold {
+function Test-AccountLockoutPolicyLockoutThreshold {
     [CmdletBinding()]
     param ()
     # Check the product type
@@ -135,7 +134,6 @@ function Test-LockoutThreshold {
     }
 
     # Check if the domain setting meets the CIS Benchmark
-    # This setting is required for Level 1 compliance.
 
     if ($Setting -gt "0" -and $Setting -le "5") {
         $Message = "1.2.2 The GPO lockout threshold is set to " + $Setting + " and does meet the requirement."
@@ -204,7 +202,7 @@ An example
 .NOTES
 General notes
 #>
-function Test-AdminLockout {
+function Test-AccountLockoutPolicyAdminLockout {
     [CmdletBinding()]
     param ()
 
@@ -223,7 +221,6 @@ function Test-AdminLockout {
     }
 
     # Check if the domain setting meets the CIS Benchmark
-    # This setting is required for Level 1 compliance.
 
     if ($Setting -eq "true") {
         $Message = "1.2.3 The GPO Admin lockout is enabled and does meet the requirement."
@@ -270,7 +267,7 @@ An example
 .NOTES
 General notes
 #>
-function Test-ResetLockoutCount {
+function Test-AccountLockoutPolicyResetLockoutCount {
     [CmdletBinding()]
     param ()
     # Check the product type
@@ -296,7 +293,6 @@ function Test-ResetLockoutCount {
     }
 
     # Check if the domain setting meets the CIS Benchmark
-    # This setting is required for Level 1 compliance.
 
     if ($Setting -ge "15") {
         $Message = "1.2.4 The GPO account lockout counter is set to " + $Setting + " minutes and does meet the requirement."

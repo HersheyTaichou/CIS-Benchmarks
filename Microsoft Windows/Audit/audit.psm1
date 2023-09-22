@@ -58,8 +58,8 @@ function Test-CISBenchmark {
     )
     $Return = @()
 
-    $Return += Test-PasswordPolicy -ServerType $ServerType -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Return += Test-AccountLockoutPolicy  -ServerType $ServerType -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Return += Test-CISBenchmarkAccountPolicies -ServerType $ServerType -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Return += Test-CISBenchmarkLocalPolicies -ServerType $ServerType -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
 
     return $Return
 }
