@@ -77,7 +77,7 @@ function Install-Prerequisites {
 
     [int]$ProductType = (Get-CimInstance -ClassName Win32_OperatingSystem).ProductType
 
-    # Check for the presence of GP commands and if they are missing, install the version based on Workstation/Server
+    <# # Check for the presence of GP commands and if they are missing, install the version based on Workstation/Server
     if ($ProductType -eq "1") {
         if ((Get-WindowsCapability -Name "Rsat.GroupPolicy.Management.Tools~~~~0.0.1.0" -Online).State -eq "Installed") {
             $GPMC = "Present"
@@ -92,7 +92,7 @@ function Install-Prerequisites {
             Install-WindowsFeature GPMC
             $GPMC = "Installed"
         }
-    }
+    } #>
 
     # Return details based on everything found and done
     $return = [ordered]@{
