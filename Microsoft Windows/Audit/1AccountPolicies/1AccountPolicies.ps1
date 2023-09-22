@@ -66,9 +66,9 @@ function Test-AccountPoliciesPasswordPolicy {
     $Result += Test-PasswordPolicyMinPasswordLength
     $Result += Test-PasswordPolicyComplexityEnabled
     if ($ServerType = "MemberServer") {
-        $Result += Test-RelaxMinimumPasswordLengthLimits
+        $Result += Test-PasswordPolicyRelaxMinimumPasswordLengthLimits
     }
-    $Result += Test-ReversibleEncryption
+    $Result += Test-PasswordPolicyReversibleEncryption
 
     return $Result
 }
@@ -201,8 +201,8 @@ function Test-CISBenchmarkAccountPolicies {
 
     $Result = @()
 
-    $Result += Test-AccountPoliciesPasswordPolicy
-    $Result += Test-AccountPoliciesAccountLockoutPolicy
+    $Result += Test-AccountPoliciesPasswordPolicy -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-AccountPoliciesAccountLockoutPolicy -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
 
     return $Result
 }

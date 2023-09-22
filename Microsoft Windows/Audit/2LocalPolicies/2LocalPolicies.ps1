@@ -185,8 +185,8 @@ function Test-CISBenchmarkLocalPolicies {
 
     $Result = @()
 
-    $Result += Test-LocalPoliciesUserRightsAssignment
-    $Result += Test-LocalPoliciesSecurityOptions
+    $Result += Test-LocalPoliciesUserRightsAssignment -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-LocalPoliciesSecurityOptions -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
 
     return $Result
 }
