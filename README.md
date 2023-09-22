@@ -10,9 +10,62 @@ These scripts are VERY MUCH a work in progress, so take caution and review them 
 
 Before starting, it is advised that you carefully review the CIS Benchmarks. You can download the latest copy of the [CIS Benchmarks](https://learn.cisecurity.org/benchmarks) for review by filling out the form on their site.
 
-Once you are ready to review a system or environment, the scripts are divided into various functions. I recommend you start with the Audit commands, and see what is already in place, before running the commands to deploy the benchmark standards.
+### Import the Module
 
-The repository is divided up by OS, then by audit and deploy, and under those, they follow the number and naming schemes from the CIS Benchmark documentation. Each top level of the documentation is represented by a single module, with various functions in each module for each sub-level. (This is my initial plan, and subject to change)
+To run an audit on a machine, you have multiple options based on the end goal. First, you will need to import the module:
+
+```PowerShell
+Import-Module .\CISBenchmarkAudit.psm1
+```
+
+Then, depending on what you want to do, their are a variety of commands.
+
+### Run the Entire CIS Benchmark
+
+To test the machine against the entire benchmark, run the following command, setting the level and server type:
+
+```PowerShell
+Test-CISBenchmark -Level 1 -ServerType DomainController
+```
+
+### Test a Specific Section
+
+To test against just one section of the benchmark, the command format is Test-CISBenchmarkSectionTitle.
+
+Here are two examples:
+
+```PowerShell
+Test-CISBenchmarkAccountPolicies -Level 1 -ServerType DomainController
+```
+
+```PowerShell
+Test-CISBenchmarkLocalPolicies -Level 1 -ServerType DomainController
+```
+
+To run just one subsection, the command will be Test-SectionTitleSubsectionTitle.
+
+As an example, this command will test against section "1 Account Policies\1.1 Password Policy".
+
+```PowerShell
+Test-AccountPoliciesPasswordPolicy -Level 1 -ServerType DomainController
+```
+
+As another example, this will test against "2 Local Policies\2.3 Security Options\2.3.1 Accounts". Notice that the command is always based on the lowest two levels.
+
+```PowerShell
+Test-SecurityOptionsAccounts -Level 1 -ServerType DomainController
+```
+
+### Test a Recommendation
+
+
+You can also test just one specific recommendation, and the command will be in the format Test-SectionTitleRecommendation
+
+This command will run the recommendation found at "1 Account Policies\1.1 Password Policy\1.1.1 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)' (Automated)"
+
+```PowerShell
+Test-PasswordPolicyPasswordHistory
+```
 
 ## Licenses
 
