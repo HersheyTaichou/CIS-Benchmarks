@@ -7,7 +7,7 @@ The command checks the applied domain policy and any fine grained
 password policies, to ensure they all meet the 24 password history requirement.
 
 .EXAMPLE
-Test-PasswordHistory
+Test-PasswordPolicyPasswordHistory
 
 .NOTES
 General notes
@@ -51,7 +51,7 @@ function Test-PasswordPolicyPasswordHistory {
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.1'
         'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= 'Ensure "Enforce password history" is set to "24 or more password(s)"'
+        'RecommendationName'= "Ensure 'Enforce password history' is set to '24 or more password(s)'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
@@ -82,7 +82,7 @@ function Test-PasswordPolicyPasswordHistory {
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.1'
                 'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-                'RecommendationName'= 'Ensure "Enforce password history" is set to "24 or more password(s)"'
+                'RecommendationName'= "Ensure 'Enforce password history' is set to '24 or more password(s)'"
                 'Source' = $Source
                 'Result'= $result
                 'Setting' = $FGPasswordPolicy.PasswordHistoryCount
@@ -148,7 +148,7 @@ function Test-PasswordPolicyMaxPasswordAge {
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.2'
         'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= 'Ensure "Maximum password age" is set to "365 or fewer days, but not 0"'
+        'RecommendationName'= "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
@@ -177,7 +177,7 @@ function Test-PasswordPolicyMaxPasswordAge {
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.2'
                 'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-                'RecommendationName'= 'Ensure "Maximum password age" is set to "365 or fewer days, but not 0"'
+                'RecommendationName'= "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
                 'Source' = $Source
                 'Result'= $result
                 'Setting' = $FGPasswordPolicy.MaxPasswordAge
@@ -242,7 +242,7 @@ function Test-PasswordPolicyMinPasswordAge {
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.3'
         'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= 'Ensure "Minimum password age" is set to "1 or more day(s)"'
+        'RecommendationName'= "Ensure 'Minimum password age' is set to '1 or more day(s)'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
@@ -271,7 +271,7 @@ function Test-PasswordPolicyMinPasswordAge {
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.3'
                 'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-                'RecommendationName'= 'Ensure "Minimum password age" is set to "1 or more day(s)"'
+                'RecommendationName'= "Ensure 'Minimum password age' is set to '1 or more day(s)'"
                 'Source' = $Source
                 'Result'= $result
                 'Setting' = $FGPasswordPolicy.MaxPasswordAge
@@ -335,7 +335,7 @@ function Test-PasswordPolicyMinPasswordLength {
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.4'
         'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= 'Ensure "Minimum password length" is set to "14 or more character(s)"'
+        'RecommendationName'= "Ensure 'Minimum password length' is set to '14 or more character(s)'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
@@ -364,7 +364,7 @@ function Test-PasswordPolicyMinPasswordLength {
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.4'
                 'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-                'RecommendationName'= 'Ensure "Minimum password length" is set to "14 or more character(s)"'
+                'RecommendationName'= "Ensure 'Minimum password length' is set to '14 or more character(s)'"
                 'Source' = $Source
                 'Result'= $result
                 'Setting' = $FGPasswordPolicy.MinPasswordLength
@@ -429,7 +429,7 @@ function Test-PasswordPolicyComplexityEnabled {
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.5'
         'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= 'Ensure "Password must meet complexity requirements" is set to "Enabled"'
+        'RecommendationName'= "Ensure 'Password must meet complexity requirements' is set to 'Enabled'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
@@ -458,7 +458,7 @@ function Test-PasswordPolicyComplexityEnabled {
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.5'
                 'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-                'RecommendationName'= 'Ensure "Password must meet complexity requirements" is set to "Enabled"'
+                'RecommendationName'= "Ensure 'Password must meet complexity requirements' is set to 'Enabled'"
                 'Source' = $Source
                 'Result'= $result
                 'Setting' = $FGPasswordPolicy.ComplexityEnabled
@@ -512,7 +512,7 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.6'
         'ConfigurationProfile' = @("Level 1 - Member Server")
-        'RecommendationName'= 'Ensure "Relax minimum password length limits" is set to "Enabled"'
+        'RecommendationName'= "Ensure 'Relax minimum password length limits' is set to 'Enabled'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
@@ -577,7 +577,7 @@ function Test-PasswordPolicyReversibleEncryption {
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.7'
         'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= 'Ensure "Store passwords using reversible encryption" is set to "Disabled"'
+        'RecommendationName'= "Ensure 'Store passwords using reversible encryption' is set to 'Disabled'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
@@ -604,7 +604,7 @@ function Test-PasswordPolicyReversibleEncryption {
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.7'
                 'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-                'RecommendationName'= 'Ensure "Store passwords using reversible encryption" is set to "Disabled"'
+                'RecommendationName'= "Ensure 'Store passwords using reversible encryption' is set to 'Disabled'"
                 'Source' = $Source
                 'Result'= $result
                 'Setting' = $FGPasswordPolicy.ReversibleEncryptionEnabled
