@@ -58,7 +58,6 @@ Test-SecurityOptionsAccounts -Level 1 -ServerType DomainController
 
 ### Test a Recommendation
 
-
 You can also test just one specific recommendation, and the command will be in the format Test-SectionTitleRecommendation
 
 This command will run the recommendation found at "1 Account Policies\1.1 Password Policy\1.1.1 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)' (Automated)"
