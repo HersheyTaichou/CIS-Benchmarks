@@ -5,7 +5,7 @@
 CIS Microsoft Windows Server 2022 Benchmark v2.0.0
 
 .DESCRIPTION
-This command will test all the settings defined the 
+This command will test all the settings defined in the 
 CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
@@ -41,10 +41,15 @@ The MemberServer profile also applies to servers with the following roles:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
-An example
+Test-CISBenchmark -Level 1 -ServerType DomainController
+
+RecommendationNumber  RecommendationName                                                   Source                    Result
+--------------------  ------------------                                                   ------                    ------
+1.1.1                 Ensure 'Enforce password history' is set to '24 or more password(s)' Group Policy Settings     True
+1.1.1                 Ensure 'Enforce password history' is set to '24 or more password(s)' Test Policy Fine Grain... True
 
 .NOTES
 General notes

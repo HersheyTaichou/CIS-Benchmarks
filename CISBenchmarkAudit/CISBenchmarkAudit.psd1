@@ -12,7 +12,7 @@
 RootModule = '.\CISBenchmarkAudit.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1.2'
+ModuleVersion = '0.2.2'
 
 # Version number explanation:
     # Major version will increase to 1 when the entire benchmark can be audited
@@ -68,26 +68,151 @@ RequiredModules = @('GroupPolicy')
 # TypesToProcess = @()
 
 # Format files (.ps1xml) to be loaded when importing this module
-FormatsToProcess = '.\SupportFiles\psCISBenchmark.format.ps1xml'
+FormatsToProcess = @('.\SupportFiles\psCISBenchmark.format.ps1xml')
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-NestedModules = @('.\1AccountPolicies\1AccountPolicies.ps1',
-                '.\2LocalPolicies\2LocalPolicies.ps1',
-                '.\5SystemServices\5SystemServices.ps1',
-                '.\9WindowsDefenderFirewallwithAdvancedSecurity\9WindowsDefenderFirewallwithAdvancedSecurity.ps1',
-                '.\17AdvancedAuditPolicyConfiguration\17AdvancedAuditPolicyConfiguration.ps1',
-                '.\18AdministrativeTemplatesComputer\18AdministrativeTemplatesComputer.ps1',
-                '.\19AdministrativeTemplatesUser\19AdministrativeTemplatesUser.ps1',
-                '.\SupportFiles\common.ps1')
+NestedModules = @('.\CISBenchmarkAudit.psm1',
+    '17AdvancedAuditPolicyConfiguration\17.1AccountLogon\17.1AccountLogon.ps1','17AdvancedAuditPolicyConfiguration\17.2AccountManagement\17.2AccountManagement.ps1',
+    '17AdvancedAuditPolicyConfiguration\17.3DetailedTracking\17.3DetailedTracking.ps1',
+    '17AdvancedAuditPolicyConfiguration\17.4DSAccess\17.4DSAccess.ps1','17AdvancedAuditPolicyConfiguration\17.5LogonLogoff\17.5LogonLogoff.ps1',
+    '17AdvancedAuditPolicyConfiguration\17.6ObjectAccess\17.6ObjectAccess.ps1','17AdvancedAuditPolicyConfiguration\17.7PolicyChange\17.7PolicyChange.ps1',
+    '17AdvancedAuditPolicyConfiguration\17.8PrivilegeUse\17.8PrivilegeUse.ps1','17AdvancedAuditPolicyConfiguration\17.9System\17.9System.ps1',
+    '17AdvancedAuditPolicyConfiguration\17AdvancedAuditPolicyConfiguration.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.10Camera\18.10.10Camera.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.12CloudContent\18.10.12CloudContent.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.13Connect\18.10.13Connect.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.14CredentialUserInterface\18.10.14CredentialUserInterface.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.15DataCollectionandPreviewBuilds\18.10.15DataCollectionandPreviewBuilds.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.17DesktopAppInstaller\18.10.17DesktopAppInstaller.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.26EventLogService\18.10.26EventLogService.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.29FileExplorer\18.10.29FileExplorer.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.37LocationandSensors\18.10.37LocationandSensors.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.3AppPackageDeployment\18.10.3AppPackageDeployment.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.41Messaging\18.10.41Messaging.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.42Microsoftaccount\18.10.42Microsoftaccount.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.43MicrosoftDefenderAntivirus\18.10.43MicrosoftDefenderAntivirus.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.51OneDrive\18.10.51OneDrive.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.56PushToInstall\18.10.56PushToInstall.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.57RemoteDesktopServices\18.10.57RemoteDesktopServices.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.58RSSFeeds\18.10.58RSSFeeds.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.59Search\18.10.59Search.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.5Appruntime\18.10.5Appruntime.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.63SoftwareProtectionPlatform\18.10.63SoftwareProtectionPlatform.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.76WindowsDefenderSmartScreen\18.10.76WindowsDefenderSmartScreen.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.7AutoPlayPolicies\18.10.7AutoPlayPolicies.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.80WindowsInkWorkspace\18.10.80WindowsInkWorkspace.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.81WindowsInstaller\18.10.81WindowsInstaller.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.82WindowsLogonOptions\18.10.82WindowsLogonOptions.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.87WindowsPowerShell\18.10.87WindowsPowerShell.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.88WindowsReliabilityAnalysis\18.10.88WindowsReliabilityAnalysis.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.89WindowsRemoteManagement\18.10.89WindowsRemoteManagement.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.8Biometrics\18.10.8Biometrics.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.90WindowsRemoteShell\18.10.90WindowsRemoteShell.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.92WindowsSecurity\18.10.92WindowsSecurity.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.93WindowsUpdate\18.10.93WindowsUpdate.ps1',
+    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10WindowsComponents.ps1',
+    '18AdministrativeTemplatesComputer\18.1ControlPanel\18.1.1Personalization\18.1.1Personalization.ps1',
+    '18AdministrativeTemplatesComputer\18.1ControlPanel\18.1.2RegionalandLanguageOptions\18.1.2RegionalandLanguageOptions.ps1',
+    '18AdministrativeTemplatesComputer\18.1ControlPanel\18.1ControlPanel.ps1','18AdministrativeTemplatesComputer\18.3LAPS\18.3LAPS.ps1',
+    '18AdministrativeTemplatesComputer\18.4MSSecurityGuide\18.4MSSecurityGuide.ps1','18AdministrativeTemplatesComputer\18.5MSS\18.5MSS.ps1',
+    '18AdministrativeTemplatesComputer\18.6.10MicrosoftPeer-to-PeerNetworkingServices\18.6.10MicrosoftPeer-to-PeerNetworkingServices.ps1',
+    '18AdministrativeTemplatesComputer\18.6.11NetworkConnections\18.6.11NetworkConnections.ps1',
+    '18AdministrativeTemplatesComputer\18.6.14NetworkProvider\18.6.14NetworkProvider.ps1',
+    '18AdministrativeTemplatesComputer\18.6.19TCPIPSettings\18.6.19TCPIPSettings.ps1',
+    '18AdministrativeTemplatesComputer\18.6.20WindowsConnectNow\18.6.20WindowsConnectNow.ps1',
+    '18AdministrativeTemplatesComputer\18.6.21WindowsConnectionManager\18.6.21WindowsConnectionManager.ps1',
+    '18AdministrativeTemplatesComputer\18.6.4DNSClient\18.6.4DNSClient.ps1','18AdministrativeTemplatesComputer\18.6.5Fonts\18.6.5Fonts.ps1',
+    '18AdministrativeTemplatesComputer\18.6.8LanmanWorkstation\18.6.8LanmanWorkstation.ps1',
+    '18AdministrativeTemplatesComputer\18.6.9Link-LayerTopologyDiscovery\18.6.9Link-LayerTopologyDiscovery.ps1',
+    '18AdministrativeTemplatesComputer\18.6Network\18.6Network.ps1','18AdministrativeTemplatesComputer\18.7Printers\18.7Printers.ps1',
+    '18AdministrativeTemplatesComputer\18.8.1Notifications\18.8.1Notifications.ps1',
+    '18AdministrativeTemplatesComputer\18.8StartMenuandTaskbar\18.8StartMenuandTaskbar.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.13EarlyLaunchAntimalware\18.9.13EarlyLaunchAntimalware.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.19GroupPolicy\18.9.19GroupPolicy.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.20InternetCommunicationManagement\18.9.20InternetCommunicationManagement.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.23Kerberos\18.9.23Kerberos.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.24KernelDMAProtection\18.9.24KernelDMAProtection.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.25LocalSecurityAuthority\18.9.25LocalSecurityAuthority.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.26LocaleServices\18.9.26LocaleServices.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.27Logon\18.9.27Logon.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.30OSPolicies\18.9.30OSPolicies.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.32PowerManagement\18.9.32PowerManagement.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.34RemoteAssistance\18.9.34RemoteAssistance.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.35RemoteProcedureCall\18.9.35RemoteProcedureCall.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.38SecurityAccountManager\18.9.38SecurityAccountManager.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.3AuditProcessCreation\18.9.3AuditProcessCreation.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.46TroubleshootingandDiagnostics\18.9.46TroubleshootingandDiagnostics.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.48UserProfiles\18.9.48UserProfiles.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.4CredentialsDelegation\18.9.4CredentialsDelegation.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.50WindowsTimeService\18.9.50WindowsTimeService.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.5DeviceGuard\18.9.5DeviceGuard.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.7DeviceInstallation\18.9.7DeviceInstallation.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9System.ps1','18AdministrativeTemplatesComputer\18AdministrativeTemplatesComputer.ps1',
+    '19AdministrativeTemplatesUser\19.1ControlPanel\19.1.3Personalization\19.1.3Personalization.ps1',
+    '19AdministrativeTemplatesUser\19.1ControlPanel\19.1ControlPanel.ps1',
+    '19AdministrativeTemplatesUser\19.5StartMenuandTaskbar\19.5.1Notifications\19.5.1Notifications.ps1',
+    '19AdministrativeTemplatesUser\19.5StartMenuandTaskbar\19.5StartMenuandTaskbar.ps1',
+    '19AdministrativeTemplatesUser\19.6System\19.6.6InternetCommunicationManagement\19.6.6InternetCommunicationManagement.ps1',
+    '19AdministrativeTemplatesUser\19.6System\19.6System.ps1','19AdministrativeTemplatesUser\19.7WindowsComponents\19.7.25NetworkSharing\19.7.25NetworkSharing.ps1',
+    '19AdministrativeTemplatesUser\19.7WindowsComponents\19.7.40WindowsInstaller2\19.7.40WindowsInstaller2.ps1',
+    '19AdministrativeTemplatesUser\19.7WindowsComponents\19.7.42WindowsMediaPlayer\19.7.42WindowsMediaPlayer.ps1',
+    '19AdministrativeTemplatesUser\19.7WindowsComponents\19.7.4AttachmentManager\19.7.4AttachmentManager.ps1',
+    '19AdministrativeTemplatesUser\19.7WindowsComponents\19.7.7CloudContent\19.7.7CloudContent.ps1',
+    '19AdministrativeTemplatesUser\19.7WindowsComponents\19.7WindowsComponents.ps1',
+    '19AdministrativeTemplatesUser\19AdministrativeTemplatesUser.ps1','1AccountPolicies\1.1PasswordPolicy\1.1PasswordPolicy.ps1',
+    '1AccountPolicies\1.2AccountLockoutPolicy\1.2AccountLockoutPolicy.ps1','1AccountPolicies\1AccountPolicies.ps1',
+    '2LocalPolicies\2.2UserRightsAssignment\2.2UserRightsAssignment.ps1','2LocalPolicies\2.3SecurityOptions\2.3.10NetworkAccess\2.3.10NetworkAccess.ps1',
+    '2LocalPolicies\2.3SecurityOptions\2.3.11NetworkSecurity\2.3.11NetworkSecurity.ps1','2LocalPolicies\2.3SecurityOptions\2.3.13Shutdown\2.3.13Shutdown.ps1',
+    '2LocalPolicies\2.3SecurityOptions\2.3.15SystemObjects\2.3.15SystemObjects.ps1',
+    '2LocalPolicies\2.3SecurityOptions\2.3.17UserAccountControl\2.3.17UserAccountControl.ps1',
+    '2LocalPolicies\2.3SecurityOptions\2.3.1Accounts\2.3.1Accounts.ps1','2LocalPolicies\2.3SecurityOptions\2.3.2Audit\2.3.2Audit.ps1',
+    '2LocalPolicies\2.3SecurityOptions\2.3.4Devices\2.3.4Devices.ps1','2LocalPolicies\2.3SecurityOptions\2.3.5DomainController\2.3.5DomainController.ps1',
+    '2LocalPolicies\2.3SecurityOptions\2.3.6DomainMember\2.3.6DomainMember.ps1','2LocalPolicies\2.3SecurityOptions\2.3.7InteractiveLogon\2.3.7InteractiveLogon.ps1',
+    '2LocalPolicies\2.3SecurityOptions\2.3.8MicrosoftNetworkClient\2.3.8MicrosoftNetworkClient.ps1',
+    '2LocalPolicies\2.3SecurityOptions\2.3.9MicrosoftNetworkServer\2.3.9MicrosoftNetworkServer.ps1',
+    '2LocalPolicies\2.3SecurityOptions\2.3SecurityOptions.ps1','2LocalPolicies\2LocalPolicies.ps1','5SystemServices\5SystemServices.ps1',
+    '9WindowsDefenderFirewallwithAdvancedSecurity\9.1DomainProfile\9.1DomainProfile.ps1',
+    '9WindowsDefenderFirewallwithAdvancedSecurity\9.2PrivateProfile\9.2PrivateProfile.ps1',
+    '9WindowsDefenderFirewallwithAdvancedSecurity\9.3PublicProfile\9.3PublicProfile.ps1',
+    '9WindowsDefenderFirewallwithAdvancedSecurity\9WindowsDefenderFirewallwithAdvancedSecurity.ps1','SupportFiles\common.ps1'
+)
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @('Test-CISBenchmark', 'Get-GPResult', 'Test-AccountPoliciesPasswordPolicy', 'Test-AccountPoliciesAccountLockoutPolicy', 
-               'Test-LocalPoliciesUserRightsAssignment', 'Test-LocalPoliciesSecurityOptions','Test-PasswordPolicyPasswordHistory',
-               'Test-PasswordPolicyMaxPasswordAge','Test-PasswordPolicyMinPasswordAge','Test-PasswordPolicyMinPasswordLength',
-               'Test-PasswordPolicyComplexityEnabled','Test-PasswordPolicyRelaxMinimumPasswordLengthLimits',
-               'Test-PasswordPolicyReversibleEncryption','Test-AccountLockoutPolicyLockoutDuration','Test-AccountLockoutPolicyLockoutThreshold','Test-AccountLockoutPolicyAdminLockout',
-               'Test-AccountLockoutPolicyResetLockoutCount','Test-CISBenchmarkAccountPolicies','Test-CISBenchmarkLocalPolicies',
-               'Test-UserRightsAssignmentTrustedCredManAccessPrivilege')
+#$AccountPoliciesAccountLockoutPolicy = @('Test-AccountPoliciesAccountLockoutPolicy','Test-AccountLockoutPolicyLockoutDuration','Test-AccountLockoutPolicyLockoutThreshold','Test-AccountLockoutPolicyAdminLockout','Test-AccountLockoutPolicyResetLockoutCount')
+
+FunctionsToExport = @(
+    # CISBenchmarkAudit
+    'Test-CISBenchmark','Get-GPResult',
+    # 1 Account Policies
+    'Test-AccountPoliciesPasswordPolicy','Test-AccountPoliciesAccountLockoutPolicy','Test-CISBenchmarkAccountPolicies',
+    # 1.1 Password Policy
+    'Test-PasswordPolicyPasswordHistory','Test-PasswordPolicyMaxPasswordAge','Test-PasswordPolicyMinPasswordAge','Test-PasswordPolicyMinPasswordLength',
+    'Test-PasswordPolicyComplexityEnabled','Test-PasswordPolicyRelaxMinimumPasswordLengthLimits','Test-PasswordPolicyReversibleEncryption',
+    # 1.2 Account Lockout Policy
+    'Test-AccountLockoutPolicyLockoutDuration','Test-AccountLockoutPolicyLockoutThreshold','Test-AccountLockoutPolicyAdminLockout','Test-AccountLockoutPolicyResetLockoutCount',
+    # 2 Local Policies
+    'Test-LocalPoliciesUserRightsAssignment','Test-LocalPoliciesSecurityOptions','Test-CISBenchmarkLocalPolicies',
+    # 2.2 User Rights Assignment
+    'Test-UserRightsAssignmentTrustedCredManAccessPrivilege','Test-UserRightsAssignmentNetworkLogonRight','Test-UserRightsAssignmentTcbPrivilege',
+    'Test-UserRightsAssignmentMachineAccountPrivilege','Test-UserRightsAssignmentIncreaseQuotaPrivilege',
+    # 2.3 Security Options
+    'Test-SecurityOptionsAccounts','Test-SecurityOptionsAudit','Test-SecurityOptionsDevices','Test-SecurityOptionsDomainController','Test-SecurityOptionsDomainMember',
+    'Test-SecurityOptionsInteractiveLogin','Test-SecurityOptionsMicrosoftNetworkClient','Test-SecurityOptionsMicrosoftNetworkServer','Test-SecurityOptionsNetworkAccess',
+    'Test-SecurityOptionsNetworkSecurity','Test-SecurityOptionsShutdown','Test-SecurityOptionsSystemObjects','Test-SecurityOptionsUserAccountControl'
+    # 2.3.1 Accounts
+    # 2.3.2 Audit
+    # 2.3.4 Devices
+    # 2.3.5 Domain Controller
+    # 2.3.6 Domain Member
+    # 2.3.7 Interactive Logon
+    # 2.3.8 Microsoft Network Client
+    # 2.3.9 Microsoft Network Server
+    # 2.3.10 Network Access
+    # 2.3.11 Network Security
+    # 2.3.13 Shutdown
+    # 2.3.15 System Objects
+    # 2.3.17 User Account Control
+    )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()

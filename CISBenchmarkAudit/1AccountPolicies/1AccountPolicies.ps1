@@ -1,6 +1,3 @@
-. $PSScriptRoot\1.1PasswordPolicy\1.1PasswordPolicy.ps1
-. $PSScriptRoot\1.2AccountLockoutPolicy\1.2AccountLockoutPolicy.ps1
-
 <#
 .SYNOPSIS
 1.1 Password Policy

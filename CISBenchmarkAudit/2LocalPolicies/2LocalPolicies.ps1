@@ -1,6 +1,3 @@
-. $PSScriptRoot\2.2UserRightsAssignment\2.2UserRightsAssignment.ps1
-. $PSScriptRoot\2.3SecurityOptions\2.3SecurityOptions.ps1
-
 <#
 .SYNOPSIS
 2.2 User Rights Assignment
