@@ -57,6 +57,8 @@ function Test-UserRightsAssignmentSe {
 
     if ($OptionalDef) {
         $OptionalDef += $Definition
+    } else {
+        $OptionalDef = @("")
     }
 
     if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $setting)) {
