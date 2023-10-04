@@ -193,8 +193,20 @@ FunctionsToExport = @(
     # 2 Local Policies
     'Test-LocalPoliciesUserRightsAssignment','Test-LocalPoliciesSecurityOptions','Test-CISBenchmarkLocalPolicies',
     # 2.2 User Rights Assignment
-    'Test-UserRightsAssignmentTrustedCredManAccessPrivilege','Test-UserRightsAssignmentNetworkLogonRight','Test-UserRightsAssignmentTcbPrivilege',
-    'Test-UserRightsAssignmentMachineAccountPrivilege','Test-UserRightsAssignmentIncreaseQuotaPrivilege',
+    'Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege','Test-UserRightsAssignmentSeNetworkLogonRight','Test-UserRightsAssignmentSeTcbPrivilege',
+    'Test-UserRightsAssignmentSeMachineAccountPrivilege','Test-UserRightsAssignmentSeIncreaseQuotaPrivilege','Test-UserRightsAssignmentSeIncreaseQuotaPrivilege',
+    'Test-UserRightsAssignmentSeInteractiveLogonRight','Test-UserRightsAssignmentSeRemoteInteractiveLogonRight','Test-UserRightsAssignmentSeBackupPrivilege',
+    'Test-UserRightsAssignmentSeSystemTimePrivilege','Test-UserRightsAssignmentSeTimeZonePrivilege','Test-UserRightsAssignmentSeCreatePagefilePrivilege',
+    'Test-UserRightsAssignmentSeCreateTokenPrivilege','Test-UserRightsAssignmentSeCreateGlobalPrivilege','Test-UserRightsAssignmentSeCreatePermanentPrivilege',
+    'Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege','Test-UserRightsAssignmentSeDebugPrivilege','Test-UserRightsAssignmentSeDenyNetworkLogonRight',
+    'Test-UserRightsAssignmentSeDenyBatchLogonRight','Test-UserRightsAssignmentSeDenyServiceLogonRight','Test-UserRightsAssignmentSeDenyInteractiveLogonRight',
+    'Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight','Test-UserRightsAssignmentSeEnableDelegationPrivilege','Test-UserRightsAssignmentSeRemoteShutdownPrivilege',
+    'Test-UserRightsAssignmentSeAuditPrivilege','Test-UserRightsAssignmentSeImpersonatePrivilege','Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege',
+    'Test-UserRightsAssignmentSeLoadDriverPrivilege','Test-UserRightsAssignmentSeLockMemoryPrivilege','Test-UserRightsAssignmentSeBatchLogonRight',
+    'Test-UserRightsAssignmentSeSecurityPrivilege','Test-UserRightsAssignmentSeRelabelPrivilege','Test-UserRightsAssignmentSeSystemEnvironmentPrivilege',
+    'Test-UserRightsAssignmentSeManageVolumePrivilege','Test-UserRightsAssignmentSeProfileSingleProcessPrivilege','Test-UserRightsAssignmentSeSystemProfilePrivilege',
+    'Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege','Test-UserRightsAssignmentSeRestorePrivilege','Test-UserRightsAssignmentSeShutdownPrivilege',
+    'Test-UserRightsAssignmentSeSyncAgentPrivilege','Test-UserRightsAssignmentSeTakeOwnershipPrivilege',
     # 2.3 Security Options
     'Test-SecurityOptionsAccounts','Test-SecurityOptionsAudit','Test-SecurityOptionsDevices','Test-SecurityOptionsDomainController','Test-SecurityOptionsDomainMember',
     'Test-SecurityOptionsInteractiveLogin','Test-SecurityOptionsMicrosoftNetworkClient','Test-SecurityOptionsMicrosoftNetworkServer','Test-SecurityOptionsNetworkAccess',

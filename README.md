@@ -71,5 +71,3 @@ Test-PasswordPolicyPasswordHistory
 The CIS Benchmarks are, at last check, covered by a Create Commons "Attribution-NonCommercial-ShareAlike 4.0 International" License. The current license for the benchamrks and other CIS programs can be found at their site:
 
 [Center for Internet Security Terms and Conditions](https://www.cisecurity.org/terms-and-conditions-table-of-contents)
-
-The scripts and original resources are covered by the GNU General Public License v3.0. More information on the license can be found in the COPYING file.

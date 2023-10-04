@@ -3,7 +3,7 @@
 2.2 User Rights Assignment
 
 .DESCRIPTION
-This command will test for the # settings defined in section 2.2 of the 
+This command will test for the 48 settings defined in section 2.2 of the 
 CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
@@ -57,18 +57,53 @@ function Test-LocalPoliciesUserRightsAssignment {
 
     $Result = @()
 
-    # 2.2.1
-    $Result += Test-UserRightsAssignmentTrustedCredManAccessPrivilege
-    # 2.2.2 and 2.2.3
-    $Result += Test-UserRightsAssignmentNetworkLogonRight
-    # 2.2.4
-    $Result += Test-UserRightsAssignmentTcbPrivilege
-    # 2.2.5
+    $Result += Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege
+    $Result += Test-UserRightsAssignmentSeNetworkLogonRight
+    $Result += Test-UserRightsAssignmentSeTcbPrivilege
     if ($ServerType -eq "DomainController") {
-        $Result += Test-UserRightsAssignmentMachineAccountPrivilege
+        $Result += Test-UserRightsAssignmentSeMachineAccountPrivilege
     }
-    # 2.2.6
-    $Result += Test-UserRightsAssignmentIncreaseQuotaPrivilege
+    $Result += Test-UserRightsAssignmentSeIncreaseQuotaPrivilege
+    $Result += Test-UserRightsAssignmentSeIncreaseQuotaPrivilege
+    $Result += Test-UserRightsAssignmentSeInteractiveLogonRight
+    $Result += Test-UserRightsAssignmentSeRemoteInteractiveLogonRight
+    $Result += Test-UserRightsAssignmentSeBackupPrivilege
+    $Result += Test-UserRightsAssignmentSeSystemTimePrivilege
+    $Result += Test-UserRightsAssignmentSeTimeZonePrivilege
+    $Result += Test-UserRightsAssignmentSeCreatePagefilePrivilege
+    $Result += Test-UserRightsAssignmentSeCreateTokenPrivilege
+    $Result += Test-UserRightsAssignmentSeCreateGlobalPrivilege
+    $Result += Test-UserRightsAssignmentSeCreatePermanentPrivilege
+    $Result += Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege
+    $Result += Test-UserRightsAssignmentSeDebugPrivilege
+    $Result += Test-UserRightsAssignmentSeDenyNetworkLogonRight
+    $Result += Test-UserRightsAssignmentSeDenyBatchLogonRight
+    $Result += Test-UserRightsAssignmentSeDenyServiceLogonRight
+    $Result += Test-UserRightsAssignmentSeDenyInteractiveLogonRight
+    $Result += Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight
+    $Result += Test-UserRightsAssignmentSeEnableDelegationPrivilege
+    $Result += Test-UserRightsAssignmentSeRemoteShutdownPrivilege
+    $Result += Test-UserRightsAssignmentSeAuditPrivilege
+    $Result += Test-UserRightsAssignmentSeImpersonatePrivilege
+    $Result += Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege
+    $Result += Test-UserRightsAssignmentSeLoadDriverPrivilege
+    $Result += Test-UserRightsAssignmentSeLockMemoryPrivilege
+    if ($ServerType -eq "DomainController" -and $Level -eq 2) {
+        $Result += Test-UserRightsAssignmentSeBatchLogonRight
+    }
+    $Result += Test-UserRightsAssignmentSeSecurityPrivilege
+    $Result += Test-UserRightsAssignmentSeRelabelPrivilege
+    $Result += Test-UserRightsAssignmentSeSystemEnvironmentPrivilege
+    $Result += Test-UserRightsAssignmentSeManageVolumePrivilege
+    $Result += Test-UserRightsAssignmentSeProfileSingleProcessPrivilege
+    $Result += Test-UserRightsAssignmentSeSystemProfilePrivilege
+    $Result += Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege
+    $Result += Test-UserRightsAssignmentSeRestorePrivilege
+    $Result += Test-UserRightsAssignmentSeShutdownPrivilege
+    if ($ServerType -eq "DomainController") {
+        $Result += Test-UserRightsAssignmentSeSyncAgentPrivilege
+    }
+    $Result += Test-UserRightsAssignmentSeTakeOwnershipPrivilege
 
     return $Result
 }
@@ -131,6 +166,20 @@ function Test-LocalPoliciesSecurityOptions {
     )
 
     $Result = @()
+
+    $Result += Test-SecurityOptionsAccounts -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsAudit -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsDevices -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsDomainController -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsDomainMember -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsInteractiveLogin -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsMicrosoftNetworkClient -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsMicrosoftNetworkServer -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsNetworkAccess -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsNetworkSecurity -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsShutdown -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsSystemObjects -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsUserAccountControl -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
 
     return $Result
 }
