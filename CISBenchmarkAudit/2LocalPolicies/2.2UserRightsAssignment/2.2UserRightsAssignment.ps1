@@ -1,42 +1,85 @@
+<#
+.SYNOPSIS
+The base function for all the tests und 2.2
+
+.DESCRIPTION
+This function provides the base test for all the CIS Benchmarks under 2.2. 
+It will take the setting to check and what the setting should be, then 
+compare the current setting to the benchmark and return true/false and the
+current setting
+
+.PARAMETER EntryName
+This is the setting that should be evaluated, the name must be as it shows 
+up in the GPResult XML file
+
+.PARAMETER Definition
+This is the CIS Benchmark definition for this setting
+
+.EXAMPLE
+Test-UserRightsAssignment -EntryName "SeMachineAccountPrivilege" -Definition @('Administrator')
+
+Result: True
+Setting: Administrator
+
+.NOTES
+This is an internal only function, and should not be exported.
+#>
+function Test-UserRightsAssignment {
+    [CmdletBinding()]
+    param (
+        # The name of the setting to check
+        [Parameter(Mandatory)][string]$EntryName,
+        # The CIS Benchmark definition
+        [Parameter(Mandatory)][array]$Definition
+    )
+
+    $Return = @()
+
+    # Run Get-GPResultantSetOfPolicy and return the results as a variable
+    $gpresult = Get-GPResult
+
+    # Check the current value of the setting
+    $Setting = @()
+    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($Entry in $data.Extension.UserRightsAssignment) {
+            If ($Entry.Name -eq $EntryName) {
+                $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
+            }
+        }
+    }
+
+    # Check if the domain setting meets the CIS Benchmark
+
+    if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $setting)) {
+        $result = $true
+    } else {
+        $result = $false
+    }
+
+    $Return = [PSCustomObject]@{
+        'Result'= $result
+        'Setting' = $Setting -join ", "
+    }
+
+    Return $Return
+}
+
+# 2.2.1
 function Test-UserRightsAssignmentTrustedCredManAccessPrivilege {
     [CmdletBinding()]
     param ()
 
     $Return = @()
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
-
-    # Check the 'Access Credential Manager as a trusted caller' setting
-    $Setting = @()
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
-        foreach ($Entry in $data.Extension.UserRightsAssignment) {
-            If ($Entry.Name -eq "SeTrustedCredManAccessPrivilege") {
-                $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
-            }
-        }
-    }
-
-    # Check if the domain setting meets the CIS Benchmark
-
-    $Message = "2.2.1 'Access Credential Manager as a trusted caller'"
-    if (-Not($Setting)) {
-        $Message += " is blank or missing and does meet the requirement."
-        Write-Verbose $Message
-        $result = $true
-    } else {
-        $Message += " contains these entries: `"" + ($setting -join ", ") + "`" and does not meet the requirement."
-        Write-Warning $Message
-        $result = $false
-    }
+    $Result = Test-UserRightsAssignment -EntryName "SeTrustedCredManAccessPrivilege" -Definition @()
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.1'
         'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'"
         'Source' = 'Group Policy Settings'
-        'Result'= $result
-        'Setting' = $Setting -join ", "
+        'Result'= $Result.Result
+        'Setting' = $Result.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -44,81 +87,49 @@ function Test-UserRightsAssignmentTrustedCredManAccessPrivilege {
     Return $Return
 }
 
+# 2.2.2 and 2.2.3
 function Test-UserRightsAssignmentNetworkLogonRight {
     [CmdletBinding()]
     param ()
 
     $Return = @()
 
-    # Run Get-GPResultantSetOfPolicy and return the results
-    $gpresult = Get-GPResult
     # Get the product type
     $ProductType = Get-ProductType
-
-    # Gather the Network Logon Settings
-    $Setting = @()
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
-        foreach ($Entry in $data.Extension.UserRightsAssignment) {
-            If ($Entry.Name -eq "SeNetworkLogonRight") {
-                $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
-            }
-        }
-    }
-
-    # Check if the domain setting meets the CIS Benchmark
 
     # These three entries should be the only entries 
     $DomainController = @('Administrators','Authenticated Users','ENTERPRISE DOMAIN CONTROLLERS')
     $MemberServer = @('Administrators','Authenticated Users')
 
     
-    if ((-not(Compare-Object -ReferenceObject $DomainController -DifferenceObject $setting)) -and $ProductType -eq 2) {
-        $Message = "2.2.2 'Access this computer from the network'"
-        $Message += " Contains only the recommended values"
-        Write-Verbose $Message
+    if ($ProductType -eq 2) {
+        $Result = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $DomainController
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.2'
             'ConfigurationProfile' = @("Level 1 - Domain Controller")
             'RecommendationName'= "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only)"
             'Source' = 'Group Policy Settings'
-            'Result'= $true
-            'Setting' = $Setting -join ", "
+            'Result'= $Result.Result
+            'Setting' = $Result.Setting
         }
-    } elseif ((-not(Compare-Object -ReferenceObject $MemberServer -DifferenceObject $setting)) -and $ProductType -eq 3) {
-        $Message = "2.2.3 'Access this computer from the network'"
-        $Message += " Contains only the recommended values"
-        Write-Verbose $Message
+    } elseif ($ProductType -eq 3) {
+        $Result = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $MemberServer
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.3'
             'ConfigurationProfile' = @("Level 1 - Member Server")
             'RecommendationName'= "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only)"
             'Source' = 'Group Policy Settings'
-            'Result'= $true
-            'Setting' = $Setting -join ", "
-        }
-    } elseif ((Compare-Object -ReferenceObject $DomainController -DifferenceObject $setting) -and $ProductType -eq 2) {
-        $Message = "2.2.2 'Access this computer from the network'"
-        $Message += " contains these entries: `"" + ($setting -join ", ") + "`" and does not meet the requirement."
-        Write-Warning $Message
-        $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.2'
-            'ConfigurationProfile' = @("Level 1 - Domain Controller")
-            'RecommendationName'= "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $false
-            'Setting' = $Setting -join ", "
+            'Result'= $Result.Result
+            'Setting' = $Result.Setting
         }
     } else {
-        $Message = "2.2.3 'Access this computer from the network'"
-        $Message += " contains these entries: `"" + ($setting -join ", ") + "`" and does not meet the requirement."
-        Write-Warning $Message
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.3'
             'ConfigurationProfile' = @("Level 1 - Member Server")
             'RecommendationName'= "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only)"
             'Source' = 'Group Policy Settings'
             'Result'= $false
-            'Setting' = $Setting -join ", "
+            'Setting' = @()
         }
     }
 
@@ -128,45 +139,22 @@ function Test-UserRightsAssignmentNetworkLogonRight {
     Return $Return
 }
 
+# 2.2.4
 function Test-UserRightsAssignmentTcbPrivilege {
     [CmdletBinding()]
     param ()
 
     $Return = @()
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
-
-    # Get the value for 'Act as part of the operating system'
-    $Setting = @()
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
-        foreach ($Entry in $data.Extension.UserRightsAssignment) {
-            If ($Entry.Name -eq "SeTcbPrivilege") {
-                $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
-            }
-        }
-    }
-
-    # Check if the domain setting meets the CIS Benchmark
-
-    $Message = "2.2.4 'Act as part of the operating system'"
-    if (-Not($Setting)) {
-        $Message += " is blank or missing and does meet the requirement."
-        Write-Verbose $Message
-        $result = $true
-    } else {
-        $Message += " contains these entries: `"" + ($setting -join ", ") + "`" and does not meet the requirement."
-        Write-Warning $Message
-        $result = $false
-    }
+    $Result = Test-UserRightsAssignment -EntryName "SeTcbPrivilege" -Definition @()
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.4'
+        'RecommendationNumber'= '2.2.1'
         'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Act as part of the operating system' is set to 'No One'"
         'Source' = 'Group Policy Settings'
-        'Result'= $result
-        'Setting' = $Setting -join ", "
+        'Result'= $Result.Result
+        'Setting' = $Result.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -174,45 +162,22 @@ function Test-UserRightsAssignmentTcbPrivilege {
     Return $Return
 }
 
+# 2.2.5
 function Test-UserRightsAssignmentMachineAccountPrivilege {
     [CmdletBinding()]
     param ()
 
     $Return = @()
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
-
-    # Check the 'Add workstations to domain' setting
-    $Setting = @()
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
-        foreach ($Entry in $data.Extension.UserRightsAssignment) {
-            If ($Entry.Name -eq "SeMachineAccountPrivilege") {
-                $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
-            }
-        }
-    }
-
-    # Check if the domain setting meets the CIS Benchmark
-
-    $Message = "2.2.5 Add workstations to domain"
-    if (-Not($Setting)) {
-        $Message += " is only set to Administrators and does meet the requirement."
-        Write-Verbose $Message
-        $result = $true
-    } else {
-        $Message += " contains these entries: `"" + ($setting -join ", ") + "`" and does not meet the requirement."
-        Write-Warning $Message
-        $result = $false
-    }
+    $Result = Test-UserRightsAssignment -EntryName "SeMachineAccountPrivilege" -Definition @('Administrator')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.5'
+        'RecommendationNumber'= '2.2.1'
         'ConfigurationProfile' = @("Level 1 - Domain Controller")
-        'RecommendationName'= "Ensure 'Add workstations to domain' is set to 'Administrators'"
+        'RecommendationName'= "Ensure 'Add workstations to domain' is set to 'Administrators' (DC only)"
         'Source' = 'Group Policy Settings'
-        'Result'= $result
-        'Setting' = $Setting -join ", "
+        'Result'= $Result.Result
+        'Setting' = $Result.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -220,46 +185,22 @@ function Test-UserRightsAssignmentMachineAccountPrivilege {
     Return $Return
 }
 
-#Base function to copy:
-function Test-UserRightsAssignment {
+# 2.2.6
+function Test-UserRightsAssignmentIncreaseQuotaPrivilege {
     [CmdletBinding()]
     param ()
 
     $Return = @()
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
-
-    # Check the 'Access Credential Manager as a trusted caller' setting
-    $Setting = @()
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
-        foreach ($Entry in $data.Extension.UserRightsAssignment) {
-            If ($Entry.Name -eq "") {
-                $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
-            }
-        }
-    }
-
-    # Check if the domain setting meets the CIS Benchmark
-
-    $Message = "2.2."
-    if (-Not($Setting)) {
-        $Message += " is blank or missing and does meet the requirement."
-        Write-Verbose $Message
-        $result = $true
-    } else {
-        $Message += " contains these entries: `"" + ($setting -join ", ") + "`" and does not meet the requirement."
-        Write-Warning $Message
-        $result = $false
-    }
+    $Result = Test-UserRightsAssignment -EntryName "SeIncreaseQuotaPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.'
+        'RecommendationNumber'= '2.2.1'
         'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= ""
+        'RecommendationName'= "Ensure 'Adjust memory quotas for a process' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE'"
         'Source' = 'Group Policy Settings'
-        'Result'= $result
-        'Setting' = $Setting -join ", "
+        'Result'= $Result.Result
+        'Setting' = $Result.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties

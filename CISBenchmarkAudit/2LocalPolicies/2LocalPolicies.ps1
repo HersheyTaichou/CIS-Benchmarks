@@ -68,9 +68,10 @@ function Test-LocalPoliciesUserRightsAssignment {
     $Result += Test-UserRightsAssignmentTcbPrivilege
     # 2.2.5
     if ($ServerType -eq "DomainController") {
-        Test-UserRightsAssignmentMachineAccountPrivilege
+        $Result += Test-UserRightsAssignmentMachineAccountPrivilege
     }
-    
+    # 2.2.6
+    $Result += Test-UserRightsAssignmentIncreaseQuotaPrivilege
 
     return $Result
 }

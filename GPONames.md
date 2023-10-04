@@ -1,82 +1,145 @@
-GPO Precedence Name                              Member
---- ---------- ----                              ------
-# Create global objects
+# GPO Precedence Name                              Member
+
+## Create global objects
+
 GPO Precedence SeCreateGlobalPrivilege           {Name, Name, Name, Name}
-# Deny log on through Terminal Services
+
+## Deny log on through Terminal Services
+
 GPO Precedence SeDenyRemoteInteractiveLogonRight Member
-# Impersonate a client after authentication
+
+## Impersonate a client after authentication
+
 GPO Precedence SeImpersonatePrivilege            {Name, Name, Name, Name}
-# Synchronize directory service data
+
+## Synchronize directory service data
+
 GPO Precedence SeSyncAgentPrivilege
-# Add workstations to domain
-GPO Precedence SeMachineAccountPrivilege         Member
-# Increase scheduling priority
+
+## Increase scheduling priority
+
 GPO Precedence SeIncreaseBasePriorityPrivilege   Member
-# Create a token object
+
+## Create a token object
+
 GPO Precedence SeCreateTokenPrivilege
-# Take ownership of files or other objects
+
+## Take ownership of files or other objects
+
 GPO Precedence SeTakeOwnershipPrivilege          Member
-#Deny log on locally
+
+## Deny log on locally
+
 GPO Precedence SeDenyInteractiveLogonRight       Member
-# Restore files and directories
+
+## Restore files and directories
+
 GPO Precedence SeRestorePrivilege                Member
-# Debug programs
+
+## Debug programs
+
 GPO Precedence SeDebugPrivilege                  Member
-# Change the system time
+
+## Change the system time
+
 GPO Precedence SeSystemTimePrivilege             {Name, Name}
-# Manage auditing and security log
+
+## Manage auditing and security log
+
 GPO Precedence SeSecurityPrivilege               Member
-# Shut down the system
+
+## Shut down the system
+
 GPO Precedence SeShutdownPrivilege               Member
-# Generate security audits
+
+## Generate security audits
+
 GPO Precedence SeAuditPrivilege                  {Name, Name}
-# Allow log on locally
+
+## Allow log on locally
+
 GPO Precedence SeInteractiveLogonRight           Member
-# Create a pagefile
+
+## Create a pagefile
+
 GPO Precedence SeCreatePagefilePrivilege         Member
-# Deny access to this computer from the network
+
+## Deny access to this computer from the network
+
 GPO Precedence SeDenyNetworkLogonRight           Member
-# Log on as a batch job
+
+## Log on as a batch job
+
 GPO Precedence SeBatchLogonRight                 Member
-# Lock pages in memory
+
+## Lock pages in memory
+
 GPO Precedence SeLockMemoryPrivilege
-# Access this computer from the network
-GPO Precedence SeNetworkLogonRight               {Name, Name, Name}
-# Create permanent shared objects
+
+## Create permanent shared objects
+
 GPO Precedence SeCreatePermanentPrivilege
-# Profile system performance
+
+## Profile system performance
+
 GPO Precedence SeSystemProfilePrivilege          {Name, Name}
-# Modify an object label
+
+## Modify an object label
+
 GPO Precedence SeRelabelPrivilege
-# Act as part of the operating system
-GPO Precedence SeTcbPrivilege
-# Deny log on as a batch job
+
+## Deny log on as a batch job
+
 GPO Precedence SeDenyBatchLogonRight             Member
-# Force shutdown from a remote system
+
+## Force shutdown from a remote system
+
 GPO Precedence SeRemoteShutdownPrivilege         Member
-# Back up files and directories
+
+## Back up files and directories
+
 GPO Precedence SeBackupPrivilege                 Member
-# Enable computer and user accounts to be trusted for delegation
+
+## Enable computer and user accounts to be trusted for delegation
+
 GPO Precedence SeEnableDelegationPrivilege       Member
-# Modify firmware environment values
+
+## Modify firmware environment values
+
 GPO Precedence SeSystemEnvironmentPrivilege      Member
-# Deny log on as a service
+
+## Deny log on as a service
+
 GPO Precedence SeDenyServiceLogonRight           Member
-# Allow log on through Terminal Services
+
+## Allow log on through Terminal Services
+
 GPO Precedence SeRemoteInteractiveLogonRight     Member
-# Create symbolic links
+
+## Create symbolic links
+
 GPO Precedence SeCreateSymbolicLinkPrivilege     Member
-# Load and unload device drivers
+
+## Load and unload device drivers
+
 GPO Precedence SeLoadDriverPrivilege             Member
-# Access Credential Manager as a trusted caller
-GPO Precedence SeTrustedCredManAccessPrivilege
-# Adjust memory quotas for a process
+
+## Adjust memory quotas for a process
+
 GPO Precedence SeIncreaseQuotaPrivilege          {Name, Name, Name}
-# Change the system time
+
+## Change the system time zone
+
 GPO Precedence SeTimeZonePrivilege               {Name, Name}
-# Profile single process
+
+## Profile single process
+
 GPO Precedence SeProfileSingleProcessPrivilege   Member
-# Replace a process level token
+
+## Replace a process level token
+
 GPO Precedence SeAssignPrimaryTokenPrivilege     {Name, Name}
-# Perform volume maintenance tasks
+
+## Perform volume maintenance tasks
+
 GPO Precedence SeManageVolumePrivilege           Member
