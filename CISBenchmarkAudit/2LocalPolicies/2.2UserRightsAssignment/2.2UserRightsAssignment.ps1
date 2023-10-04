@@ -16,7 +16,7 @@ up in the GPResult XML file
 This is the CIS Benchmark definition for this setting
 
 .EXAMPLE
-Test-UserRightsAssignmentSe -EntryName "SeMachineAccountPrivilege" -Definition @('Administrator')
+Test-UserRightsAssignment -EntryName "SeMachineAccountPrivilege" -Definition @('Administrator')
 
 Result: True
 Setting: Administrator
@@ -24,7 +24,7 @@ Setting: Administrator
 .NOTES
 This is an internal only function, and should not be exported.
 #>
-function Test-UserRightsAssignmentSe {
+function Test-UserRightsAssignment {
     [CmdletBinding()]
     param (
         # The name of the setting to check
@@ -96,7 +96,7 @@ function Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeTrustedCredManAccessPrivilege" -Definition @("")
+    $Result = Test-UserRightsAssignment -EntryName "SeTrustedCredManAccessPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.1'
@@ -141,7 +141,7 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
 
     
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeNetworkLogonRight" -Definition $DomainController
+        $Result = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $DomainController
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.2'
             'ConfigurationProfile' = @("Level 1 - Domain Controller")
@@ -151,7 +151,7 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
             'Setting' = $Result.Setting
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeNetworkLogonRight" -Definition $MemberServer
+        $Result = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $MemberServer
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.3'
             'ConfigurationProfile' = @("Level 1 - Member Server")
@@ -196,7 +196,7 @@ function Test-UserRightsAssignmentSeTcbPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeTcbPrivilege" -Definition @("")
+    $Result = Test-UserRightsAssignment -EntryName "SeTcbPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.4'
@@ -231,7 +231,7 @@ function Test-UserRightsAssignmentSeMachineAccountPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeMachineAccountPrivilege" -Definition @('Administrators')
+    $Result = Test-UserRightsAssignment -EntryName "SeMachineAccountPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.5'
@@ -266,7 +266,7 @@ function Test-UserRightsAssignmentSeIncreaseQuotaPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeIncreaseQuotaPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE')
+    $Result = Test-UserRightsAssignment -EntryName "SeIncreaseQuotaPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.6'
@@ -301,7 +301,7 @@ function Test-UserRightsAssignmentSeInteractiveLogonRight {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeInteractiveLogonRight" -Definition @('Administrators') -OptionalDef @('Backup Operators')
+    $Result = Test-UserRightsAssignment -EntryName "SeInteractiveLogonRight" -Definition @('Administrators') -OptionalDef @('Backup Operators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.7'
@@ -347,7 +347,7 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
 
     
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeRemoteInteractiveLogonRight" -Definition $DomainController
+        $Result = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $DomainController
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.8'
             'ConfigurationProfile' = @("Level 1 - Domain Controller")
@@ -357,7 +357,7 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
             'Setting' = $Result.Setting
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeRemoteInteractiveLogonRight" -Definition $MemberServer -OptionalDef $MSOptional
+        $Result = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $MemberServer -OptionalDef $MSOptional
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.9'
             'ConfigurationProfile' = @("Level 1 - Member Server")
@@ -402,7 +402,7 @@ function Test-UserRightsAssignmentSeBackupPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeBackupPrivilege" -Definition @('Administrators')
+    $Result = Test-UserRightsAssignment -EntryName "SeBackupPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.7'
@@ -437,7 +437,7 @@ function Test-UserRightsAssignmentSeSystemTimePrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeSystemTimePrivilege" -Definition @('Administrators','LOCAL SERVICE')
+    $Result = Test-UserRightsAssignment -EntryName "SeSystemTimePrivilege" -Definition @('Administrators','LOCAL SERVICE')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.11'
@@ -472,7 +472,7 @@ function Test-UserRightsAssignmentSeTimeZonePrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeTimeZonePrivilege" -Definition @('Administrators','LOCAL SERVICE')
+    $Result = Test-UserRightsAssignment -EntryName "SeTimeZonePrivilege" -Definition @('Administrators','LOCAL SERVICE')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.12'
@@ -507,7 +507,7 @@ function Test-UserRightsAssignmentSeCreatePagefilePrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeCreatePagefilePrivilege" -Definition @('Administrators')
+    $Result = Test-UserRightsAssignment -EntryName "SeCreatePagefilePrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.13'
@@ -542,7 +542,7 @@ function Test-UserRightsAssignmentSeCreateTokenPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeCreateTokenPrivilege" -Definition @("")
+    $Result = Test-UserRightsAssignment -EntryName "SeCreateTokenPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.14'
@@ -577,7 +577,7 @@ function Test-UserRightsAssignmentSeCreateGlobalPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeCreateGlobalPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE','SERVICE')
+    $Result = Test-UserRightsAssignment -EntryName "SeCreateGlobalPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE','SERVICE')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.15'
@@ -612,7 +612,7 @@ function Test-UserRightsAssignmentSeCreatePermanentPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeCreatePermanentPrivilege" -Definition @("")
+    $Result = Test-UserRightsAssignment -EntryName "SeCreatePermanentPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.16'
@@ -660,7 +660,7 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
 
     
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $DomainController
+        $Result = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $DomainController
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.17'
             'ConfigurationProfile' = @("Level 1 - Domain Controller")
@@ -670,7 +670,7 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
             'Setting' = $Result.Setting
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $MemberServer -OptionalDef $MSOptional
+        $Result = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $MemberServer -OptionalDef $MSOptional
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.18'
             'ConfigurationProfile' = @("Level 1 - Member Server")
@@ -715,7 +715,7 @@ function Test-UserRightsAssignmentSeDebugPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeDebugPrivilege" -Definition @('Administrators')
+    $Result = Test-UserRightsAssignment -EntryName "SeDebugPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.19'
@@ -761,7 +761,7 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
 
     
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeDenyNetworkLogonRight" -Definition $DomainController
+        $Result = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $DomainController
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.20'
             'ConfigurationProfile' = @("Level 1 - Domain Controller")
@@ -771,7 +771,7 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
             'Setting' = $Result.Setting
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeDenyNetworkLogonRight" -Definition $MemberServer -OptionalDef $MSOptional
+        $Result = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $MemberServer -OptionalDef $MSOptional
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.21'
             'ConfigurationProfile' = @("Level 1 - Member Server")
@@ -816,7 +816,7 @@ function Test-UserRightsAssignmentSeDenyBatchLogonRight {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeDenyBatchLogonRight" -Definition @('Guests')
+    $Result = Test-UserRightsAssignment -EntryName "SeDenyBatchLogonRight" -Definition @('Guests')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.22'
@@ -851,7 +851,7 @@ function Test-UserRightsAssignmentSeDenyServiceLogonRight {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeDenyServiceLogonRight" -Definition @('Guests')
+    $Result = Test-UserRightsAssignment -EntryName "SeDenyServiceLogonRight" -Definition @('Guests')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.23'
@@ -886,7 +886,7 @@ function Test-UserRightsAssignmentSeDenyInteractiveLogonRight {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeDenyInteractiveLogonRight" -Definition @('Guests')
+    $Result = Test-UserRightsAssignment -EntryName "SeDenyInteractiveLogonRight" -Definition @('Guests')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.24'
@@ -931,7 +931,7 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
 
     
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $DomainController
+        $Result = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $DomainController
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.25'
             'ConfigurationProfile' = @("Level 1 - Domain Controller")
@@ -941,7 +941,7 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
             'Setting' = $Result.Setting
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $MemberServer
+        $Result = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $MemberServer
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.26'
             'ConfigurationProfile' = @("Level 1 - Member Server")
@@ -996,7 +996,7 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
 
     
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeEnableDelegationPrivilege" -Definition $DomainController
+        $Result = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $DomainController
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.27'
             'ConfigurationProfile' = @("Level 1 - Domain Controller")
@@ -1006,7 +1006,7 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
             'Setting' = $Result.Setting
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeEnableDelegationPrivilege" -Definition $MemberServer
+        $Result = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $MemberServer
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.28'
             'ConfigurationProfile' = @("Level 1 - Member Server")
@@ -1051,7 +1051,7 @@ function Test-UserRightsAssignmentSeRemoteShutdownPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeRemoteShutdownPrivilege" -Definition @('Administrators')
+    $Result = Test-UserRightsAssignment -EntryName "SeRemoteShutdownPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.29'
@@ -1086,7 +1086,7 @@ function Test-UserRightsAssignmentSeAuditPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeAuditPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE')
+    $Result = Test-UserRightsAssignment -EntryName "SeAuditPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.30'
@@ -1131,7 +1131,7 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
     $MSOptional = @('IIS_IUSRS')
 
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeImpersonatePrivilege" -Definition $DomainController
+        $Result = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $DomainController
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.31'
             'ConfigurationProfile' = @("Level 1 - Domain Controller")
@@ -1141,7 +1141,7 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
             'Setting' = $Result.Setting
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeImpersonatePrivilege" -Definition $MemberServer -OptionalDef $MSOptional
+        $Result = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $MemberServer -OptionalDef $MSOptional
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.32'
             'ConfigurationProfile' = @("Level 1 - Member Server")
@@ -1186,7 +1186,7 @@ function Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeIncreaseBasePriorityPrivilege" -Definition @('Administrators') -OptionalDef @('Window Manager\Window Manager Group')
+    $Result = Test-UserRightsAssignment -EntryName "SeIncreaseBasePriorityPrivilege" -Definition @('Administrators') -OptionalDef @('Window Manager\Window Manager Group')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.33'
@@ -1221,7 +1221,7 @@ function Test-UserRightsAssignmentSeLoadDriverPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeLoadDriverPrivilege" -Definition @('Administrators')
+    $Result = Test-UserRightsAssignment -EntryName "SeLoadDriverPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.34'
@@ -1256,7 +1256,7 @@ function Test-UserRightsAssignmentSeLockMemoryPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeLockMemoryPrivilege" -Definition @('')
+    $Result = Test-UserRightsAssignment -EntryName "SeLockMemoryPrivilege" -Definition @('')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.35'
@@ -1291,7 +1291,7 @@ function Test-UserRightsAssignmentSeBatchLogonRight {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeBatchLogonRight" -Definition @('Administrators')
+    $Result = Test-UserRightsAssignment -EntryName "SeBatchLogonRight" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.36'
@@ -1336,7 +1336,7 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
     $MemberServer = @('Administrators')
 
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeSecurityPrivilege" -Definition $DomainController -OptionalDef $DCOptional
+        $Result = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $DomainController -OptionalDef $DCOptional
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.37'
             'ConfigurationProfile' = @("Level 1 - Domain Controller")
@@ -1346,7 +1346,7 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
             'Setting' = $Result.Setting
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignmentSe -EntryName "SeSecurityPrivilege" -Definition $MemberServer
+        $Result = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $MemberServer
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.2.38'
             'ConfigurationProfile' = @("Level 1 - Member Server")
@@ -1391,7 +1391,7 @@ function Test-UserRightsAssignmentSeRelabelPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeRelabelPrivilege" -Definition @('')
+    $Result = Test-UserRightsAssignment -EntryName "SeRelabelPrivilege" -Definition @('')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.39'
@@ -1426,7 +1426,7 @@ function Test-UserRightsAssignmentSeSystemEnvironmentPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeSystemEnvironmentPrivilege" -Definition @('Administrators')
+    $Result = Test-UserRightsAssignment -EntryName "SeSystemEnvironmentPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.40'
@@ -1461,7 +1461,7 @@ function Test-UserRightsAssignmentSeManageVolumePrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeManageVolumePrivilege" -Definition @('Administrators')
+    $Result = Test-UserRightsAssignment -EntryName "SeManageVolumePrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.41'
@@ -1496,7 +1496,7 @@ function Test-UserRightsAssignmentSeProfileSingleProcessPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeProfileSingleProcessPrivilege" -Definition @('Administrators')
+    $Result = Test-UserRightsAssignment -EntryName "SeProfileSingleProcessPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.42'
@@ -1531,7 +1531,7 @@ function Test-UserRightsAssignmentSeSystemProfilePrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeSystemProfilePrivilege" -Definition @('Administrators', 'NT SERVICE\WdiServiceHost')
+    $Result = Test-UserRightsAssignment -EntryName "SeSystemProfilePrivilege" -Definition @('Administrators', 'NT SERVICE\WdiServiceHost')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.43'
@@ -1566,7 +1566,7 @@ function Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeAssignPrimaryTokenPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE')
+    $Result = Test-UserRightsAssignment -EntryName "SeAssignPrimaryTokenPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.44'
@@ -1601,7 +1601,7 @@ function Test-UserRightsAssignmentSeRestorePrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeRestorePrivilege" -Definition @('Administrators')
+    $Result = Test-UserRightsAssignment -EntryName "SeRestorePrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.45'
@@ -1636,7 +1636,7 @@ function Test-UserRightsAssignmentSeShutdownPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeShutdownPrivilege" -Definition @('Administrators')
+    $Result = Test-UserRightsAssignment -EntryName "SeShutdownPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.46'
@@ -1671,7 +1671,7 @@ function Test-UserRightsAssignmentSeSyncAgentPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeSyncAgentPrivilege" -Definition @('')
+    $Result = Test-UserRightsAssignment -EntryName "SeSyncAgentPrivilege" -Definition @('')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.47'
@@ -1706,7 +1706,7 @@ function Test-UserRightsAssignmentSeTakeOwnershipPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeTakeOwnershipPrivilege" -Definition @('Administrators')
+    $Result = Test-UserRightsAssignment -EntryName "SeTakeOwnershipPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.48'
