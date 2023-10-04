@@ -1178,7 +1178,7 @@ This policy setting determines whether users can increase the base priority clas
 An example
 
 .NOTES
-General notes
+The benchmark specifies 'Administrators' and 'Window Manager\Window Manager Group' for 2019 and newer, but on a fresh install of Server 2022 promoted to a DC, 'Window Manager\Window Manager Group' does not come up in any searches. It was moved to be considered optional by the script.
 #>
 function Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege {
     [CmdletBinding()]
