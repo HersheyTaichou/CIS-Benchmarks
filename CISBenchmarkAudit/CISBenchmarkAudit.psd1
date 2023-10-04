@@ -86,7 +86,8 @@ FunctionsToExport = @('Test-CISBenchmark', 'Get-GPResult', 'Test-AccountPolicies
                'Test-PasswordPolicyMaxPasswordAge','Test-PasswordPolicyMinPasswordAge','Test-PasswordPolicyMinPasswordLength',
                'Test-PasswordPolicyComplexityEnabled','Test-PasswordPolicyRelaxMinimumPasswordLengthLimits',
                'Test-PasswordPolicyReversibleEncryption','Test-AccountLockoutPolicyLockoutDuration','Test-AccountLockoutPolicyLockoutThreshold','Test-AccountLockoutPolicyAdminLockout',
-               'Test-AccountLockoutPolicyResetLockoutCount','Test-CISBenchmarkAccountPolicies','Test-CISBenchmarkLocalPolicies')
+               'Test-AccountLockoutPolicyResetLockoutCount','Test-CISBenchmarkAccountPolicies','Test-CISBenchmarkLocalPolicies',
+               'Test-UserRightsAssignmentTrustedCredManAccessPrivilege')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()

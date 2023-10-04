@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-The base function for all the tests und 2.2
+The base function for all the tests under 2.2
 
 .DESCRIPTION
 This function provides the base test for all the CIS Benchmarks under 2.2. 
@@ -48,6 +48,10 @@ function Test-UserRightsAssignment {
         }
     }
 
+    if (-not($setting)) {
+        $Setting = @("")
+    }
+
     # Check if the domain setting meets the CIS Benchmark
 
     if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $setting)) {
@@ -71,7 +75,7 @@ function Test-UserRightsAssignmentTrustedCredManAccessPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignment -EntryName "SeTrustedCredManAccessPrivilege" -Definition @()
+    $Result = Test-UserRightsAssignment -EntryName "SeTrustedCredManAccessPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.1'
@@ -146,10 +150,10 @@ function Test-UserRightsAssignmentTcbPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignment -EntryName "SeTcbPrivilege" -Definition @()
+    $Result = Test-UserRightsAssignment -EntryName "SeTcbPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.1'
+        'RecommendationNumber'= '2.2.4'
         'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Act as part of the operating system' is set to 'No One'"
         'Source' = 'Group Policy Settings'
@@ -169,10 +173,10 @@ function Test-UserRightsAssignmentMachineAccountPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignment -EntryName "SeMachineAccountPrivilege" -Definition @('Administrator')
+    $Result = Test-UserRightsAssignment -EntryName "SeMachineAccountPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.1'
+        'RecommendationNumber'= '2.2.5'
         'ConfigurationProfile' = @("Level 1 - Domain Controller")
         'RecommendationName'= "Ensure 'Add workstations to domain' is set to 'Administrators' (DC only)"
         'Source' = 'Group Policy Settings'
