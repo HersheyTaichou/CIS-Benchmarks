@@ -63,6 +63,11 @@ function Test-CISBenchmark {
     )
     $Return = @()
 
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
+
     $Return += Test-CISBenchmarkAccountPolicies -ServerType $ServerType -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
     $Return += Test-CISBenchmarkLocalPolicies -ServerType $ServerType -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
 

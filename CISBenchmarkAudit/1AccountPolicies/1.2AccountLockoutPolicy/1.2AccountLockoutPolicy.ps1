@@ -25,11 +25,13 @@ function Test-AccountLockoutPolicyLockoutDuration {
         $FineGrainedPasswordPolicy = $true
     }
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     #Find the lockout duration applied to this machine
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+    foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "LockoutDuration") {
                 [int]$Setting = $Entry.SettingNumber
@@ -40,12 +42,8 @@ function Test-AccountLockoutPolicyLockoutDuration {
     # Check if the domain setting meets the CIS Benchmark
 
     if ($Setting -ge "15") {
-        $Message = "1.2.1 The GPO account lockout duration is set to " + $Setting + " and does meet the requirement."
-        Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "1.2.1 The GPO account lockout duration is set to " + $Setting + " and does not meet the requirement. Increase the policy to 24 or greater."
-        Write-Warning $Message
         $result = $false
     }
 
@@ -63,18 +61,10 @@ function Test-AccountLockoutPolicyLockoutDuration {
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
         $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-        $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
-        Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.LockoutDuration -ge (New-TimeSpan -Minutes 15)) {
-                $Message = "1.2.1 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy lockout duration is set to "+ $FGPasswordPolicy.LockoutDuration + " and does meet the requirement."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Verbose $Message
                 $result = $true
             } else {
-                $Message = "1.2.1 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy lockout duration is set to " + $FGPasswordPolicy.LockoutDuration + " and does not meet the requirement. Set the policy to 24 or greater."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Warning $Message
                 $result = $false
             }
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
@@ -121,11 +111,13 @@ function Test-AccountLockoutPolicyLockoutThreshold {
         $FineGrainedPasswordPolicy = $true
     }
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     #Find the maximum password age applied to this machine
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+    foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "LockoutBadCount") {
                 [int]$Setting = $Entry.SettingNumber
@@ -136,12 +128,8 @@ function Test-AccountLockoutPolicyLockoutThreshold {
     # Check if the domain setting meets the CIS Benchmark
 
     if ($Setting -gt "0" -and $Setting -le "5") {
-        $Message = "1.2.2 The GPO lockout threshold is set to " + $Setting + " and does meet the requirement."
-        Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "1.2.2 The GPO lockout threshold is set to " + $Setting + " and does not meet the requirement. Make sure the lockout threshold is greater than 0 and less than or equal to 5."
-        Write-Warning $Message
         $result = $false
     }
 
@@ -159,17 +147,10 @@ function Test-AccountLockoutPolicyLockoutThreshold {
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
         $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-        $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
-        Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.LockoutThreshold -gt "0" -and $FGPasswordPolicy.LockoutThreshold -le "5") {
-                $Message = "1.2.2 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the lockout threshold set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Verbose $Message
+                $result = $true
             } else {
-                $Message = "1.2.2 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the lockout threshold set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the lockout threshold is greater than 0 and less than or equal to 5."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Warning $Message
                 $result = $false
             }
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
@@ -182,7 +163,7 @@ function Test-AccountLockoutPolicyLockoutThreshold {
                 'Setting' = $FGPasswordPolicy.LockoutThreshold
             }
             $Properties.PSTypeNames.Add('psCISBenchmark')
-    $Return += $Properties
+            $Return += $Properties
         }
     }
     Return $Return
@@ -208,11 +189,13 @@ function Test-AccountLockoutPolicyAdminLockout {
 
     $Return = @()
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     #Find the maximum password age applied to this machine
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+    foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "AllowAdministratorLockout") {
                 [string]$Setting = $Entry.SettingBoolean
@@ -223,18 +206,12 @@ function Test-AccountLockoutPolicyAdminLockout {
     # Check if the domain setting meets the CIS Benchmark
 
     if ($Setting -eq "true") {
-        $Message = "1.2.3 The GPO Admin lockout is enabled and does meet the requirement."
-        Write-Verbose $Message
         $result = $true
         $Setting = $true
     } elseif ($Setting -eq "false") {
-        $Message = "1.2.3 The GPO admin lockout is disabled and does not meet the requirement. Make sure admin lockout setting is enabled."
-        Write-Warning $Message
         $result = $false
         $Setting = $false
     } else {
-        $Message = "1.2.3 The GPO admin lockout is missing and does not meet the requirement. Make sure admin lockout setting is enabled."
-        Write-Warning $Message
         $result = $false
         $Setting = ""
     }
@@ -280,11 +257,13 @@ function Test-AccountLockoutPolicyResetLockoutCount {
         $FineGrainedPasswordPolicy = $true
     }
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     # Find the minimum password length applied to this machine
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+    foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "ResetLockoutCount") {
                 [int]$Setting = $Entry.SettingNumber
@@ -295,12 +274,8 @@ function Test-AccountLockoutPolicyResetLockoutCount {
     # Check if the domain setting meets the CIS Benchmark
 
     if ($Setting -ge "15") {
-        $Message = "1.2.4 The GPO account lockout counter is set to " + $Setting + " minutes and does meet the requirement."
-        Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "1.2.4 The GPO account lockout counter is set to " + $Setting + " minutes and does not meet the requirement. Make sure the minimum time is greater than or equal to 15."
-        Write-Warning $Message
         $result = $false
     }
 
@@ -318,18 +293,10 @@ function Test-AccountLockoutPolicyResetLockoutCount {
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
         $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-        $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
-        Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.LockoutObservationWindow -ge (New-TimeSpan -Minutes 15)) {
-                $Message = "1.2.4 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum lockout counter set to " + $FGPasswordPolicy.LockoutObservationWindow + " minutes and does meet the requirement."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Verbose $Message
                 $result = $true
             } else {
-                $Message = "1.2.4 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum lockout counter set to "+ $FGPasswordPolicy.LockoutObservationWindow + " minutes and does not meet the requirement. Make sure the minimum time is greater than or equal to 15."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Warning $Message
                 $result = $false
             }
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"

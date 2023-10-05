@@ -56,7 +56,7 @@ Description = 'This module is designed to provide functions that test for compla
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-RequiredModules = @('GroupPolicy')
+RequiredModules = @()
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()

@@ -57,6 +57,11 @@ function Test-LocalPoliciesUserRightsAssignment {
 
     $Result = @()
 
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
+
     $Result += Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege
     $Result += Test-UserRightsAssignmentSeNetworkLogonRight
     $Result += Test-UserRightsAssignmentSeTcbPrivilege
@@ -167,6 +172,11 @@ function Test-LocalPoliciesSecurityOptions {
 
     $Result = @()
 
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
+
     $Result += Test-SecurityOptionsAccounts -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
     $Result += Test-SecurityOptionsAudit -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
     $Result += Test-SecurityOptionsDevices -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
@@ -243,6 +253,11 @@ function Test-CISBenchmarkLocalPolicies {
     )
 
     $Result = @()
+
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     $Result += Test-LocalPoliciesUserRightsAssignment -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
     $Result += Test-LocalPoliciesSecurityOptions -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
