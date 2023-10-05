@@ -57,6 +57,11 @@ function Test-AccountPoliciesPasswordPolicy {
 
     $Result = @()
 
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
+
     $Result += Test-PasswordPolicyPasswordHistory
     $Result += Test-PasswordPolicyMaxPasswordAge
     $Result += Test-PasswordPolicyMinPasswordAge
@@ -129,6 +134,11 @@ function Test-AccountPoliciesAccountLockoutPolicy {
 
     $Result = @()
 
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
+
     $Result += Test-AccountLockoutPolicyLockoutDuration
     $Result += Test-AccountLockoutPolicyLockoutThreshold
     if ($ServerType = "MemberServer") {
@@ -197,6 +207,11 @@ function Test-CISBenchmarkAccountPolicies {
     )
 
     $Result = @()
+
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     $Result += Test-AccountPoliciesPasswordPolicy -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
     $Result += Test-AccountPoliciesAccountLockoutPolicy -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity

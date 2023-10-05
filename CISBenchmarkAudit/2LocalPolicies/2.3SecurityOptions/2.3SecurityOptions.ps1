@@ -8,6 +8,11 @@ function Test-SecurityOptionsAccounts {
 
     $Result = @()
 
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
+
     return $Result
 }
 
@@ -20,6 +25,11 @@ function Test-SecurityOptionsAudit {
     )
 
     $Result = @()
+
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     return $Result
 }
@@ -34,6 +44,11 @@ function Test-SecurityOptionsDevices {
 
     $Result = @()
 
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
+
     return $Result
 }
 
@@ -46,6 +61,11 @@ function Test-SecurityOptionsDomainController {
     )
 
     $Result = @()
+
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     return $Result
 }
@@ -60,6 +80,11 @@ function Test-SecurityOptionsDomainMember {
 
     $Result = @()
 
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
+
     return $Result
 }
 
@@ -72,6 +97,11 @@ function Test-SecurityOptionsInteractiveLogin {
     )
 
     $Result = @()
+
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     return $Result
 }
@@ -86,6 +116,11 @@ function Test-SecurityOptionsMicrosoftNetworkClient {
 
     $Result = @()
 
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
+
     return $Result
 }
 
@@ -98,6 +133,11 @@ function Test-SecurityOptionsMicrosoftNetworkServer {
     )
 
     $Result = @()
+
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     return $Result
 }
@@ -112,6 +152,11 @@ function Test-SecurityOptionsNetworkAccess {
 
     $Result = @()
 
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
+
     return $Result
 }
 
@@ -124,6 +169,11 @@ function Test-SecurityOptionsNetworkSecurity {
     )
 
     $Result = @()
+
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     return $Result
 }
@@ -138,6 +188,11 @@ function Test-SecurityOptionsShutdown {
 
     $Result = @()
 
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
+
     return $Result
 }
 
@@ -151,6 +206,11 @@ function Test-SecurityOptionsSystemObjects {
 
     $Result = @()
 
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
+
     return $Result
 }
 
@@ -163,6 +223,11 @@ function Test-SecurityOptionsUserAccountControl {
     )
 
     $Result = @()
+
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     return $Result
 }

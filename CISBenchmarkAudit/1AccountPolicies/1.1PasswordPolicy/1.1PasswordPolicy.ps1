@@ -25,11 +25,13 @@ function Test-PasswordPolicyPasswordHistory {
         $FineGrainedPasswordPolicy = $true
     }
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     #Find the Password History Size applied to this machine
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+    foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "PasswordHistorySize") {
                 [int]$Setting = $Entry.SettingNumber
@@ -40,12 +42,8 @@ function Test-PasswordPolicyPasswordHistory {
     # Check if the GPO setting meets the CIS Benchmark
 
     if ($Setting -ge "24") {
-        $Message = "1.1.1 The GPO password history is set to " + $Setting + " and does meet the requirement."
-        Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "1.1.1 The GPO password history is set to " + $Setting + " and does not meet the requirement. Increase the policy to 24 or greater."
-        Write-Warning $Message
         $result = $false
     }
     $Properties = [PSCustomObject]@{
@@ -62,18 +60,10 @@ function Test-PasswordPolicyPasswordHistory {
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
         $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-        $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
-        Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.PasswordHistoryCount -ge "24") {
-                $Message = "1.1.1 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to "+ $FGPasswordPolicy.PasswordHistoryCount + " and does meet the requirement."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Verbose $Message
                 $Result = $true
             } else {
-                $Message = "1.1.1 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the Password history set to " + $FGPasswordPolicy.PasswordHistoryCount + " and does not meet the requirement. Set the policy to 24 or greater."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Warning $Message
                 $result = $false
             }
 
@@ -122,11 +112,13 @@ function Test-PasswordPolicyMaxPasswordAge {
         $FineGrainedPasswordPolicy = $true
     }
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     #Find the maximum password age applied to this machine
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+    foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "MaximumPasswordAge") {
                 [int]$Setting = $Entry.SettingNumber
@@ -137,12 +129,8 @@ function Test-PasswordPolicyMaxPasswordAge {
     # Check if the GPO setting meets the CIS Benchmark
 
     if ($Setting -gt "0" -and $Setting -le "365") {
-        $Message = "1.1.2 The GPO password history is set to " + $Setting + " and does meet the requirement."
-        Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "1.1.2 The GPO password history is set to " + $Setting + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
-        Write-Warning $Message
         $result = $false
     }
     $Properties = [PSCustomObject]@{
@@ -159,18 +147,10 @@ function Test-PasswordPolicyMaxPasswordAge {
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
         $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-        $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
-        Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.MaxPasswordAge -gt "0" -and $FGPasswordPolicy.MaxPasswordAge -le "365") {
-                $Message = "1.1.2 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Verbose $Message
                 $Result = $true
             } else {
-                $Message = "1.1.2 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the max password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the max password age is greater than 0 and less than or equal to 365."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Warning $Message
                 $result = $false
             }
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
@@ -216,11 +196,13 @@ function Test-PasswordPolicyMinPasswordAge {
         $FineGrainedPasswordPolicy = $true
     }
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     # Find the minimum password age applied to this machine
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+    foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "MinimumPasswordAge") {
                 [int]$Setting = $Entry.SettingNumber
@@ -231,12 +213,8 @@ function Test-PasswordPolicyMinPasswordAge {
     # Check if the GPO setting meets the CIS Benchmark
 
     if ($Setting -gt "0") {
-        $Message = "1.1.3 The GPO minimum password age is set to " + $Setting + " and does meet the requirement."
-        Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "1.1.3 The GPO minimum password age is set to " + $Setting + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
-        Write-Warning $Message
         $result = $false
     }
     $Properties = [PSCustomObject]@{
@@ -253,18 +231,10 @@ function Test-PasswordPolicyMinPasswordAge {
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
         $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-        $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
-        Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.MinPasswordAge -gt "0") {
-                $Message = "1.1.3 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to " + $FGPasswordPolicy.MaxPasswordAge + " and does meet the requirement."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Verbose $Message
                 $Result = $true
             } else {
-                $Message = "1.1.3 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password age set to "+ $FGPasswordPolicy.MaxPasswordAge + " and does not meet the requirement. Make sure the minimum password age is greater than 0."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Warning $Message
                 $result = $false
             }
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
@@ -309,11 +279,13 @@ function Test-PasswordPolicyMinPasswordLength {
         $FineGrainedPasswordPolicy = $true
     }
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     # Find the minimum password length applied to this machine
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+    foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "MinimumPasswordLength") {
                 [int]$Setting = $Entry.SettingNumber
@@ -324,12 +296,8 @@ function Test-PasswordPolicyMinPasswordLength {
     # Check if the GPO setting meets the CIS Benchmark
 
     if ($Setting -ge "14") {
-        $Message = "1.1.4 The GPO minimum password length is set to " + $Setting + " and does meet the requirement."
-        Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "1.1.4 The GPO minimum password length is set to " + $Setting + " and does not meet the requirement. Make sure the minimum password length is greater than or equal to 14."
-        Write-Warning $Message
         $result = $false
     }
     $Properties = [PSCustomObject]@{
@@ -346,18 +314,10 @@ function Test-PasswordPolicyMinPasswordLength {
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
         $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-        $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
-        Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.MinPasswordLength -ge "14") {
-                $Message = "1.1.4 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to " + $FGPasswordPolicy.MinPasswordLength + " and does meet the requirement."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Verbose $Message
                 $Result = $true
             } else {
-                $Message = "1.1.4 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has the minimum password length set to "+ $FGPasswordPolicy.MinPasswordLength + " and does not meet the requirement. Make sure the minimum password length is greater or equal to 14."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Warning $Message
                 $result = $false
             }
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
@@ -403,11 +363,13 @@ function Test-PasswordPolicyComplexityEnabled {
         $FineGrainedPasswordPolicy = $true
     }
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     # Check if password complexity is enabled on this machine
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+    foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "PasswordComplexity") {
                 [bool]$Setting = $Entry.SettingBoolean
@@ -418,12 +380,8 @@ function Test-PasswordPolicyComplexityEnabled {
     # Check if the GPO setting meets the CIS Benchmark
 
     if ($Setting) {
-        $Message = "1.1.5 The GPO policy has complexity enabled and does meet the requirement."
-        Write-Verbose $Message
         $result = $true
     } else {
-        $Message = "1.1.5 The GPO policy has complexity disabled and does not meet the requirement."
-        Write-Warning $Message
         $result = $false
     }
     $Properties = [PSCustomObject]@{
@@ -440,18 +398,10 @@ function Test-PasswordPolicyComplexityEnabled {
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
         $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-        $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
-        Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if ($FGPasswordPolicy.ComplexityEnabled) {
-                $Message = "1.1.5 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity enabled and does meet the requirement."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Verbose $Message
                 $Result = $true
             } else {
-                $Message = "1.1.5 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has complexity disabled and does not meet the requirement."
-                $Message += "`nThis policy is applied to `n" + $FGPasswordPolicy.AppliesTo
-                Write-Warning $Message
                 $result = $false
             }
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
@@ -488,8 +438,13 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
     [CmdletBinding()]
     param ()
 
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
+
     $EntryName = "MACHINE\System\CurrentControlSet\Control\SAM\RelaxMinimumPasswordLengthLimits"
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+    foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.SecurityOptions) {
             If ($Entry.KeyName -eq $EntryName) {
                 [bool]$Setting = $Entry.SettingNumber
@@ -543,11 +498,13 @@ function Test-PasswordPolicyReversibleEncryption {
         $FineGrainedPasswordPolicy = $true
     }
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     # Check if reversible encyrption is disabled on this machine
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+    foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "ClearTextPassword") {
                 [string]$Setting = $Entry.SettingBoolean
@@ -558,13 +515,9 @@ function Test-PasswordPolicyReversibleEncryption {
     # Check if the GPO setting meets the CIS Benchmark
 
     if ($Setting -eq "false") {
-        $Message = "1.1.7 The GPO policy has reversible encryption disabled and does meet the requirement."
-        Write-Verbose $Message
         $result = $true
         $Setting = $false
     } else {
-        $Message = "1.1.7 The GPO policy has reversible encryption enabled and does not meet the requirement."
-        Write-Warning $Message
         $result = $false
         $Setting = $true
     }
@@ -582,16 +535,10 @@ function Test-PasswordPolicyReversibleEncryption {
     # If enabled, check if the Fine Grained Password Policies meet the CIS Benchmark
     if ($FineGrainedPasswordPolicy) {
         $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-        $Message = "Checking " + $ADFineGrainedPasswordPolicy.count + " Fine Grained Password Policies."
-        Write-Verbose $Message
         foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
             if (-not($FGPasswordPolicy.ReversibleEncryptionEnabled)) {
-                $Message = "1.1.7 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has reversible encryption disabled and does meet the requirement."
-                Write-Verbose $Message
                 $Result = $true
             } else {
-                $Message = "1.1.7 The `"" + $FGPasswordPolicy.Name + "`" Fine Grained Password Policy has reversible encryption enabled and does not meet the requirement."
-                Write-Warning $Message
                 $result = $false
             }
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"

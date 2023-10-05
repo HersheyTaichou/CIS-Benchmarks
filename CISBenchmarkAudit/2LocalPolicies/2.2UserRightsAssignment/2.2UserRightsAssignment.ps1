@@ -36,12 +36,14 @@ function Test-UserRightsAssignment {
 
     $Return = @()
 
-    # Run Get-GPResultantSetOfPolicy and return the results as a variable
-    $gpresult = Get-GPResult
+    # If not already present, run GPResult.exe and store the result in a variable
+    if (-not($script:gpresult)) {
+        $script:gpresult = Get-GPResult
+    }
 
     # Check the current value of the setting
     $Setting = @()
-    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+    foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
         foreach ($Entry in $data.Extension.UserRightsAssignment) {
             If ($Entry.Name -eq $EntryName) {
                 $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}

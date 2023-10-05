@@ -57,7 +57,7 @@ function Get-ProductType {
 Get and return the current GP Settings
 
 .DESCRIPTION
-Run Get-GPResultantSetOfPolicy on the machine, then take the file output, and
+Run gpresult.exe on the machine, then take the file output, and
 import it as a variable
 
 .PARAMETER Path
@@ -74,14 +74,17 @@ function Get-GPResult {
     param (
         [Parameter()][string]$Path = "$(get-location)\GPResult.xml"
     )
-        # Check if a report has already been generated
-        if (-not(Test-Path $Path) -or (Get-ChildItem $CustomerList | Where-Object {$_.LastWriteTime -ge (Get-Date).AddDays(-7)})) {
-            Get-GPResultantSetOfPolicy -ReportType Xml -Path $Path
-        }
-
-        # Load the contents of the report into a variable
-        [xml]$GPResult = Get-Content $Path
-
-        # Return the variable
-        return $GPResult
+    
+    begin {
+        gpresult.exe /x $Path /f    
+    }
+    
+    process {
+        [xml]$script:gpresult = Get-Content $Path
+    }
+    
+    end {
+        Remove-Item $Path
+        return $script:gpresult
+    }
 }
