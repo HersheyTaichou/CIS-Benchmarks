@@ -76,7 +76,7 @@ function Get-GPResult {
     )
     
     begin {
-        gpresult.exe /x $Path /f    
+        gpresult.exe /x $Path /f
     }
     
     process {
