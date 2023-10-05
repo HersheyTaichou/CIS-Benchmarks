@@ -1186,7 +1186,7 @@ function Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege {
 
     $Return = @()
 
-    $Result = Test-UserRightsAssignmentSe -EntryName "SeIncreaseBasePriorityPrivilege" -Definition @('Administrators', 'Window Manager\Window Manager Group')
+    $Result = Test-UserRightsAssignmentSe -EntryName "SeIncreaseBasePriorityPrivilege" -Definition @('Administrators') -OptionalDef @('Window Manager\Window Manager Group')
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '2.2.33'
