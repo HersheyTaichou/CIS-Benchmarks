@@ -180,7 +180,7 @@ function Test-LocalPoliciesSecurityOptions {
     $Result += Test-SecurityOptionsAccounts -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
     $Result += Test-SecurityOptionsAudit -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
     $Result += Test-SecurityOptionsDevices -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    if (-ServerType -eq "DomainController") {
+    if ($ServerType -eq "DomainController") {
         $Result += Test-SecurityOptionsDomainController -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
     }
     $Result += Test-SecurityOptionsDomainMember -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
