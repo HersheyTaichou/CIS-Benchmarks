@@ -15,7 +15,7 @@ function Test-DomainControllerSubmitControl {
         foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.KeyName -eq $EntryName) {
-                    [bool]$Setting = $Entry.SettingNumber
+                    [bool]$Setting = [int]$Entry.SettingNumber
                 }
             }
         }
@@ -203,7 +203,7 @@ function Test-DomainControllerRefusePasswordChange {
         foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.KeyName -eq $EntryName) {
-                    [bool]$Setting = $Entry.SettingNumber
+                    [bool]$Setting = [int]$Entry.SettingNumber
                 }
             }
         }
