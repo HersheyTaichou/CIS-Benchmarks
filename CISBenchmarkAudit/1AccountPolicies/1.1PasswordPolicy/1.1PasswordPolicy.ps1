@@ -487,27 +487,21 @@ General notes
 function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
     [CmdletBinding()]
     param ()
-    # This setting is required for Level 1 compliance on Windows Server 2022 or greater.
-    $PasswordPolicy = Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\SAM" -name "RelaxMinimumPasswordLengthLimits"
+
+    $EntryName = "MACHINE\System\CurrentControlSet\Control\SAM\RelaxMinimumPasswordLengthLimits"
+    foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($Entry in $data.Extension.SecurityOptions) {
+            If ($Entry.KeyName -eq $EntryName) {
+                [bool]$Setting = $Entry.SettingNumber
+            }
+        }
+    }
 
     # Check if the GPO setting meets the CIS Benchmark
-    if ($PasswordPolicy.RelaxMinimumPasswordLengthLimits -eq "1") {
-        $Message = "1.1.6 The Relax minimum password length limits is enabled and meets the requirement."
-        Write-Verbose $Message
+    if ($Setting -eq $true) {
         $result = $true
-        [bool]$Setting = $PasswordPolicy.RelaxMinimumPasswordLengthLimits
-    } elseif ($PasswordPolicy.RelaxMinimumPasswordLengthLimits -eq "0") {
-        $Message = "1.1.6 The Relax minimum password length limits is disabled and does not meet the requirement.`n`n"
-        $Message += "NOTE: This setting is only available within the built-in OS security template of Windows 10 Release 2004 and Server 2022 (or newer)."
-        Write-Warning $Message
-        $result = $false
-        [bool]$setting = $PasswordPolicy.RelaxMinimumPasswordLengthLimits
     } else {
-        $Message = "1.1.6 The Relax minimum password length limits is missing or set incorrectly and does not meet the requirement.`n`n"
-        $Message += "NOTE: This setting is only available within the built-in OS security template of Windows 10 Release 2004 and Server 2022 (or newer)."
-        Write-Warning $Message
         $result = $false
-        $setting = $PasswordPolicy.RelaxMinimumPasswordLengthLimits
     }
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.6'
