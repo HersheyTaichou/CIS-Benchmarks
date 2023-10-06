@@ -115,7 +115,7 @@ function Test-AccountsLimitBlankPasswordUse {
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\LimitBlankPasswordUse"
         foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
             foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.SystemAccessPolicyName -eq $EntryName) {
+                If ($Entry.KeyName -eq $EntryName) {
                     [bool]$Setting = $Entry.SettingNumber
                     $DisplayString = $Entry.Display.DisplayString
                     $RawEntry = $Entry
