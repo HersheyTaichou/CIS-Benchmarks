@@ -106,11 +106,6 @@ function Test-AccountsLimitBlankPasswordUse {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\LimitBlankPasswordUse"
         foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {

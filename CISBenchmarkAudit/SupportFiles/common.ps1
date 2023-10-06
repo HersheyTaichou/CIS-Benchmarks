@@ -79,9 +79,6 @@ function Get-GPResult {
         if (-not($Path)) {
             gpresult.exe /x $Path /f
             $delete = $true
-        } else {
-            $Message = "GPResult file found, skipping creation."
-            Write-Verbose $Message
         }
     }
     
@@ -96,3 +93,32 @@ function Get-GPResult {
         return $XMLgpresult
     }
 }
+
+function Get-GPOEntry {
+    [CmdletBinding()]
+    param (
+        # Parameter help description
+        [Parameter(Mandatory)][string]$EntryName,
+        [Parameter(Mandatory)][string]$SectionName,
+        [Parameter(Mandatory)][string]$KeyName
+    )
+    
+    begin {
+        if (-not($script:gpresult)) {
+            $script:gpresult = Get-GPResult
+        }
+    }
+    
+    process {
+        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
+            foreach ($Entry in $data.Extension.$SectionName) {
+                If ($Entry.$KeyName -eq $EntryName) {
+                    Return $Entry
+                }
+            }
+        }
+    }
+    
+    end {}
+}
+

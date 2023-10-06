@@ -43,14 +43,8 @@ function Test-UserRightsAssignment {
 
     # Check the current value of the setting
     $Setting = @()
-    foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-        foreach ($Entry in $data.Extension.UserRightsAssignment) {
-            If ($Entry.Name -eq $EntryName) {
-                $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
-                $RawEntry = $Entry
-            }
-        }
-    }
+    $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "UserRightsAssignment" -KeyName "Name"
+    $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
 
     if (-not($setting)) {
         $Setting = @("")
@@ -75,7 +69,7 @@ function Test-UserRightsAssignment {
     $Return = [PSCustomObject]@{
         'Result'= $result
         'Setting' = $Setting -join ", "
-        'Entry' = $Result.Entry
+        'Entry' = $Entry
     }
 
     Return $Return
