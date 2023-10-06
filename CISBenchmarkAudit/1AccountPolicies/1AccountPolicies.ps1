@@ -67,7 +67,7 @@ function Test-AccountPoliciesPasswordPolicy {
     $Result += Test-PasswordPolicyMinPasswordAge
     $Result += Test-PasswordPolicyMinPasswordLength
     $Result += Test-PasswordPolicyComplexityEnabled
-    if ($ServerType = 3) {
+    if ($ServerType -eq 3) {
         $Result += Test-PasswordPolicyRelaxMinimumPasswordLengthLimits
     }
     $Result += Test-PasswordPolicyReversibleEncryption
@@ -141,7 +141,7 @@ function Test-AccountPoliciesAccountLockoutPolicy {
 
     $Result += Test-AccountLockoutPolicyLockoutDuration
     $Result += Test-AccountLockoutPolicyLockoutThreshold
-    if ($ServerType = 3) {
+    if ($ServerType -eq 3) {
         $Result += Test-AccountLockoutPolicyAdminLockout
     }
     $Result += Test-AccountLockoutPolicyResetLockoutCount

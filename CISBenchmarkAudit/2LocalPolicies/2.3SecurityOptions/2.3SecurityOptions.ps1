@@ -17,7 +17,7 @@ function Test-SecurityOptionsAccounts {
 
     process {
         $Result += Test-AccountsNoConnectedUser
-        if ($ServerType = 3) {
+        if ($ServerType -eq 3) {
             $Result += Test-AccountsEnableGuestAccount
         }
         $Result += Test-AccountsLimitBlankPasswordUse
