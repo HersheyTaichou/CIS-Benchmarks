@@ -16,6 +16,7 @@ function Test-DevicesAllocateDASD {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.KeyName -eq $EntryName) {
                     [string]$Setting = $Entry.Display.DisplayString
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -37,6 +38,7 @@ function Test-DevicesAllocateDASD {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -63,6 +65,7 @@ function Test-DevicesAddPrinterDrivers {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.KeyName -eq $EntryName) {
                     [bool]$Setting = $Entry.SettingNumber
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -80,6 +83,7 @@ function Test-DevicesAddPrinterDrivers {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties

@@ -16,6 +16,7 @@ function Test-DomainControllerSubmitControl {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.KeyName -eq $EntryName) {
                     [bool]$Setting = [int]$Entry.SettingNumber
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -37,6 +38,7 @@ function Test-DomainControllerSubmitControl {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -63,6 +65,7 @@ function Test-DomainControllerVulnerableChannelAllowList {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.KeyName -eq $EntryName) {
                     [string]$Setting = $Entry.SettingString
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -84,6 +87,7 @@ function Test-DomainControllerVulnerableChannelAllowList {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -110,6 +114,7 @@ function Test-DomainControllerLdapEnforceChannelBinding {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.KeyName -eq $EntryName) {
                     [string]$Setting = $Entry.Display.DisplayString
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -131,6 +136,7 @@ function Test-DomainControllerLdapEnforceChannelBinding {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -157,6 +163,7 @@ function Test-DomainControllerLDAPServerIntegrity {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.KeyName -eq $EntryName) {
                     [string]$Setting = $Entry.Display.DisplayString
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -178,6 +185,7 @@ function Test-DomainControllerLDAPServerIntegrity {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -204,6 +212,7 @@ function Test-DomainControllerRefusePasswordChange {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.KeyName -eq $EntryName) {
                     [bool]$Setting = [int]$Entry.SettingNumber
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -225,6 +234,7 @@ function Test-DomainControllerRefusePasswordChange {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties

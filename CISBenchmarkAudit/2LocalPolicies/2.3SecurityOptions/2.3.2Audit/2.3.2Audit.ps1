@@ -16,6 +16,7 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.KeyName -eq $EntryName) {
                     [bool]$Setting = $Entry.SettingNumber
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -33,6 +34,7 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -59,6 +61,7 @@ function Test-AuditCrashOnAuditFail {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.KeyName -eq $EntryName) {
                     [bool]$Setting = $Entry.SettingNumber
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -76,6 +79,7 @@ function Test-AuditCrashOnAuditFail {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties

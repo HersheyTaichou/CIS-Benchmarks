@@ -47,6 +47,7 @@ function Test-UserRightsAssignment {
         foreach ($Entry in $data.Extension.UserRightsAssignment) {
             If ($Entry.Name -eq $EntryName) {
                 $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
+                $RawEntry = $Entry
             }
         }
     }
@@ -74,6 +75,7 @@ function Test-UserRightsAssignment {
     $Return = [PSCustomObject]@{
         'Result'= $result
         'Setting' = $Setting -join ", "
+        'Entry' = $Result.Entry
     }
 
     Return $Return
@@ -107,6 +109,7 @@ function Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege {
         'Source' = 'Group Policy Settings'
         'Result'= $Result.Result
         'Setting' = $Result.Setting
+        'Entry' = $Result.Entry
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -151,6 +154,7 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } elseif ($ProductType -eq 3) {
         $Result = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $MemberServer
@@ -161,6 +165,7 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } else {
         $Properties = [PSCustomObject]@{
@@ -357,6 +362,7 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } elseif ($ProductType -eq 3) {
         $Result = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $MemberServer -OptionalDef $MSOptional
@@ -367,6 +373,7 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } else {
         $Properties = [PSCustomObject]@{
@@ -670,6 +677,7 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } elseif ($ProductType -eq 3) {
         $Result = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $MemberServer -OptionalDef $MSOptional
@@ -680,6 +688,7 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } else {
         $Properties = [PSCustomObject]@{
@@ -771,6 +780,7 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } elseif ($ProductType -eq 3) {
         $Result = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $MemberServer -OptionalDef $MSOptional
@@ -781,6 +791,7 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } else {
         $Properties = [PSCustomObject]@{
@@ -941,6 +952,7 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } elseif ($ProductType -eq 3) {
         $Result = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $MemberServer
@@ -951,6 +963,7 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } else {
         $Properties = [PSCustomObject]@{
@@ -1006,6 +1019,7 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } elseif ($ProductType -eq 3) {
         $Result = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $MemberServer
@@ -1016,6 +1030,7 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } else {
         $Properties = [PSCustomObject]@{
@@ -1141,6 +1156,7 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } elseif ($ProductType -eq 3) {
         $Result = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $MemberServer -OptionalDef $MSOptional
@@ -1151,6 +1167,7 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } else {
         $Properties = [PSCustomObject]@{
@@ -1346,6 +1363,7 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } elseif ($ProductType -eq 3) {
         $Result = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $MemberServer
@@ -1356,6 +1374,7 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
             'Source' = 'Group Policy Settings'
             'Result'= $Result.Result
             'Setting' = $Result.Setting
+            'Entry' = $Result.Entry
         }
     } else {
         $Properties = [PSCustomObject]@{

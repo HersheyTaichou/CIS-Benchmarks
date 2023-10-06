@@ -35,6 +35,8 @@ function Test-PasswordPolicyPasswordHistory {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "PasswordHistorySize") {
                 [int]$Setting = $Entry.SettingNumber
+                $RawEntry = $Entry
+
             }
         }
     }
@@ -53,6 +55,7 @@ function Test-PasswordPolicyPasswordHistory {
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
+        'Entry' = $RawEntry
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -122,6 +125,7 @@ function Test-PasswordPolicyMaxPasswordAge {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "MaximumPasswordAge") {
                 [int]$Setting = $Entry.SettingNumber
+                $RawEntry = $Entry
             }
         }
     }
@@ -140,6 +144,7 @@ function Test-PasswordPolicyMaxPasswordAge {
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
+        'Entry' = $RawEntry
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -206,6 +211,7 @@ function Test-PasswordPolicyMinPasswordAge {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "MinimumPasswordAge") {
                 [int]$Setting = $Entry.SettingNumber
+                $RawEntry = $Entry
             }
         }
     }
@@ -224,6 +230,7 @@ function Test-PasswordPolicyMinPasswordAge {
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
+        'Entry' = $RawEntry
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -289,6 +296,7 @@ function Test-PasswordPolicyMinPasswordLength {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "MinimumPasswordLength") {
                 [int]$Setting = $Entry.SettingNumber
+                $RawEntry = $Entry
             }
         }
     }
@@ -307,6 +315,7 @@ function Test-PasswordPolicyMinPasswordLength {
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
+        'Entry' = $RawEntry
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -373,6 +382,7 @@ function Test-PasswordPolicyComplexityEnabled {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "PasswordComplexity") {
                 [bool]$Setting = $Entry.SettingBoolean
+                $RawEntry = $Entry
             }
         }
     }
@@ -391,6 +401,7 @@ function Test-PasswordPolicyComplexityEnabled {
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
+        'Entry' = $RawEntry
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -448,6 +459,7 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
         foreach ($Entry in $data.Extension.SecurityOptions) {
             If ($Entry.KeyName -eq $EntryName) {
                 [bool]$Setting = $Entry.SettingNumber
+                $RawEntry = $Entry
             }
         }
     }
@@ -465,6 +477,7 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
+        'Entry' = $RawEntry
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -508,6 +521,7 @@ function Test-PasswordPolicyReversibleEncryption {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "ClearTextPassword") {
                 [string]$Setting = $Entry.SettingBoolean
+                $RawEntry = $Entry
             }
         }
     }
@@ -528,6 +542,7 @@ function Test-PasswordPolicyReversibleEncryption {
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
+        'Entry' = $RawEntry
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties

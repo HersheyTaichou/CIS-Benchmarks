@@ -35,6 +35,7 @@ function Test-AccountLockoutPolicyLockoutDuration {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "LockoutDuration") {
                 [int]$Setting = $Entry.SettingNumber
+                $RawEntry = $Entry
             }
         }
     }
@@ -54,6 +55,7 @@ function Test-AccountLockoutPolicyLockoutDuration {
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
+        'Entry' = $RawEntry
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -121,6 +123,7 @@ function Test-AccountLockoutPolicyLockoutThreshold {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "LockoutBadCount") {
                 [int]$Setting = $Entry.SettingNumber
+                $RawEntry = $Entry
             }
         }
     }
@@ -140,6 +143,7 @@ function Test-AccountLockoutPolicyLockoutThreshold {
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
+        'Entry' = $RawEntry
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -199,6 +203,7 @@ function Test-AccountLockoutPolicyAdminLockout {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "AllowAdministratorLockout") {
                 [string]$Setting = $Entry.SettingBoolean
+                $RawEntry = $Entry
             }
         }
     }
@@ -223,6 +228,7 @@ function Test-AccountLockoutPolicyAdminLockout {
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
+        'Entry' = $RawEntry
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -267,6 +273,7 @@ function Test-AccountLockoutPolicyResetLockoutCount {
         foreach ($Entry in $data.Extension.Account) {
             If ($Entry.Name -eq "ResetLockoutCount") {
                 [int]$Setting = $Entry.SettingNumber
+                $RawEntry = $Entry
             }
         }
     }
@@ -286,6 +293,7 @@ function Test-AccountLockoutPolicyResetLockoutCount {
         'Source' = 'Group Policy Settings'
         'Result'= $result
         'Setting' = $Setting
+        'Entry' = $RawEntry
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties

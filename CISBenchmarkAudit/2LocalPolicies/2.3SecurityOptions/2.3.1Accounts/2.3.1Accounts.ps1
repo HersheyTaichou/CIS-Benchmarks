@@ -17,6 +17,7 @@ function Test-AccountsNoConnectedUser {
                 If ($Entry.KeyName -eq $EntryName) {
                     $Setting = $Entry.SettingNumber
                     $DisplayString = $Entry.Display.DisplayString
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -39,6 +40,7 @@ function Test-AccountsNoConnectedUser {
             'Source' = 'Group Policy Settings'
             'Result'= $Result
             'Setting' = $DisplayString
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -65,6 +67,7 @@ function Test-AccountsEnableGuestAccount {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.SystemAccessPolicyName -eq $EntryName) {
                     [bool]$Setting = $Entry.SettingNumber
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -87,6 +90,7 @@ function Test-AccountsEnableGuestAccount {
             'Source' = 'Group Policy Settings'
             'Result'= $Result
             'Setting' = $Setting
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -114,6 +118,7 @@ function Test-AccountsLimitBlankPasswordUse {
                 If ($Entry.SystemAccessPolicyName -eq $EntryName) {
                     [bool]$Setting = $Entry.SettingNumber
                     $DisplayString = $Entry.Display.DisplayString
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -136,6 +141,7 @@ function Test-AccountsLimitBlankPasswordUse {
             'Source' = 'Group Policy Settings'
             'Result'= $Result
             'Setting' = $DisplayString
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -162,6 +168,7 @@ function Test-AccountsNewAdministratorName {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.SystemAccessPolicyName -eq $EntryName) {
                     [string]$Setting = $Entry.SettingString
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -184,6 +191,7 @@ function Test-AccountsNewAdministratorName {
             'Source' = 'Group Policy Settings'
             'Result'= $Result
             'Setting' = $Setting
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -210,6 +218,7 @@ function Test-AccountsNewGuestName {
             foreach ($Entry in $data.Extension.SecurityOptions) {
                 If ($Entry.SystemAccessPolicyName -eq $EntryName) {
                     [string]$Setting = $Entry.SettingString
+                    $RawEntry = $Entry
                 }
             }
         }
@@ -232,6 +241,7 @@ function Test-AccountsNewGuestName {
             'Source' = 'Group Policy Settings'
             'Result'= $Result
             'Setting' = $Setting
+            'Entry' = $RawEntry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
