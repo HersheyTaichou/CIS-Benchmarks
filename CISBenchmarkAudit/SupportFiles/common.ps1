@@ -76,15 +76,20 @@ function Get-GPResult {
     )
     
     begin {
-        gpresult.exe /x $Path /f
+        if (-not($Path)) {
+            gpresult.exe /x $Path /f
+            $delete = $true
+        }
     }
     
     process {
-        [xml]$script:gpresult = Get-Content $Path
+        [xml]$XMLgpresult = Get-Content $Path
     }
     
     end {
-        Remove-Item $Path
-        return $script:gpresult
+        if ($delete) {
+            Remove-Item $Path
+        }
+        return $XMLgpresult
     }
 }
