@@ -52,7 +52,7 @@
                                 <PropertyName>RecommendationNumber</PropertyName>
                             </ListItem>
                             <ListItem>
-                                <PropertyName>ConfigurationProfile</PropertyName>
+                                <PropertyName>ProfileApplicability</PropertyName>
                             </ListItem>
                             <ListItem>
                                 <PropertyName>RecommendationName</PropertyName>

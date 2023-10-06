@@ -35,7 +35,7 @@ function Test-AccountsNoConnectedUser {
     end {
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.3.1.1'
-            'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+            'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
             'RecommendationName'= "Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Microsoft accounts'"
             'Source' = 'Group Policy Settings'
             'Result'= $Result
@@ -85,7 +85,7 @@ function Test-AccountsEnableGuestAccount {
     end {
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.3.1.2'
-            'ConfigurationProfile' = @("Level 1 - Member Server")
+            'ProfileApplicability' = @("Level 1 - Member Server")
             'RecommendationName'= "Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)"
             'Source' = 'Group Policy Settings'
             'Result'= $Result
@@ -136,7 +136,7 @@ function Test-AccountsLimitBlankPasswordUse {
     end {
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.3.1.3'
-            'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+            'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
             'RecommendationName'= "Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'"
             'Source' = 'Group Policy Settings'
             'Result'= $Result
@@ -186,7 +186,7 @@ function Test-AccountsNewAdministratorName {
     end {
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.3.1.4'
-            'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+            'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
             'RecommendationName'= "Configure 'Accounts: Rename administrator account'"
             'Source' = 'Group Policy Settings'
             'Result'= $Result
@@ -236,7 +236,7 @@ function Test-AccountsNewGuestName {
     end {
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.3.1.5'
-            'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+            'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
             'RecommendationName'= "Configure 'Accounts: Rename guest account'"
             'Source' = 'Group Policy Settings'
             'Result'= $Result

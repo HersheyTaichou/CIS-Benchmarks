@@ -50,7 +50,7 @@ function Test-PasswordPolicyPasswordHistory {
     }
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.1'
-        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Enforce password history' is set to '24 or more password(s)'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
@@ -74,7 +74,7 @@ function Test-PasswordPolicyPasswordHistory {
 
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.1'
-                'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+                'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
                 'RecommendationName'= "Ensure 'Enforce password history' is set to '24 or more password(s)'"
                 'Source' = $Source
                 'Result'= $result
@@ -139,7 +139,7 @@ function Test-PasswordPolicyMaxPasswordAge {
     }
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.2'
-        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
@@ -161,7 +161,7 @@ function Test-PasswordPolicyMaxPasswordAge {
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.2'
-                'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+                'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
                 'RecommendationName'= "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
                 'Source' = $Source
                 'Result'= $result
@@ -225,7 +225,7 @@ function Test-PasswordPolicyMinPasswordAge {
     }
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.3'
-        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Minimum password age' is set to '1 or more day(s)'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
@@ -247,7 +247,7 @@ function Test-PasswordPolicyMinPasswordAge {
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.3'
-                'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+                'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
                 'RecommendationName'= "Ensure 'Minimum password age' is set to '1 or more day(s)'"
                 'Source' = $Source
                 'Result'= $result
@@ -310,7 +310,7 @@ function Test-PasswordPolicyMinPasswordLength {
     }
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.4'
-        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Minimum password length' is set to '14 or more character(s)'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
@@ -332,7 +332,7 @@ function Test-PasswordPolicyMinPasswordLength {
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.4'
-                'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+                'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
                 'RecommendationName'= "Ensure 'Minimum password length' is set to '14 or more character(s)'"
                 'Source' = $Source
                 'Result'= $result
@@ -396,7 +396,7 @@ function Test-PasswordPolicyComplexityEnabled {
     }
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.5'
-        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Password must meet complexity requirements' is set to 'Enabled'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
@@ -418,7 +418,7 @@ function Test-PasswordPolicyComplexityEnabled {
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.5'
-                'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+                'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
                 'RecommendationName'= "Ensure 'Password must meet complexity requirements' is set to 'Enabled'"
                 'Source' = $Source
                 'Result'= $result
@@ -472,7 +472,7 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
     }
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.6'
-        'ConfigurationProfile' = @("Level 1 - Member Server")
+        'ProfileApplicability' = @("Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Relax minimum password length limits' is set to 'Enabled'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
@@ -537,7 +537,7 @@ function Test-PasswordPolicyReversibleEncryption {
     }
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.1.7'
-        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Store passwords using reversible encryption' is set to 'Disabled'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
@@ -559,7 +559,7 @@ function Test-PasswordPolicyReversibleEncryption {
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.1.7'
-                'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+                'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
                 'RecommendationName'= "Ensure 'Store passwords using reversible encryption' is set to 'Disabled'"
                 'Source' = $Source
                 'Result'= $result

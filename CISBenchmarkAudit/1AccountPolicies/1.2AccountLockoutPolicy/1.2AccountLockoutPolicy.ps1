@@ -50,7 +50,7 @@ function Test-AccountLockoutPolicyLockoutDuration {
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.2.1'
-        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
@@ -72,7 +72,7 @@ function Test-AccountLockoutPolicyLockoutDuration {
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.2.1'
-                'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+                'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
                 'RecommendationName'= "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
                 'Source' = $Source
                 'Result'= $result
@@ -138,7 +138,7 @@ function Test-AccountLockoutPolicyLockoutThreshold {
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.2.2'
-        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
@@ -160,7 +160,7 @@ function Test-AccountLockoutPolicyLockoutThreshold {
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.2.2'
-                'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+                'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
                 'RecommendationName'= "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
                 'Source' = $Source
                 'Result'= $result
@@ -223,7 +223,7 @@ function Test-AccountLockoutPolicyAdminLockout {
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.2.3'
-        'ConfigurationProfile' = @("Level 1 - Member Server")
+        'ProfileApplicability' = @("Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
@@ -288,7 +288,7 @@ function Test-AccountLockoutPolicyResetLockoutCount {
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber'= '1.2.4'
-        'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
         'RecommendationName'= "Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
         'Source' = 'Group Policy Settings'
         'Result'= $result
@@ -310,7 +310,7 @@ function Test-AccountLockoutPolicyResetLockoutCount {
             $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             $Properties = [PSCustomObject]@{
                 'RecommendationNumber'= '1.2.4'
-                'ConfigurationProfile' = @("Level 1 - Domain Controller","Level 1 - Member Server")
+                'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
                 'RecommendationName'= "Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
                 'Source' = $Source
                 'Result'= $result

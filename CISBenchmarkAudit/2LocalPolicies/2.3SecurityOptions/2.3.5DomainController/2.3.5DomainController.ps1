@@ -33,7 +33,7 @@ function Test-DomainControllerSubmitControl {
     end {
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.3.5.1'
-            'ConfigurationProfile' = @("Level 1 - Domain Controller")
+            'ProfileApplicability' = @("Level 1 - Domain Controller")
             'RecommendationName'= "Ensure 'Domain controller: Allow server operators to schedule tasks' is set to 'Disabled' (DC only)"
             'Source' = 'Group Policy Settings'
             'Result'= $result
@@ -82,7 +82,7 @@ function Test-DomainControllerVulnerableChannelAllowList {
     end {
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.3.5.2'
-            'ConfigurationProfile' = @("Level 1 - Domain Controller")
+            'ProfileApplicability' = @("Level 1 - Domain Controller")
             'RecommendationName'= "Ensure 'Domain controller: Allow vulnerable Netlogon secure channel connections' is set to 'Not Configured'"
             'Source' = 'Group Policy Settings'
             'Result'= $result
@@ -131,7 +131,7 @@ function Test-DomainControllerLdapEnforceChannelBinding {
     end {
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.3.5.3'
-            'ConfigurationProfile' = @("Level 1 - Domain Controller")
+            'ProfileApplicability' = @("Level 1 - Domain Controller")
             'RecommendationName'= "Ensure 'Domain controller: LDAP server channel binding token requirements' is set to 'Always'"
             'Source' = 'Group Policy Settings'
             'Result'= $result
@@ -180,7 +180,7 @@ function Test-DomainControllerLDAPServerIntegrity {
     end {
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.3.5.4'
-            'ConfigurationProfile' = @("Level 1 - Domain Controller")
+            'ProfileApplicability' = @("Level 1 - Domain Controller")
             'RecommendationName'= "Ensure 'Domain controller: LDAP server signing requirements' is set to 'Require signing' (DC only)"
             'Source' = 'Group Policy Settings'
             'Result'= $result
@@ -231,7 +231,7 @@ function Test-DomainControllerRefusePasswordChange {
     end {
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '2.3.5.5'
-            'ConfigurationProfile' = @("Level 1 - Domain Controller")
+            'ProfileApplicability' = @("Level 1 - Domain Controller")
             'RecommendationName'= "Ensure 'Domain controller: Refuse machine account password changes' is set to 'Disabled' (DC only)"
             'Source' = 'Group Policy Settings'
             'Result'= $result
