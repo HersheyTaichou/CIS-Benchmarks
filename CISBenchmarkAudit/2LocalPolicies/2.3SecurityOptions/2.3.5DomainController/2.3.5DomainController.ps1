@@ -23,7 +23,7 @@ function Test-DomainControllerSubmitControl {
     }
 
     process {
-        if ($Setting = $false) {
+        if (-not($Setting)) {
             $result = $true
         } else {
             $result = $false
@@ -219,9 +219,11 @@ function Test-DomainControllerRefusePasswordChange {
     }
 
     process {
-        if ($Setting = $false) {
+        if (-not($Setting)) {
+            Write-Verbose "2.3.5.5 is False"
             $result = $true
         } else {
+            Write-Verbose "2.3.5.5 is not False"
             $result = $false
         }
     }
