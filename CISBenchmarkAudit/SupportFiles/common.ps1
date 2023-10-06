@@ -79,6 +79,9 @@ function Get-GPResult {
         if (-not($Path)) {
             gpresult.exe /x $Path /f
             $delete = $true
+        } else {
+            $Message = "GPResult file found, skipping creation."
+            Write-Verbose $Message
         }
     }
     

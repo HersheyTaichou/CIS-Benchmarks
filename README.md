@@ -22,10 +22,10 @@ Then, depending on what you want to do, their are a variety of commands.
 
 ### Run the Entire CIS Benchmark
 
-To test the machine against the entire benchmark, run the following command, setting the level and server type:
+To test the machine against the entire benchmark, run the following command, setting the level:
 
 ```PowerShell
-Test-CISBenchmark -Level 1 -ServerType DomainController
+Test-CISBenchmark -Level 1
 ```
 
 ### Test a Specific Section
@@ -35,11 +35,11 @@ To test against just one section of the benchmark, the command format is Test-CI
 Here are two examples:
 
 ```PowerShell
-Test-CISBenchmarkAccountPolicies -Level 1 -ServerType DomainController
+Test-CISBenchmarkAccountPolicies -Level 1
 ```
 
 ```PowerShell
-Test-CISBenchmarkLocalPolicies -Level 1 -ServerType DomainController
+Test-CISBenchmarkLocalPolicies -Level 1
 ```
 
 To run just one subsection, the command will be Test-SectionTitleSubsectionTitle.
@@ -47,13 +47,13 @@ To run just one subsection, the command will be Test-SectionTitleSubsectionTitle
 As an example, this command will test against section "1 Account Policies\1.1 Password Policy".
 
 ```PowerShell
-Test-AccountPoliciesPasswordPolicy -Level 1 -ServerType DomainController
+Test-AccountPoliciesPasswordPolicy -Level 1
 ```
 
 As another example, this will test against "2 Local Policies\2.3 Security Options\2.3.1 Accounts". Notice that the command is always based on the lowest two levels.
 
 ```PowerShell
-Test-SecurityOptionsAccounts -Level 1 -ServerType DomainController
+Test-SecurityOptionsAccounts -Level 1
 ```
 
 ### Test a Recommendation
@@ -65,6 +65,29 @@ This command will run the recommendation found at "1 Account Policies\1.1 Passwo
 ```PowerShell
 Test-PasswordPolicyPasswordHistory
 ```
+
+### Test a different machine
+
+I understand that some people may be hesitant to run a large script they found on the internet on a production server. In that case, it is possible to export a copy of the GPO settings on a server, then move that file a separate machine with this script, and run it there.
+
+1. Generate a GP report
+   1. Connect to the server to be evaluated. 
+   2. Run the following command:
+
+      ```PowerShell
+      gpresult.exe /x "$(get-location)\GPResult.xml" /f
+      ```
+
+   3. Move that file to a separate machine
+2. Git Clone or download this module on a separate machine
+3. Open an Admin PowerShell prompt and import the module
+
+   ```PowerShell
+    Import-Module CISBnchmarkAudit.psd1
+   ```
+
+4. Browse to the folder you saved the GPResult file in
+5. Run any of the above commands
 
 ## Licenses
 
