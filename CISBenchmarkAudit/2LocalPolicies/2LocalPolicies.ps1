@@ -51,11 +51,11 @@ function Test-LocalPoliciesUserRightsAssignment {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
     $Result = @()
+    $ServerType = Get-ProductType
 
     # If not already present, run GPResult.exe and store the result in a variable
     if (-not($script:gpresult)) {
@@ -65,7 +65,7 @@ function Test-LocalPoliciesUserRightsAssignment {
     $Result += Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege
     $Result += Test-UserRightsAssignmentSeNetworkLogonRight
     $Result += Test-UserRightsAssignmentSeTcbPrivilege
-    if ($ServerType -eq "DomainController") {
+    if ($ServerType -eq 2) {
         $Result += Test-UserRightsAssignmentSeMachineAccountPrivilege
     }
     $Result += Test-UserRightsAssignmentSeIncreaseQuotaPrivilege
@@ -93,7 +93,7 @@ function Test-LocalPoliciesUserRightsAssignment {
     $Result += Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege
     $Result += Test-UserRightsAssignmentSeLoadDriverPrivilege
     $Result += Test-UserRightsAssignmentSeLockMemoryPrivilege
-    if ($ServerType -eq "DomainController" -and $Level -eq 2) {
+    if ($ServerType -eq 2 -and $Level -eq 2) {
         $Result += Test-UserRightsAssignmentSeBatchLogonRight
     }
     $Result += Test-UserRightsAssignmentSeSecurityPrivilege
@@ -105,7 +105,7 @@ function Test-LocalPoliciesUserRightsAssignment {
     $Result += Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege
     $Result += Test-UserRightsAssignmentSeRestorePrivilege
     $Result += Test-UserRightsAssignmentSeShutdownPrivilege
-    if ($ServerType -eq "DomainController") {
+    if ($ServerType -eq 2) {
         $Result += Test-UserRightsAssignmentSeSyncAgentPrivilege
     }
     $Result += Test-UserRightsAssignmentSeTakeOwnershipPrivilege
@@ -166,7 +166,6 @@ function Test-LocalPoliciesSecurityOptions {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -177,21 +176,21 @@ function Test-LocalPoliciesSecurityOptions {
         $script:gpresult = Get-GPResult
     }
 
-    $Result += Test-SecurityOptionsAccounts -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsAudit -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsDevices -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    if ($ServerType -eq "DomainController") {
-        $Result += Test-SecurityOptionsDomainController -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsAccounts -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsAudit -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsDevices -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    if ($ServerType -eq 2) {
+        $Result += Test-SecurityOptionsDomainController -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
     }
-    $Result += Test-SecurityOptionsDomainMember -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsInteractiveLogin -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsMicrosoftNetworkClient -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsMicrosoftNetworkServer -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsNetworkAccess -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsNetworkSecurity -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsShutdown -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsSystemObjects -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsUserAccountControl -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsDomainMember -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsInteractiveLogin -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsMicrosoftNetworkClient -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsMicrosoftNetworkServer -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsNetworkAccess -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsNetworkSecurity -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsShutdown -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsSystemObjects -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-SecurityOptionsUserAccountControl -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
 
     return $Result
 }
@@ -250,7 +249,6 @@ function Test-CISBenchmarkLocalPolicies {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -261,8 +259,8 @@ function Test-CISBenchmarkLocalPolicies {
         $script:gpresult = Get-GPResult
     }
 
-    $Result += Test-LocalPoliciesUserRightsAssignment -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-LocalPoliciesSecurityOptions -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-LocalPoliciesUserRightsAssignment -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-LocalPoliciesSecurityOptions -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
 
     return $Result
 }

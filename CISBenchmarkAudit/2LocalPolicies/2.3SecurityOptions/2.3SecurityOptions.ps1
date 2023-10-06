@@ -2,12 +2,12 @@ function Test-SecurityOptionsAccounts {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
     begin {
         $Result = @()
+        $ServerType = Get-ProductType
 
         # If not already present, run GPResult.exe and store the result in a variable
         if (-not($script:gpresult)) {
@@ -17,7 +17,7 @@ function Test-SecurityOptionsAccounts {
 
     process {
         $Result += Test-AccountsNoConnectedUser
-        if ($ServerType = "MemberServer") {
+        if ($ServerType = 3) {
             $Result += Test-AccountsEnableGuestAccount
         }
         $Result += Test-AccountsLimitBlankPasswordUse
@@ -34,7 +34,6 @@ function Test-SecurityOptionsAudit {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -61,7 +60,6 @@ function Test-SecurityOptionsDevices {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -88,7 +86,6 @@ function Test-SecurityOptionsDomainController {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -118,7 +115,6 @@ function Test-SecurityOptionsDomainMember {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -144,7 +140,6 @@ function Test-SecurityOptionsInteractiveLogin {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -170,7 +165,6 @@ function Test-SecurityOptionsMicrosoftNetworkClient {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -196,7 +190,6 @@ function Test-SecurityOptionsMicrosoftNetworkServer {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -222,7 +215,6 @@ function Test-SecurityOptionsNetworkAccess {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -248,7 +240,6 @@ function Test-SecurityOptionsNetworkSecurity {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -274,7 +265,6 @@ function Test-SecurityOptionsShutdown {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -300,7 +290,6 @@ function Test-SecurityOptionsSystemObjects {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -326,7 +315,6 @@ function Test-SecurityOptionsUserAccountControl {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 

@@ -51,11 +51,11 @@ function Test-AccountPoliciesPasswordPolicy {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
     $Result = @()
+    $ServerType = Get-ProductType
 
     # If not already present, run GPResult.exe and store the result in a variable
     if (-not($script:gpresult)) {
@@ -67,7 +67,7 @@ function Test-AccountPoliciesPasswordPolicy {
     $Result += Test-PasswordPolicyMinPasswordAge
     $Result += Test-PasswordPolicyMinPasswordLength
     $Result += Test-PasswordPolicyComplexityEnabled
-    if ($ServerType = "MemberServer") {
+    if ($ServerType = 3) {
         $Result += Test-PasswordPolicyRelaxMinimumPasswordLengthLimits
     }
     $Result += Test-PasswordPolicyReversibleEncryption
@@ -128,11 +128,11 @@ function Test-AccountPoliciesAccountLockoutPolicy {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
     $Result = @()
+    $ServerType = Get-ProductType
 
     # If not already present, run GPResult.exe and store the result in a variable
     if (-not($script:gpresult)) {
@@ -141,7 +141,7 @@ function Test-AccountPoliciesAccountLockoutPolicy {
 
     $Result += Test-AccountLockoutPolicyLockoutDuration
     $Result += Test-AccountLockoutPolicyLockoutThreshold
-    if ($ServerType = "MemberServer") {
+    if ($ServerType = 3) {
         $Result += Test-AccountLockoutPolicyAdminLockout
     }
     $Result += Test-AccountLockoutPolicyResetLockoutCount
@@ -202,7 +202,6 @@ function Test-CISBenchmarkAccountPolicies {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter(Mandatory=$true)][ValidateSet("DomainController","MemberServer")][string]$ServerType,
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
@@ -213,8 +212,8 @@ function Test-CISBenchmarkAccountPolicies {
         $script:gpresult = Get-GPResult
     }
 
-    $Result += Test-AccountPoliciesPasswordPolicy -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-AccountPoliciesAccountLockoutPolicy -Level $Level -ServerType $ServerType -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-AccountPoliciesPasswordPolicy -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    $Result += Test-AccountPoliciesAccountLockoutPolicy -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
 
     return $Result
 }
