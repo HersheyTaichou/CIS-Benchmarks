@@ -19,32 +19,13 @@ The valid options are:
 at the risk of breaking some functionality. This level requires and includes all the
 Level 1 benchmarks
 
-.PARAMETER ServerType
-This parameter is used to define the type of server this is running on.
-
-The valid options are:
-DomainController    = These settings are specific to Domain Controllers.
-MemberServer        = These settings are specific to domain member servers. 
-
-The MemberServer profile also applies to servers with the following roles:
-- AD Certificate Services
-- DHCP Server
-- DNS Server
-- File Server
-- Hyper-V
-- Network Policy and Access Services
-- Print Server
-- Remote Access Services
-- Remote Desktop Services
-- Web Server
-
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
 These settings are recommended in environments that can support them.
 
 .EXAMPLE
-Test-CISBenchmark -Level 1 -ServerType DomainController
+Test-CISBenchmark -Level 1
 
 RecommendationNumber  RecommendationName                                                   Source                    Result
 --------------------  ------------------                                                   ------                    ------
