@@ -349,7 +349,7 @@ function Test-InteractiveLogonScRemoveOption {
 
     process {
         $Setting = $Entry.Display.DisplayString
-        if ([int]$Entry.SettingString -gt 1) {
+        if ([int]$Entry.SettingString -ge 1) {
             $result = $true
         } else {
             $result = $false
