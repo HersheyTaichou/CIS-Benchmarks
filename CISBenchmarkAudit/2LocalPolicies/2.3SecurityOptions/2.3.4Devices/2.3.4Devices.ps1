@@ -50,7 +50,11 @@ function Test-DevicesAddPrinterDrivers {
     }
 
     process {
-        $result = $Setting
+        if ($Setting) {
+            $result = $Setting
+        } else {
+            $result = $false
+        }
     }
 
     end {

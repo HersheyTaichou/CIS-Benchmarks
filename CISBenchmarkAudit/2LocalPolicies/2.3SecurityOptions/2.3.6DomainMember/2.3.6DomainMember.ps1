@@ -82,7 +82,11 @@ function Test-DomainMemberSignSecureChannel {
 
     process {
         [bool]$Setting = [int]$Entry.SettingNumber
-        $result = $Setting
+        if ($Setting) {
+            $result = $Setting
+        } else {
+            $result = $false
+        }
     }
 
     end {
@@ -186,10 +190,10 @@ function Test-DomainMemberRequireStrongKey {
 
     begin {
         $Return = @()
-        $EntryName = ""
+        $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RequireStrongKey"
         $RecommendationNumber = '2.3.6.6'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RequireStrongKey"
+        $RecommendationName = "Ensure 'Domain member: Require strong (Windows 2000 or later) session key' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -198,7 +202,11 @@ function Test-DomainMemberRequireStrongKey {
 
     process {
         [bool]$Setting = [int]$Entry.SettingNumber
-        $result = $Setting
+        if ($Setting) {
+            $result = $Setting
+        } else {
+            $result = $false
+        }
     }
 
     end {

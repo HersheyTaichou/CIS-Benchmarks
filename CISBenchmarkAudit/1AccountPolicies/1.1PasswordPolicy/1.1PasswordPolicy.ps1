@@ -373,7 +373,11 @@ function Test-PasswordPolicyComplexityEnabled {
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
-        $result = $Setting
+        if ($Setting) {
+            $result = $Setting
+        } else {
+            $result = $false
+        }
 
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= $RecommendationNumber
@@ -440,7 +444,11 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
     }
 
     process {
-        $result = $Setting
+        if ($Setting) {
+            $result = $Setting
+        } else {
+            $result = $false
+        }
         $Properties = [PSCustomObject]@{
             'RecommendationNumber'= '1.1.6'
             'ProfileApplicability' = @("Level 1 - Member Server")

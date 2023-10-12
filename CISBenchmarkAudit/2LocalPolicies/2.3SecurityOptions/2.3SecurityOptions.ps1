@@ -150,6 +150,7 @@ function Test-SecurityOptionsInteractiveLogin {
 
     begin {
         $Result = @()
+        $ServerType = Get-ProductType
 
         # If not already present, run GPResult.exe and store the result in a variable
         if (-not($script:gpresult)) {
@@ -158,7 +159,20 @@ function Test-SecurityOptionsInteractiveLogin {
     }
 
     process {
-        $Result += $null
+        $Result += Test-InteractiveLogonDisableCAD
+        $Result += Test-InteractiveLogonDontDisplayLastUserName
+        $Result += Test-InteractiveLogonInactivityTimeoutSecs
+        $Result += Test-InteractiveLogonLegalNoticeText
+        $Result += Test-InteractiveLogonLegalNoticeCaption
+        if (($ServerType -eq 3) -and ($Level -eq 2)) {
+            $Result += Test-InteractiveLogonCachedLogonsCount
+        }
+        $Result += Test-InteractiveLogonPasswordExpiryWarning
+        $Result += Test-InteractiveLogonPasswordExpiryWarning
+        if ($ServerType -eq 3) {
+            $Result += Test-InteractiveLogonForceUnlockLogon
+        }
+        $Result += Test-InteractiveLogonScRemoveOption
     }
 
     end {
