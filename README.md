@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Here you will find in-progress scripts designed to audit and deploy the CIS Benchmarks in a business environment. These scripts are based on version 2.0.0 of the CIS Benchmarks, released on 2023-03-07
+Here you will find in-progress scripts designed to audit the CIS Benchmarks in a business environment. These scripts are based on the Microsoft Windows Server 2022 Benchmark version 2.0.0 , released on 2023-04-14.
 
 These scripts are VERY MUCH a work in progress, so take caution and review them carefully before running them, as what worked in my environment may break yours! These scripts were created as I went through the benchmark documentation and learned how to impliment them on one test environment.
 
@@ -71,7 +71,7 @@ Test-PasswordPolicyPasswordHistory
 I understand that some people may be hesitant to run a large script they found on the internet on a production server. In that case, it is possible to export a copy of the GPO settings on a server, then move that file a separate machine with this script, and run it there.
 
 1. Generate a GP report
-   1. Connect to the server to be evaluated. 
+   1. Connect to the server to be evaluated.
    2. Run the following command:
 
       ```PowerShell

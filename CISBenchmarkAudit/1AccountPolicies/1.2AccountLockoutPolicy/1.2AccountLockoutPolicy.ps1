@@ -212,7 +212,7 @@ function Test-AccountLockoutPolicyAdminLockout {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
-            'Entry' = $RawEntry
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
