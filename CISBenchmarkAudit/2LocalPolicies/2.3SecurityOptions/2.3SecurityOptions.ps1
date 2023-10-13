@@ -222,6 +222,8 @@ function Test-SecurityOptionsNetworkAccess {
     )
 
     begin {
+        $ServerType = Get-ProductType
+
         # If not already present, run GPResult.exe and store the result in a variable
         if (-not($script:gpresult)) {
             $script:gpresult = Get-GPResult
@@ -229,7 +231,22 @@ function Test-SecurityOptionsNetworkAccess {
     }
 
     process {
-        $Result += $null
+        Test-NetworkAccessLSAAnonymousNameLookup
+        if ($ServerType -eq 3) {
+            Test-NetworkAccessRestrictAnonymousSAM
+            Test-NetworkAccessRestrictAnonymous
+        }
+        if ($Level -eq 2) {
+            Test-NetworkAccessDisableDomainCreds
+        }
+        Test-NetworkAccessEveryoneIncludesAnonymous
+        Test-NetworkAccessNullSessionPipes
+        Test-NetworkAccessAllowedExactPaths
+        Test-NetworkAccessAllowedPaths
+        Test-NetworkAccessRestrictNullSessAccess
+        Test-NetworkAccessRestrictRemoteSAM
+        Test-NetworkAccessNullSessionShares
+        Test-NetworkAccessForceGuest
     }
 
     end {
