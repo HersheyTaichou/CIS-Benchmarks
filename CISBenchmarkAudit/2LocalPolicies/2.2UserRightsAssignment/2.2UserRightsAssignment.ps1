@@ -38,7 +38,7 @@ function Test-UserRightsAssignment {
 
     # Check the current value of the setting
     $Setting = @()
-    $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "UserRightsAssignment" -KeyName "Name"
+    $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
     $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
 
     if (-not($setting)) {
@@ -54,15 +54,15 @@ function Test-UserRightsAssignment {
     }
 
     if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $setting)) {
-        $result = $true
+        $Pass = $true
     } elseif (-not(Compare-Object -ReferenceObject $OptionalDef -DifferenceObject $setting)) {
-        $result = $true
+        $Pass = $true
     } else {
-        $result = $false
+        $Pass = $false
     }
 
     $Return = [PSCustomObject]@{
-        'Result'= $result
+        'Pass'= $Pass
         'Setting' = $Setting -join ", "
         'Entry' = $Entry
     }
@@ -88,17 +88,21 @@ function Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.1'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeTrustedCredManAccessPrivilege" -Definition @("")
+    $Pass = Test-UserRightsAssignment -EntryName "SeTrustedCredManAccessPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.1'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
-        'Entry' = $Result.Entry
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
+        'Entry' = $Pass.Entry
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -135,34 +139,47 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
 
     
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $DomainController
+        $Pass = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $DomainController
+        $RecommendationNumber = '2.2.2'
+        $ProfileApplicability = @("Level 1 - Domain Controller")
+        $RecommendationName = "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only)"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.2'
-            'ProfileApplicability' = @("Level 1 - Domain Controller")
-            'RecommendationName'= "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $MemberServer
+        $Pass = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $MemberServer
+        $RecommendationNumber = '2.2.3'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only)"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.3'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } else {
+        $RecommendationNumber = '2.2.3'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only)"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.3'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $false
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $false
             'Setting' = @()
         }
     }
@@ -191,16 +208,20 @@ function Test-UserRightsAssignmentSeTcbPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.4'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Act as part of the operating system' is set to 'No One'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeTcbPrivilege" -Definition @("")
+    $Pass = Test-UserRightsAssignment -EntryName "SeTcbPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.4'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Act as part of the operating system' is set to 'No One'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -226,16 +247,20 @@ function Test-UserRightsAssignmentSeMachineAccountPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.5'
+    $ProfileApplicability = @("Level 1 - Domain Controller")
+    $RecommendationName = "Ensure 'Add workstations to domain' is set to 'Administrators' (DC only)"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeMachineAccountPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeMachineAccountPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.5'
-        'ProfileApplicability' = @("Level 1 - Domain Controller")
-        'RecommendationName'= "Ensure 'Add workstations to domain' is set to 'Administrators' (DC only)"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -261,16 +286,20 @@ function Test-UserRightsAssignmentSeIncreaseQuotaPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.6'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Adjust memory quotas for a process' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeIncreaseQuotaPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE')
+    $Pass = Test-UserRightsAssignment -EntryName "SeIncreaseQuotaPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.6'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Adjust memory quotas for a process' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -296,16 +325,20 @@ function Test-UserRightsAssignmentSeInteractiveLogonRight {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.7'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Allow log on locally' is set to 'Administrators'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeInteractiveLogonRight" -Definition @('Administrators') -OptionalDef @('Backup Operators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeInteractiveLogonRight" -Definition @('Administrators') -OptionalDef @('Backup Operators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.7'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Allow log on locally' is set to 'Administrators'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -343,34 +376,47 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
 
     
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $DomainController
+        $RecommendationNumber = '2.2.8'
+        $ProfileApplicability = @("Level 1 - Domain Controller")
+        $RecommendationName = "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $DomainController
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.8'
-            'ProfileApplicability' = @("Level 1 - Domain Controller")
-            'RecommendationName'= "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $MemberServer -OptionalDef $MSOptional
+        $RecommendationNumber = '2.2.9'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $MemberServer -OptionalDef $MSOptional
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.9'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } else {
+        $RecommendationNumber = '2.2.9'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS only)"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.9'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $false
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $false
             'Setting' = @()
         }
     }
@@ -399,16 +445,20 @@ function Test-UserRightsAssignmentSeBackupPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.7'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Allow log on locally' is set to 'Administrators'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeBackupPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeBackupPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.7'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Allow log on locally' is set to 'Administrators'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -434,16 +484,20 @@ function Test-UserRightsAssignmentSeSystemTimePrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.11'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Change the system time' is set to 'Administrators, LOCAL SERVICE'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeSystemTimePrivilege" -Definition @('Administrators','LOCAL SERVICE')
+    $Pass = Test-UserRightsAssignment -EntryName "SeSystemTimePrivilege" -Definition @('Administrators','LOCAL SERVICE')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.11'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Change the system time' is set to 'Administrators, LOCAL SERVICE'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -469,16 +523,20 @@ function Test-UserRightsAssignmentSeTimeZonePrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.12'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Change the time zone' is set to 'Administrators, LOCAL SERVICE'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeTimeZonePrivilege" -Definition @('Administrators','LOCAL SERVICE')
+    $Pass = Test-UserRightsAssignment -EntryName "SeTimeZonePrivilege" -Definition @('Administrators','LOCAL SERVICE')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.12'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Change the time zone' is set to 'Administrators, LOCAL SERVICE'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -504,16 +562,20 @@ function Test-UserRightsAssignmentSeCreatePagefilePrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.13'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Create a pagefile' is set to 'Administrators'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeCreatePagefilePrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeCreatePagefilePrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.13'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Create a pagefile' is set to 'Administrators'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -539,16 +601,20 @@ function Test-UserRightsAssignmentSeCreateTokenPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.14'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Create a token object' is set to 'No One'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeCreateTokenPrivilege" -Definition @("")
+    $Pass = Test-UserRightsAssignment -EntryName "SeCreateTokenPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.14'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Create a token object' is set to 'No One'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -574,16 +640,20 @@ function Test-UserRightsAssignmentSeCreateGlobalPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.15'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Create global objects' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeCreateGlobalPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE','SERVICE')
+    $Pass = Test-UserRightsAssignment -EntryName "SeCreateGlobalPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE','SERVICE')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.15'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Create global objects' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -609,16 +679,20 @@ function Test-UserRightsAssignmentSeCreatePermanentPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.16'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Create permanent shared objects' is set to 'No One'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeCreatePermanentPrivilege" -Definition @("")
+    $Pass = Test-UserRightsAssignment -EntryName "SeCreatePermanentPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.16'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Create permanent shared objects' is set to 'No One'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -658,34 +732,46 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
 
     
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $DomainController
+        $RecommendationNumber = '2.2.17'
+        $ProfileApplicability = @("Level 1 - Domain Controller")
+        $RecommendationName = "Ensure 'Create symbolic links' is set to 'Administrators' (DC only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $DomainController
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.17'
-            'ProfileApplicability' = @("Level 1 - Domain Controller")
-            'RecommendationName'= "Ensure 'Create symbolic links' is set to 'Administrators' (DC only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $MemberServer -OptionalDef $MSOptional
+        $RecommendationNumber = '2.2.18'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\Virtual Machines' (MS only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $MemberServer -OptionalDef $MSOptional
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.18'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\Virtual Machines' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } else {
+        $RecommendationNumber = '2.2.18'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\Virtual Machines' (MS only)"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.18'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\Virtual Machines' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $false
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $false
             'Setting' = @()
         }
     }
@@ -714,16 +800,20 @@ function Test-UserRightsAssignmentSeDebugPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.19'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Debug programs' is set to 'Administrators'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeDebugPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeDebugPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.19'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Debug programs' is set to 'Administrators'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -761,34 +851,46 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
 
     
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $DomainController
+        $RecommendationNumber = '2.2.20'
+        $ProfileApplicability = @("Level 1 - Domain Controller")
+        $RecommendationName = "Ensure 'Deny access to this computer from the network' to include 'Guests' (DC only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $DomainController
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.20'
-            'ProfileApplicability' = @("Level 1 - Domain Controller")
-            'RecommendationName'= "Ensure 'Deny access to this computer from the network' to include 'Guests' (DC only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $MemberServer -OptionalDef $MSOptional
+        $RecommendationNumber = '2.2.21'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Deny access to this computer from the network' to include 'Guests, Local account and member of Administrators group' (MS only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $MemberServer -OptionalDef $MSOptional
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.21'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Deny access to this computer from the network' to include 'Guests, Local account and member of Administrators group' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } else {
+        $RecommendationNumber = '2.2.21'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Deny access to this computer from the network' to include 'Guests, Local account and member of Administrators group' (MS only)"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.21'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Deny access to this computer from the network' to include 'Guests, Local account and member of Administrators group' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $false
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $false
             'Setting' = @()
         }
     }
@@ -817,16 +919,20 @@ function Test-UserRightsAssignmentSeDenyBatchLogonRight {
     param ()
 
     $Return = @()
+        $RecommendationNumber = '2.2.22'
+        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Deny log on as a batch job' to include 'Guests'"
+        $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeDenyBatchLogonRight" -Definition @('Guests')
+    $Pass = Test-UserRightsAssignment -EntryName "SeDenyBatchLogonRight" -Definition @('Guests')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.22'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Deny log on as a batch job' to include 'Guests'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -852,16 +958,20 @@ function Test-UserRightsAssignmentSeDenyServiceLogonRight {
     param ()
 
     $Return = @()
+        $RecommendationNumber = '2.2.23'
+        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Deny log on as a service' to include 'Guests'"
+        $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeDenyServiceLogonRight" -Definition @('Guests')
+    $Pass = Test-UserRightsAssignment -EntryName "SeDenyServiceLogonRight" -Definition @('Guests')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.23'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Deny log on as a service' to include 'Guests'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -887,16 +997,20 @@ function Test-UserRightsAssignmentSeDenyInteractiveLogonRight {
     param ()
 
     $Return = @()
+        $RecommendationNumber = '2.2.24'
+        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Deny log on locally' to include 'Guests'"
+        $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeDenyInteractiveLogonRight" -Definition @('Guests')
+    $Pass = Test-UserRightsAssignment -EntryName "SeDenyInteractiveLogonRight" -Definition @('Guests')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.24'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Deny log on locally' to include 'Guests'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -933,34 +1047,46 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
 
     
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $DomainController
+        $RecommendationNumber = '2.2.25'
+        $ProfileApplicability = @("Level 1 - Domain Controller")
+        $RecommendationName = "Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $DomainController
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.25'
-            'ProfileApplicability' = @("Level 1 - Domain Controller")
-            'RecommendationName'= "Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $MemberServer
+        $RecommendationNumber = '2.2.26'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $MemberServer
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.26'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } else {
+        $RecommendationNumber = '2.2.26'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only)"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.26'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $false
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $false
             'Setting' = @()
         }
     }
@@ -1000,34 +1126,46 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
 
     
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $DomainController
+        $RecommendationNumber = '2.2.27'
+        $ProfileApplicability = @("Level 1 - Domain Controller")
+        $RecommendationName = "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administrators' (DC only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $DomainController
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.27'
-            'ProfileApplicability' = @("Level 1 - Domain Controller")
-            'RecommendationName'= "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administrators' (DC only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $MemberServer
+        $RecommendationNumber = '2.2.28'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One' (MS only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $MemberServer
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.28'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } else {
+        $RecommendationNumber = '2.2.28'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One' (MS only)"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.28'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $false
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $false
             'Setting' = @()
         }
     }
@@ -1056,16 +1194,20 @@ function Test-UserRightsAssignmentSeRemoteShutdownPrivilege {
     param ()
 
     $Return = @()
+        $RecommendationNumber = '2.2.29'
+        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Force shutdown from a remote system' is set to 'Administrators'"
+        $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeRemoteShutdownPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeRemoteShutdownPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.29'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Force shutdown from a remote system' is set to 'Administrators'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1091,16 +1233,20 @@ function Test-UserRightsAssignmentSeAuditPrivilege {
     param ()
 
     $Return = @()
+        $RecommendationNumber = '2.2.30'
+        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Generate security audits' is set to 'LOCAL SERVICE, NETWORK SERVICE'"
+        $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeAuditPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE')
+    $Pass = Test-UserRightsAssignment -EntryName "SeAuditPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.30'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Generate security audits' is set to 'LOCAL SERVICE, NETWORK SERVICE'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1137,34 +1283,46 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
     $MSOptional = @('IIS_IUSRS')
 
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $DomainController
+        $RecommendationNumber = '2.2.31'
+        $ProfileApplicability = @("Level 1 - Domain Controller")
+        $RecommendationName = "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' (DC only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $DomainController
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.31'
-            'ProfileApplicability' = @("Level 1 - Domain Controller")
-            'RecommendationName'= "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' (DC only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $MemberServer -OptionalDef $MSOptional
+        $RecommendationNumber = '2.2.32'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $MemberServer -OptionalDef $MSOptional
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.32'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } else {
+        $RecommendationNumber = '2.2.32'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only)"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.32'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $false
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $false
             'Setting' = @()
         }
     }
@@ -1193,16 +1351,20 @@ function Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.33'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Increase scheduling priority' is set to 'Administrators, Window Manager\Window Manager Group'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeIncreaseBasePriorityPrivilege" -Definition @('Administrators') -OptionalDef @('Window Manager\Window Manager Group')
+    $Pass = Test-UserRightsAssignment -EntryName "SeIncreaseBasePriorityPrivilege" -Definition @('Administrators') -OptionalDef @('Window Manager\Window Manager Group')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.33'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Increase scheduling priority' is set to 'Administrators, Window Manager\Window Manager Group'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1228,16 +1390,20 @@ function Test-UserRightsAssignmentSeLoadDriverPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.34'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Load and unload device drivers' is set to 'Administrators'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeLoadDriverPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeLoadDriverPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.34'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Load and unload device drivers' is set to 'Administrators'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1263,16 +1429,20 @@ function Test-UserRightsAssignmentSeLockMemoryPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.35'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Lock pages in memory' is set to 'No One'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeLockMemoryPrivilege" -Definition @('')
+    $Pass = Test-UserRightsAssignment -EntryName "SeLockMemoryPrivilege" -Definition @('')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.35'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Lock pages in memory' is set to 'No One'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1298,16 +1468,20 @@ function Test-UserRightsAssignmentSeBatchLogonRight {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.36'
+    $ProfileApplicability = @("Level 2 - Domain Controller")
+    $RecommendationName = "(L2) Ensure 'Log on as a batch job' is set to 'Administrators' (DC Only)"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeBatchLogonRight" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeBatchLogonRight" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.36'
-        'ProfileApplicability' = @("Level 2 - Domain Controller")
-        'RecommendationName'= "Ensure 'Log on as a batch job' is set to 'Administrators' (DC Only)"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1344,34 +1518,46 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
     $MemberServer = @('Administrators')
 
     if ($ProductType -eq 2) {
-        $Result = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $DomainController -OptionalDef $DCOptional
+        $RecommendationNumber = '2.2.37'
+        $ProfileApplicability = @("Level 1 - Domain Controller")
+        $RecommendationName = "Ensure 'Manage auditing and security log' is set to 'Administrators' and (when Exchange is running in the environment) 'Exchange Servers' (DC only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $DomainController -OptionalDef $DCOptional
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.37'
-            'ProfileApplicability' = @("Level 1 - Domain Controller")
-            'RecommendationName'= "Ensure 'Manage auditing and security log' is set to 'Administrators' and (when Exchange is running in the environment) 'Exchange Servers' (DC only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } elseif ($ProductType -eq 3) {
-        $Result = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $MemberServer
+        $RecommendationNumber = '2.2.38'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)"
+        $Source = 'Group Policy Settings'
+        $Pass = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $MemberServer
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.38'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $Result.Result
-            'Setting' = $Result.Setting
-            'Entry' = $Result.Entry
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass.Result
+            'Setting' = $Pass.Setting
+            'Entry' = $Pass.Entry
         }
     } else {
+        $RecommendationNumber = '2.2.38'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.2.38'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)"
-            'Source' = 'Group Policy Settings'
-            'Result'= $false
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $false
             'Setting' = @()
         }
     }
@@ -1400,16 +1586,20 @@ function Test-UserRightsAssignmentSeRelabelPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.39'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Modify an object label' is set to 'No One'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeRelabelPrivilege" -Definition @('')
+    $Pass = Test-UserRightsAssignment -EntryName "SeRelabelPrivilege" -Definition @('')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.39'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Modify an object label' is set to 'No One'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1435,16 +1625,20 @@ function Test-UserRightsAssignmentSeSystemEnvironmentPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.40'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Modify firmware environment values' is set to 'Administrators'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeSystemEnvironmentPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeSystemEnvironmentPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.40'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Modify firmware environment values' is set to 'Administrators'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1470,16 +1664,20 @@ function Test-UserRightsAssignmentSeManageVolumePrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.41'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Perform volume maintenance tasks' is set to 'Administrators'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeManageVolumePrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeManageVolumePrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.41'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Perform volume maintenance tasks' is set to 'Administrators'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1505,16 +1703,20 @@ function Test-UserRightsAssignmentSeProfileSingleProcessPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.42'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Profile single process' is set to 'Administrators'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeProfileSingleProcessPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeProfileSingleProcessPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.42'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Profile single process' is set to 'Administrators'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1540,16 +1742,20 @@ function Test-UserRightsAssignmentSeSystemProfilePrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.43'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Profile system performance' is set to 'Administrators, NT SERVICE\WdiServiceHost'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeSystemProfilePrivilege" -Definition @('Administrators', 'NT SERVICE\WdiServiceHost')
+    $Pass = Test-UserRightsAssignment -EntryName "SeSystemProfilePrivilege" -Definition @('Administrators', 'NT SERVICE\WdiServiceHost')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.43'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Profile system performance' is set to 'Administrators, NT SERVICE\WdiServiceHost'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1575,16 +1781,20 @@ function Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.44'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Replace a process level token' is set to 'LOCAL SERVICE, NETWORK SERVICE'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeAssignPrimaryTokenPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE')
+    $Pass = Test-UserRightsAssignment -EntryName "SeAssignPrimaryTokenPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.44'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Replace a process level token' is set to 'LOCAL SERVICE, NETWORK SERVICE'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1610,16 +1820,20 @@ function Test-UserRightsAssignmentSeRestorePrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.45'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Restore files and directories' is set to 'Administrators'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeRestorePrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeRestorePrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.45'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Restore files and directories' is set to 'Administrators'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1645,16 +1859,20 @@ function Test-UserRightsAssignmentSeShutdownPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.46'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Shut down the system' is set to 'Administrators'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeShutdownPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeShutdownPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.46'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Shut down the system' is set to 'Administrators'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1680,16 +1898,20 @@ function Test-UserRightsAssignmentSeSyncAgentPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.47'
+    $ProfileApplicability = @("Level 1 - Domain Controller")
+    $RecommendationName = "Ensure 'Synchronize directory service data' is set to 'No One' (DC only)"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeSyncAgentPrivilege" -Definition @('')
+    $Pass = Test-UserRightsAssignment -EntryName "SeSyncAgentPrivilege" -Definition @('')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.47'
-        'ProfileApplicability' = @("Level 1 - Domain Controller")
-        'RecommendationName'= "Ensure 'Synchronize directory service data' is set to 'No One' (DC only)"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties
@@ -1715,16 +1937,20 @@ function Test-UserRightsAssignmentSeTakeOwnershipPrivilege {
     param ()
 
     $Return = @()
+    $RecommendationNumber = '2.2.48'
+    $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+    $RecommendationName = "Ensure 'Take ownership of files or other objects' is set to 'Administrators'"
+    $Source = 'Group Policy Settings'
 
-    $Result = Test-UserRightsAssignment -EntryName "SeTakeOwnershipPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeTakeOwnershipPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber'= '2.2.48'
-        'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        'RecommendationName'= "Ensure 'Take ownership of files or other objects' is set to 'Administrators'"
-        'Source' = 'Group Policy Settings'
-        'Result'= $Result.Result
-        'Setting' = $Result.Setting
+        'RecommendationNumber' = $RecommendationNumber
+        'ProfileApplicability' = $ProfileApplicability
+        'RecommendationName'= $RecommendationName
+        'Source' = $Source
+        'Pass'= $Pass.Result
+        'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
     $Return += $Properties

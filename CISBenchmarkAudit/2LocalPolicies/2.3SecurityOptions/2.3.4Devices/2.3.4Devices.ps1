@@ -7,25 +7,29 @@ function Test-DevicesAllocateDASD {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AllocateDASD"
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
         [string]$Setting = $Entry.Display.DisplayString
     }
 
     process {
         if ($Setting = "Administrators") {
-            $result = $true
+            $Pass = $true
         } else {
-            $result = $false
+            $Pass = $false
         }
     }
 
     end {
+        $RecommendationNumber = '2.3.4.1'
+        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.3.4.1'
-            'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'"
-            'Source' = 'Group Policy Settings'
-            'Result'= $result
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -45,25 +49,29 @@ function Test-DevicesAddPrinterDrivers {
 
          # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\AddPrinterDrivers"
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
         [bool]$Setting = [int]$Entry.SettingNumber
     }
 
     process {
         if ($Setting) {
-            $result = $Setting
+            $Pass = $Setting
         } else {
-            $result = $false
+            $Pass = $false
         }
     }
 
     end {
+        $RecommendationNumber = '2.3.4.2'
+        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.3.4.2'
-            'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'"
-            'Source' = 'Group Policy Settings'
-            'Result'= $result
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }

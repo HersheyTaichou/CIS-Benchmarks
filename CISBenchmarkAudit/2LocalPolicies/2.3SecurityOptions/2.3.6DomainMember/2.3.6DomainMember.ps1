@@ -7,20 +7,24 @@ function Test-DomainMemberRequireSignOrSeal {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RequireSignOrSeal"
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
     }
 
     process {
-        [bool]$result = [int]$Entry.SettingNumber
+        [bool]$Pass = [int]$Entry.SettingNumber
     }
 
     end {
+        $RecommendationNumber = '2.3.6.1'
+        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Domain member: Digitally encrypt or sign secure channel data (always)' is set to 'Enabled'"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.3.6.1'
-            'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Domain member: Digitally encrypt or sign secure channel data (always)' is set to 'Enabled'"
-            'Source' = 'Group Policy Settings'
-            'Result'= $result
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass
             'Setting' = [int]$Entry.SettingNumber
             'Entry' = $Entry
         }
@@ -40,20 +44,24 @@ function Test-DomainMemberSealSecureChannel {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\SealSecureChannel"
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
     }
 
     process {
-        [bool]$result = [int]$Entry.SettingNumber
+        [bool]$Pass = [int]$Entry.SettingNumber
     }
 
     end {
+        $RecommendationNumber = '2.3.6.2'
+        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Domain member: Digitally encrypt secure channel data (when possible)' is set to 'Enabled'"
+        $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '2.3.6.2'
-            'ProfileApplicability' = @("Level 1 - Domain Controller","Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Domain member: Digitally encrypt secure channel data (when possible)' is set to 'Enabled'"
-            'Source' = 'Group Policy Settings'
-            'Result'= $result
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -73,29 +81,29 @@ function Test-DomainMemberSignSecureChannel {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\SignSecureChannel"
         $RecommendationNumber = '2.3.6.3'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Domain member: Digitally sign secure channel data (when possible)' is set to 'Enabled'"
+        $RecommendationName = "(L1) Ensure 'Domain member: Digitally sign secure channel data (when possible)' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
     }
 
     process {
         [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Setting) {
-            $result = $Setting
+        if ($Entry.KeyName) {
+            $Pass = $Setting
         } else {
-            $result = $false
+            $Pass = $false
         }
     }
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= $RecommendationNumber
+            'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Result'= $result
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -115,31 +123,31 @@ function Test-DomainMemberDisablePasswordChange {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\DisablePasswordChange"
         $RecommendationNumber = '2.3.6.4'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Domain member: Disable machine account password changes' is set to 'Disabled'"
+        $RecommendationName = "(L1) Ensure 'Domain member: Disable machine account password changes' is set to 'Disabled'"
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
     }
 
     process {
         [bool]$Setting = [int]$Entry.SettingNumber
         if ($Setting) {
-            $result = $false
+            $Pass = $false
         } elseif ($setting -eq $false) {
-            $result = $true
+            $Pass = $true
         } else {
-            $result = $false
+            $Pass = $false
         }
     }
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= $RecommendationNumber
+            'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Result'= $result
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -159,27 +167,27 @@ function Test-DomainMemberMaximumPasswordAge {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\MaximumPasswordAge"
         $RecommendationNumber = '2.3.6.5'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Domain member: Maximum machine account password age' is set to '30 or fewer days, but not 0'"
+        $RecommendationName = "(L1) Ensure 'Domain member: Maximum machine account password age' is set to '30 or fewer days, but not 0'"
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
     }
 
     process {
         $Setting = [int]$Entry.SettingNumber
         if (($Setting -le 30) -and ($Setting -gt 0)) {
-            $result = $true
+            $Pass = $true
         }
     }
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= $RecommendationNumber
+            'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Result'= $result
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -199,29 +207,29 @@ function Test-DomainMemberRequireStrongKey {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RequireStrongKey"
         $RecommendationNumber = '2.3.6.6'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Domain member: Require strong (Windows 2000 or later) session key' is set to 'Enabled'"
+        $RecommendationName = "(L1) Ensure 'Domain member: Require strong (Windows 2000 or later) session key' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
     }
 
     process {
         [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Setting) {
-            $result = $Setting
+        if ($Entry.KeyName) {
+            $Pass = $Setting
         } else {
-            $result = $false
+            $Pass = $false
         }
     }
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= $RecommendationNumber
+            'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Result'= $result
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }

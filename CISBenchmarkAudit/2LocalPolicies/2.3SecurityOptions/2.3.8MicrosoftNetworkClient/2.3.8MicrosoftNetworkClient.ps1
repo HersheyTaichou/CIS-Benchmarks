@@ -7,29 +7,29 @@ function Test-MicrosoftNetworkClientRequireSecuritySignature {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanmanWorkstation\Parameters\RequireSecuritySignature"
         $RecommendationNumber = '2.3.8.1'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Microsoft network client: Digitally sign communications (always)' is set to 'Enabled'"
+        $RecommendationName = "(L1) Ensure 'Microsoft network client: Digitally sign communications (always)' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
     }
 
     process {
         [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Setting) {
-            $result = $Setting
+        if ($Entry.KeyName) {
+            $Pass = $Setting
         } else {
-            $result = $false
+            $Pass = $false
         }
     }
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= $RecommendationNumber
+            'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Result'= $result
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -49,29 +49,29 @@ function Test-MicrosoftNetworkClientEnableSecuritySignature {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanmanWorkstation\Parameters\EnableSecuritySignature"
         $RecommendationNumber = '2.3.8.2'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Microsoft network client: Digitally sign communications (if server agrees)' is set to 'Enabled'"
+        $RecommendationName = "(L1) Ensure 'Microsoft network client: Digitally sign communications (if server agrees)' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
     }
 
     process {
         [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Setting) {
-            $result = $Setting
+        if ($Entry.KeyName) {
+            $Pass = $Setting
         } else {
-            $result = $false
+            $Pass = $false
         }
     }
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= $RecommendationNumber
+            'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Result'= $result
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -91,31 +91,31 @@ function Test-MicrosoftNetworkClientEnablePlainTextPassword {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanmanWorkstation\Parameters\EnablePlainTextPassword"
         $RecommendationNumber = '2.3.8.3'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Microsoft network client: Send unencrypted password to third-party SMB servers' is set to 'Disabled'"
+        $RecommendationName = "(L1) Ensure 'Microsoft network client: Send unencrypted password to third-party SMB servers' is set to 'Disabled'"
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
     }
 
     process {
         [bool]$Setting = [int]$Entry.SettingNumber
         if ($Setting) {
-            $result = $false
+            $Pass = $false
         } elseif ($setting -eq $false) {
-            $result = $true
+            $Pass = $true
         } else {
-            $result = $false
+            $Pass = $false
         }
     }
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= $RecommendationNumber
+            'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Result'= $result
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }

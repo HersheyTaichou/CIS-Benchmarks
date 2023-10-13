@@ -22,29 +22,29 @@ function Test-PasswordPolicyPasswordHistory {
         $Return = @()
         $RecommendationNumber = '1.1.1'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Enforce password history' is set to '24 or more password(s)'"
+        $RecommendationName = "(L1) Ensure 'Enforce password history' is set to '24 or more password(s)'"
         $Source = 'Group Policy Settings'
 
         #Find the Password History Size applied to this machine
         $EntryName = "PasswordHistorySize"
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "Account" -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
         $Setting = [int]$Entry.SettingNumber
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
         if ($Setting -ge 24) {
-            $result = $true
+            $Pass = $true
         } else {
-            $result = $false
+            $Pass = $false
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= $RecommendationNumber
+            'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Result'= $result
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -56,19 +56,19 @@ function Test-PasswordPolicyPasswordHistory {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 if ($FGPasswordPolicy.PasswordHistoryCount -ge "24") {
-                    $Result = $true
+                    $Pass = $true
                 } else {
-                    $result = $false
+                    $Pass = $false
                 }
 
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber'= $RecommendationNumber
+                    'RecommendationNumber' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
                     'RecommendationName'= $RecommendationName
                     'Source' = $Source
-                    'Result'= $result
+                    'Pass'= $Pass
                     'Setting' = $FGPasswordPolicy.PasswordHistoryCount
                     'Entry' = $FGPasswordPolicy
                 }
@@ -107,29 +107,29 @@ function Test-PasswordPolicyMaxPasswordAge {
         $Return = @()
         $RecommendationNumber = '1.1.2'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
+        $RecommendationName = "(L1) Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
         $Source = 'Group Policy Settings'
 
         #Find the Password History Size applied to this machine
         $EntryName = "MaximumPasswordAge"
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "Account" -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
         $Setting = [int]$Entry.SettingNumber
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
         if ($Setting -gt "0" -and $Setting -le "365") {
-            $result = $true
+            $Pass = $true
         } else {
-            $result = $false
+            $Pass = $false
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= $RecommendationNumber
+            'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Result'= $result
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -141,19 +141,19 @@ function Test-PasswordPolicyMaxPasswordAge {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 if ($FGPasswordPolicy.MaxPasswordAge -gt "0" -and $FGPasswordPolicy.MaxPasswordAge -le "365") {
-                    $Result = $true
+                    $Pass = $true
                 } else {
-                    $result = $false
+                    $Pass = $false
                 }
 
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber'= $RecommendationNumber
+                    'RecommendationNumber' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
                     'RecommendationName'= $RecommendationName
                     'Source' = $Source
-                    'Result'= $result
+                    'Pass'= $Pass
                     'Setting' = $FGPasswordPolicy.MaxPasswordAge
                     'Entry' = $FGPasswordPolicy
                 }
@@ -192,29 +192,29 @@ function Test-PasswordPolicyMinPasswordAge {
         $Return = @()
         $RecommendationNumber = '1.1.3'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Minimum password age' is set to '1 or more day(s)'"
+        $RecommendationName = "(L1) Ensure 'Minimum password age' is set to '1 or more day(s)'"
         $Source = 'Group Policy Settings'
 
         #Find the Password History Size applied to this machine
         $EntryName = "MinimumPasswordAge"
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "Account" -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
         $Setting = [int]$Entry.SettingNumber
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
         if ($Setting -gt 0) {
-            $result = $true
+            $Pass = $true
         } else {
-            $result = $false
+            $Pass = $false
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= $RecommendationNumber
+            'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Result'= $result
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -226,19 +226,19 @@ function Test-PasswordPolicyMinPasswordAge {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 if ($FGPasswordPolicy.MinPasswordAge -gt 0) {
-                    $Result = $true
+                    $Pass = $true
                 } else {
-                    $result = $false
+                    $Pass = $false
                 }
 
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber'= $RecommendationNumber
+                    'RecommendationNumber' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
                     'RecommendationName'= $RecommendationName
                     'Source' = $Source
-                    'Result'= $result
+                    'Pass'= $Pass
                     'Setting' = $FGPasswordPolicy.MinPasswordAge
                     'Entry' = $FGPasswordPolicy
                 }
@@ -277,29 +277,29 @@ function Test-PasswordPolicyMinPasswordLength {
         $Return = @()
         $RecommendationNumber = '1.1.4'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Minimum password length' is set to '14 or more character(s)'"
+        $RecommendationName = "(L1) Ensure 'Minimum password length' is set to '14 or more character(s)'"
         $Source = 'Group Policy Settings'
 
         #Find the Password History Size applied to this machine
         $EntryName = "MinimumPasswordLength"
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "Account" -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
         $Setting = [int]$Entry.SettingNumber
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
         if ($Setting -ge 14) {
-            $result = $true
+            $Pass = $true
         } else {
-            $result = $false
+            $Pass = $false
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= $RecommendationNumber
+            'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Result'= $result
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -311,19 +311,19 @@ function Test-PasswordPolicyMinPasswordLength {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 if ($FGPasswordPolicy.MinPasswordLength -ge 14) {
-                    $Result = $true
+                    $Pass = $true
                 } else {
-                    $result = $false
+                    $Pass = $false
                 }
 
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber'= $RecommendationNumber
+                    'RecommendationNumber' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
                     'RecommendationName'= $RecommendationName
                     'Source' = $Source
-                    'Result'= $result
+                    'Pass'= $Pass
                     'Setting' = $FGPasswordPolicy.MinPasswordLength
                     'Entry' = $FGPasswordPolicy
                 }
@@ -362,29 +362,29 @@ function Test-PasswordPolicyComplexityEnabled {
         $Return = @()
         $RecommendationNumber = '1.1.5'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Password must meet complexity requirements' is set to 'Enabled'"
+        $RecommendationName = "(L1) Ensure 'Password must meet complexity requirements' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
 
         #Find the Password History Size applied to this machine
         $EntryName = "PasswordComplexity"
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "Account" -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
         $Setting = [bool]$Entry.SettingBoolean
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
         if ($Setting) {
-            $result = $Setting
+            $Pass = $Setting
         } else {
-            $result = $false
+            $Pass = $false
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= $RecommendationNumber
+            'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Result'= $result
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -395,16 +395,16 @@ function Test-PasswordPolicyComplexityEnabled {
         if ($ProductType -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-                $result = [bool]$FGPasswordPolicy.ComplexityEnabled
+                $Pass = [bool]$FGPasswordPolicy.ComplexityEnabled
 
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber'= $RecommendationNumber
+                    'RecommendationNumber' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
                     'RecommendationName'= $RecommendationName
                     'Source' = $Source
-                    'Result'= $result
+                    'Pass'= $Pass
                     'Setting' = [bool]$FGPasswordPolicy.ComplexityEnabled
                     'Entry' = $FGPasswordPolicy
                 }
@@ -439,22 +439,26 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
 
     begin {
         $EntryName = "MACHINE\System\CurrentControlSet\Control\SAM\RelaxMinimumPasswordLengthLimits"
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
+        $RecommendationNumber = '1.1.6'
+        $ProfileApplicability = @("Level 1 - Member Server")
+        $RecommendationName = "Ensure 'Relax minimum password length limits' is set to 'Enabled'"
+        $Source = 'Group Policy Settings'
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
         $Setting = [bool]$Entry.SettingNumber
     }
 
     process {
         if ($Setting) {
-            $result = $Setting
+            $Pass = $Setting
         } else {
-            $result = $false
+            $Pass = $false
         }
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= '1.1.6'
-            'ProfileApplicability' = @("Level 1 - Member Server")
-            'RecommendationName'= "Ensure 'Relax minimum password length limits' is set to 'Enabled'"
-            'Source' = 'Group Policy Settings'
-            'Result'= $result
+            'RecommendationNumber' = $RecommendationNumber
+            'ProfileApplicability' = $ProfileApplicability
+            'RecommendationName'= $RecommendationName
+            'Source' = $Source
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -491,31 +495,31 @@ function Test-PasswordPolicyReversibleEncryption {
         $Return = @()
         $RecommendationNumber = '1.1.7'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Store passwords using reversible encryption' is set to 'Disabled'"
+        $RecommendationName = "(L1) Ensure 'Store passwords using reversible encryption' is set to 'Disabled'"
         $Source = 'Group Policy Settings'
 
         #Find the Password History Size applied to this machine
         $EntryName = "ClearTextPassword"
-        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "Account" -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
         [string]$Setting = $Entry.SettingBoolean
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
         if ($Setting -eq "false") {
-            $result = $true
+            $Pass = $true
             $Setting = $false
         } else {
-            $result = $false
+            $Pass = $false
             $Setting = $true
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber'= $RecommendationNumber
+            'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Result'= $result
+            'Pass'= $Pass
             'Setting' = $Setting
             'Entry' = $Entry
         }
@@ -526,16 +530,16 @@ function Test-PasswordPolicyReversibleEncryption {
         if ($ProductType -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-                $result = [bool]$FGPasswordPolicy.ReversibleEncryptionEnabled
+                $Pass = [bool]$FGPasswordPolicy.ReversibleEncryptionEnabled
 
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber'= $RecommendationNumber
+                    'RecommendationNumber' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
                     'RecommendationName'= $RecommendationName
                     'Source' = $Source
-                    'Result'= $result
+                    'Pass'= $Pass
                     'Setting' = [bool]$FGPasswordPolicy.ReversibleEncryptionEnabled
                     'Entry' = $FGPasswordPolicy
                 }

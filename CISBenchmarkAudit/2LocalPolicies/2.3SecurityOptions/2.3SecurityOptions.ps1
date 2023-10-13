@@ -268,7 +268,16 @@ function Test-SecurityOptionsNetworkSecurity {
     }
 
     process {
-        
+        Test-NetworkSecurityUseMachineId
+        Test-NetworkSecurityAllowNullSessionFallback
+        Test-NetworkSecurityAllowOnlineID
+        Test-NetworkSecuritySupportedEncryptionTypes
+        Test-NetworkSecurityNoLMHash
+        Test-NetworkSecurityForceLogoffWhenHourExpire
+        Test-NetworkSecurityLmCompatibilityLevel
+        Test-NetworkSecurityLDAPClientIntegrity
+        Test-NetworkSecurityNTLMMinClientSec
+        Test-NetworkSecurityNTLMMinServerSec
     }
 
     end {
@@ -290,6 +299,7 @@ function Test-SecurityOptionsShutdown {
     }
 
     process {
+        Test-ShutdownShutdownWithoutLogon
     }
 
     end {
@@ -311,6 +321,7 @@ function Test-SecurityOptionsSystemObjects {
     }
 
     process {
+
     }
 
     end {
@@ -332,6 +343,8 @@ function Test-SecurityOptionsUserAccountControl {
     }
 
     process {
+        Test-SystemObjectsObCaseInsensitive
+        Test-SystemObjectsProtectionMode
     }
 
     end {

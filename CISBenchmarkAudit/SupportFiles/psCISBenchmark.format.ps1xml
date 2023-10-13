@@ -32,7 +32,7 @@
                                 <PropertyName>Source</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>Result</PropertyName>
+                                <PropertyName>Pass</PropertyName>
                             </TableColumnItem>
                         </TableColumnItems>
                     </TableRowEntry>
@@ -61,7 +61,7 @@
                                 <PropertyName>Source</PropertyName>
                             </ListItem>
                             <ListItem>
-                                <PropertyName>Result</PropertyName>
+                                <PropertyName>Pass</PropertyName>
                             </ListItem>
                             <ListItem>
                                 <PropertyName>Setting</PropertyName>
