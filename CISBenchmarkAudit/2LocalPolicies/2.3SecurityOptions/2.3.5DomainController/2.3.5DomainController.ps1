@@ -23,7 +23,7 @@ function Test-DomainControllerSubmitControl {
     end {
         $RecommendationNumber = '2.3.5.1'
         $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "Ensure 'Domain controller: Allow server operators to schedule tasks' is set to 'Disabled' (DC only)"
+        $RecommendationName = "(L1) Ensure 'Domain controller: Allow server operators to schedule tasks' is set to 'Disabled' (DC only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber
@@ -66,7 +66,7 @@ function Test-DomainControllerVulnerableChannelAllowList {
     end {
         $RecommendationNumber = '2.3.5.2'
         $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "Ensure 'Domain controller: Allow vulnerable Netlogon secure channel connections' is set to 'Not Configured'"
+        $RecommendationName = "(L1) Ensure 'Domain controller: Allow vulnerable Netlogon secure channel connections' is set to 'Not Configured'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber
@@ -107,7 +107,7 @@ function Test-DomainControllerLdapEnforceChannelBinding {
     end {
         $RecommendationNumber = '2.3.5.3'
         $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "Ensure 'Domain controller: LDAP server channel binding token requirements' is set to 'Always'"
+        $RecommendationName = "(L1) Ensure 'Domain controller: LDAP server channel binding token requirements' is set to 'Always'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber
@@ -149,7 +149,7 @@ function Test-DomainControllerLDAPServerIntegrity {
     end {
         $RecommendationNumber = '2.3.5.4'
         $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "Ensure 'Domain controller: LDAP server signing requirements' is set to 'Require signing' (DC only)"
+        $RecommendationName = "(L1) Ensure 'Domain controller: LDAP server signing requirements' is set to 'Require signing' (DC only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber
@@ -193,7 +193,7 @@ function Test-DomainControllerRefusePasswordChange {
     end {
         $RecommendationNumber = '2.3.5.5'
         $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "Ensure 'Domain controller: Refuse machine account password changes' is set to 'Disabled' (DC only)"
+        $RecommendationName = "(L1) Ensure 'Domain controller: Refuse machine account password changes' is set to 'Disabled' (DC only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber

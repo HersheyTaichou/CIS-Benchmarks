@@ -22,7 +22,7 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
     end {
         $RecommendationNumber = '2.3.2.1'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled'"
+        $RecommendationName = "(L1) Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber
@@ -66,7 +66,7 @@ function Test-AuditCrashOnAuditFail {
     end {
         $RecommendationNumber = '2.3.2.2'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Audit: Shut down system immediately if unable to log security audits' is set to 'Disabled'"
+        $RecommendationName = "(L1) Ensure 'Audit: Shut down system immediately if unable to log security audits' is set to 'Disabled'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber

@@ -17,7 +17,7 @@ function Test-DomainMemberRequireSignOrSeal {
     end {
         $RecommendationNumber = '2.3.6.1'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Domain member: Digitally encrypt or sign secure channel data (always)' is set to 'Enabled'"
+        $RecommendationName = "(L1) Ensure 'Domain member: Digitally encrypt or sign secure channel data (always)' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber
@@ -54,7 +54,7 @@ function Test-DomainMemberSealSecureChannel {
     end {
         $RecommendationNumber = '2.3.6.2'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Domain member: Digitally encrypt secure channel data (when possible)' is set to 'Enabled'"
+        $RecommendationName = "(L1) Ensure 'Domain member: Digitally encrypt secure channel data (when possible)' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber

@@ -22,7 +22,7 @@ function Test-DevicesAllocateDASD {
     end {
         $RecommendationNumber = '2.3.4.1'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'"
+        $RecommendationName = "(L1) Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber
@@ -64,7 +64,7 @@ function Test-DevicesAddPrinterDrivers {
     end {
         $RecommendationNumber = '2.3.4.2'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'"
+        $RecommendationName = "(L1) Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber
