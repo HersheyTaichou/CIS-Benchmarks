@@ -16,7 +16,13 @@ function Test-InteractiveLogonDisableCAD {
 
     process {
         [bool]$Setting = [int]$Entry.SettingNumber
-        $result = -not($Setting)
+        if ($Setting) {
+            $result = $false
+        } elseif ($setting -eq $false) {
+            $result = $true
+        } else {
+            $result = $false
+        }
     }
 
     end {

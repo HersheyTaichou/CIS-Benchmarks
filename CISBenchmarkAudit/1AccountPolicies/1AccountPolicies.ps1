@@ -43,15 +43,15 @@ function Test-AccountPoliciesPasswordPolicy {
         $script:gpresult = Get-GPResult
     }
 
-    $Result += Test-PasswordPolicyPasswordHistory
-    $Result += Test-PasswordPolicyMaxPasswordAge
-    $Result += Test-PasswordPolicyMinPasswordAge
-    $Result += Test-PasswordPolicyMinPasswordLength
-    $Result += Test-PasswordPolicyComplexityEnabled
+    Test-PasswordPolicyPasswordHistory
+    Test-PasswordPolicyMaxPasswordAge
+    Test-PasswordPolicyMinPasswordAge
+    Test-PasswordPolicyMinPasswordLength
+    Test-PasswordPolicyComplexityEnabled
     if ($ServerType -eq 3) {
         $Result += Test-PasswordPolicyRelaxMinimumPasswordLengthLimits
     }
-    $Result += Test-PasswordPolicyReversibleEncryption
+    Test-PasswordPolicyReversibleEncryption
 
     return $Result
 }

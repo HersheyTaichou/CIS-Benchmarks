@@ -168,7 +168,6 @@ function Test-SecurityOptionsInteractiveLogin {
             $Result += Test-InteractiveLogonCachedLogonsCount
         }
         $Result += Test-InteractiveLogonPasswordExpiryWarning
-        $Result += Test-InteractiveLogonPasswordExpiryWarning
         if ($ServerType -eq 3) {
             $Result += Test-InteractiveLogonForceUnlockLogon
         }
@@ -197,7 +196,9 @@ function Test-SecurityOptionsMicrosoftNetworkClient {
     }
 
     process {
-        $Result += $null
+        $Result += Test-MicrosoftNetworkClientRequireSecuritySignature
+        $Result += Test-MicrosoftNetworkClientEnableSecuritySignature
+        $Result += Test-MicrosoftNetworkClientEnablePlainTextPassword
     }
 
     end {

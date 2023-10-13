@@ -51,7 +51,9 @@ function Test-AccountsEnableGuestAccount {
 
     process {
         # Check if the domain setting meets the CIS Benchmark
-        if ($Setting -eq $false) {
+        if ($Setting) {
+            $result = $false
+        } elseif ($setting -eq $false) {
             $result = $true
         } else {
             $result = $false

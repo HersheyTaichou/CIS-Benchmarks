@@ -11,7 +11,9 @@ function Test-DomainControllerSubmitControl {
     }
 
     process {
-        if (-not($Setting)) {
+        if ($Setting) {
+            $result = $false
+        } elseif ($setting -eq $false) {
             $result = $true
         } else {
             $result = $false
@@ -163,7 +165,9 @@ function Test-DomainControllerRefusePasswordChange {
     }
 
     process {
-        if (-not($Setting)) {
+        if ($Setting) {
+            $result = $false
+        } elseif ($setting -eq $false) {
             $result = $true
         } else {
             $result = $false
