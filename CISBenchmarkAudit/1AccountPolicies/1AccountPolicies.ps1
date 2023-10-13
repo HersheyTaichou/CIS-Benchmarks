@@ -35,7 +35,6 @@ function Test-AccountPoliciesPasswordPolicy {
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
-    $Result = @()
     $ServerType = Get-ProductType
 
     # If not already present, run GPResult.exe and store the result in a variable
@@ -49,11 +48,9 @@ function Test-AccountPoliciesPasswordPolicy {
     Test-PasswordPolicyMinPasswordLength
     Test-PasswordPolicyComplexityEnabled
     if ($ServerType -eq 3) {
-        $Result += Test-PasswordPolicyRelaxMinimumPasswordLengthLimits
+        Test-PasswordPolicyRelaxMinimumPasswordLengthLimits
     }
     Test-PasswordPolicyReversibleEncryption
-
-    return $Result
 }
 
 <#
@@ -93,7 +90,6 @@ function Test-AccountPoliciesAccountLockoutPolicy {
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
-    $Result = @()
     $ServerType = Get-ProductType
 
     # If not already present, run GPResult.exe and store the result in a variable
@@ -101,14 +97,13 @@ function Test-AccountPoliciesAccountLockoutPolicy {
         $script:gpresult = Get-GPResult
     }
 
-    $Result += Test-AccountLockoutPolicyLockoutDuration
-    $Result += Test-AccountLockoutPolicyLockoutThreshold
+    Test-AccountLockoutPolicyLockoutDuration
+    Test-AccountLockoutPolicyLockoutThreshold
     if ($ServerType -eq 3) {
-        $Result += Test-AccountLockoutPolicyAdminLockout
+        Test-AccountLockoutPolicyAdminLockout
     }
-    $Result += Test-AccountLockoutPolicyResetLockoutCount
+    Test-AccountLockoutPolicyResetLockoutCount
 
-    return $Result
 }
 
 <#
@@ -148,15 +143,11 @@ function Test-CISBenchmarkAccountPolicies {
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
-    $Result = @()
-
     # If not already present, run GPResult.exe and store the result in a variable
     if (-not($script:gpresult)) {
         $script:gpresult = Get-GPResult
     }
 
-    $Result += Test-AccountPoliciesPasswordPolicy -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-AccountPoliciesAccountLockoutPolicy -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-
-    return $Result
+    Test-AccountPoliciesPasswordPolicy -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-AccountPoliciesAccountLockoutPolicy -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
 }

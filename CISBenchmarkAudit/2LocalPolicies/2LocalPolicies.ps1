@@ -54,7 +54,6 @@ function Test-LocalPoliciesUserRightsAssignment {
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
-    $Result = @()
     $ServerType = Get-ProductType
 
     # If not already present, run GPResult.exe and store the result in a variable
@@ -62,55 +61,53 @@ function Test-LocalPoliciesUserRightsAssignment {
         $script:gpresult = Get-GPResult
     }
 
-    $Result += Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege
-    $Result += Test-UserRightsAssignmentSeNetworkLogonRight
-    $Result += Test-UserRightsAssignmentSeTcbPrivilege
+    Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege
+    Test-UserRightsAssignmentSeNetworkLogonRight
+    Test-UserRightsAssignmentSeTcbPrivilege
     if ($ServerType -eq 2) {
-        $Result += Test-UserRightsAssignmentSeMachineAccountPrivilege
+        Test-UserRightsAssignmentSeMachineAccountPrivilege
     }
-    $Result += Test-UserRightsAssignmentSeIncreaseQuotaPrivilege
-    $Result += Test-UserRightsAssignmentSeIncreaseQuotaPrivilege
-    $Result += Test-UserRightsAssignmentSeInteractiveLogonRight
-    $Result += Test-UserRightsAssignmentSeRemoteInteractiveLogonRight
-    $Result += Test-UserRightsAssignmentSeBackupPrivilege
-    $Result += Test-UserRightsAssignmentSeSystemTimePrivilege
-    $Result += Test-UserRightsAssignmentSeTimeZonePrivilege
-    $Result += Test-UserRightsAssignmentSeCreatePagefilePrivilege
-    $Result += Test-UserRightsAssignmentSeCreateTokenPrivilege
-    $Result += Test-UserRightsAssignmentSeCreateGlobalPrivilege
-    $Result += Test-UserRightsAssignmentSeCreatePermanentPrivilege
-    $Result += Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege
-    $Result += Test-UserRightsAssignmentSeDebugPrivilege
-    $Result += Test-UserRightsAssignmentSeDenyNetworkLogonRight
-    $Result += Test-UserRightsAssignmentSeDenyBatchLogonRight
-    $Result += Test-UserRightsAssignmentSeDenyServiceLogonRight
-    $Result += Test-UserRightsAssignmentSeDenyInteractiveLogonRight
-    $Result += Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight
-    $Result += Test-UserRightsAssignmentSeEnableDelegationPrivilege
-    $Result += Test-UserRightsAssignmentSeRemoteShutdownPrivilege
-    $Result += Test-UserRightsAssignmentSeAuditPrivilege
-    $Result += Test-UserRightsAssignmentSeImpersonatePrivilege
-    $Result += Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege
-    $Result += Test-UserRightsAssignmentSeLoadDriverPrivilege
-    $Result += Test-UserRightsAssignmentSeLockMemoryPrivilege
+    Test-UserRightsAssignmentSeIncreaseQuotaPrivilege
+    Test-UserRightsAssignmentSeIncreaseQuotaPrivilege
+    Test-UserRightsAssignmentSeInteractiveLogonRight
+    Test-UserRightsAssignmentSeRemoteInteractiveLogonRight
+    Test-UserRightsAssignmentSeBackupPrivilege
+    Test-UserRightsAssignmentSeSystemTimePrivilege
+    Test-UserRightsAssignmentSeTimeZonePrivilege
+    Test-UserRightsAssignmentSeCreatePagefilePrivilege
+    Test-UserRightsAssignmentSeCreateTokenPrivilege
+    Test-UserRightsAssignmentSeCreateGlobalPrivilege
+    Test-UserRightsAssignmentSeCreatePermanentPrivilege
+    Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege
+    Test-UserRightsAssignmentSeDebugPrivilege
+    Test-UserRightsAssignmentSeDenyNetworkLogonRight
+    Test-UserRightsAssignmentSeDenyBatchLogonRight
+    Test-UserRightsAssignmentSeDenyServiceLogonRight
+    Test-UserRightsAssignmentSeDenyInteractiveLogonRight
+    Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight
+    Test-UserRightsAssignmentSeEnableDelegationPrivilege
+    Test-UserRightsAssignmentSeRemoteShutdownPrivilege
+    Test-UserRightsAssignmentSeAuditPrivilege
+    Test-UserRightsAssignmentSeImpersonatePrivilege
+    Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege
+    Test-UserRightsAssignmentSeLoadDriverPrivilege
+    Test-UserRightsAssignmentSeLockMemoryPrivilege
     if ($ServerType -eq 2 -and $Level -eq 2) {
-        $Result += Test-UserRightsAssignmentSeBatchLogonRight
+        Test-UserRightsAssignmentSeBatchLogonRight
     }
-    $Result += Test-UserRightsAssignmentSeSecurityPrivilege
-    $Result += Test-UserRightsAssignmentSeRelabelPrivilege
-    $Result += Test-UserRightsAssignmentSeSystemEnvironmentPrivilege
-    $Result += Test-UserRightsAssignmentSeManageVolumePrivilege
-    $Result += Test-UserRightsAssignmentSeProfileSingleProcessPrivilege
-    $Result += Test-UserRightsAssignmentSeSystemProfilePrivilege
-    $Result += Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege
-    $Result += Test-UserRightsAssignmentSeRestorePrivilege
-    $Result += Test-UserRightsAssignmentSeShutdownPrivilege
+    Test-UserRightsAssignmentSeSecurityPrivilege
+    Test-UserRightsAssignmentSeRelabelPrivilege
+    Test-UserRightsAssignmentSeSystemEnvironmentPrivilege
+    Test-UserRightsAssignmentSeManageVolumePrivilege
+    Test-UserRightsAssignmentSeProfileSingleProcessPrivilege
+    Test-UserRightsAssignmentSeSystemProfilePrivilege
+    Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege
+    Test-UserRightsAssignmentSeRestorePrivilege
+    Test-UserRightsAssignmentSeShutdownPrivilege
     if ($ServerType -eq 2) {
-        $Result += Test-UserRightsAssignmentSeSyncAgentPrivilege
+        Test-UserRightsAssignmentSeSyncAgentPrivilege
     }
-    $Result += Test-UserRightsAssignmentSeTakeOwnershipPrivilege
-
-    return $Result
+    Test-UserRightsAssignmentSeTakeOwnershipPrivilege
 }
 
 <#
@@ -169,30 +166,26 @@ function Test-LocalPoliciesSecurityOptions {
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
-    $Result = @()
-
     # If not already present, run GPResult.exe and store the result in a variable
     if (-not($script:gpresult)) {
         $script:gpresult = Get-GPResult
     }
 
-    $Result += Test-SecurityOptionsAccounts -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsAudit -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsDevices -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-SecurityOptionsAccounts -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-SecurityOptionsAudit -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-SecurityOptionsDevices -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
     if ($ServerType -eq 2) {
-        $Result += Test-SecurityOptionsDomainController -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+        Test-SecurityOptionsDomainController -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
     }
-    $Result += Test-SecurityOptionsDomainMember -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsInteractiveLogin -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsMicrosoftNetworkClient -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsMicrosoftNetworkServer -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsNetworkAccess -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsNetworkSecurity -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsShutdown -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsSystemObjects -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-SecurityOptionsUserAccountControl -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-
-    return $Result
+    Test-SecurityOptionsDomainMember -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-SecurityOptionsInteractiveLogin -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-SecurityOptionsMicrosoftNetworkClient -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-SecurityOptionsMicrosoftNetworkServer -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-SecurityOptionsNetworkAccess -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-SecurityOptionsNetworkSecurity -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-SecurityOptionsShutdown -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-SecurityOptionsSystemObjects -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-SecurityOptionsUserAccountControl -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
 }
 
 
@@ -252,15 +245,11 @@ function Test-CISBenchmarkLocalPolicies {
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
-    $Result = @()
-
     # If not already present, run GPResult.exe and store the result in a variable
     if (-not($script:gpresult)) {
         $script:gpresult = Get-GPResult
     }
 
-    $Result += Test-LocalPoliciesUserRightsAssignment -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    $Result += Test-LocalPoliciesSecurityOptions -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-
-    return $Result
+    Test-LocalPoliciesUserRightsAssignment -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-LocalPoliciesSecurityOptions -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
 }
