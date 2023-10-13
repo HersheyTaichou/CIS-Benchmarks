@@ -77,8 +77,8 @@ function Get-GPResult {
     
     begin {
         if (-not(Get-Item $Path -ea SilentlyContinue)) {
-            gpupdate.exe /force
-            gpresult.exe /x $Path /f
+            gpupdate.exe /force | Out-Null
+            gpresult.exe /x $Path /f | Out-Null
             $delete = $true
         }
     }
