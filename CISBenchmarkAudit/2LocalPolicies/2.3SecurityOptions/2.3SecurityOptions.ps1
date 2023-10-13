@@ -128,7 +128,12 @@ function Test-SecurityOptionsDomainMember {
     }
 
     process {
-        $Result += $null
+        $Result += Test-DomainMemberRequireSignOrSeal
+        $Result += Test-DomainMemberSealSecureChannel
+        $Result += Test-DomainMemberSignSecureChannel
+        $Result += Test-DomainMemberDisablePasswordChange
+        $Result += Test-DomainMemberMaximumPasswordAge
+        $Result += Test-DomainMemberRequireStrongKey
     }
 
     end {

@@ -36,11 +36,6 @@ function Test-UserRightsAssignment {
 
     $Return = @()
 
-    # If not already present, run GPResult.exe and store the result in a variable
-    if (-not($script:gpresult)) {
-        $script:gpresult = Get-GPResult
-    }
-
     # Check the current value of the setting
     $Setting = @()
     $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "UserRightsAssignment" -KeyName "Name"

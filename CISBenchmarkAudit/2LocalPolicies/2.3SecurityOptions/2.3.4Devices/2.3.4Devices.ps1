@@ -5,21 +5,10 @@ function Test-DevicesAllocateDASD {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
         # Get the current value of the setting
         $EntryName = "MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AllocateDASD"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.KeyName -eq $EntryName) {
-                    [string]$Setting = $Entry.Display.DisplayString
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName $KeyName
+        [string]$Setting = $Entry.Display.DisplayString
     }
 
     process {
@@ -38,7 +27,7 @@ function Test-DevicesAllocateDASD {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
-            'Entry' = $RawEntry
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -54,21 +43,10 @@ function Test-DevicesAddPrinterDrivers {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
-        # Get the current value of the setting
+         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\AddPrinterDrivers"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.KeyName -eq $EntryName) {
-                    [bool]$Setting = $Entry.SettingNumber
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName $KeyName
+        [bool]$Setting = [int]$Entry.SettingNumber
     }
 
     process {
@@ -83,7 +61,7 @@ function Test-DevicesAddPrinterDrivers {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
-            'Entry' = $RawEntry
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties

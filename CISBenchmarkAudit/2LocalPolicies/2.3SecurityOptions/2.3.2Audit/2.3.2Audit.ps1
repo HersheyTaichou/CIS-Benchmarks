@@ -5,21 +5,10 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\SCENoApplyLegacyAuditPolicy"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.KeyName -eq $EntryName) {
-                    [bool]$Setting = $Entry.SettingNumber
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName $KeyName
+        [bool]$Setting = [int]$Entry.SettingNumber
     }
 
     process {
@@ -34,7 +23,7 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
-            'Entry' = $RawEntry
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -50,21 +39,10 @@ function Test-AuditCrashOnAuditFail {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\CrashOnAuditFail"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.KeyName -eq $EntryName) {
-                    [bool]$Setting = $Entry.SettingNumber
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName $KeyName
+        [bool]$Setting = [int]$Entry.SettingNumber
     }
 
     process {
@@ -79,7 +57,7 @@ function Test-AuditCrashOnAuditFail {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
-            'Entry' = $RawEntry
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties

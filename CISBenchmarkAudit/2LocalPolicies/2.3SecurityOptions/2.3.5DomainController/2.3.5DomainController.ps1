@@ -5,21 +5,9 @@ function Test-DomainControllerSubmitControl {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
-        # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\SubmitControl"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.KeyName -eq $EntryName) {
-                    [bool]$Setting = [int]$Entry.SettingNumber
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName $KeyName
+        [bool]$Setting = [int]$Entry.SettingNumber
     }
 
     process {
@@ -38,7 +26,7 @@ function Test-DomainControllerSubmitControl {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
-            'Entry' = $RawEntry
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -54,21 +42,11 @@ function Test-DomainControllerVulnerableChannelAllowList {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\VulnerableChannelAllowList"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.KeyName -eq $EntryName) {
-                    [string]$Setting = $Entry.SettingString
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName $KeyName
+        [string]$Setting = $Entry.SettingString
+        
     }
 
     process {
@@ -87,7 +65,7 @@ function Test-DomainControllerVulnerableChannelAllowList {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
-            'Entry' = $RawEntry
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -103,21 +81,9 @@ function Test-DomainControllerLdapEnforceChannelBinding {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
-        # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\NTDS\Parameters\LdapEnforceChannelBinding"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.KeyName -eq $EntryName) {
-                    [string]$Setting = $Entry.Display.DisplayString
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName $KeyName
+        [string]$Setting = $Entry.Display.DisplayString
     }
 
     process {
@@ -136,7 +102,7 @@ function Test-DomainControllerLdapEnforceChannelBinding {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
-            'Entry' = $RawEntry
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -152,21 +118,10 @@ function Test-DomainControllerLDAPServerIntegrity {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\NTDS\Parameters\LDAPServerIntegrity"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.KeyName -eq $EntryName) {
-                    [string]$Setting = $Entry.Display.DisplayString
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName $KeyName
+        [string]$Setting = $Entry.Display.DisplayString
     }
 
     process {
@@ -185,7 +140,7 @@ function Test-DomainControllerLDAPServerIntegrity {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
-            'Entry' = $RawEntry
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -201,29 +156,16 @@ function Test-DomainControllerRefusePasswordChange {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RefusePasswordChange"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.KeyName -eq $EntryName) {
-                    [bool]$Setting = [int]$Entry.SettingNumber
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName $KeyName
+        [bool]$Setting = [int]$Entry.SettingNumber
     }
 
     process {
         if (-not($Setting)) {
-            Write-Verbose "2.3.5.5 is False"
             $result = $true
         } else {
-            Write-Verbose "2.3.5.5 is not False"
             $result = $false
         }
     }
@@ -236,7 +178,7 @@ function Test-DomainControllerRefusePasswordChange {
             'Source' = 'Group Policy Settings'
             'Result'= $result
             'Setting' = $Setting
-            'Entry' = $RawEntry
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties

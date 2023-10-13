@@ -5,27 +5,14 @@ function Test-AccountsNoConnectedUser {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
         # Get the current value of the setting
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\NoConnectedUser"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.KeyName -eq $EntryName) {
-                    $Setting = $Entry.SettingNumber
-                    $DisplayString = $Entry.Display.DisplayString
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
     }
 
     process {
         # Check if the domain setting meets the CIS Benchmark
-        if ($Setting -eq 3) {
+        if ($Entry.SettingNumber -eq 3) {
             $result = $true
         } else {
             $result = $false
@@ -39,8 +26,8 @@ function Test-AccountsNoConnectedUser {
             'RecommendationName'= "Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Microsoft accounts'"
             'Source' = 'Group Policy Settings'
             'Result'= $Result
-            'Setting' = $DisplayString
-            'Entry' = $RawEntry
+            'Setting' = $Entry.Display.DisplayString
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -56,21 +43,10 @@ function Test-AccountsEnableGuestAccount {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
         # Get the current value of the setting
         $EntryName = "EnableGuestAccount"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.SystemAccessPolicyName -eq $EntryName) {
-                    [bool]$Setting = $Entry.SettingNumber
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "SystemAccessPolicyName"
+        [bool]$Setting = [int]$Entry.SettingNumber
     }
 
     process {
@@ -90,7 +66,7 @@ function Test-AccountsEnableGuestAccount {
             'Source' = 'Group Policy Settings'
             'Result'= $Result
             'Setting' = $Setting
-            'Entry' = $RawEntry
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -108,24 +84,11 @@ function Test-AccountsLimitBlankPasswordUse {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\LimitBlankPasswordUse"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.KeyName -eq $EntryName) {
-                    [bool]$Setting = $Entry.SettingNumber
-                    $DisplayString = $Entry.Display.DisplayString
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "KeyName"
     }
 
     process {
-        # Check if the domain setting meets the CIS Benchmark
-        if ($Setting -eq $true) {
-            $result = $true
-        } else {
-            $result = $false
-        }
+        [bool]$result = [int]$Entry.SettingNumber
     }
 
     end {
@@ -135,8 +98,8 @@ function Test-AccountsLimitBlankPasswordUse {
             'RecommendationName'= "Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'"
             'Source' = 'Group Policy Settings'
             'Result'= $Result
-            'Setting' = $DisplayString
-            'Entry' = $RawEntry
+            'Setting' = $Entry.Display.DisplayString
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -152,21 +115,10 @@ function Test-AccountsNewAdministratorName {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
         # Get the current value of the setting
         $EntryName = "NewAdministratorName"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.SystemAccessPolicyName -eq $EntryName) {
-                    [string]$Setting = $Entry.SettingString
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "SystemAccessPolicyName"
+        [string]$Setting = $Entry.SettingString
     }
 
     process {
@@ -186,7 +138,7 @@ function Test-AccountsNewAdministratorName {
             'Source' = 'Group Policy Settings'
             'Result'= $Result
             'Setting' = $Setting
-            'Entry' = $RawEntry
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
@@ -202,26 +154,14 @@ function Test-AccountsNewGuestName {
     begin {
         $Return = @()
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-
         # Get the current value of the setting
         $EntryName = "NewGuestName"
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.SecurityOptions) {
-                If ($Entry.SystemAccessPolicyName -eq $EntryName) {
-                    [string]$Setting = $Entry.SettingString
-                    $RawEntry = $Entry
-                }
-            }
-        }
+        $Entry = Get-GPOEntry -EntryName $EntryName -SectionName "SecurityOptions" -KeyName "SystemAccessPolicyName"
     }
 
     process {
         # Check if the domain setting meets the CIS Benchmark
-        if ($Setting -ne "Guest") {
+        if ($Entry.SettingString -ne "Guest") {
             $result = $true
         } else {
             $result = $false
@@ -235,8 +175,8 @@ function Test-AccountsNewGuestName {
             'RecommendationName'= "Configure 'Accounts: Rename guest account'"
             'Source' = 'Group Policy Settings'
             'Result'= $Result
-            'Setting' = $Setting
-            'Entry' = $RawEntry
+            'Setting' = $Entry.SettingString
+            'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
         $Return += $Properties
