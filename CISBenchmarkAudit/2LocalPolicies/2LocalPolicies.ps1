@@ -166,6 +166,8 @@ function Test-LocalPoliciesSecurityOptions {
         [Parameter()][bool]$NextGenerationWindowsSecurity
     )
 
+    $ServerType = Get-ProductType
+
     # If not already present, run GPResult.exe and store the result in a variable
     if (-not($script:gpresult)) {
         $script:gpresult = Get-GPResult
