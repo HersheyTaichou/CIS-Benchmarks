@@ -1470,7 +1470,7 @@ function Test-UserRightsAssignmentSeBatchLogonRight {
     $Return = @()
     $RecommendationNumber = '2.2.36'
     $ProfileApplicability = @("Level 2 - Domain Controller")
-    $RecommendationName = "(L1) (L2) Ensure 'Log on as a batch job' is set to 'Administrators' (DC Only)"
+    $RecommendationName = "(L2) Ensure 'Log on as a batch job' is set to 'Administrators' (DC Only)"
     $Source = 'Group Policy Settings'
 
     $Pass = Test-UserRightsAssignment -EntryName "SeBatchLogonRight" -Definition @('Administrators')
