@@ -227,7 +227,7 @@ function Test-NetworkAccessNullSessionPipes {
     }
 
     process {
-        $Setting = $Entry.SettingsStrings.Value
+        [array]$Setting = $Entry.SettingStrings.Value
         $DomainController = @("LSARPC","NETLOGON","SAMR")
         $DCBrowser = @("LSARPC", "NETLOGON", "SAMR","BROWSER")
         $MemberServer = @()
@@ -298,7 +298,7 @@ function Test-NetworkAccessAllowedExactPaths {
     }
 
     process {
-        $Setting = $Entry.SettingsStrings.Value
+        $Setting = $Entry.SettingStrings.Value
         $Definition = @('System\CurrentControlSet\Control\ProductOptions','System\CurrentControlSet\Control\Server Applications','Software\Microsoft\Windows NT\CurrentVersion')
         if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $setting)) {
             $result = $true
@@ -341,7 +341,7 @@ function Test-NetworkAccessAllowedPaths {
     }
 
     process {
-        $Setting = $Entry.SettingsStrings.Value
+        $Setting = $Entry.SettingStrings.Value
         $definition = @('System\CurrentControlSet\Control\Print\Printers','System\CurrentControlSet\Services\Eventlog','Software\Microsoft\OLAP Server','Software\Microsoft\Windows NT\CurrentVersion\Print','Software\Microsoft\Windows NT\CurrentVersion\Windows','System\CurrentControlSet\Control\ContentIndex','System\CurrentControlSet\Control\Terminal Server','System\CurrentControlSet\Control\Terminal Server\UserConfig','System\CurrentControlSet\Control\Terminal Server\DefaultUserConfiguration','Software\Microsoft\Windows NT\CurrentVersion\Perflib','System\CurrentControlSet\Services\SysmonLog')
         $ADCS = $definition + 'System\CurrentControlSet\Services\CertSvc'
         $WINS = $definition + 'System\CurrentControlSet\Services\WINS'
@@ -471,7 +471,7 @@ function Test-NetworkAccessNullSessionShares {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\NullSessionShares"
         $RecommendationNumber = '2.3.10.12'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = ""
+        $RecommendationName = "Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None'$cisb"
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -526,7 +526,7 @@ function Test-NetworkAccessForceGuest {
 
     process {
         $Setting = [int]$Entry.SettingNumber
-        if ($Setting = 0) {
+        if ($Setting -eq 0) {
             $result = $true
         } else {
             $result = $false
