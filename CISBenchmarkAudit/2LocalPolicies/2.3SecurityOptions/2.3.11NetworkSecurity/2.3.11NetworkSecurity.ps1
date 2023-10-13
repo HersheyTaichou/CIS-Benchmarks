@@ -142,7 +142,7 @@ function Test-NetworkSecuritySupportedEncryptionTypes {
 
     process {
         $Entry.Display.DisplayFields.Field| ForEach-Object {$Setting += $_.Name + "," + $_.Value + "; "}
-        if ($Setting -eq 2147483640) {
+        if ($Entry.SettingNumber -eq 2147483640) {
             $Pass = $true
         } else {
             $Pass = $false
@@ -352,7 +352,7 @@ function Test-NetworkSecurityNTLMMinClientSec {
 
     process {
         $Entry.Display.DisplayFields.Field | ForEach-Object {$Setting += $_.Name + "," + $_.Value + "; "}
-        if ($Setting -eq 537395200) {
+        if ([int]$Entry.SettingNumber -eq 537395200) {
             $Pass = $true
         } else {
             $Pass = $false
@@ -394,7 +394,7 @@ function Test-NetworkSecurityNTLMMinServerSec {
 
     process {
         $Entry.Display.DisplayFields.Field | ForEach-Object {$Setting += $_.Name + "," + $_.Value + "; "}
-        if ($Setting -eq 537395200) {
+        if ([int]$Entry.SettingNumber -eq 537395200) {
             $Pass = $true
         } else {
             $Pass = $false

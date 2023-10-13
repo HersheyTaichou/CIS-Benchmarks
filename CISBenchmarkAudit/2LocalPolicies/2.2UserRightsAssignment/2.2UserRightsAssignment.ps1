@@ -100,7 +100,7 @@ function Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
         'Entry' = $Pass.Entry
     }
@@ -149,7 +149,7 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -165,7 +165,7 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
             'RecommendationName'= $RecommendationName
             'Source' = $Source
             
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -220,7 +220,7 @@ function Test-UserRightsAssignmentSeTcbPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -259,7 +259,7 @@ function Test-UserRightsAssignmentSeMachineAccountPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -298,7 +298,7 @@ function Test-UserRightsAssignmentSeIncreaseQuotaPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -337,7 +337,7 @@ function Test-UserRightsAssignmentSeInteractiveLogonRight {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -386,7 +386,7 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -402,7 +402,7 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
             'RecommendationName'= $RecommendationName
             'Source' = $Source
             
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -457,7 +457,7 @@ function Test-UserRightsAssignmentSeBackupPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -496,7 +496,7 @@ function Test-UserRightsAssignmentSeSystemTimePrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -535,7 +535,7 @@ function Test-UserRightsAssignmentSeTimeZonePrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -574,7 +574,7 @@ function Test-UserRightsAssignmentSeCreatePagefilePrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -613,7 +613,7 @@ function Test-UserRightsAssignmentSeCreateTokenPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -652,7 +652,7 @@ function Test-UserRightsAssignmentSeCreateGlobalPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -691,7 +691,7 @@ function Test-UserRightsAssignmentSeCreatePermanentPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -742,7 +742,7 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -757,7 +757,7 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -812,7 +812,7 @@ function Test-UserRightsAssignmentSeDebugPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -861,7 +861,7 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -876,7 +876,7 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -931,7 +931,7 @@ function Test-UserRightsAssignmentSeDenyBatchLogonRight {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -970,7 +970,7 @@ function Test-UserRightsAssignmentSeDenyServiceLogonRight {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1009,7 +1009,7 @@ function Test-UserRightsAssignmentSeDenyInteractiveLogonRight {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1057,7 +1057,7 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -1072,7 +1072,7 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -1136,7 +1136,7 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -1151,7 +1151,7 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -1206,7 +1206,7 @@ function Test-UserRightsAssignmentSeRemoteShutdownPrivilege {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1245,7 +1245,7 @@ function Test-UserRightsAssignmentSeAuditPrivilege {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1293,7 +1293,7 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -1308,7 +1308,7 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -1363,7 +1363,7 @@ function Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1402,7 +1402,7 @@ function Test-UserRightsAssignmentSeLoadDriverPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1441,7 +1441,7 @@ function Test-UserRightsAssignmentSeLockMemoryPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1480,7 +1480,7 @@ function Test-UserRightsAssignmentSeBatchLogonRight {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1528,7 +1528,7 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -1543,7 +1543,7 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
             'ProfileApplicability' = $ProfileApplicability
             'RecommendationName'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass.Result
+            'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
             'Entry' = $Pass.Entry
         }
@@ -1598,7 +1598,7 @@ function Test-UserRightsAssignmentSeRelabelPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1637,7 +1637,7 @@ function Test-UserRightsAssignmentSeSystemEnvironmentPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1676,7 +1676,7 @@ function Test-UserRightsAssignmentSeManageVolumePrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1715,7 +1715,7 @@ function Test-UserRightsAssignmentSeProfileSingleProcessPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1754,7 +1754,7 @@ function Test-UserRightsAssignmentSeSystemProfilePrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1793,7 +1793,7 @@ function Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1832,7 +1832,7 @@ function Test-UserRightsAssignmentSeRestorePrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1871,7 +1871,7 @@ function Test-UserRightsAssignmentSeShutdownPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1910,7 +1910,7 @@ function Test-UserRightsAssignmentSeSyncAgentPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -1949,7 +1949,7 @@ function Test-UserRightsAssignmentSeTakeOwnershipPrivilege {
         'ProfileApplicability' = $ProfileApplicability
         'RecommendationName'= $RecommendationName
         'Source' = $Source
-        'Pass'= $Pass.Result
+        'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
     }
     $Properties.PSTypeNames.Add('psCISBenchmark')
