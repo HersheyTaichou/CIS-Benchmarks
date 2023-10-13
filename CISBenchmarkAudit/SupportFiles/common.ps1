@@ -76,7 +76,7 @@ function Get-GPResult {
     )
     
     begin {
-        if (-not($Path)) {
+        if (-not(Get-Item $Path -ea SilentlyContinue)) {
             gpresult.exe /x $Path /f
             $delete = $true
         }
