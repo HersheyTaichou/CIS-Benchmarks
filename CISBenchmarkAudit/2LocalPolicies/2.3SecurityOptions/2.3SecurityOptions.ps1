@@ -321,7 +321,8 @@ function Test-SecurityOptionsSystemObjects {
     }
 
     process {
-
+        Test-SystemObjectsObCaseInsensitive
+        Test-SystemObjectsProtectionMode
     }
 
     end {
@@ -343,8 +344,14 @@ function Test-SecurityOptionsUserAccountControl {
     }
 
     process {
-        Test-SystemObjectsObCaseInsensitive
-        Test-SystemObjectsProtectionMode
+        Test-UserAccountControlFilterAdministratorToken
+        Test-UserAccountControlConsentPromptBehaviorAdmin
+        Test-UserAccountControlConsentPromptBehaviorUser
+        Test-UserAccountControlEnableInstallerDetection
+        Test-UserAccountControlEnableSecureUIAPaths
+        Test-UserAccountControlEnableLUA
+        Test-UserAccountControlPromptOnSecureDesktop
+        Test-UserAccountControlEnableVirtualization
     }
 
     end {
