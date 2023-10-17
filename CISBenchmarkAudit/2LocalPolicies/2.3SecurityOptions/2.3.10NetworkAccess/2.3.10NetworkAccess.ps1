@@ -16,10 +16,14 @@ function Test-NetworkAccessLSAAnonymousNameLookup {
 
     process {
         [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Setting) {
-            $Pass = $false
-        } elseif ($setting -eq $false) {
-            $Pass = $true
+        if ($Entry) {
+            if ($Setting) {
+                $Pass = $false
+            } elseif ($setting -eq $false) {
+                $Pass = $true
+            } else {
+                $Pass = $false
+            }
         } else {
             $Pass = $false
         }
@@ -186,10 +190,14 @@ function Test-NetworkAccessEveryoneIncludesAnonymous {
 
     process {
         [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Setting) {
-            $Pass = $false
-        } elseif ($setting -eq $false) {
-            $Pass = $true
+        if ($Entry) {
+            if ($Setting) {
+                $Pass = $false
+            } elseif ($setting -eq $false) {
+                $Pass = $true
+            } else {
+                $Pass = $false
+            }
         } else {
             $Pass = $false
         }
@@ -542,11 +550,16 @@ function Test-NetworkAccessForceGuest {
 
     process {
         $Setting = [int]$Entry.SettingNumber
-        if ($Setting -eq 0) {
-            $Pass = $true
+        if ($Entry) {
+            if ($Setting -eq 0) {
+                $Pass = $true
+            } else {
+                $Pass = $false
+            }
         } else {
             $Pass = $false
         }
+        
     }
 
     end {

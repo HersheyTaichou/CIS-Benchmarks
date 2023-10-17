@@ -12,7 +12,7 @@ function Test-DevicesAllocateDASD {
     }
 
     process {
-        if ($Setting = "Administrators") {
+        if ($Setting -eq "Administrators") {
             $Pass = $true
         } else {
             $Pass = $false

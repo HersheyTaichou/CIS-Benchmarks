@@ -11,10 +11,14 @@ function Test-DomainControllerSubmitControl {
     }
 
     process {
-        if ($Setting) {
-            $Pass = $false
-        } elseif ($setting -eq $false) {
-            $Pass = $true
+        if ($Entry) {
+            if ($Setting) {
+                $Pass = $false
+            } elseif ($setting -eq $false) {
+                $Pass = $true
+            } else {
+                $Pass = $false
+            }
         } else {
             $Pass = $false
         }
@@ -51,12 +55,10 @@ function Test-DomainControllerVulnerableChannelAllowList {
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\VulnerableChannelAllowList"
         $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
-        [string]$Setting = $Entry.SettingString
-        
     }
 
     process {
-        if ($Setting) {
+        if ($Entry) {
             $Pass = $false
         } else {
             $Pass = $true
@@ -97,7 +99,7 @@ function Test-DomainControllerLdapEnforceChannelBinding {
     }
 
     process {
-        if ($Setting = "Always") {
+        if ($Setting -eq "Always") {
             $Pass = $true
         } else {
             $Pass = $false
@@ -139,7 +141,7 @@ function Test-DomainControllerLDAPServerIntegrity {
     }
 
     process {
-        if ($Setting = "Require signing") {
+        if ($Setting -eq "Require signing") {
             $Pass = $true
         } else {
             $Pass = $false
@@ -181,10 +183,14 @@ function Test-DomainControllerRefusePasswordChange {
     }
 
     process {
-        if ($Setting) {
-            $Pass = $false
-        } elseif ($setting -eq $false) {
-            $Pass = $true
+        if ($Entry) {
+            if ($Setting) {
+                $Pass = $false
+            } elseif ($setting -eq $false) {
+                $Pass = $true
+            } else {
+                $Pass = $false
+            }
         } else {
             $Pass = $false
         }

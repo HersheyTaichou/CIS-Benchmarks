@@ -132,12 +132,11 @@ function Test-AccountsNewAdministratorName {
         # Get the current value of the setting
         $EntryName = "NewAdministratorName"
         $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "SystemAccessPolicyName"
-        [string]$Setting = $Entry.SettingString
     }
 
     process {
         # Check if the domain setting meets the CIS Benchmark
-        if ($Setting -ne "Administrator") {
+        if (($Entry) -and ($Entry.SettingString -ne "Administrator")) {
             $Pass = $true
         } else {
             $Pass = $false
@@ -155,7 +154,7 @@ function Test-AccountsNewAdministratorName {
             'RecommendationName'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
-            'Setting' = $Setting
+            'Setting' = $Entry.SettingString
             'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
@@ -179,7 +178,7 @@ function Test-AccountsNewGuestName {
 
     process {
         # Check if the domain setting meets the CIS Benchmark
-        if ($Entry.SettingString -ne "Guest") {
+        if (($Entry) -and ($Entry.SettingString -ne "Guest")) {
             $Pass = $true
         } else {
             $Pass = $false

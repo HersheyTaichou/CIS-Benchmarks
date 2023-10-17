@@ -100,10 +100,14 @@ function Test-MicrosoftNetworkClientEnablePlainTextPassword {
 
     process {
         [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Setting) {
-            $Pass = $false
-        } elseif ($setting -eq $false) {
-            $Pass = $true
+        if ($Entry) {
+            if ($Setting) {
+                $Pass = $false
+            } elseif ($setting -eq $false) {
+                $Pass = $true
+            } else {
+                $Pass = $false
+            }
         } else {
             $Pass = $false
         }
