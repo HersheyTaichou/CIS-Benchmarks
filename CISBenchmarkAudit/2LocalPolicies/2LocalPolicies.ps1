@@ -51,7 +51,7 @@ function Test-LocalPoliciesUserRightsAssignment {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     $ServerType = Get-ProductType
@@ -163,7 +163,7 @@ function Test-LocalPoliciesSecurityOptions {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     $ServerType = Get-ProductType
@@ -244,7 +244,7 @@ function Test-CISBenchmarkLocalPolicies {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     # If not already present, run GPResult.exe and store the result in a variable

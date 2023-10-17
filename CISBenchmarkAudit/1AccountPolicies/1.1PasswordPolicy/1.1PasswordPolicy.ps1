@@ -441,7 +441,7 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
         $EntryName = "MACHINE\System\CurrentControlSet\Control\SAM\RelaxMinimumPasswordLengthLimits"
         $RecommendationNumber = '1.1.6'
         $ProfileApplicability = @("Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Relax minimum password length limits' is set to 'Enabled'"
+        $RecommendationName = "(L1) Ensure 'Relax minimum password length limits' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
         $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
         $Setting = [bool]$Entry.SettingNumber

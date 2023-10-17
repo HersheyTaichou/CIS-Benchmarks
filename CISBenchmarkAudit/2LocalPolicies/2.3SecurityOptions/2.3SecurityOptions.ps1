@@ -2,7 +2,7 @@ function Test-SecurityOptionsAccounts {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     begin {
@@ -32,7 +32,7 @@ function Test-SecurityOptionsAudit {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     begin {
@@ -55,7 +55,7 @@ function Test-SecurityOptionsDevices {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     begin {
@@ -78,7 +78,7 @@ function Test-SecurityOptionsDomainController {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     begin {
@@ -104,7 +104,7 @@ function Test-SecurityOptionsDomainMember {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     begin {
@@ -131,7 +131,7 @@ function Test-SecurityOptionsInteractiveLogin {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     begin {
@@ -167,7 +167,7 @@ function Test-SecurityOptionsMicrosoftNetworkClient {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     begin {
@@ -192,7 +192,7 @@ function Test-SecurityOptionsMicrosoftNetworkServer {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     begin {
@@ -222,7 +222,7 @@ function Test-SecurityOptionsNetworkAccess {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     begin {
@@ -248,10 +248,11 @@ function Test-SecurityOptionsNetworkAccess {
         Test-NetworkAccessAllowedExactPaths
         Test-NetworkAccessAllowedPaths
         Test-NetworkAccessRestrictNullSessAccess
-        Test-NetworkAccessRestrictRemoteSAM
+        
         if ($ServerType -eq 3) {
-            Test-NetworkAccessNullSessionShares
+            Test-NetworkAccessRestrictRemoteSAM
         }
+        Test-NetworkAccessNullSessionShares
         Test-NetworkAccessForceGuest
     }
 
@@ -263,7 +264,7 @@ function Test-SecurityOptionsNetworkSecurity {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     begin {
@@ -294,7 +295,7 @@ function Test-SecurityOptionsShutdown {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     begin {
@@ -316,7 +317,7 @@ function Test-SecurityOptionsSystemObjects {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     begin {
@@ -339,7 +340,7 @@ function Test-SecurityOptionsUserAccountControl {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     begin {

@@ -39,7 +39,7 @@ function Test-CISBenchmark {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
     $Return = @()
 

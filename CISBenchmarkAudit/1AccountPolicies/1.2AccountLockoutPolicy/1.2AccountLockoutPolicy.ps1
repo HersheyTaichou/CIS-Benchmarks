@@ -188,7 +188,7 @@ function Test-AccountLockoutPolicyAdminLockout {
         $Return = @()
         $RecommendationNumber = '1.2.3'
         $ProfileApplicability = @("Level 1 - Member Server")
-        $RecommendationName = "Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
+        $RecommendationName = "(L1) Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
 
         #Find the maximum password age applied to this machine

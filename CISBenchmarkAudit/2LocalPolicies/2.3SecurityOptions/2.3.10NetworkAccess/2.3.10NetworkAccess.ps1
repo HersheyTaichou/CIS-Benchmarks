@@ -227,10 +227,16 @@ function Test-NetworkAccessNullSessionPipes {
     }
 
     process {
-        [array]$Setting = $Entry.SettingStrings.Value
+        if ($Entry.KeyName) {
+            $Setting = @()
+            $Entry.SettingStrings.Value | ForEach-Object {$Setting += $_}
+            if (-not($Setting)) {
+                $Setting = @("")
+            }
+        }
         $DomainController = @("LSARPC","NETLOGON","SAMR")
         $DCBrowser = @("LSARPC", "NETLOGON", "SAMR","BROWSER")
-        $MemberServer = @()
+        $MemberServer = @('')
         $MSBrowser = @("BROWSER")
         $MSRDS = @("HydraLSPipe","TermServLicensing")
         $MSRDSBrowser = @("HydraLSPipe","TermServLicensing","BROWSER")

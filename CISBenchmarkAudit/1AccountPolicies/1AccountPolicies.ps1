@@ -32,7 +32,7 @@ function Test-AccountPoliciesPasswordPolicy {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     $ServerType = Get-ProductType
@@ -87,7 +87,7 @@ function Test-AccountPoliciesAccountLockoutPolicy {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     $ServerType = Get-ProductType
@@ -140,7 +140,7 @@ function Test-CISBenchmarkAccountPolicies {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][switch]$NextGenerationWindowsSecurity
     )
 
     # If not already present, run GPResult.exe and store the result in a variable
