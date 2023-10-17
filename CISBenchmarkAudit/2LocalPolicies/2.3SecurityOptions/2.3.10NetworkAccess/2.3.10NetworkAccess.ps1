@@ -227,12 +227,10 @@ function Test-NetworkAccessNullSessionPipes {
     }
 
     process {
-        if ($Entry.KeyName) {
-            $Setting = @()
-            $Entry.SettingStrings.Value | ForEach-Object {$Setting += $_}
-            if (-not($Setting)) {
-                $Setting = @("")
-            }
+        $Setting = @()
+        $Entry.SettingStrings.Value | ForEach-Object {$Setting += $_}
+        if (-not($Setting)) {
+            $Setting = @("")
         }
         $DomainController = @("LSARPC","NETLOGON","SAMR")
         $DCBrowser = @("LSARPC", "NETLOGON", "SAMR","BROWSER")
@@ -245,10 +243,14 @@ function Test-NetworkAccessNullSessionPipes {
             $RecommendationNumber = '2.3.10.6'
             $ProfileApplicability = @("Level 1 - Domain Controller")
             $RecommendationName = "(L1) Configure 'Network access: Named Pipes that can be accessed anonymously' (DC only)"
-            if (-not(Compare-Object -ReferenceObject $DomainController -DifferenceObject $setting)) {
-                $Pass = $true
-            } elseif (-not(Compare-Object -ReferenceObject $DCBrowser -DifferenceObject $setting)) {
-                $Pass = $true
+            if ($entry) {
+                if (-not(Compare-Object -ReferenceObject $DomainController -DifferenceObject $setting)) {
+                    $Pass = $true
+                } elseif (-not(Compare-Object -ReferenceObject $DCBrowser -DifferenceObject $setting)) {
+                    $Pass = $true
+                } else {
+                    $Pass = $false
+                }
             } else {
                 $Pass = $false
             }
@@ -256,14 +258,18 @@ function Test-NetworkAccessNullSessionPipes {
             $RecommendationNumber = '2.3.10.7'
             $ProfileApplicability = @("Level 1 - Member Server")
             $RecommendationName = "(L1) Configure 'Network access: Named Pipes that can be accessed anonymously' (MS only)"
-            if (-not(Compare-Object -ReferenceObject $MemberServer -DifferenceObject $setting)) {
-                $Pass = $true
-            } elseif (-not(Compare-Object -ReferenceObject $MSBrowser -DifferenceObject $setting)) {
-                $Pass = $true
-            } elseif (-not(Compare-Object -ReferenceObject $MSRDS -DifferenceObject $setting)) {
-                $Pass = $true
-            } elseif (-not(Compare-Object -ReferenceObject $MSRDSBrowser -DifferenceObject $setting)) {
-                $Pass = $true
+            if ($entry) {
+                if (-not(Compare-Object -ReferenceObject $MemberServer -DifferenceObject $setting)) {
+                    $Pass = $true
+                } elseif (-not(Compare-Object -ReferenceObject $MSBrowser -DifferenceObject $setting)) {
+                    $Pass = $true
+                } elseif (-not(Compare-Object -ReferenceObject $MSRDS -DifferenceObject $setting)) {
+                    $Pass = $true
+                } elseif (-not(Compare-Object -ReferenceObject $MSRDSBrowser -DifferenceObject $setting)) {
+                    $Pass = $true
+                } else {
+                    $Pass = $false
+                }
             } else {
                 $Pass = $false
             }
@@ -353,14 +359,18 @@ function Test-NetworkAccessAllowedPaths {
         $WINS = $definition + 'System\CurrentControlSet\Services\WINS'
         $ADCSWins = $ADCS + 'System\CurrentControlSet\Services\WINS'
 
-        if (-not(Compare-Object -ReferenceObject $definition -DifferenceObject $setting)) {
-            $Pass = $true
-        } elseif (-not(Compare-Object -ReferenceObject $ADCS -DifferenceObject $setting)) {
-            $Pass = $true
-        } elseif (-not(Compare-Object -ReferenceObject $WINS -DifferenceObject $setting)) {
-            $Pass = $true
-        } elseif (-not(Compare-Object -ReferenceObject $ADCSWins -DifferenceObject $setting)) {
-            $Pass = $true
+        if ($Entry) {
+            if (-not(Compare-Object -ReferenceObject $definition -DifferenceObject $setting)) {
+                $Pass = $true
+            } elseif (-not(Compare-Object -ReferenceObject $ADCS -DifferenceObject $setting)) {
+                $Pass = $true
+            } elseif (-not(Compare-Object -ReferenceObject $WINS -DifferenceObject $setting)) {
+                $Pass = $true
+            } elseif (-not(Compare-Object -ReferenceObject $ADCSWins -DifferenceObject $setting)) {
+                $Pass = $true
+            } else {
+                $Pass = $false
+            }
         } else {
             $Pass = $false
         }
