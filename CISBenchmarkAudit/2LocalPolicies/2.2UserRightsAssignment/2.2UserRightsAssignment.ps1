@@ -48,31 +48,35 @@ function Test-UserRightsAssignment {
 
     # Check if the domain setting meets the CIS Benchmark
 
-    if ($Include) {
-        $Count = 0
-        foreach ($item in $Setting) {
-            if ($item -in $Definition) {
-                $count ++
+    if ($Entry) {
+        if ($Include) {
+            $Count = 0
+            foreach ($item in $Setting) {
+                if ($item -in $Definition) {
+                    $count ++
+                }
+            }
+            if ($Definition.count -eq $Count) {
+                $Pass = $true
+            } else {
+                $Pass = $false
+            }
+        } else {
+            if ($OptionalDef) {
+                $OptionalDef += $Definition
+            } else {
+                $OptionalDef = @("")
+            }
+            if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $setting)) {
+                $Pass = $true
+            } elseif (-not(Compare-Object -ReferenceObject $OptionalDef -DifferenceObject $setting)) {
+                $Pass = $true
+            } else {
+                $Pass = $false
             }
         }
-        if ($Definition.count -eq $Count) {
-            $Pass = $true
-        } else {
-            $Pass = $false
-        }
     } else {
-        if ($OptionalDef) {
-            $OptionalDef += $Definition
-        } else {
-            $OptionalDef = @("")
-        }
-        if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $setting)) {
-            $Pass = $true
-        } elseif (-not(Compare-Object -ReferenceObject $OptionalDef -DifferenceObject $setting)) {
-            $Pass = $true
-        } else {
-            $Pass = $false
-        }
+        $Pass = $false
     }
 
     $Return = [PSCustomObject]@{
