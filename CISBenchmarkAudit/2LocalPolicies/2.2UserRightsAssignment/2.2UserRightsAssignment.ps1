@@ -31,7 +31,8 @@ function Test-UserRightsAssignment {
         [Parameter(Mandatory)][string]$EntryName,
         # The CIS Benchmark definition
         [Parameter(Mandatory)][array]$Definition,
-        [Parameter()][array]$OptionalDef
+        [Parameter()][array]$OptionalDef,
+        [Parameter()][bool]$Include
     )
 
     $Return = @()
@@ -47,18 +48,27 @@ function Test-UserRightsAssignment {
 
     # Check if the domain setting meets the CIS Benchmark
 
-    if ($OptionalDef) {
-        $OptionalDef += $Definition
+    if ($Include) {
+        if (($Setting -contains $OptionalDef) -and ($Setting -contains $Definition)) {
+            $Pass = $true
+        } elseif ($Setting -contains $Definition) {
+            $Pass = $true
+        } else {
+            $Pass = $false
+        }
     } else {
-        $OptionalDef = @("")
-    }
-
-    if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $setting)) {
-        $Pass = $true
-    } elseif (-not(Compare-Object -ReferenceObject $OptionalDef -DifferenceObject $setting)) {
-        $Pass = $true
-    } else {
-        $Pass = $false
+        if ($OptionalDef) {
+            $OptionalDef += $Definition
+        } else {
+            $OptionalDef = @("")
+        }
+        if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $setting)) {
+            $Pass = $true
+        } elseif (-not(Compare-Object -ReferenceObject $OptionalDef -DifferenceObject $setting)) {
+            $Pass = $true
+        } else {
+            $Pass = $false
+        }
     }
 
     $Return = [PSCustomObject]@{
@@ -846,16 +856,14 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
 
     # These three entries should be the only entries 
     $DomainController = @('Guests')
-    $MemberServer = @('Guests')
-    $MSOptional = @('Local account and member of Administrators group')
+    $MemberServer = @('Guests','Local account and member of Administrators group')
 
-    
     if ($ProductType -eq 2) {
         $RecommendationNumber = '2.2.20'
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Deny access to this computer from the network' to include 'Guests' (DC only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $DomainController
+        $Pass = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $DomainController -Include
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -870,7 +878,7 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
         $ProfileApplicability = @("Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Deny access to this computer from the network' to include 'Guests, Local account and member of Administrators group' (MS only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $MemberServer -OptionalDef $MSOptional
+        $Pass = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $MemberServer -OptionalDef $MSOptional -Include
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -924,7 +932,7 @@ function Test-UserRightsAssignmentSeDenyBatchLogonRight {
         $RecommendationName = "(L1) Ensure 'Deny log on as a batch job' to include 'Guests'"
         $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeDenyBatchLogonRight" -Definition @('Guests')
+    $Pass = Test-UserRightsAssignment -EntryName "SeDenyBatchLogonRight" -Definition @('Guests') -Include
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber' = $RecommendationNumber
@@ -963,7 +971,7 @@ function Test-UserRightsAssignmentSeDenyServiceLogonRight {
         $RecommendationName = "(L1) Ensure 'Deny log on as a service' to include 'Guests'"
         $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeDenyServiceLogonRight" -Definition @('Guests')
+    $Pass = Test-UserRightsAssignment -EntryName "SeDenyServiceLogonRight" -Definition @('Guests') -Include
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber' = $RecommendationNumber
@@ -1002,7 +1010,7 @@ function Test-UserRightsAssignmentSeDenyInteractiveLogonRight {
         $RecommendationName = "(L1) Ensure 'Deny log on locally' to include 'Guests'"
         $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeDenyInteractiveLogonRight" -Definition @('Guests')
+    $Pass = Test-UserRightsAssignment -EntryName "SeDenyInteractiveLogonRight" -Definition @('Guests') -Include
 
     $Properties = [PSCustomObject]@{
         'RecommendationNumber' = $RecommendationNumber
@@ -1051,7 +1059,7 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $DomainController
+        $Pass = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $DomainController -Include
         $Properties = [PSCustomObject]@{
             'RecommendationNumber' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability

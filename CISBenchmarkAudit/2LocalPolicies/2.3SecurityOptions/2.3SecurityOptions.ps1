@@ -196,6 +196,8 @@ function Test-SecurityOptionsMicrosoftNetworkServer {
     )
 
     begin {
+        $ServerType = Get-ProductType
+
         # If not already present, run GPResult.exe and store the result in a variable
         if (-not($script:gpresult)) {
             $script:gpresult = Get-GPResult
@@ -207,7 +209,9 @@ function Test-SecurityOptionsMicrosoftNetworkServer {
         Test-MicrosoftNetworkServerRequireSecuritySignature
         Test-MicrosoftNetworkServerEnableSecuritySignature
         Test-MicrosoftNetworkServerEnableForcedLogOff
-        Test-MicrosoftNetworkServerSmbServerNameHardeningLevel
+        if ($ServerType -eq 3) {
+            Test-MicrosoftNetworkServerSmbServerNameHardeningLevel
+        }
     }
 
     end {
@@ -245,7 +249,9 @@ function Test-SecurityOptionsNetworkAccess {
         Test-NetworkAccessAllowedPaths
         Test-NetworkAccessRestrictNullSessAccess
         Test-NetworkAccessRestrictRemoteSAM
-        Test-NetworkAccessNullSessionShares
+        if ($ServerType -eq 3) {
+            Test-NetworkAccessNullSessionShares
+        }
         Test-NetworkAccessForceGuest
     }
 
