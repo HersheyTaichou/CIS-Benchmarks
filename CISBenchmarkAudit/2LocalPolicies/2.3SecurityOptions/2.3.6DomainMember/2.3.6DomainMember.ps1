@@ -182,6 +182,8 @@ function Test-DomainMemberMaximumPasswordAge {
         $Setting = [int]$Entry.SettingNumber
         if (($Setting -le 30) -and ($Setting -gt 0)) {
             $Pass = $true
+        } else {
+            $Pass = $false
         }
     }
 
