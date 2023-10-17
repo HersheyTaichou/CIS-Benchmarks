@@ -312,9 +312,13 @@ function Test-NetworkAccessAllowedExactPaths {
     process {
         $Setting = $Entry.SettingStrings.Value
         $Definition = @('System\CurrentControlSet\Control\ProductOptions','System\CurrentControlSet\Control\Server Applications','Software\Microsoft\Windows NT\CurrentVersion')
-        if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $setting)) {
-            $Pass = $true
-        } else {
+        if ($Entry) {
+            if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $setting)) {
+                $Pass = $true
+            } else {
+                $Pass = $false
+            }
+        } else  {
             $Pass = $false
         }
     }
