@@ -378,4 +378,3 @@ function Test-InteractiveLogonScRemoveOption {
         Return $Return
     }
 }
-

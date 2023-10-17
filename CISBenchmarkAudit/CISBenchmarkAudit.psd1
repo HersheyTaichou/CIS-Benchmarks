@@ -12,7 +12,7 @@
 RootModule = '.\CISBenchmarkAudit.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.2.2'
+ModuleVersion = '0.2.3'
 
 # Version number explanation:
     # Major version will increase to 1 when the entire benchmark can be audited
@@ -178,7 +178,6 @@ NestedModules = @('.\CISBenchmarkAudit.psm1',
 )
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-#$AccountPoliciesAccountLockoutPolicy = @('Test-AccountPoliciesAccountLockoutPolicy','Test-AccountLockoutPolicyLockoutDuration','Test-AccountLockoutPolicyLockoutThreshold','Test-AccountLockoutPolicyAdminLockout','Test-AccountLockoutPolicyResetLockoutCount')
 
 FunctionsToExport = @(
     # CISBenchmarkAudit
@@ -210,20 +209,44 @@ FunctionsToExport = @(
     # 2.3 Security Options
     'Test-SecurityOptionsAccounts','Test-SecurityOptionsAudit','Test-SecurityOptionsDevices','Test-SecurityOptionsDomainController','Test-SecurityOptionsDomainMember',
     'Test-SecurityOptionsInteractiveLogin','Test-SecurityOptionsMicrosoftNetworkClient','Test-SecurityOptionsMicrosoftNetworkServer','Test-SecurityOptionsNetworkAccess',
-    'Test-SecurityOptionsNetworkSecurity','Test-SecurityOptionsShutdown','Test-SecurityOptionsSystemObjects','Test-SecurityOptionsUserAccountControl'
+    'Test-SecurityOptionsNetworkSecurity','Test-SecurityOptionsShutdown','Test-SecurityOptionsSystemObjects','Test-SecurityOptionsUserAccountControl',
     # 2.3.1 Accounts
+    'Test-AccountsNoConnectedUser','Test-AccountsEnableGuestAccount','Test-AccountsLimitBlankPasswordUse','Test-AccountsNewAdministratorName','Test-AccountsNewGuestName',
     # 2.3.2 Audit
+    'Test-AuditSCENoApplyLegacyAuditPolicy','Test-AuditCrashOnAuditFail',
     # 2.3.4 Devices
+    'Test-DevicesAllocateDASD','Test-DevicesAddPrinterDrivers',
     # 2.3.5 Domain Controller
+    'Test-DomainControllerSubmitControl','Test-DomainControllerVulnerableChannelAllowList','Test-DomainControllerLdapEnforceChannelBinding',
+    'Test-DomainControllerLDAPServerIntegrity','Test-DomainControllerRefusePasswordChange',
     # 2.3.6 Domain Member
+    'Test-DomainMemberRequireSignOrSeal','Test-DomainMemberSealSecureChannel','Test-DomainMemberSignSecureChannel','Test-DomainMemberDisablePasswordChange',
+    'Test-DomainMemberMaximumPasswordAge','Test-DomainMemberRequireStrongKey',
     # 2.3.7 Interactive Logon
+    'Test-InteractiveLogonDisableCAD','Test-InteractiveLogonDontDisplayLastUserName','Test-InteractiveLogonInactivityTimeoutSecs',
+    'Test-InteractiveLogonLegalNoticeText','Test-InteractiveLogonLegalNoticeCaption','Test-InteractiveLogonCachedLogonsCount','Test-InteractiveLogonPasswordExpiryWarning',
+    'Test-InteractiveLogonForceUnlockLogon','Test-InteractiveLogonScRemoveOption',
     # 2.3.8 Microsoft Network Client
+    'Test-MicrosoftNetworkClientRequireSecuritySignature','Test-MicrosoftNetworkClientEnableSecuritySignature','Test-MicrosoftNetworkClientEnablePlainTextPassword',
     # 2.3.9 Microsoft Network Server
+    'Test-MicrosoftNetworkServerAutoDisconnect','Test-MicrosoftNetworkServerRequireSecuritySignature','Test-MicrosoftNetworkServerEnableSecuritySignature',
+    'Test-MicrosoftNetworkServerEnableForcedLogOff','Test-MicrosoftNetworkServerSmbServerNameHardeningLevel',
     # 2.3.10 Network Access
+    'Test-NetworkAccessLSAAnonymousNameLookup','Test-NetworkAccessRestrictAnonymousSAM','Test-NetworkAccessRestrictAnonymous','Test-NetworkAccessDisableDomainCreds',
+    'Test-NetworkAccessEveryoneIncludesAnonymous','Test-NetworkAccessNullSessionPipes','Test-NetworkAccessAllowedExactPaths','Test-NetworkAccessAllowedPaths',
+    'Test-NetworkAccessRestrictNullSessAccess','Test-NetworkAccessRestrictRemoteSAM','Test-NetworkAccessNullSessionShares','Test-NetworkAccessForceGuest',
     # 2.3.11 Network Security
+    'Test-NetworkSecurityUseMachineId','Test-NetworkSecurityAllowNullSessionFallback','Test-NetworkSecurityAllowOnlineID','Test-NetworkSecuritySupportedEncryptionTypes',
+    'Test-NetworkSecurityNoLMHash','Test-NetworkSecurityForceLogoffWhenHourExpire','Test-NetworkSecurityLmCompatibilityLevel','Test-NetworkSecurityLDAPClientIntegrity',
+    'Test-NetworkSecurityNTLMMinClientSec','Test-NetworkSecurityNTLMMinServerSec',
     # 2.3.13 Shutdown
+    'Test-ShutdownShutdownWithoutLogon',
     # 2.3.15 System Objects
+    'Test-SystemObjectsObCaseInsensitive','Test-SystemObjectsProtectionMode',
     # 2.3.17 User Account Control
+    'Test-UserAccountControlFilterAdministratorToken','Test-UserAccountControlConsentPromptBehaviorAdmin','Test-UserAccountControlConsentPromptBehaviorUser',
+    'Test-UserAccountControlEnableInstallerDetection','Test-UserAccountControlEnableSecureUIAPaths','Test-UserAccountControlEnableLUA','Test-UserAccountControlPromptOnSecureDesktop',
+    'Test-UserAccountControlEnableVirtualization'
     )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
