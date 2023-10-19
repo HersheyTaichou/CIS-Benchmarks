@@ -11,7 +11,7 @@ function Test-MicrosoftNetworkServerAutoDisconnect {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -53,7 +53,7 @@ function Test-MicrosoftNetworkServerRequireSecuritySignature {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -95,7 +95,7 @@ function Test-MicrosoftNetworkServerEnableSecuritySignature {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -137,7 +137,7 @@ function Test-MicrosoftNetworkServerEnableForcedLogOff {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -180,7 +180,7 @@ function Test-MicrosoftNetworkServerSmbServerNameHardeningLevel {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {

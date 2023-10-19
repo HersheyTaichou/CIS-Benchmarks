@@ -7,7 +7,7 @@ function Test-DevicesAllocateDASD {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AllocateDASD"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
         [string]$Setting = $Entry.Display.DisplayString
     }
 
@@ -49,7 +49,7 @@ function Test-DevicesAddPrinterDrivers {
 
          # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\AddPrinterDrivers"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
         [bool]$Setting = [int]$Entry.SettingNumber
     }
 

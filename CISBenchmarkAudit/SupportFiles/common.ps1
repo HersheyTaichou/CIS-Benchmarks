@@ -100,7 +100,7 @@ function Get-GPOEntry {
     param (
         # Parameter help description
         [Parameter(Mandatory)][string]$EntryName,
-        [Parameter(Mandatory)][string]$KeyName
+        [Parameter(Mandatory)][string]$Name
     )
     
     begin {

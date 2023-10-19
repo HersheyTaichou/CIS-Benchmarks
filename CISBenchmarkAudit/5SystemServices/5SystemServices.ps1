@@ -9,7 +9,7 @@ function Test-SystemServicesSpooler {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
         $ProductType = Get-ProductType
     }
 

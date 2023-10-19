@@ -7,7 +7,7 @@ function Test-DomainMemberRequireSignOrSeal {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RequireSignOrSeal"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -44,7 +44,7 @@ function Test-DomainMemberSealSecureChannel {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\SealSecureChannel"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -85,7 +85,7 @@ function Test-DomainMemberSignSecureChannel {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -127,7 +127,7 @@ function Test-DomainMemberDisablePasswordChange {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -175,7 +175,7 @@ function Test-DomainMemberMaximumPasswordAge {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -217,7 +217,7 @@ function Test-DomainMemberRequireStrongKey {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {

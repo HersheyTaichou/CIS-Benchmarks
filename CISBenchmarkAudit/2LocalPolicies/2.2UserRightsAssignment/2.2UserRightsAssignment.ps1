@@ -39,7 +39,7 @@ function Test-UserRightsAssignment {
 
     # Check the current value of the setting
     $Setting = @()
-    $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
+    $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
     $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
 
     if (-not($setting)) {

@@ -26,7 +26,7 @@ function Test-AccountLockoutPolicyLockoutDuration {
 
         #Find the Password History Size applied to this machine
         $EntryName = "LockoutDuration"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
         $Setting = [int]$Entry.SettingNumber
     }
 
@@ -110,7 +110,7 @@ function Test-AccountLockoutPolicyLockoutThreshold {
 
         #Find the Password History Size applied to this machine
         $EntryName = "LockoutBadCount"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
         $Setting = [int]$Entry.SettingNumber
     }
 
@@ -193,7 +193,7 @@ function Test-AccountLockoutPolicyAdminLockout {
 
         #Find the maximum password age applied to this machine
         $EntryName = "AllowAdministratorLockout"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
         [string]$Setting = $Entry.SettingBoolean
     }
 
@@ -255,7 +255,7 @@ function Test-AccountLockoutPolicyResetLockoutCount {
 
         #Find the Password History Size applied to this machine
         $EntryName = "ResetLockoutCount"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
         $Setting = [int]$Entry.SettingNumber
     }
 

@@ -11,7 +11,7 @@ function Test-NetworkSecurityUseMachineId {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -53,7 +53,7 @@ function Test-NetworkSecurityAllowNullSessionFallback {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -95,7 +95,7 @@ function Test-NetworkSecurityAllowOnlineID {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -137,7 +137,7 @@ function Test-NetworkSecuritySupportedEncryptionTypes {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -179,7 +179,7 @@ function Test-NetworkSecurityNoLMHash {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -221,7 +221,7 @@ function Test-NetworkSecurityForceLogoffWhenHourExpire {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "SystemAccessPolicyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName"
     }
 
     process {
@@ -263,7 +263,7 @@ function Test-NetworkSecurityLmCompatibilityLevel {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -305,7 +305,7 @@ function Test-NetworkSecurityLDAPClientIntegrity {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -347,7 +347,7 @@ function Test-NetworkSecurityNTLMMinClientSec {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -389,7 +389,7 @@ function Test-NetworkSecurityNTLMMinServerSec {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {

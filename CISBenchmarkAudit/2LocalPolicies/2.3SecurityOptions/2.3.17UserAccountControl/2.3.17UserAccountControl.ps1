@@ -11,7 +11,7 @@ function Test-UserAccountControlFilterAdministratorToken {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -53,7 +53,7 @@ function Test-UserAccountControlConsentPromptBehaviorAdmin {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -95,7 +95,7 @@ function Test-UserAccountControlConsentPromptBehaviorUser {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -139,7 +139,7 @@ function Test-UserAccountControlEnableInstallerDetection {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -181,7 +181,7 @@ function Test-UserAccountControlEnableSecureUIAPaths {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -223,7 +223,7 @@ function Test-UserAccountControlEnableLUA {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -265,7 +265,7 @@ function Test-UserAccountControlPromptOnSecureDesktop {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -307,7 +307,7 @@ function Test-UserAccountControlEnableVirtualization {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {

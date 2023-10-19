@@ -11,7 +11,7 @@ function Test-InteractiveLogonDisableCAD {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -59,7 +59,7 @@ function Test-InteractiveLogonDontDisplayLastUserName {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -101,7 +101,7 @@ function Test-InteractiveLogonInactivityTimeoutSecs {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -143,7 +143,7 @@ function Test-InteractiveLogonLegalNoticeText {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -185,7 +185,7 @@ function Test-InteractiveLogonLegalNoticeCaption {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -227,7 +227,7 @@ function Test-InteractiveLogonCachedLogonsCount {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -270,7 +270,7 @@ function Test-InteractiveLogonPasswordExpiryWarning {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -312,7 +312,7 @@ function Test-InteractiveLogonForceUnlockLogon {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -354,7 +354,7 @@ function Test-InteractiveLogonScRemoveOption {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {

@@ -6,7 +6,7 @@ function Test-DomainControllerSubmitControl {
         $Return = @()
 
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\SubmitControl"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
         [bool]$Setting = [int]$Entry.SettingNumber
     }
 
@@ -54,7 +54,7 @@ function Test-DomainControllerVulnerableChannelAllowList {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\VulnerableChannelAllowList"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -94,7 +94,7 @@ function Test-DomainControllerLdapEnforceChannelBinding {
         $Return = @()
 
         $EntryName = "MACHINE\System\CurrentControlSet\Services\NTDS\Parameters\LdapEnforceChannelBinding"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
         [string]$Setting = $Entry.Display.DisplayString
     }
 
@@ -136,7 +136,7 @@ function Test-DomainControllerLDAPServerIntegrity {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\NTDS\Parameters\LDAPServerIntegrity"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
         [string]$Setting = $Entry.Display.DisplayString
     }
 
@@ -178,7 +178,7 @@ function Test-DomainControllerRefusePasswordChange {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RefusePasswordChange"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
         [bool]$Setting = [int]$Entry.SettingNumber
     }
 

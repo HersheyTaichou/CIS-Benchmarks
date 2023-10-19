@@ -7,7 +7,7 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\SCENoApplyLegacyAuditPolicy"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
         [bool]$Setting = [int]$Entry.SettingNumber
     }
 
@@ -49,7 +49,7 @@ function Test-AuditCrashOnAuditFail {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\CrashOnAuditFail"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
         [bool]$Setting = [int]$Entry.SettingNumber
     }
 

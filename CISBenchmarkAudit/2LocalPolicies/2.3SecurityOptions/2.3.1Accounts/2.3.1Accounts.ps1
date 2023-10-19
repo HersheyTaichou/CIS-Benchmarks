@@ -11,7 +11,7 @@ function Test-AccountsNoConnectedUser {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\NoConnectedUser"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -49,7 +49,7 @@ function Test-AccountsEnableGuestAccount {
 
         # Get the current value of the setting
         $EntryName = "EnableGuestAccount"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "SystemAccessPolicyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName"
         [bool]$Setting = [int]$Entry.SettingNumber
     }
 
@@ -94,7 +94,7 @@ function Test-AccountsLimitBlankPasswordUse {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\LimitBlankPasswordUse"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
     }
 
     process {
@@ -131,7 +131,7 @@ function Test-AccountsNewAdministratorName {
 
         # Get the current value of the setting
         $EntryName = "NewAdministratorName"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "SystemAccessPolicyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName"
     }
 
     process {
@@ -173,7 +173,7 @@ function Test-AccountsNewGuestName {
 
         # Get the current value of the setting
         $EntryName = "NewGuestName"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "SystemAccessPolicyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName"
     }
 
     process {

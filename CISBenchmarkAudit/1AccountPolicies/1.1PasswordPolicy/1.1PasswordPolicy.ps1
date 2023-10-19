@@ -27,7 +27,7 @@ function Test-PasswordPolicyPasswordHistory {
 
         #Find the Password History Size applied to this machine
         $EntryName = "PasswordHistorySize"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
         $Setting = [int]$Entry.SettingNumber
     }
 
@@ -112,7 +112,7 @@ function Test-PasswordPolicyMaxPasswordAge {
 
         #Find the Password History Size applied to this machine
         $EntryName = "MaximumPasswordAge"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
         $Setting = [int]$Entry.SettingNumber
     }
 
@@ -197,7 +197,7 @@ function Test-PasswordPolicyMinPasswordAge {
 
         #Find the Password History Size applied to this machine
         $EntryName = "MinimumPasswordAge"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
         $Setting = [int]$Entry.SettingNumber
     }
 
@@ -282,7 +282,7 @@ function Test-PasswordPolicyMinPasswordLength {
 
         #Find the Password History Size applied to this machine
         $EntryName = "MinimumPasswordLength"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
         $Setting = [int]$Entry.SettingNumber
     }
 
@@ -367,7 +367,7 @@ function Test-PasswordPolicyComplexityEnabled {
 
         #Find the Password History Size applied to this machine
         $EntryName = "PasswordComplexity"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
         $Setting = [bool]$Entry.SettingBoolean
     }
 
@@ -443,7 +443,7 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
         $ProfileApplicability = @("Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Relax minimum password length limits' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
         $Setting = [bool]$Entry.SettingNumber
     }
 
@@ -500,7 +500,7 @@ function Test-PasswordPolicyReversibleEncryption {
 
         #Find the Password History Size applied to this machine
         $EntryName = "ClearTextPassword"
-        $Entry = Get-GPOEntry -EntryName $EntryName -KeyName "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
         [string]$Setting = $Entry.SettingBoolean
     }
 
