@@ -246,7 +246,9 @@ FunctionsToExport = @(
     # 2.3.17 User Account Control
     'Test-UserAccountControlFilterAdministratorToken','Test-UserAccountControlConsentPromptBehaviorAdmin','Test-UserAccountControlConsentPromptBehaviorUser',
     'Test-UserAccountControlEnableInstallerDetection','Test-UserAccountControlEnableSecureUIAPaths','Test-UserAccountControlEnableLUA','Test-UserAccountControlPromptOnSecureDesktop',
-    'Test-UserAccountControlEnableVirtualization'
+    'Test-UserAccountControlEnableVirtualization',
+    # 5 System Services
+    'Test-SystemServicesSpooler','Test-CISBenchmarkSystemServices'
     )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
