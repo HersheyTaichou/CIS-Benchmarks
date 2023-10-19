@@ -249,6 +249,25 @@ FunctionsToExport = @(
     'Test-UserAccountControlEnableVirtualization',
     # 5 System Services
     'Test-SystemServicesSpooler','Test-CISBenchmarkSystemServices'
+    # 9 Windows Defender Firewall with Advanced Security
+    'Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile','Test-WindowsDefenderFirewallwithAdvancedSecurityPrivateProfile',
+    'Test-WindowsDefenderFirewallwithAdvancedSecurityPublicProfile','Test-CISBenchmarkWindowsDefenderFirewallwithAdvancedSecurity',
+    # 9.1 Domain Profile
+    'Test-DomainProfileEnableFirewall','Test-DomainProfileDefaultInboundAction','Test-DomainProfileDefaultOutboundAction','Test-DomainProfileDisableNotifications',
+    'Test-DomainProfileLogFilePath','Test-DomainProfileLogFileSize','Test-DomainProfileLogDroppedPackets','Test-DomainProfileLogSuccessfulConnections',
+    # 9.2 Private Profile
+    'Test-PrivateProfileEnableFirewall','Test-PrivateProfileDefaultInboundAction','Test-PrivateProfileDefaultOutboundAction','Test-PrivateProfileDisableNotifications',
+    'Test-PrivateProfileLogFilePath','Test-PrivateProfileLogFileSize','Test-PrivateProfileLogDroppedPackets','Test-PrivateProfileLogSuccessfulConnections',
+    # 9.3 Public Profile
+    'Test-PublicProfileEnableFirewall','Test-PublicProfileDefaultInboundAction','Test-PublicProfileDefaultOutboundAction','Test-PublicProfileDisableNotifications',
+    'Test-PublicProfileAllowLocalPolicyMerge','Test-PublicProfileAllowLocalIPsecPolicyMerge','Test-PublicProfileLogFilePath','Test-PublicProfileLogFileSize',
+    'Test-PublicProfileLogDroppedPackets','Test-PublicProfileLogSuccessfulConnections',
+    # 17 Advanced Audit Policy Configuration
+    'Test-CISBenchmarkAdvancedAuditPolicyConfiguration',
+    # 18 Administrative Templates (Computer)
+    'Test-CISBenchmarkAdministrativeTemplatesComputer',
+    # 19 Administrative Templates (User)
+    'Test-CISBenchmarkAdministrativeTemplatesUser'
     )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.

@@ -48,9 +48,20 @@ function Test-CISBenchmark {
         $script:gpresult = Get-GPResult
     }
 
+    # 1 Account Policies
     Test-CISBenchmarkAccountPolicies -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    # 2 Local Policies
     Test-CISBenchmarkLocalPolicies -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    # 5 System Services
     Test-CISBenchmarkSystemServices -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    # 9 Windows Defender Firewall with Advanced Security
+    Test-CISBenchmarkWindowsDefenderFirewallwithAdvancedSecurity -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    # 17 Advanced Audit Policy Configuration
+    Test-CISBenchmarkAdvancedAuditPolicyConfiguration -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    # 18 Administrative Templates (Computer)
+    Test-CISBenchmarkAdministrativeTemplatesComputer -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    # 19 Administrative Templates (User)
+    Test-CISBenchmarkAdministrativeTemplatesUser -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
 
     return $Return
 }
