@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+2.3.1.1 (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Microsoft accounts'
+
+.DESCRIPTION
+This policy setting prevents users from adding new Microsoft accounts on this computer.
+
+.EXAMPLE
+Test-AccountsNoConnectedUser
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.1.1               (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Micro... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-AccountsNoConnectedUser {
     [CmdletBinding()]
     param ()
@@ -40,6 +57,23 @@ function Test-AccountsNoConnectedUser {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.1.2 (L1) Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)
+
+.DESCRIPTION
+This policy setting determines whether the Guest account is enabled or disabled. The Guest account allows unauthenticated network users to gain access to the system.
+
+.EXAMPLE
+Test-AccountsEnableGuestAccount
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.1.2               (L1) Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)                         Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-AccountsEnableGuestAccount {
     [CmdletBinding()]
     param ()
@@ -85,6 +119,23 @@ function Test-AccountsEnableGuestAccount {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.1.3 (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'
+
+.DESCRIPTION
+This policy setting determines whether local accounts that are not password protected can be used to log on from locations other than the physical computer console.
+
+.EXAMPLE
+Test-AccountsLimitBlankPasswordUse
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.1.3               (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set ... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-AccountsLimitBlankPasswordUse {
     [CmdletBinding()]
     param ()
@@ -122,6 +173,23 @@ function Test-AccountsLimitBlankPasswordUse {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.1.4 (L1) Configure 'Accounts: Rename administrator account'
+
+.DESCRIPTION
+The built-in local administrator account is a well-known account name that attackers will target. It is recommended to choose another name for this account, and to avoid names that denote administrative or elevated access accounts.
+
+.EXAMPLE
+Test-AccountsNewAdministratorName
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.1.4               (L1) Configure 'Accounts: Rename administrator account'                                             Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-AccountsNewAdministratorName {
     [CmdletBinding()]
     param ()
@@ -164,6 +232,23 @@ function Test-AccountsNewAdministratorName {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.1.5 (L1) Configure 'Accounts: Rename guest account'
+
+.DESCRIPTION
+The built-in local guest account is another well-known name to attackers. It is recommended to rename this account to something that does not indicate its purpose. Even if you disable this account, which is recommended, ensure that you rename it for added security.
+
+.EXAMPLE
+Test-AccountsNewGuestName
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.1.5               (L1) Configure 'Accounts: Rename guest account'                                                     Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-AccountsNewGuestName {
     [CmdletBinding()]
     param ()

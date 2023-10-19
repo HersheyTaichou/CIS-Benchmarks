@@ -3,11 +3,16 @@
 1.2.1 (L1) Ensure 'Account lockout duration' is set to '15 or more minute(s)'
 
 .DESCRIPTION
-The command checks the applied domain policy and any fine grained
-password policies, to ensure they all meet the lockout duration requirement.
+This policy setting determines the length of time that must pass before a locked account is unlocked and a user can try to log on again.
+
+This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
 .EXAMPLE
-An example
+Test-AccountLockoutPolicyLockoutDuration
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+1.2.1                 (L1) Ensure 'Account lockout duration' is set to '15 or more minute(s)'                             Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -87,11 +92,16 @@ function Test-AccountLockoutPolicyLockoutDuration {
 1.2.2 (L1) Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'
 
 .DESCRIPTION
-The command checks the applied domain policy and any fine grained
-password policies, to ensure they all meet the lockout threshold requirement.
+This policy setting determines the number of failed logon attempts before the account is locked.
+
+This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
 .EXAMPLE
-An example
+Test-AccountLockoutPolicyLockoutThreshold
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+1.2.2                 (L1) Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'  Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -171,11 +181,16 @@ function Test-AccountLockoutPolicyLockoutThreshold {
 1.2.3 (L1) Ensure 'Allow Administrator account lockout' is set to 'Enabled'
 
 .DESCRIPTION
-The command checks the applied domain policy to ensure that the admin account
-lockout is enabled.
+This policy setting determines whether the built-in Administrator account is subject to the following Account Lockout Policy settings: Account lockout duration, Account lockout threshold, and Reset account lockout counter.
+
+This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
 .EXAMPLE
-An example
+Test-AccountLockoutPolicyAdminLockout
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+1.2.3                 (L1) Ensure 'Allow Administrator account lockout' is set to 'Enabled'                               Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -232,11 +247,16 @@ function Test-AccountLockoutPolicyAdminLockout {
 1.2.4 (L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'
 
 .DESCRIPTION
-The command checks the applied domain password policy and any fine grained
-password policies, to ensure they all meet the reset lockout count requirement.
+This policy setting determines the length of time before the Account lockout threshold resets to zero.
+
+This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
 .EXAMPLE
-An example
+Test-AccountLockoutPolicyResetLockoutCount
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+1.2.4                 (L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'                  Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -248,7 +268,7 @@ function Test-AccountLockoutPolicyResetLockoutCount {
         # Check the product type
         $ProductType = Get-ProductType
         $Return = @()
-        $RecommendationNumber = '1.2.2'
+        $RecommendationNumber = '1.2.4'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
         $Source = 'Group Policy Settings'

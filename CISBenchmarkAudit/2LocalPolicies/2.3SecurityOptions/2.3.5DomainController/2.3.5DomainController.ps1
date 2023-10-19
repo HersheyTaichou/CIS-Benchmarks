@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+2.3.5.1 (L1) Ensure 'Domain controller: Allow server operators to schedule tasks' is set to 'Disabled' (DC only)
+
+.DESCRIPTION
+This policy setting determines whether members of the Server Operators group are allowed to submit jobs by means of the AT schedule facility.
+
+.EXAMPLE
+Test-DomainControllerSubmitControl
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.5.1               (L1) Ensure 'Domain controller: Allow server operators to schedule tasks' is set to 'Disabled' (... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-DomainControllerSubmitControl {
     [CmdletBinding()]
     param ()
@@ -45,6 +62,23 @@ function Test-DomainControllerSubmitControl {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.5.2 (L1) Ensure 'Domain controller: Allow vulnerable Netlogon secure channel connections' is set to 'Not Configured' (DC Only)
+
+.DESCRIPTION
+This security setting determines whether the domain controller bypasses secure RPC for Netlogon secure channel connections for specified machine accounts.
+
+.EXAMPLE
+Test-DomainControllerVulnerableChannelAllowList
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.5.2               (L1) Ensure 'Domain controller: Allow vulnerable Netlogon secure channel connections' is set to ... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-DomainControllerVulnerableChannelAllowList {
     [CmdletBinding()]
     param ()
@@ -86,6 +120,23 @@ function Test-DomainControllerVulnerableChannelAllowList {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.5.3 (L1) Ensure 'Domain controller: LDAP server channel binding token requirements' is set to 'Always' (DC Only)
+
+.DESCRIPTION
+This setting determines whether the LDAP server (Domain Controller) enforces validation of Channel Binding Tokens (CBT) received in LDAP bind requests that are sent over SSL/TLS (i.e. LDAPS).
+
+.EXAMPLE
+Test-DomainControllerLdapEnforceChannelBinding
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.5.3               (L1) Ensure 'Domain controller: LDAP server channel binding token requirements' is set to 'Always'  Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-DomainControllerLdapEnforceChannelBinding {
     [CmdletBinding()]
     param ()
@@ -127,6 +178,23 @@ function Test-DomainControllerLdapEnforceChannelBinding {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.5.4 (L1) Ensure 'Domain controller: LDAP server signing requirements' is set to 'Require signing' (DC only)
+
+.DESCRIPTION
+This policy setting determines whether the Lightweight Directory Access Protocol (LDAP) server requires LDAP clients to negotiate data signing.
+
+.EXAMPLE
+Test-DomainControllerLDAPServerIntegrity
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.5.4               (L1) Ensure 'Domain controller: LDAP server signing requirements' is set to 'Require signing' (D... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-DomainControllerLDAPServerIntegrity {
     [CmdletBinding()]
     param ()
@@ -169,6 +237,23 @@ function Test-DomainControllerLDAPServerIntegrity {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.5.5 (L1) Ensure 'Domain controller: Refuse machine account password changes' is set to 'Disabled' (DC only)
+
+.DESCRIPTION
+This security setting determines whether Domain Controllers will refuse requests from member computers to change computer account passwords.
+
+.EXAMPLE
+Test-DomainControllerRefusePasswordChange
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.5.5               (L1) Ensure 'Domain controller: Refuse machine account password changes' is set to 'Disabled' (D... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-DomainControllerRefusePasswordChange {
     [CmdletBinding()]
     param ()

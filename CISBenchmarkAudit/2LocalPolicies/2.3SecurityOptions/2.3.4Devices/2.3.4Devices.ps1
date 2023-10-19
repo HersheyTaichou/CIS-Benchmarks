@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+2.3.4.1 (L1) Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'
+
+.DESCRIPTION
+This policy setting determines who is allowed to format and eject removable NTFS media.
+
+.EXAMPLE
+Test-DevicesAllocateDASD
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.4.1               (L1) Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'       Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-DevicesAllocateDASD {
     [CmdletBinding()]
     param ()
@@ -40,6 +57,23 @@ function Test-DevicesAllocateDASD {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.4.2 (L1) Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'
+
+.DESCRIPTION
+For a computer to print to a shared printer, the driver for that shared printer must be installed on the local computer. This security setting determines who is allowed to install a printer driver as part of connecting to a shared printer.
+
+.EXAMPLE
+Test-DevicesAddPrinterDrivers
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.4.2               (L1) Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'            Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-DevicesAddPrinterDrivers {
     [CmdletBinding()]
     param ()

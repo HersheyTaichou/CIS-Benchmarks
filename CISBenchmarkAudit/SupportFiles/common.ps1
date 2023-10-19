@@ -80,6 +80,9 @@ function Get-GPResult {
             gpupdate.exe /force | Out-Null
             gpresult.exe /x $Path /f | Out-Null
             $delete = $true
+        } else {
+            $Message = $Path + " found, testing the local file."
+            Write-Verbose $Message
         }
     }
     

@@ -1,3 +1,21 @@
+<#
+.SYNOPSIS
+5.1 (L1) Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)
+5.2 (L2) Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (MS only)
+
+.DESCRIPTION
+This service spools print jobs and handles interaction with printers.
+
+.EXAMPLE
+Test-SystemServicesSpooler
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+5.1                   (L1) Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)                                Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-SystemServicesSpooler {
     [CmdletBinding()]
     param ()

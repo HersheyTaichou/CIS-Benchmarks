@@ -3,7 +3,7 @@
 2.2 User Rights Assignment
 
 .DESCRIPTION
-This command will test for the 48 settings defined in section 2.2 of the 
+This command will test all the settings defined in section 2.2 of the 
 CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
@@ -17,32 +17,19 @@ The valid options are:
 at the risk of breaking some functionality. This level requires and includes all the
 Level 1 benchmarks
 
-.PARAMETER ServerType
-This parameter is used to define the type of server this is running on.
-
-The valid options are:
-DomainController    = These settings are specific to Domain Controllers.
-MemberServer        = These settings are specific to domain member servers. 
-
-The MemberServer profile also applies to servers with the following roles:
-- AD Certificate Services
-- DHCP Server
-- DNS Server
-- File Server
-- Hyper-V
-- Network Policy and Access Services
-- Print Server
-- Remote Access Services
-- Remote Desktop Services
-- Web Server
-
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
 These settings are recommended in environments taht can support them.
 
 .EXAMPLE
-An example
+Test-LocalPoliciesUserRightsAssignment
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.2.1                 (L1) Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'                      Group Policy Settings     True    
+2.2.2                 (L1) Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Use... Group Policy Settings     True    
+2.2.4                 (L1) Ensure 'Act as part of the operating system' is set to 'No One'                                Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -67,7 +54,6 @@ function Test-LocalPoliciesUserRightsAssignment {
     if ($ServerType -eq 2) {
         Test-UserRightsAssignmentSeMachineAccountPrivilege
     }
-    Test-UserRightsAssignmentSeIncreaseQuotaPrivilege
     Test-UserRightsAssignmentSeIncreaseQuotaPrivilege
     Test-UserRightsAssignmentSeInteractiveLogonRight
     Test-UserRightsAssignmentSeRemoteInteractiveLogonRight
@@ -115,7 +101,7 @@ function Test-LocalPoliciesUserRightsAssignment {
 2.3 Security Options
 
 .DESCRIPTION
-This command will test for the # settings defined in section 2.3 of the 
+This command will test for all the settings defined in section 2.3 of the 
 CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
@@ -129,32 +115,19 @@ The valid options are:
 at the risk of breaking some functionality. This level requires and includes all the
 Level 1 benchmarks
 
-.PARAMETER ServerType
-This parameter is used to define the type of server this is running on.
-
-The valid options are:
-DomainController    = These settings are specific to Domain Controllers.
-MemberServer        = These settings are specific to domain member servers. 
-
-The MemberServer profile also applies to servers with the following roles:
-- AD Certificate Services
-- DHCP Server
-- DNS Server
-- File Server
-- Hyper-V
-- Network Policy and Access Services
-- Print Server
-- Remote Access Services
-- Remote Desktop Services
-- Web Server
-
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
 These settings are recommended in environments taht can support them.
 
 .EXAMPLE
-An example
+Test-LocalPoliciesSecurityOptions -Level 1
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.1.1               (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Micro... Group Policy Settings     True    
+2.3.1.3               (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set ... Group Policy Settings     True    
+2.3.1.4               (L1) Configure 'Accounts: Rename administrator account'                                             Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -210,32 +183,19 @@ The valid options are:
 at the risk of breaking some functionality. This level requires and includes all the
 Level 1 benchmarks
 
-.PARAMETER ServerType
-This parameter is used to define the type of server this is running on.
-
-The valid options are:
-DomainController    = These settings are specific to Domain Controllers.
-MemberServer        = These settings are specific to domain member servers. 
-
-The MemberServer profile also applies to servers with the following roles:
-- AD Certificate Services
-- DHCP Server
-- DNS Server
-- File Server
-- Hyper-V
-- Network Policy and Access Services
-- Print Server
-- Remote Access Services
-- Remote Desktop Services
-- Web Server
-
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
 These settings are recommended in environments taht can support them.
 
 .EXAMPLE
-An example
+Test-CISBenchmarkLocalPolicies
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.1.1               (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Micro... Group Policy Settings     True    
+2.3.1.3               (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set ... Group Policy Settings     True    
+2.3.1.4               (L1) Configure 'Accounts: Rename administrator account'                                             Group Policy Settings     True    
 
 .NOTES
 General notes

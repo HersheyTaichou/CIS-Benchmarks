@@ -68,6 +68,10 @@ Test-PasswordPolicyPasswordHistory
 
 ### Test a different machine
 
+> **WARNING**: Testing in this manner will skip some tests! The script will check the machines' type as it runs. A workstation is type 1, a domain controller (DC) is type 2 and a member server (MS) is type 3. If you run this on a workstation, it will skip all the DC or MS specific tests, and only run the tests that apply to both types.
+>
+> **Tip**: Use a test DC or MS server, with the below method, to make sure everything is properly tested.
+
 I understand that some people may be hesitant to run a large script they found on the internet on a production server. In that case, it is possible to export a copy of the GPO settings on a server, then move that file a separate machine with this script, and run it there.
 
 1. Generate a GP report

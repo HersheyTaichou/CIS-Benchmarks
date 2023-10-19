@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+2.3.7.1 (L1) Ensure 'Interactive logon: Do not require CTRL+ALT+DEL' is set to 'Disabled'
+
+.DESCRIPTION
+This policy setting determines whether users must press CTRL+ALT+DEL before they log on.
+
+.EXAMPLE
+Test-InteractiveLogonDisableCAD
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.7.1               (L1) Ensure 'Interactive logon: Do not require CTRL+ALT+DEL' is set to 'Disabled'                   Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-InteractiveLogonDisableCAD {
     [CmdletBinding()]
     param ()
@@ -46,6 +63,23 @@ function Test-InteractiveLogonDisableCAD {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.7.2 (L1) Ensure 'Interactive logon: Don't display last signed-in' is set to 'Enabled'
+
+.DESCRIPTION
+This policy setting determines whether the account name of the last user to log on to the client computers in your organization will be displayed in each computer's respective Windows logon screen.
+
+.EXAMPLE
+Test-InteractiveLogonDontDisplayLastUserName
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.7.2               (L1) Ensure 'Interactive logon: Don't display last signed-in' is set to 'Enabled'                   Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-InteractiveLogonDontDisplayLastUserName {
     [CmdletBinding()]
     param ()
@@ -88,6 +122,23 @@ function Test-InteractiveLogonDontDisplayLastUserName {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.7.3 (L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0'
+
+.DESCRIPTION
+Windows notices inactivity of a logon session, and if the amount of inactive time exceeds the inactivity limit, then the screen saver will run, locking the session.
+
+.EXAMPLE
+Test-InteractiveLogonInactivityTimeoutSecs
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.7.3               (L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-InteractiveLogonInactivityTimeoutSecs {
     [CmdletBinding()]
     param ()
@@ -130,6 +181,23 @@ function Test-InteractiveLogonInactivityTimeoutSecs {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.7.4 (L1) Configure 'Interactive logon: Message text for users attempting to log on'
+
+.DESCRIPTION
+This policy setting specifies a text message that displays to users when they log on.
+
+.EXAMPLE
+Test-InteractiveLogonLegalNoticeText
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.7.4               (L1) Configure 'Interactive logon: Message text for users attempting to log on'                     Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-InteractiveLogonLegalNoticeText {
     [CmdletBinding()]
     param ()
@@ -172,6 +240,23 @@ function Test-InteractiveLogonLegalNoticeText {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.7.5 (L1) Configure 'Interactive logon: Message title for users attempting to log on'
+
+.DESCRIPTION
+This policy setting specifies the text displayed in the title bar of the window that users see when they log on to the system.
+
+.EXAMPLE
+Test-InteractiveLogonLegalNoticeCaption
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.7.5               (L1) Configure 'Interactive logon: Message title for users attempting to log on'                    Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-InteractiveLogonLegalNoticeCaption {
     [CmdletBinding()]
     param ()
@@ -214,6 +299,23 @@ function Test-InteractiveLogonLegalNoticeCaption {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.7.6 (L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only)
+
+.DESCRIPTION
+This policy setting determines whether a user can log on to a Windows domain using cached account information.
+
+.EXAMPLE
+Test-InteractiveLogonCachedLogonsCount
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.7.6               (L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-InteractiveLogonCachedLogonsCount {
     [CmdletBinding()]
     param ()
@@ -257,6 +359,23 @@ function Test-InteractiveLogonCachedLogonsCount {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.7.7 (L1) Ensure 'Interactive logon: Prompt user to change password before expiration' is set to 'between 5 and 14 days'
+
+.DESCRIPTION
+This policy setting determines how far in advance users are warned that their password will expire.
+
+.EXAMPLE
+Test-InteractiveLogonPasswordExpiryWarning
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.7.7               (L1) Ensure 'Interactive logon: Prompt user to change password before expiration' is set to 'bet... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-InteractiveLogonPasswordExpiryWarning {
     [CmdletBinding()]
     param ()
@@ -299,6 +418,23 @@ function Test-InteractiveLogonPasswordExpiryWarning {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.7.8 (L1) Ensure 'Interactive logon: Require Domain Controller Authentication to unlock workstation' is set to 'Enabled' (MS Only)
+
+.DESCRIPTION
+Logon information is required to unlock a locked computer. For domain accounts, this security setting determines whether it is necessary to contact a Domain Controller to unlock a computer.
+
+.EXAMPLE
+Test-InteractiveLogonForceUnlockLogon
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.7.8               (L1) Ensure 'Interactive logon: Require Domain Controller Authentication to unlock workstation' ... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-InteractiveLogonForceUnlockLogon {
     [CmdletBinding()]
     param ()
@@ -341,6 +477,23 @@ function Test-InteractiveLogonForceUnlockLogon {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.7.9 (L1) Ensure 'Interactive logon: Smart card removal behavior' is set to 'Lock Workstation' or higher
+
+.DESCRIPTION
+This policy setting determines what happens when the smart card for a logged-on user is removed from the smart card reader.
+
+.EXAMPLE
+Test-InteractiveLogonScRemoveOption
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+2.3.7.9               (L1) Ensure 'Interactive logon: Smart card removal behavior' is set to 'Lock Workstation' or higher Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-InteractiveLogonScRemoveOption {
     [CmdletBinding()]
     param ()

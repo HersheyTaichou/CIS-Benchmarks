@@ -25,6 +25,12 @@ These settings are recommended in environments taht can support them.
 .EXAMPLE
 Test-PasswordPolicy -Level 1 -ServerType DomainController
 
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+1.1.1                 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'                           Group Policy Settings     True    
+1.1.2                 (L1) Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'                         Group Policy Settings     True    
+1.1.3                 (L1) Ensure 'Minimum password age' is set to '1 or more day(s)'                                     Group Policy Settings     True    
+
 .NOTES
 General notes
 #>
@@ -78,7 +84,13 @@ This parameter is used to enable the Next Generation Windows Security optional a
 These settings are recommended in environments taht can support them.
 
 .EXAMPLE
-An example
+Test-AccountPoliciesAccountLockoutPolicy
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+1.2.1                 (L1) Ensure 'Account lockout duration' is set to '15 or more minute(s)'                             Group Policy Settings     True    
+1.2.2                 (L1) Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'  Group Policy Settings     True    
+1.2.3                 (L1) Ensure 'Allow Administrator account lockout' is set to 'Enabled'                               Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -131,7 +143,13 @@ This parameter is used to enable the Next Generation Windows Security optional a
 These settings are recommended in environments taht can support them.
 
 .EXAMPLE
-An example
+Test-CISBenchmarkAccountPolicies
+
+RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
+1.1.1                 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'                           Group Policy Settings     True    
+1.1.2                 (L1) Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'                         Group Policy Settings     True    
+1.1.3                 (L1) Ensure 'Minimum password age' is set to '1 or more day(s)'                                     Group Policy Settings     True    
 
 .NOTES
 General notes
