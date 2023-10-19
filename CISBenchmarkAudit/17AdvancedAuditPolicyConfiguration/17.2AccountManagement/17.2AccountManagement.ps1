@@ -49,7 +49,7 @@ function Test-AccountManagementAuditComputerAccountManagement {
         $EntryName = "Audit Computer Account Management"
         $RecommendationNumber = '17.2.2'
         $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = ""
+        $RecommendationName = "(L1) Ensure 'Audit Computer Account Management' is set to include 'Success' (DC only)"
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -130,7 +130,7 @@ function Test-AccountManagementAuditOtherAccountManagementEvents {
 
     begin {
         $Return = @()
-        $EntryName = ""
+        $EntryName = "Audit Other Account Management Events"
         $RecommendationNumber = '17.2.4'
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Audit Other Account Management Events' is set to include 'Success' (DC only)"
