@@ -233,17 +233,17 @@ function Test-CISBenchmarkAdvancedAuditPolicyConfiguration {
     }
     
     process {
-        Test-AdvancedAuditPolicyConfigurationAccountLogon
-        Test-AdvancedAuditPolicyConfigurationAccountManagement
-        Test-AdvancedAuditPolicyConfigurationDetailedTracking
+        Test-AdvancedAuditPolicyConfigurationAccountLogon -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+        Test-AdvancedAuditPolicyConfigurationAccountManagement -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+        Test-AdvancedAuditPolicyConfigurationDetailedTracking -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
         if ($ProductType -eq 2) {
-            Test-AdvancedAuditPolicyConfigurationDSAccess
+            Test-AdvancedAuditPolicyConfigurationDSAccess -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
         }
-        Test-AdvancedAuditPolicyConfigurationLogonLogoff
-        Test-AdvancedAuditPolicyConfigurationObjectAccess
-        Test-AdvancedAuditPolicyConfigurationPolicyChange
-        Test-AdvancedAuditPolicyConfigurationPrivilegeUse
-        Test-AdvancedAuditPolicyConfigurationSystem
+        Test-AdvancedAuditPolicyConfigurationLogonLogoff -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+        Test-AdvancedAuditPolicyConfigurationObjectAccess -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+        Test-AdvancedAuditPolicyConfigurationPolicyChange -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+        Test-AdvancedAuditPolicyConfigurationPrivilegeUse -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+        Test-AdvancedAuditPolicyConfigurationSystem -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
     }
     
     end {}

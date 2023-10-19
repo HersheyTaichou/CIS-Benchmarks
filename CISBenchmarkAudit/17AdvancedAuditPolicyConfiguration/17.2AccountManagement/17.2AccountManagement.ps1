@@ -88,7 +88,7 @@ function Test-AccountManagementAuditDistributionGroupManagement {
 
     begin {
         $Return = @()
-        $EntryName = ""
+        $EntryName = "Audit Distribution Group Management"
         $RecommendationNumber = '17.2.3'
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Audit Distribution Group Management' is set to include 'Success' (DC only)"
