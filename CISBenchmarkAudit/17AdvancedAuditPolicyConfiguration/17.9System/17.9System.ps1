@@ -25,9 +25,9 @@ function Test-SystemAuditIPsecDriver {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -67,9 +67,9 @@ function Test-SystemAuditOtherSystemEvents {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -109,9 +109,9 @@ function Test-SystemAuditSecurityStateChange {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -151,9 +151,9 @@ function Test-SystemAuditSecuritySystemExtension {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -193,9 +193,9 @@ function Test-SystemAuditSystemIntegrity {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

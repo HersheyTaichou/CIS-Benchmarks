@@ -25,9 +25,9 @@ function Test-ObjectAccessAuditDetailedFileShare {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -67,9 +67,9 @@ function Test-ObjectAccessAuditFileShare {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -109,9 +109,9 @@ function Test-ObjectAccessAuditOtherObjectAccessEvents {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -151,9 +151,9 @@ function Test-ObjectAccessAuditRemovableStorage {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

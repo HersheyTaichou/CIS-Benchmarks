@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+2.3.8.1 (L1) Ensure 'Microsoft network client: Digitally sign communications (always)' is set to 'Enabled'
+
+.DESCRIPTION
+This policy setting determines whether packet signing is required by the SMB client component.
+
+.EXAMPLE
+Test-MicrosoftNetworkClientRequireSecuritySignature
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.8.1   (L1) Ensure 'Microsoft network client: Digitally sign communications (always)' is set to 'Enabled'  Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-MicrosoftNetworkClientRequireSecuritySignature {
     [CmdletBinding()]
     param ()
@@ -25,9 +42,9 @@ function Test-MicrosoftNetworkClientRequireSecuritySignature {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -40,6 +57,23 @@ function Test-MicrosoftNetworkClientRequireSecuritySignature {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.8.2 (L1) Ensure 'Microsoft network client: Digitally sign communications (if server agrees)' is set to 'Enabled'
+
+.DESCRIPTION
+This policy setting determines whether the SMB client will attempt to negotiate SMB packet signing.
+
+.EXAMPLE
+Test-MicrosoftNetworkClientEnableSecuritySignature
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.8.2   (L1) Ensure 'Microsoft network client: Digitally sign communications (if server agrees)' is set ... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-MicrosoftNetworkClientEnableSecuritySignature {
     [CmdletBinding()]
     param ()
@@ -67,9 +101,9 @@ function Test-MicrosoftNetworkClientEnableSecuritySignature {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -82,6 +116,23 @@ function Test-MicrosoftNetworkClientEnableSecuritySignature {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.8.3 (L1) Ensure 'Microsoft network client: Send unencrypted password to third-party SMB servers' is set to 'Disabled'
+
+.DESCRIPTION
+This policy setting determines whether the SMB redirector will send plaintext passwords during authentication to third-party SMB servers that do not support password encryption.
+
+.EXAMPLE
+Test-MicrosoftNetworkClientEnablePlainTextPassword
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.8.3   (L1) Ensure 'Microsoft network client: Send unencrypted password to third-party SMB servers' is ... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-MicrosoftNetworkClientEnablePlainTextPassword {
     [CmdletBinding()]
     param ()
@@ -115,9 +166,9 @@ function Test-MicrosoftNetworkClientEnablePlainTextPassword {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

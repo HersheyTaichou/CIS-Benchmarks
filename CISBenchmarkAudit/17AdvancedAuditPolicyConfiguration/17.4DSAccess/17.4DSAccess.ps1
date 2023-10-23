@@ -25,9 +25,9 @@ function Test-DSAccessAuditDirectoryServiceAccess {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -67,9 +67,9 @@ function Test-DSAccessAuditDirectoryServiceChanges {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

@@ -25,9 +25,9 @@ function Test-PublicProfileEnableFirewall {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -67,9 +67,9 @@ function Test-PublicProfileDefaultInboundAction {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -109,9 +109,9 @@ function Test-PublicProfileDefaultOutboundAction {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -151,9 +151,9 @@ function Test-PublicProfileDisableNotifications {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -193,9 +193,9 @@ function Test-PublicProfileAllowLocalPolicyMerge {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -235,9 +235,9 @@ function Test-PublicProfileAllowLocalIPsecPolicyMerge {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -281,9 +281,9 @@ function Test-PublicProfileLogFilePath {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -323,9 +323,9 @@ function Test-PublicProfileLogFileSize {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -365,9 +365,9 @@ function Test-PublicProfileLogDroppedPackets {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -407,9 +407,9 @@ function Test-PublicProfileLogSuccessfulConnections {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

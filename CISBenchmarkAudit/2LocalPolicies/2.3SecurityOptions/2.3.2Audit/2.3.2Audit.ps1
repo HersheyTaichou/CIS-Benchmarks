@@ -8,9 +8,9 @@ This policy setting allows administrators to enable the more precise auditing ca
 .EXAMPLE
 Test-AuditSCENoApplyLegacyAuditPolicy
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.2.1               (L1) Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.2.1   (L1) Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -42,9 +42,9 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
         $RecommendationName = "(L1) Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -67,9 +67,9 @@ This policy setting determines whether the system shuts down if it is unable to 
 .EXAMPLE
 Test-AuditCrashOnAuditFail
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.2.2               (L1) Ensure 'Audit: Shut down system immediately if unable to log security audits' is set to 'Di... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.2.2   (L1) Ensure 'Audit: Shut down system immediately if unable to log security audits' is set to 'Di... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -107,9 +107,9 @@ function Test-AuditCrashOnAuditFail {
         $RecommendationName = "(L1) Ensure 'Audit: Shut down system immediately if unable to log security audits' is set to 'Disabled'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

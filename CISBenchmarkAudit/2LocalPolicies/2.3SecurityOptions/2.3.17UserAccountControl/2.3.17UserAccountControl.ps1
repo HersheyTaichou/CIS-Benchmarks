@@ -1,3 +1,16 @@
+<#
+.SYNOPSIS
+Short description
+
+.DESCRIPTION
+Long description
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-UserAccountControlFilterAdministratorToken {
     [CmdletBinding()]
     param ()
@@ -25,9 +38,9 @@ function Test-UserAccountControlFilterAdministratorToken {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -40,6 +53,19 @@ function Test-UserAccountControlFilterAdministratorToken {
     }
 }
 
+<#
+.SYNOPSIS
+Short description
+
+.DESCRIPTION
+Long description
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-UserAccountControlConsentPromptBehaviorAdmin {
     [CmdletBinding()]
     param ()
@@ -67,9 +93,9 @@ function Test-UserAccountControlConsentPromptBehaviorAdmin {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -82,6 +108,19 @@ function Test-UserAccountControlConsentPromptBehaviorAdmin {
     }
 }
 
+<#
+.SYNOPSIS
+Short description
+
+.DESCRIPTION
+Long description
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-UserAccountControlConsentPromptBehaviorUser {
     [CmdletBinding()]
     param ()
@@ -111,9 +150,9 @@ function Test-UserAccountControlConsentPromptBehaviorUser {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -126,6 +165,19 @@ function Test-UserAccountControlConsentPromptBehaviorUser {
     }
 }
 
+<#
+.SYNOPSIS
+Short description
+
+.DESCRIPTION
+Long description
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-UserAccountControlEnableInstallerDetection {
     [CmdletBinding()]
     param ()
@@ -153,9 +205,9 @@ function Test-UserAccountControlEnableInstallerDetection {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -168,6 +220,19 @@ function Test-UserAccountControlEnableInstallerDetection {
     }
 }
 
+<#
+.SYNOPSIS
+Short description
+
+.DESCRIPTION
+Long description
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-UserAccountControlEnableSecureUIAPaths {
     [CmdletBinding()]
     param ()
@@ -195,9 +260,9 @@ function Test-UserAccountControlEnableSecureUIAPaths {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -210,6 +275,19 @@ function Test-UserAccountControlEnableSecureUIAPaths {
     }
 }
 
+<#
+.SYNOPSIS
+Short description
+
+.DESCRIPTION
+Long description
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-UserAccountControlEnableLUA {
     [CmdletBinding()]
     param ()
@@ -237,9 +315,9 @@ function Test-UserAccountControlEnableLUA {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -252,6 +330,19 @@ function Test-UserAccountControlEnableLUA {
     }
 }
 
+<#
+.SYNOPSIS
+Short description
+
+.DESCRIPTION
+Long description
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-UserAccountControlPromptOnSecureDesktop {
     [CmdletBinding()]
     param ()
@@ -279,9 +370,9 @@ function Test-UserAccountControlPromptOnSecureDesktop {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -294,6 +385,19 @@ function Test-UserAccountControlPromptOnSecureDesktop {
     }
 }
 
+<#
+.SYNOPSIS
+Short description
+
+.DESCRIPTION
+Long description
+
+.EXAMPLE
+An example
+
+.NOTES
+General notes
+#>
 function Test-UserAccountControlEnableVirtualization {
     [CmdletBinding()]
     param ()
@@ -321,9 +425,9 @@ function Test-UserAccountControlEnableVirtualization {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

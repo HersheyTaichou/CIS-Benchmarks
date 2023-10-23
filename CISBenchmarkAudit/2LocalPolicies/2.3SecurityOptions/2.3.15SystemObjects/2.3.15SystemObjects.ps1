@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+2.3.15.1 (L1) Ensure 'System objects: Require case insensitivity for non-Windows subsystems' is set to 'Enabled'
+
+.DESCRIPTION
+This policy setting determines whether case insensitivity is enforced for all subsystems.
+
+.EXAMPLE
+Test-SystemObjectsObCaseInsensitive
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.15.1  (L1) Ensure 'System objects: Require case insensitivity for non-Windows subsystems' is set to 'E... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-SystemObjectsObCaseInsensitive {
     [CmdletBinding()]
     param ()
@@ -25,9 +42,9 @@ function Test-SystemObjectsObCaseInsensitive {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -40,6 +57,23 @@ function Test-SystemObjectsObCaseInsensitive {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.15.2 (L1) Ensure 'System objects: Strengthen default permissions of internal system objects (e.g. Symbolic Links)' is set to 'Enabled'
+
+.DESCRIPTION
+This policy setting determines the strength of the default discretionary access control list (DACL) for objects.
+
+.EXAMPLE
+Test-SystemObjectsProtectionMode
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.15.2  (L1) Ensure 'System objects: Strengthen default permissions of internal system objects (e.g. Sym... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-SystemObjectsProtectionMode {
     [CmdletBinding()]
     param ()
@@ -67,9 +101,9 @@ function Test-SystemObjectsProtectionMode {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

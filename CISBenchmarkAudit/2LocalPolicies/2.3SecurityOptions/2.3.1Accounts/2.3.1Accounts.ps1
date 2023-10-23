@@ -8,9 +8,9 @@ This policy setting prevents users from adding new Microsoft accounts on this co
 .EXAMPLE
 Test-AccountsNoConnectedUser
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.1.1               (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Micro... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.1.1   (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Micro... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -42,9 +42,9 @@ function Test-AccountsNoConnectedUser {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Entry.Display.DisplayString
@@ -67,9 +67,9 @@ This policy setting determines whether the Guest account is enabled or disabled.
 .EXAMPLE
 Test-AccountsEnableGuestAccount
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.1.2               (L1) Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)                         Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.1.2   (L1) Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)                         Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -104,9 +104,9 @@ function Test-AccountsEnableGuestAccount {
         $RecommendationName = "(L1) Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -129,9 +129,9 @@ This policy setting determines whether local accounts that are not password prot
 .EXAMPLE
 Test-AccountsLimitBlankPasswordUse
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.1.3               (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set ... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.1.3   (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set ... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -158,9 +158,9 @@ function Test-AccountsLimitBlankPasswordUse {
         $RecommendationName = "(L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Entry.Display.DisplayString
@@ -183,9 +183,9 @@ The built-in local administrator account is a well-known account name that attac
 .EXAMPLE
 Test-AccountsNewAdministratorName
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.1.4               (L1) Configure 'Accounts: Rename administrator account'                                             Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.1.4   (L1) Configure 'Accounts: Rename administrator account'                                             Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -217,9 +217,9 @@ function Test-AccountsNewAdministratorName {
         $RecommendationName = "(L1) Configure 'Accounts: Rename administrator account'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Entry.SettingString
@@ -242,9 +242,9 @@ The built-in local guest account is another well-known name to attackers. It is 
 .EXAMPLE
 Test-AccountsNewGuestName
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.1.5               (L1) Configure 'Accounts: Rename guest account'                                                     Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.1.5   (L1) Configure 'Accounts: Rename guest account'                                                     Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -276,9 +276,9 @@ function Test-AccountsNewGuestName {
         $RecommendationName = "(L1) Configure 'Accounts: Rename guest account'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Entry.SettingString

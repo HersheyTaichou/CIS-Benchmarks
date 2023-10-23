@@ -98,9 +98,9 @@ This security setting is used by Credential Manager during Backup and Restore. N
 .EXAMPLE
 Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.1                 (L1) Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'                      Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.1     (L1) Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'                      Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -118,9 +118,9 @@ function Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeTrustedCredManAccessPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -143,9 +143,9 @@ This policy setting allows other users on the network to connect to the computer
 .EXAMPLE
 Test-UserRightsAssignmentSeNetworkLogonRight
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.2                 (L1) Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Use... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.2     (L1) Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Use... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -171,9 +171,9 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
         $RecommendationName = "(L1) Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -186,9 +186,9 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
         $RecommendationName = "(L1) Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             
             'Pass'= $Pass.Pass
@@ -201,9 +201,9 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
         $RecommendationName = "(L1) Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $false
             'Setting' = @()
@@ -226,9 +226,9 @@ This policy setting allows a process to assume the identity of any user and thus
 .EXAMPLE
 Test-UserRightsAssignmentSeTcbPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.4                 (L1) Ensure 'Act as part of the operating system' is set to 'No One'                                Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.4     (L1) Ensure 'Act as part of the operating system' is set to 'No One'                                Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -246,9 +246,9 @@ function Test-UserRightsAssignmentSeTcbPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeTcbPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -269,9 +269,9 @@ This policy setting specifies which users can add computer workstations to the d
 .EXAMPLE
 Test-UserRightsAssignmentSeMachineAccountPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.5                 (L1) Ensure 'Add workstations to domain' is set to 'Administrators' (DC only)                       Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.5     (L1) Ensure 'Add workstations to domain' is set to 'Administrators' (DC only)                       Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -289,9 +289,9 @@ function Test-UserRightsAssignmentSeMachineAccountPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeMachineAccountPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -312,9 +312,9 @@ This policy setting allows a user to adjust the maximum amount of memory that is
 .EXAMPLE
 Test-UserRightsAssignmentSeIncreaseQuotaPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.6                 (L1) Ensure 'Adjust memory quotas for a process' is set to 'Administrators, LOCAL SERVICE, NETWO... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.6     (L1) Ensure 'Adjust memory quotas for a process' is set to 'Administrators, LOCAL SERVICE, NETWO... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -332,9 +332,9 @@ function Test-UserRightsAssignmentSeIncreaseQuotaPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeIncreaseQuotaPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -355,9 +355,9 @@ This policy setting determines which users can interactively log on to computers
 .EXAMPLE
 Test-UserRightsAssignmentSeInteractiveLogonRight
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.7                 (L1) Ensure 'Allow log on locally' is set to 'Administrators'                                       Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.7     (L1) Ensure 'Allow log on locally' is set to 'Administrators'                                       Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -375,9 +375,9 @@ function Test-UserRightsAssignmentSeInteractiveLogonRight {
     $Pass = Test-UserRightsAssignment -EntryName "SeInteractiveLogonRight" -Definition @('Administrators') -OptionalDef @('Backup Operators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -399,9 +399,9 @@ This policy setting determines which users or groups have the right to log on as
 .EXAMPLE
 Test-UserRightsAssignmentSeRemoteInteractiveLogonRight
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.8                 (L1) Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)     Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.8     (L1) Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)     Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -428,9 +428,9 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $DomainController
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -443,9 +443,9 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $MemberServer -OptionalDef $MSOptional
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             
             'Pass'= $Pass.Pass
@@ -458,9 +458,9 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
         $RecommendationName = "(L1) Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $false
             'Setting' = @()
@@ -483,9 +483,9 @@ This policy setting allows users to circumvent file and directory permissions to
 .EXAMPLE
 Test-UserRightsAssignmentSeBackupPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.10                (L1) Ensure 'Allow log on locally' is set to 'Administrators'                                       Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.10    (L1) Ensure 'Allow log on locally' is set to 'Administrators'                                       Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -503,9 +503,9 @@ function Test-UserRightsAssignmentSeBackupPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeBackupPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -526,9 +526,9 @@ This policy setting determines which users and groups can change the time and da
 .EXAMPLE
 Test-UserRightsAssignmentSeSystemTimePrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.11                (L1) Ensure 'Change the system time' is set to 'Administrators, LOCAL SERVICE'                      Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.11    (L1) Ensure 'Change the system time' is set to 'Administrators, LOCAL SERVICE'                      Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -546,9 +546,9 @@ function Test-UserRightsAssignmentSeSystemTimePrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeSystemTimePrivilege" -Definition @('Administrators','LOCAL SERVICE')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -569,9 +569,9 @@ This setting determines which users can change the time zone of the computer. Th
 .EXAMPLE
 Test-UserRightsAssignmentSeTimeZonePrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.12                (L1) Ensure 'Change the time zone' is set to 'Administrators, LOCAL SERVICE'                        Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.12    (L1) Ensure 'Change the time zone' is set to 'Administrators, LOCAL SERVICE'                        Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -589,9 +589,9 @@ function Test-UserRightsAssignmentSeTimeZonePrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeTimeZonePrivilege" -Definition @('Administrators','LOCAL SERVICE')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -612,9 +612,9 @@ This policy setting allows users to change the size of the pagefile. By making t
 .EXAMPLE
 Test-UserRightsAssignmentSeCreatePagefilePrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.13                (L1) Ensure 'Create a pagefile' is set to 'Administrators'                                          Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.13    (L1) Ensure 'Create a pagefile' is set to 'Administrators'                                          Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -632,9 +632,9 @@ function Test-UserRightsAssignmentSeCreatePagefilePrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeCreatePagefilePrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -655,9 +655,9 @@ This policy setting allows a process to create an access token, which may provid
 .EXAMPLE
 Test-UserRightsAssignmentSeCreateTokenPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.14                (L1) Ensure 'Create a token object' is set to 'No One'                                              Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.14    (L1) Ensure 'Create a token object' is set to 'No One'                                              Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -675,9 +675,9 @@ function Test-UserRightsAssignmentSeCreateTokenPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeCreateTokenPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -698,9 +698,9 @@ This policy setting determines whether users can create global objects that are 
 .EXAMPLE
 Test-UserRightsAssignmentSeCreateGlobalPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.15                (L1) Ensure 'Create global objects' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, S... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.15    (L1) Ensure 'Create global objects' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, S... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -718,9 +718,9 @@ function Test-UserRightsAssignmentSeCreateGlobalPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeCreateGlobalPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE','SERVICE')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -741,9 +741,9 @@ This user right is useful to kernel-mode components that extend the object names
 .EXAMPLE
 Test-UserRightsAssignmentSeCreatePermanentPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.16                (L1) Ensure 'Create permanent shared objects' is set to 'No One'                                    Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.16    (L1) Ensure 'Create permanent shared objects' is set to 'No One'                                    Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -761,9 +761,9 @@ function Test-UserRightsAssignmentSeCreatePermanentPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeCreatePermanentPrivilege" -Definition @("")
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -787,9 +787,9 @@ The recommended state for this setting is: Administrators and (when the Hyper-V 
 .EXAMPLE
 Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.17                (L1) Ensure 'Create symbolic links' is set to 'Administrators' (DC only)                            Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.17    (L1) Ensure 'Create symbolic links' is set to 'Administrators' (DC only)                            Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -816,9 +816,9 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $DomainController
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -831,9 +831,9 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $MemberServer -OptionalDef $MSOptional
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -845,9 +845,9 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
         $RecommendationName = "(L1) Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\Virtual Machines' (MS only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $false
             'Setting' = @()
@@ -870,9 +870,9 @@ This policy setting determines which user accounts will have the right to attach
 .EXAMPLE
 Test-UserRightsAssignmentSeDebugPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.19                (L1) Ensure 'Debug programs' is set to 'Administrators'                                             Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.19    (L1) Ensure 'Debug programs' is set to 'Administrators'                                             Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -890,9 +890,9 @@ function Test-UserRightsAssignmentSeDebugPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeDebugPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -914,9 +914,9 @@ This policy setting prohibits users from connecting to a computer from across th
 .EXAMPLE
 Test-UserRightsAssignmentSeDenyNetworkLogonRight
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.20                (L1) Ensure 'Deny access to this computer from the network' to include 'Guests' (DC only)           Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.20    (L1) Ensure 'Deny access to this computer from the network' to include 'Guests' (DC only)           Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -941,9 +941,9 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $DomainController -Include
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -956,9 +956,9 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $MemberServer -Include
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -970,9 +970,9 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
         $RecommendationName = "(L1) Ensure 'Deny access to this computer from the network' to include 'Guests, Local account and member of Administrators group' (MS only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $false
             'Setting' = @()
@@ -995,9 +995,9 @@ This policy setting determines which accounts will not be able to log on to the 
 .EXAMPLE
 Test-UserRightsAssignmentSeDenyBatchLogonRight
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.22                (L1) Ensure 'Deny log on as a batch job' to include 'Guests'                                        Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.22    (L1) Ensure 'Deny log on as a batch job' to include 'Guests'                                        Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1015,9 +1015,9 @@ function Test-UserRightsAssignmentSeDenyBatchLogonRight {
     $Pass = Test-UserRightsAssignment -EntryName "SeDenyBatchLogonRight" -Definition @('Guests') -Include
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1038,9 +1038,9 @@ This security setting determines which service accounts are prevented from regis
 .EXAMPLE
 Test-UserRightsAssignmentSeDenyServiceLogonRight
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.23                (L1) Ensure 'Deny log on as a service' to include 'Guests'                                          Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.23    (L1) Ensure 'Deny log on as a service' to include 'Guests'                                          Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1058,9 +1058,9 @@ function Test-UserRightsAssignmentSeDenyServiceLogonRight {
     $Pass = Test-UserRightsAssignment -EntryName "SeDenyServiceLogonRight" -Definition @('Guests') -Include
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1081,9 +1081,9 @@ This security setting determines which users are prevented from logging on at th
 .EXAMPLE
 Test-UserRightsAssignmentSeDenyInteractiveLogonRight
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.24                (L1) Ensure 'Deny log on locally' to include 'Guests'                                               Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.24    (L1) Ensure 'Deny log on locally' to include 'Guests'                                               Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1101,9 +1101,9 @@ function Test-UserRightsAssignmentSeDenyInteractiveLogonRight {
     $Pass = Test-UserRightsAssignment -EntryName "SeDenyInteractiveLogonRight" -Definition @('Guests') -Include
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1125,9 +1125,9 @@ This policy setting determines whether users can log on as Remote Desktop client
 .EXAMPLE
 Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.25                (L1) Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only)             Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.25    (L1) Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only)             Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1153,9 +1153,9 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $DomainController -Include
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -1168,9 +1168,9 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $MemberServer
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -1182,9 +1182,9 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
         $RecommendationName = "(L1) Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $false
             'Setting' = @()
@@ -1208,9 +1208,9 @@ This policy setting allows users to change the Trusted for Delegation setting on
 .EXAMPLE
 Test-UserRightsAssignmentSeEnableDelegationPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.27                (L1) Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administ... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.27    (L1) Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administ... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1236,9 +1236,9 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $DomainController
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -1251,9 +1251,9 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $MemberServer
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -1265,9 +1265,9 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
         $RecommendationName = "(L1) Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One' (MS only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $false
             'Setting' = @()
@@ -1290,9 +1290,9 @@ This policy setting allows users to shut down Windows Vista-based or newer compu
 .EXAMPLE
 Test-UserRightsAssignmentSeRemoteShutdownPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.29                (L1) Ensure 'Force shutdown from a remote system' is set to 'Administrators'                        Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.29    (L1) Ensure 'Force shutdown from a remote system' is set to 'Administrators'                        Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1310,9 +1310,9 @@ function Test-UserRightsAssignmentSeRemoteShutdownPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeRemoteShutdownPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1333,9 +1333,9 @@ This policy setting determines which users or processes can generate audit recor
 .EXAMPLE
 Test-UserRightsAssignmentSeAuditPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.30                (L1) Ensure 'Generate security audits' is set to 'LOCAL SERVICE, NETWORK SERVICE'                   Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.30    (L1) Ensure 'Generate security audits' is set to 'LOCAL SERVICE, NETWORK SERVICE'                   Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1353,9 +1353,9 @@ function Test-UserRightsAssignmentSeAuditPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeAuditPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1377,9 +1377,9 @@ The policy setting allows programs that run on behalf of a user to impersonate t
 .EXAMPLE
 Test-UserRightsAssignmentSeImpersonatePrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.31                (L1) Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.31    (L1) Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1405,9 +1405,9 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $DomainController
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -1420,9 +1420,9 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $MemberServer -OptionalDef $MSOptional
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -1434,9 +1434,9 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
         $RecommendationName = "(L1) Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $false
             'Setting' = @()
@@ -1459,9 +1459,9 @@ This policy setting determines whether users can increase the base priority clas
 .EXAMPLE
 Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.33                (L1) Ensure 'Increase scheduling priority' is set to 'Administrators, Window Manager\Window Mana... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.33    (L1) Ensure 'Increase scheduling priority' is set to 'Administrators, Window Manager\Window Mana... Group Policy Settings     True    
 
 .NOTES
 The benchmark specifies 'Administrators' and 'Window Manager\Window Manager Group' for 2019 and newer, but on a fresh install of Server 2022 promoted to a DC, 'Window Manager\Window Manager Group' does not come up in any searches. It was moved to be considered optional by the script.
@@ -1479,9 +1479,9 @@ function Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeIncreaseBasePriorityPrivilege" -Definition @('Administrators') -OptionalDef @('Window Manager\Window Manager Group')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1502,9 +1502,9 @@ This policy setting allows users to dynamically load a new device driver on a sy
 .EXAMPLE
 Test-UserRightsAssignmentSeLoadDriverPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.34                (L1) Ensure 'Load and unload device drivers' is set to 'Administrators'                             Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.34    (L1) Ensure 'Load and unload device drivers' is set to 'Administrators'                             Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1522,9 +1522,9 @@ function Test-UserRightsAssignmentSeLoadDriverPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeLoadDriverPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1545,9 +1545,9 @@ This policy setting allows a process to keep data in physical memory, which prev
 .EXAMPLE
 Test-UserRightsAssignmentSeLockMemoryPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.35                (L1) Ensure 'Lock pages in memory' is set to 'No One'                                               Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.35    (L1) Ensure 'Lock pages in memory' is set to 'No One'                                               Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1565,9 +1565,9 @@ function Test-UserRightsAssignmentSeLockMemoryPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeLockMemoryPrivilege" -Definition @('')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1588,9 +1588,9 @@ This policy setting allows accounts to log on using the task scheduler service. 
 .EXAMPLE
 Test-UserRightsAssignmentSeBatchLogonRight
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.36                (L2) Ensure 'Log on as a batch job' is set to 'Administrators' (DC Only)                            Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.36    (L2) Ensure 'Log on as a batch job' is set to 'Administrators' (DC Only)                            Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1608,9 +1608,9 @@ function Test-UserRightsAssignmentSeBatchLogonRight {
     $Pass = Test-UserRightsAssignment -EntryName "SeBatchLogonRight" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1632,9 +1632,9 @@ This policy setting determines which users can change the auditing options for f
 .EXAMPLE
 Test-UserRightsAssignmentSeSecurityPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.37                (L1) Ensure 'Manage auditing and security log' is set to 'Administrators' and (when Exchange is ... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.37    (L1) Ensure 'Manage auditing and security log' is set to 'Administrators' and (when Exchange is ... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1660,9 +1660,9 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $DomainController -OptionalDef $DCOptional
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -1675,9 +1675,9 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
         $Source = 'Group Policy Settings'
         $Pass = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $MemberServer
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass.Pass
             'Setting' = $Pass.Setting
@@ -1689,9 +1689,9 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
         $RecommendationName = "(L1) Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $false
             'Setting' = @()
@@ -1714,9 +1714,9 @@ This privilege determines which user accounts can modify the integrity label of 
 .EXAMPLE
 Test-UserRightsAssignmentSeRelabelPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.39                (L1) Ensure 'Modify an object label' is set to 'No One'                                             Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.39    (L1) Ensure 'Modify an object label' is set to 'No One'                                             Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1734,9 +1734,9 @@ function Test-UserRightsAssignmentSeRelabelPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeRelabelPrivilege" -Definition @('')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1757,9 +1757,9 @@ This policy setting allows users to configure the system-wide environment variab
 .EXAMPLE
 Test-UserRightsAssignmentSeSystemEnvironmentPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.40                (L1) Ensure 'Modify firmware environment values' is set to 'Administrators'                         Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.40    (L1) Ensure 'Modify firmware environment values' is set to 'Administrators'                         Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1777,9 +1777,9 @@ function Test-UserRightsAssignmentSeSystemEnvironmentPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeSystemEnvironmentPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1800,9 +1800,9 @@ This policy setting allows users to manage the system's volume or disk configura
 .EXAMPLE
 Test-UserRightsAssignmentSeManageVolumePrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.41                (L1) Ensure 'Perform volume maintenance tasks' is set to 'Administrators'                           Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.41    (L1) Ensure 'Perform volume maintenance tasks' is set to 'Administrators'                           Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1820,9 +1820,9 @@ function Test-UserRightsAssignmentSeManageVolumePrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeManageVolumePrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1843,9 +1843,9 @@ This policy setting determines which users can use tools to monitor the performa
 .EXAMPLE
 Test-UserRightsAssignmentSeProfileSingleProcessPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.42                (L1) Ensure 'Profile single process' is set to 'Administrators'                                     Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.42    (L1) Ensure 'Profile single process' is set to 'Administrators'                                     Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1863,9 +1863,9 @@ function Test-UserRightsAssignmentSeProfileSingleProcessPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeProfileSingleProcessPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1886,9 +1886,9 @@ This policy setting allows users to use tools to view the performance of differe
 .EXAMPLE
 Test-UserRightsAssignmentSeSystemProfilePrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.43                (L1) Ensure 'Profile system performance' is set to 'Administrators, NT SERVICE\WdiServiceHost'      Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.43    (L1) Ensure 'Profile system performance' is set to 'Administrators, NT SERVICE\WdiServiceHost'      Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1906,9 +1906,9 @@ function Test-UserRightsAssignmentSeSystemProfilePrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeSystemProfilePrivilege" -Definition @('Administrators', 'NT SERVICE\WdiServiceHost')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1929,9 +1929,9 @@ This policy setting allows one process or service to start another service or pr
 .EXAMPLE
 Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.44                (L1) Ensure 'Replace a process level token' is set to 'LOCAL SERVICE, NETWORK SERVICE'              Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.44    (L1) Ensure 'Replace a process level token' is set to 'LOCAL SERVICE, NETWORK SERVICE'              Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1949,9 +1949,9 @@ function Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeAssignPrimaryTokenPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -1972,9 +1972,9 @@ This policy setting determines which users can bypass file, directory, registry,
 .EXAMPLE
 Test-UserRightsAssignmentSeRestorePrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.45                (L1) Ensure 'Restore files and directories' is set to 'Administrators'                              Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.45    (L1) Ensure 'Restore files and directories' is set to 'Administrators'                              Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -1992,9 +1992,9 @@ function Test-UserRightsAssignmentSeRestorePrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeRestorePrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -2015,9 +2015,9 @@ This policy setting determines which users who are logged on locally to the comp
 .EXAMPLE
 Test-UserRightsAssignmentSeShutdownPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.46                (L1) Ensure 'Shut down the system' is set to 'Administrators'                                       Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.46    (L1) Ensure 'Shut down the system' is set to 'Administrators'                                       Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -2035,9 +2035,9 @@ function Test-UserRightsAssignmentSeShutdownPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeShutdownPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -2058,9 +2058,9 @@ This security setting determines which users and groups have the authority to sy
 .EXAMPLE
 Test-UserRightsAssignmentSeSyncAgentPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.47                (L1) Ensure 'Synchronize directory service data' is set to 'No One' (DC only)                       Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.47    (L1) Ensure 'Synchronize directory service data' is set to 'No One' (DC only)                       Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -2078,9 +2078,9 @@ function Test-UserRightsAssignmentSeSyncAgentPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeSyncAgentPrivilege" -Definition @('')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting
@@ -2101,9 +2101,9 @@ This policy setting allows users to take ownership of files, folders, registry k
 .EXAMPLE
 Test-UserRightsAssignmentSeTakeOwnershipPrivilege
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.48                (L1) Ensure 'Take ownership of files or other objects' is set to 'Administrators'                   Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.48    (L1) Ensure 'Take ownership of files or other objects' is set to 'Administrators'                   Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -2121,9 +2121,9 @@ function Test-UserRightsAssignmentSeTakeOwnershipPrivilege {
     $Pass = Test-UserRightsAssignment -EntryName "SeTakeOwnershipPrivilege" -Definition @('Administrators')
 
     $Properties = [PSCustomObject]@{
-        'RecommendationNumber' = $RecommendationNumber
+        'Number' = $RecommendationNumber
         'ProfileApplicability' = $ProfileApplicability
-        'RecommendationName'= $RecommendationName
+        'Name'= $RecommendationName
         'Source' = $Source
         'Pass'= $Pass.Pass
         'Setting' = $Pass.Setting

@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+2.3.10.1 (L1) Ensure 'Network access: Allow anonymous SID/Name translation' is set to 'Disabled'
+
+.DESCRIPTION
+This policy setting determines whether an anonymous user can request security identifier (SID) attributes for another user, or use a SID to obtain its corresponding user name.
+
+.EXAMPLE
+Test-NetworkAccessLSAAnonymousNameLookup
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.10.1  (L1) Ensure 'Network access: Allow anonymous SID/Name translation' is set to 'Disabled'             Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkAccessLSAAnonymousNameLookup {
     [CmdletBinding()]
     param ()
@@ -31,9 +48,9 @@ function Test-NetworkAccessLSAAnonymousNameLookup {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -46,6 +63,23 @@ function Test-NetworkAccessLSAAnonymousNameLookup {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.10.2 (L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts' is set to 'Enabled' (MS only)
+
+.DESCRIPTION
+This policy setting controls the ability of anonymous users to enumerate the accounts in the Security Accounts Manager (SAM).
+
+.EXAMPLE
+Test-NetworkAccessRestrictAnonymousSAM
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.10.2  (L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts' is set to 'Enab... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkAccessRestrictAnonymousSAM {
     [CmdletBinding()]
     param ()
@@ -73,9 +107,9 @@ function Test-NetworkAccessRestrictAnonymousSAM {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -88,6 +122,23 @@ function Test-NetworkAccessRestrictAnonymousSAM {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.10.3 (L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is set to 'Enabled' (MS only)
+
+.DESCRIPTION
+This policy setting controls the ability of anonymous users to enumerate SAM accounts as well as shares.
+
+.EXAMPLE
+Test-NetworkAccessRestrictAnonymous
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.10.3  (L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is s... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkAccessRestrictAnonymous {
     [CmdletBinding()]
     param ()
@@ -115,9 +166,9 @@ function Test-NetworkAccessRestrictAnonymous {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -130,6 +181,23 @@ function Test-NetworkAccessRestrictAnonymous {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.10.4 (L2) Ensure 'Network access: Do not allow storage of passwords and credentials for network authentication' is set to 'Enabled'
+
+.DESCRIPTION
+This policy setting determines whether Credential Manager (formerly called Stored User Names and Passwords) saves passwords or credentials for later use when it gains domain authentication.
+
+.EXAMPLE
+Test-NetworkAccessDisableDomainCreds
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.10.4  (L2) Ensure 'Network access: Do not allow storage of passwords and credentials for network authe... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkAccessDisableDomainCreds {
     [CmdletBinding()]
     param ()
@@ -157,9 +225,9 @@ function Test-NetworkAccessDisableDomainCreds {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -172,6 +240,23 @@ function Test-NetworkAccessDisableDomainCreds {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.10.5 (L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disabled'
+
+.DESCRIPTION
+This policy setting determines what additional permissions are assigned for anonymous connections to the computer.
+
+.EXAMPLE
+Test-NetworkAccessEveryoneIncludesAnonymous
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.10.5  (L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disab... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkAccessEveryoneIncludesAnonymous {
     [CmdletBinding()]
     param ()
@@ -205,9 +290,9 @@ function Test-NetworkAccessEveryoneIncludesAnonymous {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -221,6 +306,24 @@ function Test-NetworkAccessEveryoneIncludesAnonymous {
 }
 
 # 2.3.10.6 and 2.3.10.7
+<#
+.SYNOPSIS
+2.3.10.6 (L1) Configure 'Network access: Named Pipes that can be accessed anonymously' (DC only)
+2.3.10.7 (L1) Configure 'Network access: Named Pipes that can be accessed anonymously' (MS only)
+
+.DESCRIPTION
+This policy setting determines which communication sessions, or pipes, will have attributes and permissions that allow anonymous access.
+
+.EXAMPLE
+Test-NetworkAccessNullSessionPipes
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.10.6  (L1) Configure 'Network access: Named Pipes that can be accessed anonymously' (DC only)             Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkAccessNullSessionPipes {
     [CmdletBinding()]
     param ()
@@ -286,9 +389,9 @@ function Test-NetworkAccessNullSessionPipes {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -301,6 +404,23 @@ function Test-NetworkAccessNullSessionPipes {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.10.8 (L1) Configure 'Network access: Remotely accessible registry paths' is configured
+
+.DESCRIPTION
+This policy setting determines which registry paths will be accessible over the network, regardless of the users or groups listed in the access control list (ACL) of the winreg registry key.
+
+.EXAMPLE
+Test-NetworkAccessAllowedExactPaths
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.10.8  (L1) Configure 'Network access: Remotely accessible registry paths' is configured                   Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkAccessAllowedExactPaths {
     [CmdletBinding()]
     param ()
@@ -333,9 +453,9 @@ function Test-NetworkAccessAllowedExactPaths {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -348,6 +468,23 @@ function Test-NetworkAccessAllowedExactPaths {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.10.9 (L1) Configure 'Network access: Remotely accessible registry paths and sub-paths' is configured
+
+.DESCRIPTION
+This policy setting determines which registry paths and sub-paths will be accessible over the network, regardless of the users or groups listed in the access control list (ACL) of the winreg registry key.
+
+.EXAMPLE
+Test-NetworkAccessAllowedPaths
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.10.9  (L1) Configure 'Network access: Remotely accessible registry paths and sub-paths' is configured     Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkAccessAllowedPaths {
     [CmdletBinding()]
     param ()
@@ -390,9 +527,9 @@ function Test-NetworkAccessAllowedPaths {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -405,6 +542,23 @@ function Test-NetworkAccessAllowedPaths {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.10.10 (L1) Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Enabled'
+
+.DESCRIPTION
+When enabled, this policy setting restricts anonymous access to only those shares and pipes that are named in the "Network access: Named pipes that can be accessed anonymously" and "Network access: Shares that can be accessed anonymously" settings.
+
+.EXAMPLE
+Test-NetworkAccessRestrictNullSessAccess
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.10.10 (L1) Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Ena... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkAccessRestrictNullSessAccess {
     [CmdletBinding()]
     param ()
@@ -432,9 +586,9 @@ function Test-NetworkAccessRestrictNullSessAccess {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -447,6 +601,23 @@ function Test-NetworkAccessRestrictNullSessAccess {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.10.11 (L1) Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Administrators: Remote Access: Allow' (MS only)
+
+.DESCRIPTION
+This policy setting allows you to restrict remote RPC connections to SAM.
+
+.EXAMPLE
+Test-NetworkAccessRestrictRemoteSAM
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.10.10 (L1) Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Ad... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkAccessRestrictRemoteSAM {
     [CmdletBinding()]
     param ()
@@ -475,9 +646,9 @@ function Test-NetworkAccessRestrictRemoteSAM {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -490,6 +661,23 @@ function Test-NetworkAccessRestrictRemoteSAM {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.10.12 (L1) Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None'
+
+.DESCRIPTION
+This policy setting determines which network shares can be accessed by anonymous users. The default configuration for this policy setting has little effect because all users have to be authenticated before they can access shared resources on the server.
+
+.EXAMPLE
+Test-NetworkAccessNullSessionShares
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.10.12 (L1) Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None'              Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkAccessNullSessionShares {
     [CmdletBinding()]
     param ()
@@ -517,9 +705,9 @@ function Test-NetworkAccessNullSessionShares {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -532,6 +720,23 @@ function Test-NetworkAccessNullSessionShares {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.10.13 (L1) Ensure 'Network access: Sharing and security model for local accounts' is set to 'Classic - local users authenticate as themselves'
+
+.DESCRIPTION
+This policy setting determines how network logons that use local accounts are authenticated.
+
+.EXAMPLE
+Test-NetworkAccessForceGuest
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.10.13 (L1) Ensure 'Network access: Sharing and security model for local accounts' is set to 'Classic -... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkAccessForceGuest {
     [CmdletBinding()]
     param ()
@@ -564,9 +769,9 @@ function Test-NetworkAccessForceGuest {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

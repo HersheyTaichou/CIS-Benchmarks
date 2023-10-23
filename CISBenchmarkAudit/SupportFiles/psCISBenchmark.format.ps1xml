@@ -9,24 +9,24 @@
             <TableControl>
                 <TableHeaders>
                     <TableColumnHeader>
-                        <Width>21</Width>
+                        <Width>10</Width>
                     </TableColumnHeader>
                     <TableColumnHeader />
                     <TableColumnHeader>
                         <Width>25</Width>
                     </TableColumnHeader>
                     <TableColumnHeader>
-                        <Width>8</Width>
+                        <Width>6</Width>
                     </TableColumnHeader>
                 </TableHeaders>
                 <TableRowEntries>
                     <TableRowEntry>
                         <TableColumnItems>
                             <TableColumnItem>
-                                <PropertyName>RecommendationNumber</PropertyName>
+                                <PropertyName>Number</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>RecommendationName</PropertyName>
+                                <PropertyName>Name</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
                                 <PropertyName>Source</PropertyName>
@@ -49,13 +49,13 @@
                     <ListEntry>
                         <ListItems>
                             <ListItem>
-                                <PropertyName>RecommendationNumber</PropertyName>
+                                <PropertyName>Number</PropertyName>
                             </ListItem>
                             <ListItem>
                                 <PropertyName>ProfileApplicability</PropertyName>
                             </ListItem>
                             <ListItem>
-                                <PropertyName>RecommendationName</PropertyName>
+                                <PropertyName>Name</PropertyName>
                             </ListItem>
                             <ListItem>
                                 <PropertyName>Source</PropertyName>

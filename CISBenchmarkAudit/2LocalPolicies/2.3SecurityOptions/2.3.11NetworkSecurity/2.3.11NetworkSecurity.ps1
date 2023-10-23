@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+2.3.11.1 (L1) Ensure 'Network security: Allow Local System to use computer identity for NTLM' is set to 'Enabled'
+
+.DESCRIPTION
+This policy setting determines whether Local System services that use Negotiate when reverting to NTLM authentication can use the computer identity.
+
+.EXAMPLE
+Test-NetworkSecurityUseMachineId
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.11.1  (L1) Ensure 'Network security: Allow Local System to use computer identity for NTLM' is set to '... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkSecurityUseMachineId {
     [CmdletBinding()]
     param ()
@@ -25,9 +42,9 @@ function Test-NetworkSecurityUseMachineId {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -40,6 +57,23 @@ function Test-NetworkSecurityUseMachineId {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.11.2 (L1) Ensure 'Network security: Allow LocalSystem NULL session fallback' is set to 'Disabled'
+
+.DESCRIPTION
+This policy setting determines whether NTLM is allowed to fall back to a NULL session when used with LocalSystem.
+
+.EXAMPLE
+Test-NetworkSecurityAllowNullSessionFallback
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.11.2  (L1) Ensure 'Network security: Allow LocalSystem NULL session fallback' is set to 'Disabled'        Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkSecurityAllowNullSessionFallback {
     [CmdletBinding()]
     param ()
@@ -67,9 +101,9 @@ function Test-NetworkSecurityAllowNullSessionFallback {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -82,6 +116,23 @@ function Test-NetworkSecurityAllowNullSessionFallback {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.11.3 (L1) Ensure 'Network Security: Allow PKU2U authentication requests to this computer to use online identities' is set to 'Disabled'
+
+.DESCRIPTION
+This setting determines if online identities are able to authenticate to this computer.
+
+.EXAMPLE
+Test-NetworkSecurityAllowOnlineID
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.11.3  (L1) Ensure 'Network Security: Allow PKU2U authentication requests to this computer to use onlin... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkSecurityAllowOnlineID {
     [CmdletBinding()]
     param ()
@@ -109,9 +160,9 @@ function Test-NetworkSecurityAllowOnlineID {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -124,6 +175,23 @@ function Test-NetworkSecurityAllowOnlineID {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.11.4 (L1) Ensure 'Network security: Configure encryption types allowed for Kerberos' is set to 'AES128_HMAC_SHA1, AES256_HMAC_SHA1, Future encryption types'
+
+.DESCRIPTION
+This policy setting allows you to set the encryption types that Kerberos is allowed to use.
+
+.EXAMPLE
+Test-NetworkSecuritySupportedEncryptionTypes
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.11.4  (L1) Ensure 'Network security: Configure encryption types allowed for Kerberos' is set to 'AES12... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkSecuritySupportedEncryptionTypes {
     [CmdletBinding()]
     param ()
@@ -151,9 +219,9 @@ function Test-NetworkSecuritySupportedEncryptionTypes {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -166,6 +234,23 @@ function Test-NetworkSecuritySupportedEncryptionTypes {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.11.5 (L1) Ensure 'Network security: Do not store LAN Manager hash value on next password change' is set to 'Enabled'
+
+.DESCRIPTION
+This policy setting determines whether the LAN Manager (LM) hash value for the new password is stored when the password is changed. The LM hash is relatively weak and prone to attack compared to the cryptographically stronger Microsoft Windows NT hash. Since LM hashes are stored on the local computer in the security database, passwords can then be easily compromised if the database is attacked.
+
+.EXAMPLE
+Test-NetworkSecurityNoLMHash
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.11.5  (L1) Ensure 'Network security: Do not store LAN Manager hash value on next password change' is s... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkSecurityNoLMHash {
     [CmdletBinding()]
     param ()
@@ -193,9 +278,9 @@ function Test-NetworkSecurityNoLMHash {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -208,6 +293,23 @@ function Test-NetworkSecurityNoLMHash {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.11.6 (L1) Ensure 'Network security: Force logoff when logon hours expire' is set to 'Enabled'
+
+.DESCRIPTION
+This policy setting determines whether to disconnect users who are connected to the local computer outside their user account's valid logon hours.
+
+.EXAMPLE
+Test-NetworkSecurityForceLogoffWhenHourExpire
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.11.6  (L1) Ensure 'Network security: Force logoff when logon hours expire' is set to 'Enabled'            Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkSecurityForceLogoffWhenHourExpire {
     [CmdletBinding()]
     param ()
@@ -235,9 +337,9 @@ function Test-NetworkSecurityForceLogoffWhenHourExpire {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -250,6 +352,23 @@ function Test-NetworkSecurityForceLogoffWhenHourExpire {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.11.7 (L1) Ensure 'Network security: LAN Manager authentication level' is set to 'Send NTLMv2 response only. Refuse LM & NTLM'
+
+.DESCRIPTION
+The Network security: LAN Manager authentication level setting determines which challenge/response authentication protocol is used for network logons. This choice affects the level of authentication protocol used by clients, the level of session security negotiated, and the level of authentication accepted by servers.
+
+.EXAMPLE
+Test-NetworkSecurityLmCompatibilityLevel
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.11.7  (L1) Ensure 'Network security: LAN Manager authentication level' is set to 'Send NTLMv2 response... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkSecurityLmCompatibilityLevel {
     [CmdletBinding()]
     param ()
@@ -277,9 +396,9 @@ function Test-NetworkSecurityLmCompatibilityLevel {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -292,6 +411,23 @@ function Test-NetworkSecurityLmCompatibilityLevel {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.11.8 (L1) Ensure 'Network security: LDAP client signing requirements' is set to 'Negotiate signing' or higher
+
+.DESCRIPTION
+This policy setting determines the level of data signing that is requested on behalf of clients that issue LDAP BIND requests.
+
+.EXAMPLE
+Test-NetworkSecurityLDAPClientIntegrity
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.11.8  (L1) Ensure 'Network security: LDAP client signing requirements' is set to 'Negotiate signing' o... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkSecurityLDAPClientIntegrity {
     [CmdletBinding()]
     param ()
@@ -319,9 +455,9 @@ function Test-NetworkSecurityLDAPClientIntegrity {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -334,6 +470,23 @@ function Test-NetworkSecurityLDAPClientIntegrity {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.11.9 (L1) Ensure 'Network security: Minimum session security for NTLM SSP based (including secure RPC) clients' is set to 'Require NTLMv2 session security, Require 128-bit encryption'
+
+.DESCRIPTION
+This policy setting determines which behaviors are allowed by clients for applications using the NTLM Security Support Provider (SSP).
+
+.EXAMPLE
+Test-NetworkSecurityNTLMMinClientSec
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.11.9  (L1) Ensure 'Network security: Minimum session security for NTLM SSP based (including secure RPC... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkSecurityNTLMMinClientSec {
     [CmdletBinding()]
     param ()
@@ -361,9 +514,9 @@ function Test-NetworkSecurityNTLMMinClientSec {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -376,6 +529,23 @@ function Test-NetworkSecurityNTLMMinClientSec {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.11.10 (L1) Ensure 'Network security: Minimum session security for NTLM SSP based (including secure RPC) servers' is set to 'Require NTLMv2 session security, Require 128-bit encryption'
+
+.DESCRIPTION
+This policy setting determines which behaviors are allowed by servers for applications using the NTLM Security Support Provider (SSP).
+
+.EXAMPLE
+Test-NetworkSecurityNTLMMinServerSec
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.11.10 (L1) Ensure 'Network security: Minimum session security for NTLM SSP based (including secure RPC... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-NetworkSecurityNTLMMinServerSec {
     [CmdletBinding()]
     param ()
@@ -403,9 +573,9 @@ function Test-NetworkSecurityNTLMMinServerSec {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

@@ -8,9 +8,9 @@ This policy setting determines whether users must press CTRL+ALT+DEL before they
 .EXAMPLE
 Test-InteractiveLogonDisableCAD
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.7.1               (L1) Ensure 'Interactive logon: Do not require CTRL+ALT+DEL' is set to 'Disabled'                   Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.7.1   (L1) Ensure 'Interactive logon: Do not require CTRL+ALT+DEL' is set to 'Disabled'                   Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -48,9 +48,9 @@ function Test-InteractiveLogonDisableCAD {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -73,9 +73,9 @@ This policy setting determines whether the account name of the last user to log 
 .EXAMPLE
 Test-InteractiveLogonDontDisplayLastUserName
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.7.2               (L1) Ensure 'Interactive logon: Don't display last signed-in' is set to 'Enabled'                   Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.7.2   (L1) Ensure 'Interactive logon: Don't display last signed-in' is set to 'Enabled'                   Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -107,9 +107,9 @@ function Test-InteractiveLogonDontDisplayLastUserName {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -132,9 +132,9 @@ Windows notices inactivity of a logon session, and if the amount of inactive tim
 .EXAMPLE
 Test-InteractiveLogonInactivityTimeoutSecs
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.7.3               (L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.7.3   (L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -166,9 +166,9 @@ function Test-InteractiveLogonInactivityTimeoutSecs {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -191,9 +191,9 @@ This policy setting specifies a text message that displays to users when they lo
 .EXAMPLE
 Test-InteractiveLogonLegalNoticeText
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.7.4               (L1) Configure 'Interactive logon: Message text for users attempting to log on'                     Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.7.4   (L1) Configure 'Interactive logon: Message text for users attempting to log on'                     Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -225,9 +225,9 @@ function Test-InteractiveLogonLegalNoticeText {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -250,9 +250,9 @@ This policy setting specifies the text displayed in the title bar of the window 
 .EXAMPLE
 Test-InteractiveLogonLegalNoticeCaption
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.7.5               (L1) Configure 'Interactive logon: Message title for users attempting to log on'                    Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.7.5   (L1) Configure 'Interactive logon: Message title for users attempting to log on'                    Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -284,9 +284,9 @@ function Test-InteractiveLogonLegalNoticeCaption {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -309,9 +309,9 @@ This policy setting determines whether a user can log on to a Windows domain usi
 .EXAMPLE
 Test-InteractiveLogonCachedLogonsCount
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.7.6               (L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.7.6   (L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -344,9 +344,9 @@ function Test-InteractiveLogonCachedLogonsCount {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -369,9 +369,9 @@ This policy setting determines how far in advance users are warned that their pa
 .EXAMPLE
 Test-InteractiveLogonPasswordExpiryWarning
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.7.7               (L1) Ensure 'Interactive logon: Prompt user to change password before expiration' is set to 'bet... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.7.7   (L1) Ensure 'Interactive logon: Prompt user to change password before expiration' is set to 'bet... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -403,9 +403,9 @@ function Test-InteractiveLogonPasswordExpiryWarning {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -428,9 +428,9 @@ Logon information is required to unlock a locked computer. For domain accounts, 
 .EXAMPLE
 Test-InteractiveLogonForceUnlockLogon
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.7.8               (L1) Ensure 'Interactive logon: Require Domain Controller Authentication to unlock workstation' ... Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.7.8   (L1) Ensure 'Interactive logon: Require Domain Controller Authentication to unlock workstation' ... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -462,9 +462,9 @@ function Test-InteractiveLogonForceUnlockLogon {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -487,9 +487,9 @@ This policy setting determines what happens when the smart card for a logged-on 
 .EXAMPLE
 Test-InteractiveLogonScRemoveOption
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.7.9               (L1) Ensure 'Interactive logon: Smart card removal behavior' is set to 'Lock Workstation' or higher Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.7.9   (L1) Ensure 'Interactive logon: Smart card removal behavior' is set to 'Lock Workstation' or higher Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -521,9 +521,9 @@ function Test-InteractiveLogonScRemoveOption {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

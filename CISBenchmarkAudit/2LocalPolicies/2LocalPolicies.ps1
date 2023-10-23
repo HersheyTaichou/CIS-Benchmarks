@@ -25,11 +25,11 @@ These settings are recommended in environments taht can support them.
 .EXAMPLE
 Test-LocalPoliciesUserRightsAssignment
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.2.1                 (L1) Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'                      Group Policy Settings     True    
-2.2.2                 (L1) Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Use... Group Policy Settings     True    
-2.2.4                 (L1) Ensure 'Act as part of the operating system' is set to 'No One'                                Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.2.1     (L1) Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'                      Group Policy Settings     True    
+2.2.2     (L1) Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Use... Group Policy Settings     True    
+2.2.4     (L1) Ensure 'Act as part of the operating system' is set to 'No One'                                Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -123,11 +123,11 @@ These settings are recommended in environments taht can support them.
 .EXAMPLE
 Test-LocalPoliciesSecurityOptions -Level 1
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.1.1               (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Micro... Group Policy Settings     True    
-2.3.1.3               (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set ... Group Policy Settings     True    
-2.3.1.4               (L1) Configure 'Accounts: Rename administrator account'                                             Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.1.1   (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Micro... Group Policy Settings     True    
+2.3.1.3   (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set ... Group Policy Settings     True    
+2.3.1.4   (L1) Configure 'Accounts: Rename administrator account'                                             Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -191,11 +191,11 @@ These settings are recommended in environments taht can support them.
 .EXAMPLE
 Test-CISBenchmarkLocalPolicies
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.1.1               (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Micro... Group Policy Settings     True    
-2.3.1.3               (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set ... Group Policy Settings     True    
-2.3.1.4               (L1) Configure 'Accounts: Rename administrator account'                                             Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.1.1   (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Micro... Group Policy Settings     True    
+2.3.1.3   (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set ... Group Policy Settings     True    
+2.3.1.4   (L1) Configure 'Accounts: Rename administrator account'                                             Group Policy Settings     True    
 
 .NOTES
 General notes

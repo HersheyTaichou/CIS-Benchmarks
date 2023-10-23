@@ -9,7 +9,7 @@ This service spools print jobs and handles interaction with printers.
 .EXAMPLE
 Test-SystemServicesSpooler
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
+Number                Name                                                                                                Source                    Pass    
 --------------------  ------------------                                                                                  ------                    ----    
 5.1                   (L1) Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)                                Group Policy Settings     True    
 
@@ -55,9 +55,9 @@ function Test-SystemServicesSpooler {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

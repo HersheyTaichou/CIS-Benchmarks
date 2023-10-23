@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+2.3.9.1 (L1) Ensure 'Microsoft network server: Amount of idle time required before suspending session' is set to '15 or fewer minute(s)'
+
+.DESCRIPTION
+This policy setting allows you to specify the amount of continuous idle time that must pass in an SMB session before the session is suspended because of inactivity.
+
+.EXAMPLE
+Test-MicrosoftNetworkServerAutoDisconnect
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.9.1   (L1) Ensure 'Microsoft network server: Amount of idle time required before suspending session' i... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-MicrosoftNetworkServerAutoDisconnect {
     [CmdletBinding()]
     param ()
@@ -25,9 +42,9 @@ function Test-MicrosoftNetworkServerAutoDisconnect {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -40,6 +57,23 @@ function Test-MicrosoftNetworkServerAutoDisconnect {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.9.2 (L1) Ensure 'Microsoft network server: Digitally sign communications (always)' is set to 'Enabled'
+
+.DESCRIPTION
+This policy setting determines whether packet signing is required by the SMB server component.
+
+.EXAMPLE
+Test-MicrosoftNetworkServerRequireSecuritySignature
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.9.2   (L1) Ensure 'Microsoft network server: Digitally sign communications (always)' is set to 'Enabled'  Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-MicrosoftNetworkServerRequireSecuritySignature {
     [CmdletBinding()]
     param ()
@@ -67,9 +101,9 @@ function Test-MicrosoftNetworkServerRequireSecuritySignature {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -82,6 +116,23 @@ function Test-MicrosoftNetworkServerRequireSecuritySignature {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.9.3 (L1) Ensure 'Microsoft network server: Digitally sign communications (if client agrees)' is set to 'Enabled'
+
+.DESCRIPTION
+This policy setting determines whether the SMB server will negotiate SMB packet signing with clients that request it. If no signing request comes from the client, a connection will be allowed without a signature if the "Microsoft network server: Digitally sign communications (always)" setting is not enabled.
+
+.EXAMPLE
+Test-MicrosoftNetworkServerEnableSecuritySignature
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.9.3   (L1) Ensure 'Microsoft network server: Digitally sign communications (if client agrees)' is set ... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-MicrosoftNetworkServerEnableSecuritySignature {
     [CmdletBinding()]
     param ()
@@ -109,9 +160,9 @@ function Test-MicrosoftNetworkServerEnableSecuritySignature {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -124,6 +175,23 @@ function Test-MicrosoftNetworkServerEnableSecuritySignature {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.9.4 (L1) Ensure 'Microsoft network server: Disconnect clients when logon hours expire' is set to 'Enabled'
+
+.DESCRIPTION
+This security setting determines whether to disconnect users who are connected to the local computer outside their user account's valid logon hours. This setting affects the Server Message Block (SMB) component. If you enable this policy setting you should also enable "Network security: Force logoff when logon hours expire".
+
+.EXAMPLE
+Test-MicrosoftNetworkServerEnableForcedLogOff
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.9.4   (L1) Ensure 'Microsoft network server: Disconnect clients when logon hours expire' is set to 'En... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-MicrosoftNetworkServerEnableForcedLogOff {
     [CmdletBinding()]
     param ()
@@ -151,9 +219,9 @@ function Test-MicrosoftNetworkServerEnableForcedLogOff {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -166,6 +234,23 @@ function Test-MicrosoftNetworkServerEnableForcedLogOff {
     }
 }
 
+<#
+.SYNOPSIS
+2.3.9.5 (L1) Ensure 'Microsoft network server: Server SPN target name validation level' is set to 'Accept if provided by client' or higher (MS only)
+
+.DESCRIPTION
+This policy setting controls the level of validation a computer with shared folders or printers (the server) performs on the service principal name (SPN) that is provided by the client computer when it establishes a session using the server message block (SMB) protocol.
+
+.EXAMPLE
+Test-MicrosoftNetworkServerSmbServerNameHardeningLevel
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.9.5   (L1) Ensure 'Microsoft network server: Server SPN target name validation level' is set to 'Accep... Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-MicrosoftNetworkServerSmbServerNameHardeningLevel {
     [CmdletBinding()]
     param ()
@@ -199,9 +284,9 @@ function Test-MicrosoftNetworkServerSmbServerNameHardeningLevel {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

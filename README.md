@@ -6,6 +6,24 @@ Here you will find in-progress scripts designed to audit the CIS Benchmarks in a
 
 These scripts are VERY MUCH a work in progress, so take caution and review them carefully before running them, as what worked in my environment may break yours! These scripts were created as I went through the benchmark documentation and learned how to impliment them on one test environment.
 
+## Things to Note
+
+- These commands require all settings to be explicitely set. If you rely on default behavior, it will show up as a fail.
+
+   For example, if you were to run the test for "2.3.10.5 (L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disabled'", without having explicitely set that policy in Group Policy, it would come back like this:
+
+   ```PowerShell
+   Test-NetworkAccessEveryoneIncludesAnonymous
+   ```
+
+   ```text
+   Number    Name                                                                                                Source                    Pass  
+   --------- ------------------                                                                                  ------                    ----  
+   2.3.10.5  (L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disab... Group Policy Settings     False
+   ```
+
+   If you check the default for this entry, it will indicate that the default matches the benchmark, which should be a pass. I have choosen to consider this a fail, because someone could change this setting in the local policy on a computer, and it would not get over-written or prevented by the GPO settings.
+
 ## Getting Started
 
 Before starting, it is advised that you carefully review the CIS Benchmarks. You can download the latest copy of the [CIS Benchmarks](https://learn.cisecurity.org/benchmarks) for review by filling out the form on their site.
@@ -68,11 +86,11 @@ Test-PasswordPolicyPasswordHistory
 
 ### Test a different machine
 
-> **WARNING**: Testing in this manner will skip some tests! The script will check the machines' type as it runs. A workstation is type 1, a domain controller (DC) is type 2 and a member server (MS) is type 3. If you run this on a workstation, it will skip all the DC or MS specific tests, and only run the tests that apply to both types.
+> **WARNING**: Testing in this manner will skip some tests! The script will check the machine's type as it runs. A workstation is type 1, a domain controller (DC) is type 2 and a member server (MS) is type 3. If you run this on a workstation, it will skip all the DC or MS specific tests, and only run the tests that apply to both types.
 >
 > **Tip**: Use a test DC or MS server, with the below method, to make sure everything is properly tested.
 
-I understand that some people may be hesitant to run a large script they found on the internet on a production server. In that case, it is possible to export a copy of the GPO settings on a server, then move that file a separate machine with this script, and run it there.
+I understand that some people may be hesitant to run a large script they found on the internet on a production server. In that case, it is possible to export a copy of the GPO settings on a server, then move that file to a separate machine with this script, and run it there.
 
 1. Generate a GP report
    1. Connect to the server to be evaluated.
@@ -92,6 +110,8 @@ I understand that some people may be hesitant to run a large script they found o
 
 4. Browse to the folder you saved the GPResult file in
 5. Run any of the above commands
+
+   > **NOTE**: The module will hold on to the GPResult file contents until you close the PowerShell window or remove and re-import the module.
 
 ## Licenses
 

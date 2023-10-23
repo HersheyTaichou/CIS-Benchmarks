@@ -10,9 +10,9 @@ This command will also check any configured Fine Grained Password Policies, to c
 .EXAMPLE
 Test-AccountLockoutPolicyLockoutDuration
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-1.2.1                 (L1) Ensure 'Account lockout duration' is set to '15 or more minute(s)'                             Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+1.2.1     (L1) Ensure 'Account lockout duration' is set to '15 or more minute(s)'                             Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -44,9 +44,9 @@ function Test-AccountLockoutPolicyLockoutDuration {
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -68,9 +68,9 @@ function Test-AccountLockoutPolicyLockoutDuration {
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber' = $RecommendationNumber
+                    'Number' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
-                    'RecommendationName'= $RecommendationName
+                    'Name'= $RecommendationName
                     'Source' = $Source
                     'Pass'= $Pass
                     'Setting' = [bool]$FGPasswordPolicy.LockoutDuration
@@ -99,9 +99,9 @@ This command will also check any configured Fine Grained Password Policies, to c
 .EXAMPLE
 Test-AccountLockoutPolicyLockoutThreshold
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-1.2.2                 (L1) Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'  Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+1.2.2     (L1) Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'  Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -133,9 +133,9 @@ function Test-AccountLockoutPolicyLockoutThreshold {
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -157,9 +157,9 @@ function Test-AccountLockoutPolicyLockoutThreshold {
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber' = $RecommendationNumber
+                    'Number' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
-                    'RecommendationName'= $RecommendationName
+                    'Name'= $RecommendationName
                     'Source' = $Source
                     'Pass'= $Pass
                     'Setting' = [bool]$FGPasswordPolicy.LockoutThreshold
@@ -188,9 +188,9 @@ This command will also check any configured Fine Grained Password Policies, to c
 .EXAMPLE
 Test-AccountLockoutPolicyAdminLockout
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-1.2.3                 (L1) Ensure 'Allow Administrator account lockout' is set to 'Enabled'                               Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+1.2.3     (L1) Ensure 'Allow Administrator account lockout' is set to 'Enabled'                               Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -225,9 +225,9 @@ function Test-AccountLockoutPolicyAdminLockout {
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -254,9 +254,9 @@ This command will also check any configured Fine Grained Password Policies, to c
 .EXAMPLE
 Test-AccountLockoutPolicyResetLockoutCount
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-1.2.4                 (L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'                  Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+1.2.4     (L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'                  Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -288,9 +288,9 @@ function Test-AccountLockoutPolicyResetLockoutCount {
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -312,9 +312,9 @@ function Test-AccountLockoutPolicyResetLockoutCount {
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber' = $RecommendationNumber
+                    'Number' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
-                    'RecommendationName'= $RecommendationName
+                    'Name'= $RecommendationName
                     'Source' = $Source
                     'Pass'= $Pass
                     'Setting' = [bool]$FGPasswordPolicy.LockoutObservationWindow

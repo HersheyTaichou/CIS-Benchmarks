@@ -8,9 +8,9 @@ This policy setting determines who is allowed to format and eject removable NTFS
 .EXAMPLE
 Test-DevicesAllocateDASD
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.4.1               (L1) Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'       Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.4.1   (L1) Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'       Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -42,9 +42,9 @@ function Test-DevicesAllocateDASD {
         $RecommendationName = "(L1) Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -67,9 +67,9 @@ For a computer to print to a shared printer, the driver for that shared printer 
 .EXAMPLE
 Test-DevicesAddPrinterDrivers
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-2.3.4.2               (L1) Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'            Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.4.2   (L1) Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'            Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -101,9 +101,9 @@ function Test-DevicesAddPrinterDrivers {
         $RecommendationName = "(L1) Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

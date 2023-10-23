@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+2.3.13.1 (L1) Ensure 'Shutdown: Allow system to be shut down without having to log on' is set to 'Disabled'
+
+.DESCRIPTION
+This policy setting determines whether a computer can be shut down when a user is not logged on.
+
+.EXAMPLE
+Test-ShutdownShutdownWithoutLogon
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.13.1  (L1) Ensure 'Shutdown: Allow system to be shut down without having to log on' is set to 'Disabled'  Group Policy Settings     True    
+
+.NOTES
+General notes
+#>
 function Test-ShutdownShutdownWithoutLogon {
     [CmdletBinding()]
     param ()
@@ -25,9 +42,9 @@ function Test-ShutdownShutdownWithoutLogon {
 
     end {
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting

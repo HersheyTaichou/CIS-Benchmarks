@@ -10,9 +10,9 @@ This command will also check any configured Fine Grained Password Policies, to c
 .EXAMPLE
 Test-PasswordPolicyPasswordHistory
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-1.1.1                 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'                           Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+1.1.1     (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'                           Group Policy Settings     True    
 
 
 .NOTES
@@ -46,9 +46,9 @@ function Test-PasswordPolicyPasswordHistory {
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -70,9 +70,9 @@ function Test-PasswordPolicyPasswordHistory {
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber' = $RecommendationNumber
+                    'Number' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
-                    'RecommendationName'= $RecommendationName
+                    'Name'= $RecommendationName
                     'Source' = $Source
                     'Pass'= $Pass
                     'Setting' = $FGPasswordPolicy.PasswordHistoryCount
@@ -101,9 +101,9 @@ This command will also check any configured Fine Grained Password Policies, to c
 .EXAMPLE
 Test-PasswordPolicyMaxPasswordAge
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-1.1.2                 (L1) Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'                         Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+1.1.2     (L1) Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'                         Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -136,9 +136,9 @@ function Test-PasswordPolicyMaxPasswordAge {
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -160,9 +160,9 @@ function Test-PasswordPolicyMaxPasswordAge {
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber' = $RecommendationNumber
+                    'Number' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
-                    'RecommendationName'= $RecommendationName
+                    'Name'= $RecommendationName
                     'Source' = $Source
                     'Pass'= $Pass
                     'Setting' = $FGPasswordPolicy.MaxPasswordAge
@@ -191,9 +191,9 @@ This command will also check any configured Fine Grained Password Policies, to c
 .EXAMPLE
 Test-PasswordPolicyMinPasswordAge
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-1.1.3                 (L1) Ensure 'Minimum password age' is set to '1 or more day(s)'                                     Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+1.1.3     (L1) Ensure 'Minimum password age' is set to '1 or more day(s)'                                     Group Policy Settings     True    
 
 
 .NOTES
@@ -227,9 +227,9 @@ function Test-PasswordPolicyMinPasswordAge {
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -251,9 +251,9 @@ function Test-PasswordPolicyMinPasswordAge {
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber' = $RecommendationNumber
+                    'Number' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
-                    'RecommendationName'= $RecommendationName
+                    'Name'= $RecommendationName
                     'Source' = $Source
                     'Pass'= $Pass
                     'Setting' = $FGPasswordPolicy.MinPasswordAge
@@ -283,9 +283,9 @@ This command will also check any configured Fine Grained Password Policies, to c
 .EXAMPLE
 Test-PasswordPolicyMinPasswordLength
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-1.1.4                 (L1) Ensure 'Minimum password length' is set to '14 or more character(s)'                           Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+1.1.4     (L1) Ensure 'Minimum password length' is set to '14 or more character(s)'                           Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -317,9 +317,9 @@ function Test-PasswordPolicyMinPasswordLength {
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -341,9 +341,9 @@ function Test-PasswordPolicyMinPasswordLength {
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber' = $RecommendationNumber
+                    'Number' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
-                    'RecommendationName'= $RecommendationName
+                    'Name'= $RecommendationName
                     'Source' = $Source
                     'Pass'= $Pass
                     'Setting' = $FGPasswordPolicy.MinPasswordLength
@@ -382,9 +382,9 @@ This command will also check any configured Fine Grained Password Policies, to c
 .EXAMPLE
 Test-PasswordPolicyComplexityEnabled
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-1.1.5                 (L1) Ensure 'Password must meet complexity requirements' is set to 'Enabled'                        Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+1.1.5     (L1) Ensure 'Password must meet complexity requirements' is set to 'Enabled'                        Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -417,9 +417,9 @@ function Test-PasswordPolicyComplexityEnabled {
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -437,9 +437,9 @@ function Test-PasswordPolicyComplexityEnabled {
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber' = $RecommendationNumber
+                    'Number' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
-                    'RecommendationName'= $RecommendationName
+                    'Name'= $RecommendationName
                     'Source' = $Source
                     'Pass'= $Pass
                     'Setting' = [bool]$FGPasswordPolicy.ComplexityEnabled
@@ -466,9 +466,9 @@ This policy setting determines whether the minimum password length setting can b
 .EXAMPLE
 Test-PasswordPolicyRelaxMinimumPasswordLengthLimits
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-1.1.6                 (L1) Ensure 'Relax minimum password length limits' is set to 'Enabled'                              Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+1.1.6     (L1) Ensure 'Relax minimum password length limits' is set to 'Enabled'                              Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -494,9 +494,9 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
             $Pass = $false
         }
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -523,9 +523,9 @@ This command will also check any configured Fine Grained Password Policies, to c
 .EXAMPLE
 Test-PasswordPolicyReversibleEncryption
 
-RecommendationNumber  RecommendationName                                                                                  Source                    Pass    
---------------------  ------------------                                                                                  ------                    ----    
-1.1.7                 (L1) Ensure 'Store passwords using reversible encryption' is set to 'Disabled'                      Group Policy Settings     True    
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+1.1.7     (L1) Ensure 'Store passwords using reversible encryption' is set to 'Disabled'                      Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -560,9 +560,9 @@ function Test-PasswordPolicyReversibleEncryption {
         }
 
         $Properties = [PSCustomObject]@{
-            'RecommendationNumber' = $RecommendationNumber
+            'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
-            'RecommendationName'= $RecommendationName
+            'Name'= $RecommendationName
             'Source' = $Source
             'Pass'= $Pass
             'Setting' = $Setting
@@ -580,9 +580,9 @@ function Test-PasswordPolicyReversibleEncryption {
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
 
                 $Properties = [PSCustomObject]@{
-                    'RecommendationNumber' = $RecommendationNumber
+                    'Number' = $RecommendationNumber
                     'ProfileApplicability' = $ProfileApplicability
-                    'RecommendationName'= $RecommendationName
+                    'Name'= $RecommendationName
                     'Source' = $Source
                     'Pass'= $Pass
                     'Setting' = [bool]$FGPasswordPolicy.ReversibleEncryptionEnabled
