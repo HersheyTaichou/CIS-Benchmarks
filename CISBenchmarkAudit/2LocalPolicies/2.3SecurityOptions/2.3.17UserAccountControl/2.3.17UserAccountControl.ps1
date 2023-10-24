@@ -1,12 +1,16 @@
 <#
 .SYNOPSIS
-Short description
+2.3.17.1 (L1) Ensure 'User Account Control: Admin Approval Mode for the Built-in Administrator account' is set to 'Enabled'
 
 .DESCRIPTION
-Long description
+This policy setting controls the behavior of Admin Approval Mode for the built-in Administrator account.
 
 .EXAMPLE
-An example
+Test-UserAccountControlFilterAdministratorToken
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.17.1  (L1) Ensure 'User Account Control: Admin Approval Mode for the Built-in Administrator account' i... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -55,13 +59,17 @@ function Test-UserAccountControlFilterAdministratorToken {
 
 <#
 .SYNOPSIS
-Short description
+2.3.17.2 (L1) Ensure 'User Account Control: Behavior of the elevation prompt for administrators in Admin Approval Mode' is set to 'Prompt for consent on the secure desktop' or higher
 
 .DESCRIPTION
-Long description
+This policy setting controls the behavior of the elevation prompt for administrators.
 
 .EXAMPLE
-An example
+Test-UserAccountControlConsentPromptBehaviorAdmin
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.17.2  (L1) Ensure 'User Account Control: Behavior of the elevation prompt for administrators in Admin ... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -110,13 +118,17 @@ function Test-UserAccountControlConsentPromptBehaviorAdmin {
 
 <#
 .SYNOPSIS
-Short description
+2.3.17.3 (L1) Ensure 'User Account Control: Behavior of the elevation prompt for standard users' is set to 'Automatically deny elevation requests'
 
 .DESCRIPTION
-Long description
+This policy setting controls the behavior of the elevation prompt for standard users.
 
 .EXAMPLE
-An example
+Test-UserAccountControlConsentPromptBehaviorUser
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.17.3  (L1) Ensure 'User Account Control: Behavior of the elevation prompt for standard users' is set t... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -167,13 +179,17 @@ function Test-UserAccountControlConsentPromptBehaviorUser {
 
 <#
 .SYNOPSIS
-Short description
+2.3.17.4 (L1) Ensure 'User Account Control: Detect application installations and prompt for elevation' is set to 'Enabled'
 
 .DESCRIPTION
-Long description
+This policy setting controls the behavior of application installation detection for the computer.
 
 .EXAMPLE
-An example
+Test-UserAccountControlEnableInstallerDetection
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.17.4  (L1) Ensure 'User Account Control: Detect application installations and prompt for elevation' is... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -222,13 +238,17 @@ function Test-UserAccountControlEnableInstallerDetection {
 
 <#
 .SYNOPSIS
-Short description
+2.3.17.5 (L1) Ensure 'User Account Control: Only elevate UIAccess applications that are installed in secure locations' is set to 'Enabled'
 
 .DESCRIPTION
-Long description
+This policy setting controls whether applications that request to run with a User Interface Accessibility (UIAccess) integrity level must reside in a secure location in the file system.
 
 .EXAMPLE
-An example
+Test-UserAccountControlEnableSecureUIAPaths
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.17.5  (L1) Ensure 'User Account Control: Only elevate UIAccess applications that are installed in secu... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -277,13 +297,17 @@ function Test-UserAccountControlEnableSecureUIAPaths {
 
 <#
 .SYNOPSIS
-Short description
+2.3.17.6 (L1) Ensure 'User Account Control: Run all administrators in Admin Approval Mode' is set to 'Enabled'
 
 .DESCRIPTION
-Long description
+This policy setting controls the behavior of all User Account Control (UAC) policy settings for the computer.
 
 .EXAMPLE
-An example
+Test-UserAccountControlEnableLUA
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.17.6  (L1) Ensure 'User Account Control: Run all administrators in Admin Approval Mode' is set to 'Ena... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -332,13 +356,17 @@ function Test-UserAccountControlEnableLUA {
 
 <#
 .SYNOPSIS
-Short description
+2.3.17.7 (L1) Ensure 'User Account Control: Switch to the secure desktop when prompting for elevation' is set to 'Enabled'
 
 .DESCRIPTION
-Long description
+This policy setting controls whether the elevation request prompt is displayed on the interactive user's desktop or the secure desktop.
 
 .EXAMPLE
-An example
+Test-UserAccountControlPromptOnSecureDesktop
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.17.7  (L1) Ensure 'User Account Control: Switch to the secure desktop when prompting for elevation' is... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -387,13 +415,17 @@ function Test-UserAccountControlPromptOnSecureDesktop {
 
 <#
 .SYNOPSIS
-Short description
+2.3.17.8 (L1) Ensure 'User Account Control: Virtualize file and registry write failures to per-user locations' is set to 'Enabled'
 
 .DESCRIPTION
-Long description
+This policy setting controls whether application write failures are redirected to defined registry and file system locations.
 
 .EXAMPLE
-An example
+Test-UserAccountControlEnableVirtualization
+
+Number    Name                                                                                                Source                    Pass    
+--------- ------------------                                                                                  ------                    ----    
+2.3.17.8  (L1) Ensure 'User Account Control: Virtualize file and registry write failures to per-user locat... Group Policy Settings     True    
 
 .NOTES
 General notes
