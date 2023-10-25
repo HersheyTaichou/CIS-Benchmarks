@@ -248,7 +248,7 @@ FunctionsToExport = @(
     'Test-UserAccountControlEnableInstallerDetection','Test-UserAccountControlEnableSecureUIAPaths','Test-UserAccountControlEnableLUA','Test-UserAccountControlPromptOnSecureDesktop',
     'Test-UserAccountControlEnableVirtualization',
     # 5 System Services
-    'Test-SystemServicesSpooler','Test-CISBenchmarkSystemServices'
+    'Test-SystemServicesSpooler','Test-CISBenchmarkSystemServices',
     # 9 Windows Defender Firewall with Advanced Security
     'Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile','Test-WindowsDefenderFirewallwithAdvancedSecurityPrivateProfile',
     'Test-WindowsDefenderFirewallwithAdvancedSecurityPublicProfile','Test-CISBenchmarkWindowsDefenderFirewallwithAdvancedSecurity',

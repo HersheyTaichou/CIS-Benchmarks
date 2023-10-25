@@ -23,6 +23,9 @@ These scripts are VERY MUCH a work in progress, so take caution and review them 
    ```
 
    If you check the default for this entry, it will indicate that the default matches the benchmark, which should be a pass. I have choosen to consider this a fail, because someone could change this setting in the local policy on a computer, and it would not get over-written or prevented by the GPO settings.
+- Currently, once it loads a GPResult into memory, it will hold onto it until you close the PowerShell window or remove and re-import the module.
+- The script will check the machine's type as it runs, and run checks specific to that type. A workstation is type 1, a domain controller (DC) is type 2 and a member server (MS) is type 3.
+  - Running on a workstation will do all checks applicable to Domain Controllers and Member Servers, but skip ones specific to DC's or MS's
 
 ## Getting Started
 
@@ -33,7 +36,7 @@ Before starting, it is advised that you carefully review the CIS Benchmarks. You
 To run an audit on a machine, you have multiple options based on the end goal. First, you will need to import the module:
 
 ```PowerShell
-Import-Module .\CISBenchmarkAudit.psm1
+Import-Module .\CISBenchmarkAudit.psd1
 ```
 
 Then, depending on what you want to do, their are a variety of commands.

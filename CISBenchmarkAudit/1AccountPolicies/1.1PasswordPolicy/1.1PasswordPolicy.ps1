@@ -13,7 +13,7 @@ Test-PasswordPolicyPasswordHistory
 Number    Name                                                                                                Source                    Pass    
 --------- ------------------                                                                                  ------                    ----    
 1.1.1     (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'                           Group Policy Settings     True    
-
+1.1.1     (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'                           Test Policy Fine Grain... True
 
 .NOTES
 General notes

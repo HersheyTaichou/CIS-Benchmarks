@@ -3,19 +3,16 @@
 2.3.1 Accounts
 
 .DESCRIPTION
-This command will test all the settings defined in section 2.3.1 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 2.3.1 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -69,19 +66,16 @@ function Test-SecurityOptionsAccounts {
 2.3.2 Audit
 
 .DESCRIPTION
-This command will test all the settings defined in section 2.3.2 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 2.3.2 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -127,19 +121,16 @@ function Test-SecurityOptionsAudit {
 2.3.4 Devices
 
 .DESCRIPTION
-This command will test all the settings defined in section 2.3.4 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 2.3.4 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -185,19 +176,16 @@ function Test-SecurityOptionsDevices {
 2.3.5 Domain Controller
 
 .DESCRIPTION
-This command will test all the settings defined in section 2.3.5 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 2.3.5 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -247,19 +235,16 @@ function Test-SecurityOptionsDomainController {
 2.3.6 Domain Member
 
 .DESCRIPTION
-This command will test all the settings defined in section 2.3.6 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 2.3.6 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -310,19 +295,16 @@ function Test-SecurityOptionsDomainMember {
 2.3.7 Interactive Logon
 
 .DESCRIPTION
-This command will test all the settings defined in section 2.3.7 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 2.3.7 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -382,19 +364,16 @@ function Test-SecurityOptionsInteractiveLogin {
 2.3.8 Microsoft Network Client
 
 .DESCRIPTION
-This command will test all the settings defined in section 2.3.8 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 2.3.8 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -443,19 +422,16 @@ function Test-SecurityOptionsMicrosoftNetworkClient {
 2.3.9 Microsoft Network Server
 
 .DESCRIPTION
-This command will test all the settings defined in section 2.3.9 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 2.3.9 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -509,19 +485,16 @@ function Test-SecurityOptionsMicrosoftNetworkServer {
 2.3.10 Network Access
 
 .DESCRIPTION
-This command will test all the settings defined in section 2.3.10 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 2.3.10 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -587,19 +560,16 @@ function Test-SecurityOptionsNetworkAccess {
 2.3.11 Network Security
 
 .DESCRIPTION
-This command will test all the settings defined in section 2.3.11 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 2.3.11 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -654,19 +624,16 @@ function Test-SecurityOptionsNetworkSecurity {
 2.3.13 Shutdown
 
 .DESCRIPTION
-This command will test all the settings defined in section 2.3.13 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 2.3.13 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -710,19 +677,16 @@ function Test-SecurityOptionsShutdown {
 2.3.15 System Objects
 
 .DESCRIPTION
-This command will test all the settings defined in section 2.3.15 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 2.3.15 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -768,19 +732,16 @@ function Test-SecurityOptionsSystemObjects {
 2.3.17 User Account Control
 
 .DESCRIPTION
-This command will test all the settings defined in section 2.3.17 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 2.3.17 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.

@@ -3,19 +3,16 @@
 1.1 Password Policy
 
 .DESCRIPTION
-This command will test for the 7 settings defined in section 1.1 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 1.1 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -64,19 +61,16 @@ function Test-AccountPoliciesPasswordPolicy {
 1.2 Account Lockout Policy
 
 .DESCRIPTION
-This command will test for the 4 settings defined in section 1.2 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 1.2 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
@@ -123,19 +117,16 @@ function Test-AccountPoliciesAccountLockoutPolicy {
 1 Account Policies
 
 .DESCRIPTION
-This command will test for all the settings defined in section 1 of the 
-CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 1 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
-This parameter is used to filter by the benchmark level. 
+This parameter is used to filter by the benchmark level.
 
 The valid options are:
 
 1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
 
-2 = Level 2 of the benchmark. This is intended to provide a higher level of security, 
-at the risk of breaking some functionality. This level requires and includes all the
-Level 1 benchmarks
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
 
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.

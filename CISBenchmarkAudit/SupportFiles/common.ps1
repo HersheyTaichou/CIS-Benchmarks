@@ -66,6 +66,10 @@ The full path to the XML file, if it already exists, or where to save the file
 .EXAMPLE
 Get-GPResult -Path "$(get-location)\GPResult.xml"
 
+xml                             Rsop
+---                             ----
+version="1.0" encoding="utf-16" Rsop
+
 .NOTES
 General notes
 #>
