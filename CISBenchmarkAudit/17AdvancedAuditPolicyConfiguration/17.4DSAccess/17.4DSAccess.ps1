@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+17.4.1 (L1) Ensure 'Audit Directory Service Access' is set to include 'Failure' (DC only)
+
+.DESCRIPTION
+This subcategory reports when an AD DS object is accessed. Only objects with SACLs cause audit events to be generated, and only when they are accessed in a manner that matches their SACL. These events are similar to the directory service access events in previous versions of Windows Server.
+
+.EXAMPLE
+Test-DSAccessAuditDirectoryServiceAccess
+
+Number     Name                                                                        Source                    Pass  
+------     ----                                                                        ------                    ----  
+17.4.1     (L1) Ensure 'Audit Directory Service Access' is set to include 'Failure'... Group Policy Settings     True  
+
+.NOTES
+General notes
+#>
 function Test-DSAccessAuditDirectoryServiceAccess {
     [CmdletBinding()]
     param ()
@@ -40,6 +57,23 @@ function Test-DSAccessAuditDirectoryServiceAccess {
     }
 }
 
+<#
+.SYNOPSIS
+17.4.2 (L1) Ensure 'Audit Directory Service Changes' is set to include 'Success' (DC only)
+
+.DESCRIPTION
+This subcategory reports changes to objects in Active Directory Domain Services (AD DS). The types of changes that are reported are create, modify, move, and undelete operations that are performed on an object.
+
+.EXAMPLE
+Test-DSAccessAuditDirectoryServiceChanges
+
+Number     Name                                                                        Source                    Pass  
+------     ----                                                                        ------                    ----  
+17.4.2     (L1) Ensure 'Audit Directory Service Changes' is set to include 'Success... Group Policy Settings     True  
+
+.NOTES
+General notes
+#>
 function Test-DSAccessAuditDirectoryServiceChanges {
     [CmdletBinding()]
     param ()

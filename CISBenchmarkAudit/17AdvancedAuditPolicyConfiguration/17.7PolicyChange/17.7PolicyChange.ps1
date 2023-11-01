@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+17.7.1 (L1) Ensure 'Audit Audit Policy Change' is set to include 'Success'
+
+.DESCRIPTION
+This subcategory reports changes in audit policy including SACL changes.
+
+.EXAMPLE
+Test-PolicyChangeAuditAuditPolicyChange
+
+Number     Name                                                                        Source                    Pass  
+------     ----                                                                        ------                    ----  
+17.7.1     (L1) Ensure 'Audit Audit Policy Change' is set to include 'Success'         Group Policy Settings     True  
+
+.NOTES
+General notes
+#>
 function Test-PolicyChangeAuditAuditPolicyChange {
     [CmdletBinding()]
     param ()
@@ -40,6 +57,23 @@ function Test-PolicyChangeAuditAuditPolicyChange {
     }
 }
 
+<#
+.SYNOPSIS
+17.7.2 (L1) Ensure 'Audit Authentication Policy Change' is set to include 'Success'
+
+.DESCRIPTION
+This subcategory reports changes in authentication policy.
+
+.EXAMPLE
+Test-PolicyChangeAuditAuthenticationPolicyChange
+
+Number     Name                                                                        Source                    Pass  
+------     ----                                                                        ------                    ----  
+17.7.2     (L1) Ensure 'Audit Authentication Policy Change' is set to include 'Succ... Group Policy Settings     True  
+
+.NOTES
+General notes
+#>
 function Test-PolicyChangeAuditAuthenticationPolicyChange {
     [CmdletBinding()]
     param ()
@@ -82,6 +116,23 @@ function Test-PolicyChangeAuditAuthenticationPolicyChange {
     }
 }
 
+<#
+.SYNOPSIS
+17.7.3 (L1) Ensure 'Audit Authorization Policy Change' is set to include 'Success'
+
+.DESCRIPTION
+This subcategory reports changes in authorization policy.
+
+.EXAMPLE
+Test-PolicyChangeAuditAuthorizationPolicyChange
+
+Number     Name                                                                        Source                    Pass  
+------     ----                                                                        ------                    ----  
+17.7.3     (L1) Ensure 'Audit Authorization Policy Change' is set to include 'Success' Group Policy Settings     True  
+
+.NOTES
+General notes
+#>
 function Test-PolicyChangeAuditAuthorizationPolicyChange {
     [CmdletBinding()]
     param ()
@@ -124,6 +175,23 @@ function Test-PolicyChangeAuditAuthorizationPolicyChange {
     }
 }
 
+<#
+.SYNOPSIS
+17.7.4 (L1) Ensure 'Audit MPSSVC Rule-Level Policy Change' is set to 'Success and Failure'
+
+.DESCRIPTION
+This subcategory determines whether the operating system generates audit events when changes are made to policy rules for the Microsoft Protection Service (MPSSVC.exe).
+
+.EXAMPLE
+Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange
+
+Number     Name                                                                        Source                    Pass  
+------     ----                                                                        ------                    ----  
+17.7.4     (L1) Ensure 'Audit MPSSVC Rule-Level Policy Change' is set to 'Success a... Group Policy Settings     True  
+
+.NOTES
+General notes
+#>
 function Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange {
     [CmdletBinding()]
     param ()
@@ -166,6 +234,23 @@ function Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange {
     }
 }
 
+<#
+.SYNOPSIS
+17.7.5 (L1) Ensure 'Audit Other Policy Change Events' is set to include 'Failure'
+
+.DESCRIPTION
+This subcategory contains events about EFS Data Recovery Agent policy changes, changes in Windows Filtering Platform filter, status on Security policy settings updates for local Group Policy settings, Central Access Policy changes, and detailed troubleshooting events for Cryptographic Next Generation (CNG) operations.
+
+.EXAMPLE
+Test-PolicyChangeAuditOtherPolicyChangeEvents
+
+Number     Name                                                                        Source                    Pass  
+------     ----                                                                        ------                    ----  
+17.7.5     (L1) Ensure 'Audit Other Policy Change Events' is set to include 'Failure'  Group Policy Settings     True  
+
+.NOTES
+General notes
+#>
 function Test-PolicyChangeAuditOtherPolicyChangeEvents {
     [CmdletBinding()]
     param ()

@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+17.3.1 (L1) Ensure 'Audit PNP Activity' is set to include 'Success'
+
+.DESCRIPTION
+This policy setting allows you to audit when plug and play detects an external device.
+
+.EXAMPLE
+Test-DetailedTrackingAuditPNPActivity
+
+Number     Name                                                                        Source                    Pass  
+------     ----                                                                        ------                    ----  
+17.3.1     (L1) Ensure 'Audit PNP Activity' is set to include 'Success'                Group Policy Settings     True  
+
+.NOTES
+General notes
+#>
 function Test-DetailedTrackingAuditPNPActivity {
     [CmdletBinding()]
     param ()
@@ -40,6 +57,23 @@ function Test-DetailedTrackingAuditPNPActivity {
     }
 }
 
+<#
+.SYNOPSIS
+17.3.2 (L1) Ensure 'Audit Process Creation' is set to include 'Success'
+
+.DESCRIPTION
+This subcategory reports the creation of a process and the name of the program or user that created it.
+
+.EXAMPLE
+Test-DetailedTrackingAuditProcessCreation
+
+Number     Name                                                                        Source                    Pass  
+------     ----                                                                        ------                    ----  
+17.3.2     (L1) Ensure 'Audit Process Creation' is set to include 'Success'            Group Policy Settings     True  
+
+.NOTES
+General notes
+#>
 function Test-DetailedTrackingAuditProcessCreation {
     [CmdletBinding()]
     param ()

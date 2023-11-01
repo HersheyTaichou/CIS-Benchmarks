@@ -102,6 +102,33 @@ function Get-GPResult {
     }
 }
 
+<#
+.SYNOPSIS
+Get a specific GPO entry from an XML report
+
+.DESCRIPTION
+This takes some details and returns the GPO entry for those details.
+
+.PARAMETER EntryName
+This is the internal name for a GPO entry. Here are some examples:
+
+'MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RequireSignOrSeal' is the EntryName for 'Domain member: Digitally encrypt or sign secure channel data (always)' from 2.3.6.1
+
+'Audit Credential Validation' is the EntryName for 'Audit Credential Validation' from 17.1.1
+
+.PARAMETER Name
+This is the ChildNodes name. For most entries, this is Name or KeyName. You can think of this as the name of the column where EntryName is found
+
+.EXAMPLE
+Get-GPOEntry -EntryName "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RequireSignOrSeal" -Name "KeyName"
+
+xml                             Rsop
+---                             ----
+version="1.0" encoding="utf-16" Rsop
+
+.NOTES
+General notes
+#>
 function Get-GPOEntry {
     [CmdletBinding()]
     param (

@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+17.8.1 (L1) Ensure 'Audit Sensitive Privilege Use' is set to 'Success and Failure'
+
+.DESCRIPTION
+This subcategory reports when a user account or service uses a sensitive privilege.
+
+.EXAMPLE
+Test-PrivilegeUseAuditSensitivePrivilegeUse
+
+Number     Name                                                                        Source                    Pass  
+------     ----                                                                        ------                    ----  
+17.8.1     (L1) Ensure 'Audit Sensitive Privilege Use' is set to 'Success and Failure' Group Policy Settings     True  
+
+.NOTES
+General notes
+#>
 function Test-PrivilegeUseAuditSensitivePrivilegeUse {
     [CmdletBinding()]
     param ()
