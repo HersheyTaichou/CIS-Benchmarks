@@ -17,7 +17,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-PasswordPolicy -Level 1 -ServerType DomainController
@@ -75,7 +75,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-AccountPoliciesAccountLockoutPolicy
@@ -131,7 +131,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-CISBenchmarkAccountPolicies

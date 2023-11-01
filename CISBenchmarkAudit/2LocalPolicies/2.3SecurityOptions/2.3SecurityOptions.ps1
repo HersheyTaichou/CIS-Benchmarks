@@ -17,7 +17,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-SecurityOptionsAccounts -Level 1
@@ -80,7 +80,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-SecurityOptionsAudit -Level 1
@@ -135,7 +135,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-SecurityOptionsDevices -Level 1
@@ -190,7 +190,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-SecurityOptionsDomainController -Level 1
@@ -249,7 +249,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-SecurityOptionsDomainMember -Level 1
@@ -309,7 +309,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-SecurityOptionsInteractiveLogin -Level 1
@@ -378,7 +378,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-SecurityOptionsMicrosoftNetworkClient -Level 1
@@ -436,7 +436,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-SecurityOptionsMicrosoftNetworkServer -Level 1
@@ -499,7 +499,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-SecurityOptionsNetworkAccess -Level 1
@@ -574,7 +574,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-SecurityOptionsNetworkSecurity -Level 1
@@ -638,7 +638,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-SecurityOptionsShutdown -Level 1
@@ -691,7 +691,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-SecurityOptionsSystemObjects -Level 1
@@ -746,7 +746,7 @@ The valid options are:
 .PARAMETER NextGenerationWindowsSecurity
 This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
 
-These settings are recommended in environments taht can support them.
+These settings are recommended in environments that can support them.
 
 .EXAMPLE
 Test-SecurityOptionsUserAccountControl -Level 1

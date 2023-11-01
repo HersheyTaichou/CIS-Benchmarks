@@ -23,6 +23,7 @@ function Test-AdvancedAuditPolicyConfigurationAccountLogon {
     
     end {}
 }
+
 function Test-AdvancedAuditPolicyConfigurationAccountManagement {
     [CmdletBinding()]
     param (
