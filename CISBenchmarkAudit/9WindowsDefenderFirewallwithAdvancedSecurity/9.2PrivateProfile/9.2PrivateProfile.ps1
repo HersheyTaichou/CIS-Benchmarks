@@ -39,7 +39,7 @@ function Test-PrivateProfileEnableFirewall {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
     }
 
     process {
@@ -97,7 +97,7 @@ function Test-PrivateProfileDefaultInboundAction {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
     }
 
     process {
@@ -155,7 +155,7 @@ function Test-PrivateProfileDefaultOutboundAction {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
     }
 
     process {
@@ -213,7 +213,7 @@ function Test-PrivateProfileDisableNotifications {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
     }
 
     process {
@@ -271,7 +271,7 @@ function Test-PrivateProfileLogFilePath {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
     }
 
     process {
@@ -333,7 +333,7 @@ function Test-PrivateProfileLogFileSize {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
     }
 
     process {
@@ -391,7 +391,7 @@ function Test-PrivateProfileLogDroppedPackets {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
     }
 
     process {
@@ -449,7 +449,7 @@ function Test-PrivateProfileLogSuccessfulConnections {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
     }
 
     process {
