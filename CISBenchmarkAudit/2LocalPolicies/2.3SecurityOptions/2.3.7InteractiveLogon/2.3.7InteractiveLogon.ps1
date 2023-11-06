@@ -45,23 +45,14 @@ function Test-InteractiveLogonDisableCAD {
     process {
         [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
         if ($Result.Entry) {
-            if ($Result.Setting) {
-                $Result.SetCorrectly = $false
-            } elseif ($Result.Setting -eq $false) {
-                $Result.SetCorrectly = $true
-            } else {
-                $Result.SetCorrectly = $false
-            }
+            $Result.SetCorrectly = -not($Result.Setting)
         } else {
             $Result.SetCorrectly = $false
         }
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -119,10 +110,7 @@ function Test-InteractiveLogonDontDisplayLastUserName {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -180,10 +168,7 @@ function Test-InteractiveLogonInactivityTimeoutSecs {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -241,10 +226,7 @@ function Test-InteractiveLogonLegalNoticeText {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -302,10 +284,7 @@ function Test-InteractiveLogonLegalNoticeCaption {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -338,8 +317,9 @@ function Test-InteractiveLogonCachedLogonsCount {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\CachedLogonsCount"
         $Result.Number = '2.3.7.6'
-        $ProfileApplicability = @("Level 2 - Member Server")
-        $RecommendationName = "(L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only)"
+        $Result.Level = "L2"
+        $Result.Profile = "Member Server"
+        $Result.Title = "Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only)"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -357,10 +337,7 @@ function Test-InteractiveLogonCachedLogonsCount {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -418,10 +395,7 @@ function Test-InteractiveLogonPasswordExpiryWarning {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -473,10 +447,7 @@ function Test-InteractiveLogonForceUnlockLogon {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -534,9 +505,6 @@ function Test-InteractiveLogonScRemoveOption {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

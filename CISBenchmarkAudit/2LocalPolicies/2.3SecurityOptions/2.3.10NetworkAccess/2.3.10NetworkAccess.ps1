@@ -35,7 +35,7 @@ function Test-NetworkAccessLSAAnonymousNameLookup {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "(L1) Ensure 'Network access: Allow anonymous SID/Name translation' is set to 'Disabled'"
+        $Result.Title = "Ensure 'Network access: Allow anonymous SID/Name translation' is set to 'Disabled'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -45,13 +45,7 @@ function Test-NetworkAccessLSAAnonymousNameLookup {
     process {
         [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
         if ($Result.Entry) {
-            if ($Result.Setting) {
-                $Result.SetCorrectly = $false
-            } elseif ($Result.Setting -eq $false) {
-                $Result.SetCorrectly = $true
-            } else {
-                $Result.SetCorrectly = $false
-            }
+            $Result.SetCorrectly = -not($Result.Setting)
         } else {
             $Result.SetCorrectly = $false
         }
@@ -261,7 +255,7 @@ function Test-NetworkAccessEveryoneIncludesAnonymous {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "(L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disabled'"
+        $Result.Title = "Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disabled'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -271,13 +265,7 @@ function Test-NetworkAccessEveryoneIncludesAnonymous {
     process {
         [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
         if ($Result.Entry) {
-            if ($Result.Setting) {
-                $Result.SetCorrectly = $false
-            } elseif ($Result.Setting -eq $false) {
-                $Result.SetCorrectly = $true
-            } else {
-                $Result.SetCorrectly = $false
-            }
+            $Result.SetCorrectly = -not($Result.Setting)
         } else {
             $Result.SetCorrectly = $false
         }
@@ -320,6 +308,7 @@ function Test-NetworkAccessNullSessionPipes {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\NullSessionPipes"
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Source = 'Group Policy Settings'
     }
 
     process {

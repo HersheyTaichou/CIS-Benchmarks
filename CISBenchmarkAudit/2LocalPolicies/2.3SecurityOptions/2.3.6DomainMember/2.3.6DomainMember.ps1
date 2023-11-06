@@ -209,13 +209,7 @@ function Test-DomainMemberDisablePasswordChange {
     process {
         [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
         if ($Result.Entry) {
-            if ($Result.Setting) {
-                $Result.SetCorrectly = $false
-            } elseif ($Result.Setting -eq $false) {
-                $Result.SetCorrectly = $true
-            } else {
-                $Result.SetCorrectly = $false
-            }
+            $Result.SetCorrectly = -not($Result.Setting)
         } else {
             $Result.SetCorrectly = $false
         }

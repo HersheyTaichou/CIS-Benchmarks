@@ -37,7 +37,8 @@ function Test-SystemServicesSpooler {
 
     process {
         if ($ProductType -eq 2) {
-            $ProfileApplicability = @("Level 1 - Domain Controller")
+            $Result.Level = "L1"
+        $Result.Profile = "Domain Controller"
             $Result.Title = "Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)"
             $Result.Setting = $Result.Entry.StartupMode
             if ($Result.Setting -eq "Disabled") {
@@ -46,8 +47,9 @@ function Test-SystemServicesSpooler {
                 $Result.SetCorrectly = $false
             }
         } elseif ($ProductType -eq 3) {
-            $ProfileApplicability = @("Level 2 - Member Server")
-            $RecommendationName = "(L2) Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (MS only)"
+            $Result.Level = "L2"
+            $Result.Profile = "Member Server"
+            $Result.Title = "Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (MS only)"
             $Result.Setting = $Result.Entry.StartupMode
             if ($Result.Setting -eq "Disabled") {
                 $Result.SetCorrectly = $True

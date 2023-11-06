@@ -161,7 +161,7 @@ class CISBenchmark {
     [string]$Profile # Domain Controller or Member Server
     [string]$Title # The title of the recommendation
     [string]$Source # Where the setting was checked from
-    [string]$SetCorrectly # if it is set correctly
-    [string]$Setting # The current setting
+    [bool]$SetCorrectly # if it is set correctly
+    $Setting # The current setting
     hidden $Entry # The XML output of the setting
 }

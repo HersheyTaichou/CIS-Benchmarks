@@ -33,7 +33,7 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
     }
 
     process {
-        if ($Result.Setting) {
+        if ($Result.Entry) {
             $Result.SetCorrectly = $Result.Setting
         } else {
             $Result.SetCorrectly = $false
@@ -52,10 +52,7 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
         }
         $Result.Title = "Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled'"
         $Result.Source = 'Group Policy Settings'
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -95,13 +92,7 @@ function Test-AuditCrashOnAuditFail {
 
     process {
         if ($Result.Entry) {
-            if ($Result.Setting) {
-                $Result.SetCorrectly = $false
-            } elseif ($Result.Setting -eq $false) {
-                $Result.SetCorrectly = $true
-            } else {
-                $Result.SetCorrectly = $false
-            }
+            $Result.SetCorrectly = -not($Result.Setting)
         } else {
             $Result.SetCorrectly = $false
         }
@@ -119,9 +110,6 @@ function Test-AuditCrashOnAuditFail {
         }
         $Result.Title = "Ensure 'Audit: Shut down system immediately if unable to log security audits' is set to 'Disabled'"
         $Result.Source = 'Group Policy Settings'
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
