@@ -130,8 +130,8 @@ function Test-PasswordPolicyMaxPasswordAge {
 
         #Find the Password History Size applied to this machine
         $EntryName = "MaximumPasswordAge"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
-        $Result.Setting = [int]$Entry.SettingNumber
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $gpresult
+        $Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
     process {
