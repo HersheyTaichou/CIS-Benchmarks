@@ -20,7 +20,11 @@ General notes
 #>
 function Test-AccountManagementAuditApplicationGroupManagement {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -31,7 +35,7 @@ function Test-AccountManagementAuditApplicationGroupManagement {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
@@ -79,7 +83,11 @@ General notes
 #>
 function Test-AccountManagementAuditComputerAccountManagement {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -90,7 +98,7 @@ function Test-AccountManagementAuditComputerAccountManagement {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
@@ -138,7 +146,11 @@ General notes
 #>
 function Test-AccountManagementAuditDistributionGroupManagement {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -149,7 +161,7 @@ function Test-AccountManagementAuditDistributionGroupManagement {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
@@ -197,7 +209,11 @@ General notes
 #>
 function Test-AccountManagementAuditOtherAccountManagementEvents {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -208,7 +224,7 @@ function Test-AccountManagementAuditOtherAccountManagementEvents {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
@@ -256,7 +272,11 @@ General notes
 #>
 function Test-AccountManagementAuditSecurityGroupManagement {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -267,7 +287,7 @@ function Test-AccountManagementAuditSecurityGroupManagement {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
@@ -315,7 +335,11 @@ General notes
 #>
 function Test-AccountManagementAuditUserAccountManagement {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -326,7 +350,7 @@ function Test-AccountManagementAuditUserAccountManagement {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {

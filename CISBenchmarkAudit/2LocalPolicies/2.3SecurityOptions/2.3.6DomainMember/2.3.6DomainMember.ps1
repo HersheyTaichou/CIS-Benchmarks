@@ -17,14 +17,18 @@ General notes
 #>
 function Test-DomainMemberRequireSignOrSeal {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RequireSignOrSeal"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
@@ -71,14 +75,18 @@ General notes
 #>
 function Test-DomainMemberSealSecureChannel {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\SealSecureChannel"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
@@ -125,7 +133,11 @@ General notes
 #>
 function Test-DomainMemberSignSecureChannel {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -136,7 +148,7 @@ function Test-DomainMemberSignSecureChannel {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
@@ -184,7 +196,11 @@ General notes
 #>
 function Test-DomainMemberDisablePasswordChange {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -195,7 +211,7 @@ function Test-DomainMemberDisablePasswordChange {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
@@ -249,7 +265,11 @@ General notes
 #>
 function Test-DomainMemberMaximumPasswordAge {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -260,7 +280,7 @@ function Test-DomainMemberMaximumPasswordAge {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
@@ -308,7 +328,11 @@ General notes
 #>
 function Test-DomainMemberRequireStrongKey {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -319,7 +343,7 @@ function Test-DomainMemberRequireStrongKey {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {

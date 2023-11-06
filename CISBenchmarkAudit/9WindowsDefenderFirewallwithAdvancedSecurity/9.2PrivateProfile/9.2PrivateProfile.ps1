@@ -17,7 +17,11 @@ General notes
 #>
 function Test-PrivateProfileEnableFirewall {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -76,7 +80,11 @@ General notes
 #>
 function Test-PrivateProfileDefaultInboundAction {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -135,7 +143,11 @@ General notes
 #>
 function Test-PrivateProfileDefaultOutboundAction {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -194,7 +206,11 @@ General notes
 #>
 function Test-PrivateProfileDisableNotifications {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -253,7 +269,11 @@ General notes
 #>
 function Test-PrivateProfileLogFilePath {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -316,7 +336,11 @@ General notes
 #>
 function Test-PrivateProfileLogFileSize {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -375,7 +399,11 @@ General notes
 #>
 function Test-PrivateProfileLogDroppedPackets {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -434,7 +462,11 @@ General notes
 #>
 function Test-PrivateProfileLogSuccessfulConnections {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()

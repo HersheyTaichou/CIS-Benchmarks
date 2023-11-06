@@ -17,7 +17,11 @@ General notes
 #>
 function Test-SystemAuditIPsecDriver {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -28,7 +32,7 @@ function Test-SystemAuditIPsecDriver {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
@@ -76,7 +80,11 @@ General notes
 #>
 function Test-SystemAuditOtherSystemEvents {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -87,7 +95,7 @@ function Test-SystemAuditOtherSystemEvents {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
@@ -135,7 +143,11 @@ General notes
 #>
 function Test-SystemAuditSecurityStateChange {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -146,7 +158,7 @@ function Test-SystemAuditSecurityStateChange {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
@@ -194,7 +206,11 @@ General notes
 #>
 function Test-SystemAuditSecuritySystemExtension {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -205,7 +221,7 @@ function Test-SystemAuditSecuritySystemExtension {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
@@ -253,7 +269,11 @@ General notes
 #>
 function Test-SystemAuditSystemIntegrity {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -264,7 +284,7 @@ function Test-SystemAuditSystemIntegrity {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {

@@ -17,7 +17,11 @@ General notes
 #>
 function Test-DetailedTrackingAuditPNPActivity {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -28,7 +32,7 @@ function Test-DetailedTrackingAuditPNPActivity {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
@@ -76,7 +80,11 @@ General notes
 #>
 function Test-DetailedTrackingAuditProcessCreation {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -87,7 +95,7 @@ function Test-DetailedTrackingAuditProcessCreation {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {

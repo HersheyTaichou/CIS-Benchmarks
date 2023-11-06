@@ -17,7 +17,11 @@ General notes
 #>
 function Test-AccountsNoConnectedUser {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -28,7 +32,7 @@ function Test-AccountsNoConnectedUser {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\NoConnectedUser"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
@@ -76,14 +80,18 @@ General notes
 #>
 function Test-AccountsEnableGuestAccount {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
 
         # Get the current value of the setting
         $EntryName = "EnableGuestAccount"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
         [bool]$Setting = [int]$Entry.SettingNumber
     }
 
@@ -138,14 +146,18 @@ General notes
 #>
 function Test-AccountsLimitBlankPasswordUse {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\LimitBlankPasswordUse"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
@@ -192,14 +204,18 @@ General notes
 #>
 function Test-AccountsNewAdministratorName {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
 
         # Get the current value of the setting
         $EntryName = "NewAdministratorName"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
     }
 
     process {
@@ -251,14 +267,18 @@ General notes
 #>
 function Test-AccountsNewGuestName {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
 
         # Get the current value of the setting
         $EntryName = "NewGuestName"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
     }
 
     process {

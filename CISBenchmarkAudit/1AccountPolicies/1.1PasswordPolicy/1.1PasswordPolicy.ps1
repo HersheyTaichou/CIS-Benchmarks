@@ -60,13 +60,13 @@ function Test-PasswordPolicyPasswordHistory {
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType -eq 2) {
-            $FGPPTest = [CISBenchmark]::new()
-            $FGPPTest.Number = '1.1.1'
-            $FGPPTest.Level = "L1"
-            $FGPPTest.Profile = "Domain Controller"
-            $FGPPTest.Title = "Ensure 'Enforce password history' is set to '24 or more password(s)'"
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+                $FGPPTest = [CISBenchmark]::new()
+                $FGPPTest.Number = '1.1.1'
+                $FGPPTest.Level = "L1"
+                $FGPPTest.Profile = "Domain Controller"
+                $FGPPTest.Title = "Ensure 'Enforce password history' is set to '24 or more password(s)'"
                 $FGPPTest.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
                 $FGPPTest.Setting = $FGPasswordPolicy.PasswordHistoryCount
                 if ($FGPPTest.Setting -ge "24") {
@@ -107,7 +107,11 @@ General notes
 #>
 function Test-PasswordPolicyMaxPasswordAge {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         # Check the product type
@@ -144,13 +148,13 @@ function Test-PasswordPolicyMaxPasswordAge {
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType -eq 2) {
-            $FGPPTest = [CISBenchmark]::new()
-            $FGPPTest.Number = '1.1.2'
-            $FGPPTest.Level = "L1"
-            $FGPPTest.Profile = "Domain Controller"
-            $FGPPTest.Title = "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
-            $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
+           $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+                $FGPPTest = [CISBenchmark]::new()
+                $FGPPTest.Number = '1.1.2'
+                $FGPPTest.Level = "L1"
+                $FGPPTest.Profile = "Domain Controller"
+                $FGPPTest.Title = "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
                 $FGPPTest.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
                 $FGPPTest.Setting = $FGPasswordPolicy.PasswordHistoryCount
                 if ($FGPPTest.Setting -gt "0" -and $FGPPTest.Setting -le "365") {
@@ -192,7 +196,11 @@ General notes
 #>
 function Test-PasswordPolicyMinPasswordAge {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         # Check the product type
@@ -205,7 +213,7 @@ function Test-PasswordPolicyMinPasswordAge {
 
         #Find the Password History Size applied to this machine
         $EntryName = "MinimumPasswordAge"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
         $Setting = [int]$Entry.SettingNumber
     }
 
@@ -283,7 +291,12 @@ General notes
 #>
 function Test-PasswordPolicyMinPasswordLength {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
+
     begin {
         # Check the product type
         $ProductType = Get-ProductType
@@ -295,7 +308,7 @@ function Test-PasswordPolicyMinPasswordLength {
 
         #Find the Password History Size applied to this machine
         $EntryName = "MinimumPasswordLength"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
         $Setting = [int]$Entry.SettingNumber
     }
 
@@ -382,7 +395,11 @@ General notes
 #>
 function Test-PasswordPolicyComplexityEnabled {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         # Check the product type
@@ -395,7 +412,7 @@ function Test-PasswordPolicyComplexityEnabled {
 
         #Find the Password History Size applied to this machine
         $EntryName = "PasswordComplexity"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
         $Setting = [bool]$Entry.SettingBoolean
     }
 
@@ -466,7 +483,11 @@ General notes
 #>
 function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $EntryName = "MACHINE\System\CurrentControlSet\Control\SAM\RelaxMinimumPasswordLengthLimits"
@@ -474,7 +495,7 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
         $ProfileApplicability = @("Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Relax minimum password length limits' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
         $Setting = [bool]$Entry.SettingNumber
     }
 
@@ -523,7 +544,11 @@ General notes
 #>
 function Test-PasswordPolicyReversibleEncryption {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         # Check the product type
@@ -536,7 +561,7 @@ function Test-PasswordPolicyReversibleEncryption {
 
         #Find the Password History Size applied to this machine
         $EntryName = "ClearTextPassword"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
         [string]$Setting = $Entry.SettingBoolean
     }
 

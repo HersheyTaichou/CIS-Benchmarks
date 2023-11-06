@@ -17,14 +17,18 @@ General notes
 #>
 function Test-AuditSCENoApplyLegacyAuditPolicy {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\SCENoApplyLegacyAuditPolicy"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
         [bool]$Setting = [int]$Entry.SettingNumber
     }
 
@@ -76,14 +80,18 @@ General notes
 #>
 function Test-AuditCrashOnAuditFail {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\CrashOnAuditFail"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
         [bool]$Setting = [int]$Entry.SettingNumber
     }
 

@@ -32,14 +32,15 @@ function Test-UserRightsAssignment {
         # The CIS Benchmark definition
         [Parameter(Mandatory)][array]$Definition,
         [Parameter()][array]$OptionalDef,
-        [Parameter()][switch]$Include
+        [Parameter()][switch]$Include,
+        [Parameter()][xml]$gpresult
     )
 
     $Return = @()
 
     # Check the current value of the setting
     $Setting = @()
-    $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
+    $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
     $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
 
     if (-not($setting)) {
@@ -107,7 +108,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.1'
@@ -115,7 +120,7 @@ function Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege {
     $RecommendationName = "(L1) Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeTrustedCredManAccessPrivilege" -Definition @("")
+    $Pass = Test-UserRightsAssignment -EntryName "SeTrustedCredManAccessPrivilege" -Definition @("")  -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -152,7 +157,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeNetworkLogonRight {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
 
@@ -165,7 +174,7 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
 
     
     if ($ProductType -eq 2) {
-        $Pass = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $DomainController
+        $Pass = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $DomainController -gpresult $gpresult
         $RecommendationNumber = '2.2.2'
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only)"
@@ -180,7 +189,7 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
             'Entry' = $Pass.Entry
         }
     } elseif ($ProductType -eq 3) {
-        $Pass = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $MemberServer
+        $Pass = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $MemberServer -gpresult $gpresult
         $RecommendationNumber = '2.2.3'
         $ProfileApplicability = @("Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only)"
@@ -235,7 +244,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeTcbPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.4'
@@ -243,7 +256,7 @@ function Test-UserRightsAssignmentSeTcbPrivilege {
     $RecommendationName = "(L1) Ensure 'Act as part of the operating system' is set to 'No One'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeTcbPrivilege" -Definition @("")
+    $Pass = Test-UserRightsAssignment -EntryName "SeTcbPrivilege" -Definition @("") -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -278,7 +291,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeMachineAccountPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.5'
@@ -286,7 +303,7 @@ function Test-UserRightsAssignmentSeMachineAccountPrivilege {
     $RecommendationName = "(L1) Ensure 'Add workstations to domain' is set to 'Administrators' (DC only)"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeMachineAccountPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeMachineAccountPrivilege" -Definition @('Administrators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -321,7 +338,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeIncreaseQuotaPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.6'
@@ -329,7 +350,7 @@ function Test-UserRightsAssignmentSeIncreaseQuotaPrivilege {
     $RecommendationName = "(L1) Ensure 'Adjust memory quotas for a process' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeIncreaseQuotaPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE')
+    $Pass = Test-UserRightsAssignment -EntryName "SeIncreaseQuotaPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -364,7 +385,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeInteractiveLogonRight {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.7'
@@ -372,7 +397,7 @@ function Test-UserRightsAssignmentSeInteractiveLogonRight {
     $RecommendationName = "(L1) Ensure 'Allow log on locally' is set to 'Administrators'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeInteractiveLogonRight" -Definition @('Administrators') -OptionalDef @('Backup Operators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeInteractiveLogonRight" -Definition @('Administrators') -OptionalDef @('Backup Operators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -408,7 +433,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
 
@@ -426,7 +455,7 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $DomainController
+        $Pass = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $DomainController -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -441,7 +470,7 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
         $ProfileApplicability = @("Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $MemberServer -OptionalDef $MSOptional
+        $Pass = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $MemberServer -OptionalDef $MSOptional -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -492,7 +521,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeBackupPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.10'
@@ -500,7 +533,7 @@ function Test-UserRightsAssignmentSeBackupPrivilege {
     $RecommendationName = "(L1) Ensure 'Allow log on locally' is set to 'Administrators'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeBackupPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeBackupPrivilege" -Definition @('Administrators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -535,7 +568,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeSystemTimePrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.11'
@@ -543,7 +580,7 @@ function Test-UserRightsAssignmentSeSystemTimePrivilege {
     $RecommendationName = "(L1) Ensure 'Change the system time' is set to 'Administrators, LOCAL SERVICE'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeSystemTimePrivilege" -Definition @('Administrators','LOCAL SERVICE')
+    $Pass = Test-UserRightsAssignment -EntryName "SeSystemTimePrivilege" -Definition @('Administrators','LOCAL SERVICE') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -578,7 +615,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeTimeZonePrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.12'
@@ -586,7 +627,7 @@ function Test-UserRightsAssignmentSeTimeZonePrivilege {
     $RecommendationName = "(L1) Ensure 'Change the time zone' is set to 'Administrators, LOCAL SERVICE'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeTimeZonePrivilege" -Definition @('Administrators','LOCAL SERVICE')
+    $Pass = Test-UserRightsAssignment -EntryName "SeTimeZonePrivilege" -Definition @('Administrators','LOCAL SERVICE') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -621,7 +662,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeCreatePagefilePrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.13'
@@ -629,7 +674,7 @@ function Test-UserRightsAssignmentSeCreatePagefilePrivilege {
     $RecommendationName = "(L1) Ensure 'Create a pagefile' is set to 'Administrators'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeCreatePagefilePrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeCreatePagefilePrivilege" -Definition @('Administrators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -664,7 +709,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeCreateTokenPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.14'
@@ -672,7 +721,7 @@ function Test-UserRightsAssignmentSeCreateTokenPrivilege {
     $RecommendationName = "(L1) Ensure 'Create a token object' is set to 'No One'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeCreateTokenPrivilege" -Definition @("")
+    $Pass = Test-UserRightsAssignment -EntryName "SeCreateTokenPrivilege" -Definition @("") -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -707,7 +756,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeCreateGlobalPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.15'
@@ -715,7 +768,7 @@ function Test-UserRightsAssignmentSeCreateGlobalPrivilege {
     $RecommendationName = "(L1) Ensure 'Create global objects' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeCreateGlobalPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE','SERVICE')
+    $Pass = Test-UserRightsAssignment -EntryName "SeCreateGlobalPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE','SERVICE') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -750,7 +803,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeCreatePermanentPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.16'
@@ -758,7 +815,7 @@ function Test-UserRightsAssignmentSeCreatePermanentPrivilege {
     $RecommendationName = "(L1) Ensure 'Create permanent shared objects' is set to 'No One'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeCreatePermanentPrivilege" -Definition @("")
+    $Pass = Test-UserRightsAssignment -EntryName "SeCreatePermanentPrivilege" -Definition @("") -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -796,7 +853,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
 
@@ -814,7 +875,7 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Create symbolic links' is set to 'Administrators' (DC only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $DomainController
+        $Pass = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $DomainController -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -829,7 +890,7 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
         $ProfileApplicability = @("Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\Virtual Machines' (MS only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $MemberServer -OptionalDef $MSOptional
+        $Pass = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $MemberServer -OptionalDef $MSOptional -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -879,7 +940,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeDebugPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.19'
@@ -887,7 +952,7 @@ function Test-UserRightsAssignmentSeDebugPrivilege {
     $RecommendationName = "(L1) Ensure 'Debug programs' is set to 'Administrators'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeDebugPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeDebugPrivilege" -Definition @('Administrators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -923,7 +988,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
 
@@ -939,7 +1008,7 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Deny access to this computer from the network' to include 'Guests' (DC only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $DomainController -Include
+        $Pass = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $DomainController -Include -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -954,7 +1023,7 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
         $ProfileApplicability = @("Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Deny access to this computer from the network' to include 'Guests, Local account and member of Administrators group' (MS only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $MemberServer -Include
+        $Pass = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $MemberServer -Include -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -1004,7 +1073,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeDenyBatchLogonRight {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
         $RecommendationNumber = '2.2.22'
@@ -1012,7 +1085,7 @@ function Test-UserRightsAssignmentSeDenyBatchLogonRight {
         $RecommendationName = "(L1) Ensure 'Deny log on as a batch job' to include 'Guests'"
         $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeDenyBatchLogonRight" -Definition @('Guests') -Include
+    $Pass = Test-UserRightsAssignment -EntryName "SeDenyBatchLogonRight" -Definition @('Guests') -Include -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1047,7 +1120,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeDenyServiceLogonRight {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
         $RecommendationNumber = '2.2.23'
@@ -1055,7 +1132,7 @@ function Test-UserRightsAssignmentSeDenyServiceLogonRight {
         $RecommendationName = "(L1) Ensure 'Deny log on as a service' to include 'Guests'"
         $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeDenyServiceLogonRight" -Definition @('Guests') -Include
+    $Pass = Test-UserRightsAssignment -EntryName "SeDenyServiceLogonRight" -Definition @('Guests') -Include -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1090,7 +1167,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeDenyInteractiveLogonRight {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
         $RecommendationNumber = '2.2.24'
@@ -1098,7 +1179,7 @@ function Test-UserRightsAssignmentSeDenyInteractiveLogonRight {
         $RecommendationName = "(L1) Ensure 'Deny log on locally' to include 'Guests'"
         $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeDenyInteractiveLogonRight" -Definition @('Guests') -Include
+    $Pass = Test-UserRightsAssignment -EntryName "SeDenyInteractiveLogonRight" -Definition @('Guests') -Include -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1134,7 +1215,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
 
@@ -1151,7 +1236,7 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $DomainController -Include
+        $Pass = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $DomainController -Include -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -1166,7 +1251,7 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
         $ProfileApplicability = @("Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $MemberServer
+        $Pass = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $MemberServer -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -1217,7 +1302,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
 
@@ -1234,7 +1323,7 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administrators' (DC only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $DomainController
+        $Pass = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $DomainController -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -1249,7 +1338,7 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
         $ProfileApplicability = @("Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One' (MS only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $MemberServer
+        $Pass = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $MemberServer -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -1299,7 +1388,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeRemoteShutdownPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
         $RecommendationNumber = '2.2.29'
@@ -1307,7 +1400,7 @@ function Test-UserRightsAssignmentSeRemoteShutdownPrivilege {
         $RecommendationName = "(L1) Ensure 'Force shutdown from a remote system' is set to 'Administrators'"
         $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeRemoteShutdownPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeRemoteShutdownPrivilege" -Definition @('Administrators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1342,7 +1435,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeAuditPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
         $RecommendationNumber = '2.2.30'
@@ -1350,7 +1447,7 @@ function Test-UserRightsAssignmentSeAuditPrivilege {
         $RecommendationName = "(L1) Ensure 'Generate security audits' is set to 'LOCAL SERVICE, NETWORK SERVICE'"
         $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeAuditPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE')
+    $Pass = Test-UserRightsAssignment -EntryName "SeAuditPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1386,7 +1483,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeImpersonatePrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
 
@@ -1403,7 +1504,7 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' (DC only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $DomainController
+        $Pass = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $DomainController -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -1418,7 +1519,7 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
         $ProfileApplicability = @("Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $MemberServer -OptionalDef $MSOptional
+        $Pass = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $MemberServer -OptionalDef $MSOptional -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -1468,7 +1569,11 @@ The benchmark specifies 'Administrators' and 'Window Manager\Window Manager Grou
 #>
 function Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.33'
@@ -1476,7 +1581,7 @@ function Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege {
     $RecommendationName = "(L1) Ensure 'Increase scheduling priority' is set to 'Administrators, Window Manager\Window Manager Group'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeIncreaseBasePriorityPrivilege" -Definition @('Administrators') -OptionalDef @('Window Manager\Window Manager Group')
+    $Pass = Test-UserRightsAssignment -EntryName "SeIncreaseBasePriorityPrivilege" -Definition @('Administrators') -OptionalDef @('Window Manager\Window Manager Group') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1511,7 +1616,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeLoadDriverPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.34'
@@ -1519,7 +1628,7 @@ function Test-UserRightsAssignmentSeLoadDriverPrivilege {
     $RecommendationName = "(L1) Ensure 'Load and unload device drivers' is set to 'Administrators'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeLoadDriverPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeLoadDriverPrivilege" -Definition @('Administrators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1554,7 +1663,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeLockMemoryPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.35'
@@ -1562,7 +1675,7 @@ function Test-UserRightsAssignmentSeLockMemoryPrivilege {
     $RecommendationName = "(L1) Ensure 'Lock pages in memory' is set to 'No One'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeLockMemoryPrivilege" -Definition @('')
+    $Pass = Test-UserRightsAssignment -EntryName "SeLockMemoryPrivilege" -Definition @('') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1597,7 +1710,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeBatchLogonRight {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.36'
@@ -1605,7 +1722,7 @@ function Test-UserRightsAssignmentSeBatchLogonRight {
     $RecommendationName = "(L2) Ensure 'Log on as a batch job' is set to 'Administrators' (DC Only)"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeBatchLogonRight" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeBatchLogonRight" -Definition @('Administrators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1641,7 +1758,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeSecurityPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
 
@@ -1658,7 +1779,7 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Manage auditing and security log' is set to 'Administrators' and (when Exchange is running in the environment) 'Exchange Servers' (DC only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $DomainController -OptionalDef $DCOptional
+        $Pass = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $DomainController -OptionalDef $DCOptional -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -1673,7 +1794,7 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
         $ProfileApplicability = @("Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)"
         $Source = 'Group Policy Settings'
-        $Pass = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $MemberServer
+        $Pass = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $MemberServer -gpresult $gpresult
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -1723,7 +1844,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeRelabelPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.39'
@@ -1731,7 +1856,7 @@ function Test-UserRightsAssignmentSeRelabelPrivilege {
     $RecommendationName = "(L1) Ensure 'Modify an object label' is set to 'No One'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeRelabelPrivilege" -Definition @('')
+    $Pass = Test-UserRightsAssignment -EntryName "SeRelabelPrivilege" -Definition @('') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1766,7 +1891,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeSystemEnvironmentPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.40'
@@ -1774,7 +1903,7 @@ function Test-UserRightsAssignmentSeSystemEnvironmentPrivilege {
     $RecommendationName = "(L1) Ensure 'Modify firmware environment values' is set to 'Administrators'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeSystemEnvironmentPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeSystemEnvironmentPrivilege" -Definition @('Administrators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1809,7 +1938,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeManageVolumePrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.41'
@@ -1817,7 +1950,7 @@ function Test-UserRightsAssignmentSeManageVolumePrivilege {
     $RecommendationName = "(L1) Ensure 'Perform volume maintenance tasks' is set to 'Administrators'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeManageVolumePrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeManageVolumePrivilege" -Definition @('Administrators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1852,7 +1985,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeProfileSingleProcessPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.42'
@@ -1860,7 +1997,7 @@ function Test-UserRightsAssignmentSeProfileSingleProcessPrivilege {
     $RecommendationName = "(L1) Ensure 'Profile single process' is set to 'Administrators'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeProfileSingleProcessPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeProfileSingleProcessPrivilege" -Definition @('Administrators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1895,7 +2032,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeSystemProfilePrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.43'
@@ -1903,7 +2044,7 @@ function Test-UserRightsAssignmentSeSystemProfilePrivilege {
     $RecommendationName = "(L1) Ensure 'Profile system performance' is set to 'Administrators, NT SERVICE\WdiServiceHost'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeSystemProfilePrivilege" -Definition @('Administrators', 'NT SERVICE\WdiServiceHost')
+    $Pass = Test-UserRightsAssignment -EntryName "SeSystemProfilePrivilege" -Definition @('Administrators', 'NT SERVICE\WdiServiceHost') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1938,7 +2079,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.44'
@@ -1946,7 +2091,7 @@ function Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege {
     $RecommendationName = "(L1) Ensure 'Replace a process level token' is set to 'LOCAL SERVICE, NETWORK SERVICE'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeAssignPrimaryTokenPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE')
+    $Pass = Test-UserRightsAssignment -EntryName "SeAssignPrimaryTokenPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -1981,7 +2126,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeRestorePrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.45'
@@ -1989,7 +2138,7 @@ function Test-UserRightsAssignmentSeRestorePrivilege {
     $RecommendationName = "(L1) Ensure 'Restore files and directories' is set to 'Administrators'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeRestorePrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeRestorePrivilege" -Definition @('Administrators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -2024,7 +2173,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeShutdownPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.46'
@@ -2032,7 +2185,7 @@ function Test-UserRightsAssignmentSeShutdownPrivilege {
     $RecommendationName = "(L1) Ensure 'Shut down the system' is set to 'Administrators'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeShutdownPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeShutdownPrivilege" -Definition @('Administrators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -2067,7 +2220,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeSyncAgentPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.47'
@@ -2075,7 +2232,7 @@ function Test-UserRightsAssignmentSeSyncAgentPrivilege {
     $RecommendationName = "(L1) Ensure 'Synchronize directory service data' is set to 'No One' (DC only)"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeSyncAgentPrivilege" -Definition @('')
+    $Pass = Test-UserRightsAssignment -EntryName "SeSyncAgentPrivilege" -Definition @('') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber
@@ -2110,7 +2267,11 @@ General notes
 #>
 function Test-UserRightsAssignmentSeTakeOwnershipPrivilege {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     $Return = @()
     $RecommendationNumber = '2.2.48'
@@ -2118,7 +2279,7 @@ function Test-UserRightsAssignmentSeTakeOwnershipPrivilege {
     $RecommendationName = "(L1) Ensure 'Take ownership of files or other objects' is set to 'Administrators'"
     $Source = 'Group Policy Settings'
 
-    $Pass = Test-UserRightsAssignment -EntryName "SeTakeOwnershipPrivilege" -Definition @('Administrators')
+    $Pass = Test-UserRightsAssignment -EntryName "SeTakeOwnershipPrivilege" -Definition @('Administrators') -gpresult $gpresult
 
     $Properties = [PSCustomObject]@{
         'Number' = $RecommendationNumber

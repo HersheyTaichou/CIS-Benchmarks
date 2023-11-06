@@ -16,7 +16,11 @@ General notes
 #>
 function Test-RegionalAndLanguageOptionsAllowUsersToEnableOnlineSpeechRecognitionServices {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -27,7 +31,7 @@ function Test-RegionalAndLanguageOptionsAllowUsersToEnableOnlineSpeechRecognitio
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
     }
 
     process {

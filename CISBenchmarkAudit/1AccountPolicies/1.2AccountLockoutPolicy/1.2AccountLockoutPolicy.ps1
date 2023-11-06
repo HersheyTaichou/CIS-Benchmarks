@@ -19,7 +19,11 @@ General notes
 #>
 function Test-AccountLockoutPolicyLockoutDuration {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
     begin {
         # Check the product type
         $ProductType = Get-ProductType
@@ -31,7 +35,7 @@ function Test-AccountLockoutPolicyLockoutDuration {
 
         #Find the Password History Size applied to this machine
         $EntryName = "LockoutDuration"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
         $Setting = [int]$Entry.SettingNumber
     }
 
@@ -108,7 +112,11 @@ General notes
 #>
 function Test-AccountLockoutPolicyLockoutThreshold {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
     begin {
         # Check the product type
         $ProductType = Get-ProductType
@@ -120,7 +128,7 @@ function Test-AccountLockoutPolicyLockoutThreshold {
 
         #Find the Password History Size applied to this machine
         $EntryName = "LockoutBadCount"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
         $Setting = [int]$Entry.SettingNumber
     }
 
@@ -197,7 +205,11 @@ General notes
 #>
 function Test-AccountLockoutPolicyAdminLockout {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
         $Return = @()
@@ -208,7 +220,7 @@ function Test-AccountLockoutPolicyAdminLockout {
 
         #Find the maximum password age applied to this machine
         $EntryName = "AllowAdministratorLockout"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
         [string]$Setting = $Entry.SettingBoolean
     }
 
@@ -263,7 +275,11 @@ General notes
 #>
 function Test-AccountLockoutPolicyResetLockoutCount {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
     begin {
         # Check the product type
         $ProductType = Get-ProductType
@@ -275,7 +291,7 @@ function Test-AccountLockoutPolicyResetLockoutCount {
 
         #Find the Password History Size applied to this machine
         $EntryName = "ResetLockoutCount"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
         $Setting = [int]$Entry.SettingNumber
     }
 
