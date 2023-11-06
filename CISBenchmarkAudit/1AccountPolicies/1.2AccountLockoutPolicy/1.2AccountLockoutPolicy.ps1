@@ -74,6 +74,7 @@ function Test-AccountLockoutPolicyLockoutDuration {
                 }
                 $Result.Setting = [bool]$FGPasswordPolicy.LockoutDuration
                 $Result.Entry = $FGPasswordPolicy
+                $Return += $Result
             }
         }
     }
@@ -159,6 +160,7 @@ function Test-AccountLockoutPolicyLockoutThreshold {
 
                 $Result.Setting = [bool]$FGPasswordPolicy.LockoutThreshold
                 $Result.Entry = $FGPasswordPolicy
+                $Return += $Result
             }
         }
     }
@@ -306,6 +308,7 @@ function Test-AccountLockoutPolicyResetLockoutCount {
                 }
                 $Result.Setting = [bool]$FGPasswordPolicy.LockoutObservationWindow
                 $Result.Entry = $FGPasswordPolicy
+                $Return += $Result
             }
         }
     }

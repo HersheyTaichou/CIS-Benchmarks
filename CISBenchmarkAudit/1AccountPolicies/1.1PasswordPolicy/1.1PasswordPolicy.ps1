@@ -233,14 +233,14 @@ function Test-PasswordPolicyMinPasswordAge {
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-            $Result = [CISBenchmark]::new()
-            $Result.Number = '1.1.3'
-            $Result.Level = "L1"
-            $Result.Profile = "Domain Controller"
-            $Result.Title = "Ensure 'Minimum password age' is set to '1 or more day(s)'"
-            $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-            $Result.Setting = $FGPasswordPolicy.MinPasswordAge
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+                $Result = [CISBenchmark]::new()
+                $Result.Number = '1.1.3'
+                $Result.Level = "L1"
+                $Result.Profile = "Domain Controller"
+                $Result.Title = "Ensure 'Minimum password age' is set to '1 or more day(s)'"
+                $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                $Result.Setting = $FGPasswordPolicy.MinPasswordAge
                 if ($FGPasswordPolicy.MinPasswordAge -gt (New-TimeSpan -Days 0)) {
                     $Result.SetCorrectly = $true
                 } else {
@@ -571,7 +571,7 @@ function Test-PasswordPolicyReversibleEncryption {
                 $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
                 $Result.Setting = $FGPasswordPolicy.ReversibleEncryptionEnabled
                 
-                $Result.SetCorrectly = [bool]$FGPasswordPolicy.ReversibleEncryptionEnabled
+                $Result.SetCorrectly = -not([bool]$FGPasswordPolicy.ReversibleEncryptionEnabled)
                 $Result.Entry = $FGPasswordPolicy
 
                 $Return += $Result
