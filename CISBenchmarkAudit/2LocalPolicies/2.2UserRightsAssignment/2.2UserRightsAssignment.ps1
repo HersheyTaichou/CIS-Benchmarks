@@ -40,8 +40,8 @@ function Test-UserRightsAssignment {
 
     # Check the current value of the setting
     $Setting = @()
-    $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
-    $Entry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
+    $GPOEntry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+    $GPOEntry.Member | ForEach-Object {$Setting += $_.Name.'#text'}
 
     if (-not($Setting)) {
         $Setting = @("")
@@ -49,10 +49,10 @@ function Test-UserRightsAssignment {
 
     # Check if the domain setting meets the CIS Benchmark
 
-    if ($Entry) {
+    if ($GPOEntry) {
         if ($Include) {
             $Count = 0
-            foreach ($item in $Result.Setting) {
+            foreach ($item in $Setting) {
                 if ($item -in $Definition) {
                     $count ++
                 }
@@ -68,9 +68,9 @@ function Test-UserRightsAssignment {
             } else {
                 $OptionalDef = @("")
             }
-            if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $Result.Setting)) {
+            if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $Setting)) {
                 $SetCorrectly = $true
-            } elseif (-not(Compare-Object -ReferenceObject $OptionalDef -DifferenceObject $Result.Setting)) {
+            } elseif (-not(Compare-Object -ReferenceObject $OptionalDef -DifferenceObject $Setting)) {
                 $SetCorrectly = $true
             } else {
                 $SetCorrectly = $false
@@ -81,9 +81,9 @@ function Test-UserRightsAssignment {
     }
 
     $Result = [PSCustomObject]@{
-        'Pass'= $SetCorrectly
+        'SetCorrectly'= $SetCorrectly
         'Setting' = $Setting -join ", "
-        'Entry' = $Entry
+        'Entry' = $GPOEntry
     }
     return $Result
 }
