@@ -24,7 +24,8 @@ function Test-PublicProfileEnableFirewall {
     )
 
     begin {
-              $EntryName = "PublicProfile"
+        $Result = [CISBenchmark]::new()
+        $EntryName = "PublicProfile"
         $Result.Number = '9.3.1'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -38,7 +39,7 @@ function Test-PublicProfileEnableFirewall {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -81,7 +82,8 @@ function Test-PublicProfileDefaultInboundAction {
     )
 
     begin {
-              $EntryName = "PublicProfile"
+        $Result = [CISBenchmark]::new()
+        $EntryName = "PublicProfile"
         $Result.Number = '9.3.2'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -95,7 +97,7 @@ function Test-PublicProfileDefaultInboundAction {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -138,7 +140,8 @@ function Test-PublicProfileDefaultOutboundAction {
     )
 
     begin {
-              $EntryName = "PublicProfile"
+        $Result = [CISBenchmark]::new()
+        $EntryName = "PublicProfile"
         $Result.Number = '9.3.3'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -152,7 +155,7 @@ function Test-PublicProfileDefaultOutboundAction {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -195,7 +198,8 @@ function Test-PublicProfileDisableNotifications {
     )
 
     begin {
-              $EntryName = "PublicProfile"
+        $Result = [CISBenchmark]::new()
+        $EntryName = "PublicProfile"
         $Result.Number = '9.3.4'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -209,7 +213,7 @@ function Test-PublicProfileDisableNotifications {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -252,7 +256,8 @@ function Test-PublicProfileAllowLocalPolicyMerge {
     )
 
     begin {
-              $EntryName = "PublicProfile"
+        $Result = [CISBenchmark]::new()
+        $EntryName = "PublicProfile"
         $Result.Number = '9.3.5'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -266,7 +271,7 @@ function Test-PublicProfileAllowLocalPolicyMerge {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -309,7 +314,8 @@ function Test-PublicProfileAllowLocalIPsecPolicyMerge {
     )
 
     begin {
-              $EntryName = "PublicProfile"
+        $Result = [CISBenchmark]::new()
+        $EntryName = "PublicProfile"
         $Result.Number = '9.3.6'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -323,7 +329,7 @@ function Test-PublicProfileAllowLocalIPsecPolicyMerge {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -366,7 +372,8 @@ function Test-PublicProfileLogFilePath {
     )
 
     begin {
-              $EntryName = "PublicProfile"
+        $Result = [CISBenchmark]::new()
+        $EntryName = "PublicProfile"
         $Result.Number = '9.3.7'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -380,7 +387,7 @@ function Test-PublicProfileLogFilePath {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -427,7 +434,8 @@ function Test-PublicProfileLogFileSize {
     )
 
     begin {
-              $EntryName = "PublicProfile"
+        $Result = [CISBenchmark]::new()
+        $EntryName = "PublicProfile"
         $Result.Number = '9.3.8'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -441,7 +449,7 @@ function Test-PublicProfileLogFileSize {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -484,7 +492,8 @@ function Test-PublicProfileLogDroppedPackets {
     )
 
     begin {
-              $EntryName = "PublicProfile"
+        $Result = [CISBenchmark]::new()
+        $EntryName = "PublicProfile"
         $Result.Number = '9.3.9'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -498,7 +507,7 @@ function Test-PublicProfileLogDroppedPackets {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -541,7 +550,8 @@ function Test-PublicProfileLogSuccessfulConnections {
     )
 
     begin {
-              $EntryName = "PublicProfile"
+        $Result = [CISBenchmark]::new()
+        $EntryName = "PublicProfile"
         $Result.Number = '9.3.10'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -555,7 +565,7 @@ function Test-PublicProfileLogSuccessfulConnections {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
