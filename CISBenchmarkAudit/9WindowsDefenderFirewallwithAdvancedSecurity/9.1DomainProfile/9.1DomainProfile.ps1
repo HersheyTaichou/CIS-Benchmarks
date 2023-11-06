@@ -40,7 +40,6 @@ function Test-DomainProfileEnableFirewall {
 
         # Get the current value of the setting
         $Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult -Verbose
-        #Write-Verbose $Entry
         $Result.Entry = $Entry
     }
 
