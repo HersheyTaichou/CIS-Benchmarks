@@ -12,12 +12,11 @@
 RootModule = '.\CISBenchmarkAudit.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.2.3'
+ModuleVersion = '0.17'
 
 # Version number explanation:
     # Major version will increase to 1 when the entire benchmark can be audited
     # Minor version matches the current major section under Recommendations that has been completed
-    # The update number matches the minor version under Recommendations that has been completed and tested
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
