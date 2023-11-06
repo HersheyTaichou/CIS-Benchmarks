@@ -144,8 +144,8 @@ function Get-GPOEntry {
     
     process {
         foreach ($data in $GPResult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.ChildNodes) {
-                If ($Entry.$Name -eq $EntryName) {
+            foreach ($Node in $data.Extension.ChildNodes) {
+                If ($Node.$Name -eq $EntryName) {
                     Return $Entry
                 }
             }
