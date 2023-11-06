@@ -24,7 +24,7 @@ function Test-MicrosoftNetworkClientRequireSecuritySignature {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanmanWorkstation\Parameters\RequireSecuritySignature"
         $Result.Number = '2.3.8.1'
         $Result.Level = "L1"
@@ -85,7 +85,7 @@ function Test-MicrosoftNetworkClientEnableSecuritySignature {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanmanWorkstation\Parameters\EnableSecuritySignature"
         $Result.Number = '2.3.8.2'
         $Result.Level = "L1"
@@ -146,7 +146,7 @@ function Test-MicrosoftNetworkClientEnablePlainTextPassword {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanmanWorkstation\Parameters\EnablePlainTextPassword"
         $Result.Number = '2.3.8.3'
         $Result.Level = "L1"

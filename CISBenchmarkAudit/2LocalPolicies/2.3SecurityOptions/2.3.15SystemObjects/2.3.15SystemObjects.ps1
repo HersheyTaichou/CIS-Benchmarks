@@ -24,7 +24,7 @@ function Test-SystemObjectsObCaseInsensitive {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Session Manager\Kernel\ObCaseInsensitive"
         $Result.Number = '2.3.15.1'
         $Result.Level = "L1"
@@ -85,7 +85,7 @@ function Test-SystemObjectsProtectionMode {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Session Manager\ProtectionMode"
         $Result.Number = '2.3.15.2'
         $Result.Level = "L1"

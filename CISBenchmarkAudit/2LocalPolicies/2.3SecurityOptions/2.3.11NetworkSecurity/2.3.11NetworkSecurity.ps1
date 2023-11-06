@@ -24,7 +24,7 @@ function Test-NetworkSecurityUseMachineId {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\UseMachineId"
         $Result.Number = '2.3.11.1'
         $Result.Level = "L1"
@@ -85,7 +85,7 @@ function Test-NetworkSecurityAllowNullSessionFallback {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\MSV1_0\allownullsessionfallback"
         $Result.Number = '2.3.11.2'
         $Result.Level = "L1"
@@ -146,7 +146,7 @@ function Test-NetworkSecurityAllowOnlineID {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\pku2u\AllowOnlineID"
         $Result.Number = '2.3.11.3'
         $Result.Level = "L1"
@@ -207,7 +207,7 @@ function Test-NetworkSecuritySupportedEncryptionTypes {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\SupportedEncryptionTypes"
         $Result.Number = '2.3.11.4'
         $Result.Level = "L1"
@@ -268,7 +268,7 @@ function Test-NetworkSecurityNoLMHash {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\NoLMHash"
         $Result.Number = '2.3.11.5'
         $Result.Level = "L1"
@@ -329,7 +329,7 @@ function Test-NetworkSecurityForceLogoffWhenHourExpire {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "ForceLogoffWhenHourExpire"
         $Result.Number = '2.3.11.6'
         $Result.Level = "L1"
@@ -390,7 +390,7 @@ function Test-NetworkSecurityLmCompatibilityLevel {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\LmCompatibilityLevel"
         $Result.Number = '2.3.11.7'
         $Result.Level = "L1"
@@ -451,7 +451,7 @@ function Test-NetworkSecurityLDAPClientIntegrity {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LDAP\LDAPClientIntegrity"
         $Result.Number = '2.3.11.8'
         $Result.Level = "L1"
@@ -512,7 +512,7 @@ function Test-NetworkSecurityNTLMMinClientSec {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\MSV1_0\NTLMMinClientSec"
         $Result.Number = '2.3.11.9'
         $Result.Level = "L1"
@@ -573,7 +573,7 @@ function Test-NetworkSecurityNTLMMinServerSec {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\MSV1_0\NTLMMinClientSec"
         $Result.Number = '2.3.11.10'
         $Result.Level = "L1"

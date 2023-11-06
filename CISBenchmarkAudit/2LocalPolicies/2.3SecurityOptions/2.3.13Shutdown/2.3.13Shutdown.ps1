@@ -24,7 +24,7 @@ function Test-ShutdownShutdownWithoutLogon {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ShutdownWithoutLogon"
         $Result.Number = '2.3.13.1'
         $Result.Level = "L1"

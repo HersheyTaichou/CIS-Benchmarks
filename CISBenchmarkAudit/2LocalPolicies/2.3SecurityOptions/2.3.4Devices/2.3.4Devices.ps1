@@ -24,7 +24,7 @@ function Test-DevicesAllocateDASD {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         # Get the current value of the setting
         $EntryName = "MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AllocateDASD"
@@ -85,7 +85,7 @@ function Test-DevicesAddPrinterDrivers {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
          # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\AddPrinterDrivers"

@@ -24,7 +24,7 @@ function Test-UserAccountControlFilterAdministratorToken {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\FilterAdministratorToken"
         $Result.Number = '2.3.17.1'
         $Result.Level = "L1"
@@ -85,7 +85,7 @@ function Test-UserAccountControlConsentPromptBehaviorAdmin {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ConsentPromptBehaviorAdmin"
         $Result.Number = '2.3.17.2'
         $Result.Level = "L1"
@@ -146,7 +146,7 @@ function Test-UserAccountControlConsentPromptBehaviorUser {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ConsentPromptBehaviorUser"
         $Result.Number = '2.3.17.3'
         $Result.Level = "L1"
@@ -209,7 +209,7 @@ function Test-UserAccountControlEnableInstallerDetection {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableInstallerDetection"
         $Result.Number = '2.3.17.4'
         $Result.Level = "L1"
@@ -270,7 +270,7 @@ function Test-UserAccountControlEnableSecureUIAPaths {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableSecureUIAPaths"
         $Result.Number = '2.3.17.5'
         $Result.Level = "L1"
@@ -331,7 +331,7 @@ function Test-UserAccountControlEnableLUA {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA"
         $Result.Number = '2.3.17.6'
         $Result.Level = "L1"
@@ -392,7 +392,7 @@ function Test-UserAccountControlPromptOnSecureDesktop {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\PromptOnSecureDesktop"
         $Result.Number = '2.3.17.7'
         $Result.Level = "L1"
@@ -453,7 +453,7 @@ function Test-UserAccountControlEnableVirtualization {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableVirtualization"
         $Result.Number = '2.3.17.8'
         $Result.Level = "L1"

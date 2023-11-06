@@ -24,7 +24,7 @@ function Test-AccountsNoConnectedUser {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $Result.Number = '2.3.1.1'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -52,19 +52,8 @@ function Test-AccountsNoConnectedUser {
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Result.SetCorrectly
-            'Setting' = $Result.Entry.Display.DisplayString
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Result
-
-        Return $Return
+        $Result.Setting = $Result.Entry.Display.DisplayString
+            return $Result
     }
 }
 
@@ -94,7 +83,7 @@ function Test-AccountsEnableGuestAccount {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         # Get the current value of the setting
         $EntryName = "EnableGuestAccount"
@@ -152,7 +141,7 @@ function Test-AccountsLimitBlankPasswordUse {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\LimitBlankPasswordUse"
@@ -175,19 +164,8 @@ function Test-AccountsLimitBlankPasswordUse {
         }
         $Result.Title = "Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'"
         $Result.Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Result.SetCorrectly
-            'Setting' = $Result.Entry.Display.DisplayString
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Result
-
-        Return $Return
+        $Result.Setting = $Result.Entry.Display.DisplayString
+            return $Result
     }
 }
 
@@ -217,7 +195,7 @@ function Test-AccountsNewAdministratorName {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         # Get the current value of the setting
         $EntryName = "NewAdministratorName"
@@ -245,19 +223,8 @@ function Test-AccountsNewAdministratorName {
         }
         $Result.Title = "Configure 'Accounts: Rename administrator account'"
         $Result.Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Result.SetCorrectly
-            'Setting' = $Result.Entry.SettingString
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Result
-
-        Return $Return
+        $Result.Setting = $Result.Entry.SettingString
+            return $Result
     }
 }
 
@@ -287,7 +254,7 @@ function Test-AccountsNewGuestName {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         # Get the current value of the setting
         $EntryName = "NewGuestName"
@@ -315,18 +282,7 @@ function Test-AccountsNewGuestName {
         }
         $Result.Title = "Configure 'Accounts: Rename guest account'"
         $Result.Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Result.SetCorrectly
-            'Setting' = $Result.Entry.SettingString
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Result
-
-        Return $Return
+        $Result.Setting = $Result.Entry.SettingString
+            return $Result
     }
 }

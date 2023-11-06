@@ -24,7 +24,7 @@ function Test-DomainControllerSubmitControl {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\SubmitControl"
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
@@ -83,7 +83,7 @@ function Test-DomainControllerVulnerableChannelAllowList {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\VulnerableChannelAllowList"
@@ -136,7 +136,7 @@ function Test-DomainControllerLdapEnforceChannelBinding {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         $EntryName = "MACHINE\System\CurrentControlSet\Services\NTDS\Parameters\LdapEnforceChannelBinding"
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
@@ -189,7 +189,7 @@ function Test-DomainControllerLDAPServerIntegrity {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\NTDS\Parameters\LDAPServerIntegrity"
@@ -243,7 +243,7 @@ function Test-DomainControllerRefusePasswordChange {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RefusePasswordChange"

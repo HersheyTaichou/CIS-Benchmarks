@@ -24,7 +24,7 @@ function Test-InteractiveLogonDisableCAD {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\DisableCAD"
         $Result.Number = '2.3.7.1'
         $Result.Level = "L1"
@@ -91,7 +91,7 @@ function Test-InteractiveLogonDontDisplayLastUserName {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\DontDisplayLastUserName"
         $Result.Number = '2.3.7.2'
         $Result.Level = "L1"
@@ -152,7 +152,7 @@ function Test-InteractiveLogonInactivityTimeoutSecs {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\InactivityTimeoutSecs"
         $Result.Number = '2.3.7.3'
         $Result.Level = "L1"
@@ -213,7 +213,7 @@ function Test-InteractiveLogonLegalNoticeText {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeText"
         $Result.Number = '2.3.7.4'
         $Result.Level = "L1"
@@ -274,7 +274,7 @@ function Test-InteractiveLogonLegalNoticeCaption {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeCaption"
         $Result.Number = '2.3.7.5'
         $Result.Level = "L1"
@@ -335,7 +335,7 @@ function Test-InteractiveLogonCachedLogonsCount {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\CachedLogonsCount"
         $Result.Number = '2.3.7.6'
         $ProfileApplicability = @("Level 2 - Member Server")
@@ -390,7 +390,7 @@ function Test-InteractiveLogonPasswordExpiryWarning {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\PasswordExpiryWarning"
         $Result.Number = '2.3.7.7'
         $Result.Level = "L1"
@@ -451,7 +451,7 @@ function Test-InteractiveLogonForceUnlockLogon {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\ForceUnlockLogon"
         $Result.Number = '2.3.7.8'
         $Result.Level = "L1"
@@ -506,7 +506,7 @@ function Test-InteractiveLogonScRemoveOption {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\ScRemoveOption"
         $Result.Number = '2.3.7.9'
         $Result.Level = "L1"
