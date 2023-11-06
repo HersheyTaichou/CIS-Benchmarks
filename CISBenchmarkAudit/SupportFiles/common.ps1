@@ -151,8 +151,6 @@ function Get-GPOEntry {
             }
         }
     }
-    
-    end {}
 }
 
 class CISBenchmark {
