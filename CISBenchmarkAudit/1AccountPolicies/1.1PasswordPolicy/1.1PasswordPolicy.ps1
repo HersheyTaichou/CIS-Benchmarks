@@ -28,17 +28,17 @@ function Test-PasswordPolicyPasswordHistory {
 
     begin {
         $Return = @()
-        $Properties = [CISBenchmark]::new()
-        $Properties.Number =  = '1.1.1'
-        $Properties.Level = "L1"
+        $GPTest = [CISBenchmark]::new()
+        $GPTest.Number = '1.1.1'
+        $GPTest.Level = "L1"
         if ($ProductType -eq 1) {
-            $Properties.Profile = "Corporate/Enterprise Environment"
+            $GPTest.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
-            $Properties.Profile = "Domain Controller"
+            $GPTest.Profile = "Domain Controller"
         } elseif ($ProductType -eq 3) {
-            $Properties.Profile = "Member Server"
+            $GPTest.Profile = "Member Server"
         }
-        $Properties.Title = "Ensure 'Enforce password history' is set to '24 or more password(s)'"
+        $GPTest.Title = "Ensure 'Enforce password history' is set to '24 or more password(s)'"
         
 
         #Find the Password History Size applied to this machine
@@ -48,31 +48,37 @@ function Test-PasswordPolicyPasswordHistory {
     }
 
     process {
-        $Properties.Source = 'Group Policy Settings'
+        $GPTest.Source = 'Group Policy Settings'
         if ($Setting -ge 24) {
-            $Properties.SetCorrectly = $true
+            $GPTest.SetCorrectly = $true
         } else {
-            $Properties.SetCorrectly = $false
+            $GPTest.SetCorrectly = $false
         }
 
-        $Properties.Setting = $Setting
-        $Properties.Entry = $Entry
-        $Return += $Properties
+        $GPTest.Setting = $Setting
+        $GPTest.Entry = $Entry
+        $Return += $GPTest
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType -eq 2) {
+            $FGPPTest = [CISBenchmark]::new()
+            $FGPPTest.Number = '1.1.1'
+            $FGPPTest.Level = "L1"
+            $FGPPTest.Profile = "Domain Controller"
+            $FGPPTest.Title = "Ensure 'Enforce password history' is set to '24 or more password(s)'"
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-            $Properties.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
                 if ($FGPasswordPolicy.PasswordHistoryCount -ge "24") {
-                    $Properties.SetCorrectly = $true
+                    $FGPPTest.SetCorrectly = $true
                 } else {
-                    $Properties.SetCorrectly = $false
+                    $FGPPTest.SetCorrectly = $false
                 }
 
-                $Properties.Setting = $FGPasswordPolicy.PasswordHistoryCount
-                $Properties.Entry = $FGPasswordPolicy
-                $Return += $Properties
+                $FGPPTest.Source = $Source
+                $FGPPTest.Setting = $FGPasswordPolicy.PasswordHistoryCount
+                $FGPPTest.Entry = $FGPasswordPolicy
+                $Return += $FGPPTest
             }
         }
     }
