@@ -24,7 +24,7 @@ function Test-PolicyChangeAuditAuditPolicyChange {
     )
 
     begin {
-              $EntryName = "Audit Audit Policy Change"
+        $EntryName = "Audit Audit Policy Change"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.7.1"
         $Result.Level = "L1"
@@ -82,7 +82,7 @@ function Test-PolicyChangeAuditAuthenticationPolicyChange {
     )
 
     begin {
-              $EntryName = "Audit Authentication Policy Change"
+        $EntryName = "Audit Authentication Policy Change"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.7.2"
         $Result.Level = "L1"
@@ -140,7 +140,7 @@ function Test-PolicyChangeAuditAuthorizationPolicyChange {
     )
 
     begin {
-              $EntryName = "Audit Authorization Policy Change"
+        $EntryName = "Audit Authorization Policy Change"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.7.3"
         $Result.Level = "L1"
@@ -198,7 +198,8 @@ function Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange {
     )
 
     begin {
-              $EntryName = "Audit MPSSVC Rule-Level Policy Change"
+        $EntryName = "Audit MPSSVC Rule-Level Policy Change"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '17.7.4'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -255,7 +256,7 @@ function Test-PolicyChangeAuditOtherPolicyChangeEvents {
     )
 
     begin {
-              $EntryName = "Audit Other Policy Change Events"
+        $EntryName = "Audit Other Policy Change Events"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.7.5"
         $Result.Level = "L1"
