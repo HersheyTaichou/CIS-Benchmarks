@@ -145,7 +145,7 @@ function Get-GPOEntry {
     process {
         foreach ($data in $GPResult.Rsop.ComputerResults.ExtensionData) {
             foreach ($Entry in $data.Extension.ChildNodes) {
-                If ($Result.Entry$Name -eq $EntryName) {
+                If ($Result.$Name -eq $EntryName) {
                     Return $Entry
                 }
             }
@@ -162,6 +162,6 @@ class CISBenchmark {
     [string]$Title # The title of the recommendation
     [string]$Source # Where the setting was checked from
     [string]$SetCorrectly # if it is set correctly
-    [string]$Result.Setting # The current setting
+    [string]$Setting # The current setting
     hidden $Entry # The XML output of the setting
 }
