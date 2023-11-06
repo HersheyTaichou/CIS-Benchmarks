@@ -81,8 +81,10 @@ function Get-GPResult {
     )
     
     begin {
-        if (-not(Get-Item $Path -ea SilentlyContinue)) {
+        if (-not(Test-Path $Path )) {
+            Write-Verbose "Updating the local group policy settings"
             gpupdate.exe /force | Out-Null
+            Write-Verbose "Generating the resultant set of policies"
             gpresult.exe /x $Path /f | Out-Null
             $delete = $true
         } else {
@@ -92,6 +94,7 @@ function Get-GPResult {
     }
     
     process {
+        Write-Verbose "Storing the resultant set of policies in a variable"
         [xml]$XMLgpresult = Get-Content $Path
     }
     
@@ -139,14 +142,8 @@ function Get-GPOEntry {
         [Parameter()][xml]$gpresult = (Get-GPResult)
     )
     
-    begin {
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-    }
-    
     process {
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
             foreach ($Entry in $data.Extension.ChildNodes) {
                 If ($Entry.$Name -eq $EntryName) {
                     Return $Entry
@@ -166,5 +163,5 @@ class CISBenchmark {
     [string]$Source # Where the setting was checked from
     [string]$SetCorrectly # if it is set correctly
     [string]$Setting # The current setting
-    [xml] hidden $Entry # The XML output of the setting
+    hidden $Entry # The XML output of the setting
 }
