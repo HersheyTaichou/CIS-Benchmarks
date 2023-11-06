@@ -27,8 +27,7 @@ function Test-AccountManagementAuditApplicationGroupManagement {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Application Group Management"
+              $EntryName = "Audit Application Group Management"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.2.1"
         $Result.Level = "L1"
@@ -56,10 +55,7 @@ function Test-AccountManagementAuditApplicationGroupManagement {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -89,8 +85,7 @@ function Test-AccountManagementAuditComputerAccountManagement {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Computer Account Management"
+              $EntryName = "Audit Computer Account Management"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.2.2"
         $Result.Level = "L1"
@@ -118,10 +113,7 @@ function Test-AccountManagementAuditComputerAccountManagement {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -151,8 +143,7 @@ function Test-AccountManagementAuditDistributionGroupManagement {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Distribution Group Management"
+              $EntryName = "Audit Distribution Group Management"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.2.3"
         $Result.Level = "L1"
@@ -180,10 +171,7 @@ function Test-AccountManagementAuditDistributionGroupManagement {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -213,8 +201,7 @@ function Test-AccountManagementAuditOtherAccountManagementEvents {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Other Account Management Events"
+              $EntryName = "Audit Other Account Management Events"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.2.4"
         $Result.Level = "L1"
@@ -242,10 +229,7 @@ function Test-AccountManagementAuditOtherAccountManagementEvents {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -275,8 +259,7 @@ function Test-AccountManagementAuditSecurityGroupManagement {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Security Group Management"
+              $EntryName = "Audit Security Group Management"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.2.5"
         $Result.Level = "L1"
@@ -304,10 +287,7 @@ function Test-AccountManagementAuditSecurityGroupManagement {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -337,8 +317,7 @@ function Test-AccountManagementAuditUserAccountManagement {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit User Account Management"
+              $EntryName = "Audit User Account Management"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.2.6"
         $Result.Level = "L1"
@@ -366,9 +345,6 @@ function Test-AccountManagementAuditUserAccountManagement {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

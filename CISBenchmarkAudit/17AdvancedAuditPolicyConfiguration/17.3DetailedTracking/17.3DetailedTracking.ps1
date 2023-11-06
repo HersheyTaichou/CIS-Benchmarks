@@ -24,8 +24,7 @@ function Test-DetailedTrackingAuditPNPActivity {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit PNP Activity"
+              $EntryName = "Audit PNP Activity"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.3.1"
         $Result.Level = "L1"
@@ -53,10 +52,7 @@ function Test-DetailedTrackingAuditPNPActivity {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -86,8 +82,7 @@ function Test-DetailedTrackingAuditProcessCreation {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Process Creation"
+              $EntryName = "Audit Process Creation"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.3.2"
         $Result.Level = "L1"
@@ -115,9 +110,6 @@ function Test-DetailedTrackingAuditProcessCreation {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

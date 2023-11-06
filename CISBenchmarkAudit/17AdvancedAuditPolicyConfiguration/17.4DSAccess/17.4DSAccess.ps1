@@ -24,8 +24,7 @@ function Test-DSAccessAuditDirectoryServiceAccess {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Directory Service Access"
+              $EntryName = "Audit Directory Service Access"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.4.1"
         $Result.Level = "L1"
@@ -53,10 +52,7 @@ function Test-DSAccessAuditDirectoryServiceAccess {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -86,8 +82,7 @@ function Test-DSAccessAuditDirectoryServiceChanges {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Directory Service Changes"
+              $EntryName = "Audit Directory Service Changes"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.4.2"
         $Result.Level = "L1"
@@ -115,9 +110,6 @@ function Test-DSAccessAuditDirectoryServiceChanges {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

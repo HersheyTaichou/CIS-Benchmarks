@@ -25,7 +25,7 @@ function Test-SystemServicesSpooler {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "Spooler"
         $Result.Number = '5.1'
         $Result.Source = 'Group Policy Settings'
@@ -60,10 +60,7 @@ function Test-SystemServicesSpooler {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 

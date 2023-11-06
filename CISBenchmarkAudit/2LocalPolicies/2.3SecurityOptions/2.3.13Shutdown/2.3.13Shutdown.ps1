@@ -52,9 +52,6 @@ function Test-ShutdownShutdownWithoutLogon {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

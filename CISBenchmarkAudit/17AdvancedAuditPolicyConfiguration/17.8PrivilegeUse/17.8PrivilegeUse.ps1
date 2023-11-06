@@ -24,8 +24,7 @@ function Test-PrivilegeUseAuditSensitivePrivilegeUse {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Sensitive Privilege Use"
+              $EntryName = "Audit Sensitive Privilege Use"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.8.1"
         $Result.Level = "L1"
@@ -53,9 +52,6 @@ function Test-PrivilegeUseAuditSensitivePrivilegeUse {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

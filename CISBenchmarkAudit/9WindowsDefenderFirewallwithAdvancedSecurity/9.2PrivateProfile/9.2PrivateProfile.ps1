@@ -24,7 +24,7 @@ function Test-PrivateProfileEnableFirewall {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
         $Result.Number = '9.2.1'
         $Result.Level = "L1"
@@ -39,7 +39,7 @@ function Test-PrivateProfileEnableFirewall {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -52,10 +52,7 @@ function Test-PrivateProfileEnableFirewall {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -85,7 +82,7 @@ function Test-PrivateProfileDefaultInboundAction {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
         $Result.Number = '9.2.2'
         $Result.Level = "L1"
@@ -100,7 +97,7 @@ function Test-PrivateProfileDefaultInboundAction {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -113,10 +110,7 @@ function Test-PrivateProfileDefaultInboundAction {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -146,7 +140,7 @@ function Test-PrivateProfileDefaultOutboundAction {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
         $Result.Number = '9.2.3'
         $Result.Level = "L1"
@@ -161,7 +155,7 @@ function Test-PrivateProfileDefaultOutboundAction {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -174,10 +168,7 @@ function Test-PrivateProfileDefaultOutboundAction {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -207,7 +198,7 @@ function Test-PrivateProfileDisableNotifications {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
         $Result.Number = '9.2.4'
         $Result.Level = "L1"
@@ -222,7 +213,7 @@ function Test-PrivateProfileDisableNotifications {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -235,10 +226,7 @@ function Test-PrivateProfileDisableNotifications {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -268,7 +256,7 @@ function Test-PrivateProfileLogFilePath {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
         $Result.Number = '9.2.5'
         $Result.Level = "L1"
@@ -283,7 +271,7 @@ function Test-PrivateProfileLogFilePath {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -300,10 +288,7 @@ function Test-PrivateProfileLogFilePath {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -333,7 +318,7 @@ function Test-PrivateProfileLogFileSize {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
         $Result.Number = '9.2.6'
         $Result.Level = "L1"
@@ -348,7 +333,7 @@ function Test-PrivateProfileLogFileSize {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -361,10 +346,7 @@ function Test-PrivateProfileLogFileSize {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -394,7 +376,7 @@ function Test-PrivateProfileLogDroppedPackets {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
         $Result.Number = '9.2.7'
         $Result.Level = "L1"
@@ -409,7 +391,7 @@ function Test-PrivateProfileLogDroppedPackets {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -422,10 +404,7 @@ function Test-PrivateProfileLogDroppedPackets {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -455,7 +434,7 @@ function Test-PrivateProfileLogSuccessfulConnections {
     )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
         $Result.Number = '9.2.8'
         $Result.Level = "L1"
@@ -470,7 +449,7 @@ function Test-PrivateProfileLogSuccessfulConnections {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -483,9 +462,6 @@ function Test-PrivateProfileLogSuccessfulConnections {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

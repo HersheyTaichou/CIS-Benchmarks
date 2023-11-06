@@ -24,7 +24,6 @@ function Test-AccountLogonAuditCredentialValidation {
     )
 
     begin {
-        $Return = @()
         $EntryName = "Audit Credential Validation"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.1.1"
@@ -53,10 +52,7 @@ function Test-AccountLogonAuditCredentialValidation {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -86,7 +82,6 @@ function Test-AccountLogonAuditKerberosAuthenticationService {
     )
 
     begin {
-        $Return = @()
         $EntryName = "Audit Kerberos Authentication Service"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.1.2"
@@ -115,10 +110,7 @@ function Test-AccountLogonAuditKerberosAuthenticationService {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -148,7 +140,6 @@ function Test-AccountLogonAuditKerberosServiceTicketOperations {
     )
 
     begin {
-        $Return = @()
         $EntryName = "Audit Kerberos Service Ticket Operations"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.1.3"
@@ -177,9 +168,6 @@ function Test-AccountLogonAuditKerberosServiceTicketOperations {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

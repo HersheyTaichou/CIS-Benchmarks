@@ -52,10 +52,7 @@ function Test-DevicesAllocateDASD {
         }
         $Result.Title = "Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'"
         $Result.Source = 'Group Policy Settings'
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -113,9 +110,6 @@ function Test-DevicesAddPrinterDrivers {
         }
         $Result.Title = "Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'"
         $Result.Source = 'Group Policy Settings'
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

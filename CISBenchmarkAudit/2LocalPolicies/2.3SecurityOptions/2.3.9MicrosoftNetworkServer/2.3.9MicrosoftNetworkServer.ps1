@@ -52,10 +52,7 @@ function Test-MicrosoftNetworkServerAutoDisconnect {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -113,10 +110,7 @@ function Test-MicrosoftNetworkServerRequireSecuritySignature {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -174,10 +168,7 @@ function Test-MicrosoftNetworkServerEnableSecuritySignature {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -235,10 +226,7 @@ function Test-MicrosoftNetworkServerEnableForcedLogOff {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -295,9 +283,6 @@ function Test-MicrosoftNetworkServerSmbServerNameHardeningLevel {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

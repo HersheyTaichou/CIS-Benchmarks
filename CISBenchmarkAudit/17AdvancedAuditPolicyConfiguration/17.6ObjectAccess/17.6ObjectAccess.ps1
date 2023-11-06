@@ -24,8 +24,7 @@ function Test-ObjectAccessAuditDetailedFileShare {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Detailed File Share"
+              $EntryName = "Audit Detailed File Share"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.6.1"
         $Result.Level = "L1"
@@ -53,10 +52,7 @@ function Test-ObjectAccessAuditDetailedFileShare {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -86,8 +82,7 @@ function Test-ObjectAccessAuditFileShare {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit File Share"
+              $EntryName = "Audit File Share"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.6.2"
         $Result.Level = "L1"
@@ -115,10 +110,7 @@ function Test-ObjectAccessAuditFileShare {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -148,8 +140,7 @@ function Test-ObjectAccessAuditOtherObjectAccessEvents {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Other Object Access Events"
+              $EntryName = "Audit Other Object Access Events"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.6.3"
         $Result.Level = "L1"
@@ -177,10 +168,7 @@ function Test-ObjectAccessAuditOtherObjectAccessEvents {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -210,8 +198,7 @@ function Test-ObjectAccessAuditRemovableStorage {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Removable Storage"
+              $EntryName = "Audit Removable Storage"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.6.4"
         $Result.Level = "L1"
@@ -239,9 +226,6 @@ function Test-ObjectAccessAuditRemovableStorage {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

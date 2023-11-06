@@ -52,10 +52,7 @@ function Test-SystemObjectsObCaseInsensitive {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -113,9 +110,6 @@ function Test-SystemObjectsProtectionMode {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

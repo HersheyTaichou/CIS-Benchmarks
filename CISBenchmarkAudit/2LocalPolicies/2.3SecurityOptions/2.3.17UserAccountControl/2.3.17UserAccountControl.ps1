@@ -52,10 +52,7 @@ function Test-UserAccountControlFilterAdministratorToken {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -113,10 +110,7 @@ function Test-UserAccountControlConsentPromptBehaviorAdmin {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -176,10 +170,7 @@ function Test-UserAccountControlConsentPromptBehaviorUser {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -237,10 +228,7 @@ function Test-UserAccountControlEnableInstallerDetection {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -298,10 +286,7 @@ function Test-UserAccountControlEnableSecureUIAPaths {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -359,10 +344,7 @@ function Test-UserAccountControlEnableLUA {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -420,10 +402,7 @@ function Test-UserAccountControlPromptOnSecureDesktop {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -481,9 +460,6 @@ function Test-UserAccountControlEnableVirtualization {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

@@ -52,10 +52,7 @@ function Test-NetworkSecurityUseMachineId {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -113,10 +110,7 @@ function Test-NetworkSecurityAllowNullSessionFallback {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -174,10 +168,7 @@ function Test-NetworkSecurityAllowOnlineID {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -235,10 +226,7 @@ function Test-NetworkSecuritySupportedEncryptionTypes {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -296,10 +284,7 @@ function Test-NetworkSecurityNoLMHash {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -357,10 +342,7 @@ function Test-NetworkSecurityForceLogoffWhenHourExpire {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -418,10 +400,7 @@ function Test-NetworkSecurityLmCompatibilityLevel {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -479,10 +458,7 @@ function Test-NetworkSecurityLDAPClientIntegrity {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -540,10 +516,7 @@ function Test-NetworkSecurityNTLMMinClientSec {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -601,9 +574,6 @@ function Test-NetworkSecurityNTLMMinServerSec {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

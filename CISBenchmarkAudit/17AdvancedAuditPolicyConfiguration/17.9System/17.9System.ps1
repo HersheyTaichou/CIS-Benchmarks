@@ -24,8 +24,7 @@ function Test-SystemAuditIPsecDriver {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit IPsec Driver"
+              $EntryName = "Audit IPsec Driver"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.9.1"
         $Result.Level = "L1"
@@ -53,10 +52,7 @@ function Test-SystemAuditIPsecDriver {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -86,8 +82,7 @@ function Test-SystemAuditOtherSystemEvents {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Other System Events"
+              $EntryName = "Audit Other System Events"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.9.2"
         $Result.Level = "L1"
@@ -115,10 +110,7 @@ function Test-SystemAuditOtherSystemEvents {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -148,8 +140,7 @@ function Test-SystemAuditSecurityStateChange {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Security State Change"
+              $EntryName = "Audit Security State Change"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.9.3"
         $Result.Level = "L1"
@@ -177,10 +168,7 @@ function Test-SystemAuditSecurityStateChange {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -210,8 +198,7 @@ function Test-SystemAuditSecuritySystemExtension {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Security System Extension"
+              $EntryName = "Audit Security System Extension"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.9.4"
         $Result.Level = "L1"
@@ -239,10 +226,7 @@ function Test-SystemAuditSecuritySystemExtension {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -272,8 +256,7 @@ function Test-SystemAuditSystemIntegrity {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit System Integrity"
+              $EntryName = "Audit System Integrity"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.9.5"
         $Result.Level = "L1"
@@ -301,9 +284,6 @@ function Test-SystemAuditSystemIntegrity {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

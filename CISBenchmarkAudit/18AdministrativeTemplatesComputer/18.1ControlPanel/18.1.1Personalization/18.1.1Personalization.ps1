@@ -23,8 +23,7 @@ function Test-PersonalizationPreventEnablingLockScreenCamera {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Prevent enabling lock screen camera"
+              $EntryName = "Prevent enabling lock screen camera"
         $Result = [CISBenchmark]::new()
         $Result.Number = "18.1.1.1"
         $Result.Level = "L1"
@@ -52,10 +51,7 @@ function Test-PersonalizationPreventEnablingLockScreenCamera {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -84,8 +80,7 @@ function Test-PersonalizationPreventEnablingLockScreenSlideshow {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Prevent enabling lock screen slide show"
+              $EntryName = "Prevent enabling lock screen slide show"
         $Result = [CISBenchmark]::new()
         $Result.Number = "18.1.1.2"
         $Result.Level = "L1"
@@ -113,9 +108,6 @@ function Test-PersonalizationPreventEnablingLockScreenSlideshow {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

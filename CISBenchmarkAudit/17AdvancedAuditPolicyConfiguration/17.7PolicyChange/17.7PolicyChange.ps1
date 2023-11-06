@@ -24,8 +24,7 @@ function Test-PolicyChangeAuditAuditPolicyChange {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Audit Policy Change"
+              $EntryName = "Audit Audit Policy Change"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.7.1"
         $Result.Level = "L1"
@@ -53,10 +52,7 @@ function Test-PolicyChangeAuditAuditPolicyChange {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -86,8 +82,7 @@ function Test-PolicyChangeAuditAuthenticationPolicyChange {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Authentication Policy Change"
+              $EntryName = "Audit Authentication Policy Change"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.7.2"
         $Result.Level = "L1"
@@ -115,10 +110,7 @@ function Test-PolicyChangeAuditAuthenticationPolicyChange {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -148,8 +140,7 @@ function Test-PolicyChangeAuditAuthorizationPolicyChange {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Authorization Policy Change"
+              $EntryName = "Audit Authorization Policy Change"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.7.3"
         $Result.Level = "L1"
@@ -177,10 +168,7 @@ function Test-PolicyChangeAuditAuthorizationPolicyChange {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -210,8 +198,7 @@ function Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit MPSSVC Rule-Level Policy Change"
+              $EntryName = "Audit MPSSVC Rule-Level Policy Change"
         $Result.Number = '17.7.4'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -238,10 +225,7 @@ function Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -271,8 +255,7 @@ function Test-PolicyChangeAuditOtherPolicyChangeEvents {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Other Policy Change Events"
+              $EntryName = "Audit Other Policy Change Events"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.7.5"
         $Result.Level = "L1"
@@ -300,9 +283,6 @@ function Test-PolicyChangeAuditOtherPolicyChangeEvents {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

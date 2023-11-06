@@ -108,10 +108,7 @@ function Test-AccountsEnableGuestAccount {
         $Result.Profile = "Member Server"
         $Result.Title = "Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)"
         $Result.Source = 'Group Policy Settings'
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 

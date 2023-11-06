@@ -24,8 +24,7 @@ function Test-PublicProfileEnableFirewall {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "PublicProfile"
+              $EntryName = "PublicProfile"
         $Result.Number = '9.3.1'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -39,7 +38,7 @@ function Test-PublicProfileEnableFirewall {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -52,10 +51,7 @@ function Test-PublicProfileEnableFirewall {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -85,8 +81,7 @@ function Test-PublicProfileDefaultInboundAction {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "PublicProfile"
+              $EntryName = "PublicProfile"
         $Result.Number = '9.3.2'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -100,7 +95,7 @@ function Test-PublicProfileDefaultInboundAction {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -113,10 +108,7 @@ function Test-PublicProfileDefaultInboundAction {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -146,8 +138,7 @@ function Test-PublicProfileDefaultOutboundAction {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "PublicProfile"
+              $EntryName = "PublicProfile"
         $Result.Number = '9.3.3'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -161,7 +152,7 @@ function Test-PublicProfileDefaultOutboundAction {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -174,10 +165,7 @@ function Test-PublicProfileDefaultOutboundAction {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -207,8 +195,7 @@ function Test-PublicProfileDisableNotifications {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "PublicProfile"
+              $EntryName = "PublicProfile"
         $Result.Number = '9.3.4'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -222,7 +209,7 @@ function Test-PublicProfileDisableNotifications {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -235,10 +222,7 @@ function Test-PublicProfileDisableNotifications {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -268,8 +252,7 @@ function Test-PublicProfileAllowLocalPolicyMerge {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "PublicProfile"
+              $EntryName = "PublicProfile"
         $Result.Number = '9.3.5'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -283,7 +266,7 @@ function Test-PublicProfileAllowLocalPolicyMerge {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -296,10 +279,7 @@ function Test-PublicProfileAllowLocalPolicyMerge {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -329,8 +309,7 @@ function Test-PublicProfileAllowLocalIPsecPolicyMerge {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "PublicProfile"
+              $EntryName = "PublicProfile"
         $Result.Number = '9.3.6'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -344,7 +323,7 @@ function Test-PublicProfileAllowLocalIPsecPolicyMerge {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -357,10 +336,7 @@ function Test-PublicProfileAllowLocalIPsecPolicyMerge {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -390,8 +366,7 @@ function Test-PublicProfileLogFilePath {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "PublicProfile"
+              $EntryName = "PublicProfile"
         $Result.Number = '9.3.7'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -405,7 +380,7 @@ function Test-PublicProfileLogFilePath {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -422,10 +397,7 @@ function Test-PublicProfileLogFilePath {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -455,8 +427,7 @@ function Test-PublicProfileLogFileSize {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "PublicProfile"
+              $EntryName = "PublicProfile"
         $Result.Number = '9.3.8'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -470,7 +441,7 @@ function Test-PublicProfileLogFileSize {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -483,10 +454,7 @@ function Test-PublicProfileLogFileSize {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -516,8 +484,7 @@ function Test-PublicProfileLogDroppedPackets {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "PublicProfile"
+              $EntryName = "PublicProfile"
         $Result.Number = '9.3.9'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -531,7 +498,7 @@ function Test-PublicProfileLogDroppedPackets {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -544,10 +511,7 @@ function Test-PublicProfileLogDroppedPackets {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -577,8 +541,7 @@ function Test-PublicProfileLogSuccessfulConnections {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "PublicProfile"
+              $EntryName = "PublicProfile"
         $Result.Number = '9.3.10'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -592,7 +555,7 @@ function Test-PublicProfileLogSuccessfulConnections {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName
     }
 
     process {
@@ -605,9 +568,6 @@ function Test-PublicProfileLogSuccessfulConnections {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

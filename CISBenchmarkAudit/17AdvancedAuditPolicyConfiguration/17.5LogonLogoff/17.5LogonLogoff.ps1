@@ -24,8 +24,7 @@ function Test-LogonLogoffAuditAccountLockout {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Account Lockout"
+              $EntryName = "Audit Account Lockout"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.5.1"
         $Result.Level = "L1"
@@ -53,10 +52,7 @@ function Test-LogonLogoffAuditAccountLockout {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -86,8 +82,7 @@ function Test-LogonLogoffAuditGroupMembership {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Group Membership"
+              $EntryName = "Audit Group Membership"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.5.2"
         $Result.Level = "L1"
@@ -115,10 +110,7 @@ function Test-LogonLogoffAuditGroupMembership {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -148,8 +140,7 @@ function Test-LogonLogoffAuditLogoff {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Logoff"
+              $EntryName = "Audit Logoff"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.5.3"
         $Result.Level = "L1"
@@ -177,10 +168,7 @@ function Test-LogonLogoffAuditLogoff {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -210,8 +198,7 @@ function Test-LogonLogoffAuditLogon {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Logon"
+              $EntryName = "Audit Logon"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.5.4"
         $Result.Level = "L1"
@@ -239,10 +226,7 @@ function Test-LogonLogoffAuditLogon {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -272,8 +256,7 @@ function Test-LogonLogoffAuditOtherLogonLogoffEvents {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Other Logon/Logoff Events"
+              $EntryName = "Audit Other Logon/Logoff Events"
         $Result.Number = '17.5.5'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -300,10 +283,7 @@ function Test-LogonLogoffAuditOtherLogonLogoffEvents {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -333,8 +313,7 @@ function Test-LogonLogoffAuditSpecialLogon {
     )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Special Logon"
+              $EntryName = "Audit Special Logon"
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.5.6"
         $Result.Level = "L1"
@@ -362,9 +341,6 @@ function Test-LogonLogoffAuditSpecialLogon {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }

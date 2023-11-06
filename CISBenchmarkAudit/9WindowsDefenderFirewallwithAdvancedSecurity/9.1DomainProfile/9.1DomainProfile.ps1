@@ -39,11 +39,11 @@ function Test-DomainProfileEnableFirewall {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $WindowsFirewallSettings = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
     }
 
     process {
-        if ($WindowsFirewallSettings.EnableFirewall.Value -eq "true") {
+        if ($Result.Entry.EnableFirewall.Value -eq "true") {
             $Result.Setting = $true
         } else {
             $Result.Setting = $false
@@ -97,11 +97,11 @@ function Test-DomainProfileDefaultInboundAction {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $WindowsFirewallSettings = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
     }
 
     process {
-        if ($WindowsFirewallSettings.DefaultInboundAction.Value -eq "true") {
+        if ($Result.Entry.DefaultInboundAction.Value -eq "true") {
             $Result.Setting = $true
         } else {
             $Result.Setting = $false
@@ -155,11 +155,11 @@ function Test-DomainProfileDefaultOutboundAction {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $WindowsFirewallSettings = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
     }
 
     process {
-        if ($WindowsFirewallSettings.DefaultOutboundAction.Value -eq "false") {
+        if ($Result.Entry.DefaultOutboundAction.Value -eq "false") {
             $Result.Setting = $false
         } else {
             $Result.Setting = $true
@@ -213,11 +213,11 @@ function Test-DomainProfileDisableNotifications {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $WindowsFirewallSettings = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
     }
 
     process {
-        if ($WindowsFirewallSettings.DisableNotifications.Value -eq "true") {
+        if ($Result.Entry.DisableNotifications.Value -eq "true") {
             $Result.Setting = $true
         } else {
             $Result.Setting = $false
@@ -271,11 +271,11 @@ function Test-DomainProfileLogFilePath {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $WindowsFirewallSettings = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
     }
 
     process {
-        $Result.Setting = $WindowsFirewallSettings.LogFilePath.Value
+        $Result.Setting = $Result.Entry.LogFilePath.Value
         if ($Result.Setting -eq "%systemroot%\system32\logfiles\firewall\domainfw.log") {
             $Result.SetCorrectly = $true
         } elseif ($Result.Setting -ne "%systemroot%\system32\logfiles\firewall\pfirewall.log") {
@@ -333,11 +333,11 @@ function Test-DomainProfileLogFileSize {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $WindowsFirewallSettings = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
     }
 
     process {
-        $Result.Setting = [int]$WindowsFirewallSettings.LogFileSize.Value
+        $Result.Setting = [int]$Result.Entry.LogFileSize.Value
         if ($Result.Setting -ge 16384) {
             $Result.SetCorrectly = $true
         } else {
@@ -391,11 +391,11 @@ function Test-DomainProfileLogDroppedPackets {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $WindowsFirewallSettings = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
     }
 
     process {
-        if ($WindowsFirewallSettings.LogDroppedPackets.Value -eq "true") {
+        if ($Result.Entry.LogDroppedPackets.Value -eq "true") {
             $Result.Setting = $true
         } else {
             $Result.Setting = $false
@@ -449,11 +449,11 @@ function Test-DomainProfileLogSuccessfulConnections {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $WindowsFirewallSettings = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $PGResult
     }
 
     process {
-        if ($WindowsFirewallSettings.LogSuccessfulConnections.Value -eq "true") {
+        if ($Result.Entry.LogSuccessfulConnections.Value -eq "true") {
             $Result.Setting = $true
         } else {
             $Result.Setting = $false

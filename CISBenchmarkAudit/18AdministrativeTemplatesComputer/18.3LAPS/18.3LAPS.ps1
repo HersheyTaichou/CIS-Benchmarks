@@ -23,8 +23,7 @@ function Test-LAPS {
     )
 
     begin {
-        $Return = @()
-        $EntryName = ""
+              $EntryName = ""
         $Result.Number = '18.3.1'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -40,10 +39,7 @@ function Test-LAPS {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -72,8 +68,7 @@ function Test-LAPS {
     )
 
     begin {
-        $Return = @()
-        $EntryName = ""
+              $EntryName = ""
         $Result.Number = '18.3.1'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -89,10 +84,7 @@ function Test-LAPS {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -121,8 +113,7 @@ function Test-LAPS {
     )
 
     begin {
-        $Return = @()
-        $EntryName = ""
+              $EntryName = ""
         $Result.Number = '18.3.1'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -138,10 +129,7 @@ function Test-LAPS {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -170,8 +158,7 @@ function Test-LAPS {
     )
 
     begin {
-        $Return = @()
-        $EntryName = ""
+              $EntryName = ""
         $Result.Number = '18.3.1'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -187,10 +174,7 @@ function Test-LAPS {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -219,8 +203,7 @@ function Test-LAPS {
     )
 
     begin {
-        $Return = @()
-        $EntryName = ""
+              $EntryName = ""
         $Result.Number = '18.3.1'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -236,10 +219,7 @@ function Test-LAPS {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -268,8 +248,7 @@ function Test-LAPS {
     )
 
     begin {
-        $Return = @()
-        $EntryName = ""
+              $EntryName = ""
         $Result.Number = '18.3.1'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -285,9 +264,6 @@ function Test-LAPS {
     }
 
     end {
-        
-        $Return += $Result
-
-        Return $Return
+        return $Result
     }
 }
