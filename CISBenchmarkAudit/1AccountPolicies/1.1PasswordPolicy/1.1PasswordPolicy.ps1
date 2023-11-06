@@ -155,8 +155,8 @@ function Test-PasswordPolicyMaxPasswordAge {
                 $Result.Profile = "Domain Controller"
                 $Result.Title = "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
                 $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                $Result.Setting = $FGPasswordPolicy.PasswordHistoryCount
-                if ($Result.Setting -gt "0" -and $Result.Setting -le "365") {
+                $Result.Setting = $FGPasswordPolicy.MaxPasswordAge
+                if ($Result.Setting -gt (New-TimeSpan -Days 0) -and $Result.Setting -le (New-TimeSpan -Days 365)) {
                     $Result.SetCorrectly = $true
                 } else {
                     $Result.SetCorrectly = $false
@@ -240,7 +240,7 @@ function Test-PasswordPolicyMinPasswordAge {
         if ($ProductType -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-                if ($FGPasswordPolicy.MinPasswordAge -gt 0) {
+                if ($FGPasswordPolicy.MinPasswordAge -gt (New-TimeSpan -Days 0)) {
                     $Pass = $true
                 } else {
                     $Pass = $false
