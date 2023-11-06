@@ -274,10 +274,17 @@ function Test-LogonLogoffAuditOtherLogonLogoffEvents {
     begin {
         $Return = @()
         $EntryName = "Audit Other Logon/Logoff Events"
-        $RecommendationNumber = '17.5.5'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Audit Other Logon/Logoff Events' is set to 'Success and Failure'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '17.5.5'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit Other Logon/Logoff Events' is set to 'Success and Failure'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult

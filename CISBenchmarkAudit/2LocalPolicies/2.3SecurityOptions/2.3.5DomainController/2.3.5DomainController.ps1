@@ -46,10 +46,10 @@ function Test-DomainControllerSubmitControl {
     }
 
     end {
-        $RecommendationNumber = '2.3.5.1'
+        $Result.Number = '2.3.5.1'
         $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "(L1) Ensure 'Domain controller: Allow server operators to schedule tasks' is set to 'Disabled' (DC only)"
-        $Source = 'Group Policy Settings'
+        $Result.Title = "Ensure 'Domain controller: Allow server operators to schedule tasks' is set to 'Disabled' (DC only)"
+        $Result.Source = 'Group Policy Settings'
         
         $Return += $Result
 
@@ -99,10 +99,10 @@ function Test-DomainControllerVulnerableChannelAllowList {
     }
 
     end {
-        $RecommendationNumber = '2.3.5.2'
+        $Result.Number = '2.3.5.2'
         $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "(L1) Ensure 'Domain controller: Allow vulnerable Netlogon secure channel connections' is set to 'Not Configured'"
-        $Source = 'Group Policy Settings'
+        $Result.Title = "Ensure 'Domain controller: Allow vulnerable Netlogon secure channel connections' is set to 'Not Configured'"
+        $Result.Source = 'Group Policy Settings'
         
         $Return += $Result
 
@@ -152,10 +152,10 @@ function Test-DomainControllerLdapEnforceChannelBinding {
     }
 
     end {
-        $RecommendationNumber = '2.3.5.3'
+        $Result.Number = '2.3.5.3'
         $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "(L1) Ensure 'Domain controller: LDAP server channel binding token requirements' is set to 'Always'"
-        $Source = 'Group Policy Settings'
+        $Result.Title = "Ensure 'Domain controller: LDAP server channel binding token requirements' is set to 'Always'"
+        $Result.Source = 'Group Policy Settings'
         
         $Return += $Result
 
@@ -206,10 +206,10 @@ function Test-DomainControllerLDAPServerIntegrity {
     }
 
     end {
-        $RecommendationNumber = '2.3.5.4'
+        $Result.Number = '2.3.5.4'
         $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "(L1) Ensure 'Domain controller: LDAP server signing requirements' is set to 'Require signing' (DC only)"
-        $Source = 'Group Policy Settings'
+        $Result.Title = "Ensure 'Domain controller: LDAP server signing requirements' is set to 'Require signing' (DC only)"
+        $Result.Source = 'Group Policy Settings'
         
         $Return += $Result
 
@@ -266,10 +266,10 @@ function Test-DomainControllerRefusePasswordChange {
     }
 
     end {
-        $RecommendationNumber = '2.3.5.5'
+        $Result.Number = '2.3.5.5'
         $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "(L1) Ensure 'Domain controller: Refuse machine account password changes' is set to 'Disabled' (DC only)"
-        $Source = 'Group Policy Settings'
+        $Result.Title = "Ensure 'Domain controller: Refuse machine account password changes' is set to 'Disabled' (DC only)"
+        $Result.Source = 'Group Policy Settings'
         
         $Return += $Result
 

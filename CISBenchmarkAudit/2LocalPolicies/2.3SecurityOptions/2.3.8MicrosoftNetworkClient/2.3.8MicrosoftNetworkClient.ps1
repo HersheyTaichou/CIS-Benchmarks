@@ -26,10 +26,17 @@ function Test-MicrosoftNetworkClientRequireSecuritySignature {
     begin {
         $Return = @()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanmanWorkstation\Parameters\RequireSecuritySignature"
-        $RecommendationNumber = '2.3.8.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Microsoft network client: Digitally sign communications (always)' is set to 'Enabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.8.1'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Microsoft network client: Digitally sign communications (always)' is set to 'Enabled'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
@@ -80,10 +87,17 @@ function Test-MicrosoftNetworkClientEnableSecuritySignature {
     begin {
         $Return = @()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanmanWorkstation\Parameters\EnableSecuritySignature"
-        $RecommendationNumber = '2.3.8.2'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Microsoft network client: Digitally sign communications (if server agrees)' is set to 'Enabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.8.2'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Microsoft network client: Digitally sign communications (if server agrees)' is set to 'Enabled'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
@@ -134,10 +148,17 @@ function Test-MicrosoftNetworkClientEnablePlainTextPassword {
     begin {
         $Return = @()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanmanWorkstation\Parameters\EnablePlainTextPassword"
-        $RecommendationNumber = '2.3.8.3'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Microsoft network client: Send unencrypted password to third-party SMB servers' is set to 'Disabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.8.3'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Microsoft network client: Send unencrypted password to third-party SMB servers' is set to 'Disabled'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult

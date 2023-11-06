@@ -26,10 +26,17 @@ function Test-PublicProfileEnableFirewall {
     begin {
         $Return = @()
         $EntryName = "PublicProfile"
-        $RecommendationNumber = '9.3.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Windows Firewall: Public: Firewall state' is set to 'On (recommended)'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '9.3.1'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Windows Firewall: Public: Firewall state' is set to 'On (recommended)'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
@@ -80,10 +87,17 @@ function Test-PublicProfileDefaultInboundAction {
     begin {
         $Return = @()
         $EntryName = "PublicProfile"
-        $RecommendationNumber = '9.3.2'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Windows Firewall: Public: Inbound connections' is set to 'Block (default)'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '9.3.2'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Windows Firewall: Public: Inbound connections' is set to 'Block (default)'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
@@ -134,10 +148,17 @@ function Test-PublicProfileDefaultOutboundAction {
     begin {
         $Return = @()
         $EntryName = "PublicProfile"
-        $RecommendationNumber = '9.3.3'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Windows Firewall: Public: Outbound connections' is set to 'Allow (default)'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '9.3.3'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Windows Firewall: Public: Outbound connections' is set to 'Allow (default)'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
@@ -188,10 +209,17 @@ function Test-PublicProfileDisableNotifications {
     begin {
         $Return = @()
         $EntryName = "PublicProfile"
-        $RecommendationNumber = '9.3.4'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Windows Firewall: Public: Settings: Display a notification' is set to 'No'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '9.3.4'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Windows Firewall: Public: Settings: Display a notification' is set to 'No'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
@@ -242,10 +270,17 @@ function Test-PublicProfileAllowLocalPolicyMerge {
     begin {
         $Return = @()
         $EntryName = "PublicProfile"
-        $RecommendationNumber = '9.3.5'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Windows Firewall: Public: Settings: Apply local firewall rules' is set to 'No'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '9.3.5'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Windows Firewall: Public: Settings: Apply local firewall rules' is set to 'No'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
@@ -296,10 +331,17 @@ function Test-PublicProfileAllowLocalIPsecPolicyMerge {
     begin {
         $Return = @()
         $EntryName = "PublicProfile"
-        $RecommendationNumber = '9.3.6'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Windows Firewall: Public: Settings: Apply local connection security rules' is set to 'No'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '9.3.6'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Windows Firewall: Public: Settings: Apply local connection security rules' is set to 'No'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
@@ -350,10 +392,17 @@ function Test-PublicProfileLogFilePath {
     begin {
         $Return = @()
         $EntryName = "PublicProfile"
-        $RecommendationNumber = '9.3.7'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Windows Firewall: Public: Logging: Name' is set to '%SystemRoot%\System32\logfiles\firewall\publicfw.log'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '9.3.7'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Windows Firewall: Public: Logging: Name' is set to '%SystemRoot%\System32\logfiles\firewall\publicfw.log'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
@@ -408,10 +457,17 @@ function Test-PublicProfileLogFileSize {
     begin {
         $Return = @()
         $EntryName = "PublicProfile"
-        $RecommendationNumber = '9.3.8'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Windows Firewall: Public: Logging: Size limit (KB)' is set to '16,384 KB or greater'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '9.3.8'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Windows Firewall: Public: Logging: Size limit (KB)' is set to '16,384 KB or greater'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
@@ -462,10 +518,17 @@ function Test-PublicProfileLogDroppedPackets {
     begin {
         $Return = @()
         $EntryName = "PublicProfile"
-        $RecommendationNumber = '9.3.9'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Windows Firewall: Public: Logging: Log dropped packets' is set to 'Yes'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '9.3.9'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Windows Firewall: Public: Logging: Log dropped packets' is set to 'Yes'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Entry = Get-WindowsFirewallSettings -EntryName $EntryName
@@ -516,10 +579,17 @@ function Test-PublicProfileLogSuccessfulConnections {
     begin {
         $Return = @()
         $EntryName = "PublicProfile"
-        $RecommendationNumber = '9.3.10'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Windows Firewall: Public: Logging: Log successful connections' is set to 'Yes'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '9.3.10'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Windows Firewall: Public: Logging: Log successful connections' is set to 'Yes'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Entry = Get-WindowsFirewallSettings -EntryName $EntryName

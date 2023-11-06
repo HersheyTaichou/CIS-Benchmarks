@@ -27,8 +27,8 @@ function Test-SystemServicesSpooler {
     begin {
         $Return = @()
         $EntryName = "Spooler"
-        $RecommendationNumber = '5.1'
-        $Source = 'Group Policy Settings'
+        $Result.Number = '5.1'
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
@@ -38,7 +38,7 @@ function Test-SystemServicesSpooler {
     process {
         if ($ProductType -eq 2) {
             $ProfileApplicability = @("Level 1 - Domain Controller")
-            $RecommendationName = "(L1) Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)"
+            $Result.Title = "Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)"
             $Result.Setting = $Result.Entry.StartupMode
             if ($Result.Setting -eq "Disabled") {
                 $Result.SetCorrectly = $True

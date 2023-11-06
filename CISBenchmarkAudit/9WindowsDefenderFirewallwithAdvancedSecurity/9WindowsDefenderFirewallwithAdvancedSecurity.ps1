@@ -2,17 +2,12 @@ function Get-WindowsFirewallSettings {
     [CmdletBinding()]
     param (
         # Parameter help description
-        [Parameter(Mandatory)][string]$EntryName
+        [Parameter(Mandatory)][string]$EntryName,
+        [Parameter(Mandatory)][string]$GPResult
     )
     
-    begin {
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-    }
-    
     process {
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
             foreach ($Profile in $data.Extension.$EntryName) {
                 return $Profile
             }

@@ -41,10 +41,17 @@ function Test-DevicesAllocateDASD {
     }
 
     end {
-        $RecommendationNumber = '2.3.4.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.4.1'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'"
+        $Result.Source = 'Group Policy Settings'
         
         $Return += $Result
 
@@ -95,10 +102,17 @@ function Test-DevicesAddPrinterDrivers {
     }
 
     end {
-        $RecommendationNumber = '2.3.4.2'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.4.2'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'"
+        $Result.Source = 'Group Policy Settings'
         
         $Return += $Result
 

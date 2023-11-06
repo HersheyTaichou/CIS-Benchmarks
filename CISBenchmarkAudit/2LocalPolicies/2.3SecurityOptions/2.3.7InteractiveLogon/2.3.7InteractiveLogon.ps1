@@ -26,10 +26,17 @@ function Test-InteractiveLogonDisableCAD {
     begin {
         $Return = @()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\DisableCAD"
-        $RecommendationNumber = '2.3.7.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Interactive logon: Do not require CTRL+ALT+DEL' is set to 'Disabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.7.1'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Interactive logon: Do not require CTRL+ALT+DEL' is set to 'Disabled'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
@@ -86,10 +93,17 @@ function Test-InteractiveLogonDontDisplayLastUserName {
     begin {
         $Return = @()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\DontDisplayLastUserName"
-        $RecommendationNumber = '2.3.7.2'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Interactive logon: Don't display last signed-in' is set to 'Enabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.7.2'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Interactive logon: Don't display last signed-in' is set to 'Enabled'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
@@ -140,10 +154,17 @@ function Test-InteractiveLogonInactivityTimeoutSecs {
     begin {
         $Return = @()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\InactivityTimeoutSecs"
-        $RecommendationNumber = '2.3.7.3'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.7.3'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
@@ -194,10 +215,17 @@ function Test-InteractiveLogonLegalNoticeText {
     begin {
         $Return = @()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeText"
-        $RecommendationNumber = '2.3.7.4'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Configure 'Interactive logon: Message text for users attempting to log on'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.7.4'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Configure 'Interactive logon: Message text for users attempting to log on'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
@@ -248,10 +276,17 @@ function Test-InteractiveLogonLegalNoticeCaption {
     begin {
         $Return = @()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeCaption"
-        $RecommendationNumber = '2.3.7.5'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Configure 'Interactive logon: Message title for users attempting to log on'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.7.5'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Configure 'Interactive logon: Message title for users attempting to log on'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
@@ -302,10 +337,10 @@ function Test-InteractiveLogonCachedLogonsCount {
     begin {
         $Return = @()
         $EntryName = "MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\CachedLogonsCount"
-        $RecommendationNumber = '2.3.7.6'
+        $Result.Number = '2.3.7.6'
         $ProfileApplicability = @("Level 2 - Member Server")
         $RecommendationName = "(L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only)"
-        $Source = 'Group Policy Settings'
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
@@ -357,10 +392,17 @@ function Test-InteractiveLogonPasswordExpiryWarning {
     begin {
         $Return = @()
         $EntryName = "MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\PasswordExpiryWarning"
-        $RecommendationNumber = '2.3.7.7'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Interactive logon: Prompt user to change password before expiration' is set to 'between 5 and 14 days'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.7.7'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Interactive logon: Prompt user to change password before expiration' is set to 'between 5 and 14 days'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
@@ -411,10 +453,11 @@ function Test-InteractiveLogonForceUnlockLogon {
     begin {
         $Return = @()
         $EntryName = "MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\ForceUnlockLogon"
-        $RecommendationNumber = '2.3.7.8'
-        $ProfileApplicability = @("Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Interactive logon: Require Domain Controller Authentication to unlock workstation' is set to 'Enabled' (MS only)"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.7.8'
+        $Result.Level = "L1"
+        $Result.Profile = "Member Server"
+        $Result.Title = "Ensure 'Interactive logon: Require Domain Controller Authentication to unlock workstation' is set to 'Enabled' (MS only)"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
@@ -465,10 +508,17 @@ function Test-InteractiveLogonScRemoveOption {
     begin {
         $Return = @()
         $EntryName = "MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\ScRemoveOption"
-        $RecommendationNumber = '2.3.7.9'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Interactive logon: Smart card removal behavior' is set to 'Lock Workstation' or higher"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.7.9'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Interactive logon: Smart card removal behavior' is set to 'Lock Workstation' or higher"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult

@@ -212,10 +212,17 @@ function Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange {
     begin {
         $Return = @()
         $EntryName = "Audit MPSSVC Rule-Level Policy Change"
-        $RecommendationNumber = '17.7.4'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Audit MPSSVC Rule-Level Policy Change' is set to 'Success and Failure'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '17.7.4'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit MPSSVC Rule-Level Policy Change' is set to 'Success and Failure'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult

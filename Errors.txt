@@ -1,44 +1,4 @@
 The property 'Entry' cannot be found on this object. Verify that the property exists and can be set.
-At C:\Users\Administrator\GitHub\CIS-Benchmarks\CISBenchmarkAudit\1AccountPolicies\1.2AccountLockoutPolicy\1.2AccountLo
-ckoutPolicy.ps1:130 char:9
-+         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Nam ...
-+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : PropertyNotFound
-
-The property 'Setting' cannot be found on this object. Verify that the property exists and can be set.
-At C:\Users\Administrator\GitHub\CIS-Benchmarks\CISBenchmarkAudit\1AccountPolicies\1.2AccountLockoutPolicy\1.2AccountLo
-ckoutPolicy.ps1:131 char:9
-+         $Result.Setting = [int]$Result.Entry.SettingNumber
-+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : PropertyNotFound
-
-The property 'SetCorrectly' cannot be found on this object. Verify that the property exists and can be set.
-At C:\Users\Administrator\GitHub\CIS-Benchmarks\CISBenchmarkAudit\1AccountPolicies\1.2AccountLockoutPolicy\1.2AccountLo
-ckoutPolicy.ps1:139 char:13
-+             $Result.SetCorrectly = $false
-+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : PropertyNotFound
-
-The property 'SetCorrectly' cannot be found on this object. Verify that the property exists and can be set.
-At C:\Users\Administrator\GitHub\CIS-Benchmarks\CISBenchmarkAudit\1AccountPolicies\1.2AccountLockoutPolicy\1.2AccountLo
-ckoutPolicy.ps1:150 char:21
-+                     $Result.SetCorrectly = $true
-+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : PropertyNotFound
-
-The property 'SetCorrectly' cannot be found on this object. Verify that the property exists and can be set.
-At C:\Users\Administrator\GitHub\CIS-Benchmarks\CISBenchmarkAudit\1AccountPolicies\1.2AccountLockoutPolicy\1.2AccountLo
-ckoutPolicy.ps1:152 char:21
-+                     $Result.SetCorrectly = $false
-+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
-    + FullyQualifiedErrorId : PropertyNotFound
-
-The property 'Entry' cannot be found on this object. Verify that the property exists and can be set.
 At C:\Users\Administrator\GitHub\CIS-Benchmarks\CISBenchmarkAudit\2LocalPolicies\2.3SecurityOptions\2.3.1Accounts\2.3.1
 Accounts.ps1:35 char:9
 +         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Key ...

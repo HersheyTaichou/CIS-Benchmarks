@@ -41,10 +41,17 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
     }
 
     end {
-        $RecommendationNumber = '2.3.2.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.2.1'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled'"
+        $Result.Source = 'Group Policy Settings'
         
         $Return += $Result
 
@@ -101,10 +108,17 @@ function Test-AuditCrashOnAuditFail {
     }
 
     end {
-        $RecommendationNumber = '2.3.2.2'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Audit: Shut down system immediately if unable to log security audits' is set to 'Disabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.2.2'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit: Shut down system immediately if unable to log security audits' is set to 'Disabled'"
+        $Result.Source = 'Group Policy Settings'
         
         $Return += $Result
 

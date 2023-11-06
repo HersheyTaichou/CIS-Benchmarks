@@ -25,10 +25,17 @@ function Test-AccountsNoConnectedUser {
 
     begin {
         $Return = @()
-        $RecommendationNumber = '2.3.1.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Microsoft accounts'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.1.1'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Microsoft accounts'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\NoConnectedUser"
@@ -107,10 +114,11 @@ function Test-AccountsEnableGuestAccount {
     }
 
     end {
-        $RecommendationNumber = '2.3.1.2'
-        $ProfileApplicability = @("Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.1.2'
+        $Result.Level = "L1"
+        $Result.Profile = "Member Server"
+        $Result.Title = "Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)"
+        $Result.Source = 'Group Policy Settings'
         
         $Return += $Result
 
@@ -156,10 +164,17 @@ function Test-AccountsLimitBlankPasswordUse {
     }
 
     end {
-        $RecommendationNumber = '2.3.1.3'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.1.3'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'"
+        $Result.Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -219,10 +234,17 @@ function Test-AccountsNewAdministratorName {
     }
 
     end {
-        $RecommendationNumber = '2.3.1.4'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Configure 'Accounts: Rename administrator account'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.1.4'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Configure 'Accounts: Rename administrator account'"
+        $Result.Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability
@@ -282,10 +304,17 @@ function Test-AccountsNewGuestName {
     }
 
     end {
-        $RecommendationNumber = '2.3.1.5'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Configure 'Accounts: Rename guest account'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.1.5'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Configure 'Accounts: Rename guest account'"
+        $Result.Source = 'Group Policy Settings'
         $Properties = [PSCustomObject]@{
             'Number' = $RecommendationNumber
             'ProfileApplicability' = $ProfileApplicability

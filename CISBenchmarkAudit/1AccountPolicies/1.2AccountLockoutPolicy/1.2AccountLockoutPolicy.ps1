@@ -25,8 +25,7 @@ function Test-AccountLockoutPolicyLockoutDuration {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     begin {
-        # Check the product type
-        $ProductType = Get-ProductType
+        
         $Return = @()
         $Result = [CISBenchmark]::new()
         $Result.Number = "1.2.1"
@@ -62,25 +61,19 @@ function Test-AccountLockoutPolicyLockoutDuration {
         if ($ProductType -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+                $Result = [CISBenchmark]::new()
+                $Result.Number = "1.2.1"
+                $Result.Level = "L1"
+                $Result.Profile = "Domain Controller"
+                $Result.Title = "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
+                $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
                 if ($FGPasswordPolicy.LockoutDuration -ge (New-TimeSpan -Minutes 15)) {
                     $Result.SetCorrectly = $true
                 } else {
                     $Result.SetCorrectly = $false
                 }
-
-                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-
-                $Properties = [PSCustomObject]@{
-                    'Number' = $RecommendationNumber
-                    'ProfileApplicability' = $ProfileApplicability
-                    'Name'= $RecommendationName
-                    'Source' = $Source
-                    'Pass'= $Result.SetCorrectly
-                    'Setting' = [bool]$FGPasswordPolicy.LockoutDuration
-                    'Entry' = $FGPasswordPolicy
-                }
-                $Properties.PSTypeNames.Add('psCISBenchmark')
-                $Return += $Result
+                $Result.Setting = [bool]$FGPasswordPolicy.LockoutDuration
+                $Result.Entry = $FGPasswordPolicy
             }
         }
     }
@@ -117,13 +110,19 @@ function Test-AccountLockoutPolicyLockoutThreshold {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     begin {
-        # Check the product type
-        $ProductType = Get-ProductType
         $Return = @()
-        $RecommendationNumber = '1.2.2'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
+        $Result.Number = '1.2.2'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
+        $Result.Source = 'Group Policy Settings'
 
         #Find the Password History Size applied to this machine
         $EntryName = "LockoutBadCount"
@@ -146,25 +145,20 @@ function Test-AccountLockoutPolicyLockoutThreshold {
         if ($ProductType -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+                $Result = [CISBenchmark]::new()
+                $Result.Number = "1.2.2"
+                $Result.Level = "L1"
+                $Result.Profile = "Domain Controller"
+                $Result.Title = "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
+                $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
                 if ($FGPasswordPolicy.LockoutThreshold -gt "0" -and $FGPasswordPolicy.LockoutThreshold -le "5") {
                     $Result.SetCorrectly = $true
                 } else {
                     $Result.SetCorrectly = $false
                 }
 
-                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-
-                $Properties = [PSCustomObject]@{
-                    'Number' = $RecommendationNumber
-                    'ProfileApplicability' = $ProfileApplicability
-                    'Name'= $RecommendationName
-                    'Source' = $Source
-                    'Pass'= $Result.SetCorrectly
-                    'Setting' = [bool]$FGPasswordPolicy.LockoutThreshold
-                    'Entry' = $FGPasswordPolicy
-                }
-                $Properties.PSTypeNames.Add('psCISBenchmark')
-                $Return += $Result
+                $Result.Setting = [bool]$FGPasswordPolicy.LockoutThreshold
+                $Result.Entry = $FGPasswordPolicy
             }
         }
     }
@@ -203,10 +197,12 @@ function Test-AccountLockoutPolicyAdminLockout {
 
     begin {
         $Return = @()
-        $RecommendationNumber = '1.2.3'
-        $ProfileApplicability = @("Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
+        $Result.Number = '1.2.3'
+        $Result.Level = "L1"
+        $Result.Profile = "Member Server"
+        $Result.Title = "Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
+        $Result.Source = 'Group Policy Settings'
 
         #Find the maximum password age applied to this machine
         $EntryName = "AllowAdministratorLockout"
@@ -262,8 +258,6 @@ function Test-AccountLockoutPolicyResetLockoutCount {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     begin {
-        # Check the product type
-        $ProductType = Get-ProductType
         $Return = @()
         $Result = [CISBenchmark]::new()
         $Result.Number = "1.2.4"
@@ -299,25 +293,19 @@ function Test-AccountLockoutPolicyResetLockoutCount {
         if ($ProductType -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+                $Result = [CISBenchmark]::new()
+                $Result.Number = "1.2.4"
+                $Result.Level = "L1"
+                $Result.Profile = "Domain Controller"
+                $Result.Title = "Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
+                $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
                 if ($FGPasswordPolicy.LockoutObservationWindow -ge (New-TimeSpan -Minutes 15)) {
                     $Result.SetCorrectly = $true
                 } else {
                     $Result.SetCorrectly = $false
                 }
-
-                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-
-                $Properties = [PSCustomObject]@{
-                    'Number' = $RecommendationNumber
-                    'ProfileApplicability' = $ProfileApplicability
-                    'Name'= $RecommendationName
-                    'Source' = $Source
-                    'Pass'= $Result.SetCorrectly
-                    'Setting' = [bool]$FGPasswordPolicy.LockoutObservationWindow
-                    'Entry' = $FGPasswordPolicy
-                }
-                $Properties.PSTypeNames.Add('psCISBenchmark')
-                $Return += $Result
+                $Result.Setting = [bool]$FGPasswordPolicy.LockoutObservationWindow
+                $Result.Entry = $FGPasswordPolicy
             }
         }
     }

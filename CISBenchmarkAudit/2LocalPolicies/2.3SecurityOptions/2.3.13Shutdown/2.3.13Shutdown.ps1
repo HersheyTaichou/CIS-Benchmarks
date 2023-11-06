@@ -26,10 +26,17 @@ function Test-ShutdownShutdownWithoutLogon {
     begin {
         $Return = @()
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ShutdownWithoutLogon"
-        $RecommendationNumber = '2.3.13.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Shutdown: Allow system to be shut down without having to log on' is set to 'Disabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.13.1'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Shutdown: Allow system to be shut down without having to log on' is set to 'Disabled'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult

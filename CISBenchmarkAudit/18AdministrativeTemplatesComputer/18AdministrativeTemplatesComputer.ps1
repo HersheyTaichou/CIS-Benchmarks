@@ -42,8 +42,8 @@ function Test-AdministrativeTemplatesComputerControlPanel {
     }
     
     process {
-        Test-ControlPanelPersonalization -ProductType $ProductType -GPResult $GPResult
-        Test-ControlPanelRegionalAndLanguageOptions -ProductType $ProductType -GPResult $GPResult
+        Test-ControlPanelPersonalization -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-ControlPanelRegionalAndLanguageOptions -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
     }
     
     end {}
