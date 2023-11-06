@@ -473,19 +473,8 @@ function Test-CISBenchmarkAdministrativeTemplatesComputer {
         Test-AdministrativeTemplatesComputerLAPS -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
         Test-AdministrativeTemplatesComputerMSSecurityGuide -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
         Test-AdministrativeTemplatesComputerMSS -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerDNSClient -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerFonts -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerLanmanWorkstation -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerLinkLayerTopologyDiscovery -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerMicrosoftPeertoPeerNetworkingServices -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerNetworkConnections -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerNetworkProvider -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerTCPIPSettings -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerWindowsConnectNow -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerWindowsConnectionManager -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
         Test-AdministrativeTemplatesComputerNetwork -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
         Test-AdministrativeTemplatesComputerPrinters -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerNotifications -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
         Test-AdministrativeTemplatesComputerStartMenuAndTaskbar -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
         Test-AdministrativeTemplatesComputerSystem -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
         Test-AdministrativeTemplatesComputerWindowsComponents -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult

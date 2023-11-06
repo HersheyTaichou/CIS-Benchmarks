@@ -87,7 +87,7 @@ function Test-NetworkAccessRestrictAnonymousSAM {
         $Result.Number = '2.3.10.2'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
-        $Result.Title = "(L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts' is set to 'Enabled' (MS only)"
+        $Result.Title = "Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts' is set to 'Enabled' (MS only)"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -139,7 +139,7 @@ function Test-NetworkAccessRestrictAnonymous {
         $Result.Number = '2.3.10.3'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
-        $Result.Title = "(L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is set to 'Enabled' (MS only)"
+        $Result.Title = "Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is set to 'Enabled' (MS only)"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -197,7 +197,7 @@ function Test-NetworkAccessDisableDomainCreds {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "(L2) Ensure 'Network access: Do not allow storage of passwords and credentials for network authentication' is set to 'Enabled'"
+        $Result.Title = "Ensure 'Network access: Do not allow storage of passwords and credentials for network authentication' is set to 'Enabled'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -405,7 +405,7 @@ function Test-NetworkAccessAllowedExactPaths {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "(L1) Configure 'Network access: Remotely accessible registry paths' is configured"
+        $Result.Title = "Configure 'Network access: Remotely accessible registry paths' is configured"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -468,7 +468,7 @@ function Test-NetworkAccessAllowedPaths {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "(L1) Configure 'Network access: Remotely accessible registry paths and sub-paths' is configured"
+        $Result.Title = "Configure 'Network access: Remotely accessible registry paths and sub-paths' is configured"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -541,7 +541,7 @@ function Test-NetworkAccessRestrictNullSessAccess {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "(L1) Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Enabled'"
+        $Result.Title = "Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Enabled'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -593,7 +593,7 @@ function Test-NetworkAccessRestrictRemoteSAM {
         $Result.Number = '2.3.10.11'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
-        $Result.Title = "(L1) Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Administrators: Remote Access: Allow' (MS only)"
+        $Result.Title = "Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Administrators: Remote Access: Allow' (MS only)"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -652,7 +652,7 @@ function Test-NetworkAccessNullSessionShares {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "(L1) Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None'$cisb"
+        $Result.Title = "Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None'$cisb"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -710,7 +710,7 @@ function Test-NetworkAccessForceGuest {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "(L1) Ensure 'Network access: Sharing and security model for local accounts' is set to 'Classic - local users authenticate as themselves'"
+        $Result.Title = "Ensure 'Network access: Sharing and security model for local accounts' is set to 'Classic - local users authenticate as themselves'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
