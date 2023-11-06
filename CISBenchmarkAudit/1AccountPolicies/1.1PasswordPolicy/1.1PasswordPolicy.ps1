@@ -44,18 +44,17 @@ function Test-PasswordPolicyPasswordHistory {
         #Find the Password History Size applied to this machine
         $EntryName = "PasswordHistorySize"
         $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
-        $Setting = [int]$Entry.SettingNumber
+        $GPTest.Setting = [int]$Entry.SettingNumber
     }
 
     process {
         $GPTest.Source = 'Group Policy Settings'
-        if ($Setting -ge 24) {
+        if ($GPTest.Setting -ge 24) {
             $GPTest.SetCorrectly = $true
         } else {
             $GPTest.SetCorrectly = $false
         }
 
-        $GPTest.Setting = $Setting
         $GPTest.Entry = $Entry
         $Return += $GPTest
 
@@ -68,15 +67,14 @@ function Test-PasswordPolicyPasswordHistory {
             $FGPPTest.Title = "Ensure 'Enforce password history' is set to '24 or more password(s)'"
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                if ($FGPasswordPolicy.PasswordHistoryCount -ge "24") {
+                $FGPPTest.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                $FGPPTest.Setting = $FGPasswordPolicy.PasswordHistoryCount
+                if ($FGPPTest.Setting -ge "24") {
                     $FGPPTest.SetCorrectly = $true
                 } else {
                     $FGPPTest.SetCorrectly = $false
                 }
 
-                $FGPPTest.Source = $Source
-                $FGPPTest.Setting = $FGPasswordPolicy.PasswordHistoryCount
                 $FGPPTest.Entry = $FGPasswordPolicy
                 $Return += $FGPPTest
             }
@@ -115,60 +113,54 @@ function Test-PasswordPolicyMaxPasswordAge {
         # Check the product type
         $ProductType = Get-ProductType
         $Return = @()
-        $RecommendationNumber = '1.1.2'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
-        $Source = 'Group Policy Settings'
+        $GPTest = [CISBenchmark]::new()
+        $GPTest.Number = '1.1.2'
+        $GPTest.Level = "L1"
+        if ($ProductType -eq 1) {
+            $GPTest.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $GPTest.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $GPTest.Profile = "Member Server"
+        }
+        $GPTest.Title = "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
 
         #Find the Password History Size applied to this machine
         $EntryName = "MaximumPasswordAge"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
-        $Setting = [int]$Entry.SettingNumber
+        $GPTest.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
+        $GPTest.Setting = [int]$Entry.SettingNumber
     }
 
     process {
+        $GPTest.Source = 'Group Policy Settings'
         # Check if the GPO setting meets the CIS Benchmark
-        if ($Setting -gt "0" -and $Setting -le "365") {
-            $Pass = $true
+        if ($GPTest.Setting -gt "0" -and $GPTest.Setting -le "365") {
+            $GPTest.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $GPTest.SetCorrectly = $false
         }
 
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        $Return += $GPTest
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType -eq 2) {
+            $FGPPTest = [CISBenchmark]::new()
+            $FGPPTest.Number = '1.1.2'
+            $FGPPTest.Level = "L1"
+            $FGPPTest.Profile = "Domain Controller"
+            $FGPPTest.Title = "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-                if ($FGPasswordPolicy.MaxPasswordAge -gt "0" -and $FGPasswordPolicy.MaxPasswordAge -le "365") {
-                    $Pass = $true
+                $FGPPTest.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                $FGPPTest.Setting = $FGPasswordPolicy.PasswordHistoryCount
+                if ($FGPPTest.Setting -gt "0" -and $FGPPTest.Setting -le "365") {
+                    $FGPPTest.SetCorrectly = $true
                 } else {
-                    $Pass = $false
+                    $FGPPTest.SetCorrectly = $false
                 }
 
-                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-
-                $Properties = [PSCustomObject]@{
-                    'Number' = $RecommendationNumber
-                    'ProfileApplicability' = $ProfileApplicability
-                    'Name'= $RecommendationName
-                    'Source' = $Source
-                    'Pass'= $Pass
-                    'Setting' = $FGPasswordPolicy.MaxPasswordAge
-                    'Entry' = $FGPasswordPolicy
-                }
-                $Properties.PSTypeNames.Add('psCISBenchmark')
-                $Return += $Properties
+                $FGPPTest.Entry = $FGPasswordPolicy
+                $Return += $FGPPTest
             }
         }
     }
