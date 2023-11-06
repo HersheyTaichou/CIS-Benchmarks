@@ -2,24 +2,21 @@ function Get-WindowsFirewallSettings {
     [CmdletBinding()]
     param (
         # Parameter help description
-        [Parameter(Mandatory)][string]$EntryName
+        [Parameter(Mandatory)][string]$EntryName,
+        [Parameter(Mandatory)][string]$GPResult
     )
     
-    begin {
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-    }
-    
     process {
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($data in $GPResult.Rsop.ComputerResults.ExtensionData) {
             foreach ($Profile in $data.Extension.$EntryName) {
-                return $Profile
+                $Return = $Profile
             }
         }
     }
-    
-    end {}
+
+    end {
+        return $Return
+    }
 }
 
 <#
@@ -59,25 +56,24 @@ function Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
-        Test-DomainProfileEnableFirewall
-        Test-DomainProfileDefaultInboundAction
-        Test-DomainProfileDefaultOutboundAction
-        Test-DomainProfileDisableNotifications
-        Test-DomainProfileLogFilePath
-        Test-DomainProfileLogFileSize
-        Test-DomainProfileLogDroppedPackets
-        Test-DomainProfileLogSuccessfulConnections
+        Test-DomainProfileEnableFirewall -ProductType $ProductType -GPResult $GPResult
+        Test-DomainProfileDefaultInboundAction -ProductType $ProductType -GPResult $GPResult
+        Test-DomainProfileDefaultOutboundAction -ProductType $ProductType -GPResult $GPResult
+        Test-DomainProfileDisableNotifications -ProductType $ProductType -GPResult $GPResult
+        Test-DomainProfileLogFilePath -ProductType $ProductType -GPResult $GPResult
+        Test-DomainProfileLogFileSize -ProductType $ProductType -GPResult $GPResult
+        Test-DomainProfileLogDroppedPackets -ProductType $ProductType -GPResult $GPResult
+        Test-DomainProfileLogSuccessfulConnections -ProductType $ProductType -GPResult $GPResult
     }
     
     end {}
@@ -120,25 +116,24 @@ function Test-WindowsDefenderFirewallwithAdvancedSecurityPrivateProfile {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
-        Test-PrivateProfileEnableFirewall
-        Test-PrivateProfileDefaultInboundAction
-        Test-PrivateProfileDefaultOutboundAction
-        Test-PrivateProfileDisableNotifications
-        Test-PrivateProfileLogFilePath
-        Test-PrivateProfileLogFileSize
-        Test-PrivateProfileLogDroppedPackets
-        Test-PrivateProfileLogSuccessfulConnections
+        Test-PrivateProfileEnableFirewall -ProductType $ProductType -GPResult $GPResult
+        Test-PrivateProfileDefaultInboundAction -ProductType $ProductType -GPResult $GPResult
+        Test-PrivateProfileDefaultOutboundAction -ProductType $ProductType -GPResult $GPResult
+        Test-PrivateProfileDisableNotifications -ProductType $ProductType -GPResult $GPResult
+        Test-PrivateProfileLogFilePath -ProductType $ProductType -GPResult $GPResult
+        Test-PrivateProfileLogFileSize -ProductType $ProductType -GPResult $GPResult
+        Test-PrivateProfileLogDroppedPackets -ProductType $ProductType -GPResult $GPResult
+        Test-PrivateProfileLogSuccessfulConnections -ProductType $ProductType -GPResult $GPResult
     }
     
     end {}
@@ -181,27 +176,26 @@ function Test-WindowsDefenderFirewallwithAdvancedSecurityPublicProfile {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
-        Test-PublicProfileEnableFirewall
-        Test-PublicProfileDefaultInboundAction
-        Test-PublicProfileDefaultOutboundAction
-        Test-PublicProfileDisableNotifications
-        Test-PublicProfileAllowLocalPolicyMerge
-        Test-PublicProfileAllowLocalIPsecPolicyMerge
-        Test-PublicProfileLogFilePath
-        Test-PublicProfileLogFileSize
-        Test-PublicProfileLogDroppedPackets
-        Test-PublicProfileLogSuccessfulConnections
+        Test-PublicProfileEnableFirewall -ProductType $ProductType -GPResult $GPResult
+        Test-PublicProfileDefaultInboundAction -ProductType $ProductType -GPResult $GPResult
+        Test-PublicProfileDefaultOutboundAction -ProductType $ProductType -GPResult $GPResult
+        Test-PublicProfileDisableNotifications -ProductType $ProductType -GPResult $GPResult
+        Test-PublicProfileAllowLocalPolicyMerge -ProductType $ProductType -GPResult $GPResult
+        Test-PublicProfileAllowLocalIPsecPolicyMerge -ProductType $ProductType -GPResult $GPResult
+        Test-PublicProfileLogFilePath -ProductType $ProductType -GPResult $GPResult
+        Test-PublicProfileLogFileSize -ProductType $ProductType -GPResult $GPResult
+        Test-PublicProfileLogDroppedPackets -ProductType $ProductType -GPResult $GPResult
+        Test-PublicProfileLogSuccessfulConnections -ProductType $ProductType -GPResult $GPResult
     }
     
     end {}
@@ -244,20 +238,19 @@ function Test-CISBenchmarkWindowsDefenderFirewallwithAdvancedSecurity {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
-        Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-WindowsDefenderFirewallwithAdvancedSecurityPrivateProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-WindowsDefenderFirewallwithAdvancedSecurityPublicProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+        Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-WindowsDefenderFirewallwithAdvancedSecurityPrivateProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-WindowsDefenderFirewallwithAdvancedSecurityPublicProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
     }
     
     end {}

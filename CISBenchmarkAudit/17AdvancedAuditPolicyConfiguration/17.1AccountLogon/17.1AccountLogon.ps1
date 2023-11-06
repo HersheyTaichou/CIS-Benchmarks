@@ -17,43 +17,42 @@ General notes
 #>
 function Test-AccountLogonAuditCredentialValidation {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
         $EntryName = "Audit Credential Validation"
-        $RecommendationNumber = '17.1.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Audit Credential Validation' is set to 'Success and Failure'"
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "17.1.1"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit Credential Validation' is set to 'Success and Failure'"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingValue
-        if ($Setting -eq 3) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingValue
+        if ($Result.Setting -eq 3) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -76,43 +75,42 @@ General notes
 #>
 function Test-AccountLogonAuditKerberosAuthenticationService {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
         $EntryName = "Audit Kerberos Authentication Service"
-        $RecommendationNumber = '17.1.2'
-        $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "(L1) Ensure 'Audit Kerberos Authentication Service' is set to 'Success and Failure' (DC Only)"
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "17.1.2"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit Kerberos Authentication Service' is set to 'Success and Failure' (DC Only)"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingValue
-        if ($Setting -eq 3) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingValue
+        if ($Result.Setting -eq 3) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -135,42 +133,41 @@ General notes
 #>
 function Test-AccountLogonAuditKerberosServiceTicketOperations {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
         $EntryName = "Audit Kerberos Service Ticket Operations"
-        $RecommendationNumber = '17.1.3'
-        $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "(L1) Ensure 'Audit Kerberos Service Ticket Operations' is set to 'Success and Failure' (DC Only)"
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "17.1.3"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit Kerberos Service Ticket Operations' is set to 'Success and Failure' (DC Only)"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingValue
-        if ($Setting -eq 3) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingValue
+        if ($Result.Setting -eq 3) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }

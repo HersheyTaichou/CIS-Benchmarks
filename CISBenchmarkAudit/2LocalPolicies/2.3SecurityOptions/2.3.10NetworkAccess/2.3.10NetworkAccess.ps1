@@ -17,49 +17,42 @@ General notes
 #>
 function Test-NetworkAccessLSAAnonymousNameLookup {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "LSAAnonymousNameLookup"
-        $RecommendationNumber = '2.3.10.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Network access: Allow anonymous SID/Name translation' is set to 'Disabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.10.1'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Network access: Allow anonymous SID/Name translation' is set to 'Disabled'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry) {
-            if ($Setting) {
-                $Pass = $false
-            } elseif ($setting -eq $false) {
-                $Pass = $true
-            } else {
-                $Pass = $false
-            }
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry) {
+            $Result.SetCorrectly = -not($Result.Setting)
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -82,43 +75,36 @@ General notes
 #>
 function Test-NetworkAccessRestrictAnonymousSAM {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\RestrictAnonymousSAM"
-        $RecommendationNumber = '2.3.10.2'
-        $ProfileApplicability = @("Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts' is set to 'Enabled' (MS only)"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.10.2'
+        $Result.Level = "L1"
+        $Result.Profile = "Member Server"
+        $Result.Title = "Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts' is set to 'Enabled' (MS only)"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -141,43 +127,36 @@ General notes
 #>
 function Test-NetworkAccessRestrictAnonymous {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\RestrictAnonymous"
-        $RecommendationNumber = '2.3.10.3'
-        $ProfileApplicability = @("Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is set to 'Enabled' (MS only)"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.10.3'
+        $Result.Level = "L1"
+        $Result.Profile = "Member Server"
+        $Result.Title = "Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is set to 'Enabled' (MS only)"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -200,43 +179,42 @@ General notes
 #>
 function Test-NetworkAccessDisableDomainCreds {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\DisableDomainCreds"
-        $RecommendationNumber = '2.3.10.4'
-        $ProfileApplicability = @("Level 2 - Domain Controller","Level 2 - Member Server")
-        $RecommendationName = "(L2) Ensure 'Network access: Do not allow storage of passwords and credentials for network authentication' is set to 'Enabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.10.4'
+        $Result.Level = "L2"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Network access: Do not allow storage of passwords and credentials for network authentication' is set to 'Enabled'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -259,49 +237,42 @@ General notes
 #>
 function Test-NetworkAccessEveryoneIncludesAnonymous {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\EveryoneIncludesAnonymous"
-        $RecommendationNumber = '2.3.10.5'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.10.5'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disabled'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry) {
-            if ($Setting) {
-                $Pass = $false
-            } elseif ($setting -eq $false) {
-                $Pass = $true
-            } else {
-                $Pass = $false
-            }
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry) {
+            $Result.SetCorrectly = -not($Result.Setting)
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -326,22 +297,25 @@ General notes
 #>
 function Test-NetworkAccessNullSessionPipes {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
-        $ServerType = Get-ProductType
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\NullSessionPipes"
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Source = 'Group Policy Settings'
     }
 
     process {
-        $Setting = @()
-        $Entry.SettingStrings.Value | ForEach-Object {$Setting += $_}
-        if (-not($Setting)) {
-            $Setting = @("")
+        $Result.Setting = @()
+        $Result.Entry.SettingStrings.Value | ForEach-Object {$Result.Setting += $_}
+        if (-not($Result.Setting)) {
+            $Result.Setting = @("")
         }
         $DomainController = @("LSARPC","NETLOGON","SAMR")
         $DCBrowser = @("LSARPC", "NETLOGON", "SAMR","BROWSER")
@@ -350,57 +324,47 @@ function Test-NetworkAccessNullSessionPipes {
         $MSRDS = @("HydraLSPipe","TermServLicensing")
         $MSRDSBrowser = @("HydraLSPipe","TermServLicensing","BROWSER")
 
-        if ($ServerType -eq 2) {
-            $RecommendationNumber = '2.3.10.6'
-            $ProfileApplicability = @("Level 1 - Domain Controller")
-            $RecommendationName = "(L1) Configure 'Network access: Named Pipes that can be accessed anonymously' (DC only)"
-            if ($entry) {
-                if (-not(Compare-Object -ReferenceObject $DomainController -DifferenceObject $setting)) {
-                    $Pass = $true
-                } elseif (-not(Compare-Object -ReferenceObject $DCBrowser -DifferenceObject $setting)) {
-                    $Pass = $true
+        if ($ProductType -eq 2) {
+            $Result.Number = '2.3.10.6'
+            $Result.Level = "L1"
+            $Result.Profile = "Domain Controller"
+            $Result.Title = "Configure 'Network access: Named Pipes that can be accessed anonymously' (DC only)"
+            if ($Result.Entry) {
+                if (-not(Compare-Object -ReferenceObject $DomainController -DifferenceObject $Result.Setting)) {
+                    $Result.SetCorrectly = $true
+                } elseif (-not(Compare-Object -ReferenceObject $DCBrowser -DifferenceObject $Result.Setting)) {
+                    $Result.SetCorrectly = $true
                 } else {
-                    $Pass = $false
+                    $Result.SetCorrectly = $false
                 }
             } else {
-                $Pass = $false
+                $Result.SetCorrectly = $false
             }
-        } elseif ($ServerType -eq 3) {
-            $RecommendationNumber = '2.3.10.7'
-            $ProfileApplicability = @("Level 1 - Member Server")
-            $RecommendationName = "(L1) Configure 'Network access: Named Pipes that can be accessed anonymously' (MS only)"
-            if ($entry) {
-                if (-not(Compare-Object -ReferenceObject $MemberServer -DifferenceObject $setting)) {
-                    $Pass = $true
-                } elseif (-not(Compare-Object -ReferenceObject $MSBrowser -DifferenceObject $setting)) {
-                    $Pass = $true
-                } elseif (-not(Compare-Object -ReferenceObject $MSRDS -DifferenceObject $setting)) {
-                    $Pass = $true
-                } elseif (-not(Compare-Object -ReferenceObject $MSRDSBrowser -DifferenceObject $setting)) {
-                    $Pass = $true
+        } elseif ($ProductType -eq 3) {
+            $Result.Number = '2.3.10.7'
+            $Result.Level = "L1"
+            $Result.Profile = "Member Server"
+            $Result.Title = "Configure 'Network access: Named Pipes that can be accessed anonymously' (MS only)"
+            if ($Result.Entry) {
+                if (-not(Compare-Object -ReferenceObject $MemberServer -DifferenceObject $Result.Setting)) {
+                    $Result.SetCorrectly = $true
+                } elseif (-not(Compare-Object -ReferenceObject $MSBrowser -DifferenceObject $Result.Setting)) {
+                    $Result.SetCorrectly = $true
+                } elseif (-not(Compare-Object -ReferenceObject $MSRDS -DifferenceObject $Result.Setting)) {
+                    $Result.SetCorrectly = $true
+                } elseif (-not(Compare-Object -ReferenceObject $MSRDSBrowser -DifferenceObject $Result.Setting)) {
+                    $Result.SetCorrectly = $true
                 } else {
-                    $Pass = $false
+                    $Result.SetCorrectly = $false
                 }
             } else {
-                $Pass = $false
+                $Result.SetCorrectly = $false
             }
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -423,48 +387,47 @@ General notes
 #>
 function Test-NetworkAccessAllowedExactPaths {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths\Machine"
-        $RecommendationNumber = '2.3.10.8'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Configure 'Network access: Remotely accessible registry paths' is configured"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.10.8'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Configure 'Network access: Remotely accessible registry paths' is configured"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        $Setting = $Entry.SettingStrings.Value
+        $Result.Setting = $Result.Entry.SettingStrings.Value
         $Definition = @('System\CurrentControlSet\Control\ProductOptions','System\CurrentControlSet\Control\Server Applications','Software\Microsoft\Windows NT\CurrentVersion')
-        if ($Entry) {
-            if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $setting)) {
-                $Pass = $true
+        if ($Result.Entry) {
+            if (-not(Compare-Object -ReferenceObject $Definition -DifferenceObject $Result.Setting)) {
+                $Result.SetCorrectly = $true
             } else {
-                $Pass = $false
+                $Result.SetCorrectly = $false
             }
         } else  {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -487,58 +450,57 @@ General notes
 #>
 function Test-NetworkAccessAllowedPaths {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedPaths\Machine"
-        $RecommendationNumber = '2.3.10.9'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Configure 'Network access: Remotely accessible registry paths and sub-paths' is configured"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.10.9'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Configure 'Network access: Remotely accessible registry paths and sub-paths' is configured"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        $Setting = $Entry.SettingStrings.Value
+        $Result.Setting = $Result.Entry.SettingStrings.Value
         $definition = @('System\CurrentControlSet\Control\Print\Printers','System\CurrentControlSet\Services\Eventlog','Software\Microsoft\OLAP Server','Software\Microsoft\Windows NT\CurrentVersion\Print','Software\Microsoft\Windows NT\CurrentVersion\Windows','System\CurrentControlSet\Control\ContentIndex','System\CurrentControlSet\Control\Terminal Server','System\CurrentControlSet\Control\Terminal Server\UserConfig','System\CurrentControlSet\Control\Terminal Server\DefaultUserConfiguration','Software\Microsoft\Windows NT\CurrentVersion\Perflib','System\CurrentControlSet\Services\SysmonLog')
         $ADCS = $definition + 'System\CurrentControlSet\Services\CertSvc'
         $WINS = $definition + 'System\CurrentControlSet\Services\WINS'
         $ADCSWins = $ADCS + 'System\CurrentControlSet\Services\WINS'
 
-        if ($Entry) {
-            if (-not(Compare-Object -ReferenceObject $definition -DifferenceObject $setting)) {
-                $Pass = $true
-            } elseif (-not(Compare-Object -ReferenceObject $ADCS -DifferenceObject $setting)) {
-                $Pass = $true
-            } elseif (-not(Compare-Object -ReferenceObject $WINS -DifferenceObject $setting)) {
-                $Pass = $true
-            } elseif (-not(Compare-Object -ReferenceObject $ADCSWins -DifferenceObject $setting)) {
-                $Pass = $true
+        if ($Result.Entry) {
+            if (-not(Compare-Object -ReferenceObject $definition -DifferenceObject $Result.Setting)) {
+                $Result.SetCorrectly = $true
+            } elseif (-not(Compare-Object -ReferenceObject $ADCS -DifferenceObject $Result.Setting)) {
+                $Result.SetCorrectly = $true
+            } elseif (-not(Compare-Object -ReferenceObject $WINS -DifferenceObject $Result.Setting)) {
+                $Result.SetCorrectly = $true
+            } elseif (-not(Compare-Object -ReferenceObject $ADCSWins -DifferenceObject $Result.Setting)) {
+                $Result.SetCorrectly = $true
             } else {
-                $Pass = $false
+                $Result.SetCorrectly = $false
             }
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -561,43 +523,42 @@ General notes
 #>
 function Test-NetworkAccessRestrictNullSessAccess {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\RestrictNullSessAccess"
-        $RecommendationNumber = '2.3.10.10'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Enabled'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.10.10'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Enabled'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -620,44 +581,37 @@ General notes
 #>
 function Test-NetworkAccessRestrictRemoteSAM {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\RestrictRemoteSAM"
-        $RecommendationNumber = '2.3.10.11'
-        $ProfileApplicability = @("Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Administrators: Remote Access: Allow' (MS only)"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.10.11'
+        $Result.Level = "L1"
+        $Result.Profile = "Member Server"
+        $Result.Title = "Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Administrators: Remote Access: Allow' (MS only)"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        $Setting = $Entry.SettingString
+        $Result.Setting = $Result.Entry.SettingString
         $Definition = "O:BAG:BAD:(A;;RC;;;BA)"
-        if ($Setting -eq $Definition) {
-            $Pass = $true
+        if ($Result.Setting -eq $Definition) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -680,43 +634,42 @@ General notes
 #>
 function Test-NetworkAccessNullSessionShares {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\NullSessionShares"
-        $RecommendationNumber = '2.3.10.12'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None'$cisb"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.10.12'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None'$cisb"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        $setting = $Entry.SettingStrings.Value
-        if ($Entry.KeyName) {
-            $Pass = -not($setting)
+        $Result.Setting = $Result.Entry.SettingStrings.Value
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = -not($Result.Setting)
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -739,47 +692,46 @@ General notes
 #>
 function Test-NetworkAccessForceGuest {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\ForceGuest"
-        $RecommendationNumber = '2.3.10.13'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Network access: Sharing and security model for local accounts' is set to 'Classic - local users authenticate as themselves'"
-        $Source = 'Group Policy Settings'
+        $Result.Number = '2.3.10.13'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Network access: Sharing and security model for local accounts' is set to 'Classic - local users authenticate as themselves'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingNumber
-        if ($Entry) {
-            if ($Setting -eq 0) {
-                $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry) {
+            if ($Result.Setting -eq 0) {
+                $Result.SetCorrectly = $true
             } else {
-                $Pass = $false
+                $Result.SetCorrectly = $false
             }
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
         
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }

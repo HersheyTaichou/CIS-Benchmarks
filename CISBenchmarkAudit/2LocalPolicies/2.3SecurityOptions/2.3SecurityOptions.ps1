@@ -35,26 +35,19 @@ function Test-SecurityOptionsAccounts {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    begin {
-        $ServerType = Get-ProductType
-
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-    }
-
     process {
-        Test-AccountsNoConnectedUser
-        if ($ServerType -eq 3) {
-            Test-AccountsEnableGuestAccount
+        Test-AccountsNoConnectedUser -ProductType $ProductType -GPResult $GPResult
+        if ($ProductType -eq 3) {
+            Test-AccountsEnableGuestAccount -ProductType $ProductType -GPResult $GPResult
         }
-        Test-AccountsLimitBlankPasswordUse
-        Test-AccountsNewAdministratorName
-        Test-AccountsNewGuestName
+        Test-AccountsLimitBlankPasswordUse -ProductType $ProductType -GPResult $GPResult
+        Test-AccountsNewAdministratorName -ProductType $ProductType -GPResult $GPResult
+        Test-AccountsNewGuestName -ProductType $ProductType -GPResult $GPResult
     }
 
     end {
@@ -97,19 +90,18 @@ function Test-SecurityOptionsAudit {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
 
     process {
-        Test-AuditSCENoApplyLegacyAuditPolicy
-        Test-AuditCrashOnAuditFail
+        Test-AuditSCENoApplyLegacyAuditPolicy -ProductType $ProductType -GPResult $GPResult
+        Test-AuditCrashOnAuditFail -ProductType $ProductType -GPResult $GPResult
     }
 
     end {
@@ -152,19 +144,18 @@ function Test-SecurityOptionsDevices {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
 
     process {
-        Test-DevicesAllocateDASD
-        Test-DevicesAddPrinterDrivers
+        Test-DevicesAllocateDASD -ProductType $ProductType -GPResult $GPResult
+        Test-DevicesAddPrinterDrivers -ProductType $ProductType -GPResult $GPResult
     }
 
     end {
@@ -208,22 +199,21 @@ function Test-SecurityOptionsDomainController {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
 
     process {
-        Test-DomainControllerSubmitControl
-        Test-DomainControllerVulnerableChannelAllowList
-        Test-DomainControllerLdapEnforceChannelBinding
-        Test-DomainControllerLDAPServerIntegrity
-        Test-DomainControllerRefusePasswordChange
+        Test-DomainControllerSubmitControl -ProductType $ProductType -GPResult $GPResult
+        Test-DomainControllerVulnerableChannelAllowList -ProductType $ProductType -GPResult $GPResult
+        Test-DomainControllerLdapEnforceChannelBinding -ProductType $ProductType -GPResult $GPResult
+        Test-DomainControllerLDAPServerIntegrity -ProductType $ProductType -GPResult $GPResult
+        Test-DomainControllerRefusePasswordChange -ProductType $ProductType -GPResult $GPResult
     }
 
     end {
@@ -267,23 +257,22 @@ function Test-SecurityOptionsDomainMember {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
 
     process {
-        Test-DomainMemberRequireSignOrSeal
-        Test-DomainMemberSealSecureChannel
-        Test-DomainMemberSignSecureChannel
-        Test-DomainMemberDisablePasswordChange
-        Test-DomainMemberMaximumPasswordAge
-        Test-DomainMemberRequireStrongKey
+        Test-DomainMemberRequireSignOrSeal -ProductType $ProductType -GPResult $GPResult
+        Test-DomainMemberSealSecureChannel -ProductType $ProductType -GPResult $GPResult
+        Test-DomainMemberSignSecureChannel -ProductType $ProductType -GPResult $GPResult
+        Test-DomainMemberDisablePasswordChange -ProductType $ProductType -GPResult $GPResult
+        Test-DomainMemberMaximumPasswordAge -ProductType $ProductType -GPResult $GPResult
+        Test-DomainMemberRequireStrongKey -ProductType $ProductType -GPResult $GPResult
     }
 
     end {
@@ -327,32 +316,25 @@ function Test-SecurityOptionsInteractiveLogin {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    begin {
-        $ServerType = Get-ProductType
-
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-    }
-
     process {
-        Test-InteractiveLogonDisableCAD
-        Test-InteractiveLogonDontDisplayLastUserName
-        Test-InteractiveLogonInactivityTimeoutSecs
-        Test-InteractiveLogonLegalNoticeText
-        Test-InteractiveLogonLegalNoticeCaption
-        if (($ServerType -eq 3) -and ($Level -eq 2)) {
-            Test-InteractiveLogonCachedLogonsCount
+        Test-InteractiveLogonDisableCAD -ProductType $ProductType -GPResult $GPResult
+        Test-InteractiveLogonDontDisplayLastUserName -ProductType $ProductType -GPResult $GPResult
+        Test-InteractiveLogonInactivityTimeoutSecs -ProductType $ProductType -GPResult $GPResult
+        Test-InteractiveLogonLegalNoticeText -ProductType $ProductType -GPResult $GPResult
+        Test-InteractiveLogonLegalNoticeCaption -ProductType $ProductType -GPResult $GPResult
+        if (($ProductType -eq 3) -and ($Level -eq 2)) {
+            Test-InteractiveLogonCachedLogonsCount -ProductType $ProductType -GPResult $GPResult
         }
-        Test-InteractiveLogonPasswordExpiryWarning
-        if ($ServerType -eq 3) {
-            Test-InteractiveLogonForceUnlockLogon
+        Test-InteractiveLogonPasswordExpiryWarning -ProductType $ProductType -GPResult $GPResult
+        if ($ProductType -eq 3) {
+            Test-InteractiveLogonForceUnlockLogon -ProductType $ProductType -GPResult $GPResult
         }
-        Test-InteractiveLogonScRemoveOption
+        Test-InteractiveLogonScRemoveOption -ProductType $ProductType -GPResult $GPResult
     }
 
     end {
@@ -396,21 +378,20 @@ function Test-SecurityOptionsMicrosoftNetworkClient {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
 
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
 
     process {
-        Test-MicrosoftNetworkClientRequireSecuritySignature
-        Test-MicrosoftNetworkClientEnableSecuritySignature
-        Test-MicrosoftNetworkClientEnablePlainTextPassword
+        Test-MicrosoftNetworkClientRequireSecuritySignature -ProductType $ProductType -GPResult $GPResult
+        Test-MicrosoftNetworkClientEnableSecuritySignature -ProductType $ProductType -GPResult $GPResult
+        Test-MicrosoftNetworkClientEnablePlainTextPassword -ProductType $ProductType -GPResult $GPResult
     }
 
     end {
@@ -454,25 +435,18 @@ function Test-SecurityOptionsMicrosoftNetworkServer {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    begin {
-        $ServerType = Get-ProductType
-
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-    }
-
     process {
-        Test-MicrosoftNetworkServerAutoDisconnect
-        Test-MicrosoftNetworkServerRequireSecuritySignature
-        Test-MicrosoftNetworkServerEnableSecuritySignature
-        Test-MicrosoftNetworkServerEnableForcedLogOff
-        if ($ServerType -eq 3) {
-            Test-MicrosoftNetworkServerSmbServerNameHardeningLevel
+        Test-MicrosoftNetworkServerAutoDisconnect -ProductType $ProductType -GPResult $GPResult
+        Test-MicrosoftNetworkServerRequireSecuritySignature -ProductType $ProductType -GPResult $GPResult
+        Test-MicrosoftNetworkServerEnableSecuritySignature -ProductType $ProductType -GPResult $GPResult
+        Test-MicrosoftNetworkServerEnableForcedLogOff -ProductType $ProductType -GPResult $GPResult
+        if ($ProductType -eq 3) {
+            Test-MicrosoftNetworkServerSmbServerNameHardeningLevel -ProductType $ProductType -GPResult $GPResult
         }
     }
 
@@ -517,38 +491,31 @@ function Test-SecurityOptionsNetworkAccess {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    begin {
-        $ServerType = Get-ProductType
-
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-    }
-
     process {
-        Test-NetworkAccessLSAAnonymousNameLookup
-        if ($ServerType -eq 3) {
-            Test-NetworkAccessRestrictAnonymousSAM
-            Test-NetworkAccessRestrictAnonymous
+        Test-NetworkAccessLSAAnonymousNameLookup -ProductType $ProductType -GPResult $GPResult
+        if ($ProductType -eq 3) {
+            Test-NetworkAccessRestrictAnonymousSAM -ProductType $ProductType -GPResult $GPResult
+            Test-NetworkAccessRestrictAnonymous -ProductType $ProductType -GPResult $GPResult
         }
         if ($Level -eq 2) {
-            Test-NetworkAccessDisableDomainCreds
+            Test-NetworkAccessDisableDomainCreds -ProductType $ProductType -GPResult $GPResult
         }
-        Test-NetworkAccessEveryoneIncludesAnonymous
-        Test-NetworkAccessNullSessionPipes
-        Test-NetworkAccessAllowedExactPaths
-        Test-NetworkAccessAllowedPaths
-        Test-NetworkAccessRestrictNullSessAccess
+        Test-NetworkAccessEveryoneIncludesAnonymous -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkAccessNullSessionPipes -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkAccessAllowedExactPaths -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkAccessAllowedPaths -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkAccessRestrictNullSessAccess -ProductType $ProductType -GPResult $GPResult
         
-        if ($ServerType -eq 3) {
-            Test-NetworkAccessRestrictRemoteSAM
+        if ($ProductType -eq 3) {
+            Test-NetworkAccessRestrictRemoteSAM -ProductType $ProductType -GPResult $GPResult
         }
-        Test-NetworkAccessNullSessionShares
-        Test-NetworkAccessForceGuest
+        Test-NetworkAccessNullSessionShares -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkAccessForceGuest -ProductType $ProductType -GPResult $GPResult
     }
 
     end {
@@ -592,27 +559,26 @@ function Test-SecurityOptionsNetworkSecurity {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
 
     process {
-        Test-NetworkSecurityUseMachineId
-        Test-NetworkSecurityAllowNullSessionFallback
-        Test-NetworkSecurityAllowOnlineID
-        Test-NetworkSecuritySupportedEncryptionTypes
-        Test-NetworkSecurityNoLMHash
-        Test-NetworkSecurityForceLogoffWhenHourExpire
-        Test-NetworkSecurityLmCompatibilityLevel
-        Test-NetworkSecurityLDAPClientIntegrity
-        Test-NetworkSecurityNTLMMinClientSec
-        Test-NetworkSecurityNTLMMinServerSec
+        Test-NetworkSecurityUseMachineId -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkSecurityAllowNullSessionFallback -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkSecurityAllowOnlineID -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkSecuritySupportedEncryptionTypes -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkSecurityNoLMHash -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkSecurityForceLogoffWhenHourExpire -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkSecurityLmCompatibilityLevel -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkSecurityLDAPClientIntegrity -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkSecurityNTLMMinClientSec -ProductType $ProductType -GPResult $GPResult
+        Test-NetworkSecurityNTLMMinServerSec -ProductType $ProductType -GPResult $GPResult
     }
 
     end {
@@ -654,18 +620,17 @@ function Test-SecurityOptionsShutdown {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
 
     process {
-        Test-ShutdownShutdownWithoutLogon
+        Test-ShutdownShutdownWithoutLogon -ProductType $ProductType -GPResult $GPResult
     }
 
     end {
@@ -708,19 +673,18 @@ function Test-SecurityOptionsSystemObjects {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
 
     process {
-        Test-SystemObjectsObCaseInsensitive
-        Test-SystemObjectsProtectionMode
+        Test-SystemObjectsObCaseInsensitive -ProductType $ProductType -GPResult $GPResult
+        Test-SystemObjectsProtectionMode -ProductType $ProductType -GPResult $GPResult
     }
 
     end {
@@ -764,25 +728,24 @@ function Test-SecurityOptionsUserAccountControl {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
 
     process {
-        Test-UserAccountControlFilterAdministratorToken
-        Test-UserAccountControlConsentPromptBehaviorAdmin
-        Test-UserAccountControlConsentPromptBehaviorUser
-        Test-UserAccountControlEnableInstallerDetection
-        Test-UserAccountControlEnableSecureUIAPaths
-        Test-UserAccountControlEnableLUA
-        Test-UserAccountControlPromptOnSecureDesktop
-        Test-UserAccountControlEnableVirtualization
+        Test-UserAccountControlFilterAdministratorToken -ProductType $ProductType -GPResult $GPResult
+        Test-UserAccountControlConsentPromptBehaviorAdmin -ProductType $ProductType -GPResult $GPResult
+        Test-UserAccountControlConsentPromptBehaviorUser -ProductType $ProductType -GPResult $GPResult
+        Test-UserAccountControlEnableInstallerDetection -ProductType $ProductType -GPResult $GPResult
+        Test-UserAccountControlEnableSecureUIAPaths -ProductType $ProductType -GPResult $GPResult
+        Test-UserAccountControlEnableLUA -ProductType $ProductType -GPResult $GPResult
+        Test-UserAccountControlPromptOnSecureDesktop -ProductType $ProductType -GPResult $GPResult
+        Test-UserAccountControlEnableVirtualization -ProductType $ProductType -GPResult $GPResult
     }
 
     end {

@@ -32,19 +32,18 @@ function Test-ControlPanelPersonalization {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
-        Test-PersonalizationPreventEnablingLockScreenCamera
-        Test-PersonalizationPreventEnablingLockScreenSlideshow
+        Test-PersonalizationPreventEnablingLockScreenCamera -ProductType $ProductType -GPResult $GPResult
+        Test-PersonalizationPreventEnablingLockScreenSlideshow -ProductType $ProductType -GPResult $GPResult
     }
     
     end {}
@@ -84,18 +83,17 @@ function Test-ControlPanelRegionalAndLanguageOptions {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
-        Test-RegionalAndLanguageOptionsAllowUsersToEnableOnlineSpeechRecognitionServices
+        Test-RegionalAndLanguageOptionsAllowUsersToEnableOnlineSpeechRecognitionServices -ProductType $ProductType -GPResult $GPResult
     }
     
     end {}

@@ -17,43 +17,43 @@ General notes
 #>
 function Test-AccountsNoConnectedUser {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
-        $RecommendationNumber = '2.3.1.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Microsoft accounts'"
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
+        $Result.Number = '2.3.1.1'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Microsoft accounts'"
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\NoConnectedUser"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
         # Check if the domain setting meets the CIS Benchmark
-        if ($Entry.SettingNumber -eq 3) {
-            $Pass = $true
+        if ($Result.Entry.SettingNumber -eq 3) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Entry.Display.DisplayString
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        $Result.Setting = $Result.Entry.Display.DisplayString
+            return $Result
     }
 }
 
@@ -76,46 +76,39 @@ General notes
 #>
 function Test-AccountsEnableGuestAccount {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         # Get the current value of the setting
         $EntryName = "EnableGuestAccount"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName"
-        [bool]$Setting = [int]$Entry.SettingNumber
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
     process {
         # Check if the domain setting meets the CIS Benchmark
-        if ($Setting) {
-            $Pass = $false
-        } elseif ($setting -eq $false) {
-            $Pass = $true
+        if ($Result.Setting) {
+            $Result.SetCorrectly = $false
+        } elseif ($Result.Setting -eq $false) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $RecommendationNumber = '2.3.1.2'
-        $ProfileApplicability = @("Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)"
-        $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        $Result.Number = '2.3.1.2'
+        $Result.Level = "L1"
+        $Result.Profile = "Member Server"
+        $Result.Title = "Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)"
+        $Result.Source = 'Group Policy Settings'
+        return $Result
     }
 }
 
@@ -138,38 +131,38 @@ General notes
 #>
 function Test-AccountsLimitBlankPasswordUse {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\LimitBlankPasswordUse"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Pass = [int]$Entry.SettingNumber
+        [bool]$Result.SetCorrectly = [int]$Result.Entry.SettingNumber
     }
 
     end {
-        $RecommendationNumber = '2.3.1.3'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'"
-        $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Entry.Display.DisplayString
-            'Entry' = $Entry
+        $Result.Number = '2.3.1.3'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
         }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        $Result.Title = "Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'"
+        $Result.Source = 'Group Policy Settings'
+        $Result.Setting = $Result.Entry.Display.DisplayString
+            return $Result
     }
 }
 
@@ -192,43 +185,43 @@ General notes
 #>
 function Test-AccountsNewAdministratorName {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         # Get the current value of the setting
         $EntryName = "NewAdministratorName"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
     }
 
     process {
         # Check if the domain setting meets the CIS Benchmark
-        if (($Entry) -and ($Entry.SettingString -ne "Administrator")) {
-            $Pass = $true
+        if (($Result.Entry) -and ($Result.Entry.SettingString -ne "Administrator")) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $RecommendationNumber = '2.3.1.4'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Configure 'Accounts: Rename administrator account'"
-        $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Entry.SettingString
-            'Entry' = $Entry
+        $Result.Number = '2.3.1.4'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
         }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        $Result.Title = "Configure 'Accounts: Rename administrator account'"
+        $Result.Source = 'Group Policy Settings'
+        $Result.Setting = $Result.Entry.SettingString
+            return $Result
     }
 }
 
@@ -251,42 +244,42 @@ General notes
 #>
 function Test-AccountsNewGuestName {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
 
         # Get the current value of the setting
         $EntryName = "NewGuestName"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
     }
 
     process {
         # Check if the domain setting meets the CIS Benchmark
-        if (($Entry) -and ($Entry.SettingString -ne "Guest")) {
-            $Pass = $true
+        if (($Result.Entry) -and ($Result.Entry.SettingString -ne "Guest")) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $RecommendationNumber = '2.3.1.5'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Configure 'Accounts: Rename guest account'"
-        $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Entry.SettingString
-            'Entry' = $Entry
+        $Result.Number = '2.3.1.5'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
         }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        $Result.Title = "Configure 'Accounts: Rename guest account'"
+        $Result.Source = 'Group Policy Settings'
+        $Result.Setting = $Result.Entry.SettingString
+            return $Result
     }
 }

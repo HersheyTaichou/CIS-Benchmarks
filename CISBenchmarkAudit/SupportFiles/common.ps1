@@ -48,6 +48,7 @@ General notes
 function Get-ProductType {
     [CmdletBinding()]
     param ()
+
     [int]$ProductType = (Get-CimInstance -ClassName Win32_OperatingSystem).ProductType
     return $ProductType
 }
@@ -80,8 +81,10 @@ function Get-GPResult {
     )
     
     begin {
-        if (-not(Get-Item $Path -ea SilentlyContinue)) {
+        if (-not(Test-Path $Path )) {
+            Write-Verbose "Updating the local group policy settings"
             gpupdate.exe /force | Out-Null
+            Write-Verbose "Generating the resultant set of policies"
             gpresult.exe /x $Path /f | Out-Null
             $delete = $true
         } else {
@@ -91,6 +94,7 @@ function Get-GPResult {
     }
     
     process {
+        Write-Verbose "Storing the resultant set of policies in a variable"
         [xml]$XMLgpresult = Get-Content $Path
     }
     
@@ -134,24 +138,30 @@ function Get-GPOEntry {
     param (
         # Parameter help description
         [Parameter(Mandatory)][string]$EntryName,
-        [Parameter(Mandatory)][string]$Name
+        [Parameter(Mandatory)][string]$Name,
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
-    begin {
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
-    }
-    
     process {
-        foreach ($data in $script:gpresult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Entry in $data.Extension.ChildNodes) {
-                If ($Entry.$Name -eq $EntryName) {
-                    Return $Entry
+        foreach ($data in $GPResult.Rsop.ComputerResults.ExtensionData) {
+            foreach ($Node in $data.Extension.ChildNodes) {
+                If ($Node.$Name -eq $EntryName) {
+                    Return $Node
                 }
             }
         }
     }
     
     end {}
+}
+
+class CISBenchmark {
+    [string]$Number # The number of the benchmark
+    [string]$Level # Level 1, 2 or Next Generation Windows Security
+    [string]$Profile # Domain Controller or Member Server
+    [string]$Title # The title of the recommendation
+    [string]$Source # Where the setting was checked from
+    [bool]$SetCorrectly # if it is set correctly
+    $Setting # The current setting
+    hidden $Entry # The XML output of the setting
 }

@@ -2,21 +2,24 @@
 <Configuration>
     <ViewDefinitions>
         <View>
-            <Name>psCISBenchmark</Name>
+            <Name>CISBenchmark</Name>
             <ViewSelectedBy>
-                <TypeName>psCISBenchmark</TypeName>
+                <TypeName>CISBenchmark</TypeName>
             </ViewSelectedBy>
             <TableControl>
                 <TableHeaders>
                     <TableColumnHeader>
                         <Width>10</Width>
                     </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Width>5</Width>
+                    </TableColumnHeader>
                     <TableColumnHeader />
                     <TableColumnHeader>
                         <Width>25</Width>
                     </TableColumnHeader>
                     <TableColumnHeader>
-                        <Width>6</Width>
+                        <Width>12</Width>
                     </TableColumnHeader>
                 </TableHeaders>
                 <TableRowEntries>
@@ -26,13 +29,16 @@
                                 <PropertyName>Number</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>Name</PropertyName>
+                                <PropertyName>Level</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>Title</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
                                 <PropertyName>Source</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>Pass</PropertyName>
+                                <PropertyName>SetCorrectly</PropertyName>
                             </TableColumnItem>
                         </TableColumnItems>
                     </TableRowEntry>
@@ -40,9 +46,9 @@
             </TableControl>
         </View>
         <View>
-            <Name>psCISBenchmark</Name>
+            <Name>CISBenchmark</Name>
             <ViewSelectedBy>
-                <TypeName>psCISBenchmark</TypeName>
+                <TypeName>CISBenchmark</TypeName>
             </ViewSelectedBy>
             <ListControl>
                 <ListEntries>
@@ -52,16 +58,19 @@
                                 <PropertyName>Number</PropertyName>
                             </ListItem>
                             <ListItem>
-                                <PropertyName>ProfileApplicability</PropertyName>
+                                <PropertyName>Level</PropertyName>
                             </ListItem>
                             <ListItem>
-                                <PropertyName>Name</PropertyName>
+                                <PropertyName>Profile</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>Title</PropertyName>
                             </ListItem>
                             <ListItem>
                                 <PropertyName>Source</PropertyName>
                             </ListItem>
                             <ListItem>
-                                <PropertyName>Pass</PropertyName>
+                                <PropertyName>SetCorrectly</PropertyName>
                             </ListItem>
                             <ListItem>
                                 <PropertyName>Setting</PropertyName>

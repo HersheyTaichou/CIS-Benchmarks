@@ -20,43 +20,42 @@ General notes
 #>
 function Test-AccountManagementAuditApplicationGroupManagement {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Application Group Management"
-        $RecommendationNumber = '17.2.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Audit Application Group Management' is set to 'Success and Failure'"
-        $Source = 'Group Policy Settings'
+              $EntryName = "Audit Application Group Management"
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "17.2.1"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit Application Group Management' is set to 'Success and Failure'"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingValue
-        if ($Setting -eq 3) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingValue
+        if ($Result.Setting -eq 3) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -79,43 +78,42 @@ General notes
 #>
 function Test-AccountManagementAuditComputerAccountManagement {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Computer Account Management"
-        $RecommendationNumber = '17.2.2'
-        $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "(L1) Ensure 'Audit Computer Account Management' is set to include 'Success' (DC only)"
-        $Source = 'Group Policy Settings'
+              $EntryName = "Audit Computer Account Management"
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "17.2.2"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit Computer Account Management' is set to include 'Success' (DC only)"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingValue
-        if (($Setting -eq 1) -or ($Setting -eq 3)) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingValue
+        if (($Result.Setting -eq 1) -or ($Result.Setting -eq 3)) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -138,43 +136,42 @@ General notes
 #>
 function Test-AccountManagementAuditDistributionGroupManagement {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Distribution Group Management"
-        $RecommendationNumber = '17.2.3'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Audit Distribution Group Management' is set to include 'Success' (DC only)"
-        $Source = 'Group Policy Settings'
+              $EntryName = "Audit Distribution Group Management"
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "17.2.3"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit Distribution Group Management' is set to include 'Success' (DC only)"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingValue
-        if (($Setting -eq 1) -or ($Setting -eq 3)) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingValue
+        if (($Result.Setting -eq 1) -or ($Result.Setting -eq 3)) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -197,43 +194,42 @@ General notes
 #>
 function Test-AccountManagementAuditOtherAccountManagementEvents {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Other Account Management Events"
-        $RecommendationNumber = '17.2.4'
-        $ProfileApplicability = @("Level 1 - Domain Controller")
-        $RecommendationName = "(L1) Ensure 'Audit Other Account Management Events' is set to include 'Success' (DC only)"
-        $Source = 'Group Policy Settings'
+              $EntryName = "Audit Other Account Management Events"
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "17.2.4"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit Other Account Management Events' is set to include 'Success' (DC only)"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingValue
-        if (($Setting -eq 1) -or ($Setting -eq 3)) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingValue
+        if (($Result.Setting -eq 1) -or ($Result.Setting -eq 3)) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -256,43 +252,42 @@ General notes
 #>
 function Test-AccountManagementAuditSecurityGroupManagement {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit Security Group Management"
-        $RecommendationNumber = '17.2.5'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Audit Security Group Management' is set to include 'Success'"
-        $Source = 'Group Policy Settings'
+              $EntryName = "Audit Security Group Management"
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "17.2.5"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit Security Group Management' is set to include 'Success'"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingValue
-        if (($Setting -eq 1) -or ($Setting -eq 3)) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingValue
+        if (($Result.Setting -eq 1) -or ($Result.Setting -eq 3)) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -315,42 +310,41 @@ General notes
 #>
 function Test-AccountManagementAuditUserAccountManagement {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
-        $EntryName = "Audit User Account Management"
-        $RecommendationNumber = '17.2.6'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Audit User Account Management' is set to 'Success and Failure'"
-        $Source = 'Group Policy Settings'
+              $EntryName = "Audit User Account Management"
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "17.2.6"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit User Account Management' is set to 'Success and Failure'"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingValue
-        if ($Setting -eq 3) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingValue
+        if ($Result.Setting -eq 3) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }

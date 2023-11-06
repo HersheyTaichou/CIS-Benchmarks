@@ -18,55 +18,49 @@ General notes
 #>
 function Test-SystemServicesSpooler {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+    )
 
     begin {
-        $Return = @()
+        $Result = [CISBenchmark]::new()
         $EntryName = "Spooler"
-        $RecommendationNumber = '5.1'
-        $Source = 'Group Policy Settings'
+        $Result.Number = '5.1'
+        $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
         $ProductType = Get-ProductType
     }
 
     process {
         if ($ProductType -eq 2) {
-            $ProfileApplicability = @("Level 1 - Domain Controller")
-            $RecommendationName = "(L1) Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)"
-            $Setting = $Entry.StartupMode
-            if ($Setting -eq "Disabled") {
-                $Pass = $True
+            $Result.Level = "L1"
+        $Result.Profile = "Domain Controller"
+            $Result.Title = "Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)"
+            $Result.Setting = $Result.Entry.StartupMode
+            if ($Result.Setting -eq "Disabled") {
+                $Result.SetCorrectly = $True
             } else {
-                $Pass = $false
+                $Result.SetCorrectly = $false
             }
         } elseif ($ProductType -eq 3) {
-            $ProfileApplicability = @("Level 2 - Member Server")
-            $RecommendationName = "(L2) Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (MS only)"
-            $Setting = $Entry.StartupMode
-            if ($Setting -eq "Disabled") {
-                $Pass = $True
+            $Result.Level = "L2"
+            $Result.Profile = "Member Server"
+            $Result.Title = "Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (MS only)"
+            $Result.Setting = $Result.Entry.StartupMode
+            if ($Result.Setting -eq "Disabled") {
+                $Result.SetCorrectly = $True
             } else {
-                $Pass = $false
+                $Result.SetCorrectly = $false
             }
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
-
-        Return $Return
+        return $Result
     }
 }
 
@@ -105,18 +99,17 @@ function Test-CISBenchmarkSystemServices {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
-        Test-SystemServicesSpooler
+        Test-SystemServicesSpooler -ProductType $ProductType -GPResult $GPResult
     }
     
     end {}

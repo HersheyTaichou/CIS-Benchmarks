@@ -35,25 +35,20 @@ function Test-AccountPoliciesPasswordPolicy {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
+
     )
-
-    $ServerType = Get-ProductType
-
-    # If not already present, run GPResult.exe and store the result in a variable
-    if (-not($script:gpresult)) {
-        $script:gpresult = Get-GPResult
+    Test-PasswordPolicyPasswordHistory -ProductType $ProductType -GPResult $GPResult
+    Test-PasswordPolicyMaxPasswordAge -ProductType $ProductType -GPResult $GPResult
+    Test-PasswordPolicyMinPasswordAge -ProductType $ProductType -GPResult $GPResult
+    Test-PasswordPolicyMinPasswordLength -ProductType $ProductType -GPResult $GPResult
+    Test-PasswordPolicyComplexityEnabled -ProductType $ProductType -GPResult $GPResult
+    if ($ProductType -eq 3) {
+        Test-PasswordPolicyRelaxMinimumPasswordLengthLimits -gpresult $GPResult
     }
-
-    Test-PasswordPolicyPasswordHistory
-    Test-PasswordPolicyMaxPasswordAge
-    Test-PasswordPolicyMinPasswordAge
-    Test-PasswordPolicyMinPasswordLength
-    Test-PasswordPolicyComplexityEnabled
-    if ($ServerType -eq 3) {
-        Test-PasswordPolicyRelaxMinimumPasswordLengthLimits
-    }
-    Test-PasswordPolicyReversibleEncryption
+    Test-PasswordPolicyReversibleEncryption -gpresult $GPResult
 }
 
 <#
@@ -93,22 +88,16 @@ function Test-AccountPoliciesAccountLockoutPolicy {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
-
-    $ServerType = Get-ProductType
-
-    # If not already present, run GPResult.exe and store the result in a variable
-    if (-not($script:gpresult)) {
-        $script:gpresult = Get-GPResult
+    Test-AccountLockoutPolicyLockoutDuration -ProductType $ProductType -GPResult $GPResult
+    Test-AccountLockoutPolicyLockoutThreshold -ProductType $ProductType -GPResult $GPResult
+    if ($ProductType -eq 3) {
+        Test-AccountLockoutPolicyAdminLockout -ProductType $ProductType -GPResult $GPResult
     }
-
-    Test-AccountLockoutPolicyLockoutDuration
-    Test-AccountLockoutPolicyLockoutThreshold
-    if ($ServerType -eq 3) {
-        Test-AccountLockoutPolicyAdminLockout
-    }
-    Test-AccountLockoutPolicyResetLockoutCount
+    Test-AccountLockoutPolicyResetLockoutCount -ProductType $ProductType -GPResult $GPResult
 
 }
 
@@ -149,14 +138,11 @@ function Test-CISBenchmarkAccountPolicies {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    # If not already present, run GPResult.exe and store the result in a variable
-    if (-not($script:gpresult)) {
-        $script:gpresult = Get-GPResult
-    }
-
-    Test-AccountPoliciesPasswordPolicy -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-    Test-AccountPoliciesAccountLockoutPolicy -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-AccountPoliciesPasswordPolicy -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+    Test-AccountPoliciesAccountLockoutPolicy -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
 }
