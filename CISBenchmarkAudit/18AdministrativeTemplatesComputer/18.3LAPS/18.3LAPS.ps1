@@ -19,7 +19,7 @@ function Test-LAPS {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -31,7 +31,7 @@ function Test-LAPS {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
     }
 
     process {
@@ -39,17 +39,8 @@ function Test-LAPS {
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -76,7 +67,7 @@ function Test-LAPS {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -88,7 +79,7 @@ function Test-LAPS {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
     }
 
     process {
@@ -96,17 +87,8 @@ function Test-LAPS {
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -133,7 +115,7 @@ function Test-LAPS {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -145,7 +127,7 @@ function Test-LAPS {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
     }
 
     process {
@@ -153,17 +135,8 @@ function Test-LAPS {
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -190,7 +163,7 @@ function Test-LAPS {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -202,7 +175,7 @@ function Test-LAPS {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
     }
 
     process {
@@ -210,17 +183,8 @@ function Test-LAPS {
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -247,7 +211,7 @@ function Test-LAPS {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -259,7 +223,7 @@ function Test-LAPS {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
     }
 
     process {
@@ -267,17 +231,8 @@ function Test-LAPS {
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -304,7 +259,7 @@ function Test-LAPS {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -316,7 +271,7 @@ function Test-LAPS {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
     }
 
     process {
@@ -324,17 +279,8 @@ function Test-LAPS {
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }

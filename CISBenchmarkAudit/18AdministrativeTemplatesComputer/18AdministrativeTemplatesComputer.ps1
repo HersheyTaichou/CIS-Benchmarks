@@ -32,19 +32,18 @@ function Test-AdministrativeTemplatesComputerControlPanel {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
-        Test-ControlPanelPersonalization
-        Test-ControlPanelRegionalAndLanguageOptions
+        Test-ControlPanelPersonalization -ProductType $ProductType -GPResult $GPResult
+        Test-ControlPanelRegionalAndLanguageOptions -ProductType $ProductType -GPResult $GPResult
     }
     
     end {}
@@ -84,14 +83,13 @@ function Test-AdministrativeTemplatesComputerLAPS {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
@@ -132,14 +130,13 @@ function Test-AdministrativeTemplatesComputerMSSecurityGuide {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
@@ -180,14 +177,13 @@ function Test-AdministrativeTemplatesComputerMSS {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
@@ -228,14 +224,13 @@ function Test-AdministrativeTemplatesComputerNetwork {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
@@ -276,14 +271,13 @@ function Test-AdministrativeTemplatesComputerPrinters {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
@@ -324,14 +318,13 @@ function Test-AdministrativeTemplatesComputerStartMenuAndTaskbar {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
@@ -372,14 +365,13 @@ Function Test-AdministrativeTemplatesComputerSystem {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
@@ -420,14 +412,13 @@ Function Test-AdministrativeTemplatesComputerWindowsComponents {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
@@ -468,37 +459,36 @@ function Test-CISBenchmarkAdministrativeTemplatesComputer {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
-        Test-AdministrativeTemplatesComputerControlPanel -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerLAPS -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerMSSecurityGuide -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerMSS -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerDNSClient -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerFonts -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerLanmanWorkstation -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerLinkLayerTopologyDiscovery -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerMicrosoftPeertoPeerNetworkingServices -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerNetworkConnections -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerNetworkProvider -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerTCPIPSettings -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerWindowsConnectNow -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerWindowsConnectionManager -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerNetwork -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerPrinters -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerNotifications -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerStartMenuAndTaskbar -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerSystem -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-        Test-AdministrativeTemplatesComputerWindowsComponents -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+        Test-AdministrativeTemplatesComputerControlPanel -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerLAPS -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerMSSecurityGuide -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerMSS -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerDNSClient -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerFonts -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerLanmanWorkstation -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerLinkLayerTopologyDiscovery -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerMicrosoftPeertoPeerNetworkingServices -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerNetworkConnections -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerNetworkProvider -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerTCPIPSettings -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerWindowsConnectNow -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerWindowsConnectionManager -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerNetwork -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerPrinters -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerNotifications -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerStartMenuAndTaskbar -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerSystem -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-AdministrativeTemplatesComputerWindowsComponents -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
     }
     
     end {}

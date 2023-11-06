@@ -20,28 +20,28 @@ function Test-DomainControllerSubmitControl {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
         $Return = @()
 
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\SubmitControl"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
-        [bool]$Setting = [int]$Entry.SettingNumber
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
     process {
-        if ($Entry) {
-            if ($Setting) {
-                $Pass = $false
-            } elseif ($setting -eq $false) {
-                $Pass = $true
+        if ($Result.Entry) {
+            if ($Result.Setting) {
+                $Result.SetCorrectly = $false
+            } elseif ($Result.Setting -eq $false) {
+                $Result.SetCorrectly = $true
             } else {
-                $Pass = $false
+                $Result.SetCorrectly = $false
             }
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
@@ -50,17 +50,8 @@ function Test-DomainControllerSubmitControl {
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Domain controller: Allow server operators to schedule tasks' is set to 'Disabled' (DC only)"
         $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -88,7 +79,7 @@ function Test-DomainControllerVulnerableChannelAllowList {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -96,14 +87,14 @@ function Test-DomainControllerVulnerableChannelAllowList {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\VulnerableChannelAllowList"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        if ($Entry) {
-            $Pass = $false
+        if ($Result.Entry) {
+            $Result.SetCorrectly = $false
         } else {
-            $Pass = $true
+            $Result.SetCorrectly = $true
         }
     }
 
@@ -112,17 +103,8 @@ function Test-DomainControllerVulnerableChannelAllowList {
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Domain controller: Allow vulnerable Netlogon secure channel connections' is set to 'Not Configured'"
         $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -150,22 +132,22 @@ function Test-DomainControllerLdapEnforceChannelBinding {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
         $Return = @()
 
         $EntryName = "MACHINE\System\CurrentControlSet\Services\NTDS\Parameters\LdapEnforceChannelBinding"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
-        [string]$Setting = $Entry.Display.DisplayString
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        [string]$Result.Setting = $Result.Entry.Display.DisplayString
     }
 
     process {
-        if ($Setting -eq "Always") {
-            $Pass = $true
+        if ($Result.Setting -eq "Always") {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
@@ -174,17 +156,8 @@ function Test-DomainControllerLdapEnforceChannelBinding {
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Domain controller: LDAP server channel binding token requirements' is set to 'Always'"
         $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -212,7 +185,7 @@ function Test-DomainControllerLDAPServerIntegrity {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -220,15 +193,15 @@ function Test-DomainControllerLDAPServerIntegrity {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\NTDS\Parameters\LDAPServerIntegrity"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
-        [string]$Setting = $Entry.Display.DisplayString
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        [string]$Result.Setting = $Result.Entry.Display.DisplayString
     }
 
     process {
-        if ($Setting -eq "Require signing") {
-            $Pass = $true
+        if ($Result.Setting -eq "Require signing") {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
@@ -237,17 +210,8 @@ function Test-DomainControllerLDAPServerIntegrity {
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Domain controller: LDAP server signing requirements' is set to 'Require signing' (DC only)"
         $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -275,7 +239,7 @@ function Test-DomainControllerRefusePasswordChange {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -283,21 +247,21 @@ function Test-DomainControllerRefusePasswordChange {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RefusePasswordChange"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
-        [bool]$Setting = [int]$Entry.SettingNumber
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
     process {
-        if ($Entry) {
-            if ($Setting) {
-                $Pass = $false
-            } elseif ($setting -eq $false) {
-                $Pass = $true
+        if ($Result.Entry) {
+            if ($Result.Setting) {
+                $Result.SetCorrectly = $false
+            } elseif ($Result.Setting -eq $false) {
+                $Result.SetCorrectly = $true
             } else {
-                $Pass = $false
+                $Result.SetCorrectly = $false
             }
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
@@ -306,17 +270,8 @@ function Test-DomainControllerRefusePasswordChange {
         $ProfileApplicability = @("Level 1 - Domain Controller")
         $RecommendationName = "(L1) Ensure 'Domain controller: Refuse machine account password changes' is set to 'Disabled' (DC only)"
         $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }

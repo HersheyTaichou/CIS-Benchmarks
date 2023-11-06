@@ -20,7 +20,7 @@ function Test-DomainMemberRequireSignOrSeal {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -28,11 +28,11 @@ function Test-DomainMemberRequireSignOrSeal {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RequireSignOrSeal"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Pass = [int]$Entry.SettingNumber
+        [bool]$Result.SetCorrectly = [int]$Result.Entry.SettingNumber
     }
 
     end {
@@ -45,12 +45,12 @@ function Test-DomainMemberRequireSignOrSeal {
             'ProfileApplicability' = $ProfileApplicability
             'Name'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = [int]$Entry.SettingNumber
+            'Pass'= $Result.SetCorrectly
+            'Setting' = [int]$Result.Entry.SettingNumber
             'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        $Return += $Result
 
         Return $Return
     }
@@ -78,7 +78,7 @@ function Test-DomainMemberSealSecureChannel {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -86,11 +86,11 @@ function Test-DomainMemberSealSecureChannel {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\SealSecureChannel"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Pass = [int]$Entry.SettingNumber
+        [bool]$Result.SetCorrectly = [int]$Result.Entry.SettingNumber
     }
 
     end {
@@ -98,17 +98,8 @@ function Test-DomainMemberSealSecureChannel {
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Domain member: Digitally encrypt secure channel data (when possible)' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -136,7 +127,7 @@ function Test-DomainMemberSignSecureChannel {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -148,30 +139,21 @@ function Test-DomainMemberSignSecureChannel {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -199,7 +181,7 @@ function Test-DomainMemberDisablePasswordChange {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -211,36 +193,27 @@ function Test-DomainMemberDisablePasswordChange {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry) {
-            if ($Setting) {
-                $Pass = $false
-            } elseif ($setting -eq $false) {
-                $Pass = $true
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry) {
+            if ($Result.Setting) {
+                $Result.SetCorrectly = $false
+            } elseif ($Result.Setting -eq $false) {
+                $Result.SetCorrectly = $true
             } else {
-                $Pass = $false
+                $Result.SetCorrectly = $false
             }
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -268,7 +241,7 @@ function Test-DomainMemberMaximumPasswordAge {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -280,30 +253,21 @@ function Test-DomainMemberMaximumPasswordAge {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingNumber
-        if (($Setting -le 30) -and ($Setting -gt 0)) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingNumber
+        if (($Result.Setting -le 30) -and ($Result.Setting -gt 0)) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -331,7 +295,7 @@ function Test-DomainMemberRequireStrongKey {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -343,30 +307,21 @@ function Test-DomainMemberRequireStrongKey {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }

@@ -20,7 +20,7 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -28,15 +28,15 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\SCENoApplyLegacyAuditPolicy"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
-        [bool]$Setting = [int]$Entry.SettingNumber
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
     process {
-        if ($Setting) {
-            $Pass = $Setting
+        if ($Result.Setting) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
@@ -45,17 +45,8 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -83,7 +74,7 @@ function Test-AuditCrashOnAuditFail {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -91,21 +82,21 @@ function Test-AuditCrashOnAuditFail {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\CrashOnAuditFail"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
-        [bool]$Setting = [int]$Entry.SettingNumber
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
     process {
-        if ($Entry) {
-            if ($Setting) {
-                $Pass = $false
-            } elseif ($setting -eq $false) {
-                $Pass = $true
+        if ($Result.Entry) {
+            if ($Result.Setting) {
+                $Result.SetCorrectly = $false
+            } elseif ($Result.Setting -eq $false) {
+                $Result.SetCorrectly = $true
             } else {
-                $Pass = $false
+                $Result.SetCorrectly = $false
             }
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
@@ -114,17 +105,8 @@ function Test-AuditCrashOnAuditFail {
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Audit: Shut down system immediately if unable to log security audits' is set to 'Disabled'"
         $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }

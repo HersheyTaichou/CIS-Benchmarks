@@ -20,42 +20,41 @@ function Test-ObjectAccessAuditDetailedFileShare {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
         $Return = @()
         $EntryName = "Audit Detailed File Share"
-        $RecommendationNumber = '17.6.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Audit Detailed File Share' is set to include 'Failure'"
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "17.6.1"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit Detailed File Share' is set to include 'Failure'"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingValue
-        if (($Setting -eq 2) -or ($Setting -eq 3)) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingValue
+        if (($Result.Setting -eq 2) -or ($Result.Setting -eq 3)) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -83,42 +82,41 @@ function Test-ObjectAccessAuditFileShare {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
         $Return = @()
         $EntryName = "Audit File Share"
-        $RecommendationNumber = '17.6.2'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Audit File Share' is set to 'Success and Failure'"
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "17.6.2"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit File Share' is set to 'Success and Failure'"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingValue
-        if ($Setting -eq 3) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingValue
+        if ($Result.Setting -eq 3) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -146,42 +144,41 @@ function Test-ObjectAccessAuditOtherObjectAccessEvents {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
         $Return = @()
         $EntryName = "Audit Other Object Access Events"
-        $RecommendationNumber = '17.6.3'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Audit Other Object Access Events' is set to 'Success and Failure'"
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "17.6.3"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit Other Object Access Events' is set to 'Success and Failure'"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingValue
-        if ($Setting -eq 3) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingValue
+        if ($Result.Setting -eq 3) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -209,42 +206,41 @@ function Test-ObjectAccessAuditRemovableStorage {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
         $Return = @()
         $EntryName = "Audit Removable Storage"
-        $RecommendationNumber = '17.6.4'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Audit Removable Storage' is set to 'Success and Failure'"
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "17.6.4"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Audit Removable Storage' is set to 'Success and Failure'"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
     }
 
     process {
-        $Setting = [int]$Entry.SettingValue
-        if ($Setting -eq 3) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.SettingValue
+        if ($Result.Setting -eq 3) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }

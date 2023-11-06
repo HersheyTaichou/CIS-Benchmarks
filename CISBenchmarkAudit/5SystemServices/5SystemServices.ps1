@@ -21,7 +21,7 @@ function Test-SystemServicesSpooler {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -31,7 +31,7 @@ function Test-SystemServicesSpooler {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
         $ProductType = Get-ProductType
     }
 
@@ -39,36 +39,27 @@ function Test-SystemServicesSpooler {
         if ($ProductType -eq 2) {
             $ProfileApplicability = @("Level 1 - Domain Controller")
             $RecommendationName = "(L1) Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)"
-            $Setting = $Entry.StartupMode
-            if ($Setting -eq "Disabled") {
-                $Pass = $True
+            $Result.Setting = $Result.Entry.StartupMode
+            if ($Result.Setting -eq "Disabled") {
+                $Result.SetCorrectly = $True
             } else {
-                $Pass = $false
+                $Result.SetCorrectly = $false
             }
         } elseif ($ProductType -eq 3) {
             $ProfileApplicability = @("Level 2 - Member Server")
             $RecommendationName = "(L2) Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (MS only)"
-            $Setting = $Entry.StartupMode
-            if ($Setting -eq "Disabled") {
-                $Pass = $True
+            $Result.Setting = $Result.Entry.StartupMode
+            if ($Result.Setting -eq "Disabled") {
+                $Result.SetCorrectly = $True
             } else {
-                $Pass = $false
+                $Result.SetCorrectly = $false
             }
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -109,18 +100,17 @@ function Test-CISBenchmarkSystemServices {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     begin {
-        # If not already present, run GPResult.exe and store the result in a variable
-        if (-not($script:gpresult)) {
-            $script:gpresult = Get-GPResult
-        }
+        
     }
     
     process {
-        Test-SystemServicesSpooler
+        Test-SystemServicesSpooler -ProductType $ProductType -GPResult $GPResult
     }
     
     end {}

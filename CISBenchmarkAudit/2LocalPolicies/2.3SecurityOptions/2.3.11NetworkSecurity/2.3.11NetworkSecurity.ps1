@@ -20,7 +20,7 @@ function Test-NetworkSecurityUseMachineId {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -32,30 +32,21 @@ function Test-NetworkSecurityUseMachineId {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -83,7 +74,7 @@ function Test-NetworkSecurityAllowNullSessionFallback {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -95,30 +86,21 @@ function Test-NetworkSecurityAllowNullSessionFallback {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = -not($setting)
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = -not($Result.Setting)
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -146,7 +128,7 @@ function Test-NetworkSecurityAllowOnlineID {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -158,30 +140,21 @@ function Test-NetworkSecurityAllowOnlineID {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = -not($setting)
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = -not($Result.Setting)
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -209,7 +182,7 @@ function Test-NetworkSecuritySupportedEncryptionTypes {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -221,30 +194,21 @@ function Test-NetworkSecuritySupportedEncryptionTypes {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        $Entry.Display.DisplayFields.Field| ForEach-Object {$Setting += $_.Name + "," + $_.Value + "; "}
-        if ($Entry.SettingNumber -eq 2147483640) {
-            $Pass = $true
+        $Result.Entry.Display.DisplayFields.Field| ForEach-Object {$Result.Setting += $_.Name + "," + $_.Value + "; "}
+        if ($Result.Entry.SettingNumber -eq 2147483640) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -272,7 +236,7 @@ function Test-NetworkSecurityNoLMHash {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -284,30 +248,21 @@ function Test-NetworkSecurityNoLMHash {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -335,7 +290,7 @@ function Test-NetworkSecurityForceLogoffWhenHourExpire {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -347,30 +302,21 @@ function Test-NetworkSecurityForceLogoffWhenHourExpire {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.SystemAccessPolicyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.SystemAccessPolicyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -398,7 +344,7 @@ function Test-NetworkSecurityLmCompatibilityLevel {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -410,30 +356,21 @@ function Test-NetworkSecurityLmCompatibilityLevel {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        $Setting = $Entry.Display.DisplayString
-        if ([int]$Entry.SettingNumber -eq 5) {
-            $Pass = $true
+        $Result.Setting = $Result.Entry.Display.DisplayString
+        if ([int]$Result.Entry.SettingNumber -eq 5) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -461,7 +398,7 @@ function Test-NetworkSecurityLDAPClientIntegrity {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -473,30 +410,21 @@ function Test-NetworkSecurityLDAPClientIntegrity {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        $Setting = $Entry.Display.DisplayString
-        if ([int]$Entry.SettingNumber -ge 1) {
-            $Pass = $true
+        $Result.Setting = $Result.Entry.Display.DisplayString
+        if ([int]$Result.Entry.SettingNumber -ge 1) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -524,7 +452,7 @@ function Test-NetworkSecurityNTLMMinClientSec {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -536,30 +464,21 @@ function Test-NetworkSecurityNTLMMinClientSec {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        $Entry.Display.DisplayFields.Field | ForEach-Object {$Setting += $_.Name + "," + $_.Value + "; "}
-        if ([int]$Entry.SettingNumber -eq 537395200) {
-            $Pass = $true
+        $Result.Entry.Display.DisplayFields.Field | ForEach-Object {$Result.Setting += $_.Name + "," + $_.Value + "; "}
+        if ([int]$Result.Entry.SettingNumber -eq 537395200) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -587,7 +506,7 @@ function Test-NetworkSecurityNTLMMinServerSec {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -599,30 +518,21 @@ function Test-NetworkSecurityNTLMMinServerSec {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        $Entry.Display.DisplayFields.Field | ForEach-Object {$Setting += $_.Name + "," + $_.Value + "; "}
-        if ([int]$Entry.SettingNumber -eq 537395200) {
-            $Pass = $true
+        $Result.Entry.Display.DisplayFields.Field | ForEach-Object {$Result.Setting += $_.Name + "," + $_.Value + "; "}
+        if ([int]$Result.Entry.SettingNumber -eq 537395200) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }

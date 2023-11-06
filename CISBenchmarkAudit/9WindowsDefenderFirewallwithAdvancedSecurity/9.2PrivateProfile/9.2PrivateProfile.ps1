@@ -20,7 +20,7 @@ function Test-PrivateProfileEnableFirewall {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -36,26 +36,17 @@ function Test-PrivateProfileEnableFirewall {
     }
 
     process {
-        if ($Entry.EnableFirewall.Value -eq "true") {
-            $Setting = $true
+        if ($Result.Entry.EnableFirewall.Value -eq "true") {
+            $Result.Setting = $true
         } else {
-            $Setting = $false
+            $Result.Setting = $false
         }
-        $Pass = $Setting
+        $Result.SetCorrectly = $Result.Setting
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -83,7 +74,7 @@ function Test-PrivateProfileDefaultInboundAction {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -99,26 +90,17 @@ function Test-PrivateProfileDefaultInboundAction {
     }
 
     process {
-        if ($Entry.DefaultInboundAction.Value -eq "true") {
-            $Setting = $true
+        if ($Result.Entry.DefaultInboundAction.Value -eq "true") {
+            $Result.Setting = $true
         } else {
-            $Setting = $false
+            $Result.Setting = $false
         }
-        $Pass = $Setting
+        $Result.SetCorrectly = $Result.Setting
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -146,7 +128,7 @@ function Test-PrivateProfileDefaultOutboundAction {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -162,26 +144,17 @@ function Test-PrivateProfileDefaultOutboundAction {
     }
 
     process {
-        if ($Entry.DefaultOutboundAction.Value -eq "false") {
-            $Setting = $false
+        if ($Result.Entry.DefaultOutboundAction.Value -eq "false") {
+            $Result.Setting = $false
         } else {
-            $Setting = $true
+            $Result.Setting = $true
         }
-        $Pass = -not($Setting)
+        $Result.SetCorrectly = -not($Result.Setting)
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -209,7 +182,7 @@ function Test-PrivateProfileDisableNotifications {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -225,26 +198,17 @@ function Test-PrivateProfileDisableNotifications {
     }
 
     process {
-        if ($Entry.DisableNotifications.Value -eq "true") {
-            $Setting = $true
+        if ($Result.Entry.DisableNotifications.Value -eq "true") {
+            $Result.Setting = $true
         } else {
-            $Setting = $false
+            $Result.Setting = $false
         }
-        $Pass = $Setting
+        $Result.SetCorrectly = $Result.Setting
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -272,7 +236,7 @@ function Test-PrivateProfileLogFilePath {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -288,30 +252,21 @@ function Test-PrivateProfileLogFilePath {
     }
 
     process {
-        $Setting = $Entry.LogFilePath.Value
-        if ($Setting -eq "%systemroot%\system32\logfiles\firewall\privatefw.log") {
-            $Pass = $true
-        } elseif ($Setting -ne "%systemroot%\system32\logfiles\firewall\pfirewall.log") {
-            $Pass = $true
+        $Result.Setting = $Result.Entry.LogFilePath.Value
+        if ($Result.Setting -eq "%systemroot%\system32\logfiles\firewall\privatefw.log") {
+            $Result.SetCorrectly = $true
+        } elseif ($Result.Setting -ne "%systemroot%\system32\logfiles\firewall\pfirewall.log") {
+            $Result.SetCorrectly = $true
             $Message = $EntryName + " Log File Path is not the default, but is also not the recommended value. To pass, each profile should have a different log file."
             Write-Verbose $Message
         }else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -339,7 +294,7 @@ function Test-PrivateProfileLogFileSize {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -355,26 +310,17 @@ function Test-PrivateProfileLogFileSize {
     }
 
     process {
-        $Setting = [int]$Entry.LogFileSize.Value
-        if ($Setting -ge 16384) {
-            $Pass = $true
+        $Result.Setting = [int]$Result.Entry.LogFileSize.Value
+        if ($Result.Setting -ge 16384) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -402,7 +348,7 @@ function Test-PrivateProfileLogDroppedPackets {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -418,26 +364,17 @@ function Test-PrivateProfileLogDroppedPackets {
     }
 
     process {
-        if ($Entry.LogDroppedPackets.Value -eq "true") {
-            $Setting = $true
+        if ($Result.Entry.LogDroppedPackets.Value -eq "true") {
+            $Result.Setting = $true
         } else {
-            $Setting = $false
+            $Result.Setting = $false
         }
-        $Pass = $Setting
+        $Result.SetCorrectly = $Result.Setting
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -465,7 +402,7 @@ function Test-PrivateProfileLogSuccessfulConnections {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -481,26 +418,17 @@ function Test-PrivateProfileLogSuccessfulConnections {
     }
 
     process {
-        if ($Entry.LogSuccessfulConnections.Value -eq "true") {
-            $Setting = $true
+        if ($Result.Entry.LogSuccessfulConnections.Value -eq "true") {
+            $Result.Setting = $true
         } else {
-            $Setting = $false
+            $Result.Setting = $false
         }
-        $Pass = $Setting
+        $Result.SetCorrectly = $Result.Setting
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }

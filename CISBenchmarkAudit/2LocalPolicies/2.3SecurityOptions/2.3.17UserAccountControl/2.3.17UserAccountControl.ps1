@@ -20,7 +20,7 @@ function Test-UserAccountControlFilterAdministratorToken {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -32,30 +32,21 @@ function Test-UserAccountControlFilterAdministratorToken {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -83,7 +74,7 @@ function Test-UserAccountControlConsentPromptBehaviorAdmin {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -95,30 +86,21 @@ function Test-UserAccountControlConsentPromptBehaviorAdmin {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        $Setting = $Entry.Display.DisplayString
-        if ([int]$Entry.SettingNumber -ge 2) {
-            $Pass = $true
+        $Result.Setting = $Result.Entry.Display.DisplayString
+        if ([int]$Result.Entry.SettingNumber -ge 2) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -146,7 +128,7 @@ function Test-UserAccountControlConsentPromptBehaviorUser {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -158,32 +140,23 @@ function Test-UserAccountControlConsentPromptBehaviorUser {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        $Setting = $Entry.Display.DisplayString
-        if ($Entry.KeyName) {
-            if ($Entry.SettingNumber -eq 0) {
-                $Pass = $true
+        $Result.Setting = $Result.Entry.Display.DisplayString
+        if ($Result.Entry.KeyName) {
+            if ($Result.Entry.SettingNumber -eq 0) {
+                $Result.SetCorrectly = $true
             }
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -211,7 +184,7 @@ function Test-UserAccountControlEnableInstallerDetection {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -223,30 +196,21 @@ function Test-UserAccountControlEnableInstallerDetection {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -274,7 +238,7 @@ function Test-UserAccountControlEnableSecureUIAPaths {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -286,30 +250,21 @@ function Test-UserAccountControlEnableSecureUIAPaths {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -337,7 +292,7 @@ function Test-UserAccountControlEnableLUA {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -349,30 +304,21 @@ function Test-UserAccountControlEnableLUA {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -400,7 +346,7 @@ function Test-UserAccountControlPromptOnSecureDesktop {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -412,30 +358,21 @@ function Test-UserAccountControlPromptOnSecureDesktop {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -463,7 +400,7 @@ function Test-UserAccountControlEnableVirtualization {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -475,30 +412,21 @@ function Test-UserAccountControlEnableVirtualization {
         $Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Setting = [int]$Entry.SettingNumber
-        if ($Entry.KeyName) {
-            $Pass = $Setting
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+        if ($Result.Entry.KeyName) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }

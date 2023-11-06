@@ -20,7 +20,7 @@ function Test-DevicesAllocateDASD {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -28,15 +28,15 @@ function Test-DevicesAllocateDASD {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AllocateDASD"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
-        [string]$Setting = $Entry.Display.DisplayString
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        [string]$Result.Setting = $Result.Entry.Display.DisplayString
     }
 
     process {
-        if ($Setting -eq "Administrators") {
-            $Pass = $true
+        if ($Result.Setting -eq "Administrators") {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
@@ -45,17 +45,8 @@ function Test-DevicesAllocateDASD {
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'"
         $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -83,7 +74,7 @@ function Test-DevicesAddPrinterDrivers {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -91,15 +82,15 @@ function Test-DevicesAddPrinterDrivers {
 
          # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\AddPrinterDrivers"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
-        [bool]$Setting = [int]$Entry.SettingNumber
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
     process {
-        if ($Setting) {
-            $Pass = $Setting
+        if ($Result.Setting) {
+            $Result.SetCorrectly = $Result.Setting
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
@@ -108,17 +99,8 @@ function Test-DevicesAddPrinterDrivers {
         $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'"
         $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }

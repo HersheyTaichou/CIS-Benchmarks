@@ -19,42 +19,41 @@ function Test-RegionalAndLanguageOptionsAllowUsersToEnableOnlineSpeechRecognitio
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
         $Return = @()
         $EntryName = "Allow users to enable online speech recognition services"
-        $RecommendationNumber = '18.1.2.2'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Allow users to enable online speech recognition services' is set to 'Disabled'"
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "18.1.2.2"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Allow users to enable online speech recognition services' is set to 'Disabled'"
+		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
     }
 
     process {
-        $Setting = $Entry.State
-        if ($Setting -eq "Disabled") {
-            $Pass = $true
+        $Result.Setting = $Result.Entry.State
+        if ($Result.Setting -eq "Disabled") {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
     end {
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }

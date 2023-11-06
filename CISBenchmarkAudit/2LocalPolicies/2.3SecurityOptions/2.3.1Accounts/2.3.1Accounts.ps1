@@ -20,7 +20,7 @@ function Test-AccountsNoConnectedUser {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -32,15 +32,15 @@ function Test-AccountsNoConnectedUser {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\NoConnectedUser"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
         # Check if the domain setting meets the CIS Benchmark
-        if ($Entry.SettingNumber -eq 3) {
-            $Pass = $true
+        if ($Result.Entry.SettingNumber -eq 3) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
@@ -50,12 +50,12 @@ function Test-AccountsNoConnectedUser {
             'ProfileApplicability' = $ProfileApplicability
             'Name'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Entry.Display.DisplayString
+            'Pass'= $Result.SetCorrectly
+            'Setting' = $Result.Entry.Display.DisplayString
             'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        $Return += $Result
 
         Return $Return
     }
@@ -83,7 +83,7 @@ function Test-AccountsEnableGuestAccount {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -91,18 +91,18 @@ function Test-AccountsEnableGuestAccount {
 
         # Get the current value of the setting
         $EntryName = "EnableGuestAccount"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
-        [bool]$Setting = [int]$Entry.SettingNumber
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
     process {
         # Check if the domain setting meets the CIS Benchmark
-        if ($Setting) {
-            $Pass = $false
-        } elseif ($setting -eq $false) {
-            $Pass = $true
+        if ($Result.Setting) {
+            $Result.SetCorrectly = $false
+        } elseif ($Result.Setting -eq $false) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
@@ -111,17 +111,8 @@ function Test-AccountsEnableGuestAccount {
         $ProfileApplicability = @("Level 1 - Member Server")
         $RecommendationName = "(L1) Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)"
         $Source = 'Group Policy Settings'
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         Return $Return
     }
@@ -149,7 +140,7 @@ function Test-AccountsLimitBlankPasswordUse {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -157,11 +148,11 @@ function Test-AccountsLimitBlankPasswordUse {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\LimitBlankPasswordUse"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
     }
 
     process {
-        [bool]$Pass = [int]$Entry.SettingNumber
+        [bool]$Result.SetCorrectly = [int]$Result.Entry.SettingNumber
     }
 
     end {
@@ -174,12 +165,12 @@ function Test-AccountsLimitBlankPasswordUse {
             'ProfileApplicability' = $ProfileApplicability
             'Name'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Entry.Display.DisplayString
+            'Pass'= $Result.SetCorrectly
+            'Setting' = $Result.Entry.Display.DisplayString
             'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        $Return += $Result
 
         Return $Return
     }
@@ -207,7 +198,7 @@ function Test-AccountsNewAdministratorName {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -215,15 +206,15 @@ function Test-AccountsNewAdministratorName {
 
         # Get the current value of the setting
         $EntryName = "NewAdministratorName"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
     }
 
     process {
         # Check if the domain setting meets the CIS Benchmark
-        if (($Entry) -and ($Entry.SettingString -ne "Administrator")) {
-            $Pass = $true
+        if (($Result.Entry) -and ($Result.Entry.SettingString -ne "Administrator")) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
@@ -237,12 +228,12 @@ function Test-AccountsNewAdministratorName {
             'ProfileApplicability' = $ProfileApplicability
             'Name'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Entry.SettingString
+            'Pass'= $Result.SetCorrectly
+            'Setting' = $Result.Entry.SettingString
             'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        $Return += $Result
 
         Return $Return
     }
@@ -270,7 +261,7 @@ function Test-AccountsNewGuestName {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -278,15 +269,15 @@ function Test-AccountsNewGuestName {
 
         # Get the current value of the setting
         $EntryName = "NewGuestName"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
     }
 
     process {
         # Check if the domain setting meets the CIS Benchmark
-        if (($Entry) -and ($Entry.SettingString -ne "Guest")) {
-            $Pass = $true
+        if (($Result.Entry) -and ($Result.Entry.SettingString -ne "Guest")) {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
     }
 
@@ -300,12 +291,12 @@ function Test-AccountsNewGuestName {
             'ProfileApplicability' = $ProfileApplicability
             'Name'= $RecommendationName
             'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Entry.SettingString
+            'Pass'= $Result.SetCorrectly
+            'Setting' = $Result.Entry.SettingString
             'Entry' = $Entry
         }
         $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        $Return += $Result
 
         Return $Return
     }

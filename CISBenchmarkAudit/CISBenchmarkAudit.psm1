@@ -36,29 +36,23 @@ function Test-CISBenchmark {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
-    $Return = @()
-
-    # If not already present, run GPResult.exe and store the result in a variable
-    if (-not($script:gpresult)) {
-        $script:gpresult = Get-GPResult
-    }
 
     # 1 Account Policies
-    Test-CISBenchmarkAccountPolicies -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-CISBenchmarkAccountPolicies -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
     # 2 Local Policies
-    Test-CISBenchmarkLocalPolicies -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-CISBenchmarkLocalPolicies -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
     # 5 System Services
-    Test-CISBenchmarkSystemServices -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-CISBenchmarkSystemServices -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
     # 9 Windows Defender Firewall with Advanced Security
-    Test-CISBenchmarkWindowsDefenderFirewallwithAdvancedSecurity -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-CISBenchmarkWindowsDefenderFirewallwithAdvancedSecurity -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
     # 17 Advanced Audit Policy Configuration
-    Test-CISBenchmarkAdvancedAuditPolicyConfiguration -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-CISBenchmarkAdvancedAuditPolicyConfiguration -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
     # 18 Administrative Templates (Computer)
-    Test-CISBenchmarkAdministrativeTemplatesComputer -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
+    Test-CISBenchmarkAdministrativeTemplatesComputer -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
     # 19 Administrative Templates (User)
-    Test-CISBenchmarkAdministrativeTemplatesUser -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
-
-    return $Return
+    Test-CISBenchmarkAdministrativeTemplatesUser -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
 }

@@ -139,13 +139,13 @@ function Get-GPOEntry {
         # Parameter help description
         [Parameter(Mandatory)][string]$EntryName,
         [Parameter(Mandatory)][string]$Name,
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
     process {
-        foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+        foreach ($data in $GPResult.Rsop.ComputerResults.ExtensionData) {
             foreach ($Entry in $data.Extension.ChildNodes) {
-                If ($Entry.$Name -eq $EntryName) {
+                If ($Result.Entry$Name -eq $EntryName) {
                     Return $Entry
                 }
             }
@@ -162,6 +162,6 @@ class CISBenchmark {
     [string]$Title # The title of the recommendation
     [string]$Source # Where the setting was checked from
     [string]$SetCorrectly # if it is set correctly
-    [string]$Setting # The current setting
+    [string]$Result.Setting # The current setting
     hidden $Entry # The XML output of the setting
 }

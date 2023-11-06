@@ -22,51 +22,50 @@ function Test-AccountLockoutPolicyLockoutDuration {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     begin {
         # Check the product type
         $ProductType = Get-ProductType
         $Return = @()
-        $RecommendationNumber = '1.2.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "1.2.1"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
+		$Result.Source = "Group Policy Settings"
 
         #Find the Password History Size applied to this machine
         $EntryName = "LockoutDuration"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
-        $Setting = [int]$Entry.SettingNumber
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
-        if ($Setting -ge "15") {
-            $Pass = $true
+        if ($Result.Setting -ge "15") {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
 
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 if ($FGPasswordPolicy.LockoutDuration -ge (New-TimeSpan -Minutes 15)) {
-                    $Pass = $true
+                    $Result.SetCorrectly = $true
                 } else {
-                    $Pass = $false
+                    $Result.SetCorrectly = $false
                 }
 
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
@@ -76,12 +75,12 @@ function Test-AccountLockoutPolicyLockoutDuration {
                     'ProfileApplicability' = $ProfileApplicability
                     'Name'= $RecommendationName
                     'Source' = $Source
-                    'Pass'= $Pass
+                    'Pass'= $Result.SetCorrectly
                     'Setting' = [bool]$FGPasswordPolicy.LockoutDuration
                     'Entry' = $FGPasswordPolicy
                 }
                 $Properties.PSTypeNames.Add('psCISBenchmark')
-                $Return += $Properties
+                $Return += $Result
             }
         }
     }
@@ -115,7 +114,7 @@ function Test-AccountLockoutPolicyLockoutThreshold {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     begin {
         # Check the product type
@@ -128,38 +127,29 @@ function Test-AccountLockoutPolicyLockoutThreshold {
 
         #Find the Password History Size applied to this machine
         $EntryName = "LockoutBadCount"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
-        $Setting = [int]$Entry.SettingNumber
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
-        if ($Setting -gt "0" -and $Setting -le "5") {
-            $Pass = $true
+        if ($Result.Setting -gt "0" -and $Result.Setting -le "5") {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
 
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 if ($FGPasswordPolicy.LockoutThreshold -gt "0" -and $FGPasswordPolicy.LockoutThreshold -le "5") {
-                    $Pass = $true
+                    $Result.SetCorrectly = $true
                 } else {
-                    $Pass = $false
+                    $Result.SetCorrectly = $false
                 }
 
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
@@ -169,12 +159,12 @@ function Test-AccountLockoutPolicyLockoutThreshold {
                     'ProfileApplicability' = $ProfileApplicability
                     'Name'= $RecommendationName
                     'Source' = $Source
-                    'Pass'= $Pass
+                    'Pass'= $Result.SetCorrectly
                     'Setting' = [bool]$FGPasswordPolicy.LockoutThreshold
                     'Entry' = $FGPasswordPolicy
                 }
                 $Properties.PSTypeNames.Add('psCISBenchmark')
-                $Return += $Properties
+                $Return += $Result
             }
         }
     }
@@ -208,7 +198,7 @@ function Test-AccountLockoutPolicyAdminLockout {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
@@ -220,33 +210,24 @@ function Test-AccountLockoutPolicyAdminLockout {
 
         #Find the maximum password age applied to this machine
         $EntryName = "AllowAdministratorLockout"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
-        [string]$Setting = $Entry.SettingBoolean
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        [string]$Result.Setting = $Result.Entry.SettingBoolean
     }
 
     process {
-        if ($Setting -eq "true") {
-            $Pass = $true
-            $Setting = $true
-        } elseif ($Setting -eq "false") {
-            $Pass = $false
-            $Setting = $false
+        if ($Result.Setting -eq "true") {
+            $Result.SetCorrectly = $true
+            $Result.Setting = $true
+        } elseif ($Result.Setting -eq "false") {
+            $Result.SetCorrectly = $false
+            $Result.Setting = $false
         } else {
-            $Pass = $false
-            $Setting = ""
+            $Result.SetCorrectly = $false
+            $Result.Setting = ""
         }
 
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
     }
 
     end {
@@ -278,51 +259,50 @@ function Test-AccountLockoutPolicyResetLockoutCount {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$gpresult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     begin {
         # Check the product type
         $ProductType = Get-ProductType
         $Return = @()
-        $RecommendationNumber = '1.2.4'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
-        $Source = 'Group Policy Settings'
+        $Result = [CISBenchmark]::new()
+        $Result.Number = "1.2.4"
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
+		$Result.Source = "Group Policy Settings"
 
         #Find the Password History Size applied to this machine
         $EntryName = "ResetLockoutCount"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
-        $Setting = [int]$Entry.SettingNumber
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
-        if ($Setting -ge "15") {
-            $Pass = $true
+        if ($Result.Setting -ge "15") {
+            $Result.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Result.SetCorrectly = $false
         }
 
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
-        $Return += $Properties
+        
+        $Return += $Result
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 if ($FGPasswordPolicy.LockoutObservationWindow -ge (New-TimeSpan -Minutes 15)) {
-                    $Pass = $true
+                    $Result.SetCorrectly = $true
                 } else {
-                    $Pass = $false
+                    $Result.SetCorrectly = $false
                 }
 
                 $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
@@ -332,12 +312,12 @@ function Test-AccountLockoutPolicyResetLockoutCount {
                     'ProfileApplicability' = $ProfileApplicability
                     'Name'= $RecommendationName
                     'Source' = $Source
-                    'Pass'= $Pass
+                    'Pass'= $Result.SetCorrectly
                     'Setting' = [bool]$FGPasswordPolicy.LockoutObservationWindow
                     'Entry' = $FGPasswordPolicy
                 }
                 $Properties.PSTypeNames.Add('psCISBenchmark')
-                $Return += $Properties
+                $Return += $Result
             }
         }
     }
