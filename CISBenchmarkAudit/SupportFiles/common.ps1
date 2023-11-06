@@ -48,6 +48,7 @@ General notes
 function Get-ProductType {
     [CmdletBinding()]
     param ()
+
     [int]$ProductType = (Get-CimInstance -ClassName Win32_OperatingSystem).ProductType
     return $ProductType
 }
@@ -134,7 +135,8 @@ function Get-GPOEntry {
     param (
         # Parameter help description
         [Parameter(Mandatory)][string]$EntryName,
-        [Parameter(Mandatory)][string]$Name
+        [Parameter(Mandatory)][string]$Name,
+        [Parameter()][xml]$gpresult = (Get-GPResult)
     )
     
     begin {
@@ -154,4 +156,15 @@ function Get-GPOEntry {
     }
     
     end {}
+}
+
+class CISBenchmark {
+    [string]$Number # The number of the benchmark
+    [string]$Level # Level 1, 2 or Next Generation Windows Security
+    [string]$Profile # Domain Controller or Member Server
+    [string]$Title # The title of the recommendation
+    [string]$Source # Where the setting was checked from
+    [string]$SetCorrectly # if it is set correctly
+    [string]$Setting # The current setting
+    [xml] hidden $Entry # The XML output of the setting
 }

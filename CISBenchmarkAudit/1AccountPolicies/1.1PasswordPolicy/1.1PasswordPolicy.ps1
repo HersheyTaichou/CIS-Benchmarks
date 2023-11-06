@@ -20,65 +20,58 @@ General notes
 #>
 function Test-PasswordPolicyPasswordHistory {
     [CmdletBinding()]
-    param ()
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][xml]$gpresult = (Get-GPResult)
+    )
 
     begin {
-        # Check the product type
-        $ProductType = Get-ProductType
         $Return = @()
-        $RecommendationNumber = '1.1.1'
-        $ProfileApplicability = @("Level 1 - Domain Controller","Level 1 - Member Server")
-        $RecommendationName = "(L1) Ensure 'Enforce password history' is set to '24 or more password(s)'"
-        $Source = 'Group Policy Settings'
+        $Properties = [CISBenchmark]::new()
+        $Properties.Number =  = '1.1.1'
+        $Properties.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Properties.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Properties.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Properties.Profile = "Member Server"
+        }
+        $Properties.Title = "Ensure 'Enforce password history' is set to '24 or more password(s)'"
+        
 
         #Find the Password History Size applied to this machine
         $EntryName = "PasswordHistorySize"
-        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name"
+        $Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
         $Setting = [int]$Entry.SettingNumber
     }
 
     process {
-        # Check if the GPO setting meets the CIS Benchmark
+        $Properties.Source = 'Group Policy Settings'
         if ($Setting -ge 24) {
-            $Pass = $true
+            $Properties.SetCorrectly = $true
         } else {
-            $Pass = $false
+            $Properties.SetCorrectly = $false
         }
 
-        $Properties = [PSCustomObject]@{
-            'Number' = $RecommendationNumber
-            'ProfileApplicability' = $ProfileApplicability
-            'Name'= $RecommendationName
-            'Source' = $Source
-            'Pass'= $Pass
-            'Setting' = $Setting
-            'Entry' = $Entry
-        }
-        $Properties.PSTypeNames.Add('psCISBenchmark')
+        $Properties.Setting = $Setting
+        $Properties.Entry = $Entry
         $Return += $Properties
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
+            $Properties.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 if ($FGPasswordPolicy.PasswordHistoryCount -ge "24") {
-                    $Pass = $true
+                    $Properties.SetCorrectly = $true
                 } else {
-                    $Pass = $false
+                    $Properties.SetCorrectly = $false
                 }
 
-                $Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-
-                $Properties = [PSCustomObject]@{
-                    'Number' = $RecommendationNumber
-                    'ProfileApplicability' = $ProfileApplicability
-                    'Name'= $RecommendationName
-                    'Source' = $Source
-                    'Pass'= $Pass
-                    'Setting' = $FGPasswordPolicy.PasswordHistoryCount
-                    'Entry' = $FGPasswordPolicy
-                }
-                $Properties.PSTypeNames.Add('psCISBenchmark')
+                $Properties.Setting = $FGPasswordPolicy.PasswordHistoryCount
+                $Properties.Entry = $FGPasswordPolicy
                 $Return += $Properties
             }
         }
