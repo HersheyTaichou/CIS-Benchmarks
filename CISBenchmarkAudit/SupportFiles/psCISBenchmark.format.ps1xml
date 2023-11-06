@@ -46,9 +46,9 @@
             </TableControl>
         </View>
         <View>
-            <Name>psCISBenchmark</Name>
+            <Name>CISBenchmark</Name>
             <ViewSelectedBy>
-                <TypeName>psCISBenchmark</TypeName>
+                <TypeName>CISBenchmark</TypeName>
             </ViewSelectedBy>
             <ListControl>
                 <ListEntries>
