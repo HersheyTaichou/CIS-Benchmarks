@@ -192,8 +192,7 @@ NestedModules = @('.\CISBenchmarkAudit.psm1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9WindowsDefenderFirewallwithAdvancedSecurity.ps1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9.1DomainProfile\9.1DomainProfile.ps1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9.2PrivateProfile\9.2PrivateProfile.ps1',
-    '9WindowsDefenderFirewallwithAdvancedSecurity\9.3PublicProfile\9.3PublicProfile.ps1',
-    'SupportFiles\common.ps1'
+    '9WindowsDefenderFirewallwithAdvancedSecurity\9.3PublicProfile\9.3PublicProfile.ps1'
 )
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
@@ -282,9 +281,43 @@ FunctionsToExport = @(
     'Test-PublicProfileAllowLocalPolicyMerge','Test-PublicProfileAllowLocalIPsecPolicyMerge','Test-PublicProfileLogFilePath','Test-PublicProfileLogFileSize',
     'Test-PublicProfileLogDroppedPackets','Test-PublicProfileLogSuccessfulConnections',
     # 17 Advanced Audit Policy Configuration
-    'Test-CISBenchmarkAdvancedAuditPolicyConfiguration',
+    'Test-CISBenchmarkAdvancedAuditPolicyConfiguration','Test-AdvancedAuditPolicyConfigurationAccountLogon','Test-AdvancedAuditPolicyConfigurationAccountManagement',
+    'Test-AdvancedAuditPolicyConfigurationDetailedTracking','Test-AdvancedAuditPolicyConfigurationDSAccess','Test-AdvancedAuditPolicyConfigurationLogonLogoff',
+    'Test-AdvancedAuditPolicyConfigurationObjectAccess','Test-AdvancedAuditPolicyConfigurationPolicyChange','Test-AdvancedAuditPolicyConfigurationPrivilegeUse',
+    'Test-AdvancedAuditPolicyConfigurationSystem','Test-CISBenchmarkAdvancedAuditPolicyConfiguration',
+    # 17.1 Account Logon
+    'Test-AccountLogonAuditCredentialValidation','Test-AccountLogonAuditKerberosAuthenticationService','Test-AccountLogonAuditKerberosServiceTicketOperations',
+    # 17.2 Account Management
+    'Test-AccountManagementAuditApplicationGroupManagement','Test-AccountManagementAuditComputerAccountManagement','Test-AccountManagementAuditDistributionGroupManagement',
+    'Test-AccountManagementAuditOtherAccountManagementEvents','Test-AccountManagementAuditSecurityGroupManagement','Test-AccountManagementAuditUserAccountManagement',
+    # 17.3 Detailed Tracking
+    'Test-DetailedTrackingAuditPNPActivity','Test-DetailedTrackingAuditProcessCreation',
+    # 17.4 DS Access
+    'Test-DSAccessAuditDirectoryServiceAccess','Test-DSAccessAuditDirectoryServiceChanges',
+    # 17.5 Logon/Logoff
+    'Test-LogonLogoffAuditAccountLockout','Test-LogonLogoffAuditGroupMembership','Test-LogonLogoffAuditLogoff','Test-LogonLogoffAuditLogon',
+    'Test-LogonLogoffAuditOtherLogonLogoffEvents','Test-LogonLogoffAuditSpecialLogon',
+    # 17.6 Object Access
+    'Test-ObjectAccessAuditDetailedFileShare','Test-ObjectAccessAuditFileShare','Test-ObjectAccessAuditOtherObjectAccessEvents','Test-ObjectAccessAuditRemovableStorage',
+    # 17.7 Policy Change
+    'Test-PolicyChangeAuditAuditPolicyChange','Test-PolicyChangeAuditAuthenticationPolicyChange','Test-PolicyChangeAuditAuthorizationPolicyChange',
+    'Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange','Test-PolicyChangeAuditOtherPolicyChangeEvents',
+    # 17.8 Priviledge Use
+    'Test-PrivilegeUseAuditSensitivePrivilegeUse',
+    # 17.9 System
+    'Test-SystemAuditIPsecDriver','Test-SystemAuditOtherSystemEvents','Test-SystemAuditSecurityStateChange','Test-SystemAuditSecuritySystemExtension',
+    'Test-SystemAuditSystemIntegrity',
     # 18 Administrative Templates (Computer)
+    'Test-AdministrativeTemplatesComputerControlPanel','Test-AdministrativeTemplatesComputerLAPS','Test-AdministrativeTemplatesComputerMSSecurityGuide',
+    'Test-AdministrativeTemplatesComputerMSS','Test-AdministrativeTemplatesComputerNetwork','Test-AdministrativeTemplatesComputerPrinters',
+    'Test-AdministrativeTemplatesComputerStartMenuAndTaskbar','Test-AdministrativeTemplatesComputerSystem','Test-AdministrativeTemplatesComputerWindowsComponents',
     'Test-CISBenchmarkAdministrativeTemplatesComputer',
+    # 18.1 Control Panel
+    'Test-ControlPanelPersonalization','Test-ControlPanelRegionalAndLanguageOptions',
+    # 18.1.1 Personalization
+    'Test-PersonalizationPreventEnablingLockScreenCamera','Test-PersonalizationPreventEnablingLockScreenSlideshow',
+    # 18.1.2 Regional and Language Options
+    'Test-RegionalAndLanguageOptionsAllowUsersToEnableOnlineSpeechRecognitionServices',
     # 19 Administrative Templates (User)
     'Test-CISBenchmarkAdministrativeTemplatesUser'
     )
@@ -424,8 +457,7 @@ ModuleList = @('.\CISBenchmarkAudit.psm1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9.1DomainProfile\9.1DomainProfile.ps1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9.2PrivateProfile\9.2PrivateProfile.ps1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9.3PublicProfile\9.3PublicProfile.ps1',
-    '9WindowsDefenderFirewallwithAdvancedSecurity\9WindowsDefenderFirewallwithAdvancedSecurity.ps1',
-    'SupportFiles\common.ps1'
+    '9WindowsDefenderFirewallwithAdvancedSecurity\9WindowsDefenderFirewallwithAdvancedSecurity.ps1'
     )
 
 # List of all files packaged with this module
@@ -552,7 +584,7 @@ FileList = @('.\CISBenchmarkAudit.psd1','.\CISBenchmarkAudit.psm1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9.2PrivateProfile\9.2PrivateProfile.ps1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9.3PublicProfile\9.3PublicProfile.ps1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9WindowsDefenderFirewallwithAdvancedSecurity.ps1',
-    'SupportFiles\common.ps1'
+    'SupportFiles\psCISBenchmark.format.ps1xml'
     )
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
