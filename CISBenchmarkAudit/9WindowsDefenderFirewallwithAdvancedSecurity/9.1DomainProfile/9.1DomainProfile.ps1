@@ -39,11 +39,14 @@ function Test-DomainProfileEnableFirewall {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
+        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult -Verbose
+        #Write-Verbose $Entry
+        $Result.Entry = $Entry
     }
 
     process {
-        if ($Result.Entry.EnableFirewall.Value -eq "true") {
+        $Value = $Result.Entry.EnableFirewall.Value
+        if ($Value -eq "true") {
             $Result.Setting = $true
         } else {
             $Result.Setting = $false

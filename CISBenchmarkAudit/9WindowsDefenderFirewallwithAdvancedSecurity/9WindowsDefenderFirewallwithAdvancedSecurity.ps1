@@ -7,14 +7,24 @@ function Get-WindowsFirewallSettings {
     )
     
     process {
-        foreach ($data in $gpresult.Rsop.ComputerResults.ExtensionData) {
+        $Message = "Checking for " + $EntryName
+        Write-Verbose $Message
+        $count = 0
+        foreach ($data in $GPResult.Rsop.ComputerResults.ExtensionData) {
+            $Message = "Checking ExtensionData[" + $count + "]"
+            Write-Verbose $Message
+            $count++
             foreach ($Profile in $data.Extension.$EntryName) {
-                return $Profile
+                $Message = "Found an entry"
+                Write-Verbose $Message
+                $Return = $Profile
             }
         }
     }
-    
-    end {}
+
+    end {
+        return $Return
+    }
 }
 
 <#
