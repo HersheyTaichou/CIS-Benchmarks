@@ -5,11 +5,21 @@
 .DESCRIPTION
 This policy setting allows you to audit when plug and play detects an external device.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-DetailedTrackingAuditPNPActivity
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.3.1     (L1) Ensure 'Audit PNP Activity' is set to include 'Success'                Group Policy Settings     True  
 
 .NOTES
@@ -63,11 +73,21 @@ function Test-DetailedTrackingAuditPNPActivity {
 .DESCRIPTION
 This subcategory reports the creation of a process and the name of the program or user that created it.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-DetailedTrackingAuditProcessCreation
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.3.2     (L1) Ensure 'Audit Process Creation' is set to include 'Success'            Group Policy Settings     True  
 
 .NOTES

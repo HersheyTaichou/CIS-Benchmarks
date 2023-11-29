@@ -5,12 +5,22 @@
 .DESCRIPTION
 This policy setting determines whether members of the Server Operators group are allowed to submit jobs by means of the AT schedule facility.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-DomainControllerSubmitControl
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.5.1   (L1) Ensure 'Domain controller: Allow server operators to schedule tasks' is set to 'Disabled' (... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.5.1    L1    Ensure 'Domain controller: Allow server operators to schedul... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -56,12 +66,22 @@ function Test-DomainControllerSubmitControl {
 .DESCRIPTION
 This security setting determines whether the domain controller bypasses secure RPC for Netlogon secure channel connections for specified machine accounts.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-DomainControllerVulnerableChannelAllowList
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.5.2   (L1) Ensure 'Domain controller: Allow vulnerable Netlogon secure channel connections' is set to ... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.5.2    L1    Ensure 'Domain controller: Allow vulnerable Netlogon secure ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -107,12 +127,22 @@ function Test-DomainControllerVulnerableChannelAllowList {
 .DESCRIPTION
 This setting determines whether the LDAP server (Domain Controller) enforces validation of Channel Binding Tokens (CBT) received in LDAP bind requests that are sent over SSL/TLS (i.e. LDAPS).
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-DomainControllerLdapEnforceChannelBinding
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.5.3   (L1) Ensure 'Domain controller: LDAP server channel binding token requirements' is set to 'Always'  Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.5.3    L1    Ensure 'Domain controller: LDAP server channel binding token... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -158,12 +188,22 @@ function Test-DomainControllerLdapEnforceChannelBinding {
 .DESCRIPTION
 This policy setting determines whether the Lightweight Directory Access Protocol (LDAP) server requires LDAP clients to negotiate data signing.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-DomainControllerLDAPServerIntegrity
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.5.4   (L1) Ensure 'Domain controller: LDAP server signing requirements' is set to 'Require signing' (D... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.5.4    L1    Ensure 'Domain controller: LDAP server signing requirements'... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -210,12 +250,22 @@ function Test-DomainControllerLDAPServerIntegrity {
 .DESCRIPTION
 This security setting determines whether Domain Controllers will refuse requests from member computers to change computer account passwords.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-DomainControllerRefusePasswordChange
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.5.5   (L1) Ensure 'Domain controller: Refuse machine account password changes' is set to 'Disabled' (D... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.5.5    L1    Ensure 'Domain controller: Refuse machine account password c... Group Policy Settings     True        
 
 .NOTES
 General notes

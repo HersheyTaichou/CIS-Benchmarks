@@ -5,11 +5,21 @@
 .DESCRIPTION
 Select On (recommended) to have Windows Firewall with Advanced Security use the settings for this profile to filter network traffic.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PublicProfileEnableFirewall
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.3.1      (L1) Ensure 'Windows Firewall: Public: Firewall state' is set to 'On (re... Group Policy Settings     True  
 
 .NOTES
@@ -63,11 +73,21 @@ function Test-PublicProfileEnableFirewall {
 .DESCRIPTION
 This setting determines the behavior for inbound connections that do not match an inbound firewall rule.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PublicProfileDefaultInboundAction
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.3.2      (L1) Ensure 'Windows Firewall: Public: Inbound connections' is set to 'B... Group Policy Settings     True  
 
 .NOTES
@@ -121,11 +141,21 @@ function Test-PublicProfileDefaultInboundAction {
 .DESCRIPTION
 This setting determines the behavior for outbound connections that do not match an outbound firewall rule.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PublicProfileDefaultOutboundAction
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.3.3      (L1) Ensure 'Windows Firewall: Public: Outbound connections' is set to '... Group Policy Settings     True  
 
 .NOTES
@@ -179,11 +209,21 @@ function Test-PublicProfileDefaultOutboundAction {
 .DESCRIPTION
 Select this option to have Windows Firewall with Advanced Security display notifications to the user when a program is blocked from receiving inbound connections.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PublicProfileDisableNotifications
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.3.4      (L1) Ensure 'Windows Firewall: Public: Settings: Display a notification'... Group Policy Settings     True  
 
 .NOTES
@@ -237,11 +277,21 @@ function Test-PublicProfileDisableNotifications {
 .DESCRIPTION
 This setting controls whether local administrators are allowed to create local firewall rules that apply together with firewall rules configured by Group Policy.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PublicProfileAllowLocalPolicyMerge
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.3.5      (L1) Ensure 'Windows Firewall: Public: Settings: Apply local firewall ru... Group Policy Settings     True  
 
 .NOTES
@@ -295,11 +345,21 @@ function Test-PublicProfileAllowLocalPolicyMerge {
 .DESCRIPTION
 This setting controls whether local administrators are allowed to create connection security rules that apply together with connection security rules configured by Group Policy.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PublicProfileAllowLocalIPsecPolicyMerge
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.3.6      (L1) Ensure 'Windows Firewall: Public: Settings: Apply local connection ... Group Policy Settings     True  
 
 .NOTES
@@ -353,11 +413,21 @@ function Test-PublicProfileAllowLocalIPsecPolicyMerge {
 .DESCRIPTION
 Use this option to specify the path and name of the file in which Windows Firewall will write its log information.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PublicProfileLogFilePath
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.3.7      (L1) Ensure 'Windows Firewall: Public: Logging: Name' is set to '%System... Group Policy Settings     True  
 
 .NOTES
@@ -415,11 +485,21 @@ function Test-PublicProfileLogFilePath {
 .DESCRIPTION
 Use this option to specify the size limit of the file in which Windows Firewall will write its log information.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PublicProfileLogFileSize
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.3.8      (L1) Ensure 'Windows Firewall: Public: Logging: Size limit (KB)' is set ... Group Policy Settings     True  
 
 .NOTES
@@ -473,11 +553,21 @@ function Test-PublicProfileLogFileSize {
 .DESCRIPTION
 Use this option to log when Windows Firewall with Advanced Security discards an inbound packet for any reason. The log records why and when the packet was dropped.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PublicProfileLogDroppedPackets
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.3.9      (L1) Ensure 'Windows Firewall: Public: Logging: Log dropped packets' is ... Group Policy Settings     True  
 
 .NOTES
@@ -531,11 +621,21 @@ function Test-PublicProfileLogDroppedPackets {
 .DESCRIPTION
 Use this option to log when Windows Firewall with Advanced Security allows an inbound connection. The log records why and when the connection was formed.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PublicProfileLogSuccessfulConnections
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.3.10     (L1) Ensure 'Windows Firewall: Public: Logging: Log successful connectio... Group Policy Settings     True  
 
 .NOTES

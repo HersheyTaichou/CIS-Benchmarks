@@ -7,13 +7,23 @@ This policy setting determines the number of renewed, unique passwords that have
 
 This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PasswordPolicyPasswordHistory
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-1.1.1     (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'                           Group Policy Settings     True    
-1.1.1     (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'                           Test Policy Fine Grain... True
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+1.1.1      L1    Ensure 'Enforce password history' is set to '24 or more pass... Group Policy Settings     True        
+1.1.1      L1    Ensure 'Enforce password history' is set to '24 or more pass... Test Policy Fine Grain... True        
 
 .NOTES
 General notes
@@ -94,12 +104,23 @@ This policy setting defines how long a user can use their password before it exp
 
 This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PasswordPolicyMaxPasswordAge
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-1.1.2     (L1) Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'                         Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+1.1.2      L1    Ensure 'Maximum password age' is set to '365 or fewer days, ... Group Policy Settings     True        
+1.1.2      L1    Ensure 'Maximum password age' is set to '365 or fewer days, ... Test Policy Fine Grain... True        
 
 .NOTES
 General notes
@@ -180,12 +201,23 @@ This policy setting determines the number of days that you must use a password b
 
 This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PasswordPolicyMinPasswordAge
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-1.1.3     (L1) Ensure 'Minimum password age' is set to '1 or more day(s)'                                     Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+1.1.3      L1    Ensure 'Minimum password age' is set to '1 or more day(s)'      Group Policy Settings     True        
+1.1.3      L1    Ensure 'Minimum password age' is set to '1 or more day(s)'      Test Policy Fine Grain... True        
 
 
 .NOTES
@@ -267,12 +299,23 @@ This policy setting determines the least number of characters that make up a pas
 
 This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PasswordPolicyMinPasswordLength
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-1.1.4     (L1) Ensure 'Minimum password length' is set to '14 or more character(s)'                           Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+1.1.4      L1    Ensure 'Minimum password length' is set to '14 or more chara... Group Policy Settings     True        
+1.1.4      L1    Ensure 'Minimum password length' is set to '14 or more chara... Test Policy Fine Grain... True        
 
 .NOTES
 General notes
@@ -364,12 +407,23 @@ When this policy is enabled, passwords must meet the following minimum requireme
 
 This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PasswordPolicyComplexityEnabled
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-1.1.5     (L1) Ensure 'Password must meet complexity requirements' is set to 'Enabled'                        Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+1.1.5      L1    Ensure 'Password must meet complexity requirements' is set t... Group Policy Settings     True        
+1.1.5      L1    Ensure 'Password must meet complexity requirements' is set t... Test Policy Fine Grain... True        
 
 .NOTES
 General notes
@@ -446,12 +500,22 @@ function Test-PasswordPolicyComplexityEnabled {
 .DESCRIPTION
 This policy setting determines whether the minimum password length setting can be increased beyond the legacy limit of 14 characters.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PasswordPolicyRelaxMinimumPasswordLengthLimits
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-1.1.6     (L1) Ensure 'Relax minimum password length limits' is set to 'Enabled'                              Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+1.1.6      L1    Ensure 'Relax minimum password length limits' is set to 'Ena... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -507,12 +571,23 @@ This policy setting determines whether the operating system stores passwords in 
 
 This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PasswordPolicyReversibleEncryption
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-1.1.7     (L1) Ensure 'Store passwords using reversible encryption' is set to 'Disabled'                      Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+1.1.7      L1    Ensure 'Store passwords using reversible encryption' is set ... Group Policy Settings     True        
+1.1.7      L1    Ensure 'Store passwords using reversible encryption' is set ... Test Policy Fine Grain... True        
 
 .NOTES
 General notes

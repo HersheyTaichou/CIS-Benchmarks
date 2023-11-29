@@ -5,11 +5,21 @@
 .DESCRIPTION
 Select On (recommended) to have Windows Firewall with Advanced Security use the settings for this profile to filter network traffic.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PrivateProfileEnableFirewall
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.2.1      (L1) Ensure 'Windows Firewall: Private: Firewall state' is set to 'On (r... Group Policy Settings     True  
 
 .NOTES
@@ -63,11 +73,21 @@ function Test-PrivateProfileEnableFirewall {
 .DESCRIPTION
 This setting determines the behavior for inbound connections that do not match an inbound firewall rule.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PrivateProfileDefaultInboundAction
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.2.2      (L1) Ensure 'Windows Firewall: Private: Inbound connections' is set to '... Group Policy Settings     True  
 
 .NOTES
@@ -121,11 +141,21 @@ function Test-PrivateProfileDefaultInboundAction {
 .DESCRIPTION
 This setting determines the behavior for outbound connections that do not match an outbound firewall rule.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PrivateProfileDefaultOutboundAction
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.2.3      (L1) Ensure 'Windows Firewall: Private: Outbound connections' is set to ... Group Policy Settings     True  
 
 .NOTES
@@ -179,11 +209,21 @@ function Test-PrivateProfileDefaultOutboundAction {
 .DESCRIPTION
 Select this option to have Windows Firewall with Advanced Security display notifications to the user when a program is blocked from receiving inbound connections.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PrivateProfileDisableNotifications
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.2.4      (L1) Ensure 'Windows Firewall: Private: Settings: Display a notification... Group Policy Settings     True  
 
 .NOTES
@@ -237,11 +277,21 @@ function Test-PrivateProfileDisableNotifications {
 .DESCRIPTION
 Use this option to specify the path and name of the file in which Windows Firewall will write its log information.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PrivateProfileLogFilePath
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.2.5      (L1) Ensure 'Windows Firewall: Private: Logging: Name' is set to '%Syste... Group Policy Settings     True  
 
 .NOTES
@@ -299,11 +349,21 @@ function Test-PrivateProfileLogFilePath {
 .DESCRIPTION
 Use this option to specify the size limit of the file in which Windows Firewall will write its log information.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PrivateProfileLogFileSize
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.2.6      (L1) Ensure 'Windows Firewall: Private: Logging: Size limit (KB)' is set... Group Policy Settings     True  
 
 .NOTES
@@ -357,11 +417,21 @@ function Test-PrivateProfileLogFileSize {
 .DESCRIPTION
 Use this option to log when Windows Firewall with Advanced Security discards an inbound packet for any reason. The log records why and when the packet was dropped.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PrivateProfileLogDroppedPackets
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.2.7      (L1) Ensure 'Windows Firewall: Private: Logging: Log dropped packets' is... Group Policy Settings     True  
 
 .NOTES
@@ -415,11 +485,21 @@ function Test-PrivateProfileLogDroppedPackets {
 .DESCRIPTION
 Use this option to log when Windows Firewall with Advanced Security allows an inbound connection. The log records why and when the connection was formed.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PrivateProfileLogSuccessfulConnections
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 9.2.8      (L1) Ensure 'Windows Firewall: Private: Logging: Log successful connecti... Group Policy Settings     True  
 
 .NOTES

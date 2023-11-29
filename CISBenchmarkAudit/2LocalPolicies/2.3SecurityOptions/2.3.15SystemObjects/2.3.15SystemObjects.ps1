@@ -5,11 +5,21 @@
 .DESCRIPTION
 This policy setting determines whether case insensitivity is enforced for all subsystems.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-SystemObjectsObCaseInsensitive
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.15.1  (L1) Ensure 'System objects: Require case insensitivity for non-Windows subsystems' is set to 'E... Group Policy Settings     True    
 
 .NOTES
@@ -63,11 +73,21 @@ function Test-SystemObjectsObCaseInsensitive {
 .DESCRIPTION
 This policy setting determines the strength of the default discretionary access control list (DACL) for objects.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-SystemObjectsProtectionMode
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.15.2  (L1) Ensure 'System objects: Strengthen default permissions of internal system objects (e.g. Sym... Group Policy Settings     True    
 
 .NOTES

@@ -2,30 +2,30 @@
 
 ## Introduction
 
-Here you will find in-progress scripts designed to audit the CIS Benchmarks in a business environment. These scripts are based on the Microsoft Windows Server 2022 Benchmark version 2.0.0 , released on 2023-04-14.
+Here you will find in-progress scripts designed to audit the CIS Benchmarks in a business environment. These scripts are based on the Microsoft Windows Server 2022 Benchmark version 2.0.0, released on 2023-04-14.
 
-These scripts are VERY MUCH a work in progress, so take caution and review them carefully before running them, as what worked in my environment may break yours! These scripts were created as I went through the benchmark documentation and learned how to impliment them on one test environment.
+These scripts are VERY MUCH a work in progress, so take caution and review them carefully before running them, as what worked in my environment may break yours! These scripts were created as I went through the benchmark documentation and learned how to implement them in one test environment.
 
 ## Things to Note
 
-- These commands require all settings to be explicitely set. If you rely on default behavior, it will show up as a fail.
+- These commands require all settings to be explicitly set. If you rely on default behavior, it will show up as a failure.
 
-   For example, if you were to run the test for "2.3.10.5 (L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disabled'", without having explicitely set that policy in Group Policy, it would come back like this:
+   For example, if you were to run the test for "2.3.10.5 (L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disabled'", without having explicitly set that policy in Group Policy, it would come back like this:
 
    ```PowerShell
    Test-NetworkAccessEveryoneIncludesAnonymous
    ```
 
    ```text
-   Number    Name                                                                                                Source                    Pass  
-   --------- ------------------                                                                                  ------                    ----  
-   2.3.10.5  (L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disab... Group Policy Settings     False
+   Number     Level Title                                                           Source                    SetCorrectly
+   ------     ----- -----                                                           ------                    ------------
+   2.3.10.5   L1    Ensure 'Network access: Let Everyone permissions apply to an... Group Policy Settings     True        
    ```
 
-   If you check the default for this entry, it will indicate that the default matches the benchmark, which should be a pass. I have choosen to consider this a fail, because someone could change this setting in the local policy on a computer, and it would not get over-written or prevented by the GPO settings.
-- Currently, once it loads a GPResult into memory, it will hold onto it until you close the PowerShell window or remove and re-import the module.
-- The script will check the machine's type as it runs, and run checks specific to that type. A workstation is type 1, a domain controller (DC) is type 2 and a member server (MS) is type 3.
-  - Running on a workstation will do all checks applicable to Domain Controllers and Member Servers, but skip ones specific to DC's or MS's
+   If you check the default for this entry, it will indicate that the default matches the benchmark, which should be a pass. I have chosen to consider this a failure because someone could change this setting in the local policy on a computer, and it would not get over-written or prevented by the GPO settings.
+
+- The script will check the machine's type as it runs, and run checks specific to that type. A workstation is type 1, a domain controller (DC) is type 2 and a member server (MS) is type 3. This can be overridden by specifying -ProductType [1/2/3] at runtime
+  - Running on a workstation will do all checks applicable to Domain Controllers and Member Servers, but skip ones specific to DCs or MSs
 
 ## Getting Started
 
@@ -39,7 +39,7 @@ To run an audit on a machine, you have multiple options based on the end goal. F
 Import-Module .\CISBenchmarkAudit.psd1
 ```
 
-Then, depending on what you want to do, their are a variety of commands.
+Then, depending on what you want to do, there are a variety of commands.
 
 ### Run the Entire CIS Benchmark
 
@@ -89,9 +89,7 @@ Test-PasswordPolicyPasswordHistory
 
 ### Test a different machine
 
-> **WARNING**: Testing in this manner will skip some tests! The script will check the machine's type as it runs. A workstation is type 1, a domain controller (DC) is type 2 and a member server (MS) is type 3. If you run this on a workstation, it will skip all the DC or MS specific tests, and only run the tests that apply to both types.
->
-> **Tip**: Use a test DC or MS server, with the below method, to make sure everything is properly tested.
+> **WARNING**: When testing in this manner, it is recommended that you specify the product type the group policy file was exported from, otherwise it will use the product type of the machine it is running on.
 
 I understand that some people may be hesitant to run a large script they found on the internet on a production server. In that case, it is possible to export a copy of the GPO settings on a server, then move that file to a separate machine with this script, and run it there.
 

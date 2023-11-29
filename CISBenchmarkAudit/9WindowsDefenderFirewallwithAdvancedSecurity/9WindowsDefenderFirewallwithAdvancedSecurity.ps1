@@ -40,10 +40,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 9.1.1     (L1) Ensure 'Windows Firewall: Domain: Firewall state' is set to 'On (recommended)'                 Group Policy Settings     True    
 9.1.2     (L1) Ensure 'Windows Firewall: Domain: Inbound connections' is set to 'Block (default)'             Group Policy Settings     True    
@@ -100,10 +110,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-WindowsDefenderFirewallwithAdvancedSecurityPrivateProfile
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 9.2.1     (L1) Ensure 'Windows Firewall: Private: Firewall state' is set to 'On (recommended)'                Group Policy Settings     True    
 9.2.2     (L1) Ensure 'Windows Firewall: Private: Inbound connections' is set to 'Block (default)'            Group Policy Settings     True    
@@ -160,10 +180,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 9.3.1     (L1) Ensure 'Windows Firewall: Public: Firewall state' is set to 'On (recommended)'                 Group Policy Settings     True    
 9.3.2     (L1) Ensure 'Windows Firewall: Public: Inbound connections' is set to 'Block (default)'             Group Policy Settings     True    
@@ -222,10 +252,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-CISBenchmarkSystemServices
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 9.1.1     (L1) Ensure 'Windows Firewall: Domain: Firewall state' is set to 'On (recommended)'                 Group Policy Settings     True    
 9.1.2     (L1) Ensure 'Windows Firewall: Domain: Inbound connections' is set to 'Block (default)'             Group Policy Settings     True    

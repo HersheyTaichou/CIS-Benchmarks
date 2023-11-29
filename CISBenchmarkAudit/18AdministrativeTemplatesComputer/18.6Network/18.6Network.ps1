@@ -19,10 +19,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
@@ -65,10 +75,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
@@ -111,10 +131,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
@@ -157,10 +187,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
@@ -203,10 +243,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
@@ -249,10 +299,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
@@ -295,10 +355,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
@@ -341,10 +411,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
@@ -387,10 +467,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
@@ -433,10 +523,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES

@@ -5,11 +5,21 @@
 .DESCRIPTION
 This subcategory reports changes in audit policy including SACL changes.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PolicyChangeAuditAuditPolicyChange
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.7.1     (L1) Ensure 'Audit Audit Policy Change' is set to include 'Success'         Group Policy Settings     True  
 
 .NOTES
@@ -63,11 +73,21 @@ function Test-PolicyChangeAuditAuditPolicyChange {
 .DESCRIPTION
 This subcategory reports changes in authentication policy.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PolicyChangeAuditAuthenticationPolicyChange
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.7.2     (L1) Ensure 'Audit Authentication Policy Change' is set to include 'Succ... Group Policy Settings     True  
 
 .NOTES
@@ -121,11 +141,21 @@ function Test-PolicyChangeAuditAuthenticationPolicyChange {
 .DESCRIPTION
 This subcategory reports changes in authorization policy.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PolicyChangeAuditAuthorizationPolicyChange
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.7.3     (L1) Ensure 'Audit Authorization Policy Change' is set to include 'Success' Group Policy Settings     True  
 
 .NOTES
@@ -179,11 +209,21 @@ function Test-PolicyChangeAuditAuthorizationPolicyChange {
 .DESCRIPTION
 This subcategory determines whether the operating system generates audit events when changes are made to policy rules for the Microsoft Protection Service (MPSSVC.exe).
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.7.4     (L1) Ensure 'Audit MPSSVC Rule-Level Policy Change' is set to 'Success a... Group Policy Settings     True  
 
 .NOTES
@@ -237,11 +277,21 @@ function Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange {
 .DESCRIPTION
 This subcategory contains events about EFS Data Recovery Agent policy changes, changes in Windows Filtering Platform filter, status on Security policy settings updates for local Group Policy settings, Central Access Policy changes, and detailed troubleshooting events for Cryptographic Next Generation (CNG) operations.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-PolicyChangeAuditOtherPolicyChangeEvents
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.7.5     (L1) Ensure 'Audit Other Policy Change Events' is set to include 'Failure'  Group Policy Settings     True  
 
 .NOTES

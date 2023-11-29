@@ -5,12 +5,22 @@
 .DESCRIPTION
 This policy setting allows administrators to enable the more precise auditing capabilities present in Windows Vista and later.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-AuditSCENoApplyLegacyAuditPolicy
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.2.1   (L1) Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.2.1    L1    Ensure 'Audit: Force audit policy subcategory settings (Wind... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -63,12 +73,22 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
 .DESCRIPTION
 This policy setting determines whether the system shuts down if it is unable to log Security events. It is a requirement for Trusted Computer System Evaluation Criteria (TCSEC)-C2 and Common Criteria certification to prevent auditable events from occurring if the audit system is unable to log them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-AuditCrashOnAuditFail
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.2.2   (L1) Ensure 'Audit: Shut down system immediately if unable to log security audits' is set to 'Di... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.2.2    L1    Ensure 'Audit: Shut down system immediately if unable to log... Group Policy Settings     True        
 
 .NOTES
 General notes

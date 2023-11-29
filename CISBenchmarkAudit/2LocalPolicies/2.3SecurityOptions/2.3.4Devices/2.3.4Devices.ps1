@@ -5,12 +5,22 @@
 .DESCRIPTION
 This policy setting determines who is allowed to format and eject removable NTFS media.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-DevicesAllocateDASD
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.4.1   (L1) Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'       Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.4.1    L1    Ensure 'Devices: Allowed to format and eject removable media... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -63,12 +73,22 @@ function Test-DevicesAllocateDASD {
 .DESCRIPTION
 For a computer to print to a shared printer, the driver for that shared printer must be installed on the local computer. This security setting determines who is allowed to install a printer driver as part of connecting to a shared printer.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-DevicesAddPrinterDrivers
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.4.2   (L1) Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'            Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.4.2    L1    Ensure 'Devices: Prevent users from installing printer drive... Group Policy Settings     True        
 
 .NOTES
 General notes

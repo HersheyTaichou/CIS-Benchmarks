@@ -5,11 +5,21 @@
 .DESCRIPTION
 This policy setting determines whether an anonymous user can request security identifier (SID) attributes for another user, or use a SID to obtain its corresponding user name.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkAccessLSAAnonymousNameLookup
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.10.1  (L1) Ensure 'Network access: Allow anonymous SID/Name translation' is set to 'Disabled'             Group Policy Settings     True    
 
 .NOTES
@@ -63,11 +73,21 @@ function Test-NetworkAccessLSAAnonymousNameLookup {
 .DESCRIPTION
 This policy setting controls the ability of anonymous users to enumerate the accounts in the Security Accounts Manager (SAM).
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkAccessRestrictAnonymousSAM
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.10.2  (L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts' is set to 'Enab... Group Policy Settings     True    
 
 .NOTES
@@ -115,11 +135,21 @@ function Test-NetworkAccessRestrictAnonymousSAM {
 .DESCRIPTION
 This policy setting controls the ability of anonymous users to enumerate SAM accounts as well as shares.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkAccessRestrictAnonymous
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.10.3  (L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is s... Group Policy Settings     True    
 
 .NOTES
@@ -167,11 +197,21 @@ function Test-NetworkAccessRestrictAnonymous {
 .DESCRIPTION
 This policy setting determines whether Credential Manager (formerly called Stored User Names and Passwords) saves passwords or credentials for later use when it gains domain authentication.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkAccessDisableDomainCreds
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.10.4  (L2) Ensure 'Network access: Do not allow storage of passwords and credentials for network authe... Group Policy Settings     True    
 
 .NOTES
@@ -225,11 +265,21 @@ function Test-NetworkAccessDisableDomainCreds {
 .DESCRIPTION
 This policy setting determines what additional permissions are assigned for anonymous connections to the computer.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkAccessEveryoneIncludesAnonymous
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.10.5  (L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disab... Group Policy Settings     True    
 
 .NOTES
@@ -285,11 +335,21 @@ function Test-NetworkAccessEveryoneIncludesAnonymous {
 .DESCRIPTION
 This policy setting determines which communication sessions, or pipes, will have attributes and permissions that allow anonymous access.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkAccessNullSessionPipes
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.10.6  (L1) Configure 'Network access: Named Pipes that can be accessed anonymously' (DC only)             Group Policy Settings     True    
 
 .NOTES
@@ -375,11 +435,21 @@ function Test-NetworkAccessNullSessionPipes {
 .DESCRIPTION
 This policy setting determines which registry paths will be accessible over the network, regardless of the users or groups listed in the access control list (ACL) of the winreg registry key.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkAccessAllowedExactPaths
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.10.8  (L1) Configure 'Network access: Remotely accessible registry paths' is configured                   Group Policy Settings     True    
 
 .NOTES
@@ -438,11 +508,21 @@ function Test-NetworkAccessAllowedExactPaths {
 .DESCRIPTION
 This policy setting determines which registry paths and sub-paths will be accessible over the network, regardless of the users or groups listed in the access control list (ACL) of the winreg registry key.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkAccessAllowedPaths
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.10.9  (L1) Configure 'Network access: Remotely accessible registry paths and sub-paths' is configured     Group Policy Settings     True    
 
 .NOTES
@@ -511,11 +591,21 @@ function Test-NetworkAccessAllowedPaths {
 .DESCRIPTION
 When enabled, this policy setting restricts anonymous access to only those shares and pipes that are named in the "Network access: Named pipes that can be accessed anonymously" and "Network access: Shares that can be accessed anonymously" settings.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkAccessRestrictNullSessAccess
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.10.10 (L1) Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Ena... Group Policy Settings     True    
 
 .NOTES
@@ -569,12 +659,22 @@ function Test-NetworkAccessRestrictNullSessAccess {
 .DESCRIPTION
 This policy setting allows you to restrict remote RPC connections to SAM.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkAccessRestrictRemoteSAM
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.10.10 (L1) Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Ad... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.10.11 (L1) Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Ad... Group Policy Settings     True    
 
 .NOTES
 General notes
@@ -622,11 +722,21 @@ function Test-NetworkAccessRestrictRemoteSAM {
 .DESCRIPTION
 This policy setting determines which network shares can be accessed by anonymous users. The default configuration for this policy setting has little effect because all users have to be authenticated before they can access shared resources on the server.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkAccessNullSessionShares
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.10.12 (L1) Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None'              Group Policy Settings     True    
 
 .NOTES
@@ -680,11 +790,21 @@ function Test-NetworkAccessNullSessionShares {
 .DESCRIPTION
 This policy setting determines how network logons that use local accounts are authenticated.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkAccessForceGuest
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.10.13 (L1) Ensure 'Network access: Sharing and security model for local accounts' is set to 'Classic -... Group Policy Settings     True    
 
 .NOTES

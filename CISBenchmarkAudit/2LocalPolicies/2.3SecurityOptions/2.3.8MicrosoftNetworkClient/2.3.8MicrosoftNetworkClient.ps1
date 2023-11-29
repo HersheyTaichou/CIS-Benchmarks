@@ -5,12 +5,22 @@
 .DESCRIPTION
 This policy setting determines whether packet signing is required by the SMB client component.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-MicrosoftNetworkClientRequireSecuritySignature
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.8.1   (L1) Ensure 'Microsoft network client: Digitally sign communications (always)' is set to 'Enabled'  Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.8.1    L1    Ensure 'Microsoft network client: Digitally sign communicati... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -63,12 +73,22 @@ function Test-MicrosoftNetworkClientRequireSecuritySignature {
 .DESCRIPTION
 This policy setting determines whether the SMB client will attempt to negotiate SMB packet signing.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-MicrosoftNetworkClientEnableSecuritySignature
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.8.2   (L1) Ensure 'Microsoft network client: Digitally sign communications (if server agrees)' is set ... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.8.2    L1    Ensure 'Microsoft network client: Digitally sign communicati... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -121,12 +141,22 @@ function Test-MicrosoftNetworkClientEnableSecuritySignature {
 .DESCRIPTION
 This policy setting determines whether the SMB redirector will send plaintext passwords during authentication to third-party SMB servers that do not support password encryption.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-MicrosoftNetworkClientEnablePlainTextPassword
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.8.3   (L1) Ensure 'Microsoft network client: Send unencrypted password to third-party SMB servers' is ... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.8.3    L1    Ensure 'Microsoft network client: Send unencrypted password ... Group Policy Settings     True        
 
 .NOTES
 General notes

@@ -5,11 +5,21 @@
 .DESCRIPTION
 This policy enables the automatic learning component of input personalization that includes speech, inking, and typing. Automatic learning enables the collection of speech and handwriting patterns, typing history, contacts, and recent calendar information.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-RegionalAndLanguageOptionsAllowUsersToEnableOnlineSpeechRecognitionServices
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 
 .NOTES
 General notes

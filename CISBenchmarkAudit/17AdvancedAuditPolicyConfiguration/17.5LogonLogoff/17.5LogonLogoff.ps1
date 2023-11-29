@@ -5,11 +5,21 @@
 .DESCRIPTION
 This subcategory reports when a user's account is locked out as a result of too many failed logon attempts.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-LogonLogoffAuditAccountLockout
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.5.1     (L1) Ensure 'Audit Account Lockout' is set to include 'Failure'             Group Policy Settings     True  
 
 .NOTES
@@ -63,11 +73,21 @@ function Test-LogonLogoffAuditAccountLockout {
 .DESCRIPTION
 This policy allows you to audit the group membership information in the user’s logon token. Events in this subcategory are generated on the computer on which a logon session is created. For an interactive logon, the security audit event is generated on the computer that the user logged on to. For a network logon, such as accessing a shared folder on the network, the security audit event is generated on the computer hosting the resource.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-LogonLogoffAuditGroupMembership
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.5.2     (L1) Ensure 'Audit Group Membership' is set to include 'Success'            Group Policy Settings     True  
 
 .NOTES
@@ -121,11 +141,21 @@ function Test-LogonLogoffAuditGroupMembership {
 .DESCRIPTION
 This subcategory reports when a user logs off from the system. These events occur on the accessed computer.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-LogonLogoffAuditLogoff
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.5.3     (L1) Ensure 'Audit Logoff' is set to include 'Success'                      Group Policy Settings     True  
 
 .NOTES
@@ -179,11 +209,21 @@ function Test-LogonLogoffAuditLogoff {
 .DESCRIPTION
 This subcategory reports when a user attempts to log on to the system. These events occur on the accessed computer.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-LogonLogoffAuditLogon
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.5.4     (L1) Ensure 'Audit Logon' is set to 'Success and Failure'                   Group Policy Settings     True  
 
 .NOTES
@@ -237,11 +277,21 @@ function Test-LogonLogoffAuditLogon {
 .DESCRIPTION
 This subcategory reports other logon/logoff-related events, such as Remote Desktop Services session disconnects and reconnects, using RunAs to run processes under a different account, and locking and unlocking a workstation.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-LogonLogoffAuditOtherLogonLogoffEvents
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.5.5     (L1) Ensure 'Audit Other Logon/Logoff Events' is set to 'Success and Fai... Group Policy Settings     True  
 
 .NOTES
@@ -295,11 +345,21 @@ function Test-LogonLogoffAuditOtherLogonLogoffEvents {
 .DESCRIPTION
 This subcategory reports when a special logon is used. A special logon is a logon that has administrator-equivalent privileges and can be used to elevate a process to a higher level.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-LogonLogoffAuditSpecialLogon
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.5.6     (L1) Ensure 'Audit Special Logon' is set to include 'Success'               Group Policy Settings     True  
 
 .NOTES

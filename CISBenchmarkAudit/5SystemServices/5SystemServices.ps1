@@ -6,10 +6,20 @@
 .DESCRIPTION
 This service spools print jobs and handles interaction with printers.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-SystemServicesSpooler
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 5.1                   (L1) Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)                                Group Policy Settings     True    
 
@@ -85,10 +95,20 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-CISBenchmarkSystemServices
 
-Number                Name                                                                                                Source                    Pass    
+--------------------  ------------------                                                                                  ------                    ----    
 --------------------  ------------------                                                                                  ------                    ----    
 5.1                   (L1) Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)                                Group Policy Settings     True    
 

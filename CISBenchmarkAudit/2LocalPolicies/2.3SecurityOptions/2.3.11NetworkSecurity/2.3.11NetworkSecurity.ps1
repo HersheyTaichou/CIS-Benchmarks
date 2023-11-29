@@ -5,11 +5,21 @@
 .DESCRIPTION
 This policy setting determines whether Local System services that use Negotiate when reverting to NTLM authentication can use the computer identity.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkSecurityUseMachineId
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.11.1  (L1) Ensure 'Network security: Allow Local System to use computer identity for NTLM' is set to '... Group Policy Settings     True    
 
 .NOTES
@@ -63,11 +73,21 @@ function Test-NetworkSecurityUseMachineId {
 .DESCRIPTION
 This policy setting determines whether NTLM is allowed to fall back to a NULL session when used with LocalSystem.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkSecurityAllowNullSessionFallback
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.11.2  (L1) Ensure 'Network security: Allow LocalSystem NULL session fallback' is set to 'Disabled'        Group Policy Settings     True    
 
 .NOTES
@@ -121,11 +141,21 @@ function Test-NetworkSecurityAllowNullSessionFallback {
 .DESCRIPTION
 This setting determines if online identities are able to authenticate to this computer.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkSecurityAllowOnlineID
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.11.3  (L1) Ensure 'Network Security: Allow PKU2U authentication requests to this computer to use onlin... Group Policy Settings     True    
 
 .NOTES
@@ -179,11 +209,21 @@ function Test-NetworkSecurityAllowOnlineID {
 .DESCRIPTION
 This policy setting allows you to set the encryption types that Kerberos is allowed to use.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkSecuritySupportedEncryptionTypes
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.11.4  (L1) Ensure 'Network security: Configure encryption types allowed for Kerberos' is set to 'AES12... Group Policy Settings     True    
 
 .NOTES
@@ -237,11 +277,21 @@ function Test-NetworkSecuritySupportedEncryptionTypes {
 .DESCRIPTION
 This policy setting determines whether the LAN Manager (LM) hash value for the new password is stored when the password is changed. The LM hash is relatively weak and prone to attack compared to the cryptographically stronger Microsoft Windows NT hash. Since LM hashes are stored on the local computer in the security database, passwords can then be easily compromised if the database is attacked.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkSecurityNoLMHash
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.11.5  (L1) Ensure 'Network security: Do not store LAN Manager hash value on next password change' is s... Group Policy Settings     True    
 
 .NOTES
@@ -295,11 +345,21 @@ function Test-NetworkSecurityNoLMHash {
 .DESCRIPTION
 This policy setting determines whether to disconnect users who are connected to the local computer outside their user account's valid logon hours.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkSecurityForceLogoffWhenHourExpire
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.11.6  (L1) Ensure 'Network security: Force logoff when logon hours expire' is set to 'Enabled'            Group Policy Settings     True    
 
 .NOTES
@@ -353,11 +413,21 @@ function Test-NetworkSecurityForceLogoffWhenHourExpire {
 .DESCRIPTION
 The Network security: LAN Manager authentication level setting determines which challenge/response authentication protocol is used for network logons. This choice affects the level of authentication protocol used by clients, the level of session security negotiated, and the level of authentication accepted by servers.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkSecurityLmCompatibilityLevel
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.11.7  (L1) Ensure 'Network security: LAN Manager authentication level' is set to 'Send NTLMv2 response... Group Policy Settings     True    
 
 .NOTES
@@ -411,11 +481,21 @@ function Test-NetworkSecurityLmCompatibilityLevel {
 .DESCRIPTION
 This policy setting determines the level of data signing that is requested on behalf of clients that issue LDAP BIND requests.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkSecurityLDAPClientIntegrity
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.11.8  (L1) Ensure 'Network security: LDAP client signing requirements' is set to 'Negotiate signing' o... Group Policy Settings     True    
 
 .NOTES
@@ -469,11 +549,21 @@ function Test-NetworkSecurityLDAPClientIntegrity {
 .DESCRIPTION
 This policy setting determines which behaviors are allowed by clients for applications using the NTLM Security Support Provider (SSP).
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkSecurityNTLMMinClientSec
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.11.9  (L1) Ensure 'Network security: Minimum session security for NTLM SSP based (including secure RPC... Group Policy Settings     True    
 
 .NOTES
@@ -527,11 +617,21 @@ function Test-NetworkSecurityNTLMMinClientSec {
 .DESCRIPTION
 This policy setting determines which behaviors are allowed by servers for applications using the NTLM Security Support Provider (SSP).
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-NetworkSecurityNTLMMinServerSec
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 2.3.11.10 (L1) Ensure 'Network security: Minimum session security for NTLM SSP based (including secure RPC... Group Policy Settings     True    
 
 .NOTES

@@ -21,11 +21,21 @@ This parameter is used to enable the Next Generation Windows Security optional a
 
 These settings are recommended in environments that can support them.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-CISBenchmark -Level 1
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 1.1.1     (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'                           Group Policy Settings     True    
 1.1.1     (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'                           Test Policy Fine Grain... True
 
@@ -68,6 +78,16 @@ Get and return the product type:
 2 = Domain Controller
 3 = Member Server
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Get-ProductType
 
@@ -94,6 +114,16 @@ import it as a variable
 
 .PARAMETER Path
 The full path to the XML file, if it already exists, or where to save the file
+
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
 
 .EXAMPLE
 Get-GPResult -Path "$(get-location)\GPResult.xml"
@@ -153,6 +183,16 @@ This is the internal name for a GPO entry. Here are some examples:
 
 .PARAMETER Name
 This is the ChildNodes name. For most entries, this is Name or KeyName. You can think of this as the name of the column where EntryName is found
+
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
 
 .EXAMPLE
 Get-GPOEntry -EntryName "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RequireSignOrSeal" -Name "KeyName"

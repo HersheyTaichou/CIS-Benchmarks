@@ -5,12 +5,22 @@
 .DESCRIPTION
 This policy setting prevents users from adding new Microsoft accounts on this computer.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-AccountsNoConnectedUser
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.1.1   (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Micro... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.1.1    L1    Ensure 'Accounts: Block Microsoft accounts' is set to 'Users... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -64,12 +74,22 @@ function Test-AccountsNoConnectedUser {
 .DESCRIPTION
 This policy setting determines whether the Guest account is enabled or disabled. The Guest account allows unauthenticated network users to gain access to the system.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-AccountsEnableGuestAccount
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.1.2   (L1) Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)                         Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.1.2    L1    Ensure 'Accounts: Guest account status' is set to 'Disabled'... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -119,12 +139,22 @@ function Test-AccountsEnableGuestAccount {
 .DESCRIPTION
 This policy setting determines whether local accounts that are not password protected can be used to log on from locations other than the physical computer console.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-AccountsLimitBlankPasswordUse
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.1.3   (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set ... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.1.3    L1    Ensure 'Accounts: Limit local account use of blank passwords... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -173,12 +203,22 @@ function Test-AccountsLimitBlankPasswordUse {
 .DESCRIPTION
 The built-in local administrator account is a well-known account name that attackers will target. It is recommended to choose another name for this account, and to avoid names that denote administrative or elevated access accounts.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-AccountsNewAdministratorName
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.1.4   (L1) Configure 'Accounts: Rename administrator account'                                             Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.1.4    L1    Configure 'Accounts: Rename administrator account'              Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -232,12 +272,22 @@ function Test-AccountsNewAdministratorName {
 .DESCRIPTION
 The built-in local guest account is another well-known name to attackers. It is recommended to rename this account to something that does not indicate its purpose. Even if you disable this account, which is recommended, ensure that you rename it for added security.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-AccountsNewGuestName
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.1.5   (L1) Configure 'Accounts: Rename guest account'                                                     Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.1.5    L1    Configure 'Accounts: Rename guest account'                      Group Policy Settings     True        
 
 .NOTES
 General notes

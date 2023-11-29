@@ -5,12 +5,22 @@
 .DESCRIPTION
 This policy setting determines whether users must press CTRL+ALT+DEL before they log on.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-InteractiveLogonDisableCAD
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.7.1   (L1) Ensure 'Interactive logon: Do not require CTRL+ALT+DEL' is set to 'Disabled'                   Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.7.1    L1    Ensure 'Interactive logon: Do not require CTRL+ALT+DEL' is s... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -63,12 +73,22 @@ function Test-InteractiveLogonDisableCAD {
 .DESCRIPTION
 This policy setting determines whether the account name of the last user to log on to the client computers in your organization will be displayed in each computer's respective Windows logon screen.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-InteractiveLogonDontDisplayLastUserName
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.7.2   (L1) Ensure 'Interactive logon: Don't display last signed-in' is set to 'Enabled'                   Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.7.2    L1    Ensure 'Interactive logon: Don't display last signed-in' is ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -121,12 +141,22 @@ function Test-InteractiveLogonDontDisplayLastUserName {
 .DESCRIPTION
 Windows notices inactivity of a logon session, and if the amount of inactive time exceeds the inactivity limit, then the screen saver will run, locking the session.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-InteractiveLogonInactivityTimeoutSecs
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.7.3   (L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.7.3    L1    Ensure 'Interactive logon: Machine inactivity limit' is set ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -179,12 +209,22 @@ function Test-InteractiveLogonInactivityTimeoutSecs {
 .DESCRIPTION
 This policy setting specifies a text message that displays to users when they log on.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-InteractiveLogonLegalNoticeText
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.7.4   (L1) Configure 'Interactive logon: Message text for users attempting to log on'                     Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.7.4    L1    Configure 'Interactive logon: Message text for users attempt... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -237,12 +277,22 @@ function Test-InteractiveLogonLegalNoticeText {
 .DESCRIPTION
 This policy setting specifies the text displayed in the title bar of the window that users see when they log on to the system.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-InteractiveLogonLegalNoticeCaption
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.7.5   (L1) Configure 'Interactive logon: Message title for users attempting to log on'                    Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.7.5    L1    Configure 'Interactive logon: Message title for users attemp... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -295,12 +345,22 @@ function Test-InteractiveLogonLegalNoticeCaption {
 .DESCRIPTION
 This policy setting determines whether a user can log on to a Windows domain using cached account information.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-InteractiveLogonCachedLogonsCount
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.7.6   (L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.7.6    L2    Ensure 'Interactive logon: Number of previous logons to cach... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -348,12 +408,22 @@ function Test-InteractiveLogonCachedLogonsCount {
 .DESCRIPTION
 This policy setting determines how far in advance users are warned that their password will expire.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-InteractiveLogonPasswordExpiryWarning
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.7.7   (L1) Ensure 'Interactive logon: Prompt user to change password before expiration' is set to 'bet... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.7.7    L1    Ensure 'Interactive logon: Prompt user to change password be... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -406,12 +476,22 @@ function Test-InteractiveLogonPasswordExpiryWarning {
 .DESCRIPTION
 Logon information is required to unlock a locked computer. For domain accounts, this security setting determines whether it is necessary to contact a Domain Controller to unlock a computer.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-InteractiveLogonForceUnlockLogon
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.7.8   (L1) Ensure 'Interactive logon: Require Domain Controller Authentication to unlock workstation' ... Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.7.8    L1    Ensure 'Interactive logon: Require Domain Controller Authent... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -458,12 +538,22 @@ function Test-InteractiveLogonForceUnlockLogon {
 .DESCRIPTION
 This policy setting determines what happens when the smart card for a logged-on user is removed from the smart card reader.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-InteractiveLogonScRemoveOption
 
-Number    Name                                                                                                Source                    Pass    
---------- ------------------                                                                                  ------                    ----    
-2.3.7.9   (L1) Ensure 'Interactive logon: Smart card removal behavior' is set to 'Lock Workstation' or higher Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.7.9    L1    Ensure 'Interactive logon: Smart card removal behavior' is s... Group Policy Settings     True        
 
 .NOTES
 General notes

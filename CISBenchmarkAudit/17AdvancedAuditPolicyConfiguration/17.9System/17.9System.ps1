@@ -5,11 +5,21 @@
 .DESCRIPTION
 This subcategory reports on the activities of the Internet Protocol security (IPsec) driver.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-SystemAuditIPsecDriver
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.9.1     (L1) Ensure 'Audit IPsec Driver' is set to 'Success and Failure'            Group Policy Settings     True  
 
 .NOTES
@@ -63,11 +73,21 @@ function Test-SystemAuditIPsecDriver {
 .DESCRIPTION
 This subcategory reports on other system events
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-SystemAuditOtherSystemEvents
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.9.2     (L1) Ensure 'Audit Other System Events' is set to 'Success and Failure'     Group Policy Settings     True  
 
 .NOTES
@@ -121,11 +141,21 @@ function Test-SystemAuditOtherSystemEvents {
 .DESCRIPTION
 This subcategory reports changes in security state of the system, such as when the security subsystem starts and stops.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-SystemAuditSecurityStateChange
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.9.3     (L1) Ensure 'Audit Security State Change' is set to include 'Success'       Group Policy Settings     True  
 
 .NOTES
@@ -179,11 +209,21 @@ function Test-SystemAuditSecurityStateChange {
 .DESCRIPTION
 This subcategory reports the loading of extension code such as authentication packages by the security subsystem.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-SystemAuditSecuritySystemExtension
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.9.4     (L1) Ensure 'Audit Security System Extension' is set to include 'Success'   Group Policy Settings     True  
 
 .NOTES
@@ -237,11 +277,21 @@ function Test-SystemAuditSecuritySystemExtension {
 .DESCRIPTION
 This subcategory reports on violations of integrity of the security subsystem.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-SystemAuditSystemIntegrity
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.9.5     (L1) Ensure 'Audit System Integrity' is set to 'Success and Failure'        Group Policy Settings     True  
 
 .NOTES

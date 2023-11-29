@@ -5,11 +5,21 @@
 .DESCRIPTION
 This subcategory reports when an AD DS object is accessed. Only objects with SACLs cause audit events to be generated, and only when they are accessed in a manner that matches their SACL. These events are similar to the directory service access events in previous versions of Windows Server.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-DSAccessAuditDirectoryServiceAccess
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.4.1     (L1) Ensure 'Audit Directory Service Access' is set to include 'Failure'... Group Policy Settings     True  
 
 .NOTES
@@ -63,11 +73,21 @@ function Test-DSAccessAuditDirectoryServiceAccess {
 .DESCRIPTION
 This subcategory reports changes to objects in Active Directory Domain Services (AD DS). The types of changes that are reported are create, modify, move, and undelete operations that are performed on an object.
 
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
 .EXAMPLE
 Test-DSAccessAuditDirectoryServiceChanges
 
-Number     Name                                                                        Source                    Pass  
-------     ----                                                                        ------                    ----  
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 17.4.2     (L1) Ensure 'Audit Directory Service Changes' is set to include 'Success... Group Policy Settings     True  
 
 .NOTES
