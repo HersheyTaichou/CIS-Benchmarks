@@ -20,7 +20,7 @@ Test-PrivateProfileEnableFirewall
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.2.1      (L1) Ensure 'Windows Firewall: Private: Firewall state' is set to 'On (r... Group Policy Settings     True  
+9.2.1      L1    Ensure 'Windows Firewall: Private: Firewall state' is set to... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -88,7 +88,7 @@ Test-PrivateProfileDefaultInboundAction
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.2.2      (L1) Ensure 'Windows Firewall: Private: Inbound connections' is set to '... Group Policy Settings     True  
+9.2.2      L1    Ensure 'Windows Firewall: Private: Inbound connections' is s... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -156,7 +156,7 @@ Test-PrivateProfileDefaultOutboundAction
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.2.3      (L1) Ensure 'Windows Firewall: Private: Outbound connections' is set to ... Group Policy Settings     True  
+9.2.3      L1    Ensure 'Windows Firewall: Private: Outbound connections' is ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -224,7 +224,7 @@ Test-PrivateProfileDisableNotifications
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.2.4      (L1) Ensure 'Windows Firewall: Private: Settings: Display a notification... Group Policy Settings     True  
+9.2.4      L1    Ensure 'Windows Firewall: Private: Settings: Display a notif... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -292,7 +292,7 @@ Test-PrivateProfileLogFilePath
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.2.5      (L1) Ensure 'Windows Firewall: Private: Logging: Name' is set to '%Syste... Group Policy Settings     True  
+9.2.5      L1    Ensure 'Windows Firewall: Private: Logging: Name' is set to ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -364,7 +364,7 @@ Test-PrivateProfileLogFileSize
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.2.6      (L1) Ensure 'Windows Firewall: Private: Logging: Size limit (KB)' is set... Group Policy Settings     True  
+9.2.6      L1    Ensure 'Windows Firewall: Private: Logging: Size limit (KB)'... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -432,7 +432,7 @@ Test-PrivateProfileLogDroppedPackets
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.2.7      (L1) Ensure 'Windows Firewall: Private: Logging: Log dropped packets' is... Group Policy Settings     True  
+9.2.7      L1    Ensure 'Windows Firewall: Private: Logging: Log dropped pack... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -500,7 +500,7 @@ Test-PrivateProfileLogSuccessfulConnections
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.2.8      (L1) Ensure 'Windows Firewall: Private: Logging: Log successful connecti... Group Policy Settings     True  
+9.2.8      L1    Ensure 'Windows Firewall: Private: Logging: Log successful c... Group Policy Settings     True        
 
 .NOTES
 General notes

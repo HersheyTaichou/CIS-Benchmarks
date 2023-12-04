@@ -20,7 +20,7 @@ Test-PublicProfileEnableFirewall
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.3.1      (L1) Ensure 'Windows Firewall: Public: Firewall state' is set to 'On (re... Group Policy Settings     True  
+9.3.1      L1    Ensure 'Windows Firewall: Public: Firewall state' is set to ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -88,7 +88,7 @@ Test-PublicProfileDefaultInboundAction
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.3.2      (L1) Ensure 'Windows Firewall: Public: Inbound connections' is set to 'B... Group Policy Settings     True  
+9.3.2      L1    Ensure 'Windows Firewall: Public: Inbound connections' is se... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -156,7 +156,7 @@ Test-PublicProfileDefaultOutboundAction
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.3.3      (L1) Ensure 'Windows Firewall: Public: Outbound connections' is set to '... Group Policy Settings     True  
+9.3.3      L1    Ensure 'Windows Firewall: Public: Outbound connections' is s... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -224,7 +224,7 @@ Test-PublicProfileDisableNotifications
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.3.4      (L1) Ensure 'Windows Firewall: Public: Settings: Display a notification'... Group Policy Settings     True  
+9.3.4      L1    Ensure 'Windows Firewall: Public: Settings: Display a notifi... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -292,7 +292,7 @@ Test-PublicProfileAllowLocalPolicyMerge
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.3.5      (L1) Ensure 'Windows Firewall: Public: Settings: Apply local firewall ru... Group Policy Settings     True  
+9.3.5      L1    Ensure 'Windows Firewall: Public: Settings: Apply local fire... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -360,7 +360,7 @@ Test-PublicProfileAllowLocalIPsecPolicyMerge
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.3.6      (L1) Ensure 'Windows Firewall: Public: Settings: Apply local connection ... Group Policy Settings     True  
+9.3.6      L1    Ensure 'Windows Firewall: Public: Settings: Apply local conn... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -428,7 +428,7 @@ Test-PublicProfileLogFilePath
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.3.7      (L1) Ensure 'Windows Firewall: Public: Logging: Name' is set to '%System... Group Policy Settings     True  
+9.3.7      L1    Ensure 'Windows Firewall: Public: Logging: Name' is set to '... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -500,7 +500,7 @@ Test-PublicProfileLogFileSize
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.3.8      (L1) Ensure 'Windows Firewall: Public: Logging: Size limit (KB)' is set ... Group Policy Settings     True  
+9.3.8      L1    Ensure 'Windows Firewall: Public: Logging: Size limit (KB)' ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -568,7 +568,7 @@ Test-PublicProfileLogDroppedPackets
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.3.9      (L1) Ensure 'Windows Firewall: Public: Logging: Log dropped packets' is ... Group Policy Settings     True  
+9.3.9      L1    Ensure 'Windows Firewall: Public: Logging: Log dropped packe... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -636,7 +636,7 @@ Test-PublicProfileLogSuccessfulConnections
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.3.10     (L1) Ensure 'Windows Firewall: Public: Logging: Log successful connectio... Group Policy Settings     True  
+9.3.10     L1    Ensure 'Windows Firewall: Public: Logging: Log successful co... Group Policy Settings     True        
 
 .NOTES
 General notes

@@ -20,7 +20,7 @@ Test-DomainProfileEnableFirewall
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.1.1      (L1) Ensure 'Windows Firewall: Domain: Firewall state' is set to 'On (re... Group Policy Settings     True  
+9.1.1      L1    Ensure 'Windows Firewall: Domain: Firewall state' is set to ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -90,7 +90,7 @@ Test-DomainProfileDefaultInboundAction
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.1.2      (L1) Ensure 'Windows Firewall: Domain: Inbound connections' is set to 'B... Group Policy Settings     True  
+9.1.2      L1    Ensure 'Windows Firewall: Domain: Inbound connections' is se... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -158,7 +158,7 @@ Test-DomainProfileDefaultOutboundAction
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.1.3      (L1) Ensure 'Windows Firewall: Domain: Outbound connections' is set to '... Group Policy Settings     True  
+9.1.3      L1    Ensure 'Windows Firewall: Domain: Outbound connections' is s... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -226,7 +226,7 @@ Test-DomainProfileDisableNotifications
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.1.4      (L1) Ensure 'Windows Firewall: Domain: Settings: Display a notification'... Group Policy Settings     True  
+9.1.4      L1    Ensure 'Windows Firewall: Domain: Settings: Display a notifi... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -294,7 +294,7 @@ Test-DomainProfileLogFilePath
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.1.5      (L1) Ensure 'Windows Firewall: Domain: Logging: Name' is set to '%System... Group Policy Settings     True  
+9.1.5      L1    Ensure 'Windows Firewall: Domain: Logging: Name' is set to '... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -366,7 +366,7 @@ Test-DomainProfileLogFileSize
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.1.6      (L1) Ensure 'Windows Firewall: Domain: Logging: Size limit (KB)' is set ... Group Policy Settings     True  
+9.1.6      L1    Ensure 'Windows Firewall: Domain: Logging: Size limit (KB)' ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -434,7 +434,7 @@ Test-DomainProfileLogDroppedPackets
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.1.7      (L1) Ensure 'Windows Firewall: Domain: Logging: Log dropped packets' is ... Group Policy Settings     True  
+9.1.7      L1    Ensure 'Windows Firewall: Domain: Logging: Log dropped packe... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -502,7 +502,7 @@ Test-DomainProfileLogSuccessfulConnections
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-9.1.8      (L1) Ensure 'Windows Firewall: Domain: Logging: Log successful connectio... Group Policy Settings     True  
+9.1.8      L1    Ensure 'Windows Firewall: Domain: Logging: Log successful co... Group Policy Settings     True        
 
 .NOTES
 General notes

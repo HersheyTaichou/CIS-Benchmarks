@@ -20,7 +20,7 @@ Test-UserAccountControlFilterAdministratorToken
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.17.1  (L1) Ensure 'User Account Control: Admin Approval Mode for the Built-in Administrator account' i... Group Policy Settings     True    
+2.3.17.1   L1    Ensure 'User Account Control: Admin Approval Mode for the Bu... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -88,7 +88,7 @@ Test-UserAccountControlConsentPromptBehaviorAdmin
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.17.2  (L1) Ensure 'User Account Control: Behavior of the elevation prompt for administrators in Admin ... Group Policy Settings     True    
+2.3.17.2   L1    Ensure 'User Account Control: Behavior of the elevation prom... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -156,7 +156,7 @@ Test-UserAccountControlConsentPromptBehaviorUser
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.17.3  (L1) Ensure 'User Account Control: Behavior of the elevation prompt for standard users' is set t... Group Policy Settings     True    
+2.3.17.3   L1    Ensure 'User Account Control: Behavior of the elevation prom... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -226,7 +226,7 @@ Test-UserAccountControlEnableInstallerDetection
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.17.4  (L1) Ensure 'User Account Control: Detect application installations and prompt for elevation' is... Group Policy Settings     True    
+2.3.17.4   L1    Ensure 'User Account Control: Detect application installatio... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -294,7 +294,7 @@ Test-UserAccountControlEnableSecureUIAPaths
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.17.5  (L1) Ensure 'User Account Control: Only elevate UIAccess applications that are installed in secu... Group Policy Settings     True    
+2.3.17.5   L1    Ensure 'User Account Control: Only elevate UIAccess applicat... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -362,7 +362,7 @@ Test-UserAccountControlEnableLUA
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.17.6  (L1) Ensure 'User Account Control: Run all administrators in Admin Approval Mode' is set to 'Ena... Group Policy Settings     True    
+2.3.17.6   L1    Ensure 'User Account Control: Run all administrators in Admi... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -430,7 +430,7 @@ Test-UserAccountControlPromptOnSecureDesktop
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.17.7  (L1) Ensure 'User Account Control: Switch to the secure desktop when prompting for elevation' is... Group Policy Settings     True    
+2.3.17.7   L1    Ensure 'User Account Control: Switch to the secure desktop w... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -498,7 +498,7 @@ Test-UserAccountControlEnableVirtualization
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.17.8  (L1) Ensure 'User Account Control: Virtualize file and registry write failures to per-user locat... Group Policy Settings     True    
+2.3.17.8   L1    Ensure 'User Account Control: Virtualize file and registry w... Group Policy Settings     True        
 
 .NOTES
 General notes

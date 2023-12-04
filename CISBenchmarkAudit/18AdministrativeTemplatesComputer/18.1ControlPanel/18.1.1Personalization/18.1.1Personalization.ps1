@@ -20,6 +20,7 @@ Test-PersonalizationPreventEnablingLockScreenCamera
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
+18.1.1.1   L1    Ensure 'Prevent enabling lock screen camera' is set to 'Enab... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -87,6 +88,7 @@ Test-PersonalizationPreventenablinglockscreenslideshow
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
+18.1.1.2   L1    Ensure 'Prevent enabling lock screen slide show' is set to '... Group Policy Settings     True        
 
 .NOTES
 General notes

@@ -20,7 +20,7 @@ Test-SystemAuditIPsecDriver
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.9.1     (L1) Ensure 'Audit IPsec Driver' is set to 'Success and Failure'            Group Policy Settings     True  
+17.9.1     L1    Ensure 'Audit IPsec Driver' is set to 'Success and Failure'     Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -88,7 +88,7 @@ Test-SystemAuditOtherSystemEvents
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.9.2     (L1) Ensure 'Audit Other System Events' is set to 'Success and Failure'     Group Policy Settings     True  
+17.9.2     L1    Ensure 'Audit Other System Events' is set to 'Success and Fa... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -156,7 +156,7 @@ Test-SystemAuditSecurityStateChange
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.9.3     (L1) Ensure 'Audit Security State Change' is set to include 'Success'       Group Policy Settings     True  
+17.9.3     L1    Ensure 'Audit Security State Change' is set to include 'Succ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -224,7 +224,7 @@ Test-SystemAuditSecuritySystemExtension
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.9.4     (L1) Ensure 'Audit Security System Extension' is set to include 'Success'   Group Policy Settings     True  
+17.9.4     L1    Ensure 'Audit Security System Extension' is set to include '... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -292,7 +292,7 @@ Test-SystemAuditSystemIntegrity
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.9.5     (L1) Ensure 'Audit System Integrity' is set to 'Success and Failure'        Group Policy Settings     True  
+17.9.5     L1    Ensure 'Audit System Integrity' is set to 'Success and Failure' Group Policy Settings     True        
 
 .NOTES
 General notes

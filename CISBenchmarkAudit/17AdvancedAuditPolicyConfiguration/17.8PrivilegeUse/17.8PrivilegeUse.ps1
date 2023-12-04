@@ -20,7 +20,7 @@ Test-PrivilegeUseAuditSensitivePrivilegeUse
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.8.1     (L1) Ensure 'Audit Sensitive Privilege Use' is set to 'Success and Failure' Group Policy Settings     True  
+17.8.1     L1    Ensure 'Audit Sensitive Privilege Use' is set to 'Success an... Group Policy Settings     True        
 
 .NOTES
 General notes

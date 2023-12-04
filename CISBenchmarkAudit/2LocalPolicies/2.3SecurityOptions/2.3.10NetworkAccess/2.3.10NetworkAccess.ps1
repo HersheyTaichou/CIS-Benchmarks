@@ -20,7 +20,7 @@ Test-NetworkAccessLSAAnonymousNameLookup
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.10.1  (L1) Ensure 'Network access: Allow anonymous SID/Name translation' is set to 'Disabled'             Group Policy Settings     True    
+2.3.10.1   L1    Ensure 'Network access: Allow anonymous SID/Name translation... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -88,7 +88,7 @@ Test-NetworkAccessRestrictAnonymousSAM
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.10.2  (L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts' is set to 'Enab... Group Policy Settings     True    
+2.3.10.2   L1    Ensure 'Network access: Do not allow anonymous enumeration o... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -150,7 +150,7 @@ Test-NetworkAccessRestrictAnonymous
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.10.3  (L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is s... Group Policy Settings     True    
+2.3.10.3   L1    Ensure 'Network access: Do not allow anonymous enumeration o... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -212,7 +212,7 @@ Test-NetworkAccessDisableDomainCreds
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.10.4  (L2) Ensure 'Network access: Do not allow storage of passwords and credentials for network authe... Group Policy Settings     True    
+2.3.10.4   L2    Ensure 'Network access: Do not allow storage of passwords an... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -280,7 +280,7 @@ Test-NetworkAccessEveryoneIncludesAnonymous
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.10.5  (L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disab... Group Policy Settings     True    
+2.3.10.5   L1    Ensure 'Network access: Let Everyone permissions apply to an... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -350,7 +350,7 @@ Test-NetworkAccessNullSessionPipes
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.10.6  (L1) Configure 'Network access: Named Pipes that can be accessed anonymously' (DC only)             Group Policy Settings     True    
+2.3.10.6   L1    Configure 'Network access: Named Pipes that can be accessed ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -450,7 +450,7 @@ Test-NetworkAccessAllowedExactPaths
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.10.8  (L1) Configure 'Network access: Remotely accessible registry paths' is configured                   Group Policy Settings     True    
+2.3.10.8   L1    Configure 'Network access: Remotely accessible registry path... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -523,7 +523,7 @@ Test-NetworkAccessAllowedPaths
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.10.9  (L1) Configure 'Network access: Remotely accessible registry paths and sub-paths' is configured     Group Policy Settings     True    
+2.3.10.9   L1    Configure 'Network access: Remotely accessible registry path... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -606,7 +606,8 @@ Test-NetworkAccessRestrictNullSessAccess
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.10.10 (L1) Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Ena... Group Policy Settings     True    
+2.3.10.10  L1    Ensure 'Network access: Restrict anonymous access to Named P... Group Policy Settings     True        
+
 
 .NOTES
 General notes
@@ -674,7 +675,7 @@ Test-NetworkAccessRestrictRemoteSAM
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.10.11 (L1) Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Ad... Group Policy Settings     True    
+2.3.10.11  L1    Ensure 'Network access: Restrict clients allowed to make rem... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -737,7 +738,7 @@ Test-NetworkAccessNullSessionShares
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.10.12 (L1) Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None'              Group Policy Settings     True    
+2.3.10.12  L1    Ensure 'Network access: Shares that can be accessed anonymou... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -805,7 +806,8 @@ Test-NetworkAccessForceGuest
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.10.13 (L1) Ensure 'Network access: Sharing and security model for local accounts' is set to 'Classic -... Group Policy Settings     True    
+2.3.10.13  L1    Ensure 'Network access: Sharing and security model for local... Group Policy Settings     True        
+
 
 .NOTES
 General notes

@@ -20,7 +20,7 @@ Test-LogonLogoffAuditAccountLockout
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.5.1     (L1) Ensure 'Audit Account Lockout' is set to include 'Failure'             Group Policy Settings     True  
+17.5.1     L1    Ensure 'Audit Account Lockout' is set to include 'Failure'      Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -88,7 +88,7 @@ Test-LogonLogoffAuditGroupMembership
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.5.2     (L1) Ensure 'Audit Group Membership' is set to include 'Success'            Group Policy Settings     True  
+17.5.2     L1    Ensure 'Audit Group Membership' is set to include 'Success'     Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -156,7 +156,7 @@ Test-LogonLogoffAuditLogoff
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.5.3     (L1) Ensure 'Audit Logoff' is set to include 'Success'                      Group Policy Settings     True  
+17.5.3     L1    Ensure 'Audit Logoff' is set to include 'Success'               Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -224,7 +224,7 @@ Test-LogonLogoffAuditLogon
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.5.4     (L1) Ensure 'Audit Logon' is set to 'Success and Failure'                   Group Policy Settings     True  
+17.5.4     L1    Ensure 'Audit Logon' is set to 'Success and Failure'            Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -292,7 +292,7 @@ Test-LogonLogoffAuditOtherLogonLogoffEvents
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.5.5     (L1) Ensure 'Audit Other Logon/Logoff Events' is set to 'Success and Fai... Group Policy Settings     True  
+17.5.5     L1    Ensure 'Audit Other Logon/Logoff Events' is set to 'Success ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -360,7 +360,7 @@ Test-LogonLogoffAuditSpecialLogon
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.5.6     (L1) Ensure 'Audit Special Logon' is set to include 'Success'               Group Policy Settings     True  
+17.5.6     L1    Ensure 'Audit Special Logon' is set to include 'Success'        Group Policy Settings     True        
 
 .NOTES
 General notes

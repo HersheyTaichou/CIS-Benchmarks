@@ -20,7 +20,7 @@ Test-DSAccessAuditDirectoryServiceAccess
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.4.1     (L1) Ensure 'Audit Directory Service Access' is set to include 'Failure'... Group Policy Settings     True  
+17.4.1     L1    Ensure 'Audit Directory Service Access' is set to include 'F... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -88,7 +88,7 @@ Test-DSAccessAuditDirectoryServiceChanges
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.4.2     (L1) Ensure 'Audit Directory Service Changes' is set to include 'Success... Group Policy Settings     True  
+17.4.2     L1    Ensure 'Audit Directory Service Changes' is set to include '... Group Policy Settings     True        
 
 .NOTES
 General notes

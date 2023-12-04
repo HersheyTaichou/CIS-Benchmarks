@@ -20,7 +20,7 @@ Test-SystemObjectsObCaseInsensitive
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.15.1  (L1) Ensure 'System objects: Require case insensitivity for non-Windows subsystems' is set to 'E... Group Policy Settings     True    
+2.3.15.1   L1    Ensure 'System objects: Require case insensitivity for non-W... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -88,7 +88,7 @@ Test-SystemObjectsProtectionMode
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.15.2  (L1) Ensure 'System objects: Strengthen default permissions of internal system objects (e.g. Sym... Group Policy Settings     True    
+2.3.15.2   L1    Ensure 'System objects: Strengthen default permissions of in... Group Policy Settings     True        
 
 .NOTES
 General notes

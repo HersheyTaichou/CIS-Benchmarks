@@ -20,6 +20,7 @@ Test-RegionalAndLanguageOptionsAllowUsersToEnableOnlineSpeechRecognitionServices
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
+18.1.2.2   L1    Ensure 'Allow users to enable online speech recognition serv... Group Policy Settings     True        
 
 .NOTES
 General notes

@@ -20,7 +20,7 @@ Test-AccountLogonAuditCredentialValidation
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.1.1     (L1) Ensure 'Audit Credential Validation' is set to 'Success and Failure'   Group Policy Settings     True  
+17.1.1     L1    Ensure 'Audit Credential Validation' is set to 'Success and ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -88,7 +88,7 @@ Test-AccountLogonAuditKerberosAuthenticationService
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.1.2     (L1) Ensure 'Audit Kerberos Authentication Service' is set to 'Success a... Group Policy Settings     True  
+17.1.2     L1    Ensure 'Audit Kerberos Authentication Service' is set to 'Su... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -156,7 +156,7 @@ Test-AccountLogonAuditKerberosServiceTicketOperations
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.1.3     (L1) Ensure 'Audit Kerberos Service Ticket Operations' is set to 'Succes... Group Policy Settings     True  
+17.1.3     L1    Ensure 'Audit Kerberos Service Ticket Operations' is set to ... Group Policy Settings     True        
 
 .NOTES
 General notes

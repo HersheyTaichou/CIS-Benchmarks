@@ -19,9 +19,10 @@ This is used to define the GPO XML variable to test
 .EXAMPLE
 Test-SystemServicesSpooler
 
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
-5.1                   (L1) Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)                                Group Policy Settings     True    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+5.1        L1    Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only) Group Policy Settings     True        
+
 
 .NOTES
 General notes

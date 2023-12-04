@@ -20,7 +20,7 @@ Test-DetailedTrackingAuditPNPActivity
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.3.1     (L1) Ensure 'Audit PNP Activity' is set to include 'Success'                Group Policy Settings     True  
+17.3.1     L1    Ensure 'Audit PNP Activity' is set to include 'Success'         Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -88,7 +88,7 @@ Test-DetailedTrackingAuditProcessCreation
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.3.2     (L1) Ensure 'Audit Process Creation' is set to include 'Success'            Group Policy Settings     True  
+17.3.2     L1    Ensure 'Audit Process Creation' is set to include 'Success'     Group Policy Settings     True        
 
 .NOTES
 General notes

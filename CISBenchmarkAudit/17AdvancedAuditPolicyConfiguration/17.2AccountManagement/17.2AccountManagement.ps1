@@ -23,7 +23,7 @@ Test-AccountManagementAuditApplicationGroupManagement
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.2.1     (L1) Ensure 'Audit Application Group Management' is set to 'Success and ... Group Policy Settings     True  
+17.2.1     L1    Ensure 'Audit Application Group Management' is set to 'Succe... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -91,7 +91,7 @@ Test-AccountManagementAuditComputerAccountManagement
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.2.2     (L1) Ensure 'Audit Computer Account Management' is set to include 'Succe... Group Policy Settings     True  
+17.2.2     L1    Ensure 'Audit Computer Account Management' is set to include... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -159,7 +159,7 @@ Test-AccountManagementAuditDistributionGroupManagement
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.2.3     (L1) Ensure 'Audit Distribution Group Management' is set to include 'Suc... Group Policy Settings     True  
+17.2.3     L1    Ensure 'Audit Distribution Group Management' is set to inclu... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -227,7 +227,7 @@ Test-AccountManagementAuditOtherAccountManagementEvents
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.2.4     (L1) Ensure 'Audit Other Account Management Events' is set to include 'S... Group Policy Settings     True  
+17.2.4     L1    Ensure 'Audit Other Account Management Events' is set to inc... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -295,7 +295,7 @@ Test-AccountManagementAuditSecurityGroupManagement
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.2.5     (L1) Ensure 'Audit Security Group Management' is set to include 'Success'   Group Policy Settings     True  
+17.2.5     L1    Ensure 'Audit Security Group Management' is set to include '... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -363,7 +363,7 @@ Test-AccountManagementAuditUserAccountManagement
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.2.6     (L1) Ensure 'Audit User Account Management' is set to 'Success and Failure' Group Policy Settings     True  
+17.2.6     L1    Ensure 'Audit User Account Management' is set to 'Success an... Group Policy Settings     True        
 
 .NOTES
 General notes

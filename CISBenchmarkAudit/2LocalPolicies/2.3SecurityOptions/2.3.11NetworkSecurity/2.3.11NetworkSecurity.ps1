@@ -20,7 +20,7 @@ Test-NetworkSecurityUseMachineId
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.11.1  (L1) Ensure 'Network security: Allow Local System to use computer identity for NTLM' is set to '... Group Policy Settings     True    
+2.3.11.1   L1    Ensure 'Network security: Allow Local System to use computer... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -88,7 +88,7 @@ Test-NetworkSecurityAllowNullSessionFallback
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.11.2  (L1) Ensure 'Network security: Allow LocalSystem NULL session fallback' is set to 'Disabled'        Group Policy Settings     True    
+2.3.11.2   L1    Ensure 'Network security: Allow LocalSystem NULL session fal... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -156,7 +156,7 @@ Test-NetworkSecurityAllowOnlineID
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.11.3  (L1) Ensure 'Network Security: Allow PKU2U authentication requests to this computer to use onlin... Group Policy Settings     True    
+2.3.11.3   L1    Ensure 'Network Security: Allow PKU2U authentication request... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -224,7 +224,7 @@ Test-NetworkSecuritySupportedEncryptionTypes
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.11.4  (L1) Ensure 'Network security: Configure encryption types allowed for Kerberos' is set to 'AES12... Group Policy Settings     True    
+2.3.11.4   L1    Ensure 'Network security: Configure encryption types allowed... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -292,7 +292,7 @@ Test-NetworkSecurityNoLMHash
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.11.5  (L1) Ensure 'Network security: Do not store LAN Manager hash value on next password change' is s... Group Policy Settings     True    
+2.3.11.5   L1    Ensure 'Network security: Do not store LAN Manager hash valu... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -360,7 +360,7 @@ Test-NetworkSecurityForceLogoffWhenHourExpire
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.11.6  (L1) Ensure 'Network security: Force logoff when logon hours expire' is set to 'Enabled'            Group Policy Settings     True    
+2.3.11.6   L1    Ensure 'Network security: Force logoff when logon hours expi... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -428,7 +428,7 @@ Test-NetworkSecurityLmCompatibilityLevel
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.11.7  (L1) Ensure 'Network security: LAN Manager authentication level' is set to 'Send NTLMv2 response... Group Policy Settings     True    
+2.3.11.7   L1    Ensure 'Network security: LAN Manager authentication level' ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -496,7 +496,7 @@ Test-NetworkSecurityLDAPClientIntegrity
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.11.8  (L1) Ensure 'Network security: LDAP client signing requirements' is set to 'Negotiate signing' o... Group Policy Settings     True    
+2.3.11.8   L1    Ensure 'Network security: LDAP client signing requirements' ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -564,7 +564,7 @@ Test-NetworkSecurityNTLMMinClientSec
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.11.9  (L1) Ensure 'Network security: Minimum session security for NTLM SSP based (including secure RPC... Group Policy Settings     True    
+2.3.11.9   L1    Ensure 'Network security: Minimum session security for NTLM ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -632,7 +632,7 @@ Test-NetworkSecurityNTLMMinServerSec
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.11.10 (L1) Ensure 'Network security: Minimum session security for NTLM SSP based (including secure RPC... Group Policy Settings     True    
+2.3.11.10  L1    Ensure 'Network security: Minimum session security for NTLM ... Group Policy Settings     True        
 
 .NOTES
 General notes

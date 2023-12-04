@@ -20,7 +20,7 @@ Test-ShutdownShutdownWithoutLogon
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.13.1  (L1) Ensure 'Shutdown: Allow system to be shut down without having to log on' is set to 'Disabled'  Group Policy Settings     True    
+2.3.13.1   L1    Ensure 'Shutdown: Allow system to be shut down without havin... Group Policy Settings     True        
 
 .NOTES
 General notes

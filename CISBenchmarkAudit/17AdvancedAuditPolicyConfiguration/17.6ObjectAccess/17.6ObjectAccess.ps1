@@ -20,7 +20,7 @@ Test-ObjectAccessAuditDetailedFileShare
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.6.1     (L1) Ensure 'Audit Detailed File Share' is set to include 'Failure'         Group Policy Settings     True  
+17.6.1     L1    Ensure 'Audit Detailed File Share' is set to include 'Failure'  Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -88,7 +88,7 @@ Test-ObjectAccessAuditFileShare
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.6.2     (L1) Ensure 'Audit File Share' is set to 'Success and Failure'              Group Policy Settings     True  
+17.6.2     L1    Ensure 'Audit File Share' is set to 'Success and Failure'       Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -156,7 +156,7 @@ Test-ObjectAccessAuditOtherObjectAccessEvents
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.6.3     (L1) Ensure 'Audit Other Object Access Events' is set to 'Success and Fa... Group Policy Settings     True  
+17.6.3     L1    Ensure 'Audit Other Object Access Events' is set to 'Success... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -224,7 +224,7 @@ Test-ObjectAccessAuditRemovableStorage
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.6.4     (L1) Ensure 'Audit Removable Storage' is set to 'Success and Failure'       Group Policy Settings     True  
+17.6.4     L1    Ensure 'Audit Removable Storage' is set to 'Success and Fail... Group Policy Settings     True        
 
 .NOTES
 General notes

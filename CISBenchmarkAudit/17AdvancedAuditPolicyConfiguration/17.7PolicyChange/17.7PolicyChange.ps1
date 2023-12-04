@@ -20,7 +20,7 @@ Test-PolicyChangeAuditAuditPolicyChange
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.7.1     (L1) Ensure 'Audit Audit Policy Change' is set to include 'Success'         Group Policy Settings     True  
+17.7.1     L1    Ensure 'Audit Audit Policy Change' is set to include 'Success'  Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -88,7 +88,7 @@ Test-PolicyChangeAuditAuthenticationPolicyChange
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.7.2     (L1) Ensure 'Audit Authentication Policy Change' is set to include 'Succ... Group Policy Settings     True  
+17.7.2     L1    Ensure 'Audit Authentication Policy Change' is set to includ... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -156,7 +156,7 @@ Test-PolicyChangeAuditAuthorizationPolicyChange
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.7.3     (L1) Ensure 'Audit Authorization Policy Change' is set to include 'Success' Group Policy Settings     True  
+17.7.3     L1    Ensure 'Audit Authorization Policy Change' is set to include... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -224,7 +224,7 @@ Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.7.4     (L1) Ensure 'Audit MPSSVC Rule-Level Policy Change' is set to 'Success a... Group Policy Settings     True  
+17.7.4     L1    Ensure 'Audit MPSSVC Rule-Level Policy Change' is set to 'Su... Group Policy Settings     True        
 
 .NOTES
 General notes
@@ -292,7 +292,7 @@ Test-PolicyChangeAuditOtherPolicyChangeEvents
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-17.7.5     (L1) Ensure 'Audit Other Policy Change Events' is set to include 'Failure'  Group Policy Settings     True  
+17.7.5     L1    Ensure 'Audit Other Policy Change Events' is set to include ... Group Policy Settings     True        
 
 .NOTES
 General notes
