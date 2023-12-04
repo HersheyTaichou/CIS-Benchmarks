@@ -138,7 +138,8 @@ General notes
 function Get-GPResult {
     [CmdletBinding()]
     param (
-        [Parameter()][string]$Path = "$(get-location)\GPResult.xml"
+        [Parameter()][string]$Path = "$(get-location)\GPResult.xml",
+        [Parameter()][switch]$Keep
     )
     
     begin {
@@ -147,7 +148,6 @@ function Get-GPResult {
             gpupdate.exe /force | Out-Null
             Write-Verbose "Generating the resultant set of policies"
             gpresult.exe /x $Path /f | Out-Null
-            $delete = $true
         } else {
             $Message = $Path + " found, testing the local file."
             Write-Verbose $Message
@@ -160,7 +160,7 @@ function Get-GPResult {
     }
     
     end {
-        if ($delete) {
+        if (-not($Keep)) {
             Remove-Item $Path
         }
         return $XMLgpresult

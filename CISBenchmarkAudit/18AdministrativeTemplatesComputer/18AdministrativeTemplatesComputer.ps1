@@ -108,11 +108,13 @@ function Test-AdministrativeTemplatesComputerLAPS {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
-    begin {
-        
-    }
-    
     process {
+        Test-LAPSLocalAdministratorPasswordSolution
+        Test-LAPSDoNotAllowPasswordExpirationTimeLongerThanRequiredByPolicy
+        Test-LAPSEnableLocalAdminPasswordManagement
+        Test-LAPSPasswordComplexity
+        Test-LAPSPasswordLength
+        Test-LAPSPasswordAge
     }
 }
 
@@ -165,11 +167,16 @@ function Test-AdministrativeTemplatesComputerMSSecurityGuide {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
-    begin {
-        
-    }
-    
     process {
+        if ($ProductType = 3) {
+            Test-MSSecurityGuideApplyUACRestrictionsToLocalAccountsOnNetworkLogons
+        }
+        Test-MSSecurityGuideConfigureRPCPacketLevelPrivacySettingForIncomingConnections
+        Test-MSSecurityGuideConfigureSMBv1ClientDriver
+        Test-MSSecurityGuideConfigureSMBv1Server
+        Test-MSSecurityGuideEnableSEHOP
+        Test-MSSecurityGuideNetBTNodeTypeconfiguration
+        Test-MSSecurityGuideWDigestAuthentication
     }
 }
 
@@ -435,8 +442,6 @@ This is used to define the GPO XML variable to test
 .EXAMPLE
 Test-AdministrativeTemplatesComputerSystem -Level 1
 
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
 General notes
@@ -492,8 +497,6 @@ This is used to define the GPO XML variable to test
 .EXAMPLE
 Test-AdministrativeTemplatesComputerWindowsComponents -Level 1
 
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
 General notes
@@ -549,8 +552,6 @@ This is used to define the GPO XML variable to test
 .EXAMPLE
 Test-CISBenchmarkAdministrativeTemplatesComputer -Level 1
 
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
 General notes
@@ -563,14 +564,12 @@ function Test-CISBenchmarkAdministrativeTemplatesComputer {
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
-    
-    begin {
-        
-    }
-    
+
     process {
         Test-AdministrativeTemplatesComputerControlPanel -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerLAPS -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        if ($ProductType -eq 3) {
+            Test-AdministrativeTemplatesComputerLAPS -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        }
         Test-AdministrativeTemplatesComputerMSSecurityGuide -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
         Test-AdministrativeTemplatesComputerMSS -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
         Test-AdministrativeTemplatesComputerNetwork -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
@@ -579,6 +578,4 @@ function Test-CISBenchmarkAdministrativeTemplatesComputer {
         Test-AdministrativeTemplatesComputerSystem -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
         Test-AdministrativeTemplatesComputerWindowsComponents -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
     }
-    
-    end {}
 }

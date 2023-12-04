@@ -32,8 +32,6 @@ This is used to define the GPO XML variable to test
 .EXAMPLE
 Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile
 
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
 General notes
@@ -93,8 +91,6 @@ This is used to define the GPO XML variable to test
 .EXAMPLE
 Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile
 
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
 General notes

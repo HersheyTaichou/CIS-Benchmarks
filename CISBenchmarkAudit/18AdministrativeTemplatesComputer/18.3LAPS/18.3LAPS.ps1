@@ -4,6 +4,9 @@
 
 .DESCRIPTION
 
+In May 2015, Microsoft released the Local Administrator Password Solution (LAPS) tool, which is free and supported software that allows an organization to automatically set randomized and unique local Administrator account passwords on domain-attached workstations and Member Servers. The passwords are stored in a confidential attribute of the domain computer account and can be retrieved from Active Directory by approved Sysadmins when needed.
+The LAPS tool requires a small Active Directory Schema update in order to implement, as well as installation of a Group Policy Client Side Extension (CSE) on targeted computers. Please see the LAPS documentation for details.
+LAPS supports Windows Vista or newer workstation OSes, and Server 2003 or newer server OSes. LAPS does not support standalone computers - they must be joined to a domain.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -16,15 +19,15 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-LAPSLocalAdministratorPasswordSolution
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
 
 .NOTES
-General notes
+This test may not return accurate results based on your setup. This test checks to see if the software is being installed via Group Policy with the name "Local Administrator Password Solution"
 #>
-function Test-LAPS {
+function Test-LAPSLocalAdministratorPasswordSolution {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -33,7 +36,7 @@ function Test-LAPS {
     )
 
     begin {
-              $EntryName = ""
+        $EntryName = "Local Administrator Password Solution"
         $Result.Number = '18.3.1'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -45,7 +48,16 @@ function Test-LAPS {
     }
 
     process {
-        
+        If ($Result.Entry) {
+            $Result.Setting = $Result.Entry.Path
+            $Result.SetCorrectly = $Result.Entry.AutoInstall
+        } else {
+            $Warning = [string]$Result.Number + " - " + $Result.Title + "`nThis test may not return accurate results based on your setup. This test checks to see if the software is being installed via Group Policy with the name `"" + $EntryName + "`""
+            Write-Warning -Message $Warning 
+            $Result.Setting = ""
+            $Result.SetCorrectly = $false
+        }
+
     }
 
     end {
@@ -79,7 +91,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-LAPS {
+function Test-LAPSDoNotAllowPasswordExpirationTimeLongerThanRequiredByPolicy {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -88,8 +100,8 @@ function Test-LAPS {
     )
 
     begin {
-              $EntryName = ""
-        $Result.Number = '18.3.1'
+        $EntryName = "Do not allow password expiration time longer than required by policy"
+        $Result.Number = '18.3.2'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
         $Result.Title = "Ensure 'Do not allow password expiration time longer than required by policy' is set to 'Enabled' (MS only)"
@@ -100,7 +112,12 @@ function Test-LAPS {
     }
 
     process {
-        
+        $Result.Setting = $Result.Entry.State
+        if ($Result.Entry.State -eq "Enabled") {
+            $Result.SetCorrectly = $true
+        } else {
+            $Result.SetCorrectly = $false
+        }
     }
 
     end {
@@ -134,7 +151,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-LAPS {
+function Test-LAPSEnableLocalAdminPasswordManagement {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -143,8 +160,8 @@ function Test-LAPS {
     )
 
     begin {
-              $EntryName = ""
-        $Result.Number = '18.3.1'
+              $EntryName = "Enable local admin password management"
+        $Result.Number = '18.3.3'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
         $Result.Title = "Ensure 'Enable Local Admin Password Management' is set to 'Enabled' (MS only)"
@@ -155,7 +172,12 @@ function Test-LAPS {
     }
 
     process {
-        
+        $Result.Setting = $Result.Entry.State
+        if ($Result.Entry.State -eq "Enabled") {
+            $Result.SetCorrectly = $true
+        } else {
+            $Result.SetCorrectly = $false
+        }
     }
 
     end {
@@ -189,7 +211,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-LAPS {
+function Test-LAPSPasswordComplexity {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -198,8 +220,8 @@ function Test-LAPS {
     )
 
     begin {
-              $EntryName = ""
-        $Result.Number = '18.3.1'
+        $EntryName = "Password Settings"
+        $Result.Number = '18.3.4'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
         $Result.Title = "Ensure 'Password Settings: Password Complexity' is set to 'Enabled: Large letters + small letters + numbers + special characters' (MS only)"
@@ -210,7 +232,12 @@ function Test-LAPS {
     }
 
     process {
-        
+        $Result.Setting = $Result.Entry.DropDownList.State
+        if ($Result.Setting -eq "Enabled") {
+            $Result.SetCorrectly = $true
+        } else {
+            $Result.SetCorrectly = $false
+        }
     }
 
     end {
@@ -244,7 +271,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-LAPS {
+function Test-LAPSPasswordLength {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -253,8 +280,8 @@ function Test-LAPS {
     )
 
     begin {
-              $EntryName = ""
-        $Result.Number = '18.3.1'
+        $EntryName = "Password Settings"
+        $Result.Number = '18.3.5'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
         $Result.Title = "Ensure 'Password Settings: Password Length' is set to 'Enabled: 15 or more' (MS only)"
@@ -265,7 +292,22 @@ function Test-LAPS {
     }
 
     process {
-        
+        if ($Result.Entry) {
+            foreach ($Name in $Result.Entry.Numeric) {
+                if ($Name -eq "Password Length") {
+                    if ($Name.Value -ge "15" -and $Name.State -eq "Enabled") {
+                        $Result.Setting = 'Enabled: 15 or more'
+                        $Result.SetCorrectly = $true
+                    } else {
+                        $Result.SetCorrectly = $false
+                    }
+                } else {
+                    $Result.SetCorrectly = $false
+                }
+            }
+        } else {
+            $Result.SetCorrectly = $false
+        }
     }
 
     end {
@@ -299,7 +341,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-LAPS {
+function Test-LAPSPasswordAge {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -308,8 +350,8 @@ function Test-LAPS {
     )
 
     begin {
-              $EntryName = ""
-        $Result.Number = '18.3.1'
+        $EntryName = "Password Settings"
+        $Result.Number = '18.3.6'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
         $Result.Title = "Ensure 'Password Settings: Password Age (Days)' is set to 'Enabled: 30 or fewer' (MS only)"
@@ -320,7 +362,22 @@ function Test-LAPS {
     }
 
     process {
-        
+        if ($Result.Entry) {
+            foreach ($Name in $Result.Entry.Numeric) {
+                if ($Name -eq "Password Age (Days)") {
+                    if ($Name.Value -le "30" -and $Name.State -eq "Enabled") {
+                        $Result.Setting = 'Enabled: 30 or fewer'
+                        $Result.SetCorrectly = $true
+                    } else {
+                        $Result.SetCorrectly = $false
+                    }
+                } else {
+                    $Result.SetCorrectly = $false
+                }
+            }
+        } else {
+            $Result.SetCorrectly = $false
+        }
     }
 
     end {
