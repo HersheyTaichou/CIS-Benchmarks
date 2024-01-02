@@ -230,34 +230,23 @@ function Test-AccountLockoutPolicyAdminLockout {
     )
 
     begin {
-        $Return = @()
-        $Result = [CISBenchmark]::new()
-        $Result.Number = '1.2.3'
-        $Result.Level = "L1"
-        $Result.Profile = "Member Server"
-        $Result.Title = "Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
-
-        #Find the maximum password age applied to this machine
+        $Return = [CISBenchmark]::new()
+        $Return.Number = '1.2.3'
+        $Return.Level = "L1"
+        $Return.Profile = "Member Server"
+        $Return.Title = "Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
+        $Return.Source = 'Group Policy Settings'
         $EntryName = "AllowAdministratorLockout"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
-        [string]$Result.Setting = $Result.Entry.SettingBoolean
+        $Return.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Return.Setting = [System.Convert]::ToBoolean($Return.Entry.SettingBoolean)
     }
 
     process {
-        if ($Result.Setting -eq "true") {
-            $Result.SetCorrectly = $true
-            $Result.Setting = $true
-        } elseif ($Result.Setting -eq "false") {
-            $Result.SetCorrectly = $false
-            $Result.Setting = $false
+        if ($Return.Setting) {
+            $Return.SetCorrectly = $true
         } else {
-            $Result.SetCorrectly = $false
-            $Result.Setting = ""
+            $Return.SetCorrectly = $false
         }
-
-        
-        $Return += $Result
     }
 
     end {

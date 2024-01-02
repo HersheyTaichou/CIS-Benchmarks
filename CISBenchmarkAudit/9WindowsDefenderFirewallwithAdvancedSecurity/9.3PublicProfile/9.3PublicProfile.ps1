@@ -53,11 +53,7 @@ function Test-PublicProfileEnableFirewall {
     }
 
     process {
-        if ($Result.Entry.EnableFirewall.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.EnableFirewall.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 
@@ -121,11 +117,7 @@ function Test-PublicProfileDefaultInboundAction {
     }
 
     process {
-        if ($Result.Entry.DefaultInboundAction.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.DefaultInboundAction.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 
@@ -189,11 +181,7 @@ function Test-PublicProfileDefaultOutboundAction {
     }
 
     process {
-        if ($Result.Entry.DefaultOutboundAction.Value -eq "false") {
-            $Result.Setting = $false
-        } else {
-            $Result.Setting = $true
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.DefaultOutboundAction.Value)
         $Result.SetCorrectly = -not($Result.Setting)
     }
 
@@ -257,11 +245,7 @@ function Test-PublicProfileDisableNotifications {
     }
 
     process {
-        if ($Result.Entry.DisableNotifications.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.DisableNotifications.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 
@@ -325,11 +309,7 @@ function Test-PublicProfileAllowLocalPolicyMerge {
     }
 
     process {
-        if ($Result.Entry.AllowLocalPolicyMerge.Value -eq "false") {
-            $Result.Setting = $false
-        } else {
-            $Result.Setting = $true
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.AllowLocalPolicyMerge.Value)
         $Result.SetCorrectly = -not($Result.Setting)
     }
 
@@ -393,11 +373,7 @@ function Test-PublicProfileAllowLocalIPsecPolicyMerge {
     }
 
     process {
-        if ($Result.Entry.AllowLocalIPsecPolicyMerge.Value -eq "false") {
-            $Result.Setting = $false
-        } else {
-            $Result.Setting = $true
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.AllowLocalIPsecPolicyMerge.Value)
         $Result.SetCorrectly = -not($Result.Setting)
     }
 
@@ -601,11 +577,7 @@ function Test-PublicProfileLogDroppedPackets {
     }
 
     process {
-        if ($Result.Entry.LogDroppedPackets.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.LogDroppedPackets.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 
@@ -669,11 +641,7 @@ function Test-PublicProfileLogSuccessfulConnections {
     }
 
     process {
-        if ($Result.Entry.LogSuccessfulConnections.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.LogSuccessfulConnections.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 

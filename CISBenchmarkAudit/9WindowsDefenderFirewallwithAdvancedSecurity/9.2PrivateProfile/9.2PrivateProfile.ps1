@@ -53,11 +53,7 @@ function Test-PrivateProfileEnableFirewall {
     }
 
     process {
-        if ($Result.Entry.EnableFirewall.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.EnableFirewall.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 
@@ -121,11 +117,7 @@ function Test-PrivateProfileDefaultInboundAction {
     }
 
     process {
-        if ($Result.Entry.DefaultInboundAction.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.DefaultInboundAction.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 
@@ -189,11 +181,7 @@ function Test-PrivateProfileDefaultOutboundAction {
     }
 
     process {
-        if ($Result.Entry.DefaultOutboundAction.Value -eq "false") {
-            $Result.Setting = $false
-        } else {
-            $Result.Setting = $true
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.DefaultOutboundAction.Value)
         $Result.SetCorrectly = -not($Result.Setting)
     }
 
@@ -257,11 +245,7 @@ function Test-PrivateProfileDisableNotifications {
     }
 
     process {
-        if ($Result.Entry.DisableNotifications.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.DisableNotifications.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 
@@ -465,11 +449,7 @@ function Test-PrivateProfileLogDroppedPackets {
     }
 
     process {
-        if ($Result.Entry.LogDroppedPackets.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.LogDroppedPackets.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 
@@ -533,11 +513,7 @@ function Test-PrivateProfileLogSuccessfulConnections {
     }
 
     process {
-        if ($Result.Entry.LogSuccessfulConnections.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.LogSuccessfulConnections.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 

@@ -192,9 +192,6 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
 
     $Result = [CISBenchmark]::new()
 
-    # Get the product type
-    $ProductType = Get-ProductType
-
     # These three entries should be the only entries 
     $DomainController = @('Administrators','Authenticated Users','ENTERPRISE DOMAIN CONTROLLERS')
     $MemberServer = @('Administrators','Authenticated Users')
@@ -476,9 +473,6 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
     )
 
     $Result = [CISBenchmark]::new()
-
-    # Get the product type
-    $ProductType = Get-ProductType
 
     # These three entries should be the only entries 
     $DomainController = @('Administrators')
@@ -935,9 +929,6 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
 
     $Result = [CISBenchmark]::new()
 
-    # Get the product type
-    $ProductType = Get-ProductType
-
     # These three entries should be the only entries 
     $DomainController = @('Administrators')
     $MemberServer = @('Administrators')
@@ -1066,9 +1057,6 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
     )
 
     $Result = [CISBenchmark]::new()
-
-    # Get the product type
-    $ProductType = Get-ProductType
 
     # These three entries should be the only entries 
     $DomainController = @('Guests')
@@ -1301,9 +1289,6 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
 
     $Result = [CISBenchmark]::new()
 
-    # Get the product type
-    $ProductType = Get-ProductType
-
     # These three entries should be the only entries 
     $DomainController = @('Guests')
     $MemberServer = @('Guests','Local account')
@@ -1377,9 +1362,6 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
     )
 
     $Result = [CISBenchmark]::new()
-
-    # Get the product type
-    $ProductType = Get-ProductType
 
     # These three entries should be the only entries 
     $DomainController = @('Administrators')
@@ -1558,9 +1540,6 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
     )
 
     $Result = [CISBenchmark]::new()
-
-    # Get the product type
-    $ProductType = Get-ProductType
 
     # These three entries should be the only entries 
     $DomainController = @('Administrators', 'LOCAL SERVICE', 'NETWORK SERVICE', 'SERVICE')
@@ -1838,9 +1817,6 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
     )
 
     $Result = [CISBenchmark]::new()
-
-    # Get the product type
-    $ProductType = Get-ProductType
 
     # These three entries should be the only entries 
     $DomainController = @('Administrators')

@@ -300,7 +300,6 @@ function Test-LAPSPasswordLength {
         if ($Result.Entry) {
             $Result.Entry.Numeric | Where-Object {$_.Name -eq "Password Length"} | ForEach-Object {
                 if ([int]$_.Value -ge 15 -and $_.State -eq "Enabled") {
-                    Write-Verbose "Set correctly"
                     $Result.Setting = 'Enabled: 15 or more'
                     $Result.SetCorrectly = $true
                 } else {
@@ -371,7 +370,6 @@ function Test-LAPSPasswordAge {
         if ($Result.Entry) {
             $Result.Entry.Numeric | Where-Object {$_.Name -eq "Password Age (Days)"} | ForEach-Object {
                 if ([int]$_.Value -le 30 -and $_.State -eq "Enabled") {
-                    Write-Verbose "Set correctly"
                     $Result.Setting = 'Enabled: 15 or more'
                     $Result.SetCorrectly = $true
                 } else {

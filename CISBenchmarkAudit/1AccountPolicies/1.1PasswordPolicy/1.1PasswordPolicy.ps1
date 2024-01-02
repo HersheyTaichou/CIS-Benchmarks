@@ -618,18 +618,12 @@ function Test-PasswordPolicyReversibleEncryption {
         #Find the Password History Size applied to this machine
         $EntryName = "ClearTextPassword"
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
-        [string]$Result.Setting = $Result.Entry.SettingBoolean
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
-        if ($Result.Setting -eq "false") {
-            $Result.SetCorrectly = $true
-            $Result.Setting = $false
-        } else {
-            $Result.SetCorrectly = $false
-            $Result.Setting = $true
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.SettingBoolean)
+        $Result.SetCorrectly = -not($Result.Setting)
 
         
         $Return += $Result

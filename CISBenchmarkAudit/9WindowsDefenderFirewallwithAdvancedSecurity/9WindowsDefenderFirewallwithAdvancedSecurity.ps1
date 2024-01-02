@@ -293,13 +293,22 @@ function Test-CISBenchmarkWindowsDefenderFirewallwithAdvancedSecurity {
     )
     
     begin {
-        
+        $Parameters = @{
+            "Level" = $Level
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
+        }
     }
     
     process {
-        Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity @Parameters
-        Test-WindowsDefenderFirewallwithAdvancedSecurityPrivateProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity @Parameters
-        Test-WindowsDefenderFirewallwithAdvancedSecurityPublicProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity @Parameters
+        Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile @Parameters
+        Test-WindowsDefenderFirewallwithAdvancedSecurityPrivateProfile @Parameters
+        Test-WindowsDefenderFirewallwithAdvancedSecurityPublicProfile @Parameters
     }
     
     end {}

@@ -49,17 +49,11 @@ function Test-DomainProfileEnableFirewall {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult -Verbose
-        $Result.Entry = $Entry
+        $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
     }
 
     process {
-        $Value = $Result.Entry.EnableFirewall.Value
-        if ($Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.EnableFirewall.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 
@@ -123,11 +117,7 @@ function Test-DomainProfileDefaultInboundAction {
     }
 
     process {
-        if ($Result.Entry.DefaultInboundAction.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.DefaultInboundAction.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 
@@ -191,11 +181,7 @@ function Test-DomainProfileDefaultOutboundAction {
     }
 
     process {
-        if ($Result.Entry.DefaultOutboundAction.Value -eq "false") {
-            $Result.Setting = $false
-        } else {
-            $Result.Setting = $true
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.DefaultOutboundAction.Value)
         $Result.SetCorrectly = -not($Result.Setting)
     }
 
@@ -259,11 +245,7 @@ function Test-DomainProfileDisableNotifications {
     }
 
     process {
-        if ($Result.Entry.DisableNotifications.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.DisableNotifications.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 
@@ -467,11 +449,7 @@ function Test-DomainProfileLogDroppedPackets {
     }
 
     process {
-        if ($Result.Entry.LogDroppedPackets.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.LogDroppedPackets.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 
@@ -535,11 +513,7 @@ function Test-DomainProfileLogSuccessfulConnections {
     }
 
     process {
-        if ($Result.Entry.LogSuccessfulConnections.Value -eq "true") {
-            $Result.Setting = $true
-        } else {
-            $Result.Setting = $false
-        }
+        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.LogSuccessfulConnections.Value)
         $Result.SetCorrectly = $Result.Setting
     }
 
