@@ -50,15 +50,24 @@ function Test-AccountPoliciesPasswordPolicy {
         [Parameter()][xml]$GPResult = (Get-GPResult)
 
     )
-    Test-PasswordPolicyPasswordHistory -ProductType $ProductType -GPResult $GPResult
-    Test-PasswordPolicyMaxPasswordAge -ProductType $ProductType -GPResult $GPResult
-    Test-PasswordPolicyMinPasswordAge -ProductType $ProductType -GPResult $GPResult
-    Test-PasswordPolicyMinPasswordLength -ProductType $ProductType -GPResult $GPResult
-    Test-PasswordPolicyComplexityEnabled -ProductType $ProductType -GPResult $GPResult
-    if ($ProductType -eq 3) {
-        Test-PasswordPolicyRelaxMinimumPasswordLengthLimits -gpresult $GPResult
+
+    begin {
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
-    Test-PasswordPolicyReversibleEncryption -gpresult $GPResult
+    Process {
+        Test-PasswordPolicyPasswordHistory @Parameters
+        Test-PasswordPolicyMaxPasswordAge @Parameters
+        Test-PasswordPolicyMinPasswordAge @Parameters
+        Test-PasswordPolicyMinPasswordLength @Parameters
+        Test-PasswordPolicyComplexityEnabled @Parameters
+        if ($ProductType -eq 3) {
+            Test-PasswordPolicyRelaxMinimumPasswordLengthLimits @Parameters
+        }
+        Test-PasswordPolicyReversibleEncryption @Parameters
+    }
 }
 
 <#
@@ -112,12 +121,20 @@ function Test-AccountPoliciesAccountLockoutPolicy {
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
-    Test-AccountLockoutPolicyLockoutDuration -ProductType $ProductType -GPResult $GPResult
-    Test-AccountLockoutPolicyLockoutThreshold -ProductType $ProductType -GPResult $GPResult
-    if ($ProductType -eq 3) {
-        Test-AccountLockoutPolicyAdminLockout -ProductType $ProductType -GPResult $GPResult
+    begin {
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
-    Test-AccountLockoutPolicyResetLockoutCount -ProductType $ProductType -GPResult $GPResult
+    Process {
+        Test-AccountLockoutPolicyLockoutDuration @Parameters
+        Test-AccountLockoutPolicyLockoutThreshold @Parameters
+        if ($ProductType -eq 3) {
+            Test-AccountLockoutPolicyAdminLockout @Parameters
+        }
+        Test-AccountLockoutPolicyResetLockoutCount @Parameters
+    }
 
 }
 
@@ -168,11 +185,26 @@ function Test-CISBenchmarkAccountPolicies {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][switch]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    Test-AccountPoliciesPasswordPolicy -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    Test-AccountPoliciesAccountLockoutPolicy -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+    Begin {
+        $Parameters = @{
+            "Level" = $Level
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
+        }
+    }
+
+    Process {
+        Test-AccountPoliciesPasswordPolicy @Parameters
+        Test-AccountPoliciesAccountLockoutPolicy @Parameters
+    }
 }

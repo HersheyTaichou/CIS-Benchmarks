@@ -46,15 +46,16 @@ function Test-ControlPanelPersonalization {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
-        Test-PersonalizationPreventEnablingLockScreenCamera -ProductType $ProductType -GPResult $GPResult
-        Test-PersonalizationPreventEnablingLockScreenSlideshow -ProductType $ProductType -GPResult $GPResult
+        Test-PersonalizationPreventEnablingLockScreenCamera @Parameters
+        Test-PersonalizationPreventEnablingLockScreenSlideshow @Parameters
     }
-    
-    end {}
 }
 
 <#
@@ -105,12 +106,13 @@ function Test-ControlPanelRegionalAndLanguageOptions {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
-        Test-RegionalAndLanguageOptionsAllowUsersToEnableOnlineSpeechRecognitionServices -ProductType $ProductType -GPResult $GPResult
+        Test-RegionalAndLanguageOptionsAllowUsersToEnableOnlineSpeechRecognitionServices @Parameters
     }
-    
-    end {}
 }

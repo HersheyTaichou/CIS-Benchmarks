@@ -50,17 +50,21 @@ function Test-SecurityOptionsAccounts {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    process {
-        Test-AccountsNoConnectedUser -ProductType $ProductType -GPResult $GPResult
-        if ($ProductType -eq 3) {
-            Test-AccountsEnableGuestAccount -ProductType $ProductType -GPResult $GPResult
+    begin {
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
         }
-        Test-AccountsLimitBlankPasswordUse -ProductType $ProductType -GPResult $GPResult
-        Test-AccountsNewAdministratorName -ProductType $ProductType -GPResult $GPResult
-        Test-AccountsNewGuestName -ProductType $ProductType -GPResult $GPResult
     }
 
-    end {
+    process {
+        Test-AccountsNoConnectedUser @Parameters
+        if ($ProductType -eq 3) {
+            Test-AccountsEnableGuestAccount @Parameters
+        }
+        Test-AccountsLimitBlankPasswordUse @Parameters
+        Test-AccountsNewAdministratorName @Parameters
+        Test-AccountsNewGuestName @Parameters
     }
 }
 
@@ -116,15 +120,15 @@ function Test-SecurityOptionsAudit {
     )
 
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
 
     process {
-        Test-AuditSCENoApplyLegacyAuditPolicy -ProductType $ProductType -GPResult $GPResult
-        Test-AuditCrashOnAuditFail -ProductType $ProductType -GPResult $GPResult
-    }
-
-    end {
+        Test-AuditSCENoApplyLegacyAuditPolicy @Parameters
+        Test-AuditCrashOnAuditFail @Parameters
     }
 }
 
@@ -180,15 +184,15 @@ function Test-SecurityOptionsDevices {
     )
 
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
 
     process {
-        Test-DevicesAllocateDASD -ProductType $ProductType -GPResult $GPResult
-        Test-DevicesAddPrinterDrivers -ProductType $ProductType -GPResult $GPResult
-    }
-
-    end {
+        Test-DevicesAllocateDASD @Parameters
+        Test-DevicesAddPrinterDrivers @Parameters
     }
 }
 
@@ -245,18 +249,18 @@ function Test-SecurityOptionsDomainController {
     )
 
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
 
     process {
-        Test-DomainControllerSubmitControl -ProductType $ProductType -GPResult $GPResult
-        Test-DomainControllerVulnerableChannelAllowList -ProductType $ProductType -GPResult $GPResult
-        Test-DomainControllerLdapEnforceChannelBinding -ProductType $ProductType -GPResult $GPResult
-        Test-DomainControllerLDAPServerIntegrity -ProductType $ProductType -GPResult $GPResult
-        Test-DomainControllerRefusePasswordChange -ProductType $ProductType -GPResult $GPResult
-    }
-
-    end {
+        Test-DomainControllerSubmitControl @Parameters
+        Test-DomainControllerVulnerableChannelAllowList @Parameters
+        Test-DomainControllerLdapEnforceChannelBinding @Parameters
+        Test-DomainControllerLDAPServerIntegrity @Parameters
+        Test-DomainControllerRefusePasswordChange @Parameters
     }
 }
 
@@ -313,19 +317,19 @@ function Test-SecurityOptionsDomainMember {
     )
 
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
 
     process {
-        Test-DomainMemberRequireSignOrSeal -ProductType $ProductType -GPResult $GPResult
-        Test-DomainMemberSealSecureChannel -ProductType $ProductType -GPResult $GPResult
-        Test-DomainMemberSignSecureChannel -ProductType $ProductType -GPResult $GPResult
-        Test-DomainMemberDisablePasswordChange -ProductType $ProductType -GPResult $GPResult
-        Test-DomainMemberMaximumPasswordAge -ProductType $ProductType -GPResult $GPResult
-        Test-DomainMemberRequireStrongKey -ProductType $ProductType -GPResult $GPResult
-    }
-
-    end {
+        Test-DomainMemberRequireSignOrSeal @Parameters
+        Test-DomainMemberSealSecureChannel @Parameters
+        Test-DomainMemberSignSecureChannel @Parameters
+        Test-DomainMemberDisablePasswordChange @Parameters
+        Test-DomainMemberMaximumPasswordAge @Parameters
+        Test-DomainMemberRequireStrongKey @Parameters
     }
 }
 
@@ -381,23 +385,27 @@ function Test-SecurityOptionsInteractiveLogin {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    process {
-        Test-InteractiveLogonDisableCAD -ProductType $ProductType -GPResult $GPResult
-        Test-InteractiveLogonDontDisplayLastUserName -ProductType $ProductType -GPResult $GPResult
-        Test-InteractiveLogonInactivityTimeoutSecs -ProductType $ProductType -GPResult $GPResult
-        Test-InteractiveLogonLegalNoticeText -ProductType $ProductType -GPResult $GPResult
-        Test-InteractiveLogonLegalNoticeCaption -ProductType $ProductType -GPResult $GPResult
-        if (($ProductType -eq 3) -and ($Level -eq 2)) {
-            Test-InteractiveLogonCachedLogonsCount -ProductType $ProductType -GPResult $GPResult
+    begin {
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
         }
-        Test-InteractiveLogonPasswordExpiryWarning -ProductType $ProductType -GPResult $GPResult
-        if ($ProductType -eq 3) {
-            Test-InteractiveLogonForceUnlockLogon -ProductType $ProductType -GPResult $GPResult
-        }
-        Test-InteractiveLogonScRemoveOption -ProductType $ProductType -GPResult $GPResult
     }
 
-    end {
+    process {
+        Test-InteractiveLogonDisableCAD @Parameters
+        Test-InteractiveLogonDontDisplayLastUserName @Parameters
+        Test-InteractiveLogonInactivityTimeoutSecs @Parameters
+        Test-InteractiveLogonLegalNoticeText @Parameters
+        Test-InteractiveLogonLegalNoticeCaption @Parameters
+        if (($ProductType -eq 3) -and ($Level -eq 2)) {
+            Test-InteractiveLogonCachedLogonsCount @Parameters
+        }
+        Test-InteractiveLogonPasswordExpiryWarning @Parameters
+        if ($ProductType -eq 3) {
+            Test-InteractiveLogonForceUnlockLogon @Parameters
+        }
+        Test-InteractiveLogonScRemoveOption @Parameters
     }
 }
 
@@ -437,10 +445,7 @@ Test-SecurityOptionsMicrosoftNetworkClient -Level 1
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-2.3.8.1   (L1) Ensure 'Microsoft network client: Digitally sign communications (always)' is set to 'Enabled'  Group Policy Settings     True    
-2.3.8.2   (L1) Ensure 'Microsoft network client: Digitally sign communications (if server agrees)' is set ... Group Policy Settings     True    
-2.3.8.3   (L1) Ensure 'Microsoft network client: Send unencrypted password to third-party SMB servers' is ... Group Policy Settings     True    
-
+2.3.8.1   (L1) Ensure 'Microsoft network client: Di
 .NOTES
 General notes
 #>
@@ -454,17 +459,16 @@ function Test-SecurityOptionsMicrosoftNetworkClient {
     )
 
     begin {
-
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
 
     process {
-        Test-MicrosoftNetworkClientRequireSecuritySignature -ProductType $ProductType -GPResult $GPResult
-        Test-MicrosoftNetworkClientEnableSecuritySignature -ProductType $ProductType -GPResult $GPResult
-        Test-MicrosoftNetworkClientEnablePlainTextPassword -ProductType $ProductType -GPResult $GPResult
-    }
-
-    end {
+        Test-MicrosoftNetworkClientRequireSecuritySignature @Parameters
+        Test-MicrosoftNetworkClientEnableSecuritySignature @Parameters
+        Test-MicrosoftNetworkClientEnablePlainTextPassword @Parameters
     }
 }
 
@@ -520,17 +524,21 @@ function Test-SecurityOptionsMicrosoftNetworkServer {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    process {
-        Test-MicrosoftNetworkServerAutoDisconnect -ProductType $ProductType -GPResult $GPResult
-        Test-MicrosoftNetworkServerRequireSecuritySignature -ProductType $ProductType -GPResult $GPResult
-        Test-MicrosoftNetworkServerEnableSecuritySignature -ProductType $ProductType -GPResult $GPResult
-        Test-MicrosoftNetworkServerEnableForcedLogOff -ProductType $ProductType -GPResult $GPResult
-        if ($ProductType -eq 3) {
-            Test-MicrosoftNetworkServerSmbServerNameHardeningLevel -ProductType $ProductType -GPResult $GPResult
+    begin {
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
         }
     }
 
-    end {
+    process {
+        Test-MicrosoftNetworkServerAutoDisconnect @Parameters
+        Test-MicrosoftNetworkServerRequireSecuritySignature @Parameters
+        Test-MicrosoftNetworkServerEnableSecuritySignature @Parameters
+        Test-MicrosoftNetworkServerEnableForcedLogOff @Parameters
+        if ($ProductType -eq 3) {
+            Test-MicrosoftNetworkServerSmbServerNameHardeningLevel @Parameters
+        }
     }
 }
 
@@ -586,29 +594,33 @@ function Test-SecurityOptionsNetworkAccess {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    process {
-        Test-NetworkAccessLSAAnonymousNameLookup -ProductType $ProductType -GPResult $GPResult
-        if ($ProductType -eq 3) {
-            Test-NetworkAccessRestrictAnonymousSAM -ProductType $ProductType -GPResult $GPResult
-            Test-NetworkAccessRestrictAnonymous -ProductType $ProductType -GPResult $GPResult
+    begin {
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
         }
-        if ($Level -eq 2) {
-            Test-NetworkAccessDisableDomainCreds -ProductType $ProductType -GPResult $GPResult
-        }
-        Test-NetworkAccessEveryoneIncludesAnonymous -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkAccessNullSessionPipes -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkAccessAllowedExactPaths -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkAccessAllowedPaths -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkAccessRestrictNullSessAccess -ProductType $ProductType -GPResult $GPResult
-        
-        if ($ProductType -eq 3) {
-            Test-NetworkAccessRestrictRemoteSAM -ProductType $ProductType -GPResult $GPResult
-        }
-        Test-NetworkAccessNullSessionShares -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkAccessForceGuest -ProductType $ProductType -GPResult $GPResult
     }
 
-    end {
+    process {
+        Test-NetworkAccessLSAAnonymousNameLookup @Parameters
+        if ($ProductType -eq 3) {
+            Test-NetworkAccessRestrictAnonymousSAM @Parameters
+            Test-NetworkAccessRestrictAnonymous @Parameters
+        }
+        if ($Level -eq 2) {
+            Test-NetworkAccessDisableDomainCreds @Parameters
+        }
+        Test-NetworkAccessEveryoneIncludesAnonymous @Parameters
+        Test-NetworkAccessNullSessionPipes @Parameters
+        Test-NetworkAccessAllowedExactPaths @Parameters
+        Test-NetworkAccessAllowedPaths @Parameters
+        Test-NetworkAccessRestrictNullSessAccess @Parameters
+        
+        if ($ProductType -eq 3) {
+            Test-NetworkAccessRestrictRemoteSAM @Parameters
+        }
+        Test-NetworkAccessNullSessionShares @Parameters
+        Test-NetworkAccessForceGuest @Parameters
     }
 }
 
@@ -665,23 +677,23 @@ function Test-SecurityOptionsNetworkSecurity {
     )
 
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
 
     process {
-        Test-NetworkSecurityUseMachineId -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkSecurityAllowNullSessionFallback -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkSecurityAllowOnlineID -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkSecuritySupportedEncryptionTypes -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkSecurityNoLMHash -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkSecurityForceLogoffWhenHourExpire -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkSecurityLmCompatibilityLevel -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkSecurityLDAPClientIntegrity -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkSecurityNTLMMinClientSec -ProductType $ProductType -GPResult $GPResult
-        Test-NetworkSecurityNTLMMinServerSec -ProductType $ProductType -GPResult $GPResult
-    }
-
-    end {
+        Test-NetworkSecurityUseMachineId @Parameters
+        Test-NetworkSecurityAllowNullSessionFallback @Parameters
+        Test-NetworkSecurityAllowOnlineID @Parameters
+        Test-NetworkSecuritySupportedEncryptionTypes @Parameters
+        Test-NetworkSecurityNoLMHash @Parameters
+        Test-NetworkSecurityForceLogoffWhenHourExpire @Parameters
+        Test-NetworkSecurityLmCompatibilityLevel @Parameters
+        Test-NetworkSecurityLDAPClientIntegrity @Parameters
+        Test-NetworkSecurityNTLMMinClientSec @Parameters
+        Test-NetworkSecurityNTLMMinServerSec @Parameters
     }
 }
 
@@ -736,14 +748,14 @@ function Test-SecurityOptionsShutdown {
     )
 
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
 
     process {
-        Test-ShutdownShutdownWithoutLogon -ProductType $ProductType -GPResult $GPResult
-    }
-
-    end {
+        Test-ShutdownShutdownWithoutLogon @Parameters
     }
 }
 
@@ -799,15 +811,15 @@ function Test-SecurityOptionsSystemObjects {
     )
 
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
 
     process {
-        Test-SystemObjectsObCaseInsensitive -ProductType $ProductType -GPResult $GPResult
-        Test-SystemObjectsProtectionMode -ProductType $ProductType -GPResult $GPResult
-    }
-
-    end {
+        Test-SystemObjectsObCaseInsensitive @Parameters
+        Test-SystemObjectsProtectionMode @Parameters
     }
 }
 
@@ -864,20 +876,20 @@ function Test-SecurityOptionsUserAccountControl {
     )
 
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
 
     process {
-        Test-UserAccountControlFilterAdministratorToken -ProductType $ProductType -GPResult $GPResult
-        Test-UserAccountControlConsentPromptBehaviorAdmin -ProductType $ProductType -GPResult $GPResult
-        Test-UserAccountControlConsentPromptBehaviorUser -ProductType $ProductType -GPResult $GPResult
-        Test-UserAccountControlEnableInstallerDetection -ProductType $ProductType -GPResult $GPResult
-        Test-UserAccountControlEnableSecureUIAPaths -ProductType $ProductType -GPResult $GPResult
-        Test-UserAccountControlEnableLUA -ProductType $ProductType -GPResult $GPResult
-        Test-UserAccountControlPromptOnSecureDesktop -ProductType $ProductType -GPResult $GPResult
-        Test-UserAccountControlEnableVirtualization -ProductType $ProductType -GPResult $GPResult
-    }
-
-    end {
+        Test-UserAccountControlFilterAdministratorToken @Parameters
+        Test-UserAccountControlConsentPromptBehaviorAdmin @Parameters
+        Test-UserAccountControlConsentPromptBehaviorUser @Parameters
+        Test-UserAccountControlEnableInstallerDetection @Parameters
+        Test-UserAccountControlEnableSecureUIAPaths @Parameters
+        Test-UserAccountControlEnableLUA @Parameters
+        Test-UserAccountControlPromptOnSecureDesktop @Parameters
+        Test-UserAccountControlEnableVirtualization @Parameters
     }
 }

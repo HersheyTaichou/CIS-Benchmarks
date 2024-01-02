@@ -46,25 +46,40 @@ function Test-CISBenchmark {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter()][switch]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    # 1 Account Policies
-    Test-CISBenchmarkAccountPolicies -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    # 2 Local Policies
-    Test-CISBenchmarkLocalPolicies -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    # 5 System Services
-    Test-CISBenchmarkSystemServices -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    # 9 Windows Defender Firewall with Advanced Security
-    Test-CISBenchmarkWindowsDefenderFirewallwithAdvancedSecurity -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    # 17 Advanced Audit Policy Configuration
-    Test-CISBenchmarkAdvancedAuditPolicyConfiguration -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    # 18 Administrative Templates (Computer)
-    Test-CISBenchmarkAdministrativeTemplatesComputer -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    # 19 Administrative Templates (User)
-    Test-CISBenchmarkAdministrativeTemplatesUser -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+    begin {
+        $Parameters = @{
+            "Level" = $Level
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
+        }
+    }
+
+    process {
+        # 1 Account Policies
+        Test-CISBenchmarkAccountPolicies @Parameters
+        # 2 Local Policies
+        Test-CISBenchmarkLocalPolicies @Parameters
+        # 5 System Services
+        Test-CISBenchmarkSystemServices @Parameters
+        # 9 Windows Defender Firewall with Advanced Security
+        Test-CISBenchmarkWindowsDefenderFirewallwithAdvancedSecurity @Parameters
+        # 17 Advanced Audit Policy Configuration
+        Test-CISBenchmarkAdvancedAuditPolicyConfiguration @Parameters
+        # 18 Administrative Templates (Computer)
+        Test-CISBenchmarkAdministrativeTemplatesComputer @Parameters
+        # 19 Administrative Templates (User)
+        Test-CISBenchmarkAdministrativeTemplatesUser @Parameters
+    }
 }
 
 <#

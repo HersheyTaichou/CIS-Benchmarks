@@ -6,16 +6,21 @@ function Test-AdvancedAuditPolicyConfigurationAccountLogon {
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
-    
-    process {
-        Test-AccountLogonAuditCredentialValidation -ProductType $ProductType -GPResult $GPResult
-        if ($ProductType -eq 2) {
-            Test-AccountLogonAuditKerberosAuthenticationService -ProductType $ProductType -GPResult $GPResult
-            Test-AccountLogonAuditKerberosServiceTicketOperations -ProductType $ProductType -GPResult $GPResult
+
+    begin {
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
         }
     }
     
-    end {}
+    process {
+        Test-AccountLogonAuditCredentialValidation @Parameters
+        if ($ProductType -eq 2) {
+            Test-AccountLogonAuditKerberosAuthenticationService @Parameters
+            Test-AccountLogonAuditKerberosServiceTicketOperations @Parameters
+        }
+    }
 }
 
 function Test-AdvancedAuditPolicyConfigurationAccountManagement {
@@ -27,18 +32,23 @@ function Test-AdvancedAuditPolicyConfigurationAccountManagement {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
-    process {
-        Test-AccountManagementAuditApplicationGroupManagement -ProductType $ProductType -GPResult $GPResult
-        if ($ProductType -eq 2) {
-            Test-AccountManagementAuditComputerAccountManagement -ProductType $ProductType -GPResult $GPResult
-            Test-AccountManagementAuditDistributionGroupManagement -ProductType $ProductType -GPResult $GPResult
-            Test-AccountManagementAuditOtherAccountManagementEvents -ProductType $ProductType -GPResult $GPResult
+    begin {
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
         }
-        Test-AccountManagementAuditSecurityGroupManagement -ProductType $ProductType -GPResult $GPResult
-        Test-AccountManagementAuditUserAccountManagement -ProductType $ProductType -GPResult $GPResult
     }
     
-    end {}
+    process {
+        Test-AccountManagementAuditApplicationGroupManagement @Parameters
+        if ($ProductType -eq 2) {
+            Test-AccountManagementAuditComputerAccountManagement @Parameters
+            Test-AccountManagementAuditDistributionGroupManagement @Parameters
+            Test-AccountManagementAuditOtherAccountManagementEvents @Parameters
+        }
+        Test-AccountManagementAuditSecurityGroupManagement @Parameters
+        Test-AccountManagementAuditUserAccountManagement @Parameters
+    }
 }
 
 function Test-AdvancedAuditPolicyConfigurationDetailedTracking {
@@ -51,15 +61,16 @@ function Test-AdvancedAuditPolicyConfigurationDetailedTracking {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
-        Test-DetailedTrackingAuditPNPActivity -ProductType $ProductType -GPResult $GPResult
-        Test-DetailedTrackingAuditProcessCreation -ProductType $ProductType -GPResult $GPResult
+        Test-DetailedTrackingAuditPNPActivity @Parameters
+        Test-DetailedTrackingAuditProcessCreation @Parameters
     }
-    
-    end {}
 }
 
 function Test-AdvancedAuditPolicyConfigurationDSAccess {
@@ -72,15 +83,16 @@ function Test-AdvancedAuditPolicyConfigurationDSAccess {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
-        Test-DSAccessAuditDirectoryServiceAccess -ProductType $ProductType -GPResult $GPResult
-        Test-DSAccessAuditDirectoryServiceChanges -ProductType $ProductType -GPResult $GPResult
+        Test-DSAccessAuditDirectoryServiceAccess @Parameters
+        Test-DSAccessAuditDirectoryServiceChanges @Parameters
     }
-    
-    end {}
 }
 
 function Test-AdvancedAuditPolicyConfigurationLogonLogoff {
@@ -93,19 +105,20 @@ function Test-AdvancedAuditPolicyConfigurationLogonLogoff {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
-        Test-LogonLogoffAuditAccountLockout -ProductType $ProductType -GPResult $GPResult
-        Test-LogonLogoffAuditGroupMembership -ProductType $ProductType -GPResult $GPResult
-        Test-LogonLogoffAuditLogoff -ProductType $ProductType -GPResult $GPResult
-        Test-LogonLogoffAuditLogon -ProductType $ProductType -GPResult $GPResult
-        Test-LogonLogoffAuditOtherLogonLogoffEvents -ProductType $ProductType -GPResult $GPResult
-        Test-LogonLogoffAuditSpecialLogon -ProductType $ProductType -GPResult $GPResult
+        Test-LogonLogoffAuditAccountLockout @Parameters
+        Test-LogonLogoffAuditGroupMembership @Parameters
+        Test-LogonLogoffAuditLogoff @Parameters
+        Test-LogonLogoffAuditLogon @Parameters
+        Test-LogonLogoffAuditOtherLogonLogoffEvents @Parameters
+        Test-LogonLogoffAuditSpecialLogon @Parameters
     }
-    
-    end {}
 }
 
 function Test-AdvancedAuditPolicyConfigurationObjectAccess {
@@ -118,17 +131,18 @@ function Test-AdvancedAuditPolicyConfigurationObjectAccess {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
-        Test-ObjectAccessAuditDetailedFileShare -ProductType $ProductType -GPResult $GPResult
-        Test-ObjectAccessAuditFileShare -ProductType $ProductType -GPResult $GPResult
-        Test-ObjectAccessAuditOtherObjectAccessEvents -ProductType $ProductType -GPResult $GPResult
-        Test-ObjectAccessAuditRemovableStorage -ProductType $ProductType -GPResult $GPResult
+        Test-ObjectAccessAuditDetailedFileShare @Parameters
+        Test-ObjectAccessAuditFileShare @Parameters
+        Test-ObjectAccessAuditOtherObjectAccessEvents @Parameters
+        Test-ObjectAccessAuditRemovableStorage @Parameters
     }
-    
-    end {}
 }
 
 function Test-AdvancedAuditPolicyConfigurationPolicyChange {
@@ -141,18 +155,19 @@ function Test-AdvancedAuditPolicyConfigurationPolicyChange {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
-        Test-PolicyChangeAuditAuditPolicyChange -ProductType $ProductType -GPResult $GPResult
-        Test-PolicyChangeAuditAuthenticationPolicyChange -ProductType $ProductType -GPResult $GPResult
-        Test-PolicyChangeAuditAuthorizationPolicyChange -ProductType $ProductType -GPResult $GPResult
-        Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange -ProductType $ProductType -GPResult $GPResult
-        Test-PolicyChangeAuditOtherPolicyChangeEvents -ProductType $ProductType -GPResult $GPResult
+        Test-PolicyChangeAuditAuditPolicyChange @Parameters
+        Test-PolicyChangeAuditAuthenticationPolicyChange @Parameters
+        Test-PolicyChangeAuditAuthorizationPolicyChange @Parameters
+        Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange @Parameters
+        Test-PolicyChangeAuditOtherPolicyChangeEvents @Parameters
     }
-    
-    end {}
 }
 
 function Test-AdvancedAuditPolicyConfigurationPrivilegeUse {
@@ -165,14 +180,15 @@ function Test-AdvancedAuditPolicyConfigurationPrivilegeUse {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
-        Test-PrivilegeUseAuditSensitivePrivilegeUse -ProductType $ProductType -GPResult $GPResult
+        Test-PrivilegeUseAuditSensitivePrivilegeUse @Parameters
     }
-    
-    end {}
 }
 
 function Test-AdvancedAuditPolicyConfigurationSystem {
@@ -185,18 +201,19 @@ function Test-AdvancedAuditPolicyConfigurationSystem {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
-        Test-SystemAuditIPsecDriver -ProductType $ProductType -GPResult $GPResult
-        Test-SystemAuditOtherSystemEvents -ProductType $ProductType -GPResult $GPResult
-        Test-SystemAuditSecurityStateChange -ProductType $ProductType -GPResult $GPResult
-        Test-SystemAuditSecuritySystemExtension -ProductType $ProductType -GPResult $GPResult
-        Test-SystemAuditSystemIntegrity -ProductType $ProductType -GPResult $GPResult
+        Test-SystemAuditIPsecDriver @Parameters
+        Test-SystemAuditOtherSystemEvents @Parameters
+        Test-SystemAuditSecurityStateChange @Parameters
+        Test-SystemAuditSecuritySystemExtension @Parameters
+        Test-SystemAuditSystemIntegrity @Parameters
     }
-    
-    end {}
 }
 
 function Test-CISBenchmarkAdvancedAuditPolicyConfiguration {
@@ -208,21 +225,30 @@ function Test-CISBenchmarkAdvancedAuditPolicyConfiguration {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
     
-    
-    
-    process {
-        Test-AdvancedAuditPolicyConfigurationAccountLogon -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdvancedAuditPolicyConfigurationAccountManagement -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdvancedAuditPolicyConfigurationDetailedTracking -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        if ($ProductType -eq 2) {
-            Test-AdvancedAuditPolicyConfigurationDSAccess -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+    begin {
+        $Parameters = @{
+            "Level" = $Level
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
         }
-        Test-AdvancedAuditPolicyConfigurationLogonLogoff -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdvancedAuditPolicyConfigurationObjectAccess -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdvancedAuditPolicyConfigurationPolicyChange -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdvancedAuditPolicyConfigurationPrivilegeUse -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdvancedAuditPolicyConfigurationSystem -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
+        }
     }
     
-    end {}
+    process {
+        Test-AdvancedAuditPolicyConfigurationAccountLogon @Parameters
+        Test-AdvancedAuditPolicyConfigurationAccountManagement @Parameters
+        Test-AdvancedAuditPolicyConfigurationDetailedTracking @Parameters
+        if ($ProductType -eq 2) {
+            Test-AdvancedAuditPolicyConfigurationDSAccess @Parameters
+        }
+        Test-AdvancedAuditPolicyConfigurationLogonLogoff @Parameters
+        Test-AdvancedAuditPolicyConfigurationObjectAccess @Parameters
+        Test-AdvancedAuditPolicyConfigurationPolicyChange @Parameters
+        Test-AdvancedAuditPolicyConfigurationPrivilegeUse @Parameters
+        Test-AdvancedAuditPolicyConfigurationSystem @Parameters
+    }
 }

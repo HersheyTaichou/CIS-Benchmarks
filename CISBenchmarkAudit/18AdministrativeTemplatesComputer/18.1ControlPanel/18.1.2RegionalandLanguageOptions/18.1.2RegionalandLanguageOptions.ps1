@@ -34,7 +34,7 @@ function Test-RegionalAndLanguageOptionsAllowUsersToEnableOnlineSpeechRecognitio
     )
 
     begin {
-              $EntryName = "Allow users to enable online speech recognition services"
+        $EntryName = "Allow users to enable online speech recognition services"
         $Result = [CISBenchmark]::new()
         $Result.Number = "18.1.2.2"
         $Result.Level = "L1"

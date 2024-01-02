@@ -48,7 +48,10 @@ function Test-NetworkDNSClient {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -104,7 +107,10 @@ function Test-NetworkFonts {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -160,7 +166,10 @@ function Test-NetworkLanmanWorkstation {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -216,7 +225,10 @@ function Test-NetworkLinkLayerTopologyDiscovery {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -272,7 +284,10 @@ function Test-NetworkMicrosoftPeertoPeerNetworkingServices {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -328,7 +343,10 @@ function Test-NetworkNetworkConnections {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -384,7 +402,10 @@ function Test-NetworkNetworkProvider {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -440,7 +461,10 @@ function Test-NetworkTCPIPSettings {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -496,7 +520,10 @@ function Test-NetworkWindowsConnectNow {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -552,7 +579,10 @@ function Test-NetworkWindowsConnectionManager {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {

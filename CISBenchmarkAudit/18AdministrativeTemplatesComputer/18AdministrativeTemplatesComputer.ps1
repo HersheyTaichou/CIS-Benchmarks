@@ -48,12 +48,21 @@ function Test-AdministrativeTemplatesComputerControlPanel {
     )
     
     begin {
-        
+        $Parameters = @{
+            "Level" = $Level
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
+        }
     }
     
     process {
-        Test-ControlPanelPersonalization -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-ControlPanelRegionalAndLanguageOptions -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-ControlPanelPersonalization @Parameters
+        Test-ControlPanelRegionalAndLanguageOptions @Parameters
     }
     
     end {}
@@ -107,14 +116,21 @@ function Test-AdministrativeTemplatesComputerLAPS {
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
+
+    begin {
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
+    }
     
     process {
-        Test-LAPSLocalAdministratorPasswordSolution
-        Test-LAPSDoNotAllowPasswordExpirationTimeLongerThanRequiredByPolicy
-        Test-LAPSEnableLocalAdminPasswordManagement
-        Test-LAPSPasswordComplexity
-        Test-LAPSPasswordLength
-        Test-LAPSPasswordAge
+        Test-LAPSLocalAdministratorPasswordSolution @Parameters
+        Test-LAPSDoNotAllowPasswordExpirationTimeLongerThanRequiredByPolicy @Parameters
+        Test-LAPSEnableLocalAdminPasswordManagement @Parameters
+        Test-LAPSPasswordComplexity @Parameters
+        Test-LAPSPasswordLength @Parameters
+        Test-LAPSPasswordAge @Parameters
     }
 }
 
@@ -166,17 +182,24 @@ function Test-AdministrativeTemplatesComputerMSSecurityGuide {
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
+
+    begin {
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
+    }
     
     process {
         if ($ProductType = 3) {
-            Test-MSSecurityGuideApplyUACRestrictionsToLocalAccountsOnNetworkLogons
+            Test-MSSecurityGuideApplyUACRestrictionsToLocalAccountsOnNetworkLogons @Parameters
         }
-        Test-MSSecurityGuideConfigureRPCPacketLevelPrivacySettingForIncomingConnections
-        Test-MSSecurityGuideConfigureSMBv1ClientDriver
-        Test-MSSecurityGuideConfigureSMBv1Server
-        Test-MSSecurityGuideEnableSEHOP
-        Test-MSSecurityGuideNetBTNodeTypeconfiguration
-        Test-MSSecurityGuideWDigestAuthentication
+        Test-MSSecurityGuideConfigureRPCPacketLevelPrivacySettingForIncomingConnections @Parameters
+        Test-MSSecurityGuideConfigureSMBv1ClientDriver @Parameters
+        Test-MSSecurityGuideConfigureSMBv1Server @Parameters
+        Test-MSSecurityGuideEnableSEHOP @Parameters
+        Test-MSSecurityGuideNetBTNodeTypeconfiguration @Parameters
+        Test-MSSecurityGuideWDigestAuthentication @Parameters
     }
 }
 
@@ -230,7 +253,10 @@ function Test-AdministrativeTemplatesComputerMSS {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -287,7 +313,10 @@ function Test-AdministrativeTemplatesComputerNetwork {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -344,7 +373,10 @@ function Test-AdministrativeTemplatesComputerPrinters {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -401,7 +433,10 @@ function Test-AdministrativeTemplatesComputerStartMenuAndTaskbar {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -456,7 +491,10 @@ Function Test-AdministrativeTemplatesComputerSystem {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -511,7 +549,10 @@ Function Test-AdministrativeTemplatesComputerWindowsComponents {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
@@ -565,17 +606,30 @@ function Test-CISBenchmarkAdministrativeTemplatesComputer {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    process {
-        Test-AdministrativeTemplatesComputerControlPanel -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        if ($ProductType -eq 3) {
-            Test-AdministrativeTemplatesComputerLAPS -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+    begin {
+        $Parameters = @{
+            "Level" = $Level
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
         }
-        Test-AdministrativeTemplatesComputerMSSecurityGuide -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerMSS -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerNetwork -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerPrinters -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerStartMenuAndTaskbar -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerSystem -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-AdministrativeTemplatesComputerWindowsComponents -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
+        }
+    }
+
+    process {
+        Test-AdministrativeTemplatesComputerControlPanel @Parameters
+        if ($ProductType -eq 3) {
+            Test-AdministrativeTemplatesComputerLAPS @Parameters
+        }
+        Test-AdministrativeTemplatesComputerMSSecurityGuide @Parameters
+        Test-AdministrativeTemplatesComputerMSS @Parameters
+        Test-AdministrativeTemplatesComputerNetwork @Parameters
+        Test-AdministrativeTemplatesComputerPrinters @Parameters
+        Test-AdministrativeTemplatesComputerStartMenuAndTaskbar @Parameters
+        Test-AdministrativeTemplatesComputerSystem @Parameters
+        Test-AdministrativeTemplatesComputerWindowsComponents @Parameters
     }
 }

@@ -34,6 +34,7 @@ function Test-MSSecurityGuideApplyUACRestrictionsToLocalAccountsOnNetworkLogons 
 
     begin {
         $EntryName = "Apply UAC restrictions to local accounts on network logons"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.1'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -94,6 +95,7 @@ function Test-MSSecurityGuideConfigureRPCPacketLevelPrivacySettingForIncomingCon
 
     begin {
         $EntryName = "Configure RPC packet level privacy setting for incoming connections"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.2'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -160,6 +162,7 @@ function Test-MSSecurityGuideConfigureSMBv1ClientDriver {
 
     begin {
         $EntryName = "Configure SMB v1 client driver"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.3'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -226,6 +229,7 @@ function Test-MSSecurityGuideConfigureSMBv1Server {
 
     begin {
         $EntryName = "Configure SMB v1 server"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.4'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -292,6 +296,7 @@ function Test-MSSecurityGuideEnableSEHOP {
 
     begin {
         $EntryName = "Enable Structured Exception Handling Overwrite Protection (SEHOP)"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.5'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -358,6 +363,7 @@ function Test-MSSecurityGuideNetBTNodeTypeconfiguration {
 
     begin {
         $EntryName = "NetBT NodeType configuration"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.6'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -424,6 +430,7 @@ function Test-MSSecurityGuideWDigestAuthentication {
 
     begin {
         $EntryName = "WDigest Authentication (disabling may require KB2871997)"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.7'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
@@ -442,7 +449,7 @@ function Test-MSSecurityGuideWDigestAuthentication {
 
     process {
         $Result.Setting = $Result.Entry.State
-        if ($Result.Entry.State -eq "Enabled") {
+        if ($Result.Entry.State -eq "Disabled") {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false

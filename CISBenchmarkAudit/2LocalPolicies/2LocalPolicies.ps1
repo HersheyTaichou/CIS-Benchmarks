@@ -49,52 +49,60 @@ function Test-LocalPoliciesUserRightsAssignment {
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
-    Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeNetworkLogonRight -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeTcbPrivilege -ProductType $ProductType -GPResult $GPResult
-    if ($ProductType -eq 2) {
-        Test-UserRightsAssignmentSeMachineAccountPrivilege -ProductType $ProductType -GPResult $GPResult
+    begin {
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
-    Test-UserRightsAssignmentSeIncreaseQuotaPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeInteractiveLogonRight -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeRemoteInteractiveLogonRight -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeBackupPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeSystemTimePrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeTimeZonePrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeCreatePagefilePrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeCreateTokenPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeCreateGlobalPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeCreatePermanentPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeDebugPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeDenyNetworkLogonRight -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeDenyBatchLogonRight -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeDenyServiceLogonRight -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeDenyInteractiveLogonRight -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeEnableDelegationPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeRemoteShutdownPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeAuditPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeImpersonatePrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeLoadDriverPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeLockMemoryPrivilege -ProductType $ProductType -GPResult $GPResult
-    if ($ProductType -eq 2 -and $Level -eq 2) {
-        Test-UserRightsAssignmentSeBatchLogonRight -ProductType $ProductType -GPResult $GPResult
+    Process {
+        Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege @Parameters
+        Test-UserRightsAssignmentSeNetworkLogonRight @Parameters
+        Test-UserRightsAssignmentSeTcbPrivilege @Parameters
+        if ($ProductType -eq 2) {
+            Test-UserRightsAssignmentSeMachineAccountPrivilege @Parameters
+        }
+        Test-UserRightsAssignmentSeIncreaseQuotaPrivilege @Parameters
+        Test-UserRightsAssignmentSeInteractiveLogonRight @Parameters
+        Test-UserRightsAssignmentSeRemoteInteractiveLogonRight @Parameters
+        Test-UserRightsAssignmentSeBackupPrivilege @Parameters
+        Test-UserRightsAssignmentSeSystemTimePrivilege @Parameters
+        Test-UserRightsAssignmentSeTimeZonePrivilege @Parameters
+        Test-UserRightsAssignmentSeCreatePagefilePrivilege @Parameters
+        Test-UserRightsAssignmentSeCreateTokenPrivilege @Parameters
+        Test-UserRightsAssignmentSeCreateGlobalPrivilege @Parameters
+        Test-UserRightsAssignmentSeCreatePermanentPrivilege @Parameters
+        Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege @Parameters
+        Test-UserRightsAssignmentSeDebugPrivilege @Parameters
+        Test-UserRightsAssignmentSeDenyNetworkLogonRight @Parameters
+        Test-UserRightsAssignmentSeDenyBatchLogonRight @Parameters
+        Test-UserRightsAssignmentSeDenyServiceLogonRight @Parameters
+        Test-UserRightsAssignmentSeDenyInteractiveLogonRight @Parameters
+        Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight @Parameters
+        Test-UserRightsAssignmentSeEnableDelegationPrivilege @Parameters
+        Test-UserRightsAssignmentSeRemoteShutdownPrivilege @Parameters
+        Test-UserRightsAssignmentSeAuditPrivilege @Parameters
+        Test-UserRightsAssignmentSeImpersonatePrivilege @Parameters
+        Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege @Parameters
+        Test-UserRightsAssignmentSeLoadDriverPrivilege @Parameters
+        Test-UserRightsAssignmentSeLockMemoryPrivilege @Parameters
+        if ($ProductType -eq 2 -and $Level -eq 2) {
+            Test-UserRightsAssignmentSeBatchLogonRight @Parameters
+        }
+        Test-UserRightsAssignmentSeSecurityPrivilege @Parameters
+        Test-UserRightsAssignmentSeRelabelPrivilege @Parameters
+        Test-UserRightsAssignmentSeSystemEnvironmentPrivilege @Parameters
+        Test-UserRightsAssignmentSeManageVolumePrivilege @Parameters
+        Test-UserRightsAssignmentSeProfileSingleProcessPrivilege @Parameters
+        Test-UserRightsAssignmentSeSystemProfilePrivilege @Parameters
+        Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege @Parameters
+        Test-UserRightsAssignmentSeRestorePrivilege @Parameters
+        Test-UserRightsAssignmentSeShutdownPrivilege @Parameters
+        if ($ProductType -eq 2) {
+            Test-UserRightsAssignmentSeSyncAgentPrivilege @Parameters
+        }
+        Test-UserRightsAssignmentSeTakeOwnershipPrivilege @Parameters
     }
-    Test-UserRightsAssignmentSeSecurityPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeRelabelPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeSystemEnvironmentPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeManageVolumePrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeProfileSingleProcessPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeSystemProfilePrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeRestorePrivilege -ProductType $ProductType -GPResult $GPResult
-    Test-UserRightsAssignmentSeShutdownPrivilege -ProductType $ProductType -GPResult $GPResult
-    if ($ProductType -eq 2) {
-        Test-UserRightsAssignmentSeSyncAgentPrivilege -ProductType $ProductType -GPResult $GPResult
-    }
-    Test-UserRightsAssignmentSeTakeOwnershipPrivilege -ProductType $ProductType -GPResult $GPResult
 }
 
 <#
@@ -148,21 +156,35 @@ function Test-LocalPoliciesSecurityOptions {
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
-    Test-SecurityOptionsAccounts -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    Test-SecurityOptionsAudit -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    Test-SecurityOptionsDevices -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    if ($ProductType -eq 2) {
-        Test-SecurityOptionsDomainController -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+    begin {
+        $Parameters = @{
+            "Level" = $Level
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
+        }
     }
-    Test-SecurityOptionsDomainMember -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    Test-SecurityOptionsInteractiveLogin -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    Test-SecurityOptionsMicrosoftNetworkClient -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    Test-SecurityOptionsMicrosoftNetworkServer -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    Test-SecurityOptionsNetworkAccess -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    Test-SecurityOptionsNetworkSecurity -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    Test-SecurityOptionsShutdown -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    Test-SecurityOptionsSystemObjects -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    Test-SecurityOptionsUserAccountControl -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+    Process {
+        Test-SecurityOptionsAccounts @Parameters
+        Test-SecurityOptionsAudit @Parameters
+        Test-SecurityOptionsDevices @Parameters
+        if ($ProductType -eq 2) {
+            Test-SecurityOptionsDomainController @Parameters
+        }
+        Test-SecurityOptionsDomainMember @Parameters
+        Test-SecurityOptionsInteractiveLogin @Parameters
+        Test-SecurityOptionsMicrosoftNetworkClient @Parameters
+        Test-SecurityOptionsMicrosoftNetworkServer @Parameters
+        Test-SecurityOptionsNetworkAccess @Parameters
+        Test-SecurityOptionsNetworkSecurity @Parameters
+        Test-SecurityOptionsShutdown @Parameters
+        Test-SecurityOptionsSystemObjects @Parameters
+        Test-SecurityOptionsUserAccountControl @Parameters
+    }
 }
 
 
@@ -218,6 +240,20 @@ function Test-CISBenchmarkLocalPolicies {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    Test-LocalPoliciesUserRightsAssignment -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-    Test-LocalPoliciesSecurityOptions -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+    begin {
+        $Parameters = @{
+            "Level" = $Level
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
+        }
+    }
+    Process {
+        Test-LocalPoliciesUserRightsAssignment @Parameters
+        Test-LocalPoliciesSecurityOptions @Parameters
+    }
 }
