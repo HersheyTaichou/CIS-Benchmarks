@@ -19,13 +19,13 @@ These scripts are VERY MUCH a work in progress, so take caution and review them 
    ```text
    Number     Level Title                                                           Source                    SetCorrectly
    ------     ----- -----                                                           ------                    ------------
-   2.3.10.5   L1    Ensure 'Network access: Let Everyone permissions apply to an... Group Policy Settings     True        
+   2.3.10.5   L1    Ensure 'Network access: Let Everyone permissions apply to an... Group Policy Settings     False       
    ```
 
    If you check the default for this entry, it will indicate that the default matches the benchmark, which should be a pass. I have chosen to consider this a failure because someone could change this setting in the local policy on a computer, and it would not get over-written or prevented by the GPO settings.
 
 - The script will check the machine's type as it runs, and run checks specific to that type. A workstation is type 1, a domain controller (DC) is type 2 and a member server (MS) is type 3. This can be overridden by specifying -ProductType [1/2/3] at runtime
-  - Running on a workstation will do all checks applicable to Domain Controllers and Member Servers, but skip ones specific to DCs or MSs
+  - Running on a workstation will do all checks applicable to Domain Controllers (DC) and Member Servers (MS), but skip ones specific to DCs or MSs
 
 ## Getting Started
 
