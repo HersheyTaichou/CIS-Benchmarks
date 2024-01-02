@@ -12,7 +12,7 @@
 RootModule = '.\CISBenchmarkAudit.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.17'
+ModuleVersion = '0.18.4'
 
 # Version number explanation:
     # Major version will increase to 1 when the entire benchmark can be audited
@@ -318,8 +318,95 @@ FunctionsToExport = @(
     'Test-PersonalizationPreventEnablingLockScreenCamera','Test-PersonalizationPreventEnablingLockScreenSlideshow',
     # 18.1.2 Regional and Language Options
     'Test-RegionalAndLanguageOptionsAllowUsersToEnableOnlineSpeechRecognitionServices',
+    # 18.3
+    'Test-LAPSLocalAdministratorPasswordSolution','Test-LAPSDoNotAllowPasswordExpirationTimeLongerThanRequiredByPolicy',
+    'Test-LAPSEnableLocalAdminPasswordManagement','Test-LAPSPasswordComplexity','Test-LAPSPasswordLength','Test-LAPSPasswordAge',
+    # 18.4
+    'Test-MSSecurityGuideApplyUACRestrictionsToLocalAccountsOnNetworkLogons','Test-MSSecurityGuideConfigureRPCPacketLevelPrivacySettingForIncomingConnections',
+    'Test-MSSecurityGuideConfigureSMBv1ClientDriver','Test-MSSecurityGuideConfigureSMBv1Server','Test-MSSecurityGuideEnableSEHOP',
+    'Test-MSSecurityGuideNetBTNodeTypeconfiguration','Test-MSSecurityGuideWDigestAuthentication',
+    # 18.5
+    # 18.6
+    # 18.6.4
+    # 18.6.5
+    # 18.6.6
+    # 18.6.7
+    # 18.6.10
+    # 18.6.11
+    # 18.6.14
+    # 18.6.19
+    # 18.6.20
+    # 18.6.21
+    # 18.7
+    # 18.8
+    # 18.8.1
+    # 18.9
+    # 18.9.3
+    # 18.9.4
+    # 18.9.5
+    # 18.9.7
+    # 18.9.13
+    # 18.9.19
+    # 18.9.20
+    # 18.9.23
+    # 18.9.24
+    # 18.9.25
+    # 18.9.26
+    # 18.9.27
+    # 18.9.30
+    # 18.9.32
+    # 18.9.34
+    # 18.9.45
+    # 18.9.38
+    # 18.9.46
+    # 18.9.48
+    # 18.9.50
+    # 18.10
+    # 18.10.3
+    # 18.10.5
+    # 18.10.7
+    # 18.10.8
+    # 18.10.10
+    # 18.10.12
+    # 18.10.13
+    # 18.10.14
+    # 18.10.15
+    # 18.10.17
+    # 18.10.26
+    # 18.10.29
+    # 18.10.37
+    # 18.10.41
+    # 18.10.42
+    # 18.10.43
+    # 18.10.51
+    # 18.10.56
+    # 18.10.57
+    # 18.10.58
+    # 18.10.59
+    # 18.10.63
+    # 18.10.76
+    # 18.10.80
+    # 18.10.81
+    # 18.10.82
+    # 18.10.87
+    # 18.10.88
+    # 18.10.89
+    # 18.10.90
+    # 18.10.92
+    # 18.10.93
     # 19 Administrative Templates (User)
     'Test-CISBenchmarkAdministrativeTemplatesUser'
+    # 19.1
+    # 19.1.3
+    # 19.5
+    # 19.5.1
+    # 19.6
+    # 19.6.6
+    # 19.7
+    # 19.7.4
+    # 19.7.25
+    # 19.7.40
+    # 19.7.42
     )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -608,7 +695,7 @@ PrivateData = @{
         ReleaseNotes = 'This is very much a work in progress'
 
         # Prerelease string of this module
-        Prerelease = 'alpha'
+        Prerelease = 'beta'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         # RequireLicenseAcceptance = $false
