@@ -126,11 +126,14 @@ function Test-CISBenchmarkSystemServices {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
-        Test-SystemServicesSpooler -ProductType $ProductType -GPResult $GPResult
+        Test-SystemServicesSpooler @Parameters
     }
     
     end {}

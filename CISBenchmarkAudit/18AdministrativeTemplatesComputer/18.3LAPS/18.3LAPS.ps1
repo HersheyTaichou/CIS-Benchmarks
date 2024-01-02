@@ -37,6 +37,7 @@ function Test-LAPSLocalAdministratorPasswordSolution {
 
     begin {
         $EntryName = "Local Administrator Password Solution"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.3.1'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -101,6 +102,7 @@ function Test-LAPSDoNotAllowPasswordExpirationTimeLongerThanRequiredByPolicy {
 
     begin {
         $EntryName = "Do not allow password expiration time longer than required by policy"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.3.2'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -160,7 +162,8 @@ function Test-LAPSEnableLocalAdminPasswordManagement {
     )
 
     begin {
-              $EntryName = "Enable local admin password management"
+        $EntryName = "Enable local admin password management"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.3.3'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -221,6 +224,7 @@ function Test-LAPSPasswordComplexity {
 
     begin {
         $EntryName = "Password Settings"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.3.4'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -281,6 +285,7 @@ function Test-LAPSPasswordLength {
 
     begin {
         $EntryName = "Password Settings"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.3.5'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -294,13 +299,9 @@ function Test-LAPSPasswordLength {
     process {
         if ($Result.Entry) {
             foreach ($Name in $Result.Entry.Numeric) {
-                if ($Name -eq "Password Length") {
-                    if ($Name.Value -ge "15" -and $Name.State -eq "Enabled") {
-                        $Result.Setting = 'Enabled: 15 or more'
-                        $Result.SetCorrectly = $true
-                    } else {
-                        $Result.SetCorrectly = $false
-                    }
+                if (($Name.Name -eq "Password Length") -and ([int]$Name.Value -ge 15 -and $Name.State -eq "Enabled")) {
+                    $Result.Setting = 'Enabled: 15 or more'
+                    $Result.SetCorrectly = $true
                 } else {
                     $Result.SetCorrectly = $false
                 }
@@ -351,6 +352,7 @@ function Test-LAPSPasswordAge {
 
     begin {
         $EntryName = "Password Settings"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.3.6'
         $Result.Level = "L1"
         $Result.Profile = "Member Server"
@@ -364,13 +366,9 @@ function Test-LAPSPasswordAge {
     process {
         if ($Result.Entry) {
             foreach ($Name in $Result.Entry.Numeric) {
-                if ($Name -eq "Password Age (Days)") {
-                    if ($Name.Value -le "30" -and $Name.State -eq "Enabled") {
-                        $Result.Setting = 'Enabled: 30 or fewer'
-                        $Result.SetCorrectly = $true
-                    } else {
-                        $Result.SetCorrectly = $false
-                    }
+                if (($Name.Name -eq "Password Age (Days)") -and ([int]$Name.Value -le 30 -and $Name.State -eq "Enabled")) {
+                    $Result.Setting = 'Enabled: 30 or fewer'
+                    $Result.SetCorrectly = $true
                 } else {
                     $Result.SetCorrectly = $false
                 }

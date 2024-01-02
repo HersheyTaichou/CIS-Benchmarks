@@ -48,7 +48,10 @@ function Test-StartMenuAndTaskbarNotifications {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {

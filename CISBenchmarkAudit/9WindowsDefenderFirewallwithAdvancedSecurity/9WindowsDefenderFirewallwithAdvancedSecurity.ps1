@@ -72,18 +72,21 @@ function Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
-        Test-DomainProfileEnableFirewall -ProductType $ProductType -GPResult $GPResult
-        Test-DomainProfileDefaultInboundAction -ProductType $ProductType -GPResult $GPResult
-        Test-DomainProfileDefaultOutboundAction -ProductType $ProductType -GPResult $GPResult
-        Test-DomainProfileDisableNotifications -ProductType $ProductType -GPResult $GPResult
-        Test-DomainProfileLogFilePath -ProductType $ProductType -GPResult $GPResult
-        Test-DomainProfileLogFileSize -ProductType $ProductType -GPResult $GPResult
-        Test-DomainProfileLogDroppedPackets -ProductType $ProductType -GPResult $GPResult
-        Test-DomainProfileLogSuccessfulConnections -ProductType $ProductType -GPResult $GPResult
+        Test-DomainProfileEnableFirewall @Parameters
+        Test-DomainProfileDefaultInboundAction @Parameters
+        Test-DomainProfileDefaultOutboundAction @Parameters
+        Test-DomainProfileDisableNotifications @Parameters
+        Test-DomainProfileLogFilePath @Parameters
+        Test-DomainProfileLogFileSize @Parameters
+        Test-DomainProfileLogDroppedPackets @Parameters
+        Test-DomainProfileLogSuccessfulConnections @Parameters
     }
     
     end {}
@@ -142,18 +145,21 @@ function Test-WindowsDefenderFirewallwithAdvancedSecurityPrivateProfile {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
-        Test-PrivateProfileEnableFirewall -ProductType $ProductType -GPResult $GPResult
-        Test-PrivateProfileDefaultInboundAction -ProductType $ProductType -GPResult $GPResult
-        Test-PrivateProfileDefaultOutboundAction -ProductType $ProductType -GPResult $GPResult
-        Test-PrivateProfileDisableNotifications -ProductType $ProductType -GPResult $GPResult
-        Test-PrivateProfileLogFilePath -ProductType $ProductType -GPResult $GPResult
-        Test-PrivateProfileLogFileSize -ProductType $ProductType -GPResult $GPResult
-        Test-PrivateProfileLogDroppedPackets -ProductType $ProductType -GPResult $GPResult
-        Test-PrivateProfileLogSuccessfulConnections -ProductType $ProductType -GPResult $GPResult
+        Test-PrivateProfileEnableFirewall @Parameters
+        Test-PrivateProfileDefaultInboundAction @Parameters
+        Test-PrivateProfileDefaultOutboundAction @Parameters
+        Test-PrivateProfileDisableNotifications @Parameters
+        Test-PrivateProfileLogFilePath @Parameters
+        Test-PrivateProfileLogFileSize @Parameters
+        Test-PrivateProfileLogDroppedPackets @Parameters
+        Test-PrivateProfileLogSuccessfulConnections @Parameters
     }
     
     end {}
@@ -212,20 +218,23 @@ function Test-WindowsDefenderFirewallwithAdvancedSecurityPublicProfile {
     )
     
     begin {
-        
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
+        }
     }
     
     process {
-        Test-PublicProfileEnableFirewall -ProductType $ProductType -GPResult $GPResult
-        Test-PublicProfileDefaultInboundAction -ProductType $ProductType -GPResult $GPResult
-        Test-PublicProfileDefaultOutboundAction -ProductType $ProductType -GPResult $GPResult
-        Test-PublicProfileDisableNotifications -ProductType $ProductType -GPResult $GPResult
-        Test-PublicProfileAllowLocalPolicyMerge -ProductType $ProductType -GPResult $GPResult
-        Test-PublicProfileAllowLocalIPsecPolicyMerge -ProductType $ProductType -GPResult $GPResult
-        Test-PublicProfileLogFilePath -ProductType $ProductType -GPResult $GPResult
-        Test-PublicProfileLogFileSize -ProductType $ProductType -GPResult $GPResult
-        Test-PublicProfileLogDroppedPackets -ProductType $ProductType -GPResult $GPResult
-        Test-PublicProfileLogSuccessfulConnections -ProductType $ProductType -GPResult $GPResult
+        Test-PublicProfileEnableFirewall @Parameters
+        Test-PublicProfileDefaultInboundAction @Parameters
+        Test-PublicProfileDefaultOutboundAction @Parameters
+        Test-PublicProfileDisableNotifications @Parameters
+        Test-PublicProfileAllowLocalPolicyMerge @Parameters
+        Test-PublicProfileAllowLocalIPsecPolicyMerge @Parameters
+        Test-PublicProfileLogFilePath @Parameters
+        Test-PublicProfileLogFileSize @Parameters
+        Test-PublicProfileLogDroppedPackets @Parameters
+        Test-PublicProfileLogSuccessfulConnections @Parameters
     }
     
     end {}
@@ -288,9 +297,9 @@ function Test-CISBenchmarkWindowsDefenderFirewallwithAdvancedSecurity {
     }
     
     process {
-        Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-WindowsDefenderFirewallwithAdvancedSecurityPrivateProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
-        Test-WindowsDefenderFirewallwithAdvancedSecurityPublicProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity -ProductType $ProductType -GPResult $GPResult
+        Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity @Parameters
+        Test-WindowsDefenderFirewallwithAdvancedSecurityPrivateProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity @Parameters
+        Test-WindowsDefenderFirewallwithAdvancedSecurityPublicProfile -Level $Level -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity @Parameters
     }
     
     end {}

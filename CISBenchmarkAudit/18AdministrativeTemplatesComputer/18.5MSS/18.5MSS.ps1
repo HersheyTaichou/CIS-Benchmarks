@@ -24,7 +24,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-MSSLegacy {
+function Test-MSS {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -80,7 +80,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-MSSLegacy {
+function Test-MSS {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -136,7 +136,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-MSSLegacy {
+function Test-MSS {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -192,7 +192,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-MSSLegacy {
+function Test-MSS {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -248,7 +248,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-MSSLegacy {
+function Test-MSS {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -304,7 +304,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-MSSLegacy {
+function Test-MSS {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -360,7 +360,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-MSSLegacy {
+function Test-MSS {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -416,7 +416,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-MSSLegacy {
+function Test-MSS {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -472,7 +472,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-MSSLegacy {
+function Test-MSS {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -528,7 +528,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-MSSLegacy {
+function Test-MSS {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -584,7 +584,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-MSSLegacy {
+function Test-MSS {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -640,7 +640,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-MSSLegacy {
+function Test-MSS {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
