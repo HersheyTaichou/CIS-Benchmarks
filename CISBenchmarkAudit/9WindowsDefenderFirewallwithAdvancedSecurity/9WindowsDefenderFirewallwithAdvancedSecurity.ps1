@@ -1,21 +1,36 @@
+<#
+.SYNOPSIS
+The base function for all the tests under 9 Windows Defender Firewall with Advanced Security
+
+.DESCRIPTION
+This function provides the base test for all the CIS Benchmarks under section 9. It will take the name of a profile, then return that profile.
+
+.PARAMETER EntryName
+The name of the profile to search
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
+.EXAMPLE
+Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
+
+.NOTES
+General notes
+#>
 function Get-WindowsFirewallSettings {
     [CmdletBinding()]
     param (
         # Parameter help description
         [Parameter(Mandatory)][string]$EntryName,
-        [Parameter(Mandatory)][string]$GPResult
+        [Parameter(Mandatory)][xml]$GPResult
     )
     
     process {
         foreach ($data in $GPResult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Profile in $data.Extension.$EntryName) {
-                $Return = $Profile
+            if ($data.Extension.$EntryName) {
+                Return $data.Extension.$EntryName
             }
         }
-    }
-
-    end {
-        return $Return
     }
 }
 

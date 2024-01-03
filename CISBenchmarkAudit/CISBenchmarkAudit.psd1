@@ -541,10 +541,10 @@ ModuleList = @('.\CISBenchmarkAudit.psm1',
     '2LocalPolicies\2.3SecurityOptions\2.3SecurityOptions.ps1',
     '2LocalPolicies\2LocalPolicies.ps1',
     '5SystemServices\5SystemServices.ps1',
+    '9WindowsDefenderFirewallwithAdvancedSecurity\9WindowsDefenderFirewallwithAdvancedSecurity.ps1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9.1DomainProfile\9.1DomainProfile.ps1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9.2PrivateProfile\9.2PrivateProfile.ps1',
-    '9WindowsDefenderFirewallwithAdvancedSecurity\9.3PublicProfile\9.3PublicProfile.ps1',
-    '9WindowsDefenderFirewallwithAdvancedSecurity\9WindowsDefenderFirewallwithAdvancedSecurity.ps1'
+    '9WindowsDefenderFirewallwithAdvancedSecurity\9.3PublicProfile\9.3PublicProfile.ps1'
     )
 
 # List of all files packaged with this module
@@ -667,10 +667,10 @@ FileList = @('.\CISBenchmarkAudit.psd1','.\CISBenchmarkAudit.psm1',
     '2LocalPolicies\2.3SecurityOptions\2.3SecurityOptions.ps1',
     '2LocalPolicies\2LocalPolicies.ps1',
     '5SystemServices\5SystemServices.ps1',
+    '9WindowsDefenderFirewallwithAdvancedSecurity\9WindowsDefenderFirewallwithAdvancedSecurity.ps1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9.1DomainProfile\9.1DomainProfile.ps1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9.2PrivateProfile\9.2PrivateProfile.ps1',
     '9WindowsDefenderFirewallwithAdvancedSecurity\9.3PublicProfile\9.3PublicProfile.ps1',
-    '9WindowsDefenderFirewallwithAdvancedSecurity\9WindowsDefenderFirewallwithAdvancedSecurity.ps1',
     'SupportFiles\psCISBenchmark.format.ps1xml'
     )
 

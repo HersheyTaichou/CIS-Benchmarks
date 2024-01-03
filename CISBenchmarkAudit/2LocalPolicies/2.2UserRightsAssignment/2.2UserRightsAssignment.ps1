@@ -1,16 +1,12 @@
 <#
 .SYNOPSIS
-The base function for all the tests under 2.2
+The base function for all the tests under 2.2 User Rights Assignment
 
 .DESCRIPTION
-This function provides the base test for all the CIS Benchmarks under 2.2. 
-It will take the setting to check and what the setting should be, then 
-compare the current setting to the benchmark and return true/false and the
-current setting
+This function provides the base test for all the CIS Benchmarks under 2.2. It will take the setting to check and what the setting should be, then compare the current setting to the benchmark and return true/false and the current setting
 
 .PARAMETER EntryName
-This is the setting that should be evaluated, the name must be as it shows 
-up in the GPResult XML file
+This is the setting that should be evaluated, the name must be as it shows up in the GPResult XML file
 
 .PARAMETER Definition
 This is the CIS Benchmark definition for this setting

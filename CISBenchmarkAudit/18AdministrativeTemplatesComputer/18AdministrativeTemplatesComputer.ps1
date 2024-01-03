@@ -238,7 +238,7 @@ This is used to define the GPO XML variable to test
 Test-AdministrativeTemplatesComputerMSS -Level 1
 
 --------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
+
 
 .NOTES
 General notes
@@ -260,6 +260,24 @@ function Test-AdministrativeTemplatesComputerMSS {
     }
     
     process {
+        Test-MSSAutoAdminLogon @Parameters
+        Test-MSSDisableIPSourceRoutingIPv6 @Parameters
+        Test-MSSDisableIPSourceRouting @Parameters
+        Test-MSSEnableICMPRedirect @Parameters
+        if ($Level -eq 2) {
+            Test-MSSKeepAliveTime @Parameters
+        }
+        Test-MSSNoNameReleaseOnDemand @Parameters
+        if ($Level -eq 2) {
+            Test-MSSPerformRouterDiscovery @Parameters
+        }
+        Test-MSSSafeDllSearchMode @Parameters
+        Test-MSSScreenSaverGracePeriod @Parameters
+        if ($Level -eq 2) {
+            Test-MSSTcpMaxDataRetransmissionsIPv6 @Parameters
+            Test-MSSTcpMaxDataRetransmissions @Parameters
+        }
+        Test-MSSWarningLevel @Parameters
     }
 }
 

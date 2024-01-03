@@ -181,8 +181,12 @@ function Test-PublicProfileDefaultOutboundAction {
     }
 
     process {
-        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.DefaultOutboundAction.Value)
-        $Result.SetCorrectly = -not($Result.Setting)
+        if ($Result.Entry) {
+            $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.DefaultOutboundAction.Value)
+            $Result.SetCorrectly = -not($Result.Setting)
+        } else {
+            $Result.SetCorrectly = $false
+        }
     }
 
     end {
@@ -309,8 +313,12 @@ function Test-PublicProfileAllowLocalPolicyMerge {
     }
 
     process {
-        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.AllowLocalPolicyMerge.Value)
-        $Result.SetCorrectly = -not($Result.Setting)
+        if ($Result.Entry) {
+            $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.AllowLocalPolicyMerge.Value)
+            $Result.SetCorrectly = -not($Result.Setting)
+        } else {
+            $Result.SetCorrectly = $false
+        }
     }
 
     end {
@@ -373,8 +381,13 @@ function Test-PublicProfileAllowLocalIPsecPolicyMerge {
     }
 
     process {
-        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.AllowLocalIPsecPolicyMerge.Value)
-        $Result.SetCorrectly = -not($Result.Setting)
+        if ($Result.Entry) {
+            $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.AllowLocalIPsecPolicyMerge.Value)
+            $Result.SetCorrectly = -not($Result.Setting)
+        } else {
+            $Result.SetCorrectly = $false
+        }
+        
     }
 
     end {
@@ -440,7 +453,7 @@ function Test-PublicProfileLogFilePath {
         $Result.Setting = $Result.Entry.LogFilePath.Value
         if ($Result.Setting -eq "%systemroot%\system32\logfiles\firewall\publicfw.log") {
             $Result.SetCorrectly = $true
-        } elseif ($Result.Setting -ne "%systemroot%\system32\logfiles\firewall\pfirewall.log") {
+        } elseif ($Result.Setting -ne "%systemroot%\system32\logfiles\firewall\pfirewall.log" -and $Result.Setting.GetType().Name -eq "String") {
             $Result.SetCorrectly = $true
             $Message = $EntryName + " Log File Path is not the default, but is also not the recommended value. To pass, each profile should have a different log file."
             Write-Verbose $Message

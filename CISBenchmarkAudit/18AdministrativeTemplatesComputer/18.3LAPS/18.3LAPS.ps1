@@ -53,7 +53,7 @@ function Test-LAPSLocalAdministratorPasswordSolution {
             $Result.Setting = $Result.Entry.Path
             $Result.SetCorrectly = $Result.Entry.AutoInstall
         } else {
-            $Warning = [string]$Result.Number + " - " + $Result.Title + "`nThis test may not return accurate results based on your setup. This test checks to see if the software is being installed via Group Policy with the name `"" + $EntryName + "`""
+            $Warning = [string]$Result.Number + ": `"" + $Result.Title + "`" may not return accurate results based on your setup. This test checks to see if the software is being installed via Group Policy with the name `"" + $EntryName + "`""
             Write-Warning -Message $Warning 
             $Result.Setting = ""
             $Result.SetCorrectly = $false

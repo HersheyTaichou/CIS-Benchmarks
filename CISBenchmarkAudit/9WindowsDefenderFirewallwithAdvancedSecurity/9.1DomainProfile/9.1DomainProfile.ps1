@@ -48,7 +48,6 @@ function Test-DomainProfileEnableFirewall {
         $Result.Title = "Ensure 'Windows Firewall: Domain: Firewall state' is set to 'On (recommended)'"
         $Result.Source = 'Group Policy Settings'
 
-        # Get the current value of the setting
         $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
     }
 
@@ -181,8 +180,12 @@ function Test-DomainProfileDefaultOutboundAction {
     }
 
     process {
-        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.DefaultOutboundAction.Value)
-        $Result.SetCorrectly = -not($Result.Setting)
+        if ($Result.Entry) {
+            $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.DefaultOutboundAction.Value)
+            $Result.SetCorrectly = -not($Result.Setting)
+        } else {
+            $Result.SetCorrectly = $false
+        }
     }
 
     end {
@@ -312,7 +315,7 @@ function Test-DomainProfileLogFilePath {
         $Result.Setting = $Result.Entry.LogFilePath.Value
         if ($Result.Setting -eq "%systemroot%\system32\logfiles\firewall\domainfw.log") {
             $Result.SetCorrectly = $true
-        } elseif ($Result.Setting -ne "%systemroot%\system32\logfiles\firewall\pfirewall.log") {
+        } elseif ($Result.Setting -ne "%systemroot%\system32\logfiles\firewall\pfirewall.log" -and $Result.Setting.GetType().Name -eq "String") {
             $Result.SetCorrectly = $true
             $Message = $EntryName + " Log File Path is not the default, but is also not the recommended value. To pass, each profile should have a different log file."
             Write-Verbose $Message
