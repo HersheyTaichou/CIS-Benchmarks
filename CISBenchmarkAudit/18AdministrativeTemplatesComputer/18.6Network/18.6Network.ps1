@@ -116,6 +116,7 @@ function Test-NetworkFonts {
     }
     
     process {
+        Test-FontsEnableFontProviders @Parameters
     }
 }
 

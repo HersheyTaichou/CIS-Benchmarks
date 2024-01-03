@@ -191,7 +191,7 @@ function Test-AdministrativeTemplatesComputerMSSecurityGuide {
     }
     
     process {
-        if ($ProductType = 3) {
+        if ($ProductType -eq 3) {
             Test-MSSecurityGuideApplyUACRestrictionsToLocalAccountsOnNetworkLogons @Parameters
         }
         Test-MSSecurityGuideConfigureRPCPacketLevelPrivacySettingForIncomingConnections @Parameters
@@ -332,12 +332,28 @@ function Test-AdministrativeTemplatesComputerNetwork {
     
     begin {
         $Parameters = @{
+            "Level" = $Level
             "ProductType" = $ProductType
             "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
         }
     }
     
     process {
+        Test-NetworkDNSClient @Parameters
+        Test-NetworkFonts @Parameters
+        Test-NetworkLanmanWorkstation @Parameters
+        Test-NetworkLinkLayerTopologyDiscovery @Parameters
+        Test-NetworkMicrosoftPeertoPeerNetworkingServices @Parameters
+        Test-NetworkNetworkConnections @Parameters
+        Test-NetworkNetworkProvider @Parameters
+        Test-NetworkTCPIPSettings @Parameters
+        Test-NetworkWindowsConnectNow @Parameters
+        Test-NetworkWindowsConnectionManager @Parameters
     }
 }
 
@@ -452,12 +468,19 @@ function Test-AdministrativeTemplatesComputerStartMenuAndTaskbar {
     
     begin {
         $Parameters = @{
+            "Level" = $Level
             "ProductType" = $ProductType
             "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
         }
     }
     
     process {
+        Test-StartMenuAndTaskbarNotifications @Parameters
     }
 }
 
@@ -510,8 +533,14 @@ Function Test-AdministrativeTemplatesComputerSystem {
     
     begin {
         $Parameters = @{
+            "Level" = $Level
             "ProductType" = $ProductType
             "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
         }
     }
     
@@ -568,8 +597,14 @@ Function Test-AdministrativeTemplatesComputerWindowsComponents {
     
     begin {
         $Parameters = @{
+            "Level" = $Level
             "ProductType" = $ProductType
             "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
         }
     }
     

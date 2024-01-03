@@ -326,11 +326,18 @@ FunctionsToExport = @(
     'Test-MSSecurityGuideConfigureSMBv1ClientDriver','Test-MSSecurityGuideConfigureSMBv1Server','Test-MSSecurityGuideEnableSEHOP',
     'Test-MSSecurityGuideNetBTNodeTypeconfiguration','Test-MSSecurityGuideWDigestAuthentication',
     # 18.5
+    'Test-MSSAutoAdminLogon','Test-MSSDisableIPSourceRoutingIPv6','Test-MSSDisableIPSourceRouting','Test-MSSEnableICMPRedirect','Test-MSSKeepAliveTime',
+    'Test-MSSNoNameReleaseOnDemand','Test-MSSPerformRouterDiscovery','Test-MSSSafeDllSearchMode','Test-MSSScreenSaverGracePeriod',
+    'Test-MSSTcpMaxDataRetransmissionsIPv6','Test-MSSTcpMaxDataRetransmissions','Test-MSSWarningLevel',
     # 18.6
+    'Test-NetworkDNSClient','Test-NetworkFonts','Test-NetworkLanmanWorkstation','Test-NetworkLinkLayerTopologyDiscovery','Test-NetworkMicrosoftPeertoPeerNetworkingServices',
+    'Test-NetworkNetworkConnections','Test-NetworkNetworkProvider','Test-NetworkTCPIPSettings','Test-NetworkWindowsConnectNow','Test-NetworkWindowsConnectionManager',
     # 18.6.4
+    'Test-DNSClientDoHPolicy','Test-DNSClientEnableNetbios','Test-DNSClientEnableMulticast',
     # 18.6.5
-    # 18.6.6
-    # 18.6.7
+    'Test-FontsEnableFontProviders',
+    # 18.6.8
+    # 18.6.9
     # 18.6.10
     # 18.6.11
     # 18.6.14
