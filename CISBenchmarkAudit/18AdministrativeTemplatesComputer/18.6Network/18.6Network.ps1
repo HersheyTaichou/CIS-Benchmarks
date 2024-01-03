@@ -33,7 +33,6 @@ This is used to define the GPO XML variable to test
 
 
 --------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
 General notes
@@ -55,6 +54,9 @@ function Test-NetworkDNSClient {
     }
     
     process {
+        Test-DNSClientDoHPolicy @Parameters
+        Test-DNSClientEnableNetbios @Parameters
+        Test-DNSClientEnableMulticast @Parameters
     }
 }
 
