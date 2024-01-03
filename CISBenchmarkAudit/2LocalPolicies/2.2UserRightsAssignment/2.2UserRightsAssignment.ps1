@@ -129,25 +129,32 @@ function Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    $Result = [CISBenchmark]::new()
-    $Result.Number = '2.2.1'
-    $Result.Level = "L1"
-    if ($ProductType -eq 1) {
-        $Result.Profile = "Corporate/Enterprise Environment"
-    } elseif ($ProductType -eq 2) {
-        $Result.Profile = "Domain Controller"
-    } elseif ($ProductType -eq 3) {
-        $Result.Profile = "Member Server"
+    begin {
+        $Result = [CISBenchmark]::new()
+        $Result.Number = '2.2.1'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'"
+        $Result.Source = 'Group Policy Settings'
+
+        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeTrustedCredManAccessPrivilege" -Definition @("")  -gpresult $GPResult
     }
-    $Result.Title = "Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'"
-    $Result.Source = 'Group Policy Settings'
 
-    $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeTrustedCredManAccessPrivilege" -Definition @("")  -gpresult $GPResult
-    $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-    $Result.Setting = $UserRightsAssignment.Setting
-    $Result.Entry = $UserRightsAssignment.Entry
-
-    return $Result
+    process {
+        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+        $Result.Setting = $UserRightsAssignment.Setting
+        $Result.Entry = $UserRightsAssignment.Entry
+    }
+    
+    end {
+        return $Result
+    }
 }
 
 <#
@@ -186,36 +193,41 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    $Result = [CISBenchmark]::new()
+    begin {
+        $Result = [CISBenchmark]::new()
 
-    # These three entries should be the only entries 
-    $DomainController = @('Administrators','Authenticated Users','ENTERPRISE DOMAIN CONTROLLERS')
-    $MemberServer = @('Administrators','Authenticated Users')
-
-    
-    if ($ProductType -eq 2) {
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $DomainController -gpresult $GPResult
-        $Result.Number = '2.2.2'
-        $Result.Level = "L1"
-        $Result.Profile = "Domain Controller"
-        $Result.Title = "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only)"
-        $Result.Source = 'Group Policy Settings'
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
-    } elseif ($ProductType -eq 3) {
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $MemberServer -gpresult $GPResult
-        $Result.Number = '2.2.3'
-        $Result.Level = "L1"
-        $Result.Profile = "Member Server"
-        $Result.Title = "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only)"
-        $Result.Source = 'Group Policy Settings'
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
+        # These three entries should be the only entries 
+        $DomainController = @('Administrators','Authenticated Users','ENTERPRISE DOMAIN CONTROLLERS')
+        $MemberServer = @('Administrators','Authenticated Users')
     }
 
-    return $Result
+    process {
+        if ($ProductType -eq 2) {
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $DomainController -gpresult $GPResult
+            $Result.Number = '2.2.2'
+            $Result.Level = "L1"
+            $Result.Profile = "Domain Controller"
+            $Result.Title = "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only)"
+            $Result.Source = 'Group Policy Settings'
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
+        } elseif ($ProductType -eq 3) {
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $MemberServer -gpresult $GPResult
+            $Result.Number = '2.2.3'
+            $Result.Level = "L1"
+            $Result.Profile = "Member Server"
+            $Result.Title = "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only)"
+            $Result.Source = 'Group Policy Settings'
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
+        }
+    }
+
+    end {
+        return $Result
+    }
 }
 
 <#
@@ -253,24 +265,30 @@ function Test-UserRightsAssignmentSeTcbPrivilege {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    $Result = [CISBenchmark]::new()
-    $Result.Number = '2.2.4'
-    $Result.Level = "L1"
-    if ($ProductType -eq 1) {
-        $Result.Profile = "Corporate/Enterprise Environment"
-    } elseif ($ProductType -eq 2) {
-        $Result.Profile = "Domain Controller"
-    } elseif ($ProductType -eq 3) {
-        $Result.Profile = "Member Server"
+    begin {
+        $Result = [CISBenchmark]::new()
+        $Result.Number = '2.2.4'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Act as part of the operating system' is set to 'No One'"
+        $Result.Source = 'Group Policy Settings'
+
+        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeTcbPrivilege" -Definition @("") -gpresult $GPResult
     }
-    $Result.Title = "Ensure 'Act as part of the operating system' is set to 'No One'"
-    $Result.Source = 'Group Policy Settings'
+    process {
+        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+        $Result.Setting = $UserRightsAssignment.Setting
+    }
 
-    $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeTcbPrivilege" -Definition @("") -gpresult $GPResult
-    $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-    $Result.Setting = $UserRightsAssignment.Setting
-
-    return $Result
+    end {
+        return $Result
+    }
 }
 
 <#
@@ -468,43 +486,49 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    $Result = [CISBenchmark]::new()
-
-    # These three entries should be the only entries 
-    $DomainController = @('Administrators')
-    $MemberServer = @('Administrators')
-    $MSOptional = @('Remote Desktop Users')
-
-    
-    if ($ProductType -eq 2) {
+    begin {
         $Result = [CISBenchmark]::new()
-        $Result.Number = "2.2.8"
-        $Result.Level = "L1"
-        if ($ProductType -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
-            $Result.Profile = "Domain Controller"
+
+        # These three entries should be the only entries 
+        $DomainController = @('Administrators')
+        $MemberServer = @('Administrators')
+        $MSOptional = @('Remote Desktop Users')
+    }
+
+    process {
+        if ($ProductType -eq 2) {
+            $Result = [CISBenchmark]::new()
+            $Result.Number = "2.2.8"
+            $Result.Level = "L1"
+            if ($ProductType -eq 1) {
+                $Result.Profile = "Corporate/Enterprise Environment"
+            } elseif ($ProductType -eq 2) {
+                $Result.Profile = "Domain Controller"
+            } elseif ($ProductType -eq 3) {
+                $Result.Profile = "Member Server"
+            }
+            $Result.Title = "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)"
+            $Result.Source = "Group Policy Settings"
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $DomainController -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
         } elseif ($ProductType -eq 3) {
+            $Result.Number = '2.2.9'
+            $Result.Level = "L1"
             $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)"
-		$Result.Source = "Group Policy Settings"
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $DomainController -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
-    } elseif ($ProductType -eq 3) {
-        $Result.Number = '2.2.9'
-        $Result.Level = "L1"
-        $Result.Profile = "Member Server"
-        $Result.Title = "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS only)"
-        $Result.Source = 'Group Policy Settings'
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $MemberServer -OptionalDef $MSOptional -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
-        }
-    return $Result
+            $Result.Title = "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS only)"
+            $Result.Source = 'Group Policy Settings'
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $MemberServer -OptionalDef $MSOptional -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
+            }
+    }
+
+    end {
+        return $Result
+    }
 }
 
 <#
@@ -923,43 +947,49 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    $Result = [CISBenchmark]::new()
-
-    # These three entries should be the only entries 
-    $DomainController = @('Administrators')
-    $MemberServer = @('Administrators')
-    $MSOptional = @('NT VIRTUAL MACHINE\Virtual Machines')
-
-    
-    if ($ProductType -eq 2) {
+    begin {
         $Result = [CISBenchmark]::new()
-        $Result.Number = "2.2.17"
-        $Result.Level = "L1"
-        if ($ProductType -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
-            $Result.Profile = "Domain Controller"
+
+        # These three entries should be the only entries 
+        $DomainController = @('Administrators')
+        $MemberServer = @('Administrators')
+        $MSOptional = @('NT VIRTUAL MACHINE\Virtual Machines')
+    }
+
+    process {
+        if ($ProductType -eq 2) {
+            $Result = [CISBenchmark]::new()
+            $Result.Number = "2.2.17"
+            $Result.Level = "L1"
+            if ($ProductType -eq 1) {
+                $Result.Profile = "Corporate/Enterprise Environment"
+            } elseif ($ProductType -eq 2) {
+                $Result.Profile = "Domain Controller"
+            } elseif ($ProductType -eq 3) {
+                $Result.Profile = "Member Server"
+            }
+            $Result.Title = "Ensure 'Create symbolic links' is set to 'Administrators' (DC only)"
+            $Result.Source = "Group Policy Settings"
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $DomainController -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
         } elseif ($ProductType -eq 3) {
+            $Result.Number = '2.2.18'
+            $Result.Level = "L1"
             $Result.Profile = "Member Server"
+            $Result.Title = "Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\Virtual Machines' (MS only)"
+            $Result.Source = 'Group Policy Settings'
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $MemberServer -OptionalDef $MSOptional -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
         }
-        $Result.Title = "Ensure 'Create symbolic links' is set to 'Administrators' (DC only)"
-		$Result.Source = "Group Policy Settings"
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $DomainController -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
-    } elseif ($ProductType -eq 3) {
-        $Result.Number = '2.2.18'
-        $Result.Level = "L1"
-        $Result.Profile = "Member Server"
-        $Result.Title = "Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\Virtual Machines' (MS only)"
-        $Result.Source = 'Group Policy Settings'
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $MemberServer -OptionalDef $MSOptional -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
-        }
-    return $Result
+    }
+
+    end {
+        return $Result
+    }
 }
 
 <#
@@ -1052,34 +1082,40 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    $Result = [CISBenchmark]::new()
+    begin {
+        $Result = [CISBenchmark]::new()
 
-    # These three entries should be the only entries 
-    $DomainController = @('Guests')
-    $MemberServer = @('Guests','Local account and member of Administrators group')
-
-    if ($ProductType -eq 2) {
-        $Result.Number = '2.2.20'
-        $Result.Level = "L1"
-        $Result.Profile = "Domain Controller"
-        $Result.Title = "Ensure 'Deny access to this computer from the network' to include 'Guests' (DC only)"
-        $Result.Source = 'Group Policy Settings'
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $DomainController -Include -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
-    } elseif ($ProductType -eq 3) {
-        $Result.Number = '2.2.21'
-        $Result.Level = "L1"
-        $Result.Profile = "Member Server"
-        $Result.Title = "Ensure 'Deny access to this computer from the network' to include 'Guests, Local account and member of Administrators group' (MS only)"
-        $Result.Source = 'Group Policy Settings'
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $MemberServer -Include -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
+        # These three entries should be the only entries 
+        $DomainController = @('Guests')
+        $MemberServer = @('Guests','Local account and member of Administrators group')
     }
-    return $Result
+
+    process {
+        if ($ProductType -eq 2) {
+            $Result.Number = '2.2.20'
+            $Result.Level = "L1"
+            $Result.Profile = "Domain Controller"
+            $Result.Title = "Ensure 'Deny access to this computer from the network' to include 'Guests' (DC only)"
+            $Result.Source = 'Group Policy Settings'
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $DomainController -Include -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
+        } elseif ($ProductType -eq 3) {
+            $Result.Number = '2.2.21'
+            $Result.Level = "L1"
+            $Result.Profile = "Member Server"
+            $Result.Title = "Ensure 'Deny access to this computer from the network' to include 'Guests, Local account and member of Administrators group' (MS only)"
+            $Result.Source = 'Group Policy Settings'
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $MemberServer -Include -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
+        }
+    }
+    end {
+        return $Result
+    }
 }
 
 <#
@@ -1283,42 +1319,47 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    $Result = [CISBenchmark]::new()
-
-    # These three entries should be the only entries 
-    $DomainController = @('Guests')
-    $MemberServer = @('Guests','Local account')
-
-    
-    if ($ProductType -eq 2) {
+    begin {
         $Result = [CISBenchmark]::new()
-        $Result.Number = "2.2.25"
-        $Result.Level = "L1"
-        if ($ProductType -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
-            $Result.Profile = "Domain Controller"
+
+        # These three entries should be the only entries 
+        $DomainController = @('Guests')
+        $MemberServer = @('Guests','Local account')
+    }
+
+    process {
+        if ($ProductType -eq 2) {
+            $Result = [CISBenchmark]::new()
+            $Result.Number = "2.2.25"
+            $Result.Level = "L1"
+            if ($ProductType -eq 1) {
+                $Result.Profile = "Corporate/Enterprise Environment"
+            } elseif ($ProductType -eq 2) {
+                $Result.Profile = "Domain Controller"
+            } elseif ($ProductType -eq 3) {
+                $Result.Profile = "Member Server"
+            }
+            $Result.Title = "Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only)"
+            $Result.Source = "Group Policy Settings"
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $DomainController -Include -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
         } elseif ($ProductType -eq 3) {
+            $Result.Number = '2.2.26'
+            $Result.Level = "L1"
             $Result.Profile = "Member Server"
+            $Result.Title = "Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only)"
+            $Result.Source = 'Group Policy Settings'
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $MemberServer -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
         }
-        $Result.Title = "Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only)"
-		$Result.Source = "Group Policy Settings"
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $DomainController -Include -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
-    } elseif ($ProductType -eq 3) {
-        $Result.Number = '2.2.26'
-        $Result.Level = "L1"
-        $Result.Profile = "Member Server"
-        $Result.Title = "Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only)"
-        $Result.Source = 'Group Policy Settings'
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $MemberServer -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
-    } 
-    return $Result
+    }
+    end {
+        return $Result
+    }
 }
 
 <#
@@ -1357,35 +1398,40 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    $Result = [CISBenchmark]::new()
+    begin {
+        $Result = [CISBenchmark]::new()
 
-    # These three entries should be the only entries 
-    $DomainController = @('Administrators')
-    $MemberServer = @("")
-
-    
-    if ($ProductType -eq 2) {
-        $Result.Number = '2.2.27'
-        $Result.Level = "L1"
-        $Result.Profile = "Domain Controller"
-        $Result.Title = "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administrators' (DC only)"
-        $Result.Source = 'Group Policy Settings'
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $DomainController -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
-    } elseif ($ProductType -eq 3) {
-        $Result.Number = '2.2.28'
-        $Result.Level = "L1"
-        $Result.Profile = "Member Server"
-        $Result.Title = "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One' (MS only)"
-        $Result.Source = 'Group Policy Settings'
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $MemberServer -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
+        # These three entries should be the only entries 
+        $DomainController = @('Administrators')
+        $MemberServer = @("")
     }
-    return $Result
+
+    process {
+        if ($ProductType -eq 2) {
+            $Result.Number = '2.2.27'
+            $Result.Level = "L1"
+            $Result.Profile = "Domain Controller"
+            $Result.Title = "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administrators' (DC only)"
+            $Result.Source = 'Group Policy Settings'
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $DomainController -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
+        } elseif ($ProductType -eq 3) {
+            $Result.Number = '2.2.28'
+            $Result.Level = "L1"
+            $Result.Profile = "Member Server"
+            $Result.Title = "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One' (MS only)"
+            $Result.Source = 'Group Policy Settings'
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $MemberServer -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
+        }
+    }
+    end {
+        return $Result
+    }
 }
 
 <#
@@ -1535,35 +1581,41 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    $Result = [CISBenchmark]::new()
+    begin {
+        $Result = [CISBenchmark]::new()
 
-    # These three entries should be the only entries 
-    $DomainController = @('Administrators', 'LOCAL SERVICE', 'NETWORK SERVICE', 'SERVICE')
-    $MemberServer = @('Administrators', 'LOCAL SERVICE', 'NETWORK SERVICE', 'SERVICE')
-    $MSOptional = @('IIS_IUSRS')
-
-    if ($ProductType -eq 2) {
-        $Result.Number = '2.2.31'
-        $Result.Level = "L1"
-        $Result.Profile = "Domain Controller"
-        $Result.Title = "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' (DC only)"
-        $Result.Source = 'Group Policy Settings'
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $DomainController -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
-    } elseif ($ProductType -eq 3) {
-        $Result.Number = '2.2.32'
-        $Result.Level = "L1"
-        $Result.Profile = "Member Server"
-        $Result.Title = "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only)"
-        $Result.Source = 'Group Policy Settings'
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $MemberServer -OptionalDef $MSOptional -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
+        # These three entries should be the only entries 
+        $DomainController = @('Administrators', 'LOCAL SERVICE', 'NETWORK SERVICE', 'SERVICE')
+        $MemberServer = @('Administrators', 'LOCAL SERVICE', 'NETWORK SERVICE', 'SERVICE')
+        $MSOptional = @('IIS_IUSRS')
     }
-    return $Result
+
+    process {
+        if ($ProductType -eq 2) {
+            $Result.Number = '2.2.31'
+            $Result.Level = "L1"
+            $Result.Profile = "Domain Controller"
+            $Result.Title = "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' (DC only)"
+            $Result.Source = 'Group Policy Settings'
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $DomainController -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
+        } elseif ($ProductType -eq 3) {
+            $Result.Number = '2.2.32'
+            $Result.Level = "L1"
+            $Result.Profile = "Member Server"
+            $Result.Title = "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only)"
+            $Result.Source = 'Group Policy Settings'
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $MemberServer -OptionalDef $MSOptional -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
+        }
+    }
+    end {
+        return $Result
+    }
 }
 
 <#
@@ -1812,35 +1864,41 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
-    $Result = [CISBenchmark]::new()
+    begin {
+        $Result = [CISBenchmark]::new()
 
-    # These three entries should be the only entries 
-    $DomainController = @('Administrators')
-    $DCOptional = @('Exchange Servers')
-    $MemberServer = @('Administrators')
-
-    if ($ProductType -eq 2) {
-        $Result.Number = '2.2.37'
-        $Result.Level = "L1"
-        $Result.Profile = "Domain Controller"
-        $Result.Title = "Ensure 'Manage auditing and security log' is set to 'Administrators' and (when Exchange is running in the environment) 'Exchange Servers' (DC only)"
-        $Result.Source = 'Group Policy Settings'
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $DomainController -OptionalDef $DCOptional -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
-    } elseif ($ProductType -eq 3) {
-        $Result.Number = '2.2.38'
-        $Result.Level = "L1"
-        $Result.Profile = "Member Server"
-        $Result.Title = "Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)"
-        $Result.Source = 'Group Policy Settings'
-        $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $MemberServer -gpresult $GPResult
-        $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
-        $Result.Setting = $UserRightsAssignment.Setting
-        $Result.Entry = $UserRightsAssignment.Entry.Entry
+        # These three entries should be the only entries 
+        $DomainController = @('Administrators')
+        $DCOptional = @('Exchange Servers')
+        $MemberServer = @('Administrators')
     }
-    return $Result
+
+    process {
+        if ($ProductType -eq 2) {
+            $Result.Number = '2.2.37'
+            $Result.Level = "L1"
+            $Result.Profile = "Domain Controller"
+            $Result.Title = "Ensure 'Manage auditing and security log' is set to 'Administrators' and (when Exchange is running in the environment) 'Exchange Servers' (DC only)"
+            $Result.Source = 'Group Policy Settings'
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $DomainController -OptionalDef $DCOptional -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
+        } elseif ($ProductType -eq 3) {
+            $Result.Number = '2.2.38'
+            $Result.Level = "L1"
+            $Result.Profile = "Member Server"
+            $Result.Title = "Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)"
+            $Result.Source = 'Group Policy Settings'
+            $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $MemberServer -gpresult $GPResult
+            $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
+            $Result.Setting = $UserRightsAssignment.Setting
+            $Result.Entry = $UserRightsAssignment.Entry.Entry
+        }
+    }
+    end {
+        return $Result
+    }
 }
 
 <#

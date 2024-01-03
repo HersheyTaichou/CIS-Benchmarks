@@ -105,6 +105,17 @@ function Test-AccountsEnableGuestAccount {
     begin {
         $Result = [CISBenchmark]::new()
 
+        $Result.Number = '2.3.1.2'
+        $Result.Level = "L1"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
+        $Result.Title = "Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)"
+        $Result.Source = 'Group Policy Settings'
         # Get the current value of the setting
         $EntryName = "EnableGuestAccount"
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
@@ -123,11 +134,6 @@ function Test-AccountsEnableGuestAccount {
     }
 
     end {
-        $Result.Number = '2.3.1.2'
-        $Result.Level = "L1"
-        $Result.Profile = "Member Server"
-        $Result.Title = "Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)"
-        $Result.Source = 'Group Policy Settings'
         return $Result
     }
 }

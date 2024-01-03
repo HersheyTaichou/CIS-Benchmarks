@@ -378,7 +378,13 @@ function Test-InteractiveLogonCachedLogonsCount {
         $EntryName = "MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\CachedLogonsCount"
         $Result.Number = '2.3.7.6'
         $Result.Level = "L2"
-        $Result.Profile = "Member Server"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
         $Result.Title = "Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only)"
         $Result.Source = 'Group Policy Settings'
 
@@ -509,7 +515,13 @@ function Test-InteractiveLogonForceUnlockLogon {
         $EntryName = "MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\ForceUnlockLogon"
         $Result.Number = '2.3.7.8'
         $Result.Level = "L1"
-        $Result.Profile = "Member Server"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
         $Result.Title = "Ensure 'Interactive logon: Require Domain Controller Authentication to unlock workstation' is set to 'Enabled' (MS only)"
         $Result.Source = 'Group Policy Settings'
 

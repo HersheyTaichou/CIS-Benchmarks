@@ -310,7 +310,13 @@ function Test-MicrosoftNetworkServerSmbServerNameHardeningLevel {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\SmbServerNameHardeningLevel"
         $Result.Number = '2.3.9.5'
         $Result.Level = "L1"
-        $Result.Profile = "Member Server"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
         $Result.Title = "Ensure 'Microsoft network server: Server SPN target name validation level' is set to 'Accept if provided by client' or higher (MS only)"
         $Result.Source = 'Group Policy Settings'
 

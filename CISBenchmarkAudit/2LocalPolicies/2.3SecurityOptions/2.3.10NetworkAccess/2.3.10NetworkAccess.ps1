@@ -106,7 +106,13 @@ function Test-NetworkAccessRestrictAnonymousSAM {
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\RestrictAnonymousSAM"
         $Result.Number = '2.3.10.2'
         $Result.Level = "L1"
-        $Result.Profile = "Member Server"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
         $Result.Title = "Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts' is set to 'Enabled' (MS only)"
         $Result.Source = 'Group Policy Settings'
 
@@ -168,7 +174,13 @@ function Test-NetworkAccessRestrictAnonymous {
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\RestrictAnonymous"
         $Result.Number = '2.3.10.3'
         $Result.Level = "L1"
-        $Result.Profile = "Member Server"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
         $Result.Title = "Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is set to 'Enabled' (MS only)"
         $Result.Source = 'Group Policy Settings'
 
@@ -693,7 +705,13 @@ function Test-NetworkAccessRestrictRemoteSAM {
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\RestrictRemoteSAM"
         $Result.Number = '2.3.10.11'
         $Result.Level = "L1"
-        $Result.Profile = "Member Server"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
         $Result.Title = "Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Administrators: Remote Access: Allow' (MS only)"
         $Result.Source = 'Group Policy Settings'
 

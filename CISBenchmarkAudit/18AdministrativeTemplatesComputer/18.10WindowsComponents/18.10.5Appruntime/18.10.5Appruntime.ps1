@@ -36,7 +36,13 @@ function Test-AppRuntimeAllowMicrosoftAccountsToBeOptional {
         $EntryName = "Allow Microsoft accounts to be optional"
         $Result.Number = '18.10.5.1'
         $Result.Level = "L1"
-        $Result.Profile = "Member Server"
+        if ($ProductType -eq 1) {
+            $Result.Profile = "Corporate/Enterprise Environment"
+        } elseif ($ProductType -eq 2) {
+            $Result.Profile = "Domain Controller"
+        } elseif ($ProductType -eq 3) {
+            $Result.Profile = "Member Server"
+        }
         $Result.Title = "Ensure 'Allow Microsoft accounts to be optional' is set to 'Enabled'"
         $Result.Source = 'Group Policy Settings'
 
