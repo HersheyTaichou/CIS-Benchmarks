@@ -623,5 +623,9 @@ function Test-NetworkWindowsConnectionManager {
     }
     
     process {
+        Test-WindowsConnectionManagerfMinimizeConnections @Parameters
+        if ($Level -eq 2 -and $ProductType -eq 3) {
+            Test-WindowsConnectionManagerfBlockNonDomain @Parameters
+        }
     }
 }

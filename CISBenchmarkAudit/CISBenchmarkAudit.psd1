@@ -359,6 +359,8 @@ FunctionsToExport = @(
      'Test-WindowsConnectNowEnableRegistrars',
      'Test-WindowsConnectNowDisableWcnUi',
     # 18.6.21
+    'Test-WindowsConnectionManagerfMinimizeConnections',
+    'Test-WindowsConnectionManagerfBlockNonDomain',
     # 18.7
     # 18.8
     # 18.8.1
@@ -719,7 +721,7 @@ PrivateData = @{
         ReleaseNotes = 'https://github.com/HersheyTaichou/CIS-Benchmarks'
 
         # Prerelease string of this module
-        Prerelease = 'beta+18.6.20'
+        Prerelease = 'beta+18.6.21'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         RequireLicenseAcceptance = $true
