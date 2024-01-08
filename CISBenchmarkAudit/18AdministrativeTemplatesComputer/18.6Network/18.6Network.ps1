@@ -236,6 +236,8 @@ function Test-NetworkLinkLayerTopologyDiscovery {
     }
     
     process {
+        Test-LinkLayerTopologyDiscoveryEnableLLTDIO @Parameters
+        Test-LinkLayerTopologyDiscoveryEnableRspndr @Parameters
     }
 }
 
