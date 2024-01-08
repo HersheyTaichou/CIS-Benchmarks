@@ -414,6 +414,21 @@ function Test-AdministrativeTemplatesComputerPrinters {
     }
     
     process {
+        if ($ProductType -eq 2){
+            Test-PrintersRegisterSpoolerRemoteRpcEndPoint @Parameters
+        } elseif ($ProductType -eq 3 -and $Level -eq 2) {
+            Test-PrintersRegisterSpoolerRemoteRpcEndPoint @Parameters
+        }
+        Test-PrintersRedirectionguardPolicy @Parameters
+        Test-PrintersRpcUseNamedPipeProtocol @Parameters
+        Test-PrintersRpcAuthentication @Parameters
+        Test-PrintersRpcProtocols @Parameters
+        Test-PrintersForceKerberosForRpc @Parameters
+        Test-PrintersRpcTcpPort @Parameters
+        Test-PrintersRestrictDriverInstallationToAdministrators @Parameters
+        Test-PrintersCopyFilesPolicy @Parameters
+        Test-PrintersNoWarningNoElevationOnInstall @Parameters
+        Test-PrintersUpdatePromptSettings @Parameters
     }
 }
 

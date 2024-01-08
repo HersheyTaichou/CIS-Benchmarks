@@ -341,14 +341,11 @@ FunctionsToExport = @(
     # 18.6.8
     'Test-LanmanWorkstationAllowInsecureGuestAuth',
     # 18.6.9
-    'Test-LinkLayerTopologyDiscoveryEnableLLTDIO',
-    'Test-LinkLayerTopologyDiscoveryEnableRspndr',
+    'Test-LinkLayerTopologyDiscoveryEnableLLTDIO','Test-LinkLayerTopologyDiscoveryEnableRspndr',
     # 18.6.10
     'Test-MsP2PNetworkingServicesPeernet',
     # 18.6.11
-    'Test-NetworkConnectionsNCAllowNetBridgeNLA',
-    'Test-NetworkConnectionsNCShowSharedAccessUI',
-    'Test-NetworkConnections',
+    'Test-NetworkConnectionsNCAllowNetBridgeNLA','Test-NetworkConnectionsNCShowSharedAccessUI','Test-NetworkConnections',
     # 18.6.14
     'Test-NetworkProviderHardenedPaths',
     # 18.6.19
@@ -356,12 +353,13 @@ FunctionsToExport = @(
     # 18.6.19.2
     'Test-ParametersDisableIPv6',
     # 18.6.20
-     'Test-WindowsConnectNowEnableRegistrars',
-     'Test-WindowsConnectNowDisableWcnUi',
+     'Test-WindowsConnectNowEnableRegistrars','Test-WindowsConnectNowDisableWcnUi',
     # 18.6.21
-    'Test-WindowsConnectionManagerfMinimizeConnections',
-    'Test-WindowsConnectionManagerfBlockNonDomain',
+    'Test-WindowsConnectionManagerfMinimizeConnections','Test-WindowsConnectionManagerfBlockNonDomain',
     # 18.7
+    'Test-PrintersRegisterSpoolerRemoteRpcEndPoint','Test-PrintersRedirectionguardPolicy','Test-PrintersRpcUseNamedPipeProtocol','Test-PrintersRpcAuthentication',
+    'Test-PrintersRpcProtocols','Test-PrintersForceKerberosForRpc','Test-PrintersRpcTcpPort','Test-PrintersRestrictDriverInstallationToAdministrators',
+    'Test-PrintersCopyFilesPolicy','Test-PrintersNoWarningNoElevationOnInstall','Test-PrintersUpdatePromptSettings',
     # 18.8
     # 18.8.1
     # 18.9
@@ -721,7 +719,7 @@ PrivateData = @{
         ReleaseNotes = 'https://github.com/HersheyTaichou/CIS-Benchmarks'
 
         # Prerelease string of this module
-        Prerelease = 'beta+18.6.21'
+        Prerelease = 'beta+18.7'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         RequireLicenseAcceptance = $true
