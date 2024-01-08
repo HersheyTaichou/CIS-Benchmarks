@@ -690,7 +690,7 @@ PrivateData = @{
         Tags = 'CISBenchmark', 'PowerShell'
 
         # A URL to the license for this module.
-        LicenseUri = 'https://github.com/HersheyTaichou/CIS-Benchmarks/blob/main/COPYING'
+        LicenseUri = 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
 
         # A URL to the main website for this project.
         ProjectUri = 'https://github.com/HersheyTaichou/CIS-Benchmarks'
