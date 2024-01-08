@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-18.6.8.1 (L1) Ensure 'Enable insecure guest logons' is set to 'Disabled' (Automated)
+18.6.8.1 (L1) Ensure 'Enable insecure guest logons' is set to 'Disabled'
 
 .DESCRIPTION
 This policy setting determines if the SMB client will allow insecure guest logons to an SMB server.
@@ -35,7 +35,7 @@ function Test-LanmanWorkstationAllowInsecureGuestAuth {
     begin {
         $EntryName = "Enable insecure guest logons"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.6.8.'
+        $Result.Number = '18.6.8.1'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
@@ -44,7 +44,7 @@ function Test-LanmanWorkstationAllowInsecureGuestAuth {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = ""
+        $Result.Title = "Ensure 'Enable insecure guest logons' is set to 'Disabled'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
