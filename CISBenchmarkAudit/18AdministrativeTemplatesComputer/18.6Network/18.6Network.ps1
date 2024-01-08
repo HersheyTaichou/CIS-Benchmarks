@@ -559,6 +559,10 @@ function Test-NetworkWindowsConnectNow {
     }
     
     process {
+        if ($Level -eq 2) {
+            Test-WindowsConnectNowEnableRegistrars @Parameters
+            Test-WindowsConnectNowDisableWcnUi @Parameters
+        }
     }
 }
 

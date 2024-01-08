@@ -29,7 +29,7 @@ GUID = '51f20f00-eb1c-4bdd-a5f0-4ab7bad1898b'
 Author = 'Mike Hiersche'
 
 # Company or vendor of this module
-CompanyName = 'Orion Tech'
+CompanyName = 'Mike Hiersche'
 
 # Copyright statement for this module
 Copyright = '(c) Mike Hiersche. All rights reserved.'
@@ -356,6 +356,8 @@ FunctionsToExport = @(
     # 18.6.19.2
     'Test-ParametersDisableIPv6',
     # 18.6.20
+     'Test-WindowsConnectNowEnableRegistrars',
+     'Test-WindowsConnectNowDisableWcnUi',
     # 18.6.21
     # 18.7
     # 18.8
@@ -717,7 +719,7 @@ PrivateData = @{
         ReleaseNotes = 'https://github.com/HersheyTaichou/CIS-Benchmarks'
 
         # Prerelease string of this module
-        Prerelease = 'beta+18.6.19.2'
+        Prerelease = 'beta+18.6.20'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         RequireLicenseAcceptance = $true
