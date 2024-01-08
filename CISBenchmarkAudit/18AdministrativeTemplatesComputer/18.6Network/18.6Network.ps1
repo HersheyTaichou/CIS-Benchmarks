@@ -117,7 +117,9 @@ function Test-NetworkFonts {
     }
     
     process {
-        Test-FontsEnableFontProviders @Parameters
+        if ($Level -eq 2) {
+            Test-FontsEnableFontProviders @Parameters
+        }
     }
 }
 
