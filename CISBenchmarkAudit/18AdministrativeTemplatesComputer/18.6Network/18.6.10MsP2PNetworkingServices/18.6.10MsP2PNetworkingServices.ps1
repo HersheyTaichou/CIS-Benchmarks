@@ -24,7 +24,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-MicrosoftP2PNetworkingServicesPeernet {
+function Test-MsP2PNetworkingServicesPeernet {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -33,7 +33,7 @@ function Test-MicrosoftP2PNetworkingServicesPeernet {
     )
 
     begin {
-        $EntryName = ""
+        $EntryName = "Turn off Microsoft Peer-to-Peer Networking Services"
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.6.10.2'
         $Result.Level = "L2"

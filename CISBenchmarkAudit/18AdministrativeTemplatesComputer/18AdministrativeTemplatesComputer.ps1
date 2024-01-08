@@ -348,7 +348,7 @@ function Test-AdministrativeTemplatesComputerNetwork {
         Test-NetworkFonts @Parameters
         Test-NetworkLanmanWorkstation @Parameters
         Test-NetworkLinkLayerTopologyDiscovery @Parameters
-        Test-NetworkMicrosoftPeertoPeerNetworkingServices @Parameters
+        Test-NetworkMsP2PNetworkingServices @Parameters
         Test-NetworkNetworkConnections @Parameters
         Test-NetworkNetworkProvider @Parameters
         Test-NetworkTCPIPSettings @Parameters

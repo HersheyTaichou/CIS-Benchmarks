@@ -286,7 +286,7 @@ This is used to define the GPO XML variable to test
 .NOTES
 General notes
 #>
-function Test-NetworkMicrosoftPeertoPeerNetworkingServices {
+function Test-NetworkMsP2PNetworkingServices {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
@@ -304,7 +304,7 @@ function Test-NetworkMicrosoftPeertoPeerNetworkingServices {
     
     process {
         if ($Level -eq 2) {
-            Test-MicrosoftP2PNetworkingServicesPeernet @Parameters
+            Test-MsP2PNetworkingServicesPeernet @Parameters
         }
     }
 }
