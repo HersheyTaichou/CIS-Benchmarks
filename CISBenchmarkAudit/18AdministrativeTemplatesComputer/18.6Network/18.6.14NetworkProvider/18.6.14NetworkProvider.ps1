@@ -52,21 +52,17 @@ function Test-NetworkProviderHardenedPaths {
     }
 
     process {
-        if ($Result.Entry.ListBox.Name -eq "Hardened UNC Paths:" -and $Result.Entry.ListBox.State -eq "Enabled") {
-            $Result.Setting = $Result.Entry.ListBox.State
-            $Return.ListBox.Value.Element | ForEach-Object {
-                if ($_.Name -eq "\\*\NETLOGON" -and $_.Data -eq "RequireMutualAuthentication=1, RequireIntegrity=1") {
-                    $NETLOGON = $true
-                }
-                if ($_.Name -eq "\\*\SYSVOL" -and $_.Data -eq "RequireMutualAuthentication=1, RequireIntegrity=1") {
-                    $SYSVOL = $true
-                }
-                if ($NETLOGON -and $SYSVOL) {
-                    $Result.SetCorrectly = $true
-                } else {
-                    $Result.SetCorrectly = $false
-                }
+        $Result.Setting = $Result.Entry.ListBox.State
+        $Return.ListBox.Value.Element | ForEach-Object {
+            if ($_.Name -eq '\\*\NETLOGON' -and $_.Data -eq "RequireMutualAuthentication=1, RequireIntegrity=1") {
+                $NETLOGON = $true
             }
+            if ($_.Name -eq '\\*\SYSVOL' -and $_.Data -eq "RequireMutualAuthentication=1, RequireIntegrity=1") {
+                $SYSVOL = $true
+            }
+        }
+        if (($NETLOGON -and $SYSVOL) -and $Result.Setting -eq "Enabled") {
+            $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false
         }
