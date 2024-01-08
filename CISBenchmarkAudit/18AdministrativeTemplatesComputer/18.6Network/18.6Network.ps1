@@ -176,6 +176,7 @@ function Test-NetworkLanmanWorkstation {
     }
     
     process {
+        Test-LanmanWorkstationAllowInsecureGuestAuth @Parameters
     }
 }
 
