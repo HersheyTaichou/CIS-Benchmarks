@@ -429,6 +429,7 @@ function Test-NetworkNetworkProvider {
     }
     
     process {
+        Test-NetworkProviderHardenedPaths @Parameters
     }
 }
 

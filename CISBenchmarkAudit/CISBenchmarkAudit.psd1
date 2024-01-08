@@ -12,7 +12,7 @@
 RootModule = '.\CISBenchmarkAudit.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.17.1-beta18.6.11'
+ModuleVersion = '0.17.1-beta18.6.14'
 
 # This project is using Semantic Versioning.
     # https://semver.org/
