@@ -347,9 +347,7 @@ function Test-AdministrativeTemplatesComputerNetwork {
         Test-NetworkDNSClient @Parameters
         Test-NetworkFonts @Parameters
         Test-NetworkLanmanWorkstation @Parameters
-        if ($Level -eq 2) {
-            Test-NetworkLinkLayerTopologyDiscovery @Parameters
-        }
+        Test-NetworkLinkLayerTopologyDiscovery @Parameters
         Test-NetworkMicrosoftPeertoPeerNetworkingServices @Parameters
         Test-NetworkNetworkConnections @Parameters
         Test-NetworkNetworkProvider @Parameters

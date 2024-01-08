@@ -236,8 +236,10 @@ function Test-NetworkLinkLayerTopologyDiscovery {
     }
     
     process {
-        Test-LinkLayerTopologyDiscoveryEnableLLTDIO @Parameters
-        Test-LinkLayerTopologyDiscoveryEnableRspndr @Parameters
+        if ($Level -eq 2) {
+            Test-LinkLayerTopologyDiscoveryEnableLLTDIO @Parameters
+            Test-LinkLayerTopologyDiscoveryEnableRspndr @Parameters
+        }
     }
 }
 
@@ -297,6 +299,9 @@ function Test-NetworkMicrosoftPeertoPeerNetworkingServices {
     }
     
     process {
+        if ($Level -eq 2) {
+            Test-MicrosoftP2PNetworkingServicesPeernet @Parameters
+        }
     }
 }
 
