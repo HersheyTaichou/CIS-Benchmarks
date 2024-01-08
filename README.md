@@ -142,3 +142,5 @@ I understand that some people may be hesitant to run a large script they found o
 The CIS Benchmarks are, at last check, covered by a Create Commons "Attribution-NonCommercial-ShareAlike 4.0 International" License. The current license for the benchmarks and other CIS programs can be found at their site:
 
 [Center for Internet Security Terms and Conditions](https://www.cisecurity.org/terms-and-conditions-table-of-contents)
+
+Based on my understanding (I AM NOT A LAWYER!), anything based on a project with a CC BY-NC-SA 4.0 license has to also use a CC BY-NC-SA license, therefor this project is licensed under a CC BY-NC-SA 4.0 International license. 
