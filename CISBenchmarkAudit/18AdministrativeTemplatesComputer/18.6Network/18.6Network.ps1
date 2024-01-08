@@ -486,12 +486,19 @@ function Test-NetworkTCPIPSettings {
     
     begin {
         $Parameters = @{
+            "Level" = $Level
             "ProductType" = $ProductType
             "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
         }
     }
     
     process {
+        Test-TCPIPSettingsParameters @Parameters
     }
 }
 

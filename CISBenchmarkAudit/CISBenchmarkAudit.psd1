@@ -35,7 +35,7 @@ CompanyName = 'Orion Tech'
 Copyright = '(c) Mike Hiersche. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'This module is designed to provide functions that test for complaince with the CIS Benchmarks. This module was based on the CIS Microsoft Windows Server 2022 Benchmark v2.0.0 released on 04-14-2023'
+Description = 'This module provides functions that test for compliance with the CIS Benchmarks. This module was based on the CIS Microsoft Windows Server 2022 Benchmark v2.0.0 released on 04-14-2023'
 
 # Minimum version of the PowerShell engine required by this module
 # PowerShellVersion = ''
@@ -125,6 +125,7 @@ NestedModules = @('.\CISBenchmarkAudit.psm1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.11NetworkConnections\18.6.11NetworkConnections.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.14NetworkProvider\18.6.14NetworkProvider.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.19TCPIPSettings\18.6.19TCPIPSettings.ps1',
+    '18AdministrativeTemplatesComputer\18.6Network\18.6.19TCPIPSettings\18.6.19.2Parameters\18.6.19.2Parameters.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.20WindowsConnectNow\18.6.20WindowsConnectNow.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.21WindowsConnectionManager\18.6.21WindowsConnectionManager.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.4DNSClient\18.6.4DNSClient.ps1',
@@ -351,6 +352,9 @@ FunctionsToExport = @(
     # 18.6.14
     'Test-NetworkProviderHardenedPaths',
     # 18.6.19
+    'Test-TCPIPSettingsParameters',
+    # 18.6.19.2
+    'Test-ParametersDisableIPv6',
     # 18.6.20
     # 18.6.21
     # 18.7
@@ -492,6 +496,7 @@ ModuleList = @('.\CISBenchmarkAudit.psm1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.11NetworkConnections\18.6.11NetworkConnections.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.14NetworkProvider\18.6.14NetworkProvider.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.19TCPIPSettings\18.6.19TCPIPSettings.ps1',
+    '18AdministrativeTemplatesComputer\18.6Network\18.6.19TCPIPSettings\18.6.19.2Parameters\18.6.19.2Parameters.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.20WindowsConnectNow\18.6.20WindowsConnectNow.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.21WindowsConnectionManager\18.6.21WindowsConnectionManager.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.4DNSClient\18.6.4DNSClient.ps1',
@@ -618,6 +623,7 @@ FileList = @('.\CISBenchmarkAudit.psd1','.\CISBenchmarkAudit.psm1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.11NetworkConnections\18.6.11NetworkConnections.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.14NetworkProvider\18.6.14NetworkProvider.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.19TCPIPSettings\18.6.19TCPIPSettings.ps1',
+    '18AdministrativeTemplatesComputer\18.6Network\18.6.19TCPIPSettings\18.6.19.2Parameters\18.6.19.2Parameters.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.20WindowsConnectNow\18.6.20WindowsConnectNow.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.21WindowsConnectionManager\18.6.21WindowsConnectionManager.ps1',
     '18AdministrativeTemplatesComputer\18.6Network\18.6.4DNSClient\18.6.4DNSClient.ps1',
@@ -711,7 +717,7 @@ PrivateData = @{
         ReleaseNotes = 'https://github.com/HersheyTaichou/CIS-Benchmarks'
 
         # Prerelease string of this module
-        Prerelease = 'beta+18.6.14'
+        Prerelease = 'beta+18.6.19.2'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         RequireLicenseAcceptance = $true
