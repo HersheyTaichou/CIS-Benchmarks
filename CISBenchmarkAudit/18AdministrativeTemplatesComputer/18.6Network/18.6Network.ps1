@@ -3,7 +3,7 @@
 18.6.4 DNS Client
 
 .DESCRIPTION
-This command will test all the settings defined in section 18.6.4 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 18.6.4.4 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
 This parameter is used to filter by the benchmark level.
@@ -62,9 +62,10 @@ function Test-NetworkDNSClient {
 
 <#
 .SYNOPSIS
+18.6.5 Fonts
 
 .DESCRIPTION
-This command will test all the settings defined in section 18 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 18.6.5 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
 This parameter is used to filter by the benchmark level.
@@ -122,9 +123,10 @@ function Test-NetworkFonts {
 
 <#
 .SYNOPSIS
+18.6.8 Lanman Workstation
 
 .DESCRIPTION
-This command will test all the settings defined in section 18 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 18.6.8 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
 This parameter is used to filter by the benchmark level.
@@ -182,9 +184,10 @@ function Test-NetworkLanmanWorkstation {
 
 <#
 .SYNOPSIS
+18.6.9 Link-Layer Topology Discovery
 
 .DESCRIPTION
-This command will test all the settings defined in section 18 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 18.6.9 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
 This parameter is used to filter by the benchmark level.
@@ -245,9 +248,10 @@ function Test-NetworkLinkLayerTopologyDiscovery {
 
 <#
 .SYNOPSIS
+18.6.10 Microsoft Peer-to-Peer Networking Services
 
 .DESCRIPTION
-This command will test all the settings defined in section 18 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 18.6.10 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
 This parameter is used to filter by the benchmark level.
@@ -307,9 +311,10 @@ function Test-NetworkMicrosoftPeertoPeerNetworkingServices {
 
 <#
 .SYNOPSIS
+18.6.11 Network Connections
 
 .DESCRIPTION
-This command will test all the settings defined in section 18 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 18.6.11 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
 This parameter is used to filter by the benchmark level.
@@ -361,14 +366,18 @@ function Test-NetworkNetworkConnections {
     }
     
     process {
+        Test-NetworkConnectionsNCAllowNetBridgeNLA @Parameters
+        Test-NetworkConnectionsNCShowSharedAccessUI @Parameters
+        Test-NetworkConnections @Parameters
     }
 }
 
 <#
 .SYNOPSIS
+18.6.14 Network Provider
 
 .DESCRIPTION
-This command will test all the settings defined in section 18 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 18.6.14 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
 This parameter is used to filter by the benchmark level.
@@ -425,9 +434,10 @@ function Test-NetworkNetworkProvider {
 
 <#
 .SYNOPSIS
+18.6.19 TCPIP Settings
 
 .DESCRIPTION
-This command will test all the settings defined in section 18 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 18.6.19 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
 This parameter is used to filter by the benchmark level.
@@ -484,9 +494,10 @@ function Test-NetworkTCPIPSettings {
 
 <#
 .SYNOPSIS
+18.6.20 Windows Connect Now
 
 .DESCRIPTION
-This command will test all the settings defined in section 18 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 18.6.20 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
 This parameter is used to filter by the benchmark level.
@@ -543,9 +554,10 @@ function Test-NetworkWindowsConnectNow {
 
 <#
 .SYNOPSIS
+18.6.21 Windows Connection Manager
 
 .DESCRIPTION
-This command will test all the settings defined in section 18 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 18.6.21 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
 This parameter is used to filter by the benchmark level.
