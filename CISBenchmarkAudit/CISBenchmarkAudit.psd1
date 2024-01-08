@@ -361,7 +361,9 @@ FunctionsToExport = @(
     'Test-PrintersRpcProtocols','Test-PrintersForceKerberosForRpc','Test-PrintersRpcTcpPort','Test-PrintersRestrictDriverInstallationToAdministrators',
     'Test-PrintersCopyFilesPolicy','Test-PrintersNoWarningNoElevationOnInstall','Test-PrintersUpdatePromptSettings',
     # 18.8
+    'Test-StartMenuAndTaskbarNotifications',
     # 18.8.1
+    'Test-NotificationsNoCloudApplicationNotification',
     # 18.9
     # 18.9.3
     # 18.9.4
@@ -719,7 +721,7 @@ PrivateData = @{
         ReleaseNotes = 'https://github.com/HersheyTaichou/CIS-Benchmarks'
 
         # Prerelease string of this module
-        Prerelease = 'beta+18.7'
+        Prerelease = 'beta+18.8.1'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         RequireLicenseAcceptance = $true

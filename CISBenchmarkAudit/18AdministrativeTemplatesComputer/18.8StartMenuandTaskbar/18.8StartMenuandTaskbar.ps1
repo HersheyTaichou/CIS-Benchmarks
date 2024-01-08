@@ -55,5 +55,8 @@ function Test-StartMenuAndTaskbarNotifications {
     }
     
     process {
+        if ($Level -eq 2) {
+            Test-NotificationsNoCloudApplicationNotification @Parameters
+        }
     }
 }
