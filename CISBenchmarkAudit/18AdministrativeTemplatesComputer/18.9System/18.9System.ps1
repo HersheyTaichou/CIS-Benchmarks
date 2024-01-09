@@ -509,7 +509,7 @@ function Test-SystemKerberos {
     }
     
     process {
-        
+        Test-KerberosDevicePKInitEnabled @Parameters
     }
 }
 

@@ -389,6 +389,7 @@ FunctionsToExport = @(
     'Test-InternetCommunicationsettingsDisableContentFileUpdates','Test-InternetCommunicationsettingsNoOnlinePrintsWizard','Test-InternetCommunicationsettingsNoPublishingWizard',
     'Test-InternetCommunicationsettingsCEIP','Test-InternetCommunicationsettingsCEIPEnable','Test-InternetCommunicationsettingsWindowsErrorReporting',
     # 18.9.23
+    'Test-KerberosDevicePKInitEnabled',
     # 18.9.24
     # 18.9.25
     # 18.9.26
