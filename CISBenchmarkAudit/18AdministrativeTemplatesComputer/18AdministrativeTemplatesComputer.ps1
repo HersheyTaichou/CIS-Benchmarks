@@ -560,6 +560,26 @@ Function Test-AdministrativeTemplatesComputerSystem {
     }
     
     process {
+        Test-SystemAuditProcessCreation @Parameters
+        Test-SystemCredentialsDelegation @Parameters
+        Test-SystemDeviceGuard @Parameters
+        Test-SystemDeviceInstallation @Parameters
+        Test-SystemEarlyLaunchAntimalware @Parameters
+        Test-SystemGroupPolicy @Parameters
+        Test-SystemInternetCommunicationManagement @Parameters
+        Test-SystemKerberos @Parameters
+        Test-SystemKernelDMAProtection @Parameters
+        Test-SystemLocalSecurityAuthority @Parameters
+        Test-SystemLocaleServices @Parameters
+        Test-SystemLogon @Parameters
+        Test-SystemOSPolicies @Parameters
+        Test-SystemPowerManagement @Parameters
+        Test-SystemRemoteAssistance @Parameters
+        Test-SystemRemoteProcedureCall @Parameters
+        Test-SystemSecurityAccountManager @Parameters
+        Test-SystemTroubleshootingandDiagnostics @Parameters
+        Test-SystemUserProfiles @Parameters
+        Test-SystemWindowsTimeService @Parameters
     }
 }
 

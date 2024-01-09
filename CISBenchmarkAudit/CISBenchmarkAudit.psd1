@@ -138,7 +138,7 @@ NestedModules = @('.\CISBenchmarkAudit.psm1',
     '18AdministrativeTemplatesComputer\18.8StartMenuandTaskbar\18.8StartMenuandTaskbar.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.13EarlyLaunchAntimalware\18.9.13EarlyLaunchAntimalware.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.19GroupPolicy\18.9.19GroupPolicy.ps1',
-    '18AdministrativeTemplatesComputer\18.9System\18.9.20InternetCommunicationManagement\18.9.20InternetCommunicationManagement.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.20InternetCommunicationManagement\18.9.20.1InternetCommunicationsettings.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.23Kerberos\18.9.23Kerberos.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.24KernelDMAProtection\18.9.24KernelDMAProtection.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.25LocalSecurityAuthority\18.9.25LocalSecurityAuthority.ps1',
@@ -365,13 +365,29 @@ FunctionsToExport = @(
     # 18.8.1
     'Test-NotificationsNoCloudApplicationNotification',
     # 18.9
+    'Test-SystemAuditProcessCreation','Test-SystemCredentialsDelegation','Test-SystemDeviceGuard','Test-SystemDeviceInstallation','Test-SystemEarlyLaunchAntimalware',
+    'Test-SystemGroupPolicy','Test-SystemInternetCommunicationManagement','Test-SystemKerberos','Test-SystemKernelDMAProtection','Test-SystemLocalSecurityAuthority',
+    'Test-SystemLocaleServices','Test-SystemLogon','Test-SystemOSPolicies','Test-SystemPowerManagement','Test-SystemRemoteAssistance','Test-SystemRemoteProcedureCall',
+    'Test-SystemSecurityAccountManager','Test-SystemTroubleshootingandDiagnostics','Test-SystemUserProfiles','Test-SystemWindowsTimeService',
     # 18.9.3
+    'Test-AuditProcessCreationIncludeCmdLine',
     # 18.9.4
+    'Test-CredentialsDelegationAllowEncryptionOracle','Test-CredentialsDelegationAllowProtectedCreds',
     # 18.9.5
+    'Test-DeviceGuardEnableVirtualizationBasedSecurity','Test-DeviceGuardRequirePlatformSecurityFeatures','Test-DeviceGuardHypervisorEnforcedCodeIntegrity',
+    'Test-DeviceGuardHVCIMATRequired','Test-DeviceGuardLsaCfgFlags','Test-DeviceGuardConfigureSystemGuardLaunch',
     # 18.9.7
+    'Test-DeviceInstallationPreventDeviceMetadataFromNetwork',
     # 18.9.13
+    'Test-EarlyLaunchAntimalwareDriverLoadPolicy',
     # 18.9.19
-    # 18.9.20
+    'Test-GroupPolicyNoBackgroundPolicy','Test-GroupPolicy','Test-GroupPolicyEnableCdp','Test-GroupPolicyDisableBkGndGroupPolicy',
+    # 18.9.20.1
+    'Test-InternetCommunicationsettingsDisableWebPnPDownload','Test-InternetCommunicationsettingsPreventHandwritingDataSharing',
+    'Test-InternetCommunicationsettingsPreventHandwritingErrorReports','Test-InternetCommunicationsettingsExitOnMSICW',
+    'Test-InternetCommunicationsettingsNoWebServices','Test-InternetCommunicationsettingsDisableHTTPPrinting','Test-InternetCommunicationsettingsNoRegistration',
+    'Test-InternetCommunicationsettingsDisableContentFileUpdates','Test-InternetCommunicationsettingsNoOnlinePrintsWizard','Test-InternetCommunicationsettingsNoPublishingWizard',
+    'Test-InternetCommunicationsettingsCEIP','Test-InternetCommunicationsettingsCEIPEnable','Test-InternetCommunicationsettingsWindowsErrorReporting',
     # 18.9.23
     # 18.9.24
     # 18.9.25
@@ -513,7 +529,7 @@ ModuleList = @('.\CISBenchmarkAudit.psm1',
     '18AdministrativeTemplatesComputer\18.8StartMenuandTaskbar\18.8StartMenuandTaskbar.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.13EarlyLaunchAntimalware\18.9.13EarlyLaunchAntimalware.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.19GroupPolicy\18.9.19GroupPolicy.ps1',
-    '18AdministrativeTemplatesComputer\18.9System\18.9.20InternetCommunicationManagement\18.9.20InternetCommunicationManagement.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.20InternetCommunicationManagement\18.9.20.1InternetCommunicationsettings.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.23Kerberos\18.9.23Kerberos.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.24KernelDMAProtection\18.9.24KernelDMAProtection.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.25LocalSecurityAuthority\18.9.25LocalSecurityAuthority.ps1',
@@ -640,7 +656,7 @@ FileList = @('.\CISBenchmarkAudit.psd1','.\CISBenchmarkAudit.psm1',
     '18AdministrativeTemplatesComputer\18.8StartMenuandTaskbar\18.8StartMenuandTaskbar.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.13EarlyLaunchAntimalware\18.9.13EarlyLaunchAntimalware.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.19GroupPolicy\18.9.19GroupPolicy.ps1',
-    '18AdministrativeTemplatesComputer\18.9System\18.9.20InternetCommunicationManagement\18.9.20InternetCommunicationManagement.ps1',
+    '18AdministrativeTemplatesComputer\18.9System\18.9.20InternetCommunicationManagement\18.9.20.1InternetCommunicationsettings.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.23Kerberos\18.9.23Kerberos.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.24KernelDMAProtection\18.9.24KernelDMAProtection.ps1',
     '18AdministrativeTemplatesComputer\18.9System\18.9.25LocalSecurityAuthority\18.9.25LocalSecurityAuthority.ps1',
@@ -706,7 +722,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'CISBenchmark', 'PowerShell'
+        Tags = 'CISBenchmark', 'PSEdition_Desktop','PSEdition_Core', 'Windows'
 
         # A URL to the license for this module.
         LicenseUri = 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
@@ -721,7 +737,7 @@ PrivateData = @{
         ReleaseNotes = 'https://github.com/HersheyTaichou/CIS-Benchmarks'
 
         # Prerelease string of this module
-        Prerelease = 'beta+18.8.1'
+        Prerelease = 'beta+18.9.20.1'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         RequireLicenseAcceptance = $true

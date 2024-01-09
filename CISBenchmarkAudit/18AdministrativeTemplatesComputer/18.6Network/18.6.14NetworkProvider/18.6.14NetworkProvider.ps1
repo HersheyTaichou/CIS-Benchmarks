@@ -53,15 +53,9 @@ function Test-NetworkProviderHardenedPaths {
 
     process {
         $Result.Setting = $Result.Entry.ListBox.State
-        $Return.ListBox.Value.Element | ForEach-Object {
-            if ($_.Name -eq '\\*\NETLOGON' -and $_.Data -eq "RequireMutualAuthentication=1, RequireIntegrity=1") {
-                $NETLOGON = $true
-            }
-            if ($_.Name -eq '\\*\SYSVOL' -and $_.Data -eq "RequireMutualAuthentication=1, RequireIntegrity=1") {
-                $SYSVOL = $true
-            }
-        }
-        if (($NETLOGON -and $SYSVOL) -and $Result.Setting -eq "Enabled") {
+        $NETLOGON = $Result.Entry.ListBox.Value.Element | Where-Object {$_.Name -eq "\\*\NETLOGON"}
+        $SYSVOL = $Result.Entry.ListBox.Value.Element | Where-Object {$_.Name -eq "\\*\SYSVOL"}
+        if (($NETLOGON.Data -eq "RequireMutualAuthentication=1, RequireIntegrity=1") -and ($SYSVOL.Data -eq "RequireMutualAuthentication=1, RequireIntegrity=1") -and $Result.Setting -eq "Enabled") {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false
