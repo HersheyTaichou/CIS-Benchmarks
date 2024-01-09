@@ -391,7 +391,9 @@ FunctionsToExport = @(
     # 18.9.23
     'Test-KerberosDevicePKInitEnabled',
     # 18.9.24
+    'Test-KernelDMAProtectionDeviceEnumerationPolicy',
     # 18.9.25
+    'Test-LocalSecurityAuthorityAllowCustomSSPsAPs','Test-LocalSecurityAuthorityRunAsPPL'
     # 18.9.26
     # 18.9.27
     # 18.9.30

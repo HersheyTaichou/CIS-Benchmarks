@@ -570,7 +570,7 @@ function Test-SystemKernelDMAProtection {
     }
     
     process {
-        
+        Test-KernelDMAProtectionDeviceEnumerationPolicy @Parameters
     }
 }
 
@@ -631,7 +631,10 @@ function Test-SystemLocalSecurityAuthority {
     }
     
     process {
-        
+        Test-LocalSecurityAuthorityAllowCustomSSPsAPs @Parameters
+        if ($NextGenerationWindowsSecurity) {
+            Test-LocalSecurityAuthorityRunAsPPL @Parameters
+        }
     }
 }
 
