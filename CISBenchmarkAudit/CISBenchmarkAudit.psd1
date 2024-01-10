@@ -395,6 +395,7 @@ FunctionsToExport = @(
     # 18.9.25
     'Test-LocalSecurityAuthorityAllowCustomSSPsAPs','Test-LocalSecurityAuthorityRunAsPPL'
     # 18.9.26
+    'Test-LocaleServicesBlockUserInputMethodsForSignIn',
     # 18.9.27
     # 18.9.30
     # 18.9.32

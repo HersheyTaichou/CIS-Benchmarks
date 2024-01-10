@@ -695,7 +695,7 @@ function Test-SystemLocaleServices {
     }
     
     process {
-        
+        Test-LocaleServicesBlockUserInputMethodsForSignIn @Parameters
     }
 }
 
