@@ -756,7 +756,15 @@ function Test-SystemLogon {
     }
     
     process {
-        
+        Test-LogonBlockUserFromShowingAccountDetailsOnSignin @Parameters
+        Test-LogonDontDisplayNetworkSelectionUI @Parameters
+        Test-LogonDontEnumerateConnectedUsers @Parameters
+        if ($ProductType -eq 3) {
+            Test-LogonEnumerateLocalUsers @Parameters
+        }
+        Test-LogonDisableLockScreenAppNotifications @Parameters
+        Test-LogonBlockDomainPicturePassword @Parameters
+        Test-LogonAllowDomainPINLogon @Parameters
     }
 }
 
@@ -817,7 +825,10 @@ function Test-SystemOSPolicies {
     }
     
     process {
-        
+        if (Level -eq 2) {
+            Test-OSPoliciesAllowCrossDeviceClipboard @Parameters
+            Test-OSPoliciesUploadUserActivities @Parameters
+        }
     }
 }
 
@@ -878,7 +889,12 @@ function Test-SystemPowerManagement {
     }
     
     process {
-        
+        if ($level -eq 2) {
+            Test-PowerManagementDCSettingIndexNetworkConnectivity @Parameters
+            Test-PowerManagementACSettingIndexNetworkConnectivity @Parameters
+        }
+        Test-PowerManagementDCSettingIndexPasswordRequired @Parameters
+        Test-PowerManagementACSettingIndexPasswordRequired @Parameters
     }
 }
 

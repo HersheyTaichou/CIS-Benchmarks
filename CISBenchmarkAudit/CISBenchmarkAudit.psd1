@@ -397,8 +397,13 @@ FunctionsToExport = @(
     # 18.9.26
     'Test-LocaleServicesBlockUserInputMethodsForSignIn',
     # 18.9.27
+    'Test-LogonBlockUserFromShowingAccountDetailsOnSignin','Test-LogonDontDisplayNetworkSelectionUI','Test-LogonDontEnumerateConnectedUsers','Test-LogonEnumerateLocalUsers',
+    'Test-LogonDisableLockScreenAppNotifications','Test-LogonBlockDomainPicturePassword','Test-LogonAllowDomainPINLogon',
     # 18.9.30
+    'Test-OSPoliciesAllowCrossDeviceClipboard','Test-OSPoliciesUploadUserActivities',
     # 18.9.32
+    'Test-PowerManagementDCSettingIndexNetworkConnectivity','Test-PowerManagementACSettingIndexNetworkConnectivity','Test-PowerManagementDCSettingIndexPasswordRequired',
+    'Test-PowerManagementACSettingIndexPasswordRequired',
     # 18.9.34
     # 18.9.45
     # 18.9.38
