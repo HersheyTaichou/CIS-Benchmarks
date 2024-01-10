@@ -55,6 +55,19 @@ function Test-PasswordPolicyPasswordHistory {
         $EntryName = "PasswordHistorySize"
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
         $Result.Setting = [int]$Result.Entry.SettingNumber
+
+        $CISControl8 = [CISControl]::new()
+        $CISControl8.Version = 8
+        $CISControl8.Safeguard = "5.2 Use Unique Passwords"
+        $CISControl8.ImplementationGroup = 1
+
+        $CISControl7 = [CISControl]::new()
+        $CISControl7.Version = 7
+        $CISControl7.Safeguard = "16.2 Configure Centralized Point of Authentication"
+        $CISControl7.ImplementationGroup = 2
+
+        $Result.CISControl = @($CISControl8,$CISControl7)
+
     }
 
     process {

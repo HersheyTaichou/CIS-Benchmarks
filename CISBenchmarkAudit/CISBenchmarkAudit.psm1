@@ -247,5 +247,12 @@ class CISBenchmark {
     [string]$Source # Where the setting was checked from
     [bool]$SetCorrectly # if it is set correctly
     $Setting # The current setting
+    [CISControl[]]$CISControl
     hidden $Entry # The XML output of the setting
+}
+
+class CISControl {
+    [int]$Version # The version of the Control it meets (7/8)
+    [string]$Safeguard # The name of the Safeguard
+    [int]$ImplementationGroup # The Implimentation group it falls under (1/2/3). For this, 2 assumes all of 1, and 3 assumes all of 1 and 2
 }
