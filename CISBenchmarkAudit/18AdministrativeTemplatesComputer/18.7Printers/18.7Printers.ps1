@@ -16,7 +16,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-PrintersRegisterSpoolerRemoteRpcEndPoint
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -85,7 +85,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-PrintersRedirectionguardPolicy
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -152,7 +152,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-PrintersRpcUseNamedPipeProtocol
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -220,7 +220,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-PrintersRpcAuthentication
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -288,7 +288,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-PrintersRpcProtocols
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -356,7 +356,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-PrintersForceKerberosForRpc
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -424,7 +424,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-PrintersRpcTcpPort
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -491,7 +491,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-PrintersRestrictDriverInstallationToAdministrators
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -558,7 +558,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-PrintersCopyFilesPolicy
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -625,7 +625,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-PrintersNoWarningNoElevationOnInstall
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -693,7 +693,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-PrintersUpdatePromptSettings
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------

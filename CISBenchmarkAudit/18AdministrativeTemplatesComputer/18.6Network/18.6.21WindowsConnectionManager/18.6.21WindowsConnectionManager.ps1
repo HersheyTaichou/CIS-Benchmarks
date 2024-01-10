@@ -16,7 +16,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-WindowsConnectionManagerfMinimizeConnections
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -83,7 +83,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-WindowsConnectionManagerfBlockNonDomain
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------

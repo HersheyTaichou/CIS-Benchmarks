@@ -16,7 +16,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-DeviceGuardEnableVirtualizationBasedSecurity
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -83,7 +83,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-DeviceGuardRequirePlatformSecurityFeatures
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -151,7 +151,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-DeviceGuardHypervisorEnforcedCodeIntegrity
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -219,7 +219,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-DeviceGuardHVCIMATRequired
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -287,7 +287,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-DeviceGuardLsaCfgFlags
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
@@ -362,7 +362,7 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-
+Test-DeviceGuardConfigureSystemGuardLaunch
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------

@@ -29,10 +29,10 @@ This is used to set the type of OS that should be tested against based on the pr
 .PARAMETER GPResult
 This is used to define the GPO XML variable to test
 
-.EXAMPLE
+.EXAMPLETest-NetworkDNSClient -Level 1
 
-
---------------------  ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 
 .NOTES
 General notes
@@ -92,10 +92,10 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
+Test-NetworkFonts -Level 1
 
-
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 
 .NOTES
 General notes
@@ -155,10 +155,10 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
+Test-NetworkLanmanWorkstation -Level 1
 
-
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 
 .NOTES
 General notes
@@ -216,10 +216,10 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
+Test-NetworkLinkLayerTopologyDiscovery -Level 1
 
-
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 
 .NOTES
 General notes
@@ -280,10 +280,10 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
+Test-NetworkMsP2PNetworkingServices -Level 1
 
-
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 
 .NOTES
 General notes
@@ -343,10 +343,10 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
+Test-NetworkNetworkConnections -Level 1
 
-
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 
 .NOTES
 General notes
@@ -406,10 +406,10 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
+Test-NetworkNetworkProvider -Level 1
 
-
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 
 .NOTES
 General notes
@@ -467,10 +467,10 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
+Test-NetworkTCPIPSettings -Level 1
 
-
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 
 .NOTES
 General notes
@@ -534,10 +534,10 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
+Test-NetworkWindowsConnectNow -Level 1
 
-
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 
 .NOTES
 General notes
@@ -598,10 +598,10 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
+Test-NetworkWindowsConnectionManager -Level 1
 
-
---------------------  ------------------                                                                                  ------                    ----    
---------------------  ------------------                                                                                  ------                    ----    
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
 
 .NOTES
 General notes
