@@ -174,7 +174,9 @@ function Test-WindowsComponentsAutoPlayPolicies {
     }
     
     process {
-        
+        Test-AutoPlayPoliciesNoAutoplayfornonVolume @Parameters
+        Test-AutoPlayPoliciesNoAutorun @Parameters
+        Test-AutoPlayPoliciesNoDriveTypeAutoRun @Parameters
     }
 }
 
@@ -234,7 +236,7 @@ function Test-WindowsComponentsBiometrics {
     }
     
     process {
-        
+        Test-BiometricsEnhancedAntiSpoofing @Parameters
     }
 }
 
@@ -294,7 +296,7 @@ function Test-WindowsComponentsCamera {
     }
     
     process {
-        
+        Test-CameraAllowCamera @Parameters
     }
 }
 
@@ -354,7 +356,9 @@ function Test-WindowsComponentsCloudContent {
     }
     
     process {
-        
+        Test-CloudContentDisableConsumerAccountStateContent @Parameters
+        Test-CloudContentDisableCloudOptimizedContent @Parameters
+        Test-CloudContentDisableWindowsConsumerFeatures @Parameters
     }
 }
 
@@ -414,7 +418,7 @@ function Test-WindowsComponentsConnect {
     }
     
     process {
-        
+        Test-ConnectRequirePinForPairing @Parameters
     }
 }
 
@@ -474,7 +478,8 @@ function Test-WindowsComponentsCredentialUserInterface {
     }
     
     process {
-        
+        Test-CredentialUserInterfaceDisablePasswordReveal @Parameters
+        Test-CredentialUserInterfaceEnumerateAdministrators @Parameters
     }
 }
 

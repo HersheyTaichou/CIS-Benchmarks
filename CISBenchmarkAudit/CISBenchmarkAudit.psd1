@@ -432,11 +432,18 @@ FunctionsToExport = @(
     # 18.10.5
     'Test-AppRuntimeAllowMicrosoftAccountsToBeOptional',
     # 18.10.7
+    'Test-AutoPlayPoliciesNoAutoplayfornonVolume','Test-AutoPlayPoliciesNoAutorun','Test-AutoPlayPoliciesNoDriveTypeAutoRun',
     # 18.10.8
+    'Test-BiometricsEnhancedAntiSpoofing',
     # 18.10.10
+    'Test-CameraAllowCamera',
     # 18.10.12
+    'Test-CloudContentDisableConsumerAccountStateContent','Test-CloudContentDisableCloudOptimizedContent','Test-CloudContentDisableWindowsConsumerFeatures',
     # 18.10.13
+    'Test-ConnectRequirePinForPairing',
     # 18.10.14
+    'Test-CredentialUserInterfaceDisablePasswordReveal',
+    'Test-CredentialUserInterfaceEnumerateAdministrators',
     # 18.10.15
     # 18.10.17
     # 18.10.26
@@ -761,7 +768,7 @@ PrivateData = @{
         ReleaseNotes = 'https://github.com/HersheyTaichou/CIS-Benchmarks'
 
         # Prerelease string of this module
-        Prerelease = 'beta+18.9.50'
+        Prerelease = 'beta+18.10.14'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         RequireLicenseAcceptance = $true
