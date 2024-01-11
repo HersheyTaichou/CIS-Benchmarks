@@ -445,8 +445,14 @@ FunctionsToExport = @(
     'Test-CredentialUserInterfaceDisablePasswordReveal',
     'Test-CredentialUserInterfaceEnumerateAdministrators',
     # 18.10.15
+    'Test-DataCollectionandPreviewBuildsAllowTelemetry','Test-DataCollectionandPreviewBuildsDisableEnterpriseAuthProxy','Test-DataCollectionandPreviewBuildsDisableOneSettingsDownloads',
+    'Test-DataCollectionandPreviewBuildsDoNotShowFeedbackNotifications','Test-DataCollectionandPreviewBuildsEnableOneSettingsAuditing',
+    'Test-DataCollectionandPreviewBuildsLimitDiagnosticLogCollection','Test-DataCollectionandPreviewBuildsLimitDumpCollection','Test-DataCollectionandPreviewBuildsAllowBuildPreview',
     # 18.10.17
+    'Test-DesktopAppInstallerEnableAppInstaller','Test-DesktopAppInstallerEnableExperimentalFeatures','Test-DesktopAppInstallerEnableHashOverride','Test-DesktopAppInstallerEnableMSAppInstallerProtocol',
     # 18.10.26
+    'Test-EventLogServiceApplicationRetention','Test-EventLogServiceApplicationMaxSize','Test-EventLogServiceSecurityRetention','Test-EventLogServiceSecurityMaxSize','Test-EventLogServiceSetupRetention',
+    'Test-EventLogServiceSetupMaxSize','Test-EventLogServiceSystemRetention','Test-EventLogServiceSystemMaxSize',
     # 18.10.29
     # 18.10.37
     # 18.10.41

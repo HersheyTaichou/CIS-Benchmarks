@@ -52,9 +52,13 @@ function Test-ConnectRequirePinForPairing {
     }
 
     process {
-        $Result.Setting = $Result.Entry.DropDownList.Value.Name
+        
         # First Time shows up as "NotConfigured" in the XML file.
-        if (($Result.Setting -eq "NotConfigured" -or $Result.Setting -eq "Always") -and $Result.Entry.State -eq "Enabled") {
+        if ($Result.Entry.DropDownList.State -eq "NotConfigured" -and $Result.Entry.State -eq "Enabled") {
+            $Result.Setting = "First Time"
+            $Result.SetCorrectly = $true
+        } elseif ($Result.Entry.DropDownList.Value.Name -eq "Always" -and $Result.Entry.State -eq "Enabled") {
+            $Result.Setting = $Result.Entry.DropDownList.Value.Name
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false

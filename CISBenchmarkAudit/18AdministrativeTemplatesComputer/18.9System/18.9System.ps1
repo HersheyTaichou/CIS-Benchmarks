@@ -509,7 +509,9 @@ function Test-SystemKerberos {
     }
     
     process {
-        Test-KerberosDevicePKInitEnabled @Parameters
+        if ($Level -eq 2) {
+            Test-KerberosDevicePKInitEnabled @Parameters
+        }
     }
 }
 
@@ -695,7 +697,9 @@ function Test-SystemLocaleServices {
     }
     
     process {
-        Test-LocaleServicesBlockUserInputMethodsForSignIn @Parameters
+        if ($Level -eq 2) {
+            Test-LocaleServicesBlockUserInputMethodsForSignIn @Parameters
+        }
     }
 }
 

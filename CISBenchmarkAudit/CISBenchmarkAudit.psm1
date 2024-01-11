@@ -225,14 +225,25 @@ function Get-GPOEntry {
         # Parameter help description
         [Parameter(Mandatory)][string]$EntryName,
         [Parameter(Mandatory)][string]$Name,
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][string]$Category
     )
     
     process {
-        foreach ($data in $GPResult.Rsop.ComputerResults.ExtensionData) {
-            foreach ($Node in $data.Extension.ChildNodes) {
-                If ($Node.$Name -eq $EntryName) {
-                    Return $Node
+        if ($Category) {
+            foreach ($data in $GPResult.Rsop.ComputerResults.ExtensionData) {
+                foreach ($Node in $data.Extension.ChildNodes) {
+                    If ($Node.$Name -eq $EntryName -and $Node.Category -eq $Category) {
+                        Return $Node
+                    }
+                }
+            }
+        } else {
+            foreach ($data in $GPResult.Rsop.ComputerResults.ExtensionData) {
+                foreach ($Node in $data.Extension.ChildNodes) {
+                    If ($Node.$Name -eq $EntryName) {
+                        Return $Node
+                    }
                 }
             }
         }

@@ -54,7 +54,9 @@ function Test-WindowsComponentsAppPackageDeployment {
     }
     
     process {
-        Test-AppPackageDeploymentAllowSharedLocalAppData @Parameters
+        if ($Level -eq 2) {
+            Test-AppPackageDeploymentAllowSharedLocalAppData @Parameters
+        }
     }
 }
 
@@ -296,7 +298,9 @@ function Test-WindowsComponentsCamera {
     }
     
     process {
-        Test-CameraAllowCamera @Parameters
+        if ($Level -eq 2) {
+            Test-CameraAllowCamera @Parameters
+        }
     }
 }
 
@@ -357,7 +361,9 @@ function Test-WindowsComponentsCloudContent {
     
     process {
         Test-CloudContentDisableConsumerAccountStateContent @Parameters
-        Test-CloudContentDisableCloudOptimizedContent @Parameters
+        if ($Level -eq 2) {
+            Test-CloudContentDisableCloudOptimizedContent @Parameters
+        }
         Test-CloudContentDisableWindowsConsumerFeatures @Parameters
     }
 }
@@ -539,7 +545,16 @@ function Test-WindowsComponentsDataCollectionandPreviewBuilds {
     }
     
     process {
-        
+        Test-DataCollectionandPreviewBuildsAllowTelemetry @Parameters
+        if ($Level -eq 2) {
+            Test-DataCollectionandPreviewBuildsDisableEnterpriseAuthProxy @Parameters
+        }
+        Test-DataCollectionandPreviewBuildsDisableOneSettingsDownloads @Parameters
+        Test-DataCollectionandPreviewBuildsDoNotShowFeedbackNotifications @Parameters
+        Test-DataCollectionandPreviewBuildsEnableOneSettingsAuditing @Parameters
+        Test-DataCollectionandPreviewBuildsLimitDiagnosticLogCollection @Parameters
+        Test-DataCollectionandPreviewBuildsLimitDumpCollection @Parameters
+        Test-DataCollectionandPreviewBuildsAllowBuildPreview @Parameters
     }
 }
 
@@ -599,7 +614,10 @@ function Test-WindowsComponentsDesktopAppInstaller {
     }
     
     process {
-        
+        Test-DesktopAppInstallerEnableAppInstaller @Parameters
+        Test-DesktopAppInstallerEnableExperimentalFeatures @Parameters
+        Test-DesktopAppInstallerEnableHashOverride @Parameters
+        Test-DesktopAppInstallerEnableMSAppInstallerProtocol @Parameters
     }
 }
 
@@ -659,7 +677,14 @@ function Test-WindowsComponentsEventLogService {
     }
     
     process {
-        
+        Test-EventLogServiceApplicationRetention @Parameters
+        Test-EventLogServiceApplicationMaxSize @Parameters
+        Test-EventLogServiceSecurityRetention @Parameters
+        Test-EventLogServiceSecurityMaxSize @Parameters
+        Test-EventLogServiceSetupRetention @Parameters
+        Test-EventLogServiceSetupMaxSize @Parameters
+        Test-EventLogServiceSystemRetention @Parameters
+        Test-EventLogServiceSystemMaxSize @Parameters
     }
 }
 

@@ -34,6 +34,7 @@ function Test-AppRuntimeAllowMicrosoftAccountsToBeOptional {
 
     begin {
         $EntryName = "Allow Microsoft accounts to be optional"
+        $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.5.1'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
