@@ -405,11 +405,20 @@ FunctionsToExport = @(
     'Test-PowerManagementDCSettingIndexNetworkConnectivity','Test-PowerManagementACSettingIndexNetworkConnectivity','Test-PowerManagementDCSettingIndexPasswordRequired',
     'Test-PowerManagementACSettingIndexPasswordRequired',
     # 18.9.34
-    # 18.9.45
+    'Test-RemoteAssistancefAllowUnsolicited','Test-RemoteAssistancefAllowToGetHelp',
+    # 18.9.35
+    'Test-RemoteProcedureCallEnableAuthEpResolution','Test-RemoteProcedureCallRestrictRemoteClients',
     # 18.9.38
-    # 18.9.46
+    'Test-SecurityAccountManagerSamNGCKeyROCAValidation',
+    # 18.9.46.5
+    'Test-MSDTDisableQueryRemoteServer',
+    # 18.9.46.11
+    'Test-WindowsPerformancePerfTrackScenarioExecutionEnabled',
     # 18.9.48
+    'Test-UserProfilesAdvertisingInfo',
     # 18.9.50
+    'Test-WindowsTimeServiceNtpClient',
+    'Test-WindowsTimeServiceNtpServer',
     # 18.10
     # 18.10.3
     # 18.10.5
@@ -746,7 +755,7 @@ PrivateData = @{
         ReleaseNotes = 'https://github.com/HersheyTaichou/CIS-Benchmarks'
 
         # Prerelease string of this module
-        Prerelease = 'beta+18.9.20.1'
+        Prerelease = 'beta+18.9.50'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         RequireLicenseAcceptance = $true

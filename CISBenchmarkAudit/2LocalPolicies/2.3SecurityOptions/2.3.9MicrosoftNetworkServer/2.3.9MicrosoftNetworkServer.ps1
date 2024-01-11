@@ -329,7 +329,7 @@ function Test-MicrosoftNetworkServerSmbServerNameHardeningLevel {
         if (($Result.Setting) -and ($Result.Setting -ge 1) -and ($ProductType -eq 3)) {
             $Result.SetCorrectly = $true
         } elseif (($ProductType -eq 2) -and ($Result.Setting -ge 1)) {
-            Write-Warning "$($Result.Number): On Domain Controllers, if Hardened UNC Paths (18.6.14.1) is enabled, this setting can lead to significant issues."
+            Write-Warning "$($Result.Number): `"$($Result.Title)`" On Domain Controllers, if Hardened UNC Paths (18.6.14.1) is enabled, this setting can lead to significant issues."
             $Result.SetCorrectly = $false
         } elseif (($ProductType -eq 2) -and (-not($Result.Setting))) {
             $Result.SetCorrectly = $true

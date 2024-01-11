@@ -57,7 +57,7 @@ function Test-DNSClientDoHPolicy {
             $Result.SetCorrectly = $true
         } elseif ($Result.Setting -eq "Require DoH" -and $Result.Entry.DropDownList.State -eq "Enabled") {
             $Result.SetCorrectly = $true
-            Write-Warning "$($Result.Number): `"$($EntryName)`" is set to $($Result.Setting), which, per Microsoft, should not be enabled for domain-joined computers, as ADDS does not support DoH queries."
+            Write-Warning "$($Result.Number): `"$($Result.Title)`" is set to $($Result.Setting), which, per Microsoft, should not be enabled for domain-joined computers, as ADDS does not support DoH queries."
         } else {
             $Result.SetCorrectly = $false
         }

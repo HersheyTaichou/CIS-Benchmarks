@@ -194,7 +194,7 @@ function Test-MSSDisableIPSourceRouting {
                 $Result.SetCorrectly = $false
             }
         } else {
-            Write-Warning "$($Result.Number): `"$($EntryName)`" is set to Not Defined, which is recommended for enterprise environments by the benchmark. Only high security environments should be set to Highest Protection."
+            Write-Warning "$($Result.Number): `"$($Result.Title)`" is set to Not Defined, which is recommended for enterprise environments by the benchmark. Only high security environments should be set to Highest Protection."
             $Result.SetCorrectly = $true
             $Result.Setting = "Not Defined"
         }

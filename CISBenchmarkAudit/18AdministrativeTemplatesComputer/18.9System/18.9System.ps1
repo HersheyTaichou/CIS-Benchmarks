@@ -825,7 +825,7 @@ function Test-SystemOSPolicies {
     }
     
     process {
-        if (Level -eq 2) {
+        if ($Level -eq 2) {
             Test-OSPoliciesAllowCrossDeviceClipboard @Parameters
             Test-OSPoliciesUploadUserActivities @Parameters
         }
@@ -955,7 +955,8 @@ function Test-SystemRemoteAssistance {
     }
     
     process {
-        
+        Test-RemoteAssistancefAllowUnsolicited @Parameters
+        Test-RemoteAssistancefAllowToGetHelp @Parameters
     }
 }
 
@@ -1016,7 +1017,10 @@ function Test-SystemRemoteProcedureCall {
     }
     
     process {
-        
+        if ($ProductType -eq 3) {
+            Test-RemoteProcedureCallEnableAuthEpResolution @Parameters
+            Test-RemoteProcedureCallRestrictRemoteClients @Parameters
+        }
     }
 }
 
@@ -1077,7 +1081,9 @@ function Test-SystemSecurityAccountManager {
     }
     
     process {
-        
+        if ($ProductType -eq 2) {
+            Test-SecurityAccountManagerSamNGCKeyROCAValidation @Parameters
+        }
     }
 }
 
@@ -1138,7 +1144,10 @@ function Test-SystemTroubleshootingandDiagnostics {
     }
     
     process {
-        
+        if ($Level -eq 2) {
+            Test-MSDTDisableQueryRemoteServer @Parameters
+            Test-WindowsPerformancePerfTrackScenarioExecutionEnabled @Parameters
+        }
     }
 }
 
@@ -1199,7 +1208,9 @@ function Test-SystemUserProfiles {
     }
     
     process {
-        
+        if ($Level -eq 2) {
+            Test-UserProfilesAdvertisingInfo @Parameters
+        }
     }
 }
 
@@ -1260,7 +1271,12 @@ function Test-SystemWindowsTimeService {
     }
     
     process {
-        
+        if ($Level -eq 2) {
+            Test-WindowsTimeServiceNtpClient
+        }
+        if ($Level -eq 2 -and $ProductType -eq 3) {
+            Test-WindowsTimeServiceNtpServer
+        }
     }
 }
 
