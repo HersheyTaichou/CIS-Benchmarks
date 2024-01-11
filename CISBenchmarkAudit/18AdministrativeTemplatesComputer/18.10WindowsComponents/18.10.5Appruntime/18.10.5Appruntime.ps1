@@ -51,9 +51,12 @@ function Test-AppRuntimeAllowMicrosoftAccountsToBeOptional {
     }
 
     process {
-        $Result.Setting
-        $Result.SetCorrectly
-        
+        $Result.Setting = $Result.Entry.State
+        if ($Result.Setting -eq "Enabled") {
+            $Result.SetCorrectly = $true
+        } else {
+            $Result.SetCorrectly = $false
+        }
     }
 
     end {

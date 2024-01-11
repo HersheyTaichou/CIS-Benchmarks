@@ -644,6 +644,37 @@ Function Test-AdministrativeTemplatesComputerWindowsComponents {
     }
     
     process {
+        Test-WindowsComponentsAppPackageDeployment @Parameters
+        Test-WindowsComponentsAppruntime @Parameters
+        Test-WindowsComponentsAutoPlayPolicies @Parameters
+        Test-WindowsComponentsBiometrics @Parameters
+        Test-WindowsComponentsCamera @Parameters
+        Test-WindowsComponentsCloudContent @Parameters
+        Test-WindowsComponentsConnect @Parameters
+        Test-WindowsComponentsCredentialUserInterface @Parameters
+        Test-WindowsComponentsDataCollectionandPreviewBuilds @Parameters
+        Test-WindowsComponentsDesktopAppInstaller @Parameters
+        Test-WindowsComponentsEventLogService @Parameters
+        Test-WindowsComponentsFileExplorer @Parameters
+        Test-WindowsComponentsLocationandSensors @Parameters
+        Test-WindowsComponentsMessaging @Parameters
+        Test-WindowsComponentsMicrosoftaccount @Parameters
+        Test-WindowsComponentsMicrosoftDefenderAntivirus @Parameters
+        Test-WindowsComponentsOneDrive @Parameters
+        Test-WindowsComponentsPushToInstall @Parameters
+        Test-WindowsComponentsRemoteDesktopServices @Parameters
+        Test-WindowsComponentsRSSFeeds @Parameters
+        Test-WindowsComponentsSearch @Parameters
+        Test-WindowsComponentsSoftwareProtectionPlatform @Parameters
+        Test-WindowsComponentsWindowsDefenderSmartScreen @Parameters
+        Test-WindowsComponentsWindowsInkWorkspace @Parameters
+        Test-WindowsComponentsWindowsInstaller @Parameters
+        Test-WindowsComponentsWindowsLogonOptions @Parameters
+        Test-WindowsComponentsWindowsPowerShell @Parameters
+        Test-WindowsComponentsWindowsRemoteManagement @Parameters
+        Test-WindowsComponentsWindowsRemoteShell @Parameters
+        Test-WindowsComponentsWindowsSecurity @Parameters
+        Test-WindowsComponentsWindowsUpdate @Parameters
     }
 }
 

@@ -108,7 +108,6 @@ NestedModules = @('.\CISBenchmarkAudit.psm1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.81WindowsInstaller\18.10.81WindowsInstaller.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.82WindowsLogonOptions\18.10.82WindowsLogonOptions.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.87WindowsPowerShell\18.10.87WindowsPowerShell.ps1',
-    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.88WindowsReliabilityAnalysis\18.10.88WindowsReliabilityAnalysis.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.89WindowsRemoteManagement\18.10.89WindowsRemoteManagement.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.8Biometrics\18.10.8Biometrics.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.90WindowsRemoteShell\18.10.90WindowsRemoteShell.ps1',
@@ -420,8 +419,18 @@ FunctionsToExport = @(
     'Test-WindowsTimeServiceNtpClient',
     'Test-WindowsTimeServiceNtpServer',
     # 18.10
+    'Test-WindowsComponentsAppPackageDeployment','Test-WindowsComponentsAppruntime','Test-WindowsComponentsAutoPlayPolicies','Test-WindowsComponentsBiometrics','Test-WindowsComponentsCamera',
+    'Test-WindowsComponentsCloudContent','Test-WindowsComponentsConnect','Test-WindowsComponentsCredentialUserInterface','Test-WindowsComponentsDataCollectionandPreviewBuilds',
+    'Test-WindowsComponentsDesktopAppInstaller','Test-WindowsComponentsEventLogService','Test-WindowsComponentsFileExplorer','Test-WindowsComponentsLocationandSensors','Test-WindowsComponentsMessaging',
+    'Test-WindowsComponentsMicrosoftaccount','Test-WindowsComponentsMicrosoftDefenderAntivirus','Test-WindowsComponentsOneDrive','Test-WindowsComponentsPushToInstall',
+    'Test-WindowsComponentsRemoteDesktopServices','Test-WindowsComponentsRSSFeeds','Test-WindowsComponentsSearch','Test-WindowsComponentsSoftwareProtectionPlatform',
+    'Test-WindowsComponentsWindowsDefenderSmartScreen','Test-WindowsComponentsWindowsInkWorkspace','Test-WindowsComponentsWindowsInstaller','Test-WindowsComponentsWindowsLogonOptions',
+    'Test-WindowsComponentsWindowsPowerShell','Test-WindowsComponentsWindowsRemoteManagement','Test-WindowsComponentsWindowsRemoteShell',
+    'Test-WindowsComponentsWindowsSecurity','Test-WindowsComponentsWindowsUpdate',
     # 18.10.3
+    'Test-AppPackageDeploymentAllowSharedLocalAppData',
     # 18.10.5
+    'Test-AppRuntimeAllowMicrosoftAccountsToBeOptional',
     # 18.10.7
     # 18.10.8
     # 18.10.10
@@ -447,7 +456,6 @@ FunctionsToExport = @(
     # 18.10.81
     # 18.10.82
     # 18.10.87
-    # 18.10.88
     # 18.10.89
     # 18.10.90
     # 18.10.92
@@ -517,7 +525,6 @@ ModuleList = @('.\CISBenchmarkAudit.psm1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.81WindowsInstaller\18.10.81WindowsInstaller.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.82WindowsLogonOptions\18.10.82WindowsLogonOptions.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.87WindowsPowerShell\18.10.87WindowsPowerShell.ps1',
-    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.88WindowsReliabilityAnalysis\18.10.88WindowsReliabilityAnalysis.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.89WindowsRemoteManagement\18.10.89WindowsRemoteManagement.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.8Biometrics\18.10.8Biometrics.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.90WindowsRemoteShell\18.10.90WindowsRemoteShell.ps1',
@@ -644,7 +651,6 @@ FileList = @('.\CISBenchmarkAudit.psd1','.\CISBenchmarkAudit.psm1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.81WindowsInstaller\18.10.81WindowsInstaller.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.82WindowsLogonOptions\18.10.82WindowsLogonOptions.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.87WindowsPowerShell\18.10.87WindowsPowerShell.ps1',
-    '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.88WindowsReliabilityAnalysis\18.10.88WindowsReliabilityAnalysis.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.89WindowsRemoteManagement\18.10.89WindowsRemoteManagement.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.8Biometrics\18.10.8Biometrics.ps1',
     '18AdministrativeTemplatesComputer\18.10WindowsComponents\18.10.90WindowsRemoteShell\18.10.90WindowsRemoteShell.ps1',
