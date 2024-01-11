@@ -1272,10 +1272,10 @@ function Test-SystemWindowsTimeService {
     
     process {
         if ($Level -eq 2) {
-            Test-WindowsTimeServiceNtpClient
+            Test-WindowsTimeServiceNtpClient @Parameters
         }
         if ($Level -eq 2 -and $ProductType -eq 3) {
-            Test-WindowsTimeServiceNtpServer
+            Test-WindowsTimeServiceNtpServer @Parameters
         }
     }
 }

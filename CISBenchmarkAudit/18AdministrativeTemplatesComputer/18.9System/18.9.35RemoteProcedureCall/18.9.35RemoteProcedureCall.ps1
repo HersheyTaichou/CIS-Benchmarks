@@ -52,8 +52,8 @@ function Test-RemoteProcedureCallEnableAuthEpResolution {
     }
 
     process {
-        $Result.Setting = $Result.Entry.DropDownList.Value.Name
-        if ($Result.Setting -eq "Authenticated" -and $Result.Entry.DropDownList.State -eq "Enabled") {
+        $Result.Setting = $Result.Entry.State
+        if ($Result.Setting -eq "Enabled") {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false
@@ -120,8 +120,8 @@ function Test-RemoteProcedureCallRestrictRemoteClients {
     }
 
     process {
-        $Result.Setting = $Result.Entry.State
-        if ($Result.Setting -eq "Enabled") {
+        $Result.Setting = $Result.Entry.DropDownList.Value.Name
+        if ($Result.Setting -eq "Authenticated" -and $Result.Entry.DropDownList.State -eq "Enabled") {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false
