@@ -3,7 +3,7 @@
 18.10.51.1 (L1) Ensure 'Prevent the usage of OneDrive for file storage' is set to 'Enabled'
 
 .DESCRIPTION
-
+This policy setting lets you prevent apps and features from working with files on OneDrive using the Next Generation Sync Client.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -24,7 +24,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-OneDrive {
+function Test-OneDriveDisableFileSyncNGSC {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)

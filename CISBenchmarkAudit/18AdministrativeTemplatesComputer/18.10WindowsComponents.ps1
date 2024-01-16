@@ -1056,7 +1056,7 @@ function Test-WindowsComponentsOneDrive {
     }
     
     process {
-        
+        Test-OneDriveDisableFileSyncNGSC @Parameters
     }
 }
 
@@ -1116,7 +1116,7 @@ function Test-WindowsComponentsPushToInstall {
     }
     
     process {
-        
+        Test-PushToInstallDisablePushToInstall @Parameters
     }
 }
 
@@ -1176,7 +1176,8 @@ function Test-WindowsComponentsRemoteDesktopServices {
     }
     
     process {
-        
+        Test-RemoteDesktopServicesRemoteDesktopConnectionClient @Parameters
+        Test-RemoteDesktopServicesRemoteDesktopSessionHost @Parameters
     }
 }
 

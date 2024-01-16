@@ -489,8 +489,27 @@ FunctionsToExport = @(
     # 18.10.43.13
     'Test-ScanDisableRemovableDriveScanning','Test-ScanDisableEmailScanning'
     # 18.10.51
+    'Test-OneDriveDisableFileSyncNGSC',
     # 18.10.56
+    'Test-PushToInstallDisablePushToInstall',
     # 18.10.57
+    'Test-RemoteDesktopServicesRemoteDesktopConnectionClient','Test-RemoteDesktopServicesRemoteDesktopSessionHost',
+    # 18.10.57.2
+    'Test-RemoteDesktopConnectionClientDisablePasswordSaving',
+    # 18.10.57.3
+    'Test-RemoteDesktopSessionHostConnections','Test-RemoteDesktopSessionHostDeviceandResourceRedirection','Test-RemoteDesktopSessionHostSecurity','Test-RemoteDesktopSessionHostSessionTimeLimits',
+    'Test-RemoteDesktopSessionHostTemporaryfolders',
+    # 18.10.57.3.2
+    'Test-ConnectionsfSingleSessionPerUser',
+    # 18.10.57.3.3
+    'Test-DeviceandResourceRedirectionEnableUiaRedirection','Test-DeviceandResourceRedirectionfDisableCcm','Test-DeviceandResourceRedirectionfDisableCdm','Test-DeviceandResourceRedirectionfDisableLocationRedir',
+    'Test-DeviceandResourceRedirectionfDisableLPT','Test-DeviceandResourceRedirectionfDisablePNPRedir','Test-DeviceandResourceRedirectionfDisableWebAuthn',
+    # 18.10.57.3.9
+    'Test-SecurityfPromptForPassword','Test-SecurityfEncryptRPCTraffic','Test-SecuritySecurityLayer','Test-SecurityUserAuthentication','Test-SecurityMinEncryptionLevel',
+    # 18.10.57.3.10
+    'Test-SessionTimeLimitsMaxIdleTime','Test-SessionTimeLimitsMaxDisconnectionTime',
+    # 18.10.57.3.11
+    'Test-TemporaryFoldersDeleteTempDirsOnExit','Test-TemporaryFoldersPerSessionTempDir',
     # 18.10.58
     # 18.10.59
     # 18.10.63

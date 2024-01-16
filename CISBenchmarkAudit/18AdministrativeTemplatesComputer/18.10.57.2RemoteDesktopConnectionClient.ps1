@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-18.10.56.1 (L2) Ensure 'Turn off Push To Install service' is set to 'Enabled'
+18.10.57.2.2 (L1) Ensure 'Do not allow passwords to be saved' is set to 'Enabled'
 
 .DESCRIPTION
-This policy setting controls whether users can push Apps to the device from the Microsoft Store App running on other devices or the web.
+This policy setting helps prevent Remote Desktop clients from saving passwords on a computer.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -24,7 +24,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-PushToInstallDisablePushToInstall {
+function Test-RemoteDesktopConnectionClientDisablePasswordSaving {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -33,10 +33,10 @@ function Test-PushToInstallDisablePushToInstall {
     )
 
     begin {
-        $EntryName = "Turn off Push To Install service"
+        $EntryName = "Do not allow passwords to be saved"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.56.1'
-        $Result.Level = "L2"
+        $Result.Number = '18.10.57.2.2'
+        $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
@@ -44,7 +44,7 @@ function Test-PushToInstallDisablePushToInstall {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "Ensure 'Turn off Push To Install service' is set to 'Enabled'"
+        $Result.Title = "Ensure 'Do not allow passwords to be saved' is set to 'Enabled'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting

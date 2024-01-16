@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-18.10.56.1 (L2) Ensure 'Turn off Push To Install service' is set to 'Enabled'
+18.10.57.3.2.1 (L2) Ensure 'Restrict Remote Desktop Services users to a single Remote Desktop Services session' is set to 'Enabled'
 
 .DESCRIPTION
-This policy setting controls whether users can push Apps to the device from the Microsoft Store App running on other devices or the web.
+This policy setting allows you to restrict users to a single Remote Desktop Services session.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -24,7 +24,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-PushToInstallDisablePushToInstall {
+function Test-ConnectionsfSingleSessionPerUser {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -33,9 +33,9 @@ function Test-PushToInstallDisablePushToInstall {
     )
 
     begin {
-        $EntryName = "Turn off Push To Install service"
+        $EntryName = "Restrict Remote Desktop Services users to a single Remote Desktop Services session"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.56.1'
+        $Result.Number = '18.10.57.3.2.1'
         $Result.Level = "L2"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
@@ -44,7 +44,7 @@ function Test-PushToInstallDisablePushToInstall {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "Ensure 'Turn off Push To Install service' is set to 'Enabled'"
+        $Result.Title = "Ensure 'Restrict Remote Desktop Services users to a single Remote Desktop Services session' is set to 'Enabled'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
