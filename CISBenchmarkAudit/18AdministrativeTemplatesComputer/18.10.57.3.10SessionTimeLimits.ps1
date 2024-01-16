@@ -52,13 +52,8 @@ function Test-SessionTimeLimitsMaxIdleTime {
     }
 
     process {
-        $Result.Setting = $Result.Entry.DropDownList.Value.Name
-        $Result.Setting.ToCharArray() | ForEach-Object {
-            if ($_ -match "^\d+$") {
-                $Number += $_
-            }
-        }
-        if (($Number -le 15 -and $Number -gt 0) -and $Result.Entry.State -eq "Enabled") {
+        [Int]$Result.Setting = $Result.Entry.DropDownList.Value.Name.Split(" ")[0]
+        if (($Result.Setting -le 15 -and $Number -gt 0) -and $Result.Entry.State -eq "Enabled") {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false
@@ -124,13 +119,8 @@ function Test-SessionTimeLimitsMaxDisconnectionTime {
     }
 
     process {
-        $Result.Setting = $Result.Entry.DropDownList.Value.Name
-        $Result.Setting.ToCharArray() | ForEach-Object {
-            if ($_ -match "^\d+$") {
-                $Number += $_
-            }
-        }
-        if ($Number -eq 1 -and $Result.Entry.State -eq "Enabled") {
+        [Int]$Result.Setting = $Result.Entry.DropDownList.Value.Name.Split(" ")[0]
+        if ($Result.Setting -eq 1 -and $Result.Entry.State -eq "Enabled") {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false

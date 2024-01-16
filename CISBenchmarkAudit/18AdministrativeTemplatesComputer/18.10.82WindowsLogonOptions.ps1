@@ -3,7 +3,7 @@
 18.10.82.1 (L1) Ensure 'Enable MPR notifications for the system' is set to 'Disabled'
 
 .DESCRIPTION
-
+This policy setting controls whether winlogon sends Multiple Provider Router (MPR) notifications. MPR handles communication between the Windows operating system and the installed network providers. MPR checks the registry to determine which providers are installed on the system and the order they are cycled through.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -24,7 +24,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-WindowsLogonOptions {
+function Test-WindowsLogonOptionsEnableMPR {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -70,7 +70,7 @@ function Test-WindowsLogonOptions {
 18.10.82.2 (L1) Ensure 'Sign-in and lock last interactive user automatically after a restart' is set to 'Disabled'
 
 .DESCRIPTION
-
+This policy setting controls whether a device will automatically sign-in the last interactive user after Windows Update restarts the system.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -91,7 +91,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-WindowsLogonOptions {
+function Test-WindowsLogonOptionsDisableAutomaticRestartSignOn {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)

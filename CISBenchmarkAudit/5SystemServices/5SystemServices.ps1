@@ -132,7 +132,12 @@ function Test-CISBenchmarkSystemServices {
     }
     
     process {
-        Test-SystemServicesSpooler @Parameters
+        if ($ProductType -eq 2) {
+            Test-SystemServicesSpooler @Parameters
+        } elseif ($ProductType -eq 3 -and $Level -eq 2) {
+            Test-SystemServicesSpooler @Parameters
+        }
+        
     }
     
     end {}

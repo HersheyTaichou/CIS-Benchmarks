@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-18.10.81.1 (L1) Ensure 'Allow user control over installs' is set to 'Disabled'
+18.10.93.4.1 (L1) Ensure 'Manage preview builds' is set to 'Disabled'
 
 .DESCRIPTION
-This setting controls whether users are permitted to change installation options that typically are available only to system administrators. The security features of Windows Installer normally prevent users from changing installation options that are typically reserved for system administrators, such as specifying the directory to which files are installed.
+This policy setting manage which updates that are receive prior to the update being released.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -24,7 +24,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-WindowsInstallerEnableUserControl {
+function Test-ManageUpdatesOfferedFromWindowsUpdateManagePreviewBuildsPolicyValue {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -33,9 +33,9 @@ function Test-WindowsInstallerEnableUserControl {
     )
 
     begin {
-        $EntryName = "Allow user control over installs"
+        $EntryName = "Manage preview builds"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.81.1'
+        $Result.Number = '18.10.93.4.1'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
@@ -44,7 +44,7 @@ function Test-WindowsInstallerEnableUserControl {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "Ensure 'Allow user control over installs' is set to 'Disabled'"
+        $Result.Title = "Ensure 'Manage preview builds' is set to 'Disabled'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -67,10 +67,10 @@ function Test-WindowsInstallerEnableUserControl {
 
 <#
 .SYNOPSIS
-18.10.81.2 (L1) Ensure 'Always install with elevated privileges' is set to 'Disabled'
+18.10.93.4.2 (L1) Ensure 'Select when Preview Builds and Feature Updates are received' is set to 'Enabled: 180 or more days'
 
 .DESCRIPTION
-This setting controls whether or not Windows Installer should use system permissions when it installs any program on the system.
+This policy setting determines when Preview Build or Feature Updates are received.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -91,7 +91,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-WindowsInstallerAlwaysInstallElevated {
+function Test-ManageUpdatesOfferedFromWindowsUpdateDeferFeatureUpdates {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -100,9 +100,9 @@ function Test-WindowsInstallerAlwaysInstallElevated {
     )
 
     begin {
-        $EntryName = "Always install with elevated privileges"
+        $EntryName = "Select when Preview Builds and Feature Updates are received"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.81.2'
+        $Result.Number = '18.10.93.4.2'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
@@ -111,7 +111,7 @@ function Test-WindowsInstallerAlwaysInstallElevated {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "Ensure 'Always install with elevated privileges' is set to 'Disabled'"
+        $Result.Title = "Ensure 'Select when Preview Builds and Feature Updates are received' is set to 'Enabled: 180 or more days'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -119,8 +119,9 @@ function Test-WindowsInstallerAlwaysInstallElevated {
     }
 
     process {
-        $Result.Setting = $Result.Entry.State
-        if ($Result.Setting -eq "Disabled") {
+        $AutomaticUpdates = $Result.Entry.Numeric | Where-Object {$_.Name -eq "How many days after a Feature Update is released would you like to defer the update before it is offered to the device?"}
+        $Result.Setting = $AutomaticUpdates.Value
+        if ($Result.Setting -eq "180" -and $Result.Entry.State -eq "Enabled") {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false
@@ -134,10 +135,10 @@ function Test-WindowsInstallerAlwaysInstallElevated {
 
 <#
 .SYNOPSIS
-18.10.81.3 (L2) Ensure 'Prevent Internet Explorer security prompt for Windows Installer scripts' is set to 'Disabled'
+18.10.93.4.3 (L1) Ensure 'Select when Quality Updates are received' is set to 'Enabled: 0 days'
 
 .DESCRIPTION
-This policy setting controls whether Web-based programs are allowed to install software on the computer without notifying the user.
+
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -158,7 +159,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-WindowsInstallerSafeForScripting {
+function Test-ManageUpdatesOfferedFromWindowsUpdateDeferQualityUpdates {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -167,10 +168,10 @@ function Test-WindowsInstallerSafeForScripting {
     )
 
     begin {
-        $EntryName = "Prevent Internet Explorer security prompt for Windows Installer scripts"
+        $EntryName = "Select when Quality Updates are received"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.81.3'
-        $Result.Level = "L2"
+        $Result.Number = '18.10.93.4.3'
+        $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
@@ -178,7 +179,7 @@ function Test-WindowsInstallerSafeForScripting {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "Ensure 'Prevent Internet Explorer security prompt for Windows Installer scripts' is set to 'Disabled'"
+        $Result.Title = "Ensure 'Select when Quality Updates are received' is set to 'Enabled: 0 days'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -186,8 +187,9 @@ function Test-WindowsInstallerSafeForScripting {
     }
 
     process {
-        $Result.Setting = $Result.Entry.State
-        if ($Result.Setting -eq "Disabled") {
+        $AutomaticUpdates = $Result.Entry.Numeric | Where-Object {$_.Name -eq "After a quality update is released, defer receiving it for this many days:"}
+        $Result.Setting = $AutomaticUpdates.Value
+        if ($Result.Setting -eq "0" -and $Result.Entry.State -eq "Enabled") {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false

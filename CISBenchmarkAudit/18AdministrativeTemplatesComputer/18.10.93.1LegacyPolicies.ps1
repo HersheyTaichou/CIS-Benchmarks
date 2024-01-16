@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-18.10.90.1 (L2) Ensure 'Allow Remote Shell Access' is set to 'Disabled'
+18.10.93.1.1 (L1) Ensure 'No auto-restart with logged on users for scheduled automatic updates installations' is set to 'Disabled'
 
 .DESCRIPTION
-This policy setting allows you to manage configuration of remote access to all supported shells to execute scripts and commands.
+This policy setting specifies that Automatic Updates will wait for computers to be restarted by the users who are logged on to them to complete a scheduled installation.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -24,7 +24,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-WindowsRemoteShellAllowRemoteShellAccess {
+function Test-LegacyPoliciesNoAutoRebootWithLoggedOnUsers {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -33,10 +33,10 @@ function Test-WindowsRemoteShellAllowRemoteShellAccess {
     )
 
     begin {
-        $EntryName = "Allow Remote Shell Access"
+        $EntryName = "No auto-restart with logged on users for scheduled automatic updates installations"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.90.1'
-        $Result.Level = "L2"
+        $Result.Number = '18.10.93.1.1'
+        $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
@@ -44,7 +44,7 @@ function Test-WindowsRemoteShellAllowRemoteShellAccess {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "Ensure 'Allow Remote Shell Access' is set to 'Disabled'"
+        $Result.Title = "Ensure 'No auto-restart with logged on users for scheduled automatic updates installations' is set to 'Disabled'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting

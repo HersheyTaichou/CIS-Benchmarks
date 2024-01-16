@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-18.10.80.1 (L2) Ensure 'Allow suggested apps in Windows Ink Workspace' is set to 'Disabled'
+18.10.93.2.1 (L1) Ensure 'Configure Automatic Updates' is set to 'Enabled'
 
 .DESCRIPTION
-This policy setting determines whether suggested apps in Windows Ink Workspace are allowed.
+This policy setting specifies whether computers in your environment will receive security updates from Windows Update or WSUS. If you configure this policy setting to Enabled, the operating system will recognize when a network connection is available and then use the network connection to search Windows Update or your designated intranet site for updates that apply to them.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -24,7 +24,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-WindowsInkWorkspaceAllowSuggestedAppsInWindowsInkWorkspace {
+function Test-ManageEndUserExperienceNoAutoUpdate {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -33,10 +33,10 @@ function Test-WindowsInkWorkspaceAllowSuggestedAppsInWindowsInkWorkspace {
     )
 
     begin {
-        $EntryName = "Allow suggested apps in Windows Ink Workspace"
+        $EntryName = "Configure Automatic Updates"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.80.1'
-        $Result.Level = "L2"
+        $Result.Number = '18.10.93.2.1'
+        $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
@@ -44,7 +44,7 @@ function Test-WindowsInkWorkspaceAllowSuggestedAppsInWindowsInkWorkspace {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "Ensure 'Allow suggested apps in Windows Ink Workspace' is set to 'Disabled'"
+        $Result.Title = "Ensure 'Configure Automatic Updates' is set to 'Enabled'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -53,7 +53,7 @@ function Test-WindowsInkWorkspaceAllowSuggestedAppsInWindowsInkWorkspace {
 
     process {
         $Result.Setting = $Result.Entry.State
-        if ($Result.Setting -eq "Disabled") {
+        if ($Result.Setting -eq "Enabled") {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false
@@ -67,10 +67,10 @@ function Test-WindowsInkWorkspaceAllowSuggestedAppsInWindowsInkWorkspace {
 
 <#
 .SYNOPSIS
-18.10.80.2 (L1) Ensure 'Allow Windows Ink Workspace' is set to 'Enabled: On, but disallow access above lock' OR 'Enabled: Disabled'
+18.10.93.2.2 (L1) Ensure 'Configure Automatic Updates: Scheduled install day' is set to '0 - Every day'
 
 .DESCRIPTION
-This policy setting determines whether Windows Ink items are allowed above the lock screen.
+
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -91,7 +91,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-WindowsInkWorkspaceAllowWindowsInkWorkspace {
+function Test-ManageEndUserExperienceScheduledInstallDay {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -100,9 +100,9 @@ function Test-WindowsInkWorkspaceAllowWindowsInkWorkspace {
     )
 
     begin {
-        $EntryName = "Allow Windows Ink Workspace"
+        $EntryName = "Configure Automatic Updates"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.80.2'
+        $Result.Number = '18.10.93.2.2'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
@@ -111,7 +111,7 @@ function Test-WindowsInkWorkspaceAllowWindowsInkWorkspace {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "Ensure 'Allow Windows Ink Workspace' is set to 'Enabled: On, but disallow access above lock' OR 'Enabled: Disabled'"
+        $Result.Title = "Ensure 'Configure Automatic Updates: Scheduled install day' is set to '0 - Every day'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -119,8 +119,9 @@ function Test-WindowsInkWorkspaceAllowWindowsInkWorkspace {
     }
 
     process {
-        $Result.Setting = $Result.Entry.DropDownList.State
-        if (($Result.Setting -eq "NotConfigured" -or $Result.Setting -eq "Disabled") -and $Result.Entry.State -eq "Enabled") {
+        $AutomaticUpdates = $Result.Entry.DropDownList | Where-Object {$_.Name -eq "Scheduled install day: "}
+        $Result.Setting = $AutomaticUpdates.Value.Name
+        if ($Result.Setting -eq "0 - Every day") {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false

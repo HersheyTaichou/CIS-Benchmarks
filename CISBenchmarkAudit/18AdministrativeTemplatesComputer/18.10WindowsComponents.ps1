@@ -1116,7 +1116,9 @@ function Test-WindowsComponentsPushToInstall {
     }
     
     process {
-        Test-PushToInstallDisablePushToInstall @Parameters
+        if ($Level -eq 2) {
+            Test-PushToInstallDisablePushToInstall @Parameters
+        }
     }
 }
 
@@ -1170,8 +1172,14 @@ function Test-WindowsComponentsRemoteDesktopServices {
     
     begin {
         $Parameters = @{
+            "Level" = $Level
             "ProductType" = $ProductType
             "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
         }
     }
     
@@ -1237,7 +1245,7 @@ function Test-WindowsComponentsRSSFeeds {
     }
     
     process {
-        
+        Test-RSSFeedsDisableEnclosureDownload @Parameters
     }
 }
 <#
@@ -1296,7 +1304,13 @@ function Test-WindowsComponentsSearch {
     }
     
     process {
-        
+        if ($Level -eq 2) {
+            Test-SearchAllowCloudSearch @Parameters
+        }
+        Test-SearchAllowIndexingEncryptedStoresOrItems @Parameters
+        if ($Level -eq 2) {
+            Test-SearchEnableDynamicContentInWSB @Parameters
+        }
     }
 }
 
@@ -1356,7 +1370,9 @@ function Test-WindowsComponentsSoftwareProtectionPlatform {
     }
     
     process {
-        
+        if ($Level -eq 2) {
+            Test-SoftwareProtectionPlatformNoGenTicket @Parameters
+        }
     }
 }
 
@@ -1410,13 +1426,19 @@ function Test-WindowsComponentsWindowsDefenderSmartScreen {
     
     begin {
         $Parameters = @{
+            "Level" = $Level
             "ProductType" = $ProductType
             "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
         }
     }
     
     process {
-        
+        Test-WindowsDefenderSmartScreenExplorer @Parameters
     }
 }
 
@@ -1476,7 +1498,10 @@ function Test-WindowsComponentsWindowsInkWorkspace {
     }
     
     process {
-        
+        if ($Level -eq 2) {
+            Test-WindowsInkWorkspaceAllowSuggestedAppsInWindowsInkWorkspace @Parameters
+            Test-WindowsInkWorkspaceAllowWindowsInkWorkspace @Parameters
+        }
     }
 }
 
@@ -1536,7 +1561,12 @@ function Test-WindowsComponentsWindowsInstaller {
     }
     
     process {
-        
+        Test-WindowsInstallerEnableUserControl @Parameters
+        Test-WindowsInstallerAlwaysInstallElevated @Parameters
+
+        if ($Level -eq 2) {
+            Test-WindowsInstallerSafeForScripting @Parameters
+        }
     }
 }
 
@@ -1596,7 +1626,8 @@ function Test-WindowsComponentsWindowsLogonOptions {
     }
     
     process {
-        
+        Test-WindowsLogonOptionsEnableMPR @Parameters
+        Test-WindowsLogonOptionsDisableAutomaticRestartSignOn @Parameters
     }
 }
 
@@ -1656,7 +1687,8 @@ function Test-WindowsComponentsWindowsPowerShell {
     }
     
     process {
-        
+        Test-WindowsPowerShellEnableScriptBlockLogging @Parameters
+        Test-WindowsPowerShellEnableTranscripting @Parameters
     }
 }
 
@@ -1710,13 +1742,20 @@ function Test-WindowsComponentsWindowsRemoteManagement {
     
     begin {
         $Parameters = @{
+            "Level" = $Level
             "ProductType" = $ProductType
             "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
         }
     }
     
     process {
-        
+        Test-WindowsRemoteManagementWinRMClient @Parameters
+        Test-WindowsRemoteManagementWinRMServer @Parameters
     }
 }
 
@@ -1776,7 +1815,9 @@ function Test-WindowsComponentsWindowsRemoteShell {
     }
     
     process {
-        
+        if ($Level -eq 2) {
+            Test-WindowsRemoteShellAllowRemoteShellAccess @Parameters
+        }
     }
 }
 
@@ -1830,13 +1871,19 @@ function Test-WindowsComponentsWindowsSecurity {
     
     begin {
         $Parameters = @{
+            "Level" = $Level
             "ProductType" = $ProductType
             "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
         }
     }
     
     process {
-        
+        Test-WindowsSecurityAppAndBrowserProtection @Parameters
     }
 }
 
@@ -1890,12 +1937,20 @@ function Test-WindowsComponentsWindowsUpdate {
     
     begin {
         $Parameters = @{
+            "Level" = $Level
             "ProductType" = $ProductType
             "GPResult" = $GPResult
+        }
+        if ($NextGenerationWindowsSecurity) {
+            $Parameters += @{
+                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
+            }
         }
     }
     
     process {
-        
+        Test-WindowsUpdateLegacyPolicies @Parameters
+        Test-WindowsUpdateManageEndUserExperience @Parameters
+        Test-WindowsUpdateManageUpdatesOfferedFromWindowsUpdate @Parameters
     }
 }

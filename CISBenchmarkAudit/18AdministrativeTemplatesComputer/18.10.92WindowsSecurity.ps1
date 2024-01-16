@@ -1,9 +1,23 @@
 <#
 .SYNOPSIS
-18.10.92.2.1 (L1) Ensure 'Prevent users from modifying settings' is set to 'Enabled'
+18.10.92.2 App and browser protection
 
 .DESCRIPTION
+This command will test all the settings defined in section 18.10.92.2 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
+.PARAMETER Level
+This parameter is used to filter by the benchmark level.
+
+The valid options are:
+
+1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
+
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
+
+.PARAMETER NextGenerationWindowsSecurity
+This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
+
+These settings are recommended in environments that can support them.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -16,51 +30,30 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
+Test-WindowsComponentsWindowsSecurity
 
-
-Number     Level Title                                                           Source                    SetCorrectly
-------     ----- -----                                                           ------                    ------------
+--------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
 General notes
 #>
-function Test-WindowsSecurity {
+function Test-WindowsSecurityAppAndBrowserProtection {
     [CmdletBinding()]
     param (
-        # Get the product type (1, 2 or 3)
+        [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
-
+    
     begin {
-        $EntryName = "Prevent users from modifying settings"
-        $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.92.2.1'
-        $Result.Level = "L1"
-        if ($ProductType -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
-            $Result.Profile = "Member Server"
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
         }
-        $Result.Title = "Ensure 'Prevent users from modifying settings' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
-
-        # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
     }
-
+    
     process {
-        $Result.Setting = $Result.Entry.State
-        if ($Result.Setting -eq "Enabled") {
-            $Result.SetCorrectly = $true
-        } else {
-            $Result.SetCorrectly = $false
-        }
-    }
-
-    end {
-        return $Result
+        Test-AppAndBrowserProtectionDisallowExploitProtectionOverride @Parameters
     }
 }

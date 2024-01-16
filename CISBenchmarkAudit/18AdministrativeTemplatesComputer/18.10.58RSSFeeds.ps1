@@ -3,7 +3,7 @@
 18.10.58.1 (L1) Ensure 'Prevent downloading of enclosures' is set to 'Enabled'
 
 .DESCRIPTION
-
+This policy setting prevents the user from having enclosures (file attachments) downloaded from an RSS feed to the user's computer.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -24,7 +24,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-RSSFeeds {
+function Test-RSSFeedsDisableEnclosureDownload {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)

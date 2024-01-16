@@ -3,7 +3,7 @@
 18.10.87.1 (L1) Ensure 'Turn on PowerShell Script Block Logging' is set to 'Enabled'
 
 .DESCRIPTION
-
+This policy setting enables logging of all PowerShell script input to the Applications and Services Logs\Microsoft\Windows\PowerShell\Operational Event Log channel.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -24,7 +24,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-WindowsPowerShell {
+function Test-WindowsPowerShellEnableScriptBlockLogging {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -70,7 +70,7 @@ function Test-WindowsPowerShell {
 18.10.87.2 (L1) Ensure 'Turn on PowerShell Transcription' is set to 'Enabled'
 
 .DESCRIPTION
-
+This Policy setting lets you capture the input and output of Windows PowerShell commands into text-based transcripts.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -91,7 +91,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-WindowsPowerShell {
+function Test-WindowsPowerShellEnableTranscripting {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)

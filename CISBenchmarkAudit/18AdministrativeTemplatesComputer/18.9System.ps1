@@ -1023,6 +1023,9 @@ function Test-SystemRemoteProcedureCall {
     process {
         if ($ProductType -eq 3) {
             Test-RemoteProcedureCallEnableAuthEpResolution @Parameters
+            
+        }
+        if ($ProductType -eq 3 -and $Level -eq 2) {
             Test-RemoteProcedureCallRestrictRemoteClients @Parameters
         }
     }

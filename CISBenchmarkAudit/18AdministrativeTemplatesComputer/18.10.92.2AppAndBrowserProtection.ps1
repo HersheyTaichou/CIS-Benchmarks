@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-18.10.90.1 (L2) Ensure 'Allow Remote Shell Access' is set to 'Disabled'
+18.10.92.2.1 (L1) Ensure 'Prevent users from modifying settings' is set to 'Enabled'
 
 .DESCRIPTION
-This policy setting allows you to manage configuration of remote access to all supported shells to execute scripts and commands.
+This policy setting prevent users from making changes to the Exploit protection settings area in the Windows Security settings.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -24,7 +24,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-WindowsRemoteShellAllowRemoteShellAccess {
+function Test-AppAndBrowserProtectionDisallowExploitProtectionOverride {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -33,10 +33,10 @@ function Test-WindowsRemoteShellAllowRemoteShellAccess {
     )
 
     begin {
-        $EntryName = "Allow Remote Shell Access"
+        $EntryName = "Prevent users from modifying settings"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.90.1'
-        $Result.Level = "L2"
+        $Result.Number = '18.10.92.2.1'
+        $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
@@ -44,7 +44,7 @@ function Test-WindowsRemoteShellAllowRemoteShellAccess {
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "Ensure 'Allow Remote Shell Access' is set to 'Disabled'"
+        $Result.Title = "Ensure 'Prevent users from modifying settings' is set to 'Enabled'"
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
@@ -53,7 +53,7 @@ function Test-WindowsRemoteShellAllowRemoteShellAccess {
 
     process {
         $Result.Setting = $Result.Entry.State
-        if ($Result.Setting -eq "Disabled") {
+        if ($Result.Setting -eq "Enabled") {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false

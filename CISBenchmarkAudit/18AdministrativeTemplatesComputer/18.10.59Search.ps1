@@ -3,7 +3,7 @@
 18.10.59.2 (L2) Ensure 'Allow Cloud Search' is set to 'Enabled: Disable Cloud Search'
 
 .DESCRIPTION
-
+This policy setting allows search and Cortana to search cloud sources like OneDrive and SharePoint.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -24,7 +24,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-Search {
+function Test-SearchAllowCloudSearch {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -53,7 +53,7 @@ function Test-Search {
 
     process {
         $Result.Setting = $Result.Entry.DropDownList.Value.Name
-        if ($Result.Setting -eq "FIXME" -and $Result.Entry.State -eq "Enabled") {
+        if ($Result.Setting -eq "Disable Cloud Search" -and $Result.Entry.State -eq "Enabled") {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false
@@ -70,7 +70,7 @@ function Test-Search {
 18.10.59.3 (L1) Ensure 'Allow indexing of encrypted files' is set to 'Disabled'
 
 .DESCRIPTION
-
+This policy setting controls whether encrypted items are allowed to be indexed. When this setting is changed, the index is rebuilt completely.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -91,7 +91,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-Search {
+function Test-SearchAllowIndexingEncryptedStoresOrItems {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -137,7 +137,7 @@ function Test-Search {
 18.10.59.4 (L2) Ensure 'Allow search highlights' is set to 'Disabled'
 
 .DESCRIPTION
-
+This policy setting controls search highlights in the start menu search box and in search home.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -158,7 +158,7 @@ Number     Level Title                                                          
 .NOTES
 General notes
 #>
-function Test-Search {
+function Test-SearchEnableDynamicContentInWSB {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)

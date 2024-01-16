@@ -1,9 +1,23 @@
 <#
 .SYNOPSIS
-18.10.89.1.1 (L1) Ensure 'Allow Basic authentication' is set to 'Disabled'
+18.10.89.1 WinRM Client
 
 .DESCRIPTION
+This command will test all the settings defined in section 18.10.89.1 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
+.PARAMETER Level
+This parameter is used to filter by the benchmark level.
+
+The valid options are:
+
+1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
+
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
+
+.PARAMETER NextGenerationWindowsSecurity
+This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
+
+These settings are recommended in environments that can support them.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -16,61 +30,56 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
+Test-WindowsComponentsWindowsRemoteManagement
 
-
-Number     Level Title                                                           Source                    SetCorrectly
-------     ----- -----                                                           ------                    ------------
+--------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
 General notes
 #>
-function Test-WindowsRemoteManagement {
+function Test-WindowsRemoteManagementWinRMClient {
     [CmdletBinding()]
     param (
-        # Get the product type (1, 2 or 3)
+        [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
-
+    
     begin {
-        $EntryName = "Allow Basic authentication"
-        $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.89.1.1'
-        $Result.Level = "L1"
-        if ($ProductType -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
-            $Result.Profile = "Member Server"
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
         }
-        $Result.Title = "Ensure 'Allow Basic authentication' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
-
-        # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
     }
-
+    
     process {
-        $Result.Setting = $Result.Entry.State
-        if ($Result.Setting -eq "Disabled") {
-            $Result.SetCorrectly = $true
-        } else {
-            $Result.SetCorrectly = $false
-        }
-    }
-
-    end {
-        return $Result
+        Test-WinRMClientAllowBasic @Parameters
+        Test-WinRMClientAllowUnencryptedTraffic @Parameters
+        Test-WinRMClientAllowDigest @Parameters
     }
 }
 
 <#
 .SYNOPSIS
-18.10.89.1.2 (L1) Ensure 'Allow unencrypted traffic' is set to 'Disabled'
+18.10.89.2 WinRM Service
 
 .DESCRIPTION
+This command will test all the settings defined in section 18.10.89.2 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
+.PARAMETER Level
+This parameter is used to filter by the benchmark level.
+
+The valid options are:
+
+1 = Level 1 of the benchmark. This is intended to provide a solid baseline for security.
+
+2 = Level 2 of the benchmark. This is intended to provide a higher level of security, at the risk of breaking some functionality. This level requires and includes all the Level 1 benchmarks
+
+.PARAMETER NextGenerationWindowsSecurity
+This parameter is used to enable the Next Generation Windows Security optional add-on to the CIS Benchmark.
+
+These settings are recommended in environments that can support them.
 
 .PARAMETER ProductType
 This is used to set the type of OS that should be tested against based on the product type:
@@ -83,386 +92,35 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
+Test-WindowsComponentsWindowsRemoteManagement
 
-
-Number     Level Title                                                           Source                    SetCorrectly
-------     ----- -----                                                           ------                    ------------
-
-.NOTES
-General notes
-#>
-function Test-WindowsRemoteManagement {
-    [CmdletBinding()]
-    param (
-        # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
-    )
-
-    begin {
-        $EntryName = "Allow unencrypted traffic"
-        $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.89.1.2'
-        $Result.Level = "L1"
-        if ($ProductType -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow unencrypted traffic' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
-
-        # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
-    }
-
-    process {
-        $Result.Setting = $Result.Entry.State
-        if ($Result.Setting -eq "Disabled") {
-            $Result.SetCorrectly = $true
-        } else {
-            $Result.SetCorrectly = $false
-        }
-    }
-
-    end {
-        return $Result
-    }
-}
-
-<#
-.SYNOPSIS
-18.10.89.1.3 (L1) Ensure 'Disallow Digest authentication' is set to 'Enabled'
-
-.DESCRIPTION
-
-
-.PARAMETER ProductType
-This is used to set the type of OS that should be tested against based on the product type:
-
-1 = Workstation
-2 = Domain Controller
-3 = Member Server
-
-.PARAMETER GPResult
-This is used to define the GPO XML variable to test
-
-.EXAMPLE
-
-
-Number     Level Title                                                           Source                    SetCorrectly
-------     ----- -----                                                           ------                    ------------
+--------------------  ------------------                                                                                  ------                    ----    
 
 .NOTES
 General notes
 #>
-function Test-WindowsRemoteManagement {
+function Test-WindowsRemoteManagementWinRMServer {
     [CmdletBinding()]
     param (
-        # Get the product type (1, 2 or 3)
+        [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
-
+    
     begin {
-        $EntryName = "Disallow Digest authentication"
-        $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.89.1.3'
-        $Result.Level = "L1"
-        if ($ProductType -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
-            $Result.Profile = "Member Server"
+        $Parameters = @{
+            "ProductType" = $ProductType
+            "GPResult" = $GPResult
         }
-        $Result.Title = "Ensure 'Disallow Digest authentication' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
-
-        # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
     }
-
+    
     process {
-        $Result.Setting = $Result.Entry.State
-        if ($Result.Setting -eq "Enabled") {
-            $Result.SetCorrectly = $true
-        } else {
-            $Result.SetCorrectly = $false
+        Test-WinRMServerAllowBasic @Parameters
+        if ($Level -eq 2) {
+            Test-WinRMServerAllowAutoConfig @Parameters
         }
-    }
-
-    end {
-        return $Result
-    }
-}
-
-<#
-.SYNOPSIS
-18.10.89.2.1 (L1) Ensure 'Allow Basic authentication' is set to 'Disabled'
-
-.DESCRIPTION
-
-
-.PARAMETER ProductType
-This is used to set the type of OS that should be tested against based on the product type:
-
-1 = Workstation
-2 = Domain Controller
-3 = Member Server
-
-.PARAMETER GPResult
-This is used to define the GPO XML variable to test
-
-.EXAMPLE
-
-
-Number     Level Title                                                           Source                    SetCorrectly
-------     ----- -----                                                           ------                    ------------
-
-.NOTES
-General notes
-#>
-function Test-WindowsRemoteManagement {
-    [CmdletBinding()]
-    param (
-        # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
-    )
-
-    begin {
-        $EntryName = "Allow Basic authentication"
-        $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.89.2.1'
-        $Result.Level = "L1"
-        if ($ProductType -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow Basic authentication' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
-
-        # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
-    }
-
-    process {
-        $Result.Setting = $Result.Entry.State
-        if ($Result.Setting -eq "Disabled") {
-            $Result.SetCorrectly = $true
-        } else {
-            $Result.SetCorrectly = $false
-        }
-    }
-
-    end {
-        return $Result
-    }
-}
-
-<#
-.SYNOPSIS
-18.10.89.2.2 (L2) Ensure 'Allow remote server management through WinRM' is set to 'Disabled'
-
-.DESCRIPTION
-
-
-.PARAMETER ProductType
-This is used to set the type of OS that should be tested against based on the product type:
-
-1 = Workstation
-2 = Domain Controller
-3 = Member Server
-
-.PARAMETER GPResult
-This is used to define the GPO XML variable to test
-
-.EXAMPLE
-
-
-Number     Level Title                                                           Source                    SetCorrectly
-------     ----- -----                                                           ------                    ------------
-
-.NOTES
-General notes
-#>
-function Test-WindowsRemoteManagement {
-    [CmdletBinding()]
-    param (
-        # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
-    )
-
-    begin {
-        $EntryName = "Allow remote server management through WinRM"
-        $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.89.2.2'
-        $Result.Level = "L2"
-        if ($ProductType -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow remote server management through WinRM' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
-
-        # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
-    }
-
-    process {
-        $Result.Setting = $Result.Entry.State
-        if ($Result.Setting -eq "Disabled") {
-            $Result.SetCorrectly = $true
-        } else {
-            $Result.SetCorrectly = $false
-        }
-    }
-
-    end {
-        return $Result
-    }
-}
-
-<#
-.SYNOPSIS
-18.10.89.2.3 (L1) Ensure 'Allow unencrypted traffic' is set to 'Disabled'
-
-.DESCRIPTION
-
-
-.PARAMETER ProductType
-This is used to set the type of OS that should be tested against based on the product type:
-
-1 = Workstation
-2 = Domain Controller
-3 = Member Server
-
-.PARAMETER GPResult
-This is used to define the GPO XML variable to test
-
-.EXAMPLE
-
-
-Number     Level Title                                                           Source                    SetCorrectly
-------     ----- -----                                                           ------                    ------------
-
-.NOTES
-General notes
-#>
-function Test-WindowsRemoteManagement {
-    [CmdletBinding()]
-    param (
-        # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
-    )
-
-    begin {
-        $EntryName = "Allow unencrypted traffic"
-        $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.89.2.3'
-        $Result.Level = "L1"
-        if ($ProductType -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow unencrypted traffic' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
-
-        # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
-    }
-
-    process {
-        $Result.Setting = $Result.Entry.State
-        if ($Result.Setting -eq "Disabled") {
-            $Result.SetCorrectly = $true
-        } else {
-            $Result.SetCorrectly = $false
-        }
-    }
-
-    end {
-        return $Result
-    }
-}
-
-<#
-.SYNOPSIS
-18.10.89.2.4 (L1) Ensure 'Disallow WinRM from storing RunAs credentials' is set to 'Enabled'
-
-.DESCRIPTION
-
-
-.PARAMETER ProductType
-This is used to set the type of OS that should be tested against based on the product type:
-
-1 = Workstation
-2 = Domain Controller
-3 = Member Server
-
-.PARAMETER GPResult
-This is used to define the GPO XML variable to test
-
-.EXAMPLE
-
-
-Number     Level Title                                                           Source                    SetCorrectly
-------     ----- -----                                                           ------                    ------------
-
-.NOTES
-General notes
-#>
-function Test-WindowsRemoteManagement {
-    [CmdletBinding()]
-    param (
-        # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
-    )
-
-    begin {
-        $EntryName = "Disallow WinRM from storing RunAs credentials"
-        $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.89.2.4'
-        $Result.Level = "L1"
-        if ($ProductType -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Disallow WinRM from storing RunAs credentials' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
-
-        # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
-    }
-
-    process {
-        $Result.Setting = $Result.Entry.State
-        if ($Result.Setting -eq "Enabled") {
-            $Result.SetCorrectly = $true
-        } else {
-            $Result.SetCorrectly = $false
-        }
-    }
-
-    end {
-        return $Result
+        Test-WinRMServerAllowUnencryptedTraffic @Parameters
+        Test-WinRMServerDisableRunAs @Parameters
     }
 }
