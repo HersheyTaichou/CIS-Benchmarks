@@ -41,13 +41,19 @@ function Test-AdvancedAuditPolicyConfigurationAccountManagement {
     
     process {
         Test-AccountManagementAuditApplicationGroupManagement @Parameters
+        if ($ProductType -eq 1) {
+            Test-AccountManagementAuditSecurityGroupManagement  @Parameters
+            Test-AccountManagementAuditUserAccountManagement @Parameters
+        }
         if ($ProductType -eq 2) {
             Test-AccountManagementAuditComputerAccountManagement @Parameters
             Test-AccountManagementAuditDistributionGroupManagement @Parameters
             Test-AccountManagementAuditOtherAccountManagementEvents @Parameters
         }
-        Test-AccountManagementAuditSecurityGroupManagement @Parameters
-        Test-AccountManagementAuditUserAccountManagement @Parameters
+        if ($ProductType -eq 2 -or $ProductType -eq 3) {
+            Test-AccountManagementAuditSecurityGroupManagement @Parameters
+            Test-AccountManagementAuditUserAccountManagement @Parameters
+        }
     }
 }
 

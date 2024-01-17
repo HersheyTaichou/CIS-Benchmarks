@@ -109,14 +109,16 @@ function Test-AccountManagementAuditComputerAccountManagement {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.2.2"
         $Result.Level = "L1"
+        $Result.Title = "Ensure 'Audit Computer Account Management' is set to include 'Success' (DC only)"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
             $Result.Profile = "Domain Controller"
+            
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "Ensure 'Audit Computer Account Management' is set to include 'Success' (DC only)"
+        
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -276,6 +278,7 @@ function Test-AccountManagementAuditOtherAccountManagementEvents {
 <#
 .SYNOPSIS
 17.2.5 (L1) Ensure 'Audit Security Group Management' is set to include 'Success'
+17.2.2 (L1) Ensure 'Audit Security Group Management' is set to include 'Success'
 
 .DESCRIPTION
 This subcategory reports each event of security group management, such as when a security group is created, changed, or deleted or when a member is added to or removed from a security group.
@@ -311,16 +314,19 @@ function Test-AccountManagementAuditSecurityGroupManagement {
     begin {
               $EntryName = "Audit Security Group Management"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.2.5"
         $Result.Level = "L1"
+        $Result.Title = "Ensure 'Audit Security Group Management' is set to include 'Success'"
         if ($ProductType -eq 1) {
+            $Result.Number = "17.2.2"
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
+            $Result.Number = "17.2.5"
             $Result.Profile = "Domain Controller"
         } elseif ($ProductType -eq 3) {
+            $Result.Number = "17.2.5"
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "Ensure 'Audit Security Group Management' is set to include 'Success'"
+        
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -377,15 +383,17 @@ function Test-AccountManagementAuditUserAccountManagement {
     )
 
     begin {
-              $EntryName = "Audit User Account Management"
+        $EntryName = "Audit User Account Management"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.2.6"
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
+            $Result.Number = "17.2.3"
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
+            $Result.Number = "17.2.6"
             $Result.Profile = "Domain Controller"
         } elseif ($ProductType -eq 3) {
+            $Result.Number = "17.2.6"
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit User Account Management' is set to 'Success and Failure'"

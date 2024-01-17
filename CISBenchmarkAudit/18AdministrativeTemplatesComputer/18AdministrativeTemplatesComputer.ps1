@@ -414,7 +414,7 @@ function Test-AdministrativeTemplatesComputerPrinters {
     }
     
     process {
-        if ($ProductType -eq 2){
+        if ($ProductType -eq 1 -or $ProductType -eq 2) {
             Test-PrintersRegisterSpoolerRemoteRpcEndPoint @Parameters
         } elseif ($ProductType -eq 3 -and $Level -eq 2) {
             Test-PrintersRegisterSpoolerRemoteRpcEndPoint @Parameters

@@ -63,7 +63,7 @@ function Test-AccountPoliciesPasswordPolicy {
         Test-PasswordPolicyMinPasswordAge @Parameters
         Test-PasswordPolicyMinPasswordLength @Parameters
         Test-PasswordPolicyComplexityEnabled @Parameters
-        if ($ProductType -eq 3) {
+        if ($ProductType -eq 1 -or $ProductType -eq 3) {
             Test-PasswordPolicyRelaxMinimumPasswordLengthLimits @Parameters
         }
         Test-PasswordPolicyReversibleEncryption @Parameters
@@ -130,7 +130,7 @@ function Test-AccountPoliciesAccountLockoutPolicy {
     Process {
         Test-AccountLockoutPolicyLockoutDuration @Parameters
         Test-AccountLockoutPolicyLockoutThreshold @Parameters
-        if ($ProductType -eq 3) {
+        if ($ProductType -eq 1 -or $ProductType -eq 3) {
             Test-AccountLockoutPolicyAdminLockout @Parameters
         }
         Test-AccountLockoutPolicyResetLockoutCount @Parameters
