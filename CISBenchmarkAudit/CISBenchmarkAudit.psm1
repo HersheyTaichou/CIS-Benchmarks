@@ -225,13 +225,15 @@ function Get-GPOEntry {
         # Parameter help description
         [Parameter(Mandatory)][string]$EntryName,
         [Parameter(Mandatory)][string]$Name,
+        [Parameter(Mandatory)][ValidateSet("ComputerResults","UserResults")][string]$Results,
         [Parameter()][xml]$GPResult = (Get-GPResult),
         [Parameter()][string]$Category
+        
     )
     
     process {
         if ($Category) {
-            foreach ($data in $GPResult.Rsop.ComputerResults.ExtensionData) {
+            foreach ($data in $GPResult.Rsop.$Results.ExtensionData) {
                 foreach ($Node in $data.Extension.ChildNodes) {
                     If ($Node.$Name -eq $EntryName -and $Node.Category -eq $Category) {
                         Return $Node
@@ -239,7 +241,7 @@ function Get-GPOEntry {
                 }
             }
         } else {
-            foreach ($data in $GPResult.Rsop.ComputerResults.ExtensionData) {
+            foreach ($data in $GPResult.Rsop.$Results.ExtensionData) {
                 foreach ($Node in $data.Extension.ChildNodes) {
                     If ($Node.$Name -eq $EntryName) {
                         Return $Node

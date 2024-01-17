@@ -48,7 +48,7 @@ function Test-EventLogServiceApplicationRetention {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Application"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Application" -Results "ComputerResults"
     }
 
     process {
@@ -115,7 +115,7 @@ function Test-EventLogServiceApplicationMaxSize {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Application"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Application" -Results "ComputerResults"
     }
 
     process {
@@ -182,7 +182,7 @@ function Test-EventLogServiceSecurityRetention {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Security"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Security" -Results "ComputerResults"
     }
 
     process {
@@ -249,7 +249,7 @@ function Test-EventLogServiceSecurityMaxSize {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Security"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Security" -Results "ComputerResults"
     }
 
     process {
@@ -316,7 +316,7 @@ function Test-EventLogServiceSetupRetention {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Setup"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Setup" -Results "ComputerResults"
     }
 
     process {
@@ -383,7 +383,7 @@ function Test-EventLogServiceSetupMaxSize {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Setup"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Setup" -Results "ComputerResults"
     }
 
     process {
@@ -450,7 +450,7 @@ function Test-EventLogServiceSystemRetention {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/System"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/System" -Results "ComputerResults"
     }
 
     process {
@@ -517,7 +517,7 @@ function Test-EventLogServiceSystemMaxSize {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/System"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/System" -Results "ComputerResults"
     }
 
     process {

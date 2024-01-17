@@ -49,7 +49,7 @@ function Test-PolicyChangeAuditAuditPolicyChange {
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {
@@ -117,7 +117,7 @@ function Test-PolicyChangeAuditAuthenticationPolicyChange {
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {
@@ -185,7 +185,7 @@ function Test-PolicyChangeAuditAuthorizationPolicyChange {
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {
@@ -253,7 +253,7 @@ function Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange {
         $Result.Source = 'Group Policy Settings'
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {
@@ -321,7 +321,7 @@ function Test-PolicyChangeAuditOtherPolicyChangeEvents {
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {

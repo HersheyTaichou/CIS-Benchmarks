@@ -1500,8 +1500,8 @@ function Test-WindowsComponentsWindowsInkWorkspace {
     process {
         if ($Level -eq 2) {
             Test-WindowsInkWorkspaceAllowSuggestedAppsInWindowsInkWorkspace @Parameters
-            Test-WindowsInkWorkspaceAllowWindowsInkWorkspace @Parameters
         }
+        Test-WindowsInkWorkspaceAllowWindowsInkWorkspace @Parameters
     }
 }
 

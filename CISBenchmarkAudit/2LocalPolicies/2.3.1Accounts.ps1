@@ -49,7 +49,7 @@ function Test-AccountsNoConnectedUser {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\NoConnectedUser"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {
@@ -118,7 +118,7 @@ function Test-AccountsEnableGuestAccount {
         $Result.Source = 'Group Policy Settings'
         # Get the current value of the setting
         $EntryName = "EnableGuestAccount"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult -Results "ComputerResults"
         [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
@@ -178,7 +178,7 @@ function Test-AccountsLimitBlankPasswordUse {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\LimitBlankPasswordUse"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {
@@ -242,7 +242,7 @@ function Test-AccountsNewAdministratorName {
 
         # Get the current value of the setting
         $EntryName = "NewAdministratorName"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {
@@ -311,7 +311,7 @@ function Test-AccountsNewGuestName {
 
         # Get the current value of the setting
         $EntryName = "NewGuestName"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {

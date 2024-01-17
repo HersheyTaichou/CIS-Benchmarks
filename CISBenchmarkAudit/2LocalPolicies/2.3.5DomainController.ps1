@@ -37,7 +37,7 @@ function Test-DomainControllerSubmitControl {
         $Result = [CISBenchmark]::new()
 
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\SubmitControl"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
         [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
@@ -99,7 +99,7 @@ function Test-DomainControllerVulnerableChannelAllowList {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\VulnerableChannelAllowList"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {
@@ -159,7 +159,7 @@ function Test-DomainControllerLdapEnforceChannelBinding {
         $Result = [CISBenchmark]::new()
 
         $EntryName = "MACHINE\System\CurrentControlSet\Services\NTDS\Parameters\LdapEnforceChannelBinding"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
         [string]$Result.Setting = $Result.Entry.Display.DisplayString
     }
 
@@ -221,7 +221,7 @@ function Test-DomainControllerLDAPServerIntegrity {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\NTDS\Parameters\LDAPServerIntegrity"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
         [string]$Result.Setting = $Result.Entry.Display.DisplayString
     }
 
@@ -283,7 +283,7 @@ function Test-DomainControllerRefusePasswordChange {
 
         # Get the current value of the setting
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RefusePasswordChange"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
         [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
     }
 

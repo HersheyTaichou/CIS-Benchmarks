@@ -12,11 +12,10 @@
 RootModule = '.\CISBenchmarkAudit.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.18.0'
+ModuleVersion = '1.0.0'
 
 # This project is using Semantic Versioning.
     # https://semver.org/
-    # The Semantic Version is the ModuleVersion and the PreRelease string listed below.
     # See the README for more details
 
 # Supported PSEditions
@@ -186,7 +185,7 @@ NestedModules = @(
 '19AdministrativeTemplatesUser\19.6.6InternetCommunicationManagement.ps1',
 '19AdministrativeTemplatesUser\19.6System.ps1',
 '19AdministrativeTemplatesUser\19.7.25NetworkSharing.ps1',
-'19AdministrativeTemplatesUser\19.7.40WindowsInstaller2.ps1',
+'19AdministrativeTemplatesUser\19.7.40WindowsInstaller.ps1',
 '19AdministrativeTemplatesUser\19.7.42WindowsMediaPlayer.ps1',
 '19AdministrativeTemplatesUser\19.7.4AttachmentManager.ps1',
 '19AdministrativeTemplatesUser\19.7.7CloudContent.ps1',
@@ -571,29 +570,46 @@ FunctionsToExport = @(
     'Test-ManageUpdatesOfferedFromWindowsUpdateDeferFeatureUpdates',
     'Test-ManageUpdatesOfferedFromWindowsUpdateDeferQualityUpdates',
     # 19 Administrative Templates (User)
+    'Test-AdministrativeTemplatesUserControlPanel',
+    'Test-AdministrativeTemplatesUserStartMenuAndTaskbar',
+    'Test-AdministrativeTemplatesUserSystem',
+    'Test-AdministrativeTemplatesUserWindowsComponents',
     'Test-CISBenchmarkAdministrativeTemplatesUser',
     # 19.1
-    '',
+    'Test-UserControlPanelPersonalization',
     # 19.1.3
-    '',
+    'Test-UserPersonalizationScreenSaveActive',
+    'Test-UserPersonalizationScreenSaverIsSecure',
+    'Test-UserPersonalizationScreenSaveTimeOut',
     # 19.5
-    '',
+    'Test-UserStartMenuAndTaskbarNotifications',
     # 19.5.1
-    '',
+    'Test-UserNotificationsNoToastApplicationNotificationOnLockScreen',
     # 19.6
-    '',
+    'Test-UserSystemInternetCommunicationManagement',
     # 19.6.6
-    '',
+    'Test-UserInternetCommunicationManagementNoImplicitFeedback',
     # 19.7
-    '',
+    'Test-UserWindowsComponentsAttachmentManager',
+    'Test-UserWindowsComponentsCloudContent',
+    'Test-UserWindowsComponentsNetworkSharing',
+    'Test-UserWindowsComponentsWindowsInstaller',
+    'Test-UserWindowsComponentsWindowsMediaPlayer',
     # 19.7.4
-    '',
+    'Test-UserAttachmentManagerSaveZoneInformation',
+    'Test-UserAttachmentManagerScanWithAntiVirus',
+    # 19.7.7
+    'Test-UserCloudContentConfigureWindowsSpotlight',
+    'Test-UserCloudContentDisableThirdPartySuggestions',
+    'Test-UserCloudContentDisableTailoredExperiencesWithDiagnosticData',
+    'Test-UserCloudContentDisableWindowsSpotlightFeatures',
+    'Test-UserCloudContentDisableSpotlightCollectionOnDesktop',
     # 19.7.25
-    '',
+    'Test-UserNetworkSharingNoInplaceSharing',
     # 19.7.40
-    '',
+    'Test-UserWindowsInstallerAlwaysInstallElevated',
     # 19.7.42
-    ''
+    'Test-UserWindowsMediaPlayerPreventCodecDownload'
     )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -724,7 +740,7 @@ ModuleList = @(
 '19AdministrativeTemplatesUser\19.6.6InternetCommunicationManagement.ps1',
 '19AdministrativeTemplatesUser\19.6System.ps1',
 '19AdministrativeTemplatesUser\19.7.25NetworkSharing.ps1',
-'19AdministrativeTemplatesUser\19.7.40WindowsInstaller2.ps1',
+'19AdministrativeTemplatesUser\19.7.40WindowsInstaller.ps1',
 '19AdministrativeTemplatesUser\19.7.42WindowsMediaPlayer.ps1',
 '19AdministrativeTemplatesUser\19.7.4AttachmentManager.ps1',
 '19AdministrativeTemplatesUser\19.7.7CloudContent.ps1',
@@ -874,7 +890,7 @@ FileList = @(
 '19AdministrativeTemplatesUser\19.6.6InternetCommunicationManagement.ps1',
 '19AdministrativeTemplatesUser\19.6System.ps1',
 '19AdministrativeTemplatesUser\19.7.25NetworkSharing.ps1',
-'19AdministrativeTemplatesUser\19.7.40WindowsInstaller2.ps1',
+'19AdministrativeTemplatesUser\19.7.40WindowsInstaller.ps1',
 '19AdministrativeTemplatesUser\19.7.42WindowsMediaPlayer.ps1',
 '19AdministrativeTemplatesUser\19.7.4AttachmentManager.ps1',
 '19AdministrativeTemplatesUser\19.7.7CloudContent.ps1',
@@ -913,7 +929,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'CISBenchmark', 'PSEdition_Desktop','PSEdition_Core', 'Windows'
+        Tags = 'CISBenchmark', 'CIS-Benchmark', 'PSEdition_Desktop','PSEdition_Core', 'Windows'
 
         # A URL to the license for this module.
         LicenseUri = 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
@@ -928,7 +944,7 @@ PrivateData = @{
         ReleaseNotes = 'https://github.com/HersheyTaichou/CIS-Benchmarks'
 
         # Prerelease string of this module
-        Prerelease = 'beta+18.10.93.4'
+        #Prerelease = ''
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         RequireLicenseAcceptance = $true

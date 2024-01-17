@@ -53,7 +53,7 @@ function Test-PasswordPolicyPasswordHistory {
 
         #Find the Password History Size applied to this machine
         $EntryName = "PasswordHistorySize"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
         $Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
@@ -150,7 +150,7 @@ function Test-PasswordPolicyMaxPasswordAge {
 
         #Find the Password History Size applied to this machine
         $EntryName = "MaximumPasswordAge"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
         $Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
@@ -248,7 +248,7 @@ function Test-PasswordPolicyMinPasswordAge {
 
         #Find the Password History Size applied to this machine
         $EntryName = "MinimumPasswordAge"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
         $Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
@@ -345,7 +345,7 @@ function Test-PasswordPolicyMinPasswordLength {
 
         #Find the Password History Size applied to this machine
         $EntryName = "MinimumPasswordLength"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
         $Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
@@ -453,7 +453,7 @@ function Test-PasswordPolicyComplexityEnabled {
 
         #Find the Password History Size applied to this machine
         $EntryName = "PasswordComplexity"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
         $Result.Setting = [bool]$Result.Entry.SettingBoolean
     }
 
@@ -543,7 +543,7 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
         $Result.Title = "Ensure 'Relax minimum password length limits' is set to 'Enabled'"
         $Result.Source = 'Group Policy Settings'
 
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
         $Result.Setting = [bool]$Result.Entry.SettingNumber
     }
 
@@ -617,7 +617,7 @@ function Test-PasswordPolicyReversibleEncryption {
 
         #Find the Password History Size applied to this machine
         $EntryName = "ClearTextPassword"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {

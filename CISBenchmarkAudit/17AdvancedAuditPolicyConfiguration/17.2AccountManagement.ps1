@@ -52,7 +52,7 @@ function Test-AccountManagementAuditApplicationGroupManagement {
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {
@@ -120,7 +120,7 @@ function Test-AccountManagementAuditComputerAccountManagement {
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {
@@ -188,7 +188,7 @@ function Test-AccountManagementAuditDistributionGroupManagement {
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {
@@ -256,7 +256,7 @@ function Test-AccountManagementAuditOtherAccountManagementEvents {
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {
@@ -324,7 +324,7 @@ function Test-AccountManagementAuditSecurityGroupManagement {
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {
@@ -392,7 +392,7 @@ function Test-AccountManagementAuditUserAccountManagement {
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult -Results "ComputerResults"
     }
 
     process {

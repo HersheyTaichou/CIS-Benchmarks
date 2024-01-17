@@ -53,7 +53,7 @@ function Test-AccountLockoutPolicyLockoutDuration {
 
         #Find the Password History Size applied to this machine
         $EntryName = "LockoutDuration"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
         $Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
@@ -149,7 +149,7 @@ function Test-AccountLockoutPolicyLockoutThreshold {
 
         #Find the Password History Size applied to this machine
         $EntryName = "LockoutBadCount"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
         $Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
@@ -237,7 +237,7 @@ function Test-AccountLockoutPolicyAdminLockout {
         $Return.Title = "Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
         $Return.Source = 'Group Policy Settings'
         $EntryName = "AllowAdministratorLockout"
-        $Return.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Return.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
         $Return.Setting = [System.Convert]::ToBoolean($Return.Entry.SettingBoolean)
     }
 
@@ -308,7 +308,7 @@ function Test-AccountLockoutPolicyResetLockoutCount {
 
         #Find the Password History Size applied to this machine
         $EntryName = "ResetLockoutCount"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
         $Result.Setting = [int]$Result.Entry.SettingNumber
     }
 

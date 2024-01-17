@@ -2,32 +2,19 @@
 
 ## Introduction
 
-Here you will find in-progress scripts designed to audit the CIS Benchmarks in a business environment. These scripts are based on the Microsoft Windows Server 2022 Benchmark version 2.0.0, released on 2023-04-14.
+This module provides scripts designed to audit the CIS Benchmarks in a corporate environment. These scripts are based on the Microsoft Windows Server 2022 Benchmark version 2.0.0, released on 2023-04-14.
 
 These scripts are VERY MUCH a work in progress, so take caution and review them carefully before running them, as they cannot consider every possible scenario. While I have done my best to account for various scenarios, this may return an incorrect result, and any passes or fails should be confirmed. These scripts were created as I went through the benchmark documentation and learned how to implement them in one test environment.
 
 ## Versioning
 
-This project is using Semantic Versioning 2.0.0 and can be considered with the rules available at the [Semantic Versioning](https://semver.org/) site, and these explanations.
+This project is using Semantic Versioning 2.0.0 and can be considered with the rules available at the [Semantic Versioning](https://semver.org/) site.
 
-1. The first MAJOR version will be released when the entire CIS Microsoft Windows Server 2022 Benchmark version 2.0.0 can be audited.
-   - After that, the MAJOR version will only change when changes are made to how data is input or output from the commands
-2. The MINOR version will indicate feature adds on top of the above benchmark, such as the inclusion of the CIS Microsoft Windows 11 Enterprise Benchmark v2.0.0 or version increments of the above benchmark.
-3. The pre-release version will indicate the current progress through the benchmark.
+Version 1.0 was released once the entire Microsoft Windows Server 2022 Benchmark version 2.0.0 could be audited, and the major version number should only be incremented in the following scenarios:
 
-Take the following version number:
-
-```text
-0.17.0-beta18.6.5
-```
-
-The MAJOR version is 0, indicating that the benchmark can not be fully audited yet.
-
-The MINOR version is 17, indicating that this is the 17th addition of backward-compatible changes.
-
-The PATCH version is 0, indicating that no patches have been applied to the minor version
-
-The PRE-RELEASE version is beta18.6.5, indicating that everything in the benchmark, up through 18.6.5, should test and return a result.
+- The names of the commands are changed
+- The inputs to the commands are changed
+- The outputs of the commands are changed
 
 ## Things to Note
 
