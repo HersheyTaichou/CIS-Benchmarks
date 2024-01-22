@@ -30,7 +30,8 @@ function Test-AuditSCENoApplyLegacyAuditPolicy {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -98,7 +99,8 @@ function Test-AuditCrashOnAuditFail {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {

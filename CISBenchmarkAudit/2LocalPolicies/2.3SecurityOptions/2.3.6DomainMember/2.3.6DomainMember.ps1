@@ -30,7 +30,8 @@ function Test-DomainMemberRequireSignOrSeal {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -93,7 +94,8 @@ function Test-DomainMemberSealSecureChannel {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -156,7 +158,8 @@ function Test-DomainMemberSignSecureChannel {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -224,7 +227,8 @@ function Test-DomainMemberDisablePasswordChange {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -292,7 +296,8 @@ function Test-DomainMemberMaximumPasswordAge {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -360,7 +365,8 @@ function Test-DomainMemberRequireStrongKey {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {

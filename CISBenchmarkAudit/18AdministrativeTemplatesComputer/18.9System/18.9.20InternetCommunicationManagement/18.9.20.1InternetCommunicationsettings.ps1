@@ -29,7 +29,8 @@ function Test-InternetCommunicationsettingsDisableWebPnPDownload {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -96,7 +97,8 @@ function Test-InternetCommunicationsettingsPreventHandwritingDataSharing {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -163,7 +165,8 @@ function Test-InternetCommunicationsettingsPreventHandwritingErrorReports {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -230,7 +233,8 @@ function Test-InternetCommunicationsettingsExitOnMSICW {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -297,7 +301,8 @@ function Test-InternetCommunicationsettingsNoWebServices {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -364,7 +369,8 @@ function Test-InternetCommunicationsettingsDisableHTTPPrinting {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -431,7 +437,8 @@ function Test-InternetCommunicationsettingsNoRegistration {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -498,7 +505,8 @@ function Test-InternetCommunicationsettingsDisableContentFileUpdates {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -565,7 +573,8 @@ function Test-InternetCommunicationsettingsNoOnlinePrintsWizard {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -632,7 +641,8 @@ function Test-InternetCommunicationsettingsNoPublishingWizard {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -699,7 +709,8 @@ function Test-InternetCommunicationsettingsCEIP {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -766,7 +777,8 @@ function Test-InternetCommunicationsettingsCEIPEnable {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -833,7 +845,8 @@ function Test-InternetCommunicationsettingsWindowsErrorReporting {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {

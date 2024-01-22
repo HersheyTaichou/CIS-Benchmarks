@@ -30,7 +30,8 @@ function Test-NetworkSecurityUseMachineId {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -98,7 +99,8 @@ function Test-NetworkSecurityAllowNullSessionFallback {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -166,7 +168,8 @@ function Test-NetworkSecurityAllowOnlineID {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -234,7 +237,8 @@ function Test-NetworkSecuritySupportedEncryptionTypes {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -302,7 +306,8 @@ function Test-NetworkSecurityNoLMHash {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -370,7 +375,8 @@ function Test-NetworkSecurityForceLogoffWhenHourExpire {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -438,7 +444,8 @@ function Test-NetworkSecurityLmCompatibilityLevel {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -506,7 +513,8 @@ function Test-NetworkSecurityLDAPClientIntegrity {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -574,7 +582,8 @@ function Test-NetworkSecurityNTLMMinClientSec {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -642,7 +651,8 @@ function Test-NetworkSecurityNTLMMinServerSec {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {

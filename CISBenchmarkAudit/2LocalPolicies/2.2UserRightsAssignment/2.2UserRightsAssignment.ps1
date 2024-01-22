@@ -126,7 +126,8 @@ function Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -190,7 +191,8 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -262,7 +264,8 @@ function Test-UserRightsAssignmentSeTcbPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -323,7 +326,8 @@ function Test-UserRightsAssignmentSeMachineAccountPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -372,7 +376,8 @@ function Test-UserRightsAssignmentSeIncreaseQuotaPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -427,7 +432,8 @@ function Test-UserRightsAssignmentSeInteractiveLogonRight {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -483,7 +489,8 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -563,7 +570,8 @@ function Test-UserRightsAssignmentSeBackupPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -617,7 +625,8 @@ function Test-UserRightsAssignmentSeSystemTimePrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -671,7 +680,8 @@ function Test-UserRightsAssignmentSeTimeZonePrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -725,7 +735,8 @@ function Test-UserRightsAssignmentSeCreatePagefilePrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -779,7 +790,8 @@ function Test-UserRightsAssignmentSeCreateTokenPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -833,7 +845,8 @@ function Test-UserRightsAssignmentSeCreateGlobalPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -887,7 +900,8 @@ function Test-UserRightsAssignmentSeCreatePermanentPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -944,7 +958,8 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -1024,7 +1039,8 @@ function Test-UserRightsAssignmentSeDebugPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -1079,7 +1095,8 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -1150,7 +1167,8 @@ function Test-UserRightsAssignmentSeDenyBatchLogonRight {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -1205,7 +1223,8 @@ function Test-UserRightsAssignmentSeDenyServiceLogonRight {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -1260,7 +1279,8 @@ function Test-UserRightsAssignmentSeDenyInteractiveLogonRight {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -1316,7 +1336,8 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -1395,7 +1416,8 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -1466,7 +1488,8 @@ function Test-UserRightsAssignmentSeRemoteShutdownPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -1522,7 +1545,8 @@ function Test-UserRightsAssignmentSeAuditPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -1578,7 +1602,8 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -1650,7 +1675,8 @@ function Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -1704,7 +1730,8 @@ function Test-UserRightsAssignmentSeLoadDriverPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -1758,7 +1785,8 @@ function Test-UserRightsAssignmentSeLockMemoryPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -1812,7 +1840,8 @@ function Test-UserRightsAssignmentSeBatchLogonRight {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -1861,7 +1890,8 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -1933,7 +1963,8 @@ function Test-UserRightsAssignmentSeRelabelPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -1987,7 +2018,8 @@ function Test-UserRightsAssignmentSeSystemEnvironmentPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -2041,7 +2073,8 @@ function Test-UserRightsAssignmentSeManageVolumePrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -2095,7 +2128,8 @@ function Test-UserRightsAssignmentSeProfileSingleProcessPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -2149,7 +2183,8 @@ function Test-UserRightsAssignmentSeSystemProfilePrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -2203,7 +2238,8 @@ function Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -2257,7 +2293,8 @@ function Test-UserRightsAssignmentSeRestorePrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -2311,7 +2348,8 @@ function Test-UserRightsAssignmentSeShutdownPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -2365,7 +2403,8 @@ function Test-UserRightsAssignmentSeSyncAgentPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()
@@ -2413,7 +2452,8 @@ function Test-UserRightsAssignmentSeTakeOwnershipPrivilege {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     $Result = [CISBenchmark]::new()

@@ -48,7 +48,8 @@ function Test-CISBenchmark {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][switch]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()][xml]$GPResult = (Get-GPResult),
+        [Parameter()][int]$CISControl = 8
     )
 
     begin {
@@ -247,7 +248,7 @@ class CISBenchmark {
     [string]$Source # Where the setting was checked from
     [bool]$SetCorrectly # if it is set correctly
     $Setting # The current setting
-    [CISControl[]]$CISControl
+    [CISControl]$CISControl
     hidden $Entry # The XML output of the setting
 }
 
