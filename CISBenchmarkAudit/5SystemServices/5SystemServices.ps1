@@ -46,9 +46,19 @@ function Test-SystemServicesSpooler {
     }
 
     process {
-        if ($ProductType -eq 2) {
+        if ($ProductType -eq 1) {
+            $Result.Level = "L2"
+            $Result.Profile = "Corporate/Enterprise Environment"
+            $Result.Title = "Ensure 'Print Spooler (Spooler)' is set to 'Disabled'"
+            $Result.Setting = $Result.Entry.StartupMode
+            if ($Result.Setting -eq "Disabled") {
+                $Result.SetCorrectly = $True
+            } else {
+                $Result.SetCorrectly = $false
+            }
+        } elseif ($ProductType -eq 2) {
             $Result.Level = "L1"
-        $Result.Profile = "Domain Controller"
+            $Result.Profile = "Domain Controller"
             $Result.Title = "Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)"
             $Result.Setting = $Result.Entry.StartupMode
             if ($Result.Setting -eq "Disabled") {
@@ -132,13 +142,13 @@ function Test-CISBenchmarkSystemServices {
     }
     
     process {
-        if ($ProductType -eq 2) {
+        if ($ProductType -eq 1 -and $Level -eq 2) {
+            Test-SystemServicesSpooler @Parameters
+        } elseif ($ProductType -eq 2) {
             Test-SystemServicesSpooler @Parameters
         } elseif ($ProductType -eq 3 -and $Level -eq 2) {
             Test-SystemServicesSpooler @Parameters
         }
         
     }
-    
-    end {}
 }

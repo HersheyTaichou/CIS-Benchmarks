@@ -242,13 +242,15 @@ function Test-MSSEnableICMPRedirect {
     begin {
         $EntryName = "MSS: (EnableICMPRedirect) Allow ICMP redirects to override OSPF generated routes"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.5.4'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
+            $Result.Number = '18.5.5'
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
+            $Result.Number = '18.5.4'
             $Result.Profile = "Domain Controller"
         } elseif ($ProductType -eq 3) {
+            $Result.Number = '18.5.4'
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'MSS: (EnableICMPRedirect) Allow ICMP redirects to override OSPF generated routes' is set to 'Disabled'"
@@ -309,13 +311,15 @@ function Test-MSSKeepAliveTime {
     begin {
         $EntryName = "MSS: (KeepAliveTime) How often keep-alive packets are sent in milliseconds"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.5.5'
         $Result.Level = "L2"
         if ($ProductType -eq 1) {
+            $Result.Number = '18.5.6'
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
+            $Result.Number = '18.5.5'
             $Result.Profile = "Domain Controller"
         } elseif ($ProductType -eq 3) {
+            $Result.Number = '18.5.5'
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'MSS: (KeepAliveTime) How often keep-alive packets are sent in milliseconds' is set to 'Enabled: 300,000 or 5 minutes (recommended)'"
@@ -377,13 +381,15 @@ function Test-MSSNoNameReleaseOnDemand {
     begin {
         $EntryName = "MSS: (NoNameReleaseOnDemand) Allow the computer to ignore NetBIOS name release requests except from WINS servers"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.5.6'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
+            $Result.Number = '18.5.7'
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
+            $Result.Number = '18.5.6'
             $Result.Profile = "Domain Controller"
         } elseif ($ProductType -eq 3) {
+            $Result.Number = '18.5.6'
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'MSS: (NoNameReleaseOnDemand) Allow the computer to ignore NetBIOS name release requests except from WINS servers' is set to 'Enabled'"
@@ -444,13 +450,15 @@ function Test-MSSPerformRouterDiscovery {
     begin {
         $EntryName = "MSS: (PerformRouterDiscovery) Allow IRDP to detect and configure Default Gateway addresses (could lead to DoS)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.5.7'
         $Result.Level = "L2"
         if ($ProductType -eq 1) {
+            $Result.Number = '18.5.8'
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
+            $Result.Number = '18.5.7'
             $Result.Profile = "Domain Controller"
         } elseif ($ProductType -eq 3) {
+            $Result.Number = '18.5.7'
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'MSS: (PerformRouterDiscovery) Allow IRDP to detect and configure Default Gateway addresses (could lead to DoS)' is set to 'Disabled'"
@@ -516,13 +524,15 @@ function Test-MSSSafeDllSearchMode {
     begin {
         $EntryName = "MSS: (SafeDllSearchMode) Enable Safe DLL search mode (recommended)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.5.8'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
+            $Result.Number = '18.5.9'
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
+            $Result.Number = '18.5.8'
             $Result.Profile = "Domain Controller"
         } elseif ($ProductType -eq 3) {
+            $Result.Number = '18.5.8'
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'MSS: (SafeDllSearchMode) Enable Safe DLL search mode (recommended)' is set to 'Enabled'"
@@ -583,14 +593,16 @@ function Test-MSSScreenSaverGracePeriod {
     begin {
         $EntryName = "MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.5.9'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
+            $Result.Number = '18.5.10'
         } elseif ($ProductType -eq 2) {
             $Result.Profile = "Domain Controller"
+            $Result.Number = '18.5.9'
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
+            $Result.Number = '18.5.9'
         }
         $Result.Title = "Ensure 'MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)' is set to 'Enabled: 5 or fewer seconds'"
         $Result.Source = 'Group Policy Settings'
@@ -650,13 +662,15 @@ function Test-MSSTcpMaxDataRetransmissionsIPv6 {
     begin {
         $EntryName = "MSS: (TcpMaxDataRetransmissions IPv6) How many times unacknowledged data is retransmitted (3 recommended, 5 is default)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.5.10'
         $Result.Level = "L2"
         if ($ProductType -eq 1) {
+            $Result.Number = '18.5.11'
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
+            $Result.Number = '18.5.10'
             $Result.Profile = "Domain Controller"
         } elseif ($ProductType -eq 3) {
+            $Result.Number = '18.5.10'
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'MSS: (TcpMaxDataRetransmissions IPv6) How many times unacknowledged data is retransmitted' is set to 'Enabled: 3'"
@@ -717,13 +731,15 @@ function Test-MSSTcpMaxDataRetransmissions {
     begin {
         $EntryName = "MSS: (TcpMaxDataRetransmissions) How many times unacknowledged data is retransmitted (3 recommended, 5 is default)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.5.11'
         $Result.Level = "L2"
         if ($ProductType -eq 1) {
+            $Result.Number = '18.5.12'
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
+            $Result.Number = '18.5.11'
             $Result.Profile = "Domain Controller"
         } elseif ($ProductType -eq 3) {
+            $Result.Number = '18.5.11'
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'MSS: (TcpMaxDataRetransmissions) How many times unacknowledged data is retransmitted' is set to 'Enabled: 3'"
@@ -784,13 +800,15 @@ function Test-MSSWarningLevel {
     begin {
         $EntryName = "MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.5.12'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
+            $Result.Number = '18.5.13'
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType -eq 2) {
+            $Result.Number = '18.5.12'
             $Result.Profile = "Domain Controller"
         } elseif ($ProductType -eq 3) {
+            $Result.Number = '18.5.12'
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled: 90% or less'"

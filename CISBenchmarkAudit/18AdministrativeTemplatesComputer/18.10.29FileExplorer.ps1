@@ -102,14 +102,21 @@ function Test-FileExplorerNoHeapTerminationOnCorruption {
     begin {
         $EntryName = "Turn off heap termination on corruption"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.29.3'
-        $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
+            $Result.Number = '18.10.29.4'
+            $Result.Level = "L1"
+        
         } elseif ($ProductType -eq 2) {
             $Result.Profile = "Domain Controller"
+            $Result.Number = '18.10.29.3'
+            $Result.Level = "L1"
+        
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
+            $Result.Number = '18.10.29.3'
+            $Result.Level = "L1"
+        
         }
         $Result.Title = "Ensure 'Turn off heap termination on corruption' is set to 'Disabled'"
         $Result.Source = 'Group Policy Settings'
@@ -169,14 +176,17 @@ function Test-FileExplorerPreXPSP2ShellProtocolBehavior {
     begin {
         $EntryName = "Turn off shell protocol protected mode"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.29.4'
+        
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
+            $Result.Number = '18.10.29.5'
         } elseif ($ProductType -eq 2) {
             $Result.Profile = "Domain Controller"
+            $Result.Number = '18.10.29.4'
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
+            $Result.Number = '18.10.29.4'
         }
         $Result.Title = "Ensure 'Turn off shell protocol protected mode' is set to 'Disabled'"
         $Result.Source = 'Group Policy Settings'

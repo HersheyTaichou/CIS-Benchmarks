@@ -745,6 +745,9 @@ function Test-WindowsComponentsFileExplorer {
     
     process {
         Test-FileExplorerNoDataExecutionPrevention @Parameters
+        if ($Level -eq 1) {
+            #18.10.29.3
+        }
         Test-FileExplorerNoHeapTerminationOnCorruption @Parameters
         Test-FileExplorerPreXPSP2ShellProtocolBehavior @Parameters
     }
@@ -1307,7 +1310,14 @@ function Test-WindowsComponentsSearch {
         if ($Level -eq 2) {
             Test-SearchAllowCloudSearch @Parameters
         }
+        if ($Level -eq 1) {
+            #18.10.59.3
+            #18.10.59.4 
+        }
         Test-SearchAllowIndexingEncryptedStoresOrItems @Parameters
+        if ($Level -eq 1) {
+            #18.10.59.6
+        }
         if ($Level -eq 2) {
             Test-SearchEnableDynamicContentInWSB @Parameters
         }

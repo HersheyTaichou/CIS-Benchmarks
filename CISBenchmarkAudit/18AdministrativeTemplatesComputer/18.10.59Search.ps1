@@ -102,14 +102,16 @@ function Test-SearchAllowIndexingEncryptedStoresOrItems {
     begin {
         $EntryName = "Allow indexing of encrypted files"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.59.3'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
+            $Result.Number = '18.10.59.5'
         } elseif ($ProductType -eq 2) {
             $Result.Profile = "Domain Controller"
+            $Result.Number = '18.10.59.3'
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
+            $Result.Number = '18.10.59.3'
         }
         $Result.Title = "Ensure 'Allow indexing of encrypted files' is set to 'Disabled'"
         $Result.Source = 'Group Policy Settings'
@@ -169,14 +171,16 @@ function Test-SearchEnableDynamicContentInWSB {
     begin {
         $EntryName = "Allow search highlights"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.59.4'
         $Result.Level = "L2"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
+            $Result.Number = '18.10.59.7'
         } elseif ($ProductType -eq 2) {
             $Result.Profile = "Domain Controller"
+            $Result.Number = '18.10.59.4'
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
+            $Result.Number = '18.10.59.4'
         }
         $Result.Title = "Ensure 'Allow search highlights' is set to 'Disabled'"
         $Result.Source = 'Group Policy Settings'

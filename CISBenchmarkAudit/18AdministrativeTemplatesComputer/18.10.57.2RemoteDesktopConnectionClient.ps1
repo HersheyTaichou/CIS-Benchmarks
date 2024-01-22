@@ -35,14 +35,16 @@ function Test-RemoteDesktopConnectionClientDisablePasswordSaving {
     begin {
         $EntryName = "Do not allow passwords to be saved"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.2.2'
         $Result.Level = "L1"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
+            $Result.Number = '18.10.57.2.3'
         } elseif ($ProductType -eq 2) {
             $Result.Profile = "Domain Controller"
+            $Result.Number = '18.10.57.2.2'
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
+            $Result.Number = '18.10.57.2.2'
         }
         $Result.Title = "Ensure 'Do not allow passwords to be saved' is set to 'Enabled'"
         $Result.Source = 'Group Policy Settings'

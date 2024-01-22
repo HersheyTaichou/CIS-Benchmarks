@@ -35,14 +35,16 @@ function Test-LocationandSensorsDisableLocation {
     begin {
         $EntryName = "Turn off location"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.37.1'
         $Result.Level = "L2"
         if ($ProductType -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
+            $Result.Number = '18.10.37.2'
         } elseif ($ProductType -eq 2) {
             $Result.Profile = "Domain Controller"
+            $Result.Number = '18.10.37.1'
         } elseif ($ProductType -eq 3) {
             $Result.Profile = "Member Server"
+            $Result.Number = '18.10.37.1'
         }
         $Result.Title = "Ensure 'Turn off location' is set to 'Enabled'"
         $Result.Source = 'Group Policy Settings'

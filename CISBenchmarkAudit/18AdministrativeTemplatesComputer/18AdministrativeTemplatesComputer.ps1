@@ -263,6 +263,11 @@ function Test-AdministrativeTemplatesComputerMSS {
         Test-MSSAutoAdminLogon @Parameters
         Test-MSSDisableIPSourceRoutingIPv6 @Parameters
         Test-MSSDisableIPSourceRouting @Parameters
+        if ($ProductType -eq 1) {
+            <#
+            18.5.4
+            #>>
+        }
         Test-MSSEnableICMPRedirect @Parameters
         if ($Level -eq 2) {
             Test-MSSKeepAliveTime @Parameters
