@@ -57,17 +57,17 @@ function Test-PasswordPolicyPasswordHistory {
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult
         $Result.Setting = [int]$Result.Entry.SettingNumber
 
-        $CISControl = [CISControl]::new()
+        $CISControlInfo = [CISControl]::new()
         if ($CISControl -eq 8) {
-            $CISControl.Version = 8
-            $CISControl.Safeguard = "5.2 Use Unique Passwords"
-            $CISControl.ImplementationGroup = 1
+            $CISControlInfo.Version = 8
+            $CISControlInfo.Safeguard = "5.2 Use Unique Passwords"
+            $CISControlInfo.ImplementationGroup = 1
         } elseif ($CISControl -eq 7) {
-            $CISControl.Version = 7
-            $CISControl.Safeguard = "16.2 Configure Centralized Point of Authentication"
-            $CISControl.ImplementationGroup = 2
+            $CISControlInfo.Version = 7
+            $CISControlInfo.Safeguard = "16.2 Configure Centralized Point of Authentication"
+            $CISControlInfo.ImplementationGroup = 2
         }
-        $Result.CISControl = $CISControl
+        $Result.CISControl = $CISControlInfo
 
     }
 
