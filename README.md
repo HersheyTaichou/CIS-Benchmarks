@@ -1,5 +1,12 @@
 # CIS Benchmark Scripts
 
+## IMPORTANT
+
+I had grand visions for this script, including support for auditing workstations and including different editions of the benchmark, as well as tying everything into the CIS Critical Security Controls. However, work and family have put this on hold. If you want to test your own environments against the CIS benchmarks, some of these projects may better serve your needs:
+
+- [HardeningKitty](https://github.com/scipag/HardeningKitty)
+- [Wazuh](https://wazuh.com/)
+
 ## Introduction
 
 This module provides scripts designed to audit the CIS Benchmarks in a corporate environment. These scripts are based on the Microsoft Windows Server 2022 Benchmark version 2.0.0, released on 2023-04-14.
