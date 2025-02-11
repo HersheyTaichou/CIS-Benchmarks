@@ -1,0 +1,8 @@
+{
+    // Sets the codeformatting options to follow the given indent style in a way that is compatible with PowerShell syntax.
+    // For more information about the brace styles please refer to https://github.com/PoshCode/PowerShellPracticeAndStyle/issues/81.
+    "powershell.codeFormatting.preset": "OTBS",
+
+    // When enabled, will trim trailing whitespace when you save a file.
+    "files.trimTrailingWhitespace": true
+}

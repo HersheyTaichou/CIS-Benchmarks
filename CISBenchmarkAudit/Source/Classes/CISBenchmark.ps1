@@ -1,0 +1,10 @@
+class CISBenchmark {
+    [string]$Number # The number of the benchmark
+    [string]$Level # Level 1, 2 or Next Generation Windows Security
+    [string]$Profile # Domain Controller or Member Server
+    [string]$Title # The title of the recommendation
+    [string]$Source # Where the setting was checked from
+    [bool]$SetCorrectly # if it is set correctly
+    $Setting # The current setting
+    hidden $Entry # The XML output of the setting
+}
