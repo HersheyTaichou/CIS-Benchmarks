@@ -32,8 +32,8 @@ Test-PasswordPolicyComplexityEnabled
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-1.1.5      L1    Ensure 'Password must meet complexity requirements' is set t... Group Policy Settings     True        
-1.1.5      L1    Ensure 'Password must meet complexity requirements' is set t... Test Policy Fine Grain... True        
+1.1.5      L1    Ensure 'Password must meet complexity requirements' is set t... Group Policy Settings     True
+1.1.5      L1    Ensure 'Password must meet complexity requirements' is set t... Test Policy Fine Grain... True
 
 .NOTES
 General notes
@@ -48,27 +48,22 @@ function Test-PasswordPolicyComplexityEnabled {
 
     begin {
         $Return = @()
-        #$Result = [CISBenchmark]::new()
-        
+        $Number = "1.1.5"
+        $Level = "L1"
+        $Title = "Ensure 'Password must meet complexity requirements' is set to 'Enabled'"
+        $Setting = [bool]$SeceditReport.'System Access'.PasswordComplexity
     }
 
     process {
         $Return += [CISBenchmark]::new(@{
-            'Number' = "1.1.5"
-            'Level' = "L1"
+            'Number' = $Number
+            'Level' = $Level
             'Profile' = $ProductType
-            'Title' = "Ensure 'Password must meet complexity requirements' is set to 'Enabled'"
+            'Title' = $Title
             'Source' = "Secedit"
-            'Setting' = [bool]$Data.'System Access'.PasswordComplexity
-            'SetCorrectly' = $Result.Setting
+            'Setting' = $Setting
+            'SetCorrectly' = $Setting
         })
-        #$Result.Number = "1.1.5"
-        #$Result.Level = "L1"
-        #$Result.Profile = $ProductType
-        #$Result.Title = "Ensure 'Password must meet complexity requirements' is set to 'Enabled'"
-        #$Result.Source = "Group Policy Settings"
-        #$Result.Setting = [bool]$Data.'System Access'.PasswordComplexity
-        #$Result.SetCorrectly = $Result.Setting
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType -eq 2) {
@@ -80,27 +75,15 @@ function Test-PasswordPolicyComplexityEnabled {
             }
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 $Return += [CISBenchmark]::new(@{
-                    'Number' = "1.1.5"
-                    'Level' = "L1"
+                    'Number' = $Number
+                    'Level' = $Level
                     'Profile' = $ProductType
-                    'Title' = "Ensure 'Password must meet complexity requirements' is set to 'Enabled'"
+                    'Title' = $Title
                     'Source' = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
                     'Setting' = [bool]$FGPasswordPolicy.ComplexityEnabled
                     'SetCorrectly' = [bool]$FGPasswordPolicy.ComplexityEnabled
                     'Entry' = $FGPasswordPolicy
                 })
-                # $Result = [CISBenchmark]::new()
-                # $Result.Number = '1.1.5'
-                # $Result.Level = "L1"
-                # $Result.Profile = "Domain Controller"
-                # $Result.Title = "Ensure 'Password must meet complexity requirements' is set to 'Enabled'"
-                # $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                # $Result.Setting = $FGPasswordPolicy.ComplexityEnabled
-
-                # $Result.SetCorrectly = [bool]$FGPasswordPolicy.ComplexityEnabled
-                # $Result.Entry = $FGPasswordPolicy
-
-                # $Return += $Result
             }
         }
     }

@@ -9,10 +9,10 @@ function Get-SeceditReport {
     }
     
     process {
-        If (-Not (Test-Path $BinarySecedit)) {
+        If (-Not (Test-Path $Secedit)) {
             Write-Error "$Secedit is required and was not found."
         } else {
-            &$BinarySecedit /export /cfg $TempFileName /areas $Area | Out-Null
+            &$Secedit /export /cfg $TempFileName /areas $Area | Out-Null
             $Data = Get-IniContent $TempFileName
         }
     }

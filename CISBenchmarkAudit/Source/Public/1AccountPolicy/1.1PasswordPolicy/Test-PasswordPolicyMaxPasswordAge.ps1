@@ -32,60 +32,61 @@ function Test-PasswordPolicyMaxPasswordAge {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()][ValidateSet(1,2,3)][string]$ProductType = (Get-ProductType),
         [Parameter()][xml]$GPResult = (Get-GPResult)
     )
 
     begin {
         $Return = @()
-        $Result = [CISBenchmark]::new()
-        $Result.Number = '1.1.2'
-        $Result.Level = "L1"
-        if ($ProductType -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
-        $Result.Source = 'Group Policy Settings'
-
-        #Find the Password History Size applied to this machine
-        $EntryName = "MaximumPasswordAge"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
-        $Result.Setting = [int]$Result.Entry.SettingNumber
+        $Number = "1.1.2"
+        $Level = "L1"
+        $Title = "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
+        $Setting = [int]$SeceditReport.'System Access'.MaximumPasswordAge
     }
 
     process {
-        # Check if the GPO setting meets the CIS Benchmark
-        if ($Result.Setting -gt "0" -and $Result.Setting -le "365") {
-            $Result.SetCorrectly = $true
+        # Check if the current setting meets the CIS Benchmark
+        if ($Setting -gt "0" -and $Setting -le "365") {
+            $SetCorrectly = $true
         } else {
-            $Result.SetCorrectly = $false
+            $SetCorrectly = $false
         }
 
-        $Return += $Result
+        $Return += [CISBenchmark]::new(@{
+            'Number' = $Number
+            'Level' = $Level
+            'Profile' = $ProductType
+            'Title' = $Title
+            'Source' = "Secedit"
+            'Setting' = $Setting
+            'SetCorrectly' = $SetCorrectly
+        })
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType -eq 2) {
-           $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
+            try {
+                $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
+            }
+            catch {
+                Write-Warning "Unable to review Fine Grained Password Policies."
+            }
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-                $Result = [CISBenchmark]::new()
-                $Result.Number = '1.1.2'
-                $Result.Level = "L1"
-                $Result.Profile = "Domain Controller"
-                $Result.Title = "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
-                $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                $Result.Setting = $FGPasswordPolicy.MaxPasswordAge
-                if ($Result.Setting -gt (New-TimeSpan -Days 0) -and $Result.Setting -le (New-TimeSpan -Days 365)) {
-                    $Result.SetCorrectly = $true
-                } else {
-                    $Result.SetCorrectly = $false
-                }
-
-                $Result.Entry = $FGPasswordPolicy
-                $Return += $Result
+                $Setting = [int]$FGPasswordPolicy.MaxPasswordAge
+                
+                $Return += [CISBenchmark]::new(@{
+                    'Number' = $Number
+                    'Level' = $Level
+                    'Profile' = $ProductType
+                    'Title' = $Title
+                    'Source' = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                    'Setting' = $Setting
+                    'SetCorrectly' = if ($Setting -gt (New-TimeSpan -Days 0) -and $Setting -le (New-TimeSpan -Days 365)) {
+                            $true
+                        } else {
+                            $false
+                        }
+                    'Entry' = $FGPasswordPolicy
+                })
             }
         }
     }
