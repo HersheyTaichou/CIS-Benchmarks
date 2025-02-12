@@ -37,7 +37,7 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
         $Number = "1.1.6"
         $Level = "L1"
         $Title = "Ensure 'Relax minimum password length limits' is set to 'Enabled'"
-        $Setting = [bool](Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\" -Name "SAM:RelaxMinimumPasswordLengthLimits").'SAM:RelaxMinimumPasswordLengthLimits'
+        $Setting = [bool](Get-itemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\SAM' -Name 'RelaxMinimumPasswordLengthLimits').RelaxMinimumPasswordLengthLimits
     }
 
     process {
