@@ -32,5 +32,20 @@ function Get-ProductType {
     param ()
 
     [int]$ProductType = (Get-CimInstance -ClassName Win32_OperatingSystem).ProductType
-    return $ProductType
+    switch ($ProductType) {
+        1 {
+            $CISProfile = "Corporate/Enterprise Environment"
+        }
+        2 {
+            $CISProfile = "Domain Controller"
+        }
+        3 {
+            $CISProfile = "Member Server"
+        }
+        Default {
+            $CISProfile = $ProductType
+        }
+    }
+
+    return $CISProfile
 }

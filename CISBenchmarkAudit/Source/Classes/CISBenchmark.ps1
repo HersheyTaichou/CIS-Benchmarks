@@ -7,4 +7,18 @@ class CISBenchmark {
     [bool]$SetCorrectly # if it is set correctly
     $Setting # The current setting
     hidden $Entry # The XML output of the setting
+
+    # Default constructor
+    CISBenchmark() { $this.Init(@{}) }
+
+    # Convenience constructor from hashtable
+    CISBenchmark([hashtable]$Properties) { $this.Init($Properties) }
+
+    # Shared initializer method
+    [void] Init([hashtable]$Properties) {
+        foreach ($Property in $Properties.Keys) {
+            $this.$Property = $Properties.$Property
+        }
+    }
+
 }

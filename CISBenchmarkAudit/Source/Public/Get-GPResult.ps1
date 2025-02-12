@@ -32,12 +32,12 @@ General notes
 function Get-GPResult {
     [CmdletBinding()]
     param (
-        [Parameter()][string]$Path = "$(get-location)\GPResult.xml",
+        [Parameter()][string]$Path = "$([System.IO.Path]::GetTempFileName())",
         [Parameter()][switch]$Keep
     )
     
     begin {
-        if (-not(Test-Path $Path )) {
+        if (-not(Test-Path $Path)) {
             Write-Verbose "Updating the local group policy settings"
             gpupdate.exe /force | Out-Null
             Write-Verbose "Generating the resultant set of policies"
