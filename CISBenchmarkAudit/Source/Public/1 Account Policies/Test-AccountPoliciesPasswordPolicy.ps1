@@ -44,8 +44,8 @@ General notes
 function Test-AccountPoliciesPasswordPolicy {
     [CmdletBinding()]
     param (
-        #[Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        #[Parameter()][bool]$NextGenerationWindowsSecurity,
+        [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
+        [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
 
@@ -58,14 +58,16 @@ function Test-AccountPoliciesPasswordPolicy {
         }
     }
     Process {
-        Test-PasswordPolicyPasswordHistory @Parameters
-        Test-PasswordPolicyMaxPasswordAge @Parameters
-        Test-PasswordPolicyMinPasswordAge @Parameters
-        Test-PasswordPolicyMinPasswordLength @Parameters
-        Test-PasswordPolicyComplexityEnabled @Parameters
-        if ($ProductType.Number -eq 3) {
-            Test-PasswordPolicyRelaxMinimumPasswordLengthLimits @Parameters
+        if ($Level -ge 1) {
+            Test-PasswordPolicyPasswordHistory @Parameters
+            Test-PasswordPolicyMaxPasswordAge @Parameters
+            Test-PasswordPolicyMinPasswordAge @Parameters
+            Test-PasswordPolicyMinPasswordLength @Parameters
+            Test-PasswordPolicyComplexityEnabled @Parameters
+            if ($ProductType.Number -eq 3) {
+                Test-PasswordPolicyRelaxMinimumPasswordLengthLimits @Parameters
+            }
+            Test-PasswordPolicyReversibleEncryption @Parameters
         }
-        Test-PasswordPolicyReversibleEncryption @Parameters
     }
 }
