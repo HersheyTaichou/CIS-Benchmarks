@@ -29,7 +29,7 @@ function Test-PrintersRegisterSpoolerRemoteRpcEndPoint {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -98,7 +98,7 @@ function Test-PrintersRedirectionguardPolicy {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -165,7 +165,7 @@ function Test-PrintersRpcUseNamedPipeProtocol {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -233,7 +233,7 @@ function Test-PrintersRpcAuthentication {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -301,7 +301,7 @@ function Test-PrintersRpcProtocols {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -369,7 +369,7 @@ function Test-PrintersForceKerberosForRpc {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -437,7 +437,7 @@ function Test-PrintersRpcTcpPort {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -504,7 +504,7 @@ function Test-PrintersRestrictDriverInstallationToAdministrators {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -571,7 +571,7 @@ function Test-PrintersCopyFilesPolicy {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -638,7 +638,7 @@ function Test-PrintersNoWarningNoElevationOnInstall {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -706,7 +706,7 @@ function Test-PrintersUpdatePromptSettings {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {

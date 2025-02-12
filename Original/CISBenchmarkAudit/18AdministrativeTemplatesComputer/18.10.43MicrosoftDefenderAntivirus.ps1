@@ -43,7 +43,7 @@ function Test-MicrosoftDefenderAntivirusMAPS {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -106,7 +106,7 @@ function Test-MicrosoftDefenderAntivirusMicrosoftDefenderExploitGuard {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -173,7 +173,7 @@ function Test-MicrosoftDefenderAntivirusMpEngine {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -233,7 +233,7 @@ function Test-MicrosoftDefenderAntivirusRealTimeProtection {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -296,7 +296,7 @@ function Test-MicrosoftDefenderAntivirusReporting {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -356,7 +356,7 @@ function Test-MicrosoftDefenderAntivirusScan {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -403,7 +403,7 @@ function Test-MicrosoftDefenderAntivirusPUAProtection {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -470,7 +470,7 @@ function Test-MicrosoftDefenderAntivirusDisableAntiSpyware {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {

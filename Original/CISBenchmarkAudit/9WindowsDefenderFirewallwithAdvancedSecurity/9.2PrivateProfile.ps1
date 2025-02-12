@@ -30,7 +30,7 @@ function Test-PrivateProfileEnableFirewall {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -94,7 +94,7 @@ function Test-PrivateProfileDefaultInboundAction {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -158,7 +158,7 @@ function Test-PrivateProfileDefaultOutboundAction {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -226,7 +226,7 @@ function Test-PrivateProfileDisableNotifications {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -290,7 +290,7 @@ function Test-PrivateProfileLogFilePath {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -362,7 +362,7 @@ function Test-PrivateProfileLogFileSize {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -430,7 +430,7 @@ function Test-PrivateProfileLogDroppedPackets {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -494,7 +494,7 @@ function Test-PrivateProfileLogSuccessfulConnections {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {

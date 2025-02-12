@@ -4,7 +4,7 @@ function Test-AdvancedAuditPolicyConfigurationAccountLogon {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -29,7 +29,7 @@ function Test-AdvancedAuditPolicyConfigurationAccountManagement {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -57,7 +57,7 @@ function Test-AdvancedAuditPolicyConfigurationDetailedTracking {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -79,7 +79,7 @@ function Test-AdvancedAuditPolicyConfigurationDSAccess {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -101,7 +101,7 @@ function Test-AdvancedAuditPolicyConfigurationLogonLogoff {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -127,7 +127,7 @@ function Test-AdvancedAuditPolicyConfigurationObjectAccess {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -151,7 +151,7 @@ function Test-AdvancedAuditPolicyConfigurationPolicyChange {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -176,7 +176,7 @@ function Test-AdvancedAuditPolicyConfigurationPrivilegeUse {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -197,7 +197,7 @@ function Test-AdvancedAuditPolicyConfigurationSystem {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -222,7 +222,7 @@ function Test-CISBenchmarkAdvancedAuditPolicyConfiguration {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {

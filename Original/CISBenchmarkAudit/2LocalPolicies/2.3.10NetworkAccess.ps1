@@ -30,7 +30,7 @@ function Test-NetworkAccessLSAAnonymousNameLookup {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -98,7 +98,7 @@ function Test-NetworkAccessRestrictAnonymousSAM {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -166,7 +166,7 @@ function Test-NetworkAccessRestrictAnonymous {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -234,7 +234,7 @@ function Test-NetworkAccessDisableDomainCreds {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -302,7 +302,7 @@ function Test-NetworkAccessEveryoneIncludesAnonymous {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -372,7 +372,7 @@ function Test-NetworkAccessNullSessionPipes {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -472,7 +472,7 @@ function Test-NetworkAccessAllowedExactPaths {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -545,7 +545,7 @@ function Test-NetworkAccessAllowedPaths {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -629,7 +629,7 @@ function Test-NetworkAccessRestrictNullSessAccess {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -697,7 +697,7 @@ function Test-NetworkAccessRestrictRemoteSAM {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -766,7 +766,7 @@ function Test-NetworkAccessNullSessionShares {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -835,7 +835,7 @@ function Test-NetworkAccessForceGuest {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {

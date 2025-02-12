@@ -43,7 +43,7 @@ function Test-PasswordPolicyComplexityEnabled {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][string]$ProductType = (Get-ProductType),
-        [Parameter()]$SeceditReport = (Get-SeceditReport)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -51,7 +51,7 @@ function Test-PasswordPolicyComplexityEnabled {
         $Number = "1.1.5"
         $Level = "L1"
         $Title = "Ensure 'Password must meet complexity requirements' is set to 'Enabled'"
-        $Setting = [bool]$SeceditReport.'System Access'.PasswordComplexity
+        $Setting = [bool]$SecEditReport.'System Access'.PasswordComplexity
     }
 
     process {

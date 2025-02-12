@@ -43,7 +43,7 @@ function Test-RemoteDesktopSessionHostConnections {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -105,7 +105,7 @@ function Test-RemoteDesktopSessionHostDeviceandResourceRedirection {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -175,7 +175,7 @@ function Test-RemoteDesktopSessionHostSecurity {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -239,7 +239,7 @@ function Test-RemoteDesktopSessionHostSessionTimeLimits {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -302,7 +302,7 @@ function Test-RemoteDesktopSessionHostTemporaryfolders {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {

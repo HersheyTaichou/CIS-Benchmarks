@@ -44,7 +44,7 @@ function Test-UserWindowsComponentsAttachmentManager {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -106,7 +106,7 @@ function Test-UserWindowsComponentsCloudContent {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -173,7 +173,7 @@ function Test-UserWindowsComponentsNetworkSharing {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -234,7 +234,7 @@ function Test-UserWindowsComponentsWindowsInstaller {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -295,7 +295,7 @@ function Test-UserWindowsComponentsWindowsMediaPlayer {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {

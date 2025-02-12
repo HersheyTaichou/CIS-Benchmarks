@@ -44,7 +44,7 @@ function Test-AdministrativeTemplatesUserControlPanel {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -111,7 +111,7 @@ function Test-AdministrativeTemplatesUserStartMenuAndTaskbar {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -178,7 +178,7 @@ function Test-AdministrativeTemplatesUserSystem {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -245,7 +245,7 @@ function Test-AdministrativeTemplatesUserWindowsComponents {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {
@@ -316,7 +316,7 @@ function Test-CISBenchmarkAdministrativeTemplatesUser {
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     
     begin {

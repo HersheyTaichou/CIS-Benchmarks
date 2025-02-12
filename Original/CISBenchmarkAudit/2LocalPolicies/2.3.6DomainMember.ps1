@@ -30,7 +30,7 @@ function Test-DomainMemberRequireSignOrSeal {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -93,7 +93,7 @@ function Test-DomainMemberSealSecureChannel {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -156,7 +156,7 @@ function Test-DomainMemberSignSecureChannel {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -224,7 +224,7 @@ function Test-DomainMemberDisablePasswordChange {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -292,7 +292,7 @@ function Test-DomainMemberMaximumPasswordAge {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -360,7 +360,7 @@ function Test-DomainMemberRequireStrongKey {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {

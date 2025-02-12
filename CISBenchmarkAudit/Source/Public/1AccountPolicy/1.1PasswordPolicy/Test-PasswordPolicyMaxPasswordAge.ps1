@@ -33,7 +33,7 @@ function Test-PasswordPolicyMaxPasswordAge {
     param (
         # Get the product type (1, 2 or 3)
         [Parameter()][ValidateSet(1,2,3)][string]$ProductType = (Get-ProductType),
-        [Parameter()][xml]$GPResult = (Get-GPResult)
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
     begin {
@@ -41,7 +41,7 @@ function Test-PasswordPolicyMaxPasswordAge {
         $Number = "1.1.2"
         $Level = "L1"
         $Title = "Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'"
-        $Setting = [int]$SeceditReport.'System Access'.MaximumPasswordAge
+        $Setting = [int]$SecEditReport.'System Access'.MaximumPasswordAge
     }
 
     process {

@@ -1,18 +1,18 @@
-function Get-SeceditReport {
+function Get-SecEditReport {
     [CmdletBinding()]
     param ()
     
     begin {
-        $Secedit  = "C:\Windows\System32\secedit.exe"
+        $SecEdit  = "C:\Windows\System32\SecEdit.exe"
         $TempFileName = [System.IO.Path]::GetTempFileName()
         $Area = "SECURITYPOLICY"
     }
     
     process {
-        If (-Not (Test-Path $Secedit)) {
-            Write-Error "$Secedit is required and was not found."
+        If (-Not (Test-Path $SecEdit)) {
+            Write-Error "$SecEdit is required and was not found."
         } else {
-            &$Secedit /export /cfg $TempFileName /areas $Area | Out-Null
+            &$SecEdit /export /cfg $TempFileName /areas $Area | Out-Null
             $Data = Get-IniContent $TempFileName
         }
     }
