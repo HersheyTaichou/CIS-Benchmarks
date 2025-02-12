@@ -37,11 +37,11 @@ function Test-UserCloudContentConfigureWindowsSpotlight {
         $Result = [CISBenchmark]::new()
         $Result.Number = '19.7.7.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Configure Windows spotlight on lock screen' is set to 'Disabled'"
@@ -104,11 +104,11 @@ function Test-UserCloudContentDisableThirdPartySuggestions {
         $Result = [CISBenchmark]::new()
         $Result.Number = '19.7.7.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Do not suggest third-party content in Windows spotlight' is set to 'Enabled'"
@@ -171,11 +171,11 @@ function Test-UserCloudContentDisableTailoredExperiencesWithDiagnosticData {
         $Result = [CISBenchmark]::new()
         $Result.Number = '19.7.7.3'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Do not use diagnostic data for tailored experiences' is set to 'Enabled'"
@@ -238,11 +238,11 @@ function Test-UserCloudContentDisableWindowsSpotlightFeatures {
         $Result = [CISBenchmark]::new()
         $Result.Number = '19.7.7.4'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off all Windows spotlight features' is set to 'Enabled'"
@@ -305,11 +305,11 @@ function Test-UserCloudContentDisableSpotlightCollectionOnDesktop {
         $Result = [CISBenchmark]::new()
         $Result.Number = '19.7.7.5'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off Spotlight collection on Desktop' is set to 'Enabled'"

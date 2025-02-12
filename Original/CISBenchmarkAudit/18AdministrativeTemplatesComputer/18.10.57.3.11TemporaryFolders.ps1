@@ -37,11 +37,11 @@ function Test-TemporaryFoldersDeleteTempDirsOnExit {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.11.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Do not delete temp folders upon exit' is set to 'Disabled'"
@@ -104,11 +104,11 @@ function Test-TemporaryFoldersPerSessionTempDir {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.11.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Do not use temporary folders per session' is set to 'Disabled'"

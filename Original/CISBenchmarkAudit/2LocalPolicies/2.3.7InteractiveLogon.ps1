@@ -38,11 +38,11 @@ function Test-InteractiveLogonDisableCAD {
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\DisableCAD"
         $Result.Number = '2.3.7.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Interactive logon: Do not require CTRL+ALT+DEL' is set to 'Disabled'"
@@ -106,11 +106,11 @@ function Test-InteractiveLogonDontDisplayLastUserName {
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\DontDisplayLastUserName"
         $Result.Number = '2.3.7.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Interactive logon: Don't display last signed-in' is set to 'Enabled'"
@@ -174,11 +174,11 @@ function Test-InteractiveLogonInactivityTimeoutSecs {
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\InactivityTimeoutSecs"
         $Result.Number = '2.3.7.3'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0'"
@@ -242,11 +242,11 @@ function Test-InteractiveLogonLegalNoticeText {
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeText"
         $Result.Number = '2.3.7.4'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Configure 'Interactive logon: Message text for users attempting to log on'"
@@ -310,11 +310,11 @@ function Test-InteractiveLogonLegalNoticeCaption {
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeCaption"
         $Result.Number = '2.3.7.5'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Configure 'Interactive logon: Message title for users attempting to log on'"
@@ -378,11 +378,11 @@ function Test-InteractiveLogonCachedLogonsCount {
         $EntryName = "MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\CachedLogonsCount"
         $Result.Number = '2.3.7.6'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only)"
@@ -447,11 +447,11 @@ function Test-InteractiveLogonPasswordExpiryWarning {
         $EntryName = "MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\PasswordExpiryWarning"
         $Result.Number = '2.3.7.7'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Interactive logon: Prompt user to change password before expiration' is set to 'between 5 and 14 days'"
@@ -515,11 +515,11 @@ function Test-InteractiveLogonForceUnlockLogon {
         $EntryName = "MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\ForceUnlockLogon"
         $Result.Number = '2.3.7.8'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Interactive logon: Require Domain Controller Authentication to unlock workstation' is set to 'Enabled' (MS only)"
@@ -583,11 +583,11 @@ function Test-InteractiveLogonScRemoveOption {
         $EntryName = "MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\ScRemoveOption"
         $Result.Number = '2.3.7.9'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Interactive logon: Smart card removal behavior' is set to 'Lock Workstation' or higher"

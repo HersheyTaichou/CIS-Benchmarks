@@ -50,7 +50,7 @@ function Test-UserStartMenuAndTaskbarNotifications {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     

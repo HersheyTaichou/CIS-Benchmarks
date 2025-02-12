@@ -37,11 +37,11 @@ function Test-FontsEnableFontProviders {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.6.5.1'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Enable Font Providers' is set to 'Disabled'"

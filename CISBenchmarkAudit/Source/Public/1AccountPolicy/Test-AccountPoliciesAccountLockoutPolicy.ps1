@@ -52,13 +52,13 @@ function Test-AccountPoliciesAccountLockoutPolicy {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     Process {
         Test-AccountLockoutPolicyLockoutDuration @Parameters
         Test-AccountLockoutPolicyLockoutThreshold @Parameters
-        if ($ProductType -eq 3) {
+        if ($ProductType.Number -eq 3) {
             Test-AccountLockoutPolicyAdminLockout @Parameters
         }
         Test-AccountLockoutPolicyResetLockoutCount @Parameters

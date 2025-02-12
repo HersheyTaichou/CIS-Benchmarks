@@ -37,11 +37,11 @@ function Test-EventLogServiceApplicationRetention {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.26.1.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Application: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
@@ -104,11 +104,11 @@ function Test-EventLogServiceApplicationMaxSize {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.26.1.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Application: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'"
@@ -171,11 +171,11 @@ function Test-EventLogServiceSecurityRetention {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.26.2.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Security: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
@@ -238,11 +238,11 @@ function Test-EventLogServiceSecurityMaxSize {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.26.2.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Security: Specify the maximum log file size (KB)' is set to 'Enabled: 196,608 or greater'"
@@ -305,11 +305,11 @@ function Test-EventLogServiceSetupRetention {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.26.3.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Setup: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
@@ -372,11 +372,11 @@ function Test-EventLogServiceSetupMaxSize {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.26.3.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Setup: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'"
@@ -439,11 +439,11 @@ function Test-EventLogServiceSystemRetention {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.26.4.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'System: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
@@ -506,11 +506,11 @@ function Test-EventLogServiceSystemMaxSize {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.26.4.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'System: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'"

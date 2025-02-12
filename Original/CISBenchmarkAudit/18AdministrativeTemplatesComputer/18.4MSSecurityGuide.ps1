@@ -37,11 +37,11 @@ function Test-MSSecurityGuideApplyUACRestrictionsToLocalAccountsOnNetworkLogons 
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Apply UAC restrictions to local accounts on network logons' is set to 'Enabled' (MS only)"
@@ -104,11 +104,11 @@ function Test-MSSecurityGuideConfigureRPCPacketLevelPrivacySettingForIncomingCon
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Configure RPC packet level privacy setting for incoming connections' is set to 'Enabled'"
@@ -171,11 +171,11 @@ function Test-MSSecurityGuideConfigureSMBv1ClientDriver {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.3'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Configure SMB v1 client driver' is set to 'Enabled: Disable driver (recommended)'"
@@ -238,11 +238,11 @@ function Test-MSSecurityGuideConfigureSMBv1Server {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.4'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Configure SMB v1 server' is set to 'Disabled'"
@@ -305,11 +305,11 @@ function Test-MSSecurityGuideEnableSEHOP {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.5'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Enable Structured Exception Handling Overwrite Protection (SEHOP)' is set to 'Enabled'"
@@ -372,11 +372,11 @@ function Test-MSSecurityGuideNetBTNodeTypeconfiguration {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.6'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'NetBT NodeType configuration' is set to 'Enabled: P-node (recommended)'"
@@ -439,11 +439,11 @@ function Test-MSSecurityGuideWDigestAuthentication {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.4.7'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'WDigest Authentication' is set to 'Disabled'"

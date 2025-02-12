@@ -41,11 +41,11 @@ function Test-AccountLockoutPolicyLockoutDuration {
         $Result = [CISBenchmark]::new()
         $Result.Number = "1.2.1"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
@@ -69,7 +69,7 @@ function Test-AccountLockoutPolicyLockoutDuration {
         $Return += $Result
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 $Result = [CISBenchmark]::new()
@@ -137,11 +137,11 @@ function Test-AccountLockoutPolicyLockoutThreshold {
         $Result = [CISBenchmark]::new()
         $Result.Number = '1.2.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
@@ -165,7 +165,7 @@ function Test-AccountLockoutPolicyLockoutThreshold {
         $Return += $Result
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 $Result = [CISBenchmark]::new()
@@ -296,11 +296,11 @@ function Test-AccountLockoutPolicyResetLockoutCount {
         $Result = [CISBenchmark]::new()
         $Result.Number = "1.2.4"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
@@ -324,7 +324,7 @@ function Test-AccountLockoutPolicyResetLockoutCount {
         $Return += $Result
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 $Result = [CISBenchmark]::new()

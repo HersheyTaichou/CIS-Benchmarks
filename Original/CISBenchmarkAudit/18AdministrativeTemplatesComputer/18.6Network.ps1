@@ -49,7 +49,7 @@ function Test-NetworkDNSClient {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -112,7 +112,7 @@ function Test-NetworkFonts {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -175,7 +175,7 @@ function Test-NetworkLanmanWorkstation {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -236,7 +236,7 @@ function Test-NetworkLinkLayerTopologyDiscovery {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -300,7 +300,7 @@ function Test-NetworkMsP2PNetworkingServices {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -363,7 +363,7 @@ function Test-NetworkNetworkConnections {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -426,7 +426,7 @@ function Test-NetworkNetworkProvider {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -488,7 +488,7 @@ function Test-NetworkTCPIPSettings {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -554,7 +554,7 @@ function Test-NetworkWindowsConnectNow {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -618,13 +618,13 @@ function Test-NetworkWindowsConnectionManager {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
     process {
         Test-WindowsConnectionManagerfMinimizeConnections @Parameters
-        if ($Level -eq 2 -and $ProductType -eq 3) {
+        if ($Level -eq 2 -and $ProductType.Number -eq 3) {
             Test-WindowsConnectionManagerfBlockNonDomain @Parameters
         }
     }

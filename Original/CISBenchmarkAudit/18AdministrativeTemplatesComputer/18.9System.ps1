@@ -50,7 +50,7 @@ function Test-SystemAuditProcessCreation {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -111,7 +111,7 @@ function Test-SystemCredentialsDelegation {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -173,7 +173,7 @@ function Test-SystemDeviceGuard {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -241,7 +241,7 @@ function Test-SystemDeviceInstallation {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -302,7 +302,7 @@ function Test-SystemEarlyLaunchAntimalware {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -363,7 +363,7 @@ function Test-SystemGroupPolicy {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -427,7 +427,7 @@ function Test-SystemInternetCommunicationManagement {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -504,7 +504,7 @@ function Test-SystemKerberos {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -567,7 +567,7 @@ function Test-SystemKernelDMAProtection {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -628,7 +628,7 @@ function Test-SystemLocalSecurityAuthority {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -692,7 +692,7 @@ function Test-SystemLocaleServices {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -755,7 +755,7 @@ function Test-SystemLogon {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -763,7 +763,7 @@ function Test-SystemLogon {
         Test-LogonBlockUserFromShowingAccountDetailsOnSignin @Parameters
         Test-LogonDontDisplayNetworkSelectionUI @Parameters
         Test-LogonDontEnumerateConnectedUsers @Parameters
-        if ($ProductType -eq 3) {
+        if ($ProductType.Number -eq 3) {
             Test-LogonEnumerateLocalUsers @Parameters
         }
         Test-LogonDisableLockScreenAppNotifications @Parameters
@@ -824,7 +824,7 @@ function Test-SystemOSPolicies {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -888,7 +888,7 @@ function Test-SystemPowerManagement {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -954,7 +954,7 @@ function Test-SystemRemoteAssistance {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -1016,16 +1016,16 @@ function Test-SystemRemoteProcedureCall {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
     process {
-        if ($ProductType -eq 3) {
+        if ($ProductType.Number -eq 3) {
             Test-RemoteProcedureCallEnableAuthEpResolution @Parameters
             
         }
-        if ($ProductType -eq 3 -and $Level -eq 2) {
+        if ($ProductType.Number -eq 3 -and $Level -eq 2) {
             Test-RemoteProcedureCallRestrictRemoteClients @Parameters
         }
     }
@@ -1083,12 +1083,12 @@ function Test-SystemSecurityAccountManager {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
     process {
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             Test-SecurityAccountManagerSamNGCKeyROCAValidation @Parameters
         }
     }
@@ -1146,7 +1146,7 @@ function Test-SystemTroubleshootingandDiagnostics {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -1210,7 +1210,7 @@ function Test-SystemUserProfiles {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -1273,7 +1273,7 @@ function Test-SystemWindowsTimeService {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -1281,7 +1281,7 @@ function Test-SystemWindowsTimeService {
         if ($Level -eq 2) {
             Test-WindowsTimeServiceNtpClient @Parameters
         }
-        if ($Level -eq 2 -and $ProductType -eq 3) {
+        if ($Level -eq 2 -and $ProductType.Number -eq 3) {
             Test-WindowsTimeServiceNtpServer @Parameters
         }
     }

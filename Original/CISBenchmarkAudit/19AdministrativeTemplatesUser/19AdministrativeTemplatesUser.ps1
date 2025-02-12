@@ -51,7 +51,7 @@ function Test-AdministrativeTemplatesUserControlPanel {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -118,7 +118,7 @@ function Test-AdministrativeTemplatesUserStartMenuAndTaskbar {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -185,7 +185,7 @@ function Test-AdministrativeTemplatesUserSystem {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -252,7 +252,7 @@ function Test-AdministrativeTemplatesUserWindowsComponents {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -323,7 +323,7 @@ function Test-CISBenchmarkAdministrativeTemplatesUser {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{

@@ -37,11 +37,11 @@ function Test-MsP2PNetworkingServicesPeernet {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.6.10.2'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off Microsoft Peer-to-Peer Networking Services' is set to 'Enabled'"

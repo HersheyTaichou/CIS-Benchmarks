@@ -37,11 +37,11 @@ function Test-SessionTimeLimitsMaxIdleTime {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.10.1'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Set time limit for active but idle Remote Desktop Services sessions' is set to 'Enabled: 15 minutes or less, but not Never (0)'"
@@ -104,11 +104,11 @@ function Test-SessionTimeLimitsMaxDisconnectionTime {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.10.2'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Set time limit for disconnected sessions' is set to 'Enabled: 1 minute'"

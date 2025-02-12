@@ -50,7 +50,7 @@ function Test-UserWindowsComponentsAttachmentManager {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -112,7 +112,7 @@ function Test-UserWindowsComponentsCloudContent {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -179,7 +179,7 @@ function Test-UserWindowsComponentsNetworkSharing {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -240,7 +240,7 @@ function Test-UserWindowsComponentsWindowsInstaller {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -301,7 +301,7 @@ function Test-UserWindowsComponentsWindowsMediaPlayer {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     

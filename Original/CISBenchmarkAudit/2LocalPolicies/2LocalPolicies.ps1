@@ -52,14 +52,14 @@ function Test-LocalPoliciesUserRightsAssignment {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     Process {
         Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege @Parameters
         Test-UserRightsAssignmentSeNetworkLogonRight @Parameters
         Test-UserRightsAssignmentSeTcbPrivilege @Parameters
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             Test-UserRightsAssignmentSeMachineAccountPrivilege @Parameters
         }
         Test-UserRightsAssignmentSeIncreaseQuotaPrivilege @Parameters
@@ -86,7 +86,7 @@ function Test-LocalPoliciesUserRightsAssignment {
         Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege @Parameters
         Test-UserRightsAssignmentSeLoadDriverPrivilege @Parameters
         Test-UserRightsAssignmentSeLockMemoryPrivilege @Parameters
-        if ($ProductType -eq 2 -and $Level -eq 2) {
+        if ($ProductType.Number -eq 2 -and $Level -eq 2) {
             Test-UserRightsAssignmentSeBatchLogonRight @Parameters
         }
         Test-UserRightsAssignmentSeSecurityPrivilege @Parameters
@@ -98,7 +98,7 @@ function Test-LocalPoliciesUserRightsAssignment {
         Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege @Parameters
         Test-UserRightsAssignmentSeRestorePrivilege @Parameters
         Test-UserRightsAssignmentSeShutdownPrivilege @Parameters
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             Test-UserRightsAssignmentSeSyncAgentPrivilege @Parameters
         }
         Test-UserRightsAssignmentSeTakeOwnershipPrivilege @Parameters
@@ -160,7 +160,7 @@ function Test-LocalPoliciesSecurityOptions {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -172,7 +172,7 @@ function Test-LocalPoliciesSecurityOptions {
         Test-SecurityOptionsAccounts @Parameters
         Test-SecurityOptionsAudit @Parameters
         Test-SecurityOptionsDevices @Parameters
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             Test-SecurityOptionsDomainController @Parameters
         }
         Test-SecurityOptionsDomainMember @Parameters
@@ -244,7 +244,7 @@ function Test-CISBenchmarkLocalPolicies {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{

@@ -46,7 +46,7 @@ function Test-SystemServicesSpooler {
     }
 
     process {
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             $Result.Level = "L1"
         $Result.Profile = "Domain Controller"
             $Result.Title = "Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)"
@@ -56,7 +56,7 @@ function Test-SystemServicesSpooler {
             } else {
                 $Result.SetCorrectly = $false
             }
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Level = "L2"
             $Result.Profile = "Member Server"
             $Result.Title = "Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (MS only)"
@@ -127,14 +127,14 @@ function Test-CISBenchmarkSystemServices {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
     process {
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             Test-SystemServicesSpooler @Parameters
-        } elseif ($ProductType -eq 3 -and $Level -eq 2) {
+        } elseif ($ProductType.Number -eq 3 -and $Level -eq 2) {
             Test-SystemServicesSpooler @Parameters
         }
         

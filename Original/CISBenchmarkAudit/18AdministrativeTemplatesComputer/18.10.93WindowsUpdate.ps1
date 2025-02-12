@@ -49,7 +49,7 @@ function Test-WindowsUpdateLegacyPolicies {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -109,7 +109,7 @@ function Test-WindowsUpdateManageEndUserExperience {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -170,7 +170,7 @@ function Test-WindowsUpdateManageUpdatesOfferedFromWindowsUpdate {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     

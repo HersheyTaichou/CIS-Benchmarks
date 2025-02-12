@@ -37,11 +37,11 @@ function Test-WindowsTimeServiceNtpClient {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.50.1.1'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Enable Windows NTP Client' is set to 'Enabled'"
@@ -104,12 +104,12 @@ function Test-WindowsTimeServiceNtpServer {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.50.1.2'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
             Write-Warning "$($Result.Number): `"$($Result.Title)`"In most enterprise managed environments, you should not disable the Windows NTP Server on Domain Controllers, as it is very important for the operation of NT5DS (domain hierarchy-based) time synchronization."
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Enable Windows NTP Server' is set to 'Disabled' (MS only)"

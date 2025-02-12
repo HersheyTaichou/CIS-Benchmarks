@@ -37,11 +37,11 @@ function Test-DeviceandResourceRedirectionEnableUiaRedirection {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.3.1'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Allow UI Automation redirection' is set to 'Disabled'"
@@ -104,11 +104,11 @@ function Test-DeviceandResourceRedirectionfDisableCcm {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.3.2'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Do not allow COM port redirection' is set to 'Enabled'"
@@ -171,11 +171,11 @@ function Test-DeviceandResourceRedirectionfDisableCdm {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.3.3'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Do not allow drive redirection' is set to 'Enabled'"
@@ -238,11 +238,11 @@ function Test-DeviceandResourceRedirectionfDisableLocationRedir {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.3.4'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Do not allow location redirection' is set to 'Enabled'"
@@ -305,11 +305,11 @@ function Test-DeviceandResourceRedirectionfDisableLPT {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.3.5'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Do not allow LPT port redirection' is set to 'Enabled'"
@@ -372,11 +372,11 @@ function Test-DeviceandResourceRedirectionfDisablePNPRedir {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.3.6'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Do not allow supported Plug and Play device redirection' is set to 'Enabled'"
@@ -439,11 +439,11 @@ function Test-DeviceandResourceRedirectionfDisableWebAuthn {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.3.7'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Do not allow WebAuthn redirection' is set to 'Enabled'"

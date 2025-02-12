@@ -49,7 +49,7 @@ function Test-WindowsDefenderSmartScreenExplorer {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     

@@ -49,7 +49,7 @@ function Test-RemoteDesktopServicesRemoteDesktopConnectionClient {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -110,7 +110,7 @@ function Test-RemoteDesktopServicesRemoteDesktopSessionHost {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{

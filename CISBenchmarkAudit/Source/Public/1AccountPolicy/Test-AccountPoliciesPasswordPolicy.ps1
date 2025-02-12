@@ -54,7 +54,7 @@ function Test-AccountPoliciesPasswordPolicy {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     Process {
@@ -63,7 +63,7 @@ function Test-AccountPoliciesPasswordPolicy {
         Test-PasswordPolicyMinPasswordAge @Parameters
         Test-PasswordPolicyMinPasswordLength @Parameters
         Test-PasswordPolicyComplexityEnabled @Parameters
-        if ($ProductType -eq 3) {
+        if ($ProductType.Number -eq 3) {
             Test-PasswordPolicyRelaxMinimumPasswordLengthLimits @Parameters
         }
         Test-PasswordPolicyReversibleEncryption @Parameters

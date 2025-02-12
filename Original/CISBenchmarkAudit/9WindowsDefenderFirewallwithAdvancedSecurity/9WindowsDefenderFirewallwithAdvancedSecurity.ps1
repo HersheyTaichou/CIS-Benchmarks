@@ -89,7 +89,7 @@ function Test-WindowsDefenderFirewallwithAdvancedSecurityDomainProfile {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -162,7 +162,7 @@ function Test-WindowsDefenderFirewallwithAdvancedSecurityPrivateProfile {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -235,7 +235,7 @@ function Test-WindowsDefenderFirewallwithAdvancedSecurityPublicProfile {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -311,7 +311,7 @@ function Test-CISBenchmarkWindowsDefenderFirewallwithAdvancedSecurity {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{

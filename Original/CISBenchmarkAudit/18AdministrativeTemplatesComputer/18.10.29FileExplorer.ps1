@@ -37,11 +37,11 @@ function Test-FileExplorerNoDataExecutionPrevention {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.29.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off Data Execution Prevention for Explorer' is set to 'Disabled'"
@@ -104,11 +104,11 @@ function Test-FileExplorerNoHeapTerminationOnCorruption {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.29.3'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off heap termination on corruption' is set to 'Disabled'"
@@ -171,11 +171,11 @@ function Test-FileExplorerPreXPSP2ShellProtocolBehavior {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.29.4'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off shell protocol protected mode' is set to 'Disabled'"

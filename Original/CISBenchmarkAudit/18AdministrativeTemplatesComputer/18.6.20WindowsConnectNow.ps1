@@ -37,11 +37,11 @@ function Test-WindowsConnectNowEnableRegistrars {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.6.20.1'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled'"
@@ -104,11 +104,11 @@ function Test-WindowsConnectNowDisableWcnUi {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.6.20.2'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Prohibit access of the Windows Connect Now wizards' is set to 'Enabled'"

@@ -49,7 +49,7 @@ function Test-RemoteDesktopSessionHostConnections {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -111,7 +111,7 @@ function Test-RemoteDesktopSessionHostDeviceandResourceRedirection {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -181,7 +181,7 @@ function Test-RemoteDesktopSessionHostSecurity {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -245,7 +245,7 @@ function Test-RemoteDesktopSessionHostSessionTimeLimits {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -308,7 +308,7 @@ function Test-RemoteDesktopSessionHostTemporaryfolders {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     

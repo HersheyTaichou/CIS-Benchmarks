@@ -38,11 +38,11 @@ function Test-MicrosoftNetworkServerAutoDisconnect {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\AutoDisconnect"
         $Result.Number = '2.3.9.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Microsoft network server: Amount of idle time required before suspending session' is set to '15 or fewer minute(s)'"
@@ -106,11 +106,11 @@ function Test-MicrosoftNetworkServerRequireSecuritySignature {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\RequireSecuritySignature"
         $Result.Number = '2.3.9.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Microsoft network server: Digitally sign communications (always)' is set to 'Enabled'"
@@ -174,11 +174,11 @@ function Test-MicrosoftNetworkServerEnableSecuritySignature {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\EnableSecuritySignature"
         $Result.Number = '2.3.9.3'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Microsoft network server: Digitally sign communications (if client agrees)' is set to 'Enabled'"
@@ -242,11 +242,11 @@ function Test-MicrosoftNetworkServerEnableForcedLogOff {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\EnableForcedLogOff"
         $Result.Number = '2.3.9.4'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Microsoft network server: Disconnect clients when logon hours expire' is set to 'Enabled'"
@@ -310,11 +310,11 @@ function Test-MicrosoftNetworkServerSmbServerNameHardeningLevel {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\SmbServerNameHardeningLevel"
         $Result.Number = '2.3.9.5'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Microsoft network server: Server SPN target name validation level' is set to 'Accept if provided by client' or higher (MS only)"
@@ -326,12 +326,12 @@ function Test-MicrosoftNetworkServerSmbServerNameHardeningLevel {
 
     process {
         $Result.Setting = [int]$Result.Entry.SettingNumber
-        if (($Result.Setting) -and ($Result.Setting -ge 1) -and ($ProductType -eq 3)) {
+        if (($Result.Setting) -and ($Result.Setting -ge 1) -and ($ProductType.Number -eq 3)) {
             $Result.SetCorrectly = $true
-        } elseif (($ProductType -eq 2) -and ($Result.Setting -ge 1)) {
+        } elseif (($ProductType.Number -eq 2) -and ($Result.Setting -ge 1)) {
             Write-Warning "$($Result.Number): `"$($Result.Title)`" On Domain Controllers, if Hardened UNC Paths (18.6.14.1) is enabled, this setting can lead to significant issues."
             $Result.SetCorrectly = $false
-        } elseif (($ProductType -eq 2) -and (-not($Result.Setting))) {
+        } elseif (($ProductType.Number -eq 2) -and (-not($Result.Setting))) {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false

@@ -50,7 +50,7 @@ function Test-TCPIPSettingsParameters {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     

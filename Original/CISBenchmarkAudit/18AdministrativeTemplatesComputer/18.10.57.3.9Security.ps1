@@ -37,11 +37,11 @@ function Test-SecurityfPromptForPassword {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.9.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Always prompt for password upon connection' is set to 'Enabled'"
@@ -104,11 +104,11 @@ function Test-SecurityfEncryptRPCTraffic {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.9.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Require secure RPC communication' is set to 'Enabled'"
@@ -171,11 +171,11 @@ function Test-SecuritySecurityLayer {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.9.3'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Require use of specific security layer for remote (RDP) connections' is set to 'Enabled: SSL'"
@@ -238,11 +238,11 @@ function Test-SecurityUserAuthentication {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.9.4'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Require user authentication for remote connections by using Network Level Authentication' is set to 'Enabled'"
@@ -305,11 +305,11 @@ function Test-SecurityMinEncryptionLevel {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.57.3.9.5'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Set client connection encryption level' is set to 'Enabled: High Level'"

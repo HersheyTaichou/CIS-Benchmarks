@@ -133,11 +133,11 @@ function Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege {
         $Result = [CISBenchmark]::new()
         $Result.Number = '2.2.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'"
@@ -202,7 +202,7 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
     }
 
     process {
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $DomainController -gpresult $GPResult
             $Result.Number = '2.2.2'
             $Result.Level = "L1"
@@ -212,7 +212,7 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $MemberServer -gpresult $GPResult
             $Result.Number = '2.2.3'
             $Result.Level = "L1"
@@ -269,11 +269,11 @@ function Test-UserRightsAssignmentSeTcbPrivilege {
         $Result = [CISBenchmark]::new()
         $Result.Number = '2.2.4'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Act as part of the operating system' is set to 'No One'"
@@ -378,11 +378,11 @@ function Test-UserRightsAssignmentSeIncreaseQuotaPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.6'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Adjust memory quotas for a process' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE'"
@@ -433,11 +433,11 @@ function Test-UserRightsAssignmentSeInteractiveLogonRight {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.7'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Allow log on locally' is set to 'Administrators'"
@@ -496,15 +496,15 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
     }
 
     process {
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             $Result = [CISBenchmark]::new()
             $Result.Number = "2.2.8"
             $Result.Level = "L1"
-            if ($ProductType -eq 1) {
+            if ($ProductType.Number -eq 1) {
                 $Result.Profile = "Corporate/Enterprise Environment"
-            } elseif ($ProductType -eq 2) {
+            } elseif ($ProductType.Number -eq 2) {
                 $Result.Profile = "Domain Controller"
-            } elseif ($ProductType -eq 3) {
+            } elseif ($ProductType.Number -eq 3) {
                 $Result.Profile = "Member Server"
             }
             $Result.Title = "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)"
@@ -513,7 +513,7 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Number = '2.2.9'
             $Result.Level = "L1"
             $Result.Profile = "Member Server"
@@ -569,11 +569,11 @@ function Test-UserRightsAssignmentSeBackupPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.10'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Allow log on locally' is set to 'Administrators'"
@@ -623,11 +623,11 @@ function Test-UserRightsAssignmentSeSystemTimePrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.11'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Change the system time' is set to 'Administrators, LOCAL SERVICE'"
@@ -677,11 +677,11 @@ function Test-UserRightsAssignmentSeTimeZonePrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.12'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Change the time zone' is set to 'Administrators, LOCAL SERVICE'"
@@ -731,11 +731,11 @@ function Test-UserRightsAssignmentSeCreatePagefilePrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.13'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Create a pagefile' is set to 'Administrators'"
@@ -785,11 +785,11 @@ function Test-UserRightsAssignmentSeCreateTokenPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.14'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Create a token object' is set to 'No One'"
@@ -839,11 +839,11 @@ function Test-UserRightsAssignmentSeCreateGlobalPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.15'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Create global objects' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE'"
@@ -893,11 +893,11 @@ function Test-UserRightsAssignmentSeCreatePermanentPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.16'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Create permanent shared objects' is set to 'No One'"
@@ -957,15 +957,15 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
     }
 
     process {
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             $Result = [CISBenchmark]::new()
             $Result.Number = "2.2.17"
             $Result.Level = "L1"
-            if ($ProductType -eq 1) {
+            if ($ProductType.Number -eq 1) {
                 $Result.Profile = "Corporate/Enterprise Environment"
-            } elseif ($ProductType -eq 2) {
+            } elseif ($ProductType.Number -eq 2) {
                 $Result.Profile = "Domain Controller"
-            } elseif ($ProductType -eq 3) {
+            } elseif ($ProductType.Number -eq 3) {
                 $Result.Profile = "Member Server"
             }
             $Result.Title = "Ensure 'Create symbolic links' is set to 'Administrators' (DC only)"
@@ -974,7 +974,7 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Number = '2.2.18'
             $Result.Level = "L1"
             $Result.Profile = "Member Server"
@@ -1030,11 +1030,11 @@ function Test-UserRightsAssignmentSeDebugPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.19'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Debug programs' is set to 'Administrators'"
@@ -1091,7 +1091,7 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
     }
 
     process {
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             $Result.Number = '2.2.20'
             $Result.Level = "L1"
             $Result.Profile = "Domain Controller"
@@ -1101,7 +1101,7 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Number = '2.2.21'
             $Result.Level = "L1"
             $Result.Profile = "Member Server"
@@ -1157,11 +1157,11 @@ function Test-UserRightsAssignmentSeDenyBatchLogonRight {
         $Result = [CISBenchmark]::new()
         $Result.Number = "2.2.22"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Deny log on as a batch job' to include 'Guests'"
@@ -1212,11 +1212,11 @@ function Test-UserRightsAssignmentSeDenyServiceLogonRight {
         $Result = [CISBenchmark]::new()
         $Result.Number = "2.2.23"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Deny log on as a service' to include 'Guests'"
@@ -1267,11 +1267,11 @@ function Test-UserRightsAssignmentSeDenyInteractiveLogonRight {
         $Result = [CISBenchmark]::new()
         $Result.Number = "2.2.24"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Deny log on locally' to include 'Guests'"
@@ -1328,15 +1328,15 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
     }
 
     process {
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             $Result = [CISBenchmark]::new()
             $Result.Number = "2.2.25"
             $Result.Level = "L1"
-            if ($ProductType -eq 1) {
+            if ($ProductType.Number -eq 1) {
                 $Result.Profile = "Corporate/Enterprise Environment"
-            } elseif ($ProductType -eq 2) {
+            } elseif ($ProductType.Number -eq 2) {
                 $Result.Profile = "Domain Controller"
-            } elseif ($ProductType -eq 3) {
+            } elseif ($ProductType.Number -eq 3) {
                 $Result.Profile = "Member Server"
             }
             $Result.Title = "Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only)"
@@ -1345,7 +1345,7 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Number = '2.2.26'
             $Result.Level = "L1"
             $Result.Profile = "Member Server"
@@ -1407,7 +1407,7 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
     }
 
     process {
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             $Result.Number = '2.2.27'
             $Result.Level = "L1"
             $Result.Profile = "Domain Controller"
@@ -1417,7 +1417,7 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Number = '2.2.28'
             $Result.Level = "L1"
             $Result.Profile = "Member Server"
@@ -1473,11 +1473,11 @@ function Test-UserRightsAssignmentSeRemoteShutdownPrivilege {
         $Result = [CISBenchmark]::new()
         $Result.Number = "2.2.29"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Force shutdown from a remote system' is set to 'Administrators'"
@@ -1528,11 +1528,11 @@ function Test-UserRightsAssignmentSeAuditPrivilege {
     $Result = [CISBenchmark]::new()
         $Result.Number = '2.2.30'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Generate security audits' is set to 'LOCAL SERVICE, NETWORK SERVICE'"
@@ -1591,7 +1591,7 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
     }
 
     process {
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             $Result.Number = '2.2.31'
             $Result.Level = "L1"
             $Result.Profile = "Domain Controller"
@@ -1601,7 +1601,7 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Number = '2.2.32'
             $Result.Level = "L1"
             $Result.Profile = "Member Server"
@@ -1656,11 +1656,11 @@ function Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.33'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Increase scheduling priority' is set to 'Administrators, Window Manager\Window Manager Group'"
@@ -1710,11 +1710,11 @@ function Test-UserRightsAssignmentSeLoadDriverPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.34'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Load and unload device drivers' is set to 'Administrators'"
@@ -1764,11 +1764,11 @@ function Test-UserRightsAssignmentSeLockMemoryPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.35'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Lock pages in memory' is set to 'No One'"
@@ -1874,7 +1874,7 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
     }
 
     process {
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             $Result.Number = '2.2.37'
             $Result.Level = "L1"
             $Result.Profile = "Domain Controller"
@@ -1884,7 +1884,7 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Number = '2.2.38'
             $Result.Level = "L1"
             $Result.Profile = "Member Server"
@@ -1939,11 +1939,11 @@ function Test-UserRightsAssignmentSeRelabelPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.39'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Modify an object label' is set to 'No One'"
@@ -1993,11 +1993,11 @@ function Test-UserRightsAssignmentSeSystemEnvironmentPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.40'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Modify firmware environment values' is set to 'Administrators'"
@@ -2047,11 +2047,11 @@ function Test-UserRightsAssignmentSeManageVolumePrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.41'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Perform volume maintenance tasks' is set to 'Administrators'"
@@ -2101,11 +2101,11 @@ function Test-UserRightsAssignmentSeProfileSingleProcessPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.42'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Profile single process' is set to 'Administrators'"
@@ -2155,11 +2155,11 @@ function Test-UserRightsAssignmentSeSystemProfilePrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.43'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Profile system performance' is set to 'Administrators, NT SERVICE\WdiServiceHost'"
@@ -2209,11 +2209,11 @@ function Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.44'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Replace a process level token' is set to 'LOCAL SERVICE, NETWORK SERVICE'"
@@ -2263,11 +2263,11 @@ function Test-UserRightsAssignmentSeRestorePrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.45'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Restore files and directories' is set to 'Administrators'"
@@ -2317,11 +2317,11 @@ function Test-UserRightsAssignmentSeShutdownPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.46'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Shut down the system' is set to 'Administrators'"
@@ -2419,11 +2419,11 @@ function Test-UserRightsAssignmentSeTakeOwnershipPrivilege {
     $Result = [CISBenchmark]::new()
     $Result.Number = '2.2.48'
     $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
     $Result.Title = "Ensure 'Take ownership of files or other objects' is set to 'Administrators'"

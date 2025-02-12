@@ -37,11 +37,11 @@ function Test-LocalSecurityAuthorityAllowCustomSSPsAPs {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.25.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Allow Custom SSPs and APs to be loaded into LSASS' is set to 'Disabled'"
@@ -104,11 +104,11 @@ function Test-LocalSecurityAuthorityRunAsPPL {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.25.2'
         $Result.Level = "NG"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Configures LSASS to run as a protected process' is set to 'Enabled: Enabled with UEFI Lock'"

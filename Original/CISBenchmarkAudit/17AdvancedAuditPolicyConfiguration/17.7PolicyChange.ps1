@@ -38,11 +38,11 @@ function Test-PolicyChangeAuditAuditPolicyChange {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.7.1"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Audit Policy Change' is set to include 'Success'"
@@ -106,11 +106,11 @@ function Test-PolicyChangeAuditAuthenticationPolicyChange {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.7.2"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Authentication Policy Change' is set to include 'Success'"
@@ -174,11 +174,11 @@ function Test-PolicyChangeAuditAuthorizationPolicyChange {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.7.3"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Authorization Policy Change' is set to include 'Success'"
@@ -242,11 +242,11 @@ function Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange {
         $Result = [CISBenchmark]::new()
         $Result.Number = '17.7.4'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit MPSSVC Rule-Level Policy Change' is set to 'Success and Failure'"
@@ -310,11 +310,11 @@ function Test-PolicyChangeAuditOtherPolicyChangeEvents {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.7.5"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Other Policy Change Events' is set to include 'Failure'"

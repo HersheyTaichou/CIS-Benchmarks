@@ -37,11 +37,11 @@ function Test-DataCollectionandPreviewBuildsAllowTelemetry {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.15.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Allow Diagnostic Data' is set to 'Enabled: Diagnostic data off (not recommended)' or 'Enabled: Send required diagnostic data'"
@@ -104,11 +104,11 @@ function Test-DataCollectionandPreviewBuildsDisableEnterpriseAuthProxy {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.15.2'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Configure Authenticated Proxy usage for the Connected User Experience and Telemetry service' is set to 'Enabled: Disable Authenticated Proxy usage'"
@@ -172,11 +172,11 @@ function Test-DataCollectionandPreviewBuildsDisableOneSettingsDownloads {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.15.3'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Disable OneSettings Downloads' is set to 'Enabled'"
@@ -239,11 +239,11 @@ function Test-DataCollectionandPreviewBuildsDoNotShowFeedbackNotifications {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.15.4'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Do not show feedback notifications' is set to 'Enabled'"
@@ -306,11 +306,11 @@ function Test-DataCollectionandPreviewBuildsEnableOneSettingsAuditing {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.15.5'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Enable OneSettings Auditing' is set to 'Enabled'"
@@ -373,11 +373,11 @@ function Test-DataCollectionandPreviewBuildsLimitDiagnosticLogCollection {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.15.6'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Limit Diagnostic Log Collection' is set to 'Enabled'"
@@ -440,11 +440,11 @@ function Test-DataCollectionandPreviewBuildsLimitDumpCollection {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.15.7'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Limit Dump Collection' is set to 'Enabled'"
@@ -507,11 +507,11 @@ function Test-DataCollectionandPreviewBuildsAllowBuildPreview {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.15.8'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Toggle user control over Insider builds' is set to 'Disabled'"

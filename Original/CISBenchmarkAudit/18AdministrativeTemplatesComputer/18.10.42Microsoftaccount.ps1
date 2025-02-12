@@ -37,11 +37,11 @@ function Test-MicrosoftaccountDisableUserAuth {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.42.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Block all consumer Microsoft account user authentication' is set to 'Enabled'"

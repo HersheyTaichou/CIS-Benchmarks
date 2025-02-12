@@ -38,11 +38,11 @@ function Test-ObjectAccessAuditDetailedFileShare {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.6.1"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Detailed File Share' is set to include 'Failure'"
@@ -106,11 +106,11 @@ function Test-ObjectAccessAuditFileShare {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.6.2"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit File Share' is set to 'Success and Failure'"
@@ -174,11 +174,11 @@ function Test-ObjectAccessAuditOtherObjectAccessEvents {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.6.3"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Other Object Access Events' is set to 'Success and Failure'"
@@ -242,11 +242,11 @@ function Test-ObjectAccessAuditRemovableStorage {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.6.4"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Removable Storage' is set to 'Success and Failure'"

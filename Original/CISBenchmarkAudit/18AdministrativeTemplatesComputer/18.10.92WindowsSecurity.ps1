@@ -49,7 +49,7 @@ function Test-WindowsSecurityAppAndBrowserProtection {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     

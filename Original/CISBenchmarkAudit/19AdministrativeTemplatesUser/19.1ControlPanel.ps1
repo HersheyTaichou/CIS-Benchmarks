@@ -50,7 +50,7 @@ function Test-UserControlPanelPersonalization {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     

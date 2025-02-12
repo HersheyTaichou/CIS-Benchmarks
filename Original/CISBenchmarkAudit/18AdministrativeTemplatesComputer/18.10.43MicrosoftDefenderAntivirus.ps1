@@ -49,7 +49,7 @@ function Test-MicrosoftDefenderAntivirusMAPS {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -113,7 +113,7 @@ function Test-MicrosoftDefenderAntivirusMicrosoftDefenderExploitGuard {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -179,7 +179,7 @@ function Test-MicrosoftDefenderAntivirusMpEngine {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -239,7 +239,7 @@ function Test-MicrosoftDefenderAntivirusRealTimeProtection {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -302,7 +302,7 @@ function Test-MicrosoftDefenderAntivirusReporting {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -362,7 +362,7 @@ function Test-MicrosoftDefenderAntivirusScan {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -411,11 +411,11 @@ function Test-MicrosoftDefenderAntivirusPUAProtection {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.43.16'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Configure detection for potentially unwanted applications' is set to 'Enabled: Block'"
@@ -478,11 +478,11 @@ function Test-MicrosoftDefenderAntivirusDisableAntiSpyware {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.43.17'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off Microsoft Defender AntiVirus' is set to 'Disabled'"

@@ -37,11 +37,11 @@ function Test-DeviceGuardEnableVirtualizationBasedSecurity {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.5.1'
         $Result.Level = "NG"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn On Virtualization Based Security' is set to 'Enabled'"
@@ -104,11 +104,11 @@ function Test-DeviceGuardRequirePlatformSecurityFeatures {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.5.2'
         $Result.Level = "NG"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn On Virtualization Based Security: Select Platform Security Level' is set to 'Secure Boot' or higher"
@@ -172,11 +172,11 @@ function Test-DeviceGuardHypervisorEnforcedCodeIntegrity {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.5.3'
         $Result.Level = "NG"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn On Virtualization Based Security: Virtualization Based Protection of Code Integrity' is set to 'Enabled with UEFI lock'"
@@ -240,11 +240,11 @@ function Test-DeviceGuardHVCIMATRequired {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.5.4'
         $Result.Level = "NG"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn On Virtualization Based Security: Require UEFI Memory Attributes Table' is set to 'True (checked)'"
@@ -306,15 +306,15 @@ function Test-DeviceGuardLsaCfgFlags {
     begin {
         $EntryName = "Turn On Virtualization Based Security"
         $Result = [CISBenchmark]::new()
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Level = "L1"
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Level = "NG"
             $Result.Profile = "Domain Controller"
             $Result.Number = '18.9.5.6'
             $Result.Title = "Ensure 'Turn On Virtualization Based Security: Credential Guard Configuration' is set to 'Disabled' (DC Only)"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Level = "NG"
             $Result.Profile = "Member Server"
             $Result.Number = '18.9.5.5'
@@ -330,9 +330,9 @@ function Test-DeviceGuardLsaCfgFlags {
     process {
         $DeviceGuardVBS = $Result.Entry.DropDownList | Where-Object {$_.Name -eq "Credential Guard Configuration:"}
         $Result.Setting = $DeviceGuardVBS.Value.Name
-        if ($Result.Setting -eq "Enabled with UEFI lock" -and $DeviceGuardVBS.State -eq "Enabled" -and ($ProductType -eq 3 -or $ProductType -eq 1)) {
+        if ($Result.Setting -eq "Enabled with UEFI lock" -and $DeviceGuardVBS.State -eq "Enabled" -and ($ProductType.Number -eq 3 -or $ProductType.Number -eq 1)) {
             $Result.SetCorrectly = $true
-        } elseif ($Result.Setting -eq "Disabled" -and $DeviceGuardVBS.State -eq "Enabled" -and $ProductType -eq 2) {
+        } elseif ($Result.Setting -eq "Disabled" -and $DeviceGuardVBS.State -eq "Enabled" -and $ProductType.Number -eq 2) {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false
@@ -383,11 +383,11 @@ function Test-DeviceGuardConfigureSystemGuardLaunch {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.5.7'
         $Result.Level = "NG"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn On Virtualization Based Security: Secure Launch Configuration' is set to 'Enabled'"

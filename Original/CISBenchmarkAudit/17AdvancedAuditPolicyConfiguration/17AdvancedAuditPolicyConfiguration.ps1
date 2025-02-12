@@ -10,13 +10,13 @@ function Test-AdvancedAuditPolicyConfigurationAccountLogon {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
     process {
         Test-AccountLogonAuditCredentialValidation @Parameters
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             Test-AccountLogonAuditKerberosAuthenticationService @Parameters
             Test-AccountLogonAuditKerberosServiceTicketOperations @Parameters
         }
@@ -35,13 +35,13 @@ function Test-AdvancedAuditPolicyConfigurationAccountManagement {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
     process {
         Test-AccountManagementAuditApplicationGroupManagement @Parameters
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             Test-AccountManagementAuditComputerAccountManagement @Parameters
             Test-AccountManagementAuditDistributionGroupManagement @Parameters
             Test-AccountManagementAuditOtherAccountManagementEvents @Parameters
@@ -63,7 +63,7 @@ function Test-AdvancedAuditPolicyConfigurationDetailedTracking {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -85,7 +85,7 @@ function Test-AdvancedAuditPolicyConfigurationDSAccess {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -107,7 +107,7 @@ function Test-AdvancedAuditPolicyConfigurationLogonLogoff {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -133,7 +133,7 @@ function Test-AdvancedAuditPolicyConfigurationObjectAccess {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -157,7 +157,7 @@ function Test-AdvancedAuditPolicyConfigurationPolicyChange {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -182,7 +182,7 @@ function Test-AdvancedAuditPolicyConfigurationPrivilegeUse {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -203,7 +203,7 @@ function Test-AdvancedAuditPolicyConfigurationSystem {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -229,7 +229,7 @@ function Test-CISBenchmarkAdvancedAuditPolicyConfiguration {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -242,7 +242,7 @@ function Test-CISBenchmarkAdvancedAuditPolicyConfiguration {
         Test-AdvancedAuditPolicyConfigurationAccountLogon @Parameters
         Test-AdvancedAuditPolicyConfigurationAccountManagement @Parameters
         Test-AdvancedAuditPolicyConfigurationDetailedTracking @Parameters
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             Test-AdvancedAuditPolicyConfigurationDSAccess @Parameters
         }
         Test-AdvancedAuditPolicyConfigurationLogonLogoff @Parameters

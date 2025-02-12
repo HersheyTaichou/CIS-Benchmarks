@@ -37,11 +37,11 @@ function Test-CredentialsDelegationAllowEncryptionOracle {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.4.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Encryption Oracle Remediation' is set to 'Enabled: Force Updated Clients'"
@@ -104,11 +104,11 @@ function Test-CredentialsDelegationAllowProtectedCreds {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.4.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Remote host allows delegation of non-exportable credentials' is set to 'Enabled'"

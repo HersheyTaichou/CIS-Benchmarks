@@ -37,11 +37,11 @@ function Test-PowerManagementDCSettingIndexNetworkConnectivity {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.32.6.1'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Allow network connectivity during connected-standby (on battery)' is set to 'Disabled'"
@@ -104,11 +104,11 @@ function Test-PowerManagementACSettingIndexNetworkConnectivity {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.32.6.2'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Allow network connectivity during connected-standby (plugged in)' is set to 'Disabled'"
@@ -171,11 +171,11 @@ function Test-PowerManagementDCSettingIndexPasswordRequired {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.32.6.3'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Require a password when a computer wakes (on battery)' is set to 'Enabled'"
@@ -238,11 +238,11 @@ function Test-PowerManagementACSettingIndexPasswordRequired {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.32.6.4'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Require a password when a computer wakes (plugged in)' is set to 'Enabled'"

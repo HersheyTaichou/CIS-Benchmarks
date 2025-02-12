@@ -37,11 +37,11 @@ function Test-LogonBlockUserFromShowingAccountDetailsOnSignin {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.27.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Block user from showing account details on sign-in' is set to 'Enabled'"
@@ -104,11 +104,11 @@ function Test-LogonDontDisplayNetworkSelectionUI {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.27.2'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Do not display network selection UI' is set to 'Enabled'"
@@ -171,11 +171,11 @@ function Test-LogonDontEnumerateConnectedUsers {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.27.3'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Do not enumerate connected users on domain-joined computers' is set to 'Enabled'"
@@ -238,11 +238,11 @@ function Test-LogonEnumerateLocalUsers {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.27.4'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Enumerate local users on domain-joined computers' is set to 'Disabled' (MS only)"
@@ -305,11 +305,11 @@ function Test-LogonDisableLockScreenAppNotifications {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.27.5'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off app notifications on the lock screen' is set to 'Enabled'"
@@ -372,11 +372,11 @@ function Test-LogonBlockDomainPicturePassword {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.27.6'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off picture password sign-in' is set to 'Enabled'"
@@ -439,11 +439,11 @@ function Test-LogonAllowDomainPINLogon {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.27.7'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn on convenience PIN sign-in' is set to 'Disabled'"

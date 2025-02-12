@@ -51,7 +51,7 @@ function Test-AdministrativeTemplatesComputerControlPanel {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -120,7 +120,7 @@ function Test-AdministrativeTemplatesComputerLAPS {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -186,12 +186,12 @@ function Test-AdministrativeTemplatesComputerMSSecurityGuide {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
     process {
-        if ($ProductType -eq 3) {
+        if ($ProductType.Number -eq 3) {
             Test-MSSecurityGuideApplyUACRestrictionsToLocalAccountsOnNetworkLogons @Parameters
         }
         Test-MSSecurityGuideConfigureRPCPacketLevelPrivacySettingForIncomingConnections @Parameters
@@ -255,7 +255,7 @@ function Test-AdministrativeTemplatesComputerMSS {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -334,7 +334,7 @@ function Test-AdministrativeTemplatesComputerNetwork {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -409,14 +409,14 @@ function Test-AdministrativeTemplatesComputerPrinters {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
     process {
-        if ($ProductType -eq 2){
+        if ($ProductType.Number -eq 2){
             Test-PrintersRegisterSpoolerRemoteRpcEndPoint @Parameters
-        } elseif ($ProductType -eq 3 -and $Level -eq 2) {
+        } elseif ($ProductType.Number -eq 3 -and $Level -eq 2) {
             Test-PrintersRegisterSpoolerRemoteRpcEndPoint @Parameters
         }
         Test-PrintersRedirectionguardPolicy @Parameters
@@ -485,7 +485,7 @@ function Test-AdministrativeTemplatesComputerStartMenuAndTaskbar {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -550,7 +550,7 @@ Function Test-AdministrativeTemplatesComputerSystem {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -634,7 +634,7 @@ Function Test-AdministrativeTemplatesComputerWindowsComponents {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -729,7 +729,7 @@ function Test-CISBenchmarkAdministrativeTemplatesComputer {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
@@ -740,7 +740,7 @@ function Test-CISBenchmarkAdministrativeTemplatesComputer {
 
     process {
         Test-AdministrativeTemplatesComputerControlPanel @Parameters
-        if ($ProductType -eq 3) {
+        if ($ProductType.Number -eq 3) {
             Test-AdministrativeTemplatesComputerLAPS @Parameters
         }
         Test-AdministrativeTemplatesComputerMSSecurityGuide @Parameters

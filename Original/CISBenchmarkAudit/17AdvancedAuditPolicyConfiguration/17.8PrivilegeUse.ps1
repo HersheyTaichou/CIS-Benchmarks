@@ -38,11 +38,11 @@ function Test-PrivilegeUseAuditSensitivePrivilegeUse {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.8.1"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Sensitive Privilege Use' is set to 'Success and Failure'"

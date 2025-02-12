@@ -37,11 +37,11 @@ function Test-SearchAllowCloudSearch {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.59.2'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Allow Cloud Search' is set to 'Enabled: Disable Cloud Search'"
@@ -104,11 +104,11 @@ function Test-SearchAllowIndexingEncryptedStoresOrItems {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.59.3'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Allow indexing of encrypted files' is set to 'Disabled'"
@@ -171,11 +171,11 @@ function Test-SearchEnableDynamicContentInWSB {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.59.4'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Allow search highlights' is set to 'Disabled'"

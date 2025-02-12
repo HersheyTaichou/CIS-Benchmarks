@@ -50,7 +50,7 @@ function Test-UserSystemInternetCommunicationManagement {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     

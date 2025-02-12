@@ -49,7 +49,7 @@ function Test-WindowsRemoteManagementWinRMClient {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -111,7 +111,7 @@ function Test-WindowsRemoteManagementWinRMServer {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     

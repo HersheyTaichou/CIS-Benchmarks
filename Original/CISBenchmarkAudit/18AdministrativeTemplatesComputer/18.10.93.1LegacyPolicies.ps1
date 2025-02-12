@@ -37,11 +37,11 @@ function Test-LegacyPoliciesNoAutoRebootWithLoggedOnUsers {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.10.93.1.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'No auto-restart with logged on users for scheduled automatic updates installations' is set to 'Disabled'"

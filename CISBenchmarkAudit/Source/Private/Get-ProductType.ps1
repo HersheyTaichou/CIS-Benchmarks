@@ -29,23 +29,35 @@ function Get-ProductType {
     }
 
     process {
-        switch ($ProductType) {
+        $Return = switch ($ProductType) {
             1 {
-                $CISProfile = "Corporate/Enterprise Environment"
+                @{
+                    'Number' = $ProductType
+                    'Profile' = "Corporate/Enterprise Environment"
+                }
             }
             2 {
-                $CISProfile = "Domain Controller"
+                @{
+                    'Number' = $ProductType
+                    'Profile' = "Domain Controller"
+                }
             }
             3 {
-                $CISProfile = "Member Server"
+                @{
+                    'Number' = $ProductType
+                    'Profile' = "Member Server"
+                }
             }
             Default {
-                $CISProfile = $ProductType
+                @{
+                    'Number' = $ProductType
+                    'Profile' = "Unknown"
+                }
             }
         }
     }
 
     end {
-        return $CISProfile
+        return $Return
     }
 }

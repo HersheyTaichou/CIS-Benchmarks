@@ -58,7 +58,7 @@ function Test-PasswordPolicyComplexityEnabled {
         $Return += [CISBenchmark]::new(@{
             'Number' = $Number
             'Level' = $Level
-            'Profile' = $ProductType
+            'Profile' = $ProductType.Profile
             'Title' = $Title
             'Source' = "Secedit"
             'Setting' = $Setting
@@ -66,7 +66,7 @@ function Test-PasswordPolicyComplexityEnabled {
         })
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
-        if ($ProductType -eq 2) {
+        if ($ProductType.Number -eq 2) {
             try {
                 $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             }
@@ -77,7 +77,7 @@ function Test-PasswordPolicyComplexityEnabled {
                 $Return += [CISBenchmark]::new(@{
                     'Number' = $Number
                     'Level' = $Level
-                    'Profile' = $ProductType
+                    'Profile' = $ProductType.Profile
                     'Title' = $Title
                     'Source' = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
                     'Setting' = [bool]$FGPasswordPolicy.ComplexityEnabled

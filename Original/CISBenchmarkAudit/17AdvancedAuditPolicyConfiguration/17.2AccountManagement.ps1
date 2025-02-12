@@ -41,11 +41,11 @@ function Test-AccountManagementAuditApplicationGroupManagement {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.2.1"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Application Group Management' is set to 'Success and Failure'"
@@ -109,11 +109,11 @@ function Test-AccountManagementAuditComputerAccountManagement {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.2.2"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Computer Account Management' is set to include 'Success' (DC only)"
@@ -177,11 +177,11 @@ function Test-AccountManagementAuditDistributionGroupManagement {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.2.3"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Distribution Group Management' is set to include 'Success' (DC only)"
@@ -245,11 +245,11 @@ function Test-AccountManagementAuditOtherAccountManagementEvents {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.2.4"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Other Account Management Events' is set to include 'Success' (DC only)"
@@ -313,11 +313,11 @@ function Test-AccountManagementAuditSecurityGroupManagement {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.2.5"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Security Group Management' is set to include 'Success'"
@@ -381,11 +381,11 @@ function Test-AccountManagementAuditUserAccountManagement {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.2.6"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit User Account Management' is set to 'Success and Failure'"

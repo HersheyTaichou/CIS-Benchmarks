@@ -38,11 +38,11 @@ function Test-PersonalizationPreventEnablingLockScreenCamera {
         $Result = [CISBenchmark]::new()
         $Result.Number = "18.1.1.1"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Prevent enabling lock screen camera' is set to 'Enabled'"
@@ -106,11 +106,11 @@ function Test-PersonalizationPreventEnablingLockScreenSlideshow {
         $Result = [CISBenchmark]::new()
         $Result.Number = "18.1.1.2"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Prevent enabling lock screen slide show' is set to 'Enabled'"

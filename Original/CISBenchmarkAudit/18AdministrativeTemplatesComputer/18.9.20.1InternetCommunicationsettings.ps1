@@ -37,11 +37,11 @@ function Test-InternetCommunicationsettingsDisableWebPnPDownload {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.20.1.1'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off downloading of print drivers over HTTP' is set to 'Enabled'"
@@ -104,11 +104,11 @@ function Test-InternetCommunicationsettingsPreventHandwritingDataSharing {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.20.1.2'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off handwriting personalization data sharing' is set to 'Enabled'"
@@ -171,11 +171,11 @@ function Test-InternetCommunicationsettingsPreventHandwritingErrorReports {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.20.1.3'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off handwriting recognition error reporting' is set to 'Enabled'"
@@ -238,11 +238,11 @@ function Test-InternetCommunicationsettingsExitOnMSICW {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.20.1.4'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off Internet Connection Wizard if URL connection is referring to Microsoft.com' is set to 'Enabled'"
@@ -305,11 +305,11 @@ function Test-InternetCommunicationsettingsNoWebServices {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.20.1.5'
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off Internet download for Web publishing and online ordering wizards' is set to 'Enabled'"
@@ -372,11 +372,11 @@ function Test-InternetCommunicationsettingsDisableHTTPPrinting {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.20.1.6'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off printing over HTTP' is set to 'Enabled'"
@@ -439,11 +439,11 @@ function Test-InternetCommunicationsettingsNoRegistration {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.20.1.7'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off Registration if URL connection is referring to Microsoft.com' is set to 'Enabled'"
@@ -506,11 +506,11 @@ function Test-InternetCommunicationsettingsDisableContentFileUpdates {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.20.1.8'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off Search Companion content file updates' is set to 'Enabled'"
@@ -573,11 +573,11 @@ function Test-InternetCommunicationsettingsNoOnlinePrintsWizard {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.20.1.9'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off the `"Order Prints`" picture task' is set to 'Enabled'"
@@ -640,11 +640,11 @@ function Test-InternetCommunicationsettingsNoPublishingWizard {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.20.1.10'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off the `"Publish to Web`" task for files and folders' is set to 'Enabled'"
@@ -707,11 +707,11 @@ function Test-InternetCommunicationsettingsCEIP {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.20.1.11'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off the Windows Messenger Customer Experience Improvement Program' is set to 'Enabled'"
@@ -774,11 +774,11 @@ function Test-InternetCommunicationsettingsCEIPEnable {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.20.1.12'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off Windows Customer Experience Improvement Program' is set to 'Enabled'"
@@ -841,11 +841,11 @@ function Test-InternetCommunicationsettingsWindowsErrorReporting {
         $Result = [CISBenchmark]::new()
         $Result.Number = '18.9.20.1.13'
         $Result.Level = "L2"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Turn off Windows Error Reporting' is set to 'Enabled'"

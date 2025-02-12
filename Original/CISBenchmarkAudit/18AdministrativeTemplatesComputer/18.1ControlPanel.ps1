@@ -48,7 +48,7 @@ function Test-ControlPanelPersonalization {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     
@@ -108,7 +108,7 @@ function Test-ControlPanelRegionalAndLanguageOptions {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
     

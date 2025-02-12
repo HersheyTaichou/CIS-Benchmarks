@@ -38,11 +38,11 @@ function Test-DSAccessAuditDirectoryServiceAccess {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.4.1"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Directory Service Access' is set to include 'Failure' (DC only)"
@@ -106,11 +106,11 @@ function Test-DSAccessAuditDirectoryServiceChanges {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.4.2"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Directory Service Changes' is set to include 'Success' (DC only)"

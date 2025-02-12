@@ -53,13 +53,13 @@ function Test-SecurityOptionsAccounts {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
 
     process {
         Test-AccountsNoConnectedUser @Parameters
-        if ($ProductType -eq 3) {
+        if ($ProductType.Number -eq 3) {
             Test-AccountsEnableGuestAccount @Parameters
         }
         Test-AccountsLimitBlankPasswordUse @Parameters
@@ -122,7 +122,7 @@ function Test-SecurityOptionsAudit {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
 
@@ -186,7 +186,7 @@ function Test-SecurityOptionsDevices {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
 
@@ -251,7 +251,7 @@ function Test-SecurityOptionsDomainController {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
 
@@ -319,7 +319,7 @@ function Test-SecurityOptionsDomainMember {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
 
@@ -388,7 +388,7 @@ function Test-SecurityOptionsInteractiveLogin {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
 
@@ -398,11 +398,11 @@ function Test-SecurityOptionsInteractiveLogin {
         Test-InteractiveLogonInactivityTimeoutSecs @Parameters
         Test-InteractiveLogonLegalNoticeText @Parameters
         Test-InteractiveLogonLegalNoticeCaption @Parameters
-        if (($ProductType -eq 3) -and ($Level -eq 2)) {
+        if (($ProductType.Number -eq 3) -and ($Level -eq 2)) {
             Test-InteractiveLogonCachedLogonsCount @Parameters
         }
         Test-InteractiveLogonPasswordExpiryWarning @Parameters
-        if ($ProductType -eq 3) {
+        if ($ProductType.Number -eq 3) {
             Test-InteractiveLogonForceUnlockLogon @Parameters
         }
         Test-InteractiveLogonScRemoveOption @Parameters
@@ -461,7 +461,7 @@ function Test-SecurityOptionsMicrosoftNetworkClient {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
 
@@ -527,7 +527,7 @@ function Test-SecurityOptionsMicrosoftNetworkServer {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
 
@@ -536,7 +536,7 @@ function Test-SecurityOptionsMicrosoftNetworkServer {
         Test-MicrosoftNetworkServerRequireSecuritySignature @Parameters
         Test-MicrosoftNetworkServerEnableSecuritySignature @Parameters
         Test-MicrosoftNetworkServerEnableForcedLogOff @Parameters
-        if ($ProductType -eq 3) {
+        if ($ProductType.Number -eq 3) {
             Test-MicrosoftNetworkServerSmbServerNameHardeningLevel @Parameters
         }
     }
@@ -597,13 +597,13 @@ function Test-SecurityOptionsNetworkAccess {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
 
     process {
         Test-NetworkAccessLSAAnonymousNameLookup @Parameters
-        if ($ProductType -eq 3) {
+        if ($ProductType.Number -eq 3) {
             Test-NetworkAccessRestrictAnonymousSAM @Parameters
             Test-NetworkAccessRestrictAnonymous @Parameters
         }
@@ -616,7 +616,7 @@ function Test-SecurityOptionsNetworkAccess {
         Test-NetworkAccessAllowedPaths @Parameters
         Test-NetworkAccessRestrictNullSessAccess @Parameters
         
-        if ($ProductType -eq 3) {
+        if ($ProductType.Number -eq 3) {
             Test-NetworkAccessRestrictRemoteSAM @Parameters
         }
         Test-NetworkAccessNullSessionShares @Parameters
@@ -679,7 +679,7 @@ function Test-SecurityOptionsNetworkSecurity {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
 
@@ -750,7 +750,7 @@ function Test-SecurityOptionsShutdown {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
 
@@ -813,7 +813,7 @@ function Test-SecurityOptionsSystemObjects {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
 
@@ -878,7 +878,7 @@ function Test-SecurityOptionsUserAccountControl {
     begin {
         $Parameters = @{
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            'SecEditReport' = $SecEditReport
         }
     }
 

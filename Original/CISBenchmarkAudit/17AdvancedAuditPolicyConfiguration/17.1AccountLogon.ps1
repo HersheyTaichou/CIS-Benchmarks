@@ -38,11 +38,11 @@ function Test-AccountLogonAuditCredentialValidation {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.1.1"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Credential Validation' is set to 'Success and Failure'"
@@ -106,11 +106,11 @@ function Test-AccountLogonAuditKerberosAuthenticationService {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.1.2"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Kerberos Authentication Service' is set to 'Success and Failure' (DC Only)"
@@ -174,11 +174,11 @@ function Test-AccountLogonAuditKerberosServiceTicketOperations {
         $Result = [CISBenchmark]::new()
         $Result.Number = "17.1.3"
         $Result.Level = "L1"
-        if ($ProductType -eq 1) {
+        if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType -eq 2) {
+        } elseif ($ProductType.Number -eq 2) {
             $Result.Profile = "Domain Controller"
-        } elseif ($ProductType -eq 3) {
+        } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
         $Result.Title = "Ensure 'Audit Kerberos Service Ticket Operations' is set to 'Success and Failure' (DC Only)"

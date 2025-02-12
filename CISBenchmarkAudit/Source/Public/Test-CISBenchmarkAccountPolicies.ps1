@@ -54,7 +54,7 @@ function Test-CISBenchmarkAccountPolicies {
         $Parameters = @{
             "Level" = $Level
             "ProductType" = $ProductType
-            "GPResult" = $GPResult
+            "SecEditReport" = $SecEditReport
         }
         if ($NextGenerationWindowsSecurity) {
             $Parameters += @{
