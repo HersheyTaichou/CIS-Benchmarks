@@ -73,7 +73,7 @@ To test against just one section of the benchmark, the command format is Test-CI
 Here are two examples:
 
 ```PowerShell
-Test-CISBenchmarkAccountPolicies -Level 1
+Test-CISBenchmarkAccountPolicy -Level 1
 ```
 
 ```PowerShell
@@ -85,7 +85,7 @@ To run just one subsection, the command will be Test-SectionTitleSubsectionTitle
 As an example, this command will test against section "1 Account Policies\1.1 Password Policy".
 
 ```PowerShell
-Test-AccountPoliciesPasswordPolicy -Level 1
+Test-AccountPolicyPasswordPolicy -Level 1
 ```
 
 As another example, this will test against "2 Local Policies\2.3 Security Options\2.3.1 Accounts". Notice that the command is always based on the lowest two levels.

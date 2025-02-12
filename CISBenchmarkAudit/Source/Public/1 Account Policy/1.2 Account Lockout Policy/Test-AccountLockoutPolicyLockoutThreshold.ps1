@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-1.2.4 (L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'
+1.2.2 (L1) Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'
 
 .DESCRIPTION
-This policy setting determines the length of time before the Account lockout threshold resets to zero.
+This policy setting determines the number of failed logon attempts before the account is locked.
 
 This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
@@ -18,17 +18,17 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-Test-AccountLockoutPolicyResetLockoutCount
+Test-AccountLockoutPolicyLockoutThreshold
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-1.2.4      L1    Ensure 'Reset account lockout counter after' is set to '15 o... Group Policy Settings     True        
-1.2.4      L1    Ensure 'Reset account lockout counter after' is set to '15 o... Test Policy Fine Grain... True        
+1.2.2      L1    Ensure 'Account lockout threshold' is set to '5 or fewer inv... Group Policy Settings     True
+1.2.2      L1    Ensure 'Account lockout threshold' is set to '5 or fewer inv... Test Policy Fine Grain... True
 
 .NOTES
 General notes
 #>
-function Test-AccountLockoutPolicyResetLockoutCount {
+function Test-AccountLockoutPolicyLockoutThreshold {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -38,7 +38,7 @@ function Test-AccountLockoutPolicyResetLockoutCount {
     begin {
         $Return = @()
         $Result = [CISBenchmark]::new()
-        $Result.Number = "1.2.4"
+        $Result.Number = '1.2.2'
         $Result.Level = "L1"
         if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
@@ -47,24 +47,23 @@ function Test-AccountLockoutPolicyResetLockoutCount {
         } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
-		$Result.Source = "Group Policy Settings"
+        $Result.Title = "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
+        $Result.Source = 'Group Policy Settings'
 
         #Find the Password History Size applied to this machine
-        $EntryName = "ResetLockoutCount"
+        $EntryName = "LockoutBadCount"
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
         $Result.Setting = [int]$Result.Entry.SettingNumber
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
-        if ($Result.Setting -ge "15") {
+        if ($Result.Setting -gt "0" -and $Result.Setting -le "5") {
             $Result.SetCorrectly = $true
         } else {
             $Result.SetCorrectly = $false
         }
 
-        
         $Return += $Result
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
@@ -72,17 +71,18 @@ function Test-AccountLockoutPolicyResetLockoutCount {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 $Result = [CISBenchmark]::new()
-                $Result.Number = "1.2.4"
+                $Result.Number = "1.2.2"
                 $Result.Level = "L1"
                 $Result.Profile = "Domain Controller"
-                $Result.Title = "Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'"
+                $Result.Title = "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
                 $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                if ($FGPasswordPolicy.LockoutObservationWindow -ge (New-TimeSpan -Minutes 15)) {
+                if ($FGPasswordPolicy.LockoutThreshold -gt "0" -and $FGPasswordPolicy.LockoutThreshold -le "5") {
                     $Result.SetCorrectly = $true
                 } else {
                     $Result.SetCorrectly = $false
                 }
-                $Result.Setting = [bool]$FGPasswordPolicy.LockoutObservationWindow
+
+                $Result.Setting = [bool]$FGPasswordPolicy.LockoutThreshold
                 $Result.Entry = $FGPasswordPolicy
                 $Return += $Result
             }

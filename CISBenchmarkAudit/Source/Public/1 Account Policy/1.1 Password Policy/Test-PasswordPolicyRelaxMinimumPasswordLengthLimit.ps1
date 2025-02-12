@@ -16,16 +16,16 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-Test-PasswordPolicyRelaxMinimumPasswordLengthLimits
+Test-PasswordPolicyRelaxMinimumPasswordLengthLimit
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-1.1.6      L1    Ensure 'Relax minimum password length limits' is set to 'Ena... Group Policy Settings     True        
+1.1.6      L1    Ensure 'Relax minimum password length limits' is set to 'Ena... Group Policy Settings     True
 
 .NOTES
 General notes
 #>
-function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
+function Test-PasswordPolicyRelaxMinimumPasswordLengthLimit {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)

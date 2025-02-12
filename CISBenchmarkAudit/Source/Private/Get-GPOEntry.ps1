@@ -44,9 +44,8 @@ function Get-GPOEntry {
         [Parameter(Mandatory)][ValidateSet("ComputerResults","UserResults")][string]$Results,
         [Parameter()][xml]$GPResult = (Get-GPResult),
         [Parameter()][string]$Category
-        
     )
-    
+
     process {
         if ($Category) {
             foreach ($data in $GPResult.Rsop.$Results.ExtensionData) {

@@ -1,13 +1,13 @@
 function Get-SecEditReport {
     [CmdletBinding()]
     param ()
-    
+
     begin {
         $SecEdit  = "C:\Windows\System32\SecEdit.exe"
         $TempFileName = [System.IO.Path]::GetTempFileName()
         $Area = "SECURITYPOLICY"
     }
-    
+
     process {
         If (-Not (Test-Path $SecEdit)) {
             Write-Error "$SecEdit is required and was not found."
@@ -16,7 +16,7 @@ function Get-SecEditReport {
             $Data = Get-IniContent $TempFileName
         }
     }
-    
+
     end {
         Remove-Item $TempFileName
         return $Data

@@ -22,8 +22,8 @@ Test-PasswordPolicyMaxPasswordAge
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-1.1.2      L1    Ensure 'Maximum password age' is set to '365 or fewer days, ... Group Policy Settings     True        
-1.1.2      L1    Ensure 'Maximum password age' is set to '365 or fewer days, ... Test Policy Fine Grain... True        
+1.1.2      L1    Ensure 'Maximum password age' is set to '365 or fewer days, ... Group Policy Settings     True
+1.1.2      L1    Ensure 'Maximum password age' is set to '365 or fewer days, ... Test Policy Fine Grain... True
 
 .NOTES
 General notes

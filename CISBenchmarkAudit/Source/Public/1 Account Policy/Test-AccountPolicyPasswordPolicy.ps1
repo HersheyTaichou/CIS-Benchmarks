@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-1.2 Account Lockout Policy
+1.1 Password Policy
 
 .DESCRIPTION
-This command will test all the settings defined in section 1.2 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 1.1 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
 This parameter is used to filter by the benchmark level.
@@ -30,41 +30,37 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-Test-AccountPoliciesAccountLockoutPolicy
+Test-PasswordPolicy -Level 1 -ServerType DomainController
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-1.2.1      L1    Ensure 'Account lockout duration' is set to '15 or more minu... Group Policy Settings     True        
-1.2.2      L1    Ensure 'Account lockout threshold' is set to '5 or fewer inv... Group Policy Settings     True        
-1.2.4      L1    Ensure 'Reset account lockout counter after' is set to '15 o... Group Policy Settings     True        
+1.1.1      L1    Ensure 'Enforce password history' is set to '24 or more pass... Group Policy Settings     True
+1.1.2      L1    Ensure 'Maximum password age' is set to '365 or fewer days, ... Group Policy Settings     True
+1.1.3      L1    Ensure 'Minimum password age' is set to '1 or more day(s)'      Group Policy Settings     True
 
 .NOTES
 General notes
 #>
-function Test-AccountPoliciesAccountLockoutPolicy {
+function Test-AccountPolicyPasswordPolicy {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
+
     )
-    begin {
-        $Parameters = @{
-            "ProductType" = $ProductType
-            'SecEditReport' = $SecEditReport
-        }
-    }
+
     Process {
         if ($Level -ge 1) {
-            Test-AccountLockoutPolicyLockoutDuration @Parameters
-            Test-AccountLockoutPolicyLockoutThreshold @Parameters
-            if ($ProductType.Number -eq 3) {
-                Test-AccountLockoutPolicyAdminLockout @Parameters
+            Test-PasswordPolicyPasswordHistory -ProductType $ProductType -SecEditReport $SecEditReport
+            Test-PasswordPolicyMaxPasswordAge -ProductType $ProductType -SecEditReport $SecEditReport
+            Test-PasswordPolicyMinPasswordAge -ProductType $ProductType -SecEditReport $SecEditReport
+            Test-PasswordPolicyMinPasswordLength -ProductType $ProductType -SecEditReport $SecEditReport
+            Test-PasswordPolicyComplexityEnabled -ProductType $ProductType -SecEditReport $SecEditReport
+            if ($ProductType.Number -eq 1 -or $ProductType.Number -eq 3) {
+                Test-PasswordPolicyRelaxMinimumPasswordLengthLimit -ProductType $ProductType
             }
-            Test-AccountLockoutPolicyResetLockoutCount @Parameters
+            Test-PasswordPolicyReversibleEncryption -ProductType $ProductType -SecEditReport $SecEditReport
         }
-        
     }
-
 }

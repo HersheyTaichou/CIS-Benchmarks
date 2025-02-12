@@ -35,7 +35,7 @@ function Get-GPResult {
         [Parameter()][string]$Path = "$([System.IO.Path]::GetTempFileName())",
         [Parameter()][switch]$Keep
     )
-    
+
     begin {
         if (-not(Test-Path $Path)) {
             Write-Verbose "Updating the local group policy settings"
@@ -47,12 +47,12 @@ function Get-GPResult {
             Write-Verbose $Message
         }
     }
-    
+
     process {
         Write-Verbose "Storing the resultant set of policies in a variable"
         [xml]$XMLgpresult = Get-Content $Path
     }
-    
+
     end {
         if (-not($Keep)) {
             Remove-Item $Path

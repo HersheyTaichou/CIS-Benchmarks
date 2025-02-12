@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-1.1.7 (L1) Ensure 'Store passwords using reversible encryption' is set to 'Disabled'
+1.1.3 (L1) Ensure 'Minimum password age' is set to '1 or more day(s)'
 
 .DESCRIPTION
-This policy setting determines whether the operating system stores passwords in a way that uses reversible encryption, which provides support for application protocols that require knowledge of the user's password for authentication purposes. Passwords that are stored with reversible encryption are essentially the same as plaintext versions of the passwords.
+This policy setting determines the number of days that you must use a password before you can change it. The range of values for this policy setting is between 1 and 999 days. (You may also set the value to 0 to allow immediate password changes.) The default value for this setting is 0 days.
 
 This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
@@ -18,17 +18,18 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-Test-PasswordPolicyReversibleEncryption
+Test-PasswordPolicyMinPasswordAge
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-1.1.7      L1    Ensure 'Store passwords using reversible encryption' is set ... Group Policy Settings     True        
-1.1.7      L1    Ensure 'Store passwords using reversible encryption' is set ... Test Policy Fine Grain... True        
+1.1.3      L1    Ensure 'Minimum password age' is set to '1 or more day(s)'      Group Policy Settings     True
+1.1.3      L1    Ensure 'Minimum password age' is set to '1 or more day(s)'      Test Policy Fine Grain... True
+
 
 .NOTES
 General notes
 #>
-function Test-PasswordPolicyReversibleEncryption {
+function Test-PasswordPolicyMinPasswordAge {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -38,15 +39,19 @@ function Test-PasswordPolicyReversibleEncryption {
 
     begin {
         $Return = @()
-        $Number = "1.1.7"
+        $Number = "1.1.3"
         $Level = "L1"
-        $Title = "Ensure 'Store passwords using reversible encryption' is set to 'Disabled'"
-        $Setting = [bool]$SecEditReport.'System Access'.ClearTextPassword
+        $Title = "Ensure 'Minimum password age' is set to '1 or more day(s)'"
+        $Setting = [int]$SecEditReport.'System Access'.MinimumPasswordAge
     }
 
     process {
-        # Check if the GPO setting meets the CIS Benchmark
-        $SetCorrectly = -not($Setting)
+        # Check if the current setting meets the CIS Benchmark
+        if ($Setting -gt 0) {
+            $SetCorrectly = $true
+        } else {
+            $SetCorrectly = $false
+        }
 
         $Return += [CISBenchmark]::new(@{
             'Number' = $Number
@@ -73,8 +78,12 @@ function Test-PasswordPolicyReversibleEncryption {
                     'Profile' = $ProductType.Profile
                     'Title' = $Title
                     'Source' = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                    'Setting' = [bool]$FGPasswordPolicy.ReversibleEncryptionEnabled
-                    'SetCorrectly' = -not([bool]$FGPasswordPolicy.ReversibleEncryptionEnabled)
+                    'Setting' = [int]$FGPasswordPolicy.MinPasswordAge
+                    'SetCorrectly' = if ($FGPasswordPolicy.MinPasswordAge -gt (New-TimeSpan -Days 0)) {
+                            $true
+                        } else {
+                            $false
+                        }
                     'Entry' = $FGPasswordPolicy
                 })
             }
@@ -84,4 +93,5 @@ function Test-PasswordPolicyReversibleEncryption {
     end {
         return $Return
     }
+
 }

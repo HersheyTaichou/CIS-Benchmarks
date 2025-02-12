@@ -1,9 +1,19 @@
 <#
 .SYNOPSIS
-1.1.3 (L1) Ensure 'Minimum password age' is set to '1 or more day(s)'
+1.1.5 (L1) Ensure 'Password must meet complexity requirements' is set to 'Enabled'
 
 .DESCRIPTION
-This policy setting determines the number of days that you must use a password before you can change it. The range of values for this policy setting is between 1 and 999 days. (You may also set the value to 0 to allow immediate password changes.) The default value for this setting is 0 days.
+This policy setting checks all new passwords to ensure that they meet basic requirements for strong passwords.
+
+When this policy is enabled, passwords must meet the following minimum requirements:
+- Not contain the user's account name or parts of the user's full name that exceed two consecutive characters
+- Be at least six characters in length
+- Contain characters from three of the following categories:
+  - English uppercase characters (A through Z)
+  - English lowercase characters (a through z)
+  - Base 10 digits (0 through 9)
+  - Non-alphabetic characters (for example, !, $, #, %)
+  - A catch-all category of any Unicode character that does not fall under the previous four categories. This fifth category can be regionally specific.
 
 This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
@@ -18,18 +28,17 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-Test-PasswordPolicyMinPasswordAge
+Test-PasswordPolicyComplexityEnabled
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-1.1.3      L1    Ensure 'Minimum password age' is set to '1 or more day(s)'      Group Policy Settings     True        
-1.1.3      L1    Ensure 'Minimum password age' is set to '1 or more day(s)'      Test Policy Fine Grain... True        
-
+1.1.5      L1    Ensure 'Password must meet complexity requirements' is set t... Group Policy Settings     True
+1.1.5      L1    Ensure 'Password must meet complexity requirements' is set t... Test Policy Fine Grain... True
 
 .NOTES
 General notes
 #>
-function Test-PasswordPolicyMinPasswordAge {
+function Test-PasswordPolicyComplexityEnabled {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -39,20 +48,13 @@ function Test-PasswordPolicyMinPasswordAge {
 
     begin {
         $Return = @()
-        $Number = "1.1.3"
+        $Number = "1.1.5"
         $Level = "L1"
-        $Title = "Ensure 'Minimum password age' is set to '1 or more day(s)'"
-        $Setting = [int]$SecEditReport.'System Access'.MinimumPasswordAge
+        $Title = "Ensure 'Password must meet complexity requirements' is set to 'Enabled'"
+        $Setting = [bool]$SecEditReport.'System Access'.PasswordComplexity
     }
 
     process {
-        # Check if the current setting meets the CIS Benchmark
-        if ($Setting -gt 0) {
-            $SetCorrectly = $true
-        } else {
-            $SetCorrectly = $false
-        }
-
         $Return += [CISBenchmark]::new(@{
             'Number' = $Number
             'Level' = $Level
@@ -60,7 +62,7 @@ function Test-PasswordPolicyMinPasswordAge {
             'Title' = $Title
             'Source' = "Secedit"
             'Setting' = $Setting
-            'SetCorrectly' = $SetCorrectly
+            'SetCorrectly' = $Setting
         })
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
@@ -78,12 +80,8 @@ function Test-PasswordPolicyMinPasswordAge {
                     'Profile' = $ProductType.Profile
                     'Title' = $Title
                     'Source' = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                    'Setting' = [int]$FGPasswordPolicy.MinPasswordAge
-                    'SetCorrectly' = if ($FGPasswordPolicy.MinPasswordAge -gt (New-TimeSpan -Days 0)) {
-                            $true
-                        } else {
-                            $false
-                        }
+                    'Setting' = [bool]$FGPasswordPolicy.ComplexityEnabled
+                    'SetCorrectly' = [bool]$FGPasswordPolicy.ComplexityEnabled
                     'Entry' = $FGPasswordPolicy
                 })
             }
@@ -93,5 +91,4 @@ function Test-PasswordPolicyMinPasswordAge {
     end {
         return $Return
     }
-
 }

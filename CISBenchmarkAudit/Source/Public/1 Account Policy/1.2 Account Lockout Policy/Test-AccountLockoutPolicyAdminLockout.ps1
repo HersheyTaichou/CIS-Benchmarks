@@ -22,7 +22,7 @@ Test-AccountLockoutPolicyAdminLockout
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-1.2.4      L1    Ensure 'Allow Administrator account lockout' is set to 'Enab... Group Policy Settings     True        
+1.2.4      L1    Ensure 'Allow Administrator account lockout' is set to 'Enab... Group Policy Settings     True
 
 .NOTES
 General notes

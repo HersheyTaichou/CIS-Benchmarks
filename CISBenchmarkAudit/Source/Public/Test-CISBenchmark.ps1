@@ -34,7 +34,7 @@ Test-CISBenchmark -Level 1
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-1.1.1     (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'                           Group Policy Settings     True    
+1.1.1     (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'                           Group Policy Settings     True
 1.1.1     (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'                           Test Policy Fine Grain... True
 
 .NOTES
@@ -44,7 +44,7 @@ function Test-CISBenchmark {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][switch]$NextGenerationWindowsSecurity,
+        #[Parameter()][switch]$NextGenerationWindowsSecurity,
         [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
@@ -59,7 +59,7 @@ function Test-CISBenchmark {
 
     process {
         # 1 Account Policies
-        Test-CISBenchmarkAccountPolicies @Parameters
+        Test-CISBenchmarkAccountPolicy @Parameters
         # 2 Local Policies
         #Test-CISBenchmarkLocalPolicies @Parameters
         # 5 System Services

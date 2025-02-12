@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-1.1 Password Policy
+1 Account Policies
 
 .DESCRIPTION
-This command will test all the settings defined in section 1.1 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
+This command will test all the settings defined in section 1 of the CIS Microsoft Windows Server 2022 Benchmark v2.0.0.
 
 .PARAMETER Level
 This parameter is used to filter by the benchmark level.
@@ -30,37 +30,37 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-Test-PasswordPolicy -Level 1 -ServerType DomainController
+Test-CISBenchmarkAccountPolicy
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-1.1.1      L1    Ensure 'Enforce password history' is set to '24 or more pass... Group Policy Settings     True        
-1.1.2      L1    Ensure 'Maximum password age' is set to '365 or fewer days, ... Group Policy Settings     True        
-1.1.3      L1    Ensure 'Minimum password age' is set to '1 or more day(s)'      Group Policy Settings     True        
+1.1.1      L1    Ensure 'Enforce password history' is set to '24 or more pass... Group Policy Settings     True
+1.1.2      L1    Ensure 'Maximum password age' is set to '365 or fewer days, ... Group Policy Settings     True
+1.1.3      L1    Ensure 'Minimum password age' is set to '1 or more day(s)'      Group Policy Settings     True
 
 .NOTES
 General notes
 #>
-function Test-AccountPoliciesPasswordPolicy {
+function Test-CISBenchmarkAccountPolicy {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
         [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
-
     )
+
+    Begin {
+        $Parameters = @{
+            "Level" = $Level
+            "ProductType" = $ProductType
+            "SecEditReport" = $SecEditReport
+        }
+    }
 
     Process {
         if ($Level -ge 1) {
-            Test-PasswordPolicyPasswordHistory -ProductType $ProductType -SecEditReport $SecEditReport
-            Test-PasswordPolicyMaxPasswordAge -ProductType $ProductType -SecEditReport $SecEditReport
-            Test-PasswordPolicyMinPasswordAge -ProductType $ProductType -SecEditReport $SecEditReport
-            Test-PasswordPolicyMinPasswordLength -ProductType $ProductType -SecEditReport $SecEditReport
-            Test-PasswordPolicyComplexityEnabled -ProductType $ProductType -SecEditReport $SecEditReport
-            if ($ProductType.Number -eq 1 -or $ProductType.Number -eq 3) {
-                Test-PasswordPolicyRelaxMinimumPasswordLengthLimits -ProductType $ProductType
-            }
-            Test-PasswordPolicyReversibleEncryption -ProductType $ProductType -SecEditReport $SecEditReport
+            Test-AccountPolicyPasswordPolicy @Parameters
+            Test-AccountPolicyAccountLockoutPolicy @Parameters
         }
     }
 }

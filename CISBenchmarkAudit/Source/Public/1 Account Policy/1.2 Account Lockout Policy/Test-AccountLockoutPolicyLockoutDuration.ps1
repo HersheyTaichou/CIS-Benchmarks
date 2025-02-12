@@ -22,8 +22,8 @@ Test-AccountLockoutPolicyLockoutDuration
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-1.2.1      L1    Ensure 'Account lockout duration' is set to '15 or more minu... Group Policy Settings     True        
-1.2.1      L1    Ensure 'Account lockout duration' is set to '15 or more minu... Test Policy Fine Grain... True        
+1.2.1      L1    Ensure 'Account lockout duration' is set to '15 or more minu... Group Policy Settings     True
+1.2.1      L1    Ensure 'Account lockout duration' is set to '15 or more minu... Test Policy Fine Grain... True
 
 .NOTES
 General notes
@@ -65,7 +65,6 @@ function Test-AccountLockoutPolicyLockoutDuration {
             $Result.SetCorrectly = $false
         }
 
-        
         $Return += $Result
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark

@@ -223,10 +223,10 @@ FunctionsToExport = @(
     # CISBenchmarkAudit
     'Test-CISBenchmark','Get-GPResult',
     # 1 Account Policies
-    'Test-AccountPoliciesPasswordPolicy','Test-AccountPoliciesAccountLockoutPolicy','Test-CISBenchmarkAccountPolicies',
+    'Test-AccountPolicyPasswordPolicy','Test-AccountPolicyAccountLockoutPolicy','Test-CISBenchmarkAccountPolicy',
     # 1.1 Password Policy
     'Test-PasswordPolicyPasswordHistory','Test-PasswordPolicyMaxPasswordAge','Test-PasswordPolicyMinPasswordAge','Test-PasswordPolicyMinPasswordLength',
-    'Test-PasswordPolicyComplexityEnabled','Test-PasswordPolicyRelaxMinimumPasswordLengthLimits','Test-PasswordPolicyReversibleEncryption',
+    'Test-PasswordPolicyComplexityEnabled','Test-PasswordPolicyRelaxMinimumPasswordLengthLimit','Test-PasswordPolicyReversibleEncryption',
     # 1.2 Account Lockout Policy
     'Test-AccountLockoutPolicyLockoutDuration','Test-AccountLockoutPolicyLockoutThreshold','Test-AccountLockoutPolicyAdminLockout','Test-AccountLockoutPolicyResetLockoutCount',
     # 2 Local Policies

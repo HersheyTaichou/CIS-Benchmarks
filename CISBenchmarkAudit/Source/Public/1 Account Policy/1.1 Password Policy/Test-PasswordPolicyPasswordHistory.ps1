@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-1.1.4 (L1) Ensure 'Minimum password length' is set to '14 or more character(s)'
+1.1.1 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'
 
 .DESCRIPTION
-This policy setting determines the least number of characters that make up a password for a user account. In enterprise environments, the ideal value for the Minimum password length setting is 14 characters, however you should adjust this value to meet your organization's business requirements.
+This policy setting determines the number of renewed, unique passwords that have to be associated with a user account before you can reuse an old password. The value for this policy setting must be between 0 and 24 passwords. The default value for stand-alone systems is 0 passwords, but the default setting when joined to a domain is 24 passwords. To maintain the effectiveness of this policy setting, use the Minimum password age setting to prevent users from repeatedly changing their password.
 
 This command will also check any configured Fine Grained Password Policies, to confirm compliance.
 
@@ -18,17 +18,17 @@ This is used to set the type of OS that should be tested against based on the pr
 This is used to define the GPO XML variable to test
 
 .EXAMPLE
-Test-PasswordPolicyMinPasswordLength
+Test-PasswordPolicyPasswordHistory
 
 Number     Level Title                                                           Source                    SetCorrectly
 ------     ----- -----                                                           ------                    ------------
-1.1.4      L1    Ensure 'Minimum password length' is set to '14 or more chara... Group Policy Settings     True        
-1.1.4      L1    Ensure 'Minimum password length' is set to '14 or more chara... Test Policy Fine Grain... True        
+1.1.1      L1    Ensure 'Enforce password history' is set to '24 or more pass... Group Policy Settings     True
+1.1.1      L1    Ensure 'Enforce password history' is set to '24 or more pass... Test Policy Fine Grain... True
 
 .NOTES
 General notes
 #>
-function Test-PasswordPolicyMinPasswordLength {
+function Test-PasswordPolicyPasswordHistory {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
@@ -38,15 +38,14 @@ function Test-PasswordPolicyMinPasswordLength {
 
     begin {
         $Return = @()
-        $Number = "1.1.4"
+        $Number = "1.1.1"
         $Level = "L1"
-        $Title = "Ensure 'Minimum password length' is set to '14 or more character(s)'"
-        $Setting = [int]$SecEditReport.'System Access'.MinimumPasswordLength
+        $Title = "Ensure 'Enforce password history' is set to '24 or more password(s)'"
+        $Setting = [int]$SecEditReport.'System Access'.PasswordHistorySize
     }
 
     process {
-        # Check if the GPO setting meets the CIS Benchmark
-        if ($Setting -ge 14) {
+        if ($Setting -ge 24) {
             $SetCorrectly = $true
         } else {
             $SetCorrectly = $false
@@ -77,8 +76,8 @@ function Test-PasswordPolicyMinPasswordLength {
                     'Profile' = $ProductType.Profile
                     'Title' = $Title
                     'Source' = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                    'Setting' = [int]$FGPasswordPolicy.MinPasswordLength
-                    'SetCorrectly' = if ($FGPasswordPolicy.MinPasswordLength -ge 14) {
+                    'Setting' = [int]$FGPasswordPolicy.PasswordHistoryCount
+                    'SetCorrectly' = if ($FGPasswordPolicy.PasswordHistoryCount -ge 24) {
                             $true
                         } else {
                             $false
