@@ -29,7 +29,7 @@ function Test-UserAccountControlFilterAdministratorToken {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
@@ -97,7 +97,7 @@ function Test-UserAccountControlConsentPromptBehaviorAdmin {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
@@ -165,7 +165,7 @@ function Test-UserAccountControlConsentPromptBehaviorUser {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
@@ -235,7 +235,7 @@ function Test-UserAccountControlEnableInstallerDetection {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
@@ -303,7 +303,7 @@ function Test-UserAccountControlEnableSecureUIAPaths {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
@@ -371,7 +371,7 @@ function Test-UserAccountControlEnableLUA {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
@@ -439,7 +439,7 @@ function Test-UserAccountControlPromptOnSecureDesktop {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
@@ -507,7 +507,7 @@ function Test-UserAccountControlEnableVirtualization {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][int]$ProductType = (Get-ProductType),
+        [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 

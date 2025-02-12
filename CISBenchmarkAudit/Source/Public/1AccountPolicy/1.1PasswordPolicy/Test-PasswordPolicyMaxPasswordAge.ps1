@@ -32,7 +32,7 @@ function Test-PasswordPolicyMaxPasswordAge {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
-        [Parameter()][ValidateSet(1,2,3)][string]$ProductType = (Get-ProductType),
+        [Parameter()][string]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
