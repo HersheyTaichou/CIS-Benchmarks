@@ -38,55 +38,53 @@ function Test-PasswordPolicyMinPasswordLength {
 
     begin {
         $Return = @()
-        $Result = [CISBenchmark]::new()
-        $Result.Number = "1.1.4"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Minimum password length' is set to '14 or more character(s)'"
-		$Result.Source = "Group Policy Settings"
-
-        #Find the Password History Size applied to this machine
-        $EntryName = "MinimumPasswordLength"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
-        $Result.Setting = [int]$Result.Entry.SettingNumber
+        $Number = "1.1.4"
+        $Level = "L1"
+        $Title = "Ensure 'Minimum password length' is set to '14 or more character(s)'"
+        $Setting = [int]$SecEditReport.'System Access'.MinimumPasswordLength
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
-        if ($Result.Setting -ge 14) {
-            $Result.SetCorrectly = $true
+        if ($Setting -ge 14) {
+            $SetCorrectly = $true
         } else {
-            $Result.SetCorrectly = $false
+            $SetCorrectly = $false
         }
 
-        
-        $Return += $Result
+        $Return += [CISBenchmark]::new(@{
+            'Number' = $Number
+            'Level' = $Level
+            'Profile' = $ProductType.Profile
+            'Title' = $Title
+            'Source' = "Secedit"
+            'Setting' = $Setting
+            'SetCorrectly' = $SetCorrectly
+        })
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType.Number -eq 2) {
-            $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-            foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-                $Result = [CISBenchmark]::new()
-                $Result.Number = '1.1.4'
-                $Result.Level = "L1"
-                $Result.Profile = "Domain Controller"
-                $Result.Title = "Ensure 'Minimum password length' is set to '14 or more character(s)'"
-                $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                $Result.Setting = $FGPasswordPolicy.MinPasswordLength
-                
-                if ($FGPasswordPolicy.MinPasswordLength -ge 14) {
-                    $Result.SetCorrectly = $true
-                } else {
-                    $Result.SetCorrectly = $false
-                }
-                $Result.Entry = $FGPasswordPolicy
-                $Return += $Result
+            try {
+                $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
+            }
+            catch {
+                Write-Warning "Unable to review Fine Grained Password Policies."
+            }
+            $Return += foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+                [CISBenchmark]::new(@{
+                    'Number' = $Number
+                    'Level' = $Level
+                    'Profile' = $ProductType.Profile
+                    'Title' = $Title
+                    'Source' = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                    'Setting' = [int]$FGPasswordPolicy.MinPasswordLength
+                    'SetCorrectly' = if ($FGPasswordPolicy.MinPasswordLength -ge 14) {
+                            $true
+                        } else {
+                            $false
+                        }
+                    'Entry' = $FGPasswordPolicy
+                })
             }
         }
     }

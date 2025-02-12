@@ -34,32 +34,23 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
     )
 
     begin {
-        $EntryName = "MACHINE\System\CurrentControlSet\Control\SAM\RelaxMinimumPasswordLengthLimits"
-        $Result = [CISBenchmark]::new()
-        $Result.Number = '1.1.6'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Relax minimum password length limits' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
-
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
-        $Result.Setting = [bool]$Result.Entry.SettingNumber
+        $Return = @()
+        $Number = "1.1.6"
+        $Level = "L1"
+        $Title = "Ensure 'Relax minimum password length limits' is set to 'Enabled'"
+        $Setting = [bool](Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\" -Name "SAM:RelaxMinimumPasswordLengthLimits").'SAM:RelaxMinimumPasswordLengthLimits'
     }
 
     process {
-        if ($Result.Setting) {
-            $Result.SetCorrectly = $Result.Setting
-        } else {
-            $Result.SetCorrectly = $false
-        }
-        
-        $Return += $Result
+        $Return += [CISBenchmark]::new(@{
+            'Number' = $Number
+            'Level' = $Level
+            'Profile' = $ProductType.Profile
+            'Title' = $Title
+            'Source' = "Secedit"
+            'Setting' = $Setting
+            'SetCorrectly' = $Setting
+        })
     }
 
     end {

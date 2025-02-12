@@ -64,7 +64,7 @@ function Test-AccountPoliciesPasswordPolicy {
             Test-PasswordPolicyMinPasswordAge @Parameters
             Test-PasswordPolicyMinPasswordLength @Parameters
             Test-PasswordPolicyComplexityEnabled @Parameters
-            if ($ProductType.Number -eq 3) {
+            if ($ProductType.Number -eq 1 -or $ProductType.Number -eq 3) {
                 Test-PasswordPolicyRelaxMinimumPasswordLengthLimits @Parameters
             }
             Test-PasswordPolicyReversibleEncryption @Parameters

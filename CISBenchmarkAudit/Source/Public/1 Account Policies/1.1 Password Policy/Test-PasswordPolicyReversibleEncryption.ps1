@@ -38,48 +38,45 @@ function Test-PasswordPolicyReversibleEncryption {
 
     begin {
         $Return = @()
-        $Result = [CISBenchmark]::new()
-        $Result.Number = "1.1.7"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Store passwords using reversible encryption' is set to 'Disabled'"
-        $Result.Source = "Group Policy Settings"
-
-        #Find the Password History Size applied to this machine
-        $EntryName = "ClearTextPassword"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
+        $Number = "1.1.7"
+        $Level = "L1"
+        $Title = "Ensure 'Store passwords using reversible encryption' is set to 'Disabled'"
+        $Setting = [bool]$SecEditReport.'System Access'.ClearTextPassword
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
-        $Result.Setting = [System.Convert]::ToBoolean($Result.Entry.SettingBoolean)
-        $Result.SetCorrectly = -not($Result.Setting)
+        $SetCorrectly = -not($Setting)
 
-        
-        $Return += $Result
+        $Return += [CISBenchmark]::new(@{
+            'Number' = $Number
+            'Level' = $Level
+            'Profile' = $ProductType.Profile
+            'Title' = $Title
+            'Source' = "Secedit"
+            'Setting' = $Setting
+            'SetCorrectly' = $SetCorrectly
+        })
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType.Number -eq 2) {
-            $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-            foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-                $Result = [CISBenchmark]::new()
-                $Result.Number = '1.1.7'
-                $Result.Level = "L1"
-                $Result.Profile = "Domain Controller"
-                $Result.Title = "Ensure 'Store passwords using reversible encryption' is set to 'Disabled'"
-                $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                $Result.Setting = $FGPasswordPolicy.ReversibleEncryptionEnabled
-                
-                $Result.SetCorrectly = -not([bool]$FGPasswordPolicy.ReversibleEncryptionEnabled)
-                $Result.Entry = $FGPasswordPolicy
-
-                $Return += $Result
+            try {
+                $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
+            }
+            catch {
+                Write-Warning "Unable to review Fine Grained Password Policies."
+            }
+            $Return += foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+                [CISBenchmark]::new(@{
+                    'Number' = $Number
+                    'Level' = $Level
+                    'Profile' = $ProductType.Profile
+                    'Title' = $Title
+                    'Source' = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                    'Setting' = [bool]$FGPasswordPolicy.ReversibleEncryptionEnabled
+                    'SetCorrectly' = -not([bool]$FGPasswordPolicy.ReversibleEncryptionEnabled)
+                    'Entry' = $FGPasswordPolicy
+                })
             }
         }
     }

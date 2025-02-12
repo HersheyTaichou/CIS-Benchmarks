@@ -42,7 +42,7 @@ function Test-PasswordPolicyComplexityEnabled {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
-        [Parameter()][string]$ProductType = (Get-ProductType),
+        [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
@@ -73,8 +73,8 @@ function Test-PasswordPolicyComplexityEnabled {
             catch {
                 Write-Warning "Unable to review Fine Grained Password Policies."
             }
-            foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-                $Return += [CISBenchmark]::new(@{
+            $Return += foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+                [CISBenchmark]::new(@{
                     'Number' = $Number
                     'Level' = $Level
                     'Profile' = $ProductType.Profile

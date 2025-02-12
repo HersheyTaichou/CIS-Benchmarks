@@ -18,6 +18,7 @@ function Get-SecEditReport {
     }
     
     end {
+        Remove-Item $TempFileName
         return $Data
     }
 }

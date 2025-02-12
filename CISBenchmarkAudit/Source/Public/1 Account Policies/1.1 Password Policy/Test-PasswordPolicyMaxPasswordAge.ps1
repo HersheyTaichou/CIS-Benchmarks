@@ -32,7 +32,7 @@ function Test-PasswordPolicyMaxPasswordAge {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
-        [Parameter()][string]$ProductType = (Get-ProductType),
+        [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
 
@@ -71,16 +71,14 @@ function Test-PasswordPolicyMaxPasswordAge {
                 Write-Warning "Unable to review Fine Grained Password Policies."
             }
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-                $Setting = [int]$FGPasswordPolicy.MaxPasswordAge
-                
                 $Return += [CISBenchmark]::new(@{
                     'Number' = $Number
                     'Level' = $Level
                     'Profile' = $ProductType.Profile
                     'Title' = $Title
                     'Source' = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                    'Setting' = $Setting
-                    'SetCorrectly' = if ($Setting -gt (New-TimeSpan -Days 0) -and $Setting -le (New-TimeSpan -Days 365)) {
+                    'Setting' = [int]$FGPasswordPolicy.MaxPasswordAge
+                    'SetCorrectly' = if ($FGPasswordPolicy.MaxPasswordAge -gt (New-TimeSpan -Days 0) -and $FGPasswordPolicy.MaxPasswordAge -le (New-TimeSpan -Days 365)) {
                             $true
                         } else {
                             $false

@@ -5,7 +5,7 @@ Get the product type
 .DESCRIPTION
 Get and return the product type:
 
-1 = Corporate/Enterprise Environment
+1 = Workstation
 2 = Domain Controller
 3 = Member Server
 
@@ -33,7 +33,7 @@ function Get-ProductType {
             1 {
                 @{
                     'Number' = $ProductType
-                    'Profile' = "Corporate/Enterprise Environment"
+                    'Profile' = "Workstation"
                 }
             }
             2 {

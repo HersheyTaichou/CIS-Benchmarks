@@ -39,53 +39,53 @@ function Test-PasswordPolicyMinPasswordAge {
 
     begin {
         $Return = @()
-        $Result = [CISBenchmark]::new()
-        $Result.Number = "1.1.3"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Minimum password age' is set to '1 or more day(s)'"
-		$Result.Source = "Group Policy Settings"
-
-        #Find the Password History Size applied to this machine
-        $EntryName = "MinimumPasswordAge"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
-        $Result.Setting = [int]$Result.Entry.SettingNumber
+        $Number = "1.1.3"
+        $Level = "L1"
+        $Title = "Ensure 'Minimum password age' is set to '1 or more day(s)'"
+        $Setting = [int]$SecEditReport.'System Access'.MinimumPasswordAge
     }
 
     process {
-        # Check if the GPO setting meets the CIS Benchmark
-        if ($Result.Setting -gt 0) {
-            $Result.SetCorrectly = $true
+        # Check if the current setting meets the CIS Benchmark
+        if ($Setting -gt 0) {
+            $SetCorrectly = $true
         } else {
-            $Result.SetCorrectly = $false
+            $SetCorrectly = $false
         }
 
-        $Return += $Result
+        $Return += [CISBenchmark]::new(@{
+            'Number' = $Number
+            'Level' = $Level
+            'Profile' = $ProductType.Profile
+            'Title' = $Title
+            'Source' = "Secedit"
+            'Setting' = $Setting
+            'SetCorrectly' = $SetCorrectly
+        })
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType.Number -eq 2) {
-            $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-            foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-                $Result = [CISBenchmark]::new()
-                $Result.Number = '1.1.3'
-                $Result.Level = "L1"
-                $Result.Profile = "Domain Controller"
-                $Result.Title = "Ensure 'Minimum password age' is set to '1 or more day(s)'"
-                $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                $Result.Setting = $FGPasswordPolicy.MinPasswordAge
-                if ($FGPasswordPolicy.MinPasswordAge -gt (New-TimeSpan -Days 0)) {
-                    $Result.SetCorrectly = $true
-                } else {
-                    $Result.SetCorrectly = $false
-                }
-                $Result.Entry = $FGPasswordPolicy
-                $Return += $Result
+            try {
+                $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
+            }
+            catch {
+                Write-Warning "Unable to review Fine Grained Password Policies."
+            }
+            $Return += foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+                [CISBenchmark]::new(@{
+                    'Number' = $Number
+                    'Level' = $Level
+                    'Profile' = $ProductType.Profile
+                    'Title' = $Title
+                    'Source' = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                    'Setting' = [int]$FGPasswordPolicy.MinPasswordAge
+                    'SetCorrectly' = if ($FGPasswordPolicy.MinPasswordAge -gt (New-TimeSpan -Days 0)) {
+                            $true
+                        } else {
+                            $false
+                        }
+                    'Entry' = $FGPasswordPolicy
+                })
             }
         }
     }

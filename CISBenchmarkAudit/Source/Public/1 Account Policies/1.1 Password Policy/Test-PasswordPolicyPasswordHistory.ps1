@@ -38,54 +38,53 @@ function Test-PasswordPolicyPasswordHistory {
 
     begin {
         $Return = @()
-        $Result = [CISBenchmark]::new()
-        $Result.Number = '1.1.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Enforce password history' is set to '24 or more password(s)'"
-        
-
-        #Find the Password History Size applied to this machine
-        $EntryName = "PasswordHistorySize"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
-        $Result.Setting = [int]$Result.Entry.SettingNumber
+        $Number = "1.1.1"
+        $Level = "L1"
+        $Title = "Ensure 'Enforce password history' is set to '24 or more password(s)'"
+        $Setting = [int]$SecEditReport.'System Access'.PasswordHistorySize
     }
 
     process {
-        $Result.Source = 'Group Policy Settings'
-        if ($Result.Setting -ge 24) {
-            $Result.SetCorrectly = $true
+        if ($Setting -ge 24) {
+            $SetCorrectly = $true
         } else {
-            $Result.SetCorrectly = $false
+            $SetCorrectly = $false
         }
 
-        $Return += $Result
+        $Return += [CISBenchmark]::new(@{
+            'Number' = $Number
+            'Level' = $Level
+            'Profile' = $ProductType.Profile
+            'Title' = $Title
+            'Source' = "Secedit"
+            'Setting' = $Setting
+            'SetCorrectly' = $SetCorrectly
+        })
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType.Number -eq 2) {
-            $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-            foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-                $Result = [CISBenchmark]::new()
-                $Result.Number = '1.1.1'
-                $Result.Level = "L1"
-                $Result.Profile = "Domain Controller"
-                $Result.Title = "Ensure 'Enforce password history' is set to '24 or more password(s)'"
-                $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                $Result.Setting = $FGPasswordPolicy.PasswordHistoryCount
-                if ($Result.Setting -ge "24") {
-                    $Result.SetCorrectly = $true
-                } else {
-                    $Result.SetCorrectly = $false
-                }
-
-                $Result.Entry = $FGPasswordPolicy
-                $Return += $Result
+            try {
+                $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
+            }
+            catch {
+                Write-Warning "Unable to review Fine Grained Password Policies."
+            }
+            $Return += foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+                $Setting = 
+                [CISBenchmark]::new(@{
+                    'Number' = $Number
+                    'Level' = $Level
+                    'Profile' = $ProductType.Profile
+                    'Title' = $Title
+                    'Source' = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                    'Setting' = [int]$FGPasswordPolicy.PasswordHistoryCount
+                    'SetCorrectly' = if ($FGPasswordPolicy.PasswordHistoryCount -ge 24) {
+                            $true
+                        } else {
+                            $false
+                        }
+                    'Entry' = $FGPasswordPolicy
+                })
             }
         }
     }
