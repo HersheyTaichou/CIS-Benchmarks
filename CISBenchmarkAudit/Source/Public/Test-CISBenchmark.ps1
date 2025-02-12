@@ -55,11 +55,6 @@ function Test-CISBenchmark {
             "ProductType" = $ProductType
             'SecEditReport' = $SecEditReport
         }
-        if ($NextGenerationWindowsSecurity) {
-            $Parameters += @{
-                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
-            }
-        }
     }
 
     process {
@@ -74,7 +69,7 @@ function Test-CISBenchmark {
         # 17 Advanced Audit Policy Configuration
         #Test-CISBenchmarkAdvancedAuditPolicyConfiguration @Parameters
         # 18 Administrative Templates (Computer)
-        #Test-CISBenchmarkAdministrativeTemplatesComputer @Parameters
+        #Test-CISBenchmarkAdministrativeTemplatesComputer @Parameters -NextGenerationWindowsSecurity $NextGenerationWindowsSecurity
         # 19 Administrative Templates (User)
         #Test-CISBenchmarkAdministrativeTemplatesUser @Parameters
     }

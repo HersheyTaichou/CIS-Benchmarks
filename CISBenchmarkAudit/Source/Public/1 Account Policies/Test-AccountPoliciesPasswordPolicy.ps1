@@ -45,29 +45,22 @@ function Test-AccountPoliciesPasswordPolicy {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][bool]$NextGenerationWindowsSecurity,
         [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
 
     )
 
-    begin {
-        $Parameters = @{
-            "ProductType" = $ProductType
-            'SecEditReport' = $SecEditReport
-        }
-    }
     Process {
         if ($Level -ge 1) {
-            Test-PasswordPolicyPasswordHistory @Parameters
-            Test-PasswordPolicyMaxPasswordAge @Parameters
-            Test-PasswordPolicyMinPasswordAge @Parameters
-            Test-PasswordPolicyMinPasswordLength @Parameters
-            Test-PasswordPolicyComplexityEnabled @Parameters
+            Test-PasswordPolicyPasswordHistory -ProductType $ProductType -SecEditReport $SecEditReport
+            Test-PasswordPolicyMaxPasswordAge -ProductType $ProductType -SecEditReport $SecEditReport
+            Test-PasswordPolicyMinPasswordAge -ProductType $ProductType -SecEditReport $SecEditReport
+            Test-PasswordPolicyMinPasswordLength -ProductType $ProductType -SecEditReport $SecEditReport
+            Test-PasswordPolicyComplexityEnabled -ProductType $ProductType -SecEditReport $SecEditReport
             if ($ProductType.Number -eq 1 -or $ProductType.Number -eq 3) {
-                Test-PasswordPolicyRelaxMinimumPasswordLengthLimits @Parameters
+                Test-PasswordPolicyRelaxMinimumPasswordLengthLimits -ProductType $ProductType
             }
-            Test-PasswordPolicyReversibleEncryption @Parameters
+            Test-PasswordPolicyReversibleEncryption -ProductType $ProductType -SecEditReport $SecEditReport
         }
     }
 }

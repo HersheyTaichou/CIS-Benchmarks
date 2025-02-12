@@ -29,8 +29,7 @@ function Test-PasswordPolicyRelaxMinimumPasswordLengthLimits {
     [CmdletBinding()]
     param (
         # Get the product type (1, 2 or 3)
-        [Parameter()]$ProductType = (Get-ProductType),
-        [Parameter()]$SecEditReport = (Get-SecEditReport)
+        [Parameter()]$ProductType = (Get-ProductType)
     )
 
     begin {

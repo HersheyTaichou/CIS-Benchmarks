@@ -45,7 +45,6 @@ function Test-CISBenchmarkAccountPolicies {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)][ValidateSet(1,2)][int]$Level,
-        [Parameter()][switch]$NextGenerationWindowsSecurity,
         [Parameter()]$ProductType = (Get-ProductType),
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
@@ -55,11 +54,6 @@ function Test-CISBenchmarkAccountPolicies {
             "Level" = $Level
             "ProductType" = $ProductType
             "SecEditReport" = $SecEditReport
-        }
-        if ($NextGenerationWindowsSecurity) {
-            $Parameters += @{
-                "NextGenerationWindowsSecurity" = $NextGenerationWindowsSecurity
-            }
         }
     }
 
