@@ -110,7 +110,7 @@ PrivateData = @{
         ReleaseNotes = 'https://github.com/HersheyTaichou/CIS-Benchmarks'
 
         # Prerelease string of this module
-        # Prerelease = ''
+        Prerelease = ''
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         RequireLicenseAcceptance = $true
