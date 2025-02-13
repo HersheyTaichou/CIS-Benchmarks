@@ -1,27 +1,25 @@
 # CIS Benchmark Scripts
 
-## IMPORTANT
+## Introduction
+
+This module provides scripts designed to audit the CIS Benchmarks in a corporate environment. These scripts are based on the Microsoft Windows Server 2022 Benchmark version 3.0.0, released on 2024-03-19.
+
+These scripts are VERY MUCH a work in progress, so take caution and review them carefully before running them, as they cannot consider every possible scenario. While I have done my best to account for various scenarios, this may return an incorrect result, and any passes or fails should be confirmed. These scripts were created as I went through the benchmark documentation and implemented them in one test environment.
+
+## Similar Projects
 
 I had grand visions for this script, including support for auditing workstations and including different editions of the benchmark, as well as tying everything into the CIS Critical Security Controls. However, work and family have put this on hold. If you want to test your own environments against the CIS benchmarks, some of these projects may better serve your needs:
 
 - [HardeningKitty](https://github.com/scipag/HardeningKitty)
 - [Wazuh](https://wazuh.com/)
 
-## Introduction
-
-This module provides scripts designed to audit the CIS Benchmarks in a corporate environment. These scripts are based on the Microsoft Windows Server 2022 Benchmark version 2.0.0, released on 2023-04-14.
-
-These scripts are VERY MUCH a work in progress, so take caution and review them carefully before running them, as they cannot consider every possible scenario. While I have done my best to account for various scenarios, this may return an incorrect result, and any passes or fails should be confirmed. These scripts were created as I went through the benchmark documentation and learned how to implement them in one test environment.
-
-## Versioning
+## Versions
 
 This project is using Semantic Versioning 2.0.0 and can be considered with the rules available at the [Semantic Versioning](https://semver.org/) site.
 
-Version 1.0 was released once the entire Microsoft Windows Server 2022 Benchmark version 2.0.0 could be audited, and the major version number should only be incremented in the following scenarios:
+### Version 1.0 
 
-- The names of the commands are changed
-- The inputs to the commands are changed
-- The outputs of the commands are changed
+v1 was released once the entire Microsoft Windows Server 2022 Benchmark version 2.0.0 could be audited, and is stored in a dedicted branch. v1 was also written while I was still learning how to make PowerShell modules, and does not follow all best practices.
 
 ## Things to Note
 
@@ -103,33 +101,6 @@ This command will run the recommendation found at "1 Account Policies\1.1 Passwo
 ```PowerShell
 Test-PasswordPolicyPasswordHistory
 ```
-
-### Test a different machine
-
-> **WARNING**: When testing in this manner, it is recommended that you specify the product type the group policy file was exported from, otherwise it will use the product type of the machine it is running on.
-
-I understand that some people may be hesitant to run a large script they found on the internet on a production server. In that case, it is possible to export a copy of the GPO settings on a server, then move that file to a separate machine with this script, and run it there.
-
-1. Generate a GP report
-   1. Connect to the server to be evaluated.
-   2. Run the following command:
-
-      ```PowerShell
-      gpresult.exe /x "$(get-location)\GPResult.xml" /f
-      ```
-
-   3. Move that file to a separate machine
-2. Git Clone or download this module on a separate machine
-3. Open an Admin PowerShell prompt and import the module
-
-   ```PowerShell
-    Import-Module CISBnchmarkAudit.psd1
-   ```
-
-4. Browse to the folder you saved the GPResult file in
-5. Run any of the above commands
-
-   > **NOTE**: The module will hold on to the GPResult file contents until you close the PowerShell window or remove and re-import the module.
 
 ## Licenses
 
