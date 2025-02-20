@@ -2,13 +2,15 @@
 
 ## Introduction
 
-This module provides scripts designed to audit the CIS Benchmarks in a corporate environment. These scripts are based on the Microsoft Windows Server 2022 Benchmark version 3.0.0, released on 2024-03-19.
+This module provides scripts designed to audit the CIS Benchmarks on a single machine. These scripts are based on the Microsoft Windows Server 2022 Benchmark version 3.0.0, released on 2024-03-19.
 
-These scripts are VERY MUCH a work in progress, so take caution and review them carefully before running them, as they cannot consider every possible scenario. While I have done my best to account for various scenarios, this may return an incorrect result, and any passes or fails should be confirmed. These scripts were created as I went through the benchmark documentation and implemented them in one test environment.
+These scripts are VERY MUCH a work in progress, so take caution and review them carefully before running them, as they cannot consider every possible scenario. While I have done my best to account for most situations, it may not always return accurate results, and any passes or fails should be confirmed. These scripts were created as I went through the benchmark documentation and implemented them in a test environment.
+
+If you find any commands that return inaccurate results, please open an issue.
 
 ## Similar Projects
 
-I had grand visions for this script, including support for auditing workstations and including different editions of the benchmark, as well as tying everything into the CIS Critical Security Controls. However, work and family have put this on hold. If you want to test your own environments against the CIS benchmarks, some of these projects may better serve your needs:
+Here are some other projects that I have found that also allow auditing against the CIS Benchmarks:
 
 - [HardeningKitty](https://github.com/scipag/HardeningKitty)
 - [Wazuh](https://wazuh.com/)
@@ -21,26 +23,54 @@ This project is using Semantic Versioning 2.0.0 and can be considered with the r
 
 v1 was released once the entire Microsoft Windows Server 2022 Benchmark version 2.0.0 could be audited, and is stored in a dedicted branch. v1 was also written while I was still learning how to make PowerShell modules, and does not follow all best practices.
 
-## Things to Note
+### Version 2.0
 
-- These commands require all settings to be explicitly set. If you rely on default behavior, it will show up as a failure.
+v2 removes the requirement for a GPO export and leverages other tools. While this will allow you to run the script without being connected to a domain or have a GPO export, it removes the ability to export files from one computer and test it on another.
 
-   For example, if you were to run the test for "2.3.10.5 (L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disabled'", without having explicitly set that policy in Group Policy, it would come back like this:
+Tools used:
 
-   ```PowerShell
-   Test-NetworkAccessEveryoneIncludesAnonymous
-   ```
+- SecEdit
+- AuditPol
+- The local registry
 
-   ```text
-   Number     Level Title                                                           Source                    SetCorrectly
-   ------     ----- -----                                                           ------                    ------------
-   2.3.10.5   L1    Ensure 'Network access: Let Everyone permissions apply to an... Group Policy Settings     False       
-   ```
+#### Progress
 
-   If you check the default for this entry, it will indicate that the default matches the benchmark, which should be a pass. I have chosen to consider this a failure because someone could change this setting in the local policy on a computer, and it would not get over-written or prevented by the GPO settings.
-
-- The script will check the machine's type as it runs, and run checks specific to that type. A workstation is type 1, a domain controller (DC) is type 2 and a member server (MS) is type 3. This can be overridden by specifying -ProductType [1/2/3] at runtime
-  - Running on a workstation will do all checks applicable to Domain Controllers (DC) and Member Servers (MS), but skip ones specific to DCs or MSs
+- [x] 1 Audit Policy
+  - [x] 1.1 Password Policy
+  - [x] 1.2 Account Lockout Policy
+- [ ] 2 Local Policies
+  - [ ] 2.2 User Rights Assignment
+  - [ ] 2.3 Security Options
+    - [ ] 2.3.1 Accounts
+    - [ ] 2.3.2 Audit
+    - [ ] 2.3.4 Devices
+    - [ ] 2.3.5 Domain Controller
+    - [ ] 2.3.6 Domain Member
+    - [ ] 2.3.7 Interactive Logon
+    - [ ] 2.3.8 Microsoft Network Client
+    - [ ] 2.3.9 Microsoft Network Server
+    - [ ] 2.3.10 Network Access
+    - [ ] 2.3.11 Network Security
+    - [ ] 2.3.13 Shutdown
+    - [ ] 2.3.15 System Objects
+    - [ ] 2.3.17 User Account Control
+- [ ] 5 System Services
+- [ ] 9 Windows Defender Firewall with Advanced Security
+  - [ ] 9.1 Domain Profile
+  - [ ] 9.2 Private Profile
+  - [ ] 9.3 Public Profile
+- [ ] 17 Advanced Audit Policy Configuration
+  - [ ] 17.1 Account Logon
+  - [ ] 17.2 Account Management
+  - [ ] 17.3 Detailed Tracking
+  - [ ] 17.4 DS Access
+  - [ ] 17.5 Logon\Logoff
+  - [ ] 17.6 Object Access
+  - [ ] 17.7 Policy Change
+  - [ ] 17.8 Privilege Use
+  - [ ] 17.9 System
+- [ ] 18 Administrative Templates (Computer)
+- [ ] 19 Administrative Templates (User)
 
 ## Getting Started
 
