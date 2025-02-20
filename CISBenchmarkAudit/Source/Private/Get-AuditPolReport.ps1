@@ -3,16 +3,15 @@ function Get-AuditPolReport {
     param ()
     
     begin {
-        $BinaryAuditpol = "C:\Windows\System32\auditpol.exe"
-        $TempFileName = [System.IO.Path]::GetTempFileName() + ".csv"
-        $Area = "SECURITYPOLICY"
+        $Auditpol = "C:\Windows\System32\auditpol.exe"
+        $TempFileName = "$env:TEMP\$(New-Guid).csv"
     }
 
     process {
-        If (-Not (Test-Path $SecEdit)) {
-            Write-Error "$SecEdit is required and was not found."
+        If (-Not (Test-Path $Auditpol)) {
+            Write-Error "$Auditpol is required and was not found."
         } else {
-            &$BinaryAuditpol /backup /file:$TempFileName | Out-Null
+            &$Auditpol /backup /file:$TempFileName | Out-Null
             $Data = Import-Csv $TempFileName
         }
     }
