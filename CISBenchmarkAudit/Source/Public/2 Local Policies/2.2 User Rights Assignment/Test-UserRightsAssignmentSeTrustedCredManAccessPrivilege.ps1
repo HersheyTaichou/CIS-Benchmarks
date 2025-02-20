@@ -37,7 +37,7 @@ function Test-UserRightsAssignmentSeTrustedCredManAccessPrivilege {
         $Number = "2.2.1"
         $Level = "L1"
         $Title = "Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'"
-        $Setting = $SecEditReport.'Privilege Rights'.SeTrustedCredManAccessPrivilege | ForEach-Object {Get-AccountFromSid $_.Replace('*','') }
+        $Setting = $SecEditReport.'Privilege Rights'.SeTrustedCredManAccessPrivilege.Split(',') | ForEach-Object {Get-AccountFromSid $_.Replace('*','').Replace(' ','') } -Join ','
     }
 
     process {
