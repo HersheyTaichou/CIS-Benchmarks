@@ -17,7 +17,7 @@ I had grand visions for this script, including support for auditing workstations
 
 This project is using Semantic Versioning 2.0.0 and can be considered with the rules available at the [Semantic Versioning](https://semver.org/) site.
 
-### Version 1.0 
+### Version 1.0
 
 v1 was released once the entire Microsoft Windows Server 2022 Benchmark version 2.0.0 could be audited, and is stored in a dedicted branch. v1 was also written while I was still learning how to make PowerShell modules, and does not follow all best practices.
 
