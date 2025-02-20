@@ -70,7 +70,61 @@ Tools used:
   - [ ] 17.8 Privilege Use
   - [ ] 17.9 System
 - [ ] 18 Administrative Templates (Computer)
+  - [ ] 18.1 Control Panel
+    - [ ] 18.1.1 Personalization
+    - [ ] 18.1.2 Regional and LanguageOptions
+  - [ ] 18.3 LAPS
+  - [ ] 18.4 MS Security Guide
+  - [ ] 18.5 MSS
+  - [ ] 18.6 Network
+    - [ ] 18.6.4 DNS Client
+    - [ ] 18.6.5 Fonts
+    - [ ] 18.6.8 Lanman Workstation
+    - [ ] 18.6.9 Link-Layer Topology Discovery
+    - [ ] 18.6.10 Ms P2P Networking Services
+    - [ ] 18.6.11 Network Connections
+    - [ ] 18.6.14 Network Provider
+    - [ ] 18.6.19 TCP\IP Settings
+      - [ ] 18.6.19.2 Parameters
+    - [ ] 18.6.20 Windows Connect Now
+    - [ ] 18.6.21 Windows Connection Manager
+  - [ ] 18.7 Printers
+  - [ ] 18.8 Start Menu and Taskbar
+    - [ ] 18.8.1 Notifications
+  - [ ] 18.9 System
+    - [ ] 18.9.3 Audit Process Creation
+    - [ ] 18.9.4 Credentials Delegation
+    - [ ] 18.9.5 DeviceGuard
+    - [ ] 18.9.7 Device Installation
+    - [ ] 18.9.13 Early Launch Antimalware
+    - [ ] 18.9.19 Group Policy
+    - [ ] 18.9.20.1 Internet Communication Settings
+    - [ ] 18.9.23 Kerberos
+    - [ ] 18.9.24 Kernel DMA Protection
+    - [ ] 18.9.25 Local Security Authority
+    - [ ] 18.9.26 Locale Services
+    - [ ] 18.9.27 Logon
+    - [ ] 18.9.30 OS Policies
+    - [ ] 18.9.32 Power Management
+    - [ ] 18.9.34 Remote Assistance
+    - [ ] 18.9.35 Remote Procedure Call
+    - [ ] 18.9.38 Security Account Manager
+    - [ ] 18.9.46 Troubleshooting and Diagnostics
+    - [ ] 18.9.48 User Profiles
+    - [ ] 18.9.50 Windows Time Service
 - [ ] 19 Administrative Templates (User)
+  - [ ] 19.1 Control Panel
+    - [ ] 19.1.3 Personalization
+  - [ ] 19.5 Start Menu and Taskbar
+    - [ ] 19.5.1 Notifications
+  - [ ] 19.6 System
+    - [ ] 19.6.6 Internet Communication Management
+  - [ ] 19.7 Windows Components
+    - [ ] 19.7.4 Attachment Manager
+    - [ ] 19.7.7 Cloud Content
+    - [ ] 19.7.25 Network Sharing
+    - [ ] 19.7.40 Windows Installer
+    - [ ] 19.7.42 Windows Media Player
 
 ## Getting Started
 
