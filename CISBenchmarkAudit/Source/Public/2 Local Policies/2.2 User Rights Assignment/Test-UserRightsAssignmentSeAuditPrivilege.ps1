@@ -34,17 +34,11 @@ function Test-UserRightsAssignmentSeAuditPrivilege {
     )
 
     $Result = [CISBenchmark]::new()
-        $Result.Number = '2.2.30'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Generate security audits' is set to 'LOCAL SERVICE, NETWORK SERVICE'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.2.30'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Generate security audits' is set to 'LOCAL SERVICE, NETWORK SERVICE'"
+        $Source = 'FixMe'
 
     $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeAuditPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE') -gpresult $GPResult
 

@@ -35,17 +35,11 @@ function Test-MAPSLocalSettingOverrideSpynetReporting {
     begin {
         $EntryName = "Configure local setting override for reporting to Microsoft MAPS"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.43.5.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Configure local setting override for reporting to Microsoft MAPS' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.43.5.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Configure local setting override for reporting to Microsoft MAPS' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-MAPSSpynetReporting {
     begin {
         $EntryName = "Join Microsoft MAPS"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.43.5.2'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Join Microsoft MAPS' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.43.5.2'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Join Microsoft MAPS' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

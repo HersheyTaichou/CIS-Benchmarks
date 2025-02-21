@@ -36,16 +36,10 @@ function Test-PolicyChangeAuditAuditPolicyChange {
     begin {
         $EntryName = "Audit Audit Policy Change"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.7.1"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Audit Policy Change' is set to include 'Success'"
+        $Number = '17.7.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Audit Policy Change' is set to include 'Success'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -104,16 +98,10 @@ function Test-PolicyChangeAuditAuthenticationPolicyChange {
     begin {
         $EntryName = "Audit Authentication Policy Change"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.7.2"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Authentication Policy Change' is set to include 'Success'"
+        $Number = '17.7.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Authentication Policy Change' is set to include 'Success'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -172,16 +160,10 @@ function Test-PolicyChangeAuditAuthorizationPolicyChange {
     begin {
         $EntryName = "Audit Authorization Policy Change"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.7.3"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Authorization Policy Change' is set to include 'Success'"
+        $Number = '17.7.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Authorization Policy Change' is set to include 'Success'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -240,17 +222,11 @@ function Test-PolicyChangeAuditMPSSVCRuleLevelPolicyChange {
     begin {
         $EntryName = "Audit MPSSVC Rule-Level Policy Change"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '17.7.4'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit MPSSVC Rule-Level Policy Change' is set to 'Success and Failure'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '17.7.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit MPSSVC Rule-Level Policy Change' is set to 'Success and Failure'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult -Results "ComputerResults"
@@ -308,16 +284,10 @@ function Test-PolicyChangeAuditOtherPolicyChangeEvents {
     begin {
         $EntryName = "Audit Other Policy Change Events"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.7.5"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Other Policy Change Events' is set to include 'Failure'"
+        $Number = '17.7.5'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Other Policy Change Events' is set to include 'Failure'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting

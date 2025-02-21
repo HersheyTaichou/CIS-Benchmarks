@@ -35,17 +35,11 @@ function Test-SessionTimeLimitsMaxIdleTime {
     begin {
         $EntryName = "Set time limit for active but idle Remote Desktop Services sessions"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.10.1'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Set time limit for active but idle Remote Desktop Services sessions' is set to 'Enabled: 15 minutes or less, but not Never (0)'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.10.1'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Set time limit for active but idle Remote Desktop Services sessions' is set to 'Enabled: 15 minutes or less, but not Never (0)'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-SessionTimeLimitsMaxDisconnectionTime {
     begin {
         $EntryName = "Set time limit for disconnected sessions"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.10.2'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Set time limit for disconnected sessions' is set to 'Enabled: 1 minute'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.10.2'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Set time limit for disconnected sessions' is set to 'Enabled: 1 minute'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

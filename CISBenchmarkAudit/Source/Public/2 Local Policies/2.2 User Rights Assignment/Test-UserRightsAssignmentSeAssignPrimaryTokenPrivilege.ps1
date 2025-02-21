@@ -34,17 +34,10 @@ function Test-UserRightsAssignmentSeAssignPrimaryTokenPrivilege {
     )
 
     $Result = [CISBenchmark]::new()
-    $Result.Number = '2.2.44'
-    $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-    $Result.Title = "Ensure 'Replace a process level token' is set to 'LOCAL SERVICE, NETWORK SERVICE'"
-    $Result.Source = 'Group Policy Settings'
+    $Number = '2.2.44'
+    $Level = 'L1'
+    $Title= "Ensure 'Replace a process level token' is set to 'LOCAL SERVICE, NETWORK SERVICE'"
+    $Source = 'SecEdit'
 
     $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeAssignPrimaryTokenPrivilege" -Definition @('LOCAL SERVICE', 'NETWORK SERVICE') -gpresult $GPResult
     $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 

@@ -36,17 +36,11 @@ function Test-GroupPolicyNoBackgroundPolicy {
     begin {
         $EntryName = "Configure registry policy processing"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.19.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Configure registry policy processing: Do not apply during periodic background processing' is set to 'Enabled: FALSE'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.19.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Configure registry policy processing: Do not apply during periodic background processing' is set to 'Enabled: FALSE'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -104,17 +98,11 @@ function Test-GroupPolicy {
     begin {
         $EntryName = "Configure registry policy processing"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.19.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Configure registry policy processing: Process even if the Group Policy objects have not changed' is set to 'Enabled: TRUE'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.19.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Configure registry policy processing: Process even if the Group Policy objects have not changed' is set to 'Enabled: TRUE'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -172,17 +160,11 @@ function Test-GroupPolicyEnableCdp {
     begin {
         $EntryName = "Continue experiences on this device"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.19.4'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Continue experiences on this device' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.19.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Continue experiences on this device' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -239,17 +221,11 @@ function Test-GroupPolicyDisableBkGndGroupPolicy {
     begin {
         $EntryName = "Turn off background refresh of Group Policy"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.19.5'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off background refresh of Group Policy' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.19.5'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Turn off background refresh of Group Policy' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

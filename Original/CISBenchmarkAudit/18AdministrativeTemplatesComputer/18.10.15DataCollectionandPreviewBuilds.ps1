@@ -35,17 +35,11 @@ function Test-DataCollectionandPreviewBuildsAllowTelemetry {
     begin {
         $EntryName = "Allow Diagnostic Data"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.15.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow Diagnostic Data' is set to 'Enabled: Diagnostic data off (not recommended)' or 'Enabled: Send required diagnostic data'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.15.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Allow Diagnostic Data' is set to 'Enabled: Diagnostic data off (not recommended)' or 'Enabled: Send required diagnostic data'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-DataCollectionandPreviewBuildsDisableEnterpriseAuthProxy {
     begin {
         $EntryName = "Configure Authenticated Proxy usage for the Connected User Experience and Telemetry service"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.15.2'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Configure Authenticated Proxy usage for the Connected User Experience and Telemetry service' is set to 'Enabled: Disable Authenticated Proxy usage'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.15.2'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Configure Authenticated Proxy usage for the Connected User Experience and Telemetry service' is set to 'Enabled: Disable Authenticated Proxy usage'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -170,17 +158,11 @@ function Test-DataCollectionandPreviewBuildsDisableOneSettingsDownloads {
     begin {
         $EntryName = "Disable OneSettings Downloads"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.15.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Disable OneSettings Downloads' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.15.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Disable OneSettings Downloads' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -237,17 +219,11 @@ function Test-DataCollectionandPreviewBuildsDoNotShowFeedbackNotifications {
     begin {
         $EntryName = "Do not show feedback notifications"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.15.4'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Do not show feedback notifications' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.15.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Do not show feedback notifications' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -304,17 +280,11 @@ function Test-DataCollectionandPreviewBuildsEnableOneSettingsAuditing {
     begin {
         $EntryName = "Enable OneSettings Auditing"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.15.5'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Enable OneSettings Auditing' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.15.5'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Enable OneSettings Auditing' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -371,17 +341,11 @@ function Test-DataCollectionandPreviewBuildsLimitDiagnosticLogCollection {
     begin {
         $EntryName = "Limit Diagnostic Log Collection"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.15.6'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Limit Diagnostic Log Collection' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.15.6'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Limit Diagnostic Log Collection' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -438,17 +402,11 @@ function Test-DataCollectionandPreviewBuildsLimitDumpCollection {
     begin {
         $EntryName = "Limit Dump Collection"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.15.7'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Limit Dump Collection' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.15.7'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Limit Dump Collection' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -505,17 +463,11 @@ function Test-DataCollectionandPreviewBuildsAllowBuildPreview {
     begin {
         $EntryName = "Toggle user control over Insider builds"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.15.8'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Toggle user control over Insider builds' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.15.8'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Toggle user control over Insider builds' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

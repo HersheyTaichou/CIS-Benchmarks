@@ -35,17 +35,11 @@ function Test-WindowsLogonOptionsEnableMPR {
     begin {
         $EntryName = "Enable MPR notifications for the system"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.82.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Enable MPR notifications for the system' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.82.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Enable MPR notifications for the system' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-WindowsLogonOptionsDisableAutomaticRestartSignOn {
     begin {
         $EntryName = "Sign-in and lock last interactive user automatically after a restart"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.82.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Sign-in and lock last interactive user automatically after a restart' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.82.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Sign-in and lock last interactive user automatically after a restart' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

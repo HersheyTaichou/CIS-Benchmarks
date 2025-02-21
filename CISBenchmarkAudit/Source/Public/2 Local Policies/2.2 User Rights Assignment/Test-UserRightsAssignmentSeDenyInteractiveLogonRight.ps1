@@ -35,16 +35,10 @@ function Test-UserRightsAssignmentSeDenyInteractiveLogonRight {
 
     $Result = [CISBenchmark]::new()
         $Result = [CISBenchmark]::new()
-        $Result.Number = "2.2.24"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Deny log on locally' to include 'Guests'"
+        $Number = '2.2.24'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Deny log on locally' to include 'Guests'"
 		$Result.Source = "Group Policy Settings"
 
     $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeDenyInteractiveLogonRight" -Definition @('Guests') -Include -gpresult $GPResult

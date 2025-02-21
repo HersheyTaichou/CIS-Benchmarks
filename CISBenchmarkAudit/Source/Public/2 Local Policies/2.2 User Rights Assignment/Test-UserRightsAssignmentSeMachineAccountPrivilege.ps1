@@ -34,11 +34,11 @@ function Test-UserRightsAssignmentSeMachineAccountPrivilege {
     )
 
     $Result = [CISBenchmark]::new()
-    $Result.Number = '2.2.5'
-    $Result.Level = "L1"
+    $Number = '2.2.5'
+    $Level = 'L1'
         $Result.Profile = "Domain Controller"
-    $Result.Title = "Ensure 'Add workstations to domain' is set to 'Administrators' (DC only)"
-    $Result.Source = 'Group Policy Settings'
+    $Title= "Ensure 'Add workstations to domain' is set to 'Administrators' (DC only)"
+    $Source = 'FixMe'
 
     $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeMachineAccountPrivilege" -Definition @('Administrators') -gpresult $GPResult
     $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 

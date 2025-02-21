@@ -35,17 +35,11 @@ function Test-DeviceandResourceRedirectionEnableUiaRedirection {
     begin {
         $EntryName = "Allow UI Automation redirection"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.3.1'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow UI Automation redirection' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.3.1'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Allow UI Automation redirection' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-DeviceandResourceRedirectionfDisableCcm {
     begin {
         $EntryName = "Do not allow COM port redirection"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.3.2'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Do not allow COM port redirection' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.3.2'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Do not allow COM port redirection' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -169,17 +157,11 @@ function Test-DeviceandResourceRedirectionfDisableCdm {
     begin {
         $EntryName = "Do not allow drive redirection"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.3.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Do not allow drive redirection' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.3.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Do not allow drive redirection' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -236,17 +218,11 @@ function Test-DeviceandResourceRedirectionfDisableLocationRedir {
     begin {
         $EntryName = "Do not allow location redirection"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.3.4'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Do not allow location redirection' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.3.4'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Do not allow location redirection' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -303,17 +279,11 @@ function Test-DeviceandResourceRedirectionfDisableLPT {
     begin {
         $EntryName = "Do not allow LPT port redirection"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.3.5'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Do not allow LPT port redirection' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.3.5'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Do not allow LPT port redirection' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -370,17 +340,11 @@ function Test-DeviceandResourceRedirectionfDisablePNPRedir {
     begin {
         $EntryName = "Do not allow supported Plug and Play device redirection"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.3.6'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Do not allow supported Plug and Play device redirection' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.3.6'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Do not allow supported Plug and Play device redirection' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -437,17 +401,11 @@ function Test-DeviceandResourceRedirectionfDisableWebAuthn {
     begin {
         $EntryName = "Do not allow WebAuthn redirection"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.3.7'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Do not allow WebAuthn redirection' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.3.7'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Do not allow WebAuthn redirection' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

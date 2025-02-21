@@ -36,17 +36,11 @@ function Test-SystemObjectsObCaseInsensitive {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Session Manager\Kernel\ObCaseInsensitive"
-        $Result.Number = '2.3.15.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'System objects: Require case insensitivity for non-Windows subsystems' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.15.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'System objects: Require case insensitivity for non-Windows subsystems' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
@@ -104,17 +98,11 @@ function Test-SystemObjectsProtectionMode {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Session Manager\ProtectionMode"
-        $Result.Number = '2.3.15.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'System objects: Strengthen default permissions of internal system objects (e.g. Symbolic Links)' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.15.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'System objects: Strengthen default permissions of internal system objects (e.g. Symbolic Links)' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"

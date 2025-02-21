@@ -35,17 +35,11 @@ function Test-EventLogServiceApplicationRetention {
     begin {
         $EntryName = "Control Event Log behavior when the log file reaches its maximum size"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.26.1.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Application: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.26.1.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Application: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Application" -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-EventLogServiceApplicationMaxSize {
     begin {
         $EntryName = "Specify the maximum log file size (KB)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.26.1.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Application: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.26.1.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Application: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Application" -Results "ComputerResults"
@@ -169,17 +157,11 @@ function Test-EventLogServiceSecurityRetention {
     begin {
         $EntryName = "Control Event Log behavior when the log file reaches its maximum size"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.26.2.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Security: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.26.2.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Security: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Security" -Results "ComputerResults"
@@ -236,17 +218,11 @@ function Test-EventLogServiceSecurityMaxSize {
     begin {
         $EntryName = "Specify the maximum log file size (KB)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.26.2.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Security: Specify the maximum log file size (KB)' is set to 'Enabled: 196,608 or greater'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.26.2.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Security: Specify the maximum log file size (KB)' is set to 'Enabled: 196,608 or greater'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Security" -Results "ComputerResults"
@@ -303,17 +279,11 @@ function Test-EventLogServiceSetupRetention {
     begin {
         $EntryName = "Control Event Log behavior when the log file reaches its maximum size"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.26.3.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Setup: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.26.3.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Setup: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Setup" -Results "ComputerResults"
@@ -370,17 +340,11 @@ function Test-EventLogServiceSetupMaxSize {
     begin {
         $EntryName = "Specify the maximum log file size (KB)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.26.3.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Setup: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.26.3.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Setup: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/Setup" -Results "ComputerResults"
@@ -437,17 +401,11 @@ function Test-EventLogServiceSystemRetention {
     begin {
         $EntryName = "Control Event Log behavior when the log file reaches its maximum size"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.26.4.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'System: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.26.4.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'System: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/System" -Results "ComputerResults"
@@ -504,17 +462,11 @@ function Test-EventLogServiceSystemMaxSize {
     begin {
         $EntryName = "Specify the maximum log file size (KB)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.26.4.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'System: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.26.4.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'System: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Category "Windows Components/Event Log Service/System" -Results "ComputerResults"

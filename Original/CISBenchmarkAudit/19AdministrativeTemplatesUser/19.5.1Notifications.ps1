@@ -35,17 +35,11 @@ function Test-UserNotificationsNoToastApplicationNotificationOnLockScreen {
     begin {
         $EntryName = "Turn off toast notifications on the lock screen"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '19.5.1.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off toast notifications on the lock screen' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '19.5.1.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Turn off toast notifications on the lock screen' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "UserResults"

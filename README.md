@@ -37,7 +37,7 @@ Tools used:
 
 - [x] 1 Audit Policy
   - [x] 1.1 Password Policy
-  - [x] 1.2 Account Lockout Policy
+  - [ ] 1.2 Account Lockout Policy
 - [ ] 2 Local Policies
   - [ ] 2.2 User Rights Assignment
   - [ ] 2.3 Security Options

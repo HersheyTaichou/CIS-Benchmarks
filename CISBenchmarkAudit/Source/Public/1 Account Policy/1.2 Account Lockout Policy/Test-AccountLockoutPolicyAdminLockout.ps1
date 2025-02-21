@@ -36,26 +36,26 @@ function Test-AccountLockoutPolicyAdminLockout {
     )
 
     begin {
-        $Return = [CISBenchmark]::new()
-        $Return.Number = '1.2.3'
-        $Return.Level = "L1"
-        $Return.Profile = "Member Server"
-        $Return.Title = "Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
-        $Return.Source = 'Group Policy Settings'
-        $EntryName = "AllowAdministratorLockout"
-        $Return.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
-        $Return.Setting = [System.Convert]::ToBoolean($Return.Entry.SettingBoolean)
+        $Number = '1.2.3'
+        $Level = 'L1'
+        $Title= "Ensure 'Allow Administrator account lockout' is set to 'Enabled'"
+        $Setting = [bool]$SecEditReport.'System Access'.AllowAdministratorLockout
     }
 
     process {
-        if ($Return.Setting) {
-            $Return.SetCorrectly = $true
-        } else {
-            $Return.SetCorrectly = $false
-        }
+        $SetCorrectly = $Setting
+        $Result = [CISBenchmark]::new(@{
+            'Number' = $Number
+            'Level' = $Level
+            'Profile' = $ProductType.Profile
+            'Title' = $Title
+            'Source' = "Secedit"
+            'Setting' = $Setting
+            'SetCorrectly' = $SetCorrectly
+        })
     }
 
     end {
-        return $Return
+        return $Result
     }
 }

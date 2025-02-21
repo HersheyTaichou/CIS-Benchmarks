@@ -36,16 +36,10 @@ function Test-PersonalizationPreventEnablingLockScreenCamera {
     begin {
               $EntryName = "Prevent enabling lock screen camera"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "18.1.1.1"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Prevent enabling lock screen camera' is set to 'Enabled'"
+        $Number = '18.1.1.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Prevent enabling lock screen camera' is set to 'Enabled'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -104,16 +98,10 @@ function Test-PersonalizationPreventEnablingLockScreenSlideshow {
     begin {
               $EntryName = "Prevent enabling lock screen slide show"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "18.1.1.2"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Prevent enabling lock screen slide show' is set to 'Enabled'"
+        $Number = '18.1.1.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Prevent enabling lock screen slide show' is set to 'Enabled'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting

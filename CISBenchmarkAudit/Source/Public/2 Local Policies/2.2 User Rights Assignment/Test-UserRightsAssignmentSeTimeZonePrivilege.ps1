@@ -34,17 +34,11 @@ function Test-UserRightsAssignmentSeTimeZonePrivilege {
     )
 
     $Result = [CISBenchmark]::new()
-    $Result.Number = '2.2.12'
-    $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-    $Result.Title = "Ensure 'Change the time zone' is set to 'Administrators, LOCAL SERVICE'"
-    $Result.Source = 'Group Policy Settings'
+    $Number = '2.2.12'
+    $Level = 'L1'
+        
+    $Title= "Ensure 'Change the time zone' is set to 'Administrators, LOCAL SERVICE'"
+    $Source = 'FixMe'
 
     $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeTimeZonePrivilege" -Definition @('Administrators','LOCAL SERVICE') -gpresult $GPResult
     $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 

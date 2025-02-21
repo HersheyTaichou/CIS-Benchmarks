@@ -44,21 +44,21 @@ function Test-UserRightsAssignmentSeDenyNetworkLogonRight {
 
     process {
         if ($ProductType.Number -eq 2) {
-            $Result.Number = '2.2.20'
-            $Result.Level = "L1"
+            $Number = '2.2.20'
+            $Level = 'L1'
             $Result.Profile = "Domain Controller"
-            $Result.Title = "Ensure 'Deny access to this computer from the network' to include 'Guests' (DC only)"
-            $Result.Source = 'Group Policy Settings'
+            $Title= "Ensure 'Deny access to this computer from the network' to include 'Guests' (DC only)"
+            $Source = 'FixMe'
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $DomainController -Include -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
         } elseif ($ProductType.Number -eq 3) {
-            $Result.Number = '2.2.21'
-            $Result.Level = "L1"
+            $Number = '2.2.21'
+            $Level = 'L1'
             $Result.Profile = "Member Server"
-            $Result.Title = "Ensure 'Deny access to this computer from the network' to include 'Guests, Local account and member of Administrators group' (MS only)"
-            $Result.Source = 'Group Policy Settings'
+            $Title= "Ensure 'Deny access to this computer from the network' to include 'Guests, Local account and member of Administrators group' (MS only)"
+            $Source = 'FixMe'
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeDenyNetworkLogonRight" -Definition $MemberServer -Include -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting

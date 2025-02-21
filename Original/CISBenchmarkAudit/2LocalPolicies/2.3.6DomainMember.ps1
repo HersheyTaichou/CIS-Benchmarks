@@ -46,17 +46,11 @@ function Test-DomainMemberRequireSignOrSeal {
     }
 
     end {
-        $Result.Number = '2.3.6.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Domain member: Digitally encrypt or sign secure channel data (always)' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.6.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Domain member: Digitally encrypt or sign secure channel data (always)' is set to 'Enabled'"
+        $Source = 'FixMe'
         return $Result
     }
 }
@@ -109,17 +103,11 @@ function Test-DomainMemberSealSecureChannel {
     }
 
     end {
-        $Result.Number = '2.3.6.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Domain member: Digitally encrypt secure channel data (when possible)' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.6.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Domain member: Digitally encrypt secure channel data (when possible)' is set to 'Enabled'"
+        $Source = 'FixMe'
         return $Result
     }
 }
@@ -162,17 +150,11 @@ function Test-DomainMemberSignSecureChannel {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\SignSecureChannel"
-        $Result.Number = '2.3.6.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Domain member: Digitally sign secure channel data (when possible)' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.6.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Domain member: Digitally sign secure channel data (when possible)' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
@@ -230,17 +212,11 @@ function Test-DomainMemberDisablePasswordChange {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\DisablePasswordChange"
-        $Result.Number = '2.3.6.4'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Domain member: Disable machine account password changes' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.6.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Domain member: Disable machine account password changes' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
@@ -298,17 +274,11 @@ function Test-DomainMemberMaximumPasswordAge {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\MaximumPasswordAge"
-        $Result.Number = '2.3.6.5'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Domain member: Maximum machine account password age' is set to '30 or fewer days, but not 0'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.6.5'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Domain member: Maximum machine account password age' is set to '30 or fewer days, but not 0'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
@@ -366,17 +336,11 @@ function Test-DomainMemberRequireStrongKey {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RequireStrongKey"
-        $Result.Number = '2.3.6.6'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Domain member: Require strong (Windows 2000 or later) session key' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.6.6'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Domain member: Require strong (Windows 2000 or later) session key' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"

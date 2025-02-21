@@ -35,17 +35,11 @@ function Test-WinRMClientAllowBasic {
     begin {
         $EntryName = "Allow Basic authentication"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.89.1.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow Basic authentication' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.89.1.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Allow Basic authentication' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-WinRMClientAllowUnencryptedTraffic {
     begin {
         $EntryName = "Allow unencrypted traffic"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.89.1.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow unencrypted traffic' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.89.1.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Allow unencrypted traffic' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -169,17 +157,11 @@ function Test-WinRMClientAllowDigest {
     begin {
         $EntryName = "Disallow Digest authentication"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.89.1.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Disallow Digest authentication' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.89.1.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Disallow Digest authentication' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

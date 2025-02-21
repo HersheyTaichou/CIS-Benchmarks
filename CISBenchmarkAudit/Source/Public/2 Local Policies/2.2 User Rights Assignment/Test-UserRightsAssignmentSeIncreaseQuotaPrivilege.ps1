@@ -34,17 +34,11 @@ function Test-UserRightsAssignmentSeIncreaseQuotaPrivilege {
     )
 
     $Result = [CISBenchmark]::new()
-    $Result.Number = '2.2.6'
-    $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-    $Result.Title = "Ensure 'Adjust memory quotas for a process' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE'"
-    $Result.Source = 'Group Policy Settings'
+    $Number = '2.2.6'
+    $Level = 'L1'
+        
+    $Title= "Ensure 'Adjust memory quotas for a process' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE'"
+    $Source = 'FixMe'
 
     $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeIncreaseQuotaPrivilege" -Definition @('Administrators','LOCAL SERVICE','NETWORK SERVICE') -gpresult $GPResult
     $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 

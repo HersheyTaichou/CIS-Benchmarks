@@ -36,16 +36,10 @@ function Test-SystemAuditIPsecDriver {
     begin {
               $EntryName = "Audit IPsec Driver"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.9.1"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit IPsec Driver' is set to 'Success and Failure'"
+        $Number = '17.9.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit IPsec Driver' is set to 'Success and Failure'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -104,16 +98,10 @@ function Test-SystemAuditOtherSystemEvents {
     begin {
               $EntryName = "Audit Other System Events"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.9.2"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Other System Events' is set to 'Success and Failure'"
+        $Number = '17.9.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Other System Events' is set to 'Success and Failure'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -172,16 +160,10 @@ function Test-SystemAuditSecurityStateChange {
     begin {
               $EntryName = "Audit Security State Change"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.9.3"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Security State Change' is set to include 'Success'"
+        $Number = '17.9.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Security State Change' is set to include 'Success'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -240,16 +222,10 @@ function Test-SystemAuditSecuritySystemExtension {
     begin {
               $EntryName = "Audit Security System Extension"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.9.4"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Security System Extension' is set to include 'Success'"
+        $Number = '17.9.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Security System Extension' is set to include 'Success'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -308,16 +284,10 @@ function Test-SystemAuditSystemIntegrity {
     begin {
               $EntryName = "Audit System Integrity"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.9.5"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit System Integrity' is set to 'Success and Failure'"
+        $Number = '17.9.5'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit System Integrity' is set to 'Success and Failure'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting

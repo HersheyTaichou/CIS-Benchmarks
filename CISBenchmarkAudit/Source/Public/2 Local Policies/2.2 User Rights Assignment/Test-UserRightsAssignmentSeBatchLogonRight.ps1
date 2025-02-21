@@ -34,11 +34,11 @@ function Test-UserRightsAssignmentSeBatchLogonRight {
     )
 
     $Result = [CISBenchmark]::new()
-    $Result.Number = '2.2.36'
-    $Result.Level = "L2"
+    $Number = '2.2.36'
+    $Level = 'L2'
     $Result.Profile = "Domain Controller"
-    $Result.Title = "Ensure 'Log on as a batch job' is set to 'Administrators' (DC Only)"
-    $Result.Source = 'Group Policy Settings'
+    $Title= "Ensure 'Log on as a batch job' is set to 'Administrators' (DC Only)"
+    $Source = 'FixMe'
 
     $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeBatchLogonRight" -Definition @('Administrators') -gpresult $GPResult
     $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 

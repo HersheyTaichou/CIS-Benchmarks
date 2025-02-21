@@ -35,17 +35,11 @@ function Test-DeviceGuardEnableVirtualizationBasedSecurity {
     begin {
         $EntryName = "Turn On Virtualization Based Security"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.5.1'
+        $Number = '18.9.5.1'
         $Result.Level = "NG"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn On Virtualization Based Security' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        
+        $Title= "Ensure 'Turn On Virtualization Based Security' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-DeviceGuardRequirePlatformSecurityFeatures {
     begin {
         $EntryName = "Turn On Virtualization Based Security"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.5.2'
+        $Number = '18.9.5.2'
         $Result.Level = "NG"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn On Virtualization Based Security: Select Platform Security Level' is set to 'Secure Boot' or higher"
-        $Result.Source = 'Group Policy Settings'
+        
+        $Title= "Ensure 'Turn On Virtualization Based Security: Select Platform Security Level' is set to 'Secure Boot' or higher"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -170,17 +158,11 @@ function Test-DeviceGuardHypervisorEnforcedCodeIntegrity {
     begin {
         $EntryName = "Turn On Virtualization Based Security"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.5.3'
+        $Number = '18.9.5.3'
         $Result.Level = "NG"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn On Virtualization Based Security: Virtualization Based Protection of Code Integrity' is set to 'Enabled with UEFI lock'"
-        $Result.Source = 'Group Policy Settings'
+        
+        $Title= "Ensure 'Turn On Virtualization Based Security: Virtualization Based Protection of Code Integrity' is set to 'Enabled with UEFI lock'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -238,17 +220,11 @@ function Test-DeviceGuardHVCIMATRequired {
     begin {
         $EntryName = "Turn On Virtualization Based Security"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.5.4'
+        $Number = '18.9.5.4'
         $Result.Level = "NG"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn On Virtualization Based Security: Require UEFI Memory Attributes Table' is set to 'True (checked)'"
-        $Result.Source = 'Group Policy Settings'
+        
+        $Title= "Ensure 'Turn On Virtualization Based Security: Require UEFI Memory Attributes Table' is set to 'True (checked)'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -307,21 +283,21 @@ function Test-DeviceGuardLsaCfgFlags {
         $EntryName = "Turn On Virtualization Based Security"
         $Result = [CISBenchmark]::new()
         if ($ProductType.Number -eq 1) {
-            $Result.Level = "L1"
+            $Level = 'L1'
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType.Number -eq 2) {
             $Result.Level = "NG"
             $Result.Profile = "Domain Controller"
-            $Result.Number = '18.9.5.6'
-            $Result.Title = "Ensure 'Turn On Virtualization Based Security: Credential Guard Configuration' is set to 'Disabled' (DC Only)"
+            $Number = '18.9.5.6'
+            $Title= "Ensure 'Turn On Virtualization Based Security: Credential Guard Configuration' is set to 'Disabled' (DC Only)"
         } elseif ($ProductType.Number -eq 3) {
             $Result.Level = "NG"
             $Result.Profile = "Member Server"
-            $Result.Number = '18.9.5.5'
-            $Result.Title = "Ensure 'Turn On Virtualization Based Security: Credential Guard Configuration' is set to 'Enabled with UEFI lock' (MS Only)"
+            $Number = '18.9.5.5'
+            $Title= "Ensure 'Turn On Virtualization Based Security: Credential Guard Configuration' is set to 'Enabled with UEFI lock' (MS Only)"
         }
         
-        $Result.Source = 'Group Policy Settings'
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -381,17 +357,11 @@ function Test-DeviceGuardConfigureSystemGuardLaunch {
     begin {
         $EntryName = "Turn On Virtualization Based Security"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.5.7'
+        $Number = '18.9.5.7'
         $Result.Level = "NG"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn On Virtualization Based Security: Secure Launch Configuration' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        
+        $Title= "Ensure 'Turn On Virtualization Based Security: Secure Launch Configuration' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

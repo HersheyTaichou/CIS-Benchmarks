@@ -35,16 +35,10 @@ function Test-UserRightsAssignmentSeRemoteShutdownPrivilege {
 
     $Result = [CISBenchmark]::new()
         $Result = [CISBenchmark]::new()
-        $Result.Number = "2.2.29"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Force shutdown from a remote system' is set to 'Administrators'"
+        $Number = '2.2.29'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Force shutdown from a remote system' is set to 'Administrators'"
 		$Result.Source = "Group Policy Settings"
 
     $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeRemoteShutdownPrivilege" -Definition @('Administrators') -gpresult $GPResult

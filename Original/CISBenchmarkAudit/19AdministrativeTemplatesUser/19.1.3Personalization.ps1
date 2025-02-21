@@ -35,17 +35,11 @@ function Test-UserPersonalizationScreenSaveActive {
     begin {
         $EntryName = "Enable screen saver"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '19.1.3.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Enable screen saver' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '19.1.3.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Enable screen saver' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "UserResults"
@@ -102,17 +96,11 @@ function Test-UserPersonalizationScreenSaverIsSecure {
     begin {
         $EntryName = "Password protect the screen saver"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '19.1.3.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Password protect the screen saver' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '19.1.3.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Password protect the screen saver' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "UserResults"
@@ -169,17 +157,11 @@ function Test-UserPersonalizationScreenSaveTimeOut {
     begin {
         $EntryName = "Screen saver timeout"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '19.1.3.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Screen saver timeout' is set to 'Enabled: 900 seconds or fewer, but not 0'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '19.1.3.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Screen saver timeout' is set to 'Enabled: 900 seconds or fewer, but not 0'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "UserResults"

@@ -34,17 +34,11 @@ function Test-UserRightsAssignmentSeSystemProfilePrivilege {
     )
 
     $Result = [CISBenchmark]::new()
-    $Result.Number = '2.2.43'
-    $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-    $Result.Title = "Ensure 'Profile system performance' is set to 'Administrators, NT SERVICE\WdiServiceHost'"
-    $Result.Source = 'Group Policy Settings'
+    $Number = '2.2.43'
+    $Level = 'L1'
+        
+    $Title= "Ensure 'Profile system performance' is set to 'Administrators, NT SERVICE\WdiServiceHost'"
+    $Source = 'FixMe'
 
     $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeSystemProfilePrivilege" -Definition @('Administrators', 'NT SERVICE\WdiServiceHost') -gpresult $GPResult
     $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 

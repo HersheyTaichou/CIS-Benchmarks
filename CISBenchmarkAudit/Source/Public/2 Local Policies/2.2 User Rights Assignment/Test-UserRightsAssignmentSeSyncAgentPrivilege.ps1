@@ -34,11 +34,11 @@ function Test-UserRightsAssignmentSeSyncAgentPrivilege {
     )
 
     $Result = [CISBenchmark]::new()
-    $Result.Number = '2.2.47'
-    $Result.Level = "L1"
+    $Number = '2.2.47'
+    $Level = 'L1'
         $Result.Profile = "Domain Controller"
-    $Result.Title = "Ensure 'Synchronize directory service data' is set to 'No One' (DC only)"
-    $Result.Source = 'Group Policy Settings'
+    $Title= "Ensure 'Synchronize directory service data' is set to 'No One' (DC only)"
+    $Source = 'FixMe'
 
     $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeSyncAgentPrivilege" -Definition @('') -gpresult $GPResult
     $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 

@@ -35,17 +35,11 @@ function Test-UserAttachmentManagerSaveZoneInformation {
     begin {
         $EntryName = "Do not preserve zone information in file attachments"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '19.7.4.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Do not preserve zone information in file attachments' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '19.7.4.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Do not preserve zone information in file attachments' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "UserResults"
@@ -102,17 +96,11 @@ function Test-UserAttachmentManagerScanWithAntiVirus {
     begin {
         $EntryName = "Notify antivirus programs when opening attachments"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '19.7.4.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Notify antivirus programs when opening attachments' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '19.7.4.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Notify antivirus programs when opening attachments' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "UserResults"

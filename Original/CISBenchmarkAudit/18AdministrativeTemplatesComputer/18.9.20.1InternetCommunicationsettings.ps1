@@ -35,17 +35,11 @@ function Test-InternetCommunicationsettingsDisableWebPnPDownload {
     begin {
         $EntryName = "Turn off downloading of print drivers over HTTP"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.20.1.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off downloading of print drivers over HTTP' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.20.1.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Turn off downloading of print drivers over HTTP' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-InternetCommunicationsettingsPreventHandwritingDataSharing {
     begin {
         $EntryName = "Turn off handwriting personalization data sharing"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.20.1.2'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off handwriting personalization data sharing' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.20.1.2'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Turn off handwriting personalization data sharing' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -169,17 +157,11 @@ function Test-InternetCommunicationsettingsPreventHandwritingErrorReports {
     begin {
         $EntryName = "Turn off handwriting recognition error reporting"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.20.1.3'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off handwriting recognition error reporting' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.20.1.3'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Turn off handwriting recognition error reporting' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -236,17 +218,11 @@ function Test-InternetCommunicationsettingsExitOnMSICW {
     begin {
         $EntryName = "Turn off Internet Connection Wizard if URL connection is referring to Microsoft.com"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.20.1.4'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off Internet Connection Wizard if URL connection is referring to Microsoft.com' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.20.1.4'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Turn off Internet Connection Wizard if URL connection is referring to Microsoft.com' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -303,17 +279,11 @@ function Test-InternetCommunicationsettingsNoWebServices {
     begin {
         $EntryName = "Turn off Internet download for Web publishing and online ordering wizards"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.20.1.5'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off Internet download for Web publishing and online ordering wizards' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.20.1.5'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Turn off Internet download for Web publishing and online ordering wizards' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -370,17 +340,11 @@ function Test-InternetCommunicationsettingsDisableHTTPPrinting {
     begin {
         $EntryName = "Turn off printing over HTTP"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.20.1.6'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off printing over HTTP' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.20.1.6'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Turn off printing over HTTP' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -437,17 +401,11 @@ function Test-InternetCommunicationsettingsNoRegistration {
     begin {
         $EntryName = "Turn off Registration if URL connection is referring to Microsoft.com"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.20.1.7'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off Registration if URL connection is referring to Microsoft.com' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.20.1.7'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Turn off Registration if URL connection is referring to Microsoft.com' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -504,17 +462,11 @@ function Test-InternetCommunicationsettingsDisableContentFileUpdates {
     begin {
         $EntryName = "Turn off Search Companion content file updates"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.20.1.8'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off Search Companion content file updates' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.20.1.8'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Turn off Search Companion content file updates' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -571,17 +523,11 @@ function Test-InternetCommunicationsettingsNoOnlinePrintsWizard {
     begin {
         $EntryName = 'Turn off the "Order Prints" picture task'
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.20.1.9'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off the `"Order Prints`" picture task' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.20.1.9'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Turn off the `"Order Prints`" picture task' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -638,17 +584,11 @@ function Test-InternetCommunicationsettingsNoPublishingWizard {
     begin {
         $EntryName = 'Turn off the "Publish to Web" task for files and folders'
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.20.1.10'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off the `"Publish to Web`" task for files and folders' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.20.1.10'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Turn off the `"Publish to Web`" task for files and folders' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -705,17 +645,11 @@ function Test-InternetCommunicationsettingsCEIP {
     begin {
         $EntryName = "Turn off the Windows Messenger Customer Experience Improvement Program"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.20.1.11'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off the Windows Messenger Customer Experience Improvement Program' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.20.1.11'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Turn off the Windows Messenger Customer Experience Improvement Program' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -772,17 +706,11 @@ function Test-InternetCommunicationsettingsCEIPEnable {
     begin {
         $EntryName = "Turn off Windows Customer Experience Improvement Program"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.20.1.12'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off Windows Customer Experience Improvement Program' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.20.1.12'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Turn off Windows Customer Experience Improvement Program' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -839,17 +767,11 @@ function Test-InternetCommunicationsettingsWindowsErrorReporting {
     begin {
         $EntryName = "Turn off Windows Error Reporting"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.20.1.13'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off Windows Error Reporting' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.20.1.13'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Turn off Windows Error Reporting' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

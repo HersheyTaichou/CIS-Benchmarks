@@ -36,17 +36,11 @@ function Test-NetworkAccessLSAAnonymousNameLookup {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "LSAAnonymousNameLookup"
-        $Result.Number = '2.3.10.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Network access: Allow anonymous SID/Name translation' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.10.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Network access: Allow anonymous SID/Name translation' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult -Results "ComputerResults"
@@ -104,17 +98,11 @@ function Test-NetworkAccessRestrictAnonymousSAM {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\RestrictAnonymousSAM"
-        $Result.Number = '2.3.10.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts' is set to 'Enabled' (MS only)"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.10.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts' is set to 'Enabled' (MS only)"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
@@ -172,17 +160,11 @@ function Test-NetworkAccessRestrictAnonymous {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\RestrictAnonymous"
-        $Result.Number = '2.3.10.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is set to 'Enabled' (MS only)"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.10.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is set to 'Enabled' (MS only)"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
@@ -240,17 +222,11 @@ function Test-NetworkAccessDisableDomainCreds {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\DisableDomainCreds"
-        $Result.Number = '2.3.10.4'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Network access: Do not allow storage of passwords and credentials for network authentication' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.10.4'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Network access: Do not allow storage of passwords and credentials for network authentication' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
@@ -308,17 +284,11 @@ function Test-NetworkAccessEveryoneIncludesAnonymous {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\EveryoneIncludesAnonymous"
-        $Result.Number = '2.3.10.5'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.10.5'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
@@ -380,7 +350,7 @@ function Test-NetworkAccessNullSessionPipes {
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\NullSessionPipes"
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
-        $Result.Source = 'Group Policy Settings'
+        $Source = 'FixMe'
     }
 
     process {
@@ -397,10 +367,10 @@ function Test-NetworkAccessNullSessionPipes {
         $MSRDSBrowser = @("HydraLSPipe","TermServLicensing","BROWSER")
 
         if ($ProductType.Number -eq 2) {
-            $Result.Number = '2.3.10.6'
-            $Result.Level = "L1"
+            $Number = '2.3.10.6'
+            $Level = 'L1'
             $Result.Profile = "Domain Controller"
-            $Result.Title = "Configure 'Network access: Named Pipes that can be accessed anonymously' (DC only)"
+            $Title= "Configure 'Network access: Named Pipes that can be accessed anonymously' (DC only)"
             if ($Result.Entry) {
                 if (-not(Compare-Object -ReferenceObject $DomainController -DifferenceObject $Result.Setting)) {
                     $Result.SetCorrectly = $true
@@ -413,10 +383,10 @@ function Test-NetworkAccessNullSessionPipes {
                 $Result.SetCorrectly = $false
             }
         } elseif ($ProductType.Number -eq 3) {
-            $Result.Number = '2.3.10.7'
-            $Result.Level = "L1"
+            $Number = '2.3.10.7'
+            $Level = 'L1'
             $Result.Profile = "Member Server"
-            $Result.Title = "Configure 'Network access: Named Pipes that can be accessed anonymously' (MS only)"
+            $Title= "Configure 'Network access: Named Pipes that can be accessed anonymously' (MS only)"
             if ($Result.Entry) {
                 if (-not(Compare-Object -ReferenceObject $MemberServer -DifferenceObject $Result.Setting)) {
                     $Result.SetCorrectly = $true
@@ -478,17 +448,11 @@ function Test-NetworkAccessAllowedExactPaths {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths\Machine"
-        $Result.Number = '2.3.10.8'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Configure 'Network access: Remotely accessible registry paths' is configured"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.10.8'
+        $Level = 'L1'
+        
+        $Title= "Configure 'Network access: Remotely accessible registry paths' is configured"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
@@ -551,17 +515,11 @@ function Test-NetworkAccessAllowedPaths {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedPaths\Machine"
-        $Result.Number = '2.3.10.9'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Configure 'Network access: Remotely accessible registry paths and sub-paths' is configured"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.10.9'
+        $Level = 'L1'
+        
+        $Title= "Configure 'Network access: Remotely accessible registry paths and sub-paths' is configured"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
@@ -635,17 +593,11 @@ function Test-NetworkAccessRestrictNullSessAccess {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\RestrictNullSessAccess"
-        $Result.Number = '2.3.10.10'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.10.10'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
@@ -703,17 +655,11 @@ function Test-NetworkAccessRestrictRemoteSAM {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\RestrictRemoteSAM"
-        $Result.Number = '2.3.10.11'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Administrators: Remote Access: Allow' (MS only)"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.10.11'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Administrators: Remote Access: Allow' (MS only)"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
@@ -772,17 +718,11 @@ function Test-NetworkAccessNullSessionShares {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\NullSessionShares"
-        $Result.Number = '2.3.10.12'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None'$cisb"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.10.12'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None'$cisb"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
@@ -841,17 +781,11 @@ function Test-NetworkAccessForceGuest {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "MACHINE\System\CurrentControlSet\Control\Lsa\ForceGuest"
-        $Result.Number = '2.3.10.13'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Network access: Sharing and security model for local accounts' is set to 'Classic - local users authenticate as themselves'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.10.13'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Network access: Sharing and security model for local accounts' is set to 'Classic - local users authenticate as themselves'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"

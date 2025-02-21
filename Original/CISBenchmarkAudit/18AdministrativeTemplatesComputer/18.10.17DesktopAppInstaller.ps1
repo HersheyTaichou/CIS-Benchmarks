@@ -35,17 +35,11 @@ function Test-DesktopAppInstallerEnableAppInstaller {
     begin {
         $EntryName = "Enable App Installer"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.17.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Enable App Installer' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.17.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Enable App Installer' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-DesktopAppInstallerEnableExperimentalFeatures {
     begin {
         $EntryName = "Enable App Installer Experimental Features"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.17.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Enable App Installer Experimental Features' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.17.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Enable App Installer Experimental Features' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -169,17 +157,11 @@ function Test-DesktopAppInstallerEnableHashOverride {
     begin {
         $EntryName = "Enable App Installer Hash Override"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.17.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Enable App Installer Hash Override' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.17.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Enable App Installer Hash Override' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -236,17 +218,11 @@ function Test-DesktopAppInstallerEnableMSAppInstallerProtocol {
     begin {
         $EntryName = "Enable App Installer ms-appinstaller protocol"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.17.4'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Enable App Installer ms-appinstaller protocol' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.17.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Enable App Installer ms-appinstaller protocol' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

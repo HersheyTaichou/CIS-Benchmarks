@@ -35,17 +35,11 @@ function Test-AutoPlayPoliciesNoAutoplayfornonVolume {
     begin {
         $EntryName = "Disallow Autoplay for non-volume devices"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.7.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Disallow Autoplay for non-volume devices' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.7.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Disallow Autoplay for non-volume devices' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-AutoPlayPoliciesNoAutorun {
     begin {
         $EntryName = "Set the default behavior for AutoRun"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.7.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Set the default behavior for AutoRun' is set to 'Enabled: Do not execute any autorun commands'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.7.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Set the default behavior for AutoRun' is set to 'Enabled: Do not execute any autorun commands'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -169,17 +157,11 @@ function Test-AutoPlayPoliciesNoDriveTypeAutoRun {
     begin {
         $EntryName = "Turn off Autoplay"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.7.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off Autoplay' is set to 'Enabled: All drives'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.7.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Turn off Autoplay' is set to 'Enabled: All drives'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

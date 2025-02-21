@@ -45,21 +45,21 @@ function Test-UserRightsAssignmentSeNetworkLogonRight {
     process {
         if ($ProductType.Number -eq 2) {
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $DomainController -gpresult $GPResult
-            $Result.Number = '2.2.2'
-            $Result.Level = "L1"
+            $Number = '2.2.2'
+            $Level = 'L1'
             $Result.Profile = "Domain Controller"
-            $Result.Title = "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only)"
-            $Result.Source = 'Group Policy Settings'
+            $Title= "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only)"
+            $Source = 'FixMe'
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
         } elseif ($ProductType.Number -eq 3) {
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeNetworkLogonRight" -Definition $MemberServer -gpresult $GPResult
-            $Result.Number = '2.2.3'
-            $Result.Level = "L1"
+            $Number = '2.2.3'
+            $Level = 'L1'
             $Result.Profile = "Member Server"
-            $Result.Title = "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only)"
-            $Result.Source = 'Group Policy Settings'
+            $Title= "Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only)"
+            $Source = 'FixMe'
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry

@@ -35,17 +35,11 @@ function Test-UserWindowsInstallerAlwaysInstallElevated {
     begin {
         $EntryName = "Always install with elevated privileges"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '19.7.40.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Always install with elevated privileges' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '19.7.40.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Always install with elevated privileges' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "UserResults"

@@ -39,16 +39,10 @@ function Test-AccountLockoutPolicyLockoutDuration {
         
         $Return = @()
         $Result = [CISBenchmark]::new()
-        $Result.Number = "1.2.1"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
+        $Number = '1.2.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
 		$Result.Source = "Group Policy Settings"
 
         #Find the Password History Size applied to this machine
@@ -72,10 +66,10 @@ function Test-AccountLockoutPolicyLockoutDuration {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 $Result = [CISBenchmark]::new()
-                $Result.Number = "1.2.1"
-                $Result.Level = "L1"
+                $Number = '1.2.1'
+                $Level = 'L1'
                 $Result.Profile = "Domain Controller"
-                $Result.Title = "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
+                $Title= "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
                 $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
                 if ($FGPasswordPolicy.LockoutDuration -ge (New-TimeSpan -Minutes 15)) {
                     $Result.SetCorrectly = $true

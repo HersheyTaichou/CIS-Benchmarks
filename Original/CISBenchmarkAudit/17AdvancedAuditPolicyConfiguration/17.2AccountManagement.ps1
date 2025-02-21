@@ -39,16 +39,10 @@ function Test-AccountManagementAuditApplicationGroupManagement {
     begin {
               $EntryName = "Audit Application Group Management"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.2.1"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Application Group Management' is set to 'Success and Failure'"
+        $Number = '17.2.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Application Group Management' is set to 'Success and Failure'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -107,16 +101,10 @@ function Test-AccountManagementAuditComputerAccountManagement {
     begin {
               $EntryName = "Audit Computer Account Management"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.2.2"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Computer Account Management' is set to include 'Success' (DC only)"
+        $Number = '17.2.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Computer Account Management' is set to include 'Success' (DC only)"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -175,16 +163,10 @@ function Test-AccountManagementAuditDistributionGroupManagement {
     begin {
               $EntryName = "Audit Distribution Group Management"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.2.3"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Distribution Group Management' is set to include 'Success' (DC only)"
+        $Number = '17.2.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Distribution Group Management' is set to include 'Success' (DC only)"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -243,16 +225,10 @@ function Test-AccountManagementAuditOtherAccountManagementEvents {
     begin {
               $EntryName = "Audit Other Account Management Events"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.2.4"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Other Account Management Events' is set to include 'Success' (DC only)"
+        $Number = '17.2.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Other Account Management Events' is set to include 'Success' (DC only)"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -311,16 +287,10 @@ function Test-AccountManagementAuditSecurityGroupManagement {
     begin {
               $EntryName = "Audit Security Group Management"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.2.5"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Security Group Management' is set to include 'Success'"
+        $Number = '17.2.5'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Security Group Management' is set to include 'Success'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -379,16 +349,10 @@ function Test-AccountManagementAuditUserAccountManagement {
     begin {
               $EntryName = "Audit User Account Management"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.2.6"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit User Account Management' is set to 'Success and Failure'"
+        $Number = '17.2.6'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit User Account Management' is set to 'Success and Failure'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting

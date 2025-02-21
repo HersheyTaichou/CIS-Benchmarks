@@ -35,17 +35,11 @@ function Test-AppRuntimeAllowMicrosoftAccountsToBeOptional {
     begin {
         $EntryName = "Allow Microsoft accounts to be optional"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.5.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow Microsoft accounts to be optional' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.5.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Allow Microsoft accounts to be optional' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

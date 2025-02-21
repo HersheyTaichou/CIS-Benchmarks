@@ -38,17 +38,11 @@ function Test-AccountLockoutPolicyLockoutThreshold {
     begin {
         $Return = @()
         $Result = [CISBenchmark]::new()
-        $Result.Number = '1.2.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '1.2.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
+        $Source = 'FixMe'
 
         #Find the Password History Size applied to this machine
         $EntryName = "LockoutBadCount"
@@ -71,10 +65,10 @@ function Test-AccountLockoutPolicyLockoutThreshold {
             $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
             foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
                 $Result = [CISBenchmark]::new()
-                $Result.Number = "1.2.2"
-                $Result.Level = "L1"
+                $Number = '1.2.2'
+                $Level = 'L1'
                 $Result.Profile = "Domain Controller"
-                $Result.Title = "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
+                $Title= "Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'"
                 $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
                 if ($FGPasswordPolicy.LockoutThreshold -gt "0" -and $FGPasswordPolicy.LockoutThreshold -le "5") {
                     $Result.SetCorrectly = $true

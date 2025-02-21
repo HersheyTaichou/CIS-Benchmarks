@@ -36,16 +36,10 @@ function Test-ObjectAccessAuditDetailedFileShare {
     begin {
               $EntryName = "Audit Detailed File Share"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.6.1"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Detailed File Share' is set to include 'Failure'"
+        $Number = '17.6.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Detailed File Share' is set to include 'Failure'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -104,16 +98,10 @@ function Test-ObjectAccessAuditFileShare {
     begin {
               $EntryName = "Audit File Share"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.6.2"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit File Share' is set to 'Success and Failure'"
+        $Number = '17.6.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit File Share' is set to 'Success and Failure'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -172,16 +160,10 @@ function Test-ObjectAccessAuditOtherObjectAccessEvents {
     begin {
               $EntryName = "Audit Other Object Access Events"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.6.3"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Other Object Access Events' is set to 'Success and Failure'"
+        $Number = '17.6.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Other Object Access Events' is set to 'Success and Failure'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -240,16 +222,10 @@ function Test-ObjectAccessAuditRemovableStorage {
     begin {
               $EntryName = "Audit Removable Storage"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.6.4"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Removable Storage' is set to 'Success and Failure'"
+        $Number = '17.6.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Removable Storage' is set to 'Success and Failure'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting

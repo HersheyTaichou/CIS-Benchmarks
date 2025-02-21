@@ -35,17 +35,11 @@ function Test-SecurityfPromptForPassword {
     begin {
         $EntryName = "Always prompt for password upon connection"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.9.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Always prompt for password upon connection' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.9.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Always prompt for password upon connection' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-SecurityfEncryptRPCTraffic {
     begin {
         $EntryName = "Require secure RPC communication"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.9.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Require secure RPC communication' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.9.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Require secure RPC communication' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -169,17 +157,11 @@ function Test-SecuritySecurityLayer {
     begin {
         $EntryName = "Require use of specific security layer for remote (RDP) connections"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.9.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Require use of specific security layer for remote (RDP) connections' is set to 'Enabled: SSL'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.9.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Require use of specific security layer for remote (RDP) connections' is set to 'Enabled: SSL'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -236,17 +218,11 @@ function Test-SecurityUserAuthentication {
     begin {
         $EntryName = "Require user authentication for remote connections by using Network Level Authentication"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.9.4'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Require user authentication for remote connections by using Network Level Authentication' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.9.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Require user authentication for remote connections by using Network Level Authentication' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -303,17 +279,11 @@ function Test-SecurityMinEncryptionLevel {
     begin {
         $EntryName = "Set client connection encryption level"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.57.3.9.5'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Set client connection encryption level' is set to 'Enabled: High Level'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.57.3.9.5'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Set client connection encryption level' is set to 'Enabled: High Level'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

@@ -45,21 +45,21 @@ function Test-UserRightsAssignmentSeSecurityPrivilege {
 
     process {
         if ($ProductType.Number -eq 2) {
-            $Result.Number = '2.2.37'
-            $Result.Level = "L1"
+            $Number = '2.2.37'
+            $Level = 'L1'
             $Result.Profile = "Domain Controller"
-            $Result.Title = "Ensure 'Manage auditing and security log' is set to 'Administrators' and (when Exchange is running in the environment) 'Exchange Servers' (DC only)"
-            $Result.Source = 'Group Policy Settings'
+            $Title= "Ensure 'Manage auditing and security log' is set to 'Administrators' and (when Exchange is running in the environment) 'Exchange Servers' (DC only)"
+            $Source = 'FixMe'
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $DomainController -OptionalDef $DCOptional -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
         } elseif ($ProductType.Number -eq 3) {
-            $Result.Number = '2.2.38'
-            $Result.Level = "L1"
+            $Number = '2.2.38'
+            $Level = 'L1'
             $Result.Profile = "Member Server"
-            $Result.Title = "Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)"
-            $Result.Source = 'Group Policy Settings'
+            $Title= "Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)"
+            $Source = 'FixMe'
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeSecurityPrivilege" -Definition $MemberServer -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting

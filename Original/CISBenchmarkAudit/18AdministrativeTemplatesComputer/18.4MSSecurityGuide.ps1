@@ -35,17 +35,11 @@ function Test-MSSecurityGuideApplyUACRestrictionsToLocalAccountsOnNetworkLogons 
     begin {
         $EntryName = "Apply UAC restrictions to local accounts on network logons"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.4.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Apply UAC restrictions to local accounts on network logons' is set to 'Enabled' (MS only)"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.4.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Apply UAC restrictions to local accounts on network logons' is set to 'Enabled' (MS only)"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-MSSecurityGuideConfigureRPCPacketLevelPrivacySettingForIncomingCon
     begin {
         $EntryName = "Configure RPC packet level privacy setting for incoming connections"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.4.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Configure RPC packet level privacy setting for incoming connections' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.4.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Configure RPC packet level privacy setting for incoming connections' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -169,17 +157,11 @@ function Test-MSSecurityGuideConfigureSMBv1ClientDriver {
     begin {
         $EntryName = "Configure SMB v1 client driver"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.4.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Configure SMB v1 client driver' is set to 'Enabled: Disable driver (recommended)'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.4.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Configure SMB v1 client driver' is set to 'Enabled: Disable driver (recommended)'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -236,17 +218,11 @@ function Test-MSSecurityGuideConfigureSMBv1Server {
     begin {
         $EntryName = "Configure SMB v1 server"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.4.4'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Configure SMB v1 server' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.4.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Configure SMB v1 server' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -303,17 +279,11 @@ function Test-MSSecurityGuideEnableSEHOP {
     begin {
         $EntryName = "Enable Structured Exception Handling Overwrite Protection (SEHOP)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.4.5'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Enable Structured Exception Handling Overwrite Protection (SEHOP)' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.4.5'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Enable Structured Exception Handling Overwrite Protection (SEHOP)' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -370,17 +340,11 @@ function Test-MSSecurityGuideNetBTNodeTypeconfiguration {
     begin {
         $EntryName = "NetBT NodeType configuration"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.4.6'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'NetBT NodeType configuration' is set to 'Enabled: P-node (recommended)'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.4.6'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'NetBT NodeType configuration' is set to 'Enabled: P-node (recommended)'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -437,17 +401,11 @@ function Test-MSSecurityGuideWDigestAuthentication {
     begin {
         $EntryName = "WDigest Authentication (disabling may require KB2871997)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.4.7'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'WDigest Authentication' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.4.7'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'WDigest Authentication' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

@@ -409,17 +409,11 @@ function Test-MicrosoftDefenderAntivirusPUAProtection {
     begin {
         $EntryName = "Configure detection for potentially unwanted applications"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.43.16'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Configure detection for potentially unwanted applications' is set to 'Enabled: Block'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.43.16'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Configure detection for potentially unwanted applications' is set to 'Enabled: Block'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -476,17 +470,11 @@ function Test-MicrosoftDefenderAntivirusDisableAntiSpyware {
     begin {
         $EntryName = "Turn off Microsoft Defender AntiVirus"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.43.17'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off Microsoft Defender AntiVirus' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.43.17'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Turn off Microsoft Defender AntiVirus' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

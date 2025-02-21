@@ -35,17 +35,11 @@ function Test-ManageUpdatesOfferedFromWindowsUpdateManagePreviewBuildsPolicyValu
     begin {
         $EntryName = "Manage preview builds"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.93.4.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Manage preview builds' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.93.4.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Manage preview builds' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-ManageUpdatesOfferedFromWindowsUpdateDeferFeatureUpdates {
     begin {
         $EntryName = "Select when Preview Builds and Feature Updates are received"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.93.4.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Select when Preview Builds and Feature Updates are received' is set to 'Enabled: 180 or more days'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.93.4.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Select when Preview Builds and Feature Updates are received' is set to 'Enabled: 180 or more days'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -170,17 +158,11 @@ function Test-ManageUpdatesOfferedFromWindowsUpdateDeferQualityUpdates {
     begin {
         $EntryName = "Select when Quality Updates are received"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.93.4.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Select when Quality Updates are received' is set to 'Enabled: 0 days'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.93.4.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Select when Quality Updates are received' is set to 'Enabled: 0 days'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

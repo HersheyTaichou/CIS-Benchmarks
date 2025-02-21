@@ -34,17 +34,11 @@ function Test-UserRightsAssignmentSeManageVolumePrivilege {
     )
 
     $Result = [CISBenchmark]::new()
-    $Result.Number = '2.2.41'
-    $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-    $Result.Title = "Ensure 'Perform volume maintenance tasks' is set to 'Administrators'"
-    $Result.Source = 'Group Policy Settings'
+    $Number = '2.2.41'
+    $Level = 'L1'
+        
+    $Title= "Ensure 'Perform volume maintenance tasks' is set to 'Administrators'"
+    $Source = 'FixMe'
 
     $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeManageVolumePrivilege" -Definition @('Administrators') -gpresult $GPResult
     $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 

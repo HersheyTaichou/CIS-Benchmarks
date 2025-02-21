@@ -34,17 +34,11 @@ function Test-UserRightsAssignmentSeIncreaseBasePriorityPrivilege {
     )
 
     $Result = [CISBenchmark]::new()
-    $Result.Number = '2.2.33'
-    $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-    $Result.Title = "Ensure 'Increase scheduling priority' is set to 'Administrators, Window Manager\Window Manager Group'"
-    $Result.Source = 'Group Policy Settings'
+    $Number = '2.2.33'
+    $Level = 'L1'
+        
+    $Title= "Ensure 'Increase scheduling priority' is set to 'Administrators, Window Manager\Window Manager Group'"
+    $Source = 'FixMe'
 
     $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeIncreaseBasePriorityPrivilege" -Definition @('Administrators') -OptionalDef @('Window Manager\Window Manager Group') -gpresult $GPResult
     $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 

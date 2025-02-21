@@ -34,17 +34,11 @@ function Test-UserRightsAssignmentSeBackupPrivilege {
     )
 
     $Result = [CISBenchmark]::new()
-    $Result.Number = '2.2.10'
-    $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-    $Result.Title = "Ensure 'Allow log on locally' is set to 'Administrators'"
-    $Result.Source = 'Group Policy Settings'
+    $Number = '2.2.10'
+    $Level = 'L1'
+        
+    $Title= "Ensure 'Allow log on locally' is set to 'Administrators'"
+    $Source = 'FixMe'
 
     $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeBackupPrivilege" -Definition @('Administrators') -gpresult $GPResult
     $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 

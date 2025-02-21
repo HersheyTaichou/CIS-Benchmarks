@@ -44,21 +44,21 @@ function Test-UserRightsAssignmentSeEnableDelegationPrivilege {
 
     process {
         if ($ProductType.Number -eq 2) {
-            $Result.Number = '2.2.27'
-            $Result.Level = "L1"
+            $Number = '2.2.27'
+            $Level = 'L1'
             $Result.Profile = "Domain Controller"
-            $Result.Title = "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administrators' (DC only)"
-            $Result.Source = 'Group Policy Settings'
+            $Title= "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administrators' (DC only)"
+            $Source = 'FixMe'
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $DomainController -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
         } elseif ($ProductType.Number -eq 3) {
-            $Result.Number = '2.2.28'
-            $Result.Level = "L1"
+            $Number = '2.2.28'
+            $Level = 'L1'
             $Result.Profile = "Member Server"
-            $Result.Title = "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One' (MS only)"
-            $Result.Source = 'Group Policy Settings'
+            $Title= "Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One' (MS only)"
+            $Source = 'FixMe'
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeEnableDelegationPrivilege" -Definition $MemberServer -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting

@@ -35,17 +35,11 @@ function Test-RemoteProcedureCallEnableAuthEpResolution {
     begin {
         $EntryName = "Enable RPC Endpoint Mapper Client Authentication"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.35.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Enable RPC Endpoint Mapper Client Authentication' is set to 'Enabled' (MS only)"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.35.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Enable RPC Endpoint Mapper Client Authentication' is set to 'Enabled' (MS only)"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,8 +96,8 @@ function Test-RemoteProcedureCallRestrictRemoteClients {
     begin {
         $EntryName = "Restrict Unauthenticated RPC clients"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.35.2'
-        $Result.Level = "L2"
+        $Number = '18.9.35.2'
+        $Level = 'L2'
         if ($ProductType.Number -eq 1) {
             $Result.Profile = "Corporate/Enterprise Environment"
         } elseif ($ProductType.Number -eq 2) {
@@ -112,8 +106,8 @@ function Test-RemoteProcedureCallRestrictRemoteClients {
         } elseif ($ProductType.Number -eq 3) {
             $Result.Profile = "Member Server"
         }
-        $Result.Title = "Ensure 'Restrict Unauthenticated RPC clients' is set to 'Enabled: Authenticated' (MS only)"
-        $Result.Source = 'Group Policy Settings'
+        $Title= "Ensure 'Restrict Unauthenticated RPC clients' is set to 'Enabled: Authenticated' (MS only)"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

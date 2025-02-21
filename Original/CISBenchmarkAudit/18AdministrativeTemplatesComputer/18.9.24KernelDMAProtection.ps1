@@ -35,17 +35,11 @@ function Test-KernelDMAProtectionDeviceEnumerationPolicy {
     begin {
         $EntryName = "Enumeration policy for external devices incompatible with Kernel DMA Protection"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.24.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Enumeration policy for external devices incompatible with Kernel DMA Protection' is set to 'Enabled: Block All'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.24.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Enumeration policy for external devices incompatible with Kernel DMA Protection' is set to 'Enabled: Block All'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

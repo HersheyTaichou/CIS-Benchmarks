@@ -36,16 +36,10 @@ function Test-DetailedTrackingAuditPNPActivity {
     begin {
               $EntryName = "Audit PNP Activity"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.3.1"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit PNP Activity' is set to include 'Success'"
+        $Number = '17.3.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit PNP Activity' is set to include 'Success'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -104,16 +98,10 @@ function Test-DetailedTrackingAuditProcessCreation {
     begin {
               $EntryName = "Audit Process Creation"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.3.2"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Process Creation' is set to include 'Success'"
+        $Number = '17.3.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Process Creation' is set to include 'Success'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting

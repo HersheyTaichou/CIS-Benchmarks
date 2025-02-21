@@ -36,17 +36,11 @@ function Test-PrivateProfileEnableFirewall {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
-        $Result.Number = '9.2.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Windows Firewall: Private: Firewall state' is set to 'On (recommended)'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '9.2.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Windows Firewall: Private: Firewall state' is set to 'On (recommended)'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
@@ -100,17 +94,11 @@ function Test-PrivateProfileDefaultInboundAction {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
-        $Result.Number = '9.2.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Windows Firewall: Private: Inbound connections' is set to 'Block (default)'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '9.2.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Windows Firewall: Private: Inbound connections' is set to 'Block (default)'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
@@ -164,17 +152,11 @@ function Test-PrivateProfileDefaultOutboundAction {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
-        $Result.Number = '9.2.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Windows Firewall: Private: Outbound connections' is set to 'Allow (default)'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '9.2.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Windows Firewall: Private: Outbound connections' is set to 'Allow (default)'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
@@ -232,17 +214,11 @@ function Test-PrivateProfileDisableNotifications {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
-        $Result.Number = '9.2.4'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Windows Firewall: Private: Settings: Display a notification' is set to 'No'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '9.2.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Windows Firewall: Private: Settings: Display a notification' is set to 'No'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
@@ -296,17 +272,11 @@ function Test-PrivateProfileLogFilePath {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
-        $Result.Number = '9.2.5'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Windows Firewall: Private: Logging: Name' is set to '%SystemRoot%\System32\logfiles\firewall\privatefw.log'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '9.2.5'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Windows Firewall: Private: Logging: Name' is set to '%SystemRoot%\System32\logfiles\firewall\privatefw.log'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
@@ -368,17 +338,11 @@ function Test-PrivateProfileLogFileSize {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
-        $Result.Number = '9.2.6'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Windows Firewall: Private: Logging: Size limit (KB)' is set to '16,384 KB or greater'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '9.2.6'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Windows Firewall: Private: Logging: Size limit (KB)' is set to '16,384 KB or greater'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
@@ -436,17 +400,11 @@ function Test-PrivateProfileLogDroppedPackets {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
-        $Result.Number = '9.2.7'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Windows Firewall: Private: Logging: Log dropped packets' is set to 'Yes'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '9.2.7'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Windows Firewall: Private: Logging: Log dropped packets' is set to 'Yes'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult
@@ -500,17 +458,11 @@ function Test-PrivateProfileLogSuccessfulConnections {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "PrivateProfile"
-        $Result.Number = '9.2.8'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Windows Firewall: Private: Logging: Log successful connections' is set to 'Yes'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '9.2.8'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Windows Firewall: Private: Logging: Log successful connections' is set to 'Yes'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-WindowsFirewallSettings -EntryName $EntryName -GPResult $GPResult

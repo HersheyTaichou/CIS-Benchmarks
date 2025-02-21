@@ -36,16 +36,10 @@ function Test-RegionalAndLanguageOptionsAllowUsersToEnableOnlineSpeechRecognitio
     begin {
         $EntryName = "Allow users to enable online speech recognition services"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "18.1.2.2"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow users to enable online speech recognition services' is set to 'Disabled'"
+        $Number = '18.1.2.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Allow users to enable online speech recognition services' is set to 'Disabled'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting

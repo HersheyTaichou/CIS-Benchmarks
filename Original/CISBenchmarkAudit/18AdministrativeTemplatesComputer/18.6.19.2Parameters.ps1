@@ -34,17 +34,11 @@ function Test-ParametersDisableIPv6 {
 
     begin {
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.6.19.2.1'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Disable IPv6 (Ensure TCPIP6 Parameter 'DisabledComponents' is set to '0xff (255)')"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.6.19.2.1'
+        $Level = 'L2'
+        
+        $Title= "Disable IPv6 (Ensure TCPIP6 Parameter 'DisabledComponents' is set to '0xff (255)')"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         foreach ($data in $GPResult.Rsop.ComputerResults.ExtensionData) {

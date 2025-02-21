@@ -35,17 +35,11 @@ function Test-RealTimeProtectionDisableIOAVProtection {
     begin {
         $EntryName = "Scan all downloaded files and attachments"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.43.10.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Scan all downloaded files and attachments' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.43.10.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Scan all downloaded files and attachments' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-RealTimeProtectionDisableRealtimeMonitoring {
     begin {
         $EntryName = "Turn off real-time protection"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.43.10.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off real-time protection' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.43.10.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Turn off real-time protection' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -169,17 +157,11 @@ function Test-RealTimeProtectionDisableBehaviorMonitoring {
     begin {
         $EntryName = "Turn on behavior monitoring"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.43.10.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn on behavior monitoring' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.43.10.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Turn on behavior monitoring' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -236,17 +218,11 @@ function Test-RealTimeProtectionDisableScriptScanning {
     begin {
         $EntryName = "Turn on script scanning"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.10.43.10.4'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn on script scanning' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.10.43.10.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Turn on script scanning' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

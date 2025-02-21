@@ -36,16 +36,10 @@ function Test-AccountLogonAuditCredentialValidation {
     begin {
         $EntryName = "Audit Credential Validation"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.1.1"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Credential Validation' is set to 'Success and Failure'"
+        $Number = '17.1.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Credential Validation' is set to 'Success and Failure'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -104,16 +98,10 @@ function Test-AccountLogonAuditKerberosAuthenticationService {
     begin {
         $EntryName = "Audit Kerberos Authentication Service"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.1.2"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Kerberos Authentication Service' is set to 'Success and Failure' (DC Only)"
+        $Number = '17.1.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Kerberos Authentication Service' is set to 'Success and Failure' (DC Only)"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -172,16 +160,10 @@ function Test-AccountLogonAuditKerberosServiceTicketOperations {
     begin {
         $EntryName = "Audit Kerberos Service Ticket Operations"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.1.3"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Kerberos Service Ticket Operations' is set to 'Success and Failure' (DC Only)"
+        $Number = '17.1.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Kerberos Service Ticket Operations' is set to 'Success and Failure' (DC Only)"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting

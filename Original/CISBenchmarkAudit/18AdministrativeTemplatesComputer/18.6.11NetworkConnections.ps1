@@ -35,17 +35,11 @@ function Test-NetworkConnectionsNCAllowNetBridgeNLA {
     begin {
         $EntryName = "Prohibit installation and configuration of Network Bridge on your DNS domain network"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.6.11.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Prohibit installation and configuration of Network Bridge on your DNS domain network' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.6.11.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Prohibit installation and configuration of Network Bridge on your DNS domain network' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-NetworkConnectionsNCShowSharedAccessUI {
     begin {
         $EntryName = "Prohibit use of Internet Connection Sharing on your DNS domain network"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.6.11.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Prohibit use of Internet Connection Sharing on your DNS domain network' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.6.11.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Prohibit use of Internet Connection Sharing on your DNS domain network' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -169,17 +157,11 @@ function Test-NetworkConnections {
     begin {
         $EntryName = "Require domain users to elevate when setting a network's location"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.6.11.4'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Require domain users to elevate when setting a network's location' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.6.11.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Require domain users to elevate when setting a network's location' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

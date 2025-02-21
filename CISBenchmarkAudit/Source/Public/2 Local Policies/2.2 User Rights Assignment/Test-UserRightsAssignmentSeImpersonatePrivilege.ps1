@@ -45,21 +45,21 @@ function Test-UserRightsAssignmentSeImpersonatePrivilege {
 
     process {
         if ($ProductType.Number -eq 2) {
-            $Result.Number = '2.2.31'
-            $Result.Level = "L1"
+            $Number = '2.2.31'
+            $Level = 'L1'
             $Result.Profile = "Domain Controller"
-            $Result.Title = "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' (DC only)"
-            $Result.Source = 'Group Policy Settings'
+            $Title= "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' (DC only)"
+            $Source = 'FixMe'
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $DomainController -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
         } elseif ($ProductType.Number -eq 3) {
-            $Result.Number = '2.2.32'
-            $Result.Level = "L1"
+            $Number = '2.2.32'
+            $Level = 'L1'
             $Result.Profile = "Member Server"
-            $Result.Title = "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only)"
-            $Result.Source = 'Group Policy Settings'
+            $Title= "Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only)"
+            $Source = 'FixMe'
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeImpersonatePrivilege" -Definition $MemberServer -OptionalDef $MSOptional -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting

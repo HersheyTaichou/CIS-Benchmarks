@@ -46,8 +46,8 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
     process {
         if ($ProductType.Number -eq 2) {
             $Result = [CISBenchmark]::new()
-            $Result.Number = "2.2.8"
-            $Result.Level = "L1"
+            $Number = '2.2.8'
+            $Level = 'L1'
             if ($ProductType.Number -eq 1) {
                 $Result.Profile = "Corporate/Enterprise Environment"
             } elseif ($ProductType.Number -eq 2) {
@@ -55,18 +55,18 @@ function Test-UserRightsAssignmentSeRemoteInteractiveLogonRight {
             } elseif ($ProductType.Number -eq 3) {
                 $Result.Profile = "Member Server"
             }
-            $Result.Title = "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)"
+            $Title= "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)"
             $Result.Source = "Group Policy Settings"
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $DomainController -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
         } elseif ($ProductType.Number -eq 3) {
-            $Result.Number = '2.2.9'
-            $Result.Level = "L1"
+            $Number = '2.2.9'
+            $Level = 'L1'
             $Result.Profile = "Member Server"
-            $Result.Title = "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS only)"
-            $Result.Source = 'Group Policy Settings'
+            $Title= "Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS only)"
+            $Source = 'FixMe'
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeRemoteInteractiveLogonRight" -Definition $MemberServer -OptionalDef $MSOptional -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting

@@ -36,16 +36,10 @@ function Test-LogonLogoffAuditAccountLockout {
     begin {
         $EntryName = "Audit Account Lockout"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.5.1"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Account Lockout' is set to include 'Failure'"
+        $Number = '17.5.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Account Lockout' is set to include 'Failure'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -104,16 +98,10 @@ function Test-LogonLogoffAuditGroupMembership {
     begin {
         $EntryName = "Audit Group Membership"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.5.2"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Group Membership' is set to include 'Success'"
+        $Number = '17.5.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Group Membership' is set to include 'Success'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -172,16 +160,10 @@ function Test-LogonLogoffAuditLogoff {
     begin {
         $EntryName = "Audit Logoff"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.5.3"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Logoff' is set to include 'Success'"
+        $Number = '17.5.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Logoff' is set to include 'Success'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -240,16 +222,10 @@ function Test-LogonLogoffAuditLogon {
     begin {
         $EntryName = "Audit Logon"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.5.4"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Logon' is set to 'Success and Failure'"
+        $Number = '17.5.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Logon' is set to 'Success and Failure'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -308,17 +284,11 @@ function Test-LogonLogoffAuditOtherLogonLogoffEvents {
     begin {
         $EntryName = "Audit Other Logon/Logoff Events"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '17.5.5'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Other Logon/Logoff Events' is set to 'Success and Failure'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '17.5.5'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Other Logon/Logoff Events' is set to 'Success and Failure'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SubcategoryName" -GPResult $GPResult -Results "ComputerResults"
@@ -376,16 +346,10 @@ function Test-LogonLogoffAuditSpecialLogon {
     begin {
         $EntryName = "Audit Special Logon"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.5.6"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Special Logon' is set to include 'Success'"
+        $Number = '17.5.6'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Special Logon' is set to include 'Success'"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting

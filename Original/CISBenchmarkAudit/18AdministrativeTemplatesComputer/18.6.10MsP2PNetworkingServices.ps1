@@ -35,17 +35,11 @@ function Test-MsP2PNetworkingServicesPeernet {
     begin {
         $EntryName = "Turn off Microsoft Peer-to-Peer Networking Services"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.6.10.2'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off Microsoft Peer-to-Peer Networking Services' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.6.10.2'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Turn off Microsoft Peer-to-Peer Networking Services' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

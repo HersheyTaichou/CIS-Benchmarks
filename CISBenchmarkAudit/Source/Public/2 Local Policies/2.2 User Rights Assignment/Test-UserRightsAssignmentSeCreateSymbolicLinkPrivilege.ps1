@@ -48,8 +48,8 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
     process {
         if ($ProductType.Number -eq 2) {
             $Result = [CISBenchmark]::new()
-            $Result.Number = "2.2.17"
-            $Result.Level = "L1"
+            $Number = '2.2.17'
+            $Level = 'L1'
             if ($ProductType.Number -eq 1) {
                 $Result.Profile = "Corporate/Enterprise Environment"
             } elseif ($ProductType.Number -eq 2) {
@@ -57,18 +57,18 @@ function Test-UserRightsAssignmentSeCreateSymbolicLinkPrivilege {
             } elseif ($ProductType.Number -eq 3) {
                 $Result.Profile = "Member Server"
             }
-            $Result.Title = "Ensure 'Create symbolic links' is set to 'Administrators' (DC only)"
+            $Title= "Ensure 'Create symbolic links' is set to 'Administrators' (DC only)"
             $Result.Source = "Group Policy Settings"
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $DomainController -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
         } elseif ($ProductType.Number -eq 3) {
-            $Result.Number = '2.2.18'
-            $Result.Level = "L1"
+            $Number = '2.2.18'
+            $Level = 'L1'
             $Result.Profile = "Member Server"
-            $Result.Title = "Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\Virtual Machines' (MS only)"
-            $Result.Source = 'Group Policy Settings'
+            $Title= "Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\Virtual Machines' (MS only)"
+            $Source = 'FixMe'
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeCreateSymbolicLinkPrivilege" -Definition $MemberServer -OptionalDef $MSOptional -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting

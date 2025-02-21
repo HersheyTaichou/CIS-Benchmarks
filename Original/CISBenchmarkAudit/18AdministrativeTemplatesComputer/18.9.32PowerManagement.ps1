@@ -35,17 +35,11 @@ function Test-PowerManagementDCSettingIndexNetworkConnectivity {
     begin {
         $EntryName = "Allow network connectivity during connected-standby (on battery)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.32.6.1'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow network connectivity during connected-standby (on battery)' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.32.6.1'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Allow network connectivity during connected-standby (on battery)' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-PowerManagementACSettingIndexNetworkConnectivity {
     begin {
         $EntryName = "Allow network connectivity during connected-standby (plugged in)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.32.6.2'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow network connectivity during connected-standby (plugged in)' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.32.6.2'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Allow network connectivity during connected-standby (plugged in)' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -169,17 +157,11 @@ function Test-PowerManagementDCSettingIndexPasswordRequired {
     begin {
         $EntryName = "Require a password when a computer wakes (on battery)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.32.6.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Require a password when a computer wakes (on battery)' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.32.6.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Require a password when a computer wakes (on battery)' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -236,17 +218,11 @@ function Test-PowerManagementACSettingIndexPasswordRequired {
     begin {
         $EntryName = "Require a password when a computer wakes (plugged in)"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.32.6.4'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Require a password when a computer wakes (plugged in)' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.32.6.4'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Require a password when a computer wakes (plugged in)' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

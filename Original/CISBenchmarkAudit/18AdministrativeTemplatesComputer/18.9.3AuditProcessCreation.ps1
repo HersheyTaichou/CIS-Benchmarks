@@ -35,17 +35,11 @@ function Test-AuditProcessCreationIncludeCmdLine {
     begin {
         $EntryName = "Include command line in process creation events"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.3.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Include command line in process creation events' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.3.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Include command line in process creation events' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

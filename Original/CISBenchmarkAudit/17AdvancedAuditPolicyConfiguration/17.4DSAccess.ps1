@@ -36,16 +36,10 @@ function Test-DSAccessAuditDirectoryServiceAccess {
     begin {
               $EntryName = "Audit Directory Service Access"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.4.1"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Directory Service Access' is set to include 'Failure' (DC only)"
+        $Number = '17.4.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Directory Service Access' is set to include 'Failure' (DC only)"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting
@@ -104,16 +98,10 @@ function Test-DSAccessAuditDirectoryServiceChanges {
     begin {
               $EntryName = "Audit Directory Service Changes"
         $Result = [CISBenchmark]::new()
-        $Result.Number = "17.4.2"
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Audit Directory Service Changes' is set to include 'Success' (DC only)"
+        $Number = '17.4.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Audit Directory Service Changes' is set to include 'Success' (DC only)"
 		$Result.Source = "Group Policy Settings"
 
         # Get the current value of the setting

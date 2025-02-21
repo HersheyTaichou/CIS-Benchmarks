@@ -35,17 +35,11 @@ function Test-OSPoliciesAllowCrossDeviceClipboard {
     begin {
         $EntryName = "Allow Clipboard synchronization across devices"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.30.1'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow Clipboard synchronization across devices' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.30.1'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Allow Clipboard synchronization across devices' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -102,17 +96,11 @@ function Test-OSPoliciesUploadUserActivities {
     begin {
         $EntryName = "Allow upload of User Activities"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '18.9.30.2'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Allow upload of User Activities' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '18.9.30.2'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Allow upload of User Activities' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"

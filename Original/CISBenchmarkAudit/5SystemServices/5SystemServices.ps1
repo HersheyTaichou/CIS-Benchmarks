@@ -38,8 +38,8 @@ function Test-SystemServicesSpooler {
     begin {
         $Result = [CISBenchmark]::new()
         $EntryName = "Spooler"
-        $Result.Number = '5.1'
-        $Result.Source = 'Group Policy Settings'
+        $Number = '5.1'
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
@@ -47,9 +47,9 @@ function Test-SystemServicesSpooler {
 
     process {
         if ($ProductType.Number -eq 2) {
-            $Result.Level = "L1"
+            $Level = 'L1'
         $Result.Profile = "Domain Controller"
-            $Result.Title = "Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)"
+            $Title= "Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only)"
             $Result.Setting = $Result.Entry.StartupMode
             if ($Result.Setting -eq "Disabled") {
                 $Result.SetCorrectly = $True
@@ -57,9 +57,9 @@ function Test-SystemServicesSpooler {
                 $Result.SetCorrectly = $false
             }
         } elseif ($ProductType.Number -eq 3) {
-            $Result.Level = "L2"
+            $Level = 'L2'
             $Result.Profile = "Member Server"
-            $Result.Title = "Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (MS only)"
+            $Title= "Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (MS only)"
             $Result.Setting = $Result.Entry.StartupMode
             if ($Result.Setting -eq "Disabled") {
                 $Result.SetCorrectly = $True

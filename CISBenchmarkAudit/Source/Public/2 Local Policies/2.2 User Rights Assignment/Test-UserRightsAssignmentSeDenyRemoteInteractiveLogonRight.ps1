@@ -45,8 +45,8 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
     process {
         if ($ProductType.Number -eq 2) {
             $Result = [CISBenchmark]::new()
-            $Result.Number = "2.2.25"
-            $Result.Level = "L1"
+            $Number = '2.2.25'
+            $Level = 'L1'
             if ($ProductType.Number -eq 1) {
                 $Result.Profile = "Corporate/Enterprise Environment"
             } elseif ($ProductType.Number -eq 2) {
@@ -54,18 +54,18 @@ function Test-UserRightsAssignmentSeDenyRemoteInteractiveLogonRight {
             } elseif ($ProductType.Number -eq 3) {
                 $Result.Profile = "Member Server"
             }
-            $Result.Title = "Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only)"
+            $Title= "Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only)"
             $Result.Source = "Group Policy Settings"
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $DomainController -Include -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting
             $Result.Entry = $UserRightsAssignment.Entry.Entry
         } elseif ($ProductType.Number -eq 3) {
-            $Result.Number = '2.2.26'
-            $Result.Level = "L1"
+            $Number = '2.2.26'
+            $Level = 'L1'
             $Result.Profile = "Member Server"
-            $Result.Title = "Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only)"
-            $Result.Source = 'Group Policy Settings'
+            $Title= "Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only)"
+            $Source = 'FixMe'
             $UserRightsAssignment = Test-UserRightsAssignment -EntryName "SeDenyRemoteInteractiveLogonRight" -Definition $MemberServer -gpresult $GPResult
             $Result.SetCorrectly = $UserRightsAssignment.SetCorrectly 
             $Result.Setting = $UserRightsAssignment.Setting

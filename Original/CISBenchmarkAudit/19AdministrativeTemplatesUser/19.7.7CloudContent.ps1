@@ -35,17 +35,11 @@ function Test-UserCloudContentConfigureWindowsSpotlight {
     begin {
         $EntryName = "Configure Windows spotlight on lock screen"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '19.7.7.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Configure Windows spotlight on lock screen' is set to 'Disabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '19.7.7.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Configure Windows spotlight on lock screen' is set to 'Disabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "UserResults"
@@ -102,17 +96,11 @@ function Test-UserCloudContentDisableThirdPartySuggestions {
     begin {
         $EntryName = "Do not suggest third-party content in Windows spotlight"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '19.7.7.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Do not suggest third-party content in Windows spotlight' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '19.7.7.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Do not suggest third-party content in Windows spotlight' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "UserResults"
@@ -169,17 +157,11 @@ function Test-UserCloudContentDisableTailoredExperiencesWithDiagnosticData {
     begin {
         $EntryName = "Do not use diagnostic data for tailored experiences"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '19.7.7.3'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Do not use diagnostic data for tailored experiences' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '19.7.7.3'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Do not use diagnostic data for tailored experiences' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "UserResults"
@@ -236,17 +218,11 @@ function Test-UserCloudContentDisableWindowsSpotlightFeatures {
     begin {
         $EntryName = "Turn off all Windows spotlight features"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '19.7.7.4'
-        $Result.Level = "L2"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off all Windows spotlight features' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '19.7.7.4'
+        $Level = 'L2'
+        
+        $Title= "Ensure 'Turn off all Windows spotlight features' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "UserResults"
@@ -303,17 +279,11 @@ function Test-UserCloudContentDisableSpotlightCollectionOnDesktop {
     begin {
         $EntryName = "Turn off Spotlight collection on Desktop"
         $Result = [CISBenchmark]::new()
-        $Result.Number = '19.7.7.5'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Turn off Spotlight collection on Desktop' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '19.7.7.5'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Turn off Spotlight collection on Desktop' is set to 'Enabled'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "UserResults"

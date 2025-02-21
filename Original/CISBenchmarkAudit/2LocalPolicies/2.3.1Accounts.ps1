@@ -35,17 +35,11 @@ function Test-AccountsNoConnectedUser {
 
     begin {
         $Result = [CISBenchmark]::new()
-        $Result.Number = '2.3.1.1'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Microsoft accounts'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.1.1'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Microsoft accounts'"
+        $Source = 'FixMe'
 
         # Get the current value of the setting
         $EntryName = "MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\NoConnectedUser"
@@ -105,17 +99,11 @@ function Test-AccountsEnableGuestAccount {
     begin {
         $Result = [CISBenchmark]::new()
 
-        $Result.Number = '2.3.1.2'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.1.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)"
+        $Source = 'FixMe'
         # Get the current value of the setting
         $EntryName = "EnableGuestAccount"
         $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "SystemAccessPolicyName" -GPResult $GPResult -Results "ComputerResults"
@@ -186,17 +174,11 @@ function Test-AccountsLimitBlankPasswordUse {
     }
 
     end {
-        $Result.Number = '2.3.1.3'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.1.3'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'"
+        $Source = 'FixMe'
         $Result.Setting = $Result.Entry.Display.DisplayString
             return $Result
     }
@@ -255,17 +237,11 @@ function Test-AccountsNewAdministratorName {
     }
 
     end {
-        $Result.Number = '2.3.1.4'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Configure 'Accounts: Rename administrator account'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.1.4'
+        $Level = 'L1'
+        
+        $Title= "Configure 'Accounts: Rename administrator account'"
+        $Source = 'FixMe'
         $Result.Setting = $Result.Entry.SettingString
             return $Result
     }
@@ -324,17 +300,11 @@ function Test-AccountsNewGuestName {
     }
 
     end {
-        $Result.Number = '2.3.1.5'
-        $Result.Level = "L1"
-        if ($ProductType.Number -eq 1) {
-            $Result.Profile = "Corporate/Enterprise Environment"
-        } elseif ($ProductType.Number -eq 2) {
-            $Result.Profile = "Domain Controller"
-        } elseif ($ProductType.Number -eq 3) {
-            $Result.Profile = "Member Server"
-        }
-        $Result.Title = "Configure 'Accounts: Rename guest account'"
-        $Result.Source = 'Group Policy Settings'
+        $Number = '2.3.1.5'
+        $Level = 'L1'
+        
+        $Title= "Configure 'Accounts: Rename guest account'"
+        $Source = 'FixMe'
         $Result.Setting = $Result.Entry.SettingString
             return $Result
     }
