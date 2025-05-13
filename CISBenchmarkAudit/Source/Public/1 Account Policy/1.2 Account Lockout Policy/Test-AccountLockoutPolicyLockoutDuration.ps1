@@ -36,49 +36,54 @@ function Test-AccountLockoutPolicyLockoutDuration {
         [Parameter()]$SecEditReport = (Get-SecEditReport)
     )
     begin {
-        
         $Return = @()
-        $Result = [CISBenchmark]::new()
         $Number = '1.2.1'
         $Level = 'L1'
-        
         $Title= "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
-		$Result.Source = "Group Policy Settings"
-
-        #Find the Password History Size applied to this machine
-        $EntryName = "LockoutDuration"
-        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "Name" -GPResult $GPResult -Results "ComputerResults"
-        $Result.Setting = [int]$Result.Entry.SettingNumber
+        $Setting = [bool]$SecEditReport.'System Access'.LockoutDuration
     }
 
     process {
         # Check if the GPO setting meets the CIS Benchmark
-        if ($Result.Setting -ge "15") {
-            $Result.SetCorrectly = $true
+        if ($Setting -ge "15") {
+            $SetCorrectly = $true
         } else {
-            $Result.SetCorrectly = $false
+            $SetCorrectly = $false
         }
 
-        $Return += $Result
+        $Return += [CISBenchmark]::new(@{
+            'Number' = $Number
+            'Level' = $Level
+            'Profile' = $ProductType.Profile
+            'Title' = $Title
+            'Source' = "Secedit"
+            'Setting' = $Setting
+            'SetCorrectly' = $SetCorrectly
+        })
 
         # Check if the Fine Grained Password Policies meet the CIS Benchmark
         if ($ProductType.Number -eq 2) {
-            $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
-            foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
-                $Result = [CISBenchmark]::new()
-                $Number = '1.2.1'
-                $Level = 'L1'
-                $Result.Profile = "Domain Controller"
-                $Title= "Ensure 'Account lockout duration' is set to '15 or more minute(s)'"
-                $Result.Source = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
-                if ($FGPasswordPolicy.LockoutDuration -ge (New-TimeSpan -Minutes 15)) {
-                    $Result.SetCorrectly = $true
-                } else {
-                    $Result.SetCorrectly = $false
-                }
-                $Result.Setting = [bool]$FGPasswordPolicy.LockoutDuration
-                $Result.Entry = $FGPasswordPolicy
-                $Return += $Result
+            try {
+                $ADFineGrainedPasswordPolicy = Get-ADFineGrainedPasswordPolicy -filter *
+            }
+            catch {
+                Write-Warning "Unable to review Fine Grained Password Policies."
+            }
+            $Return += foreach ($FGPasswordPolicy in $ADFineGrainedPasswordPolicy) {
+                [CISBenchmark]::new(@{
+                    'Number' = $Number
+                    'Level' = $Level
+                    'Profile' = $ProductType.Profile
+                    'Title' = $Title
+                    'Source' = $FGPasswordPolicy.Name + " Fine Grained Password Policy"
+                    'Setting' = [int]$FGPasswordPolicy.LockoutDuration
+                    'SetCorrectly' = if ($FGPasswordPolicy.LockoutDuration -ge (New-TimeSpan -Minutes 15)) {
+                        $true
+                    } else {
+                        $false
+                    }
+                    'Entry' = $FGPasswordPolicy
+                })
             }
         }
     }
