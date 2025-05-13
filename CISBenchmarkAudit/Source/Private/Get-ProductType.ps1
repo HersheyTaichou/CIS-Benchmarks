@@ -15,7 +15,9 @@ This is used to define the GPO XML variable to test
 .EXAMPLE
 Get-ProductType
 
-Domain Controller
+Profile     Number
+-------     ------
+Workstation      1
 
 .NOTES
 General notes
@@ -29,7 +31,7 @@ function Get-ProductType {
     }
 
     process {
-        $Return = switch ($ProductType) {
+        $Properties = switch ($ProductType) {
             1 {
                 @{
                     'Number' = $ProductType
@@ -55,6 +57,7 @@ function Get-ProductType {
                 }
             }
         }
+        $Return = New-Object -TypeName PSObject -Property $Properties
     }
 
     end {
