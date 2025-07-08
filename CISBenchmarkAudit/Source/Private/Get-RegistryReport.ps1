@@ -3,35 +3,36 @@ function Get-RegistryReport {
     param (
         # Registry key path
         [Parameter(Mandatory)]
-        [string]
+        [string[]]
         $Path
     )
 
     begin {
-        $Keys = Get-ChildItem -Recurse -Path $Path -ErrorAction SilentlyContinue
+        
+        $Keys = foreach ($Location in $Path) {
+            Get-ChildItem -Recurse -Path $Location -ErrorAction SilentlyContinue
+        }
     }
 
     process {
         $Registry = foreach ($Key in $Keys) {
-            [Microsoft.Win32.RegistryKey]$regItem = Get-Item -Path "Registry::$Key" -ErrorAction Stop
-
-            if ($regItem.Property.Count -gt 0) {
-                foreach ($property in $regItem.Property) {
+            foreach ($property in $Key.Property) {
+                if ($property -ne "(default)") {
                     [pscustomobject]@{
-                        'Path'  = $regItem
+                        'Path'  = $Key.Name
                         'Name'  = $property
-                        'Value' = $regItem.GetValue($property, $null, 'DoNotExpandEnvironmentNames')
-                        'Type'  = $regItem.GetValueKind($property)
+                        'Value' = $Key.GetValue($property, $null, 'DoNotExpandEnvironmentNames')
+                        'Type'  = $Key.GetValueKind($property)
                         'Computername' = $env:computername
                     }
-                }
-            } else {
-                [pscustomobject]@{
-                    'Path'         = $regItem
-                    'Name'         = '(Default)'
-                    'Value'        = $null
-                    'Type'         = 'String'
-                    'Computername' = $env:computername
+                } else {
+                    [pscustomobject]@{
+                        'Path'         = $Key
+                        'Name'         = $property
+                        'Value'        = $null
+                        'Type'         = 'String'
+                        'Computername' = $env:computername
+                    }
                 }
             }
         }
