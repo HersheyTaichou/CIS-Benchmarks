@@ -1,0 +1,61 @@
+<#
+.SYNOPSIS
+2.3.4.2 (L1) Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'
+
+.DESCRIPTION
+For a computer to print to a shared printer, the driver for that shared printer must be installed on the local computer. This security setting determines who is allowed to install a printer driver as part of connecting to a shared printer.
+
+.PARAMETER ProductType
+This is used to set the type of OS that should be tested against based on the product type:
+
+1 = Workstation
+2 = Domain Controller
+3 = Member Server
+
+.PARAMETER GPResult
+This is used to define the GPO XML variable to test
+
+.EXAMPLE
+Test-DevicesAddPrinterDrivers
+
+Number     Level Title                                                           Source                    SetCorrectly
+------     ----- -----                                                           ------                    ------------
+2.3.4.2    L1    Ensure 'Devices: Prevent users from installing printer drive... Group Policy Settings     True        
+
+.NOTES
+General notes
+#>
+function Test-DevicesAddPrinterDrivers {
+    [CmdletBinding()]
+    param (
+        # Get the product type (1, 2 or 3)
+        [Parameter()]$ProductType = (Get-ProductType),
+        [Parameter()]$SecEditReport = (Get-SecEditReport)
+    )
+
+    begin {
+        $Result = [CISBenchmark]::new()
+
+         # Get the current value of the setting
+        $EntryName = "MACHINE\System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\AddPrinterDrivers"
+        $Result.Entry = Get-GPOEntry -EntryName $EntryName -Name "KeyName" -GPResult $GPResult -Results "ComputerResults"
+        [bool]$Result.Setting = [int]$Result.Entry.SettingNumber
+    }
+
+    process {
+        if ($Result.Setting) {
+            $Result.SetCorrectly = $Result.Setting
+        } else {
+            $Result.SetCorrectly = $false
+        }
+    }
+
+    end {
+        $Number = '2.3.4.2'
+        $Level = 'L1'
+        
+        $Title= "Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'"
+        $Source = 'FixMe'
+        return $Result
+    }
+}
